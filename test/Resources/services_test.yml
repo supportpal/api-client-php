@@ -1,0 +1,19 @@
+imports:
+    - { resource: ../../src/Resources/services.yml }
+
+parameters:
+    apiUrl: ''
+    apiToken: ''
+
+services:
+    _defaults:
+        public: true
+        autoconfigure: true
+        autowire: true
+
+    SupportPal\ApiClient\Factory\CommentFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: 'json'
+            $serializer: '@Symfony\Component\Serializer\Serializer'
