@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient;
 
@@ -49,7 +48,7 @@ class Api
     public function getCoreSettings(): CoreSettings
     {
         $response = $this->apiClient->getCoreSettings();
-        $body = json_decode($response->getBody(), true)['data'];
+        $body = json_decode((string) $response->getBody(), true)['data'];
         /** @var CoreSettings $model */
         $model = $this->modelCollectionFactory->create(CoreSettings::class, $body);
 
@@ -67,7 +66,7 @@ class Api
         $response = $this->apiClient->postSelfServiceComment(
             $this->serializer->serialize($comment, $this->serializationType)
         );
-        $body = json_decode($response->getBody(), true)['data'];
+        $body = json_decode((string) $response->getBody(), true)['data'];
 
         /** @var Comment $model */
         $model = $this->modelCollectionFactory->create(Comment::class, $body);

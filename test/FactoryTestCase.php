@@ -1,11 +1,10 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient\Tests;
 
 use SupportPal\ApiClient\Factory\ModelFactory;
 
-trait FactoryTestCaseTrait
+trait FactoryTestCase
 {
     /**
      * @return iterable<mixed>

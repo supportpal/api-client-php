@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient;
 
@@ -92,7 +91,7 @@ class ApiClient
      */
     private function assertRequestSuccessful(ResponseInterface $response): void
     {
-        $body = json_decode($response->getBody(), true);
+        $body = json_decode((string) $response->getBody(), true);
         if ($response->getStatusCode() !== 200
             || ! is_array($body)
             || ! isset($body['status'])

@@ -1,8 +1,8 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient\Factory;
 
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\NotSupportedException;
 use SupportPal\ApiClient\Model\Model;
 
@@ -26,7 +26,7 @@ class ModelCollectionFactory
     {
         foreach ($factories as $factory) {
             if (! $factory instanceof ModelFactory) {
-                throw new \InvalidArgumentException;
+                throw new InvalidArgumentException;
             }
             $this->factories[$factory->getModel()] = $factory;
         }

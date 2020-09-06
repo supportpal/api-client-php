@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient\Tests\Functional;
 
@@ -77,7 +76,7 @@ class SupportPalTest extends ApiAwareBaseTestClass
     {
         $this->appendRequestResponse($response);
         self::expectException(HttpResponseException::class);
-        self::expectExceptionMessage(json_decode($response->getBody(), true)['status']);
+        self::expectExceptionMessage(json_decode((string) $response->getBody(), true)['status']);
         $this->getSupportPal()->getApi()->getCoreSettings();
     }
 

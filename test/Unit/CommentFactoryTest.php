@@ -1,17 +1,16 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient\Tests\Unit;
 
 use SupportPal\ApiClient\Factory\CommentFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Helper\StringHelperTrait;
+use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Comment;
 use SupportPal\ApiClient\Model\Model;
 
 class CommentFactoryTest extends BaseModelFactoryTestCase
 {
-    use StringHelperTrait;
+    use StringHelper;
 
     const COMMENT_DATA = [
         'text' => 'text',

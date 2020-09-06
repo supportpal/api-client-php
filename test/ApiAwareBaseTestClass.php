@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient\Tests;
 
@@ -8,7 +7,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
-use SupportPal\ApiClient\Helper\StringHelperTrait;
+use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\SupportPal;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -16,7 +15,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 abstract class ApiAwareBaseTestClass extends TestCase
 {
-    use StringHelperTrait;
+    use StringHelper;
 
     /**
      * @var SupportPal

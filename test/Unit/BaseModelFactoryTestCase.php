@@ -1,23 +1,22 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
-use SupportPal\ApiClient\Helper\StringHelperTrait;
+use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Tests\FactoryTestCaseTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Tests\FactoryTestCase;
 use Symfony\Component\Serializer\SerializerInterface;
 
 abstract class BaseModelFactoryTestCase extends TestCase
 {
-    use FactoryTestCaseTrait;
+    use FactoryTestCase;
 
-    use StringHelperTrait;
+    use StringHelper;
 
     /**
      * @var ObjectProphecy|SerializerInterface
@@ -66,7 +65,7 @@ abstract class BaseModelFactoryTestCase extends TestCase
             ->deserialize(json_encode($this->getModelData()), $this->getModel(), $this->format)
             ->shouldBeCalled()
             ->willThrow(InvalidArgumentException::class);
-        self::expectException(\InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
         $this->getModelFactory()->create($this->getModelData());
     }
 

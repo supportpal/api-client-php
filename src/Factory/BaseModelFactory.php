@@ -1,9 +1,8 @@
-<?php
-declare(strict_types=1);
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient\Factory;
 
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Model\Model;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -46,7 +45,7 @@ abstract class BaseModelFactory implements ModelFactory
             /** @var Model $model */
             $model = $this->serializer->deserialize(json_encode($data), $this->getModel(), $this->formatType);
         } catch (\Exception $invalidArgumentException) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 $invalidArgumentException->getMessage(),
                 0,
                 $invalidArgumentException->getPrevious()

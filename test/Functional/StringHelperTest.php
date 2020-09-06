@@ -1,14 +1,13 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient\Tests\Functional;
 
 use PHPUnit\Framework\TestCase;
-use SupportPal\ApiClient\Helper\StringHelperTrait;
+use SupportPal\ApiClient\Helper\StringHelper;
 
-class StringHelperTraitTest extends TestCase
+class StringHelperTest extends TestCase
 {
-    use StringHelperTrait;
+    use StringHelper;
 
     /**
      * @param string $string

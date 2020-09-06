@@ -1,18 +1,18 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient\Tests\Integration\Factory;
 
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
-use SupportPal\ApiClient\Helper\StringHelperTrait;
+use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Tests\ApiAwareBaseTestClass;
-use SupportPal\ApiClient\Tests\FactoryTestCaseTrait;
+use SupportPal\ApiClient\Tests\FactoryTestCase;
 
 abstract class BaseModelFactoryTestCase extends ApiAwareBaseTestClass
 {
-    use StringHelperTrait;
+    use StringHelper;
 
-    use FactoryTestCaseTrait;
+    use FactoryTestCase;
 
     public function testCreateValidModel(): void
     {
@@ -29,7 +29,7 @@ abstract class BaseModelFactoryTestCase extends ApiAwareBaseTestClass
      */
     public function testCreateWithInvalidTypes(array $data, string $invalidKey): void
     {
-        self::expectException(\InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
         self::expectExceptionMessage($this->snakeCaseToCamelCase($invalidKey));
         $this->getModelFactory()->create($data);
     }
