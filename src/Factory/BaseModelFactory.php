@@ -1,23 +1,19 @@
 <?php
+declare(strict_types=1);
 
 
 namespace SupportPal\ApiClient\Factory;
 
-use SupportPal\ApiClient\Exception\InvalidModelException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Model\Model;
 use Symfony\Component\Serializer\SerializerInterface;
-
-/**
- * @TODO Add Symfony Validator as a part of the flow
- */
 
 /**
  * An abstract model factory that is the main base for all model factories
  * Class AbstractModelFactory
  * @package SupportPal\ApiClient\Factory
  */
-abstract class AbstractModelFactory implements ModelFactory
+abstract class BaseModelFactory implements ModelFactory
 {
     /**
      * @var SerializerInterface
@@ -46,10 +42,15 @@ abstract class AbstractModelFactory implements ModelFactory
     {
         $this->assertRequiredFieldsExists($data);
 
-        $model = $this->serializer->deserialize(json_encode($data), $this->getModel(), $this->formatType);
-
-        if (! $model instanceof Model) {
-            throw new InvalidModelException;
+        try {
+            /** @var Model $model */
+            $model = $this->serializer->deserialize(json_encode($data), $this->getModel(), $this->formatType);
+        } catch (\Exception $invalidArgumentException) {
+            throw new \InvalidArgumentException(
+                $invalidArgumentException->getMessage(),
+                0,
+                $invalidArgumentException->getPrevious()
+            );
         }
 
         return $model;

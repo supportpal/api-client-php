@@ -1,14 +1,9 @@
 <?php
-
+declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Model;
 
 use Symfony\Component\Serializer\Annotation\SerializedName;
-
-/**
- * @TODO Verify types with Documentation
- * @TODO Add Validator (i.e parent_id > 0, status pending..etc)
- */
 
 /**
  * This data class defines the Comment model data attributes
@@ -17,41 +12,41 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  */
 class Comment implements Model
 {
-    public const REQUIRED_FIELDS = ['text'];
+    public const REQUIRED_FIELDS = ['text', 'status'];
 
     /**
      * @var string
-     * @SerializedName('text')
+     * @SerializedName("text")
      */
     private $text;
 
     /**
      * @var int
-     * @SerializedName('article_id)
+     * @SerializedName("article_id")
      */
     private $articleId;
 
     /**
      * @var int
-     * @SerializedName('type_id)
+     * @SerializedName("type_id")
      */
     private $typeId;
 
     /**
      * @var int
-     * @SerializedName('parent_id')
+     * @SerializedName("parent_id")
      */
     private $parentId;
 
     /**
-     * @var string
-     * @SerializedName('status')
+     * @var int
+     * @SerializedName("status")
      */
     private $status;
 
     /**
      * @var bool
-     * @SerializedName('notify_reply')
+     * @SerializedName("notify_reply")
      */
     private $notifyReply;
 
@@ -128,18 +123,18 @@ class Comment implements Model
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getStatus(): string
+    public function getStatus(): int
     {
         return $this->status;
     }
 
     /**
-     * @param string $status
+     * @param int $status
      * @return self
      */
-    public function setStatus(string $status): self
+    public function setStatus(int $status): self
     {
         $this->status = $status;
         return $this;
@@ -148,7 +143,7 @@ class Comment implements Model
     /**
      * @return bool
      */
-    public function isNotifyReply(): bool
+    public function getNotifyReply(): bool
     {
         return $this->notifyReply;
     }

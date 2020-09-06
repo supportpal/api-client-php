@@ -3,15 +3,21 @@
 
 namespace SupportPal\ApiClient\Tests;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Client\ClientInterface;
+use SupportPal\ApiClient\Helper\StringHelperTrait;
 use SupportPal\ApiClient\SupportPal;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class ApiAwareBaseTestClass extends TestCase
+abstract class ApiAwareBaseTestClass extends TestCase
 {
+    use StringHelperTrait;
+
     /**
      * @var SupportPal
      */
@@ -23,6 +29,11 @@ class ApiAwareBaseTestClass extends TestCase
     private $container;
 
     /**
+     * @var MockHandler
+     */
+    private $mockRequestHandler;
+
+    /**
      * @inheritDoc
      * @throws \ReflectionException
      */
@@ -30,7 +41,7 @@ class ApiAwareBaseTestClass extends TestCase
     {
         parent::setUp();
         /**
-         * create new app instance for functional tests
+         * create new app instance for tests
          */
         $this->supportPal = new SupportPal('', '');
 
@@ -40,8 +51,14 @@ class ApiAwareBaseTestClass extends TestCase
         $containerBuilder = new ContainerBuilder;
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
         $loader->load('Resources/services_test.yml');
-        $client = $this->prophesize(ClientInterface::class);
-        $containerBuilder->set('GuzzleHttp\Client', $client->reveal());
+
+        /**
+         * replace GuzzleClient with MockClient
+         */
+        $this->mockRequestHandler = new MockHandler;
+        $handlerStack = HandlerStack::create($this->mockRequestHandler);
+        $client = new Client(['handler' => $handlerStack]);
+        $containerBuilder->set('GuzzleHttp\Client', $client);
         $containerBuilder->compile();
 
         /**
@@ -70,5 +87,11 @@ class ApiAwareBaseTestClass extends TestCase
     protected function getContainer(): ContainerBuilder
     {
         return $this->container;
+    }
+
+    protected function appendRequestResponse(Response $response): void
+    {
+        $this->mockRequestHandler->reset();
+        $this->mockRequestHandler->append($response);
     }
 }

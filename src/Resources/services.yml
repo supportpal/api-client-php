@@ -1,46 +1,16 @@
+imports:
+    - { resource: factories.yml }
+    - { resource: library_services.yml }
+    - { resource: core_services.yml }
+
 services:
     _defaults:
         autowire: true
         autoconfigure: true
         public: false
 
-    #internal services
     SupportPal\ApiClient\ApiClient:
         arguments:
             $httpClient: '@GuzzleHttp\Client'
 
-    SupportPal\ApiClient\Api:
-        public: true
-        arguments:
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $serializationType: 'json'
-
-    SupportPal\ApiClient\Factory\CommentFactory:
-        tags: ['factory.model_factory']
-        arguments:
-            $formatType: 'json'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-
-
-    SupportPal\ApiClient\Factory\ModelCollectionFactory:
-        public: true
-        arguments:
-            $factories: !tagged factory.model_factory
-
-    SupportPal\ApiClient\Factory\RequestFactory:
-        arguments:
-            $apiUrl: '%apiUrl%'
-            $apiToken: '%apiToken%'
-
-    Symfony\Component\Serializer\Serializer:
-        arguments:
-            - ['@Symfony\Component\Serializer\Normalizer\ObjectNormalizer']
-            - [ '@Symfony\Component\Serializer\Encoder\JsonEncoder' ]
-
-    #libraries
-    Symfony\Component\Serializer\Normalizer\ObjectNormalizer: ~
-
-    Symfony\Component\Serializer\Encoder\JsonEncoder: ~
-
-    GuzzleHttp\Client: ~
 

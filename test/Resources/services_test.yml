@@ -17,3 +17,10 @@ services:
         arguments:
             $formatType: 'json'
             $serializer: '@Symfony\Component\Serializer\Serializer'
+
+    SupportPal\ApiClient\Factory\CoreSettingsFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: 'json'
+            $serializer: '@Symfony\Component\Serializer\Serializer'

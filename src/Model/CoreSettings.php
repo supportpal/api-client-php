@@ -6,215 +6,211 @@ namespace SupportPal\ApiClient\Model;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
- * @TODO Add properties from Documentation
- */
-
-/**
  * This data class defines the self model data attributes
  * Class self
  * @package SupportPal\ApiClient\Model
  */
-class CoreSettings implements Model
+class CoreSettings extends BaseModel implements Model
 {
     /**
      * @var string
-     * @SerializedName('admin_folder')
+     * @SerializedName("admin_folder")
      */
     private $adminFolder;
 
     /**
      * @var string
-     * @SerializedName('date_format')
+     * @SerializedName("date_format")
      */
     private $dateFormat;
 
     /**
      * @var string
-     * @SerializedName('default_country')
+     * @SerializedName("default_country")
      */
     private $defaultCountry;
     /**
      * @var string
-     * @SerializedName('default_frontend_language')
+     * @SerializedName("default_frontend_language")
      */
     private $defaultFrontendLanguage;
     /**
      * @var string
-     * @SerializedName('default_operator_language')
+     * @SerializedName("default_operator_language")
      */
     private $defaultOperatorLanguage;
     /**
      * @var string
-     * @SerializedName('default_timezone')
+     * @SerializedName("default_timezone")
      */
     private $defaultTimezone;
     /**
      * @var string
-     * @SerializedName('enable_ssl')
+     * @SerializedName("enable_ssl")
      */
     private $enableSsl;
 
     /**
      * @var string
-     * @SerializedName('frontend_language')
+     * @SerializedName("frontend_language")
      */
     private $frontendLanguage;
     /**
      * @var string
-     * @SerializedName('is_installed')
+     * @SerializedName("is_installed")
      */
     private $isInstalled;
     /**
      * @var string
-     * @SerializedName('language_frontend_toggle')
+     * @SerializedName("language_frontend_toggle")
      */
     private $languageFrontendToggle;
     /**
      * @var string
-     * @SerializedName('language_operator_toggle')
+     * @SerializedName("language_operator_toggle")
      */
     private $languageOperatorToggle;
     /**
      * @var string
-     * @SerializedName('maintenance_mode')
+     * @SerializedName("maintenance_mode")
      */
     private $maintenanceMode;
     /**
      * @var string
-     * @SerializedName('operator_language')
+     * @SerializedName("operator_language")
      */
     private $operatorLanguage;
     /**
      * @var string
-     * @SerializedName('operator_template')
+     * @SerializedName("operator_template")
      */
     private $operatorTemplate;
     /**
      * @var string
-     * @SerializedName('simpleauth_key')
+     * @SerializedName("simpleauth_key")
      */
     private $simpleAuthKey;
 
     /**
      * @var string
-     * @SerializedName('time_format')
+     * @SerializedName("time_format")
      */
     private $timeFormat;
 
     /**
      * @var string
-     * @SerializedName('simpleauth_operators')
+     * @SerializedName("simpleauth_operators")
      */
     private $simpleAuthOperators;
     /**
      * @var string
-     * @SerializedName('debug_mode')
+     * @SerializedName("debug_mode")
      */
     private $debugMode;
     /**
      * @var string
-     * @SerializedName('pretty_urls')
+     * @SerializedName("pretty_urls")
      */
     private $prettyUrls;
 
     /**
      * @var string
-     * @SerializedName('default_brand')
+     * @SerializedName("default_brand")
      */
     private $defaultBrand;
     /**
      * @var string
-     * @SerializedName('attachment_size')
+     * @SerializedName("attachment_size")
      */
     private $attachmentSize;
 
     /**
      * @var string
-     * @SerializedName('captcha_type')
+     * @SerializedName("captcha_type")
      */
     private $captchaType;
 
     /**
      * @var string
-     * @SerializedName('upgrade_time')
+     * @SerializedName("upgrade_time")
      */
     private $upgradeTime;
     /**
      * @var string
-     * @SerializedName('last_email_log_id')
+     * @SerializedName("last_email_log_id")
      */
     private $lastEmailLogId;
     /**
      * @var string
-     * @SerializedName('installed_version')
+     * @SerializedName("installed_version")
      */
     private $installedVersion;
     /**
      * @var string
-     * @SerializedName('install_time')
+     * @SerializedName("install_time")
      */
     private $installTime;
     /**
      * @var string
-     * @SerializedName('include_operator_name')
+     * @SerializedName("include_operator_name")
      */
     private $includeOperatorName;
     /**
      * @var string
-     * @SerializedName('include_department_name')
+     * @SerializedName("include_department_name")
      */
     private $includeDepartmentName;
     /**
      * @var string
-     * @SerializedName('email_method')
+     * @SerializedName("email_method")
      */
     private $emailMethod;
     /**
      * @var string
-     * @SerializedName('smtp_host')
+     * @SerializedName("smtp_host")
      */
     private $smtpHost;
 
     /**
      * @var string
-     * @SerializedName('smtp_port')
+     * @SerializedName("smtp_port")
      */
     private $smtpPort;
 
     /**
      * @var string
-     * @SerializedName('smtp_encryption')
+     * @SerializedName("smtp_encryption")
      */
     private $smtpEncryption;
     /**
      * @var string
-     * @SerializedName('smtp_requires_auth')
+     * @SerializedName("smtp_requires_auth")
      */
     private $smtpRequiresAuth;
     /**
      * @var string
-     * @SerializedName('smtp_username')
+     * @SerializedName("smtp_username")
      */
     private $smtpUsername;
     /**
      * @var string
-     * @SerializedName('smtp_password')
+     * @SerializedName("smtp_password")
      */
     private $smtpPassword;
 
     /**
      * @var string
-     * @SerializedName('include_locale_in_uri')
+     * @SerializedName("include_locale_in_uri")
      */
     private $includeLocaleInUri;
     /**
      * @var string
-     * @SerializedName('recaptcha_site_key')
+     * @SerializedName("recaptcha_site_key")
      */
     private $recaptchaSiteKey;
     /**
      * @var string
-     * @SerializedName('recaptcha_secret_key')
+     * @SerializedName("recaptcha_secret_key")
      */
     private $recaptchaSecretKey;
 
