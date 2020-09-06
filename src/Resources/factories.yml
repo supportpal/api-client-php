@@ -1,0 +1,18 @@
+services:
+
+    SupportPal\ApiClient\Factory\RequestFactory:
+        arguments:
+            $apiUrl: '%apiUrl%'
+            $apiToken: '%apiToken%'
+
+    SupportPal\ApiClient\Factory\CoreSettingsFactory:
+        tags: ['factory.model_factory']
+        arguments:
+            $formatType: 'json'
+            $serializer: '@Symfony\Component\Serializer\Serializer'
+
+    SupportPal\ApiClient\Factory\CommentFactory:
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: 'json'
+            $serializer: '@Symfony\Component\Serializer\Serializer'

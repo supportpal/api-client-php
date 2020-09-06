@@ -1,0 +1,5 @@
+.gitattributes export-ignore
+.gitignore export-ignore
+/composer.json export-ignore
+/phpunit.dist.xml export-ignore
+/test export-ignore

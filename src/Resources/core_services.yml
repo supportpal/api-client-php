@@ -1,0 +1,13 @@
+services:
+    SupportPal\ApiClient\Api:
+        public: true
+        arguments:
+            $serializer: '@Symfony\Component\Serializer\Serializer'
+            $serializationType: 'json'
+            $modelCollectionFactory: '@SupportPal\ApiClient\Factory\ModelCollectionFactory'
+            $apiClient: '@SupportPal\ApiClient\ApiClient'
+
+    SupportPal\ApiClient\Factory\ModelCollectionFactory:
+        public: true
+        arguments:
+            $factories: !tagged factory.model_factory

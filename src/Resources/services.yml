@@ -1,0 +1,16 @@
+imports:
+    - { resource: factories.yml }
+    - { resource: library_services.yml }
+    - { resource: core_services.yml }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    SupportPal\ApiClient\ApiClient:
+        arguments:
+            $httpClient: '@GuzzleHttp\Client'
+
+

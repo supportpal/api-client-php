@@ -1,0 +1,28 @@
+services:
+    Symfony\Component\Serializer\Normalizer\ObjectNormalizer:
+        arguments:
+            - '@Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory'
+            - '@Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter'
+
+    Symfony\Component\Serializer\Encoder\JsonEncoder: ~
+
+    GuzzleHttp\Client: ~
+
+    Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter:
+        arguments:
+            $metadataFactory: '@Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory'
+
+    Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory:
+        arguments:
+            - '@Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader'
+
+    Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader:
+        arguments:
+            - '@Doctrine\Common\Annotations\AnnotationReader'
+
+    Doctrine\Common\Annotations\AnnotationReader: ~
+
+    Symfony\Component\Serializer\Serializer:
+        arguments:
+            - [ '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer' ]
+            - [ '@Symfony\Component\Serializer\Encoder\JsonEncoder' ]
