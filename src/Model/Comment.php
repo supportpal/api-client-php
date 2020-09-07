@@ -11,7 +11,17 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  */
 class Comment implements Model
 {
-    public const REQUIRED_FIELDS = ['text', 'status'];
+    public const REQUIRED_FIELDS = [
+        'article_id',
+        'type_id',
+        'text',
+    ];
+
+    /**
+     * @var int|null
+     * @SerializedName("id")
+     */
+    private $id;
 
     /**
      * @var string
@@ -32,7 +42,7 @@ class Comment implements Model
     private $typeId;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("parent_id")
      */
     private $parentId;
@@ -44,10 +54,34 @@ class Comment implements Model
     private $status;
 
     /**
-     * @var bool
+     * @var int
      * @SerializedName("notify_reply")
      */
     private $notifyReply;
+
+    /**
+     * @var int|null
+     * @SerializedName("author_id")
+     */
+    private $authorId;
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return self
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
 
     /**
      * @return string
@@ -104,18 +138,18 @@ class Comment implements Model
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getParentId(): int
+    public function getParentId(): ?int
     {
         return $this->parentId;
     }
 
     /**
-     * @param int $parentId
+     * @param int|null $parentId
      * @return self
      */
-    public function setParentId(int $parentId): self
+    public function setParentId(?int $parentId): self
     {
         $this->parentId = $parentId;
         return $this;
@@ -140,20 +174,38 @@ class Comment implements Model
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function getNotifyReply(): bool
+    public function getNotifyReply(): int
     {
         return $this->notifyReply;
     }
 
     /**
-     * @param bool $notifyReply
+     * @param int $notifyReply
      * @return self
      */
-    public function setNotifyReply(bool $notifyReply): self
+    public function setNotifyReply(int $notifyReply): self
     {
         $this->notifyReply = $notifyReply;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getAuthorId(): ?int
+    {
+        return $this->authorId;
+    }
+
+    /**
+     * @param int|null $authorId
+     * @return self
+     */
+    public function setAuthorId(?int $authorId): self
+    {
+        $this->authorId = $authorId;
         return $this;
     }
 }

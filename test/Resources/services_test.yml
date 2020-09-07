@@ -24,3 +24,14 @@ services:
         arguments:
             $formatType: 'json'
             $serializer: '@Symfony\Component\Serializer\Serializer'
+
+    SupportPal\ApiClient\Factory\RequestFactory:
+        public: true
+        arguments:
+            $apiUrl: '%apiUrl%'
+            $apiToken: '%apiToken%'
+
+    SupportPal\ApiClient\ApiClient:
+        public: true
+        arguments:
+            $httpClient: '@GuzzleHttp\Client'

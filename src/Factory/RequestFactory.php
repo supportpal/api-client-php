@@ -31,18 +31,18 @@ class RequestFactory
 
     /**
      * @param string $method
-     * @param string $uri
+     * @param string $endpoint
      * @param array<mixed> $headers
      * @param string|null $body
      * @return RequestInterface
      */
     public function create(
         string $method,
-        string $uri,
+        string $endpoint,
         array $headers = [],
         ?string $body = null
     ): RequestInterface {
         $headers['Authorization'] = 'Basic ' . base64_encode($this->apiToken . ':X');
-        return new Request($method, $this->apiUrl . $uri, $headers, $body);
+        return new Request($method, $this->apiUrl . $endpoint, $headers, $body);
     }
 }

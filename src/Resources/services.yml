@@ -10,6 +10,7 @@ services:
         public: false
 
     SupportPal\ApiClient\ApiClient:
+        public: true
         arguments:
             $httpClient: '@GuzzleHttp\Client'
 

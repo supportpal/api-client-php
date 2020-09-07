@@ -1,6 +1,7 @@
 services:
 
     SupportPal\ApiClient\Factory\RequestFactory:
+        public: true
         arguments:
             $apiUrl: '%apiUrl%'
             $apiToken: '%apiToken%'

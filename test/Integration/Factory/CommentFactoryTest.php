@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Tests\Integration\Factory;
 use SupportPal\ApiClient\Factory\CommentFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\Comment;
+use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
 /**
  * @covers \SupportPal\ApiClient\Factory\CommentFactory
@@ -14,14 +15,7 @@ use SupportPal\ApiClient\Model\Comment;
 class CommentFactoryTest extends BaseModelFactoryTestCase
 {
 
-    const COMMENT_DATA = [
-        'text' => 'text',
-        'article_id' => 3,
-        'type_id' => 1,
-        'parent_id' => 1,
-        'status' => 3,
-        'notify_reply' => false
-    ];
+    const COMMENT_DATA = CommentData::COMMENT_DATA;
 
     /**
      * @inheritDoc
