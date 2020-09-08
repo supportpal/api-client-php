@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Unit;
+namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -52,7 +52,7 @@ abstract class BaseModelFactoryTestCase extends TestCase
     public function testCreateWithMissingFields(array $data, string $missingKey): void
     {
         self::expectException(MissingRequiredFieldsException::class);
-        self::expectExceptionMessage($this->snakeCaseToCamelCase($missingKey));
+        self::expectExceptionMessage($missingKey);
         $this->serializer
             ->deserialize(Argument::any(), Argument::any(), Argument::any())
             ->shouldNotBeCalled();

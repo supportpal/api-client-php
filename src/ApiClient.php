@@ -4,8 +4,10 @@ namespace SupportPal\ApiClient;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\Dictionary\APIDictionary;
+use SupportPal\ApiClient\ApiClient\CoreApis;
+use SupportPal\ApiClient\ApiClient\SelfServiceApis;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 
@@ -16,6 +18,8 @@ use SupportPal\ApiClient\Factory\RequestFactory;
  */
 class ApiClient
 {
+    use CoreApis;
+    use SelfServiceApis;
     /**
      * @var ClientInterface
      */
@@ -41,13 +45,12 @@ class ApiClient
     }
 
     /**
-     * This method sends an http request to fetch coreSettings
+     * @param RequestInterface $request
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getCoreSettings(): ResponseInterface
+    public function sendRequest(RequestInterface $request): ResponseInterface
     {
-        $request = $this->requestFactory->create('GET', APIDictionary::CORE_SETTINGS);
         try {
             $response = $this->httpClient->sendRequest($request);
             $this->assertRequestSuccessful($response);
@@ -58,38 +61,13 @@ class ApiClient
         return $response;
     }
 
-    /**
-     *
-     * This method posts a self service comment
-     * @param string $body
-     * @return ResponseInterface
-     * @throws HttpResponseException
-     */
-    public function postSelfServiceComment(string $body): ResponseInterface
-    {
-        $request = $this->requestFactory->create(
-            'POST',
-            APIDictionary::SELF_SERVICE_COMMENT,
-            [],
-            $body
-        );
-
-        try {
-            $response = $this->httpClient->sendRequest($request);
-            $this->assertRequestSuccessful($response);
-        } catch (ClientExceptionInterface $exception) {
-            throw new HttpResponseException;
-        }
-
-        return $response;
-    }
 
     /**
      * This method asserts that the request returned a successful response
      * @param ResponseInterface $response
      * @throws HttpResponseException
      */
-    private function assertRequestSuccessful(ResponseInterface $response): void
+    protected function assertRequestSuccessful(ResponseInterface $response): void
     {
         $body = json_decode((string) $response->getBody(), true);
         if ($response->getStatusCode() !== 200

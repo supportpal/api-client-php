@@ -7,7 +7,7 @@ namespace SupportPal\ApiClient\Dictionary;
  * Class APIDictionary
  * @package SupportPal\ApiClient\Dictionary
  */
-final class APIDictionary
+final class ApiDictionary
 {
     public const CORE_SETTINGS = 'core/settings';
 

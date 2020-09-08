@@ -1,25 +1,16 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Unit;
+namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
 use SupportPal\ApiClient\Factory\CommentFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Comment;
 use SupportPal\ApiClient\Model\Model;
+use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
 class CommentFactoryTest extends BaseModelFactoryTestCase
 {
-    use StringHelper;
-
-    const COMMENT_DATA = [
-        'text' => 'text',
-        'article_id' => 3,
-        'type_id' => 1,
-        'parent_id' => 1,
-        'status' => 3,
-        'notify_reply' => false
-    ];
+    const COMMENT_DATA = CommentData::COMMENT_DATA;
 
     protected function getModelFactory(): ModelFactory
     {

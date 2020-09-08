@@ -13,9 +13,18 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-abstract class ApiAwareBaseTestClass extends TestCase
+abstract class ContainerAwareBaseTestCase extends TestCase
 {
     use StringHelper;
+
+    /**
+     * @var array<mixed>
+     */
+    private $genericErrorResponse = [
+        'status' => 'error',
+        'message' => null,
+        'data' => []
+    ];
 
     /**
      * @var SupportPal
@@ -31,6 +40,28 @@ abstract class ApiAwareBaseTestClass extends TestCase
      * @var MockHandler
      */
     private $mockRequestHandler;
+
+    /**
+     * @return iterable<array<string, Response>>
+     */
+    public function provideUnsuccessfulTestCases(): iterable
+    {
+
+        $jsonErrorBody = $this->genericErrorResponse;
+        $jsonErrorBody['status'] = 'success';
+        /** @var string $jsonSuccessfulBody */
+        $jsonSuccessfulBody = json_encode($jsonErrorBody);
+        yield ['error 400 response' => new Response(400, [], $jsonSuccessfulBody)];
+        yield ['error 401 response' => new Response(401, [], $jsonSuccessfulBody)];
+        yield ['error 403 response' => new Response(403, [], $jsonSuccessfulBody)];
+        yield ['error 404 response' => new Response(404, [], $jsonSuccessfulBody)];
+
+        /** @var string $jsonErrorBody */
+        $jsonErrorBody = json_encode($this->genericErrorResponse);
+        yield [
+            'error status response' => new Response(200, [], $jsonErrorBody)
+        ];
+    }
 
     /**
      * @inheritDoc
