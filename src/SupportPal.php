@@ -22,7 +22,7 @@ class SupportPal
     {
         $containerBuilder = new ContainerBuilder;
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
-        $loader->load('resources/services.yml');
+        $loader->load('Resources/services.yml');
         $containerBuilder->setParameter('apiUrl', $apiUrl);
         $containerBuilder->setParameter('apiToken', $apiToken);
         $containerBuilder->compile();
