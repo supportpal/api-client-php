@@ -119,7 +119,7 @@ trait SelfServiceApisTestCase
     {
         $request = $this->prophesize(Request::class);
         $this->requestFactory
-            ->create('GET', ApiDictionary::SELF_SERVICE_COMMENT . '?' . http_build_query($parameters))
+            ->create('GET', ApiDictionary::SELF_SERVICE_COMMENT, [], null, $parameters)
             ->shouldBeCalled()
             ->willReturn($request->reveal());
 

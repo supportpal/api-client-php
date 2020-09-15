@@ -48,7 +48,10 @@ trait SelfServiceApis
     {
         $request = $this->requestFactory->create(
             'GET',
-            ApiDictionary::SELF_SERVICE_COMMENT . '?' . http_build_query($queryParameters)
+            ApiDictionary::SELF_SERVICE_COMMENT,
+            [],
+            null,
+            $queryParameters
         );
 
         return $this->sendRequest($request);
