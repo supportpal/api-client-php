@@ -5,6 +5,7 @@ services:
         arguments:
             $apiUrl: '%apiUrl%'
             $apiToken: '%apiToken%'
+            $contentType: '%apiContentType%'
 
     SupportPal\ApiClient\Factory\CoreSettingsFactory:
         tags: ['factory.model_factory']

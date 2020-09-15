@@ -1,8 +1,14 @@
 services:
     Symfony\Component\Serializer\Normalizer\ObjectNormalizer:
         arguments:
-            - '@Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory'
-            - '@Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter'
+            $classMetadataFactory: '@Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory'
+            $nameConverter: '@Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter'
+            $propertyAccessor: ~
+            $propertyTypeExtractor: ~
+            $classDiscriminatorResolver: ~
+            $objectClassResolver: ~
+            $defaultContext:
+                skip_null_values: true
 
     Symfony\Component\Serializer\Encoder\JsonEncoder: ~
 

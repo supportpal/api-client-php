@@ -11,7 +11,6 @@ use Psr\Http\Message\RequestInterface;
  */
 class RequestFactory
 {
-
     /**
      * base api url
      * @var string
@@ -23,10 +22,17 @@ class RequestFactory
      */
     private $apiToken;
 
-    public function __construct(string $apiUrl, string $apiToken)
+    /**
+     * Api supported content type
+     * @var string
+     */
+    private $contentType;
+
+    public function __construct(string $apiUrl, string $apiToken, string $contentType)
     {
         $this->apiUrl = $apiUrl;
         $this->apiToken = $apiToken;
+        $this->contentType = $contentType;
     }
 
     /**
@@ -42,6 +48,7 @@ class RequestFactory
         array $headers = [],
         ?string $body = null
     ): RequestInterface {
+        $headers['Content-Type'] = $this->contentType;
         $headers['Authorization'] = 'Basic ' . base64_encode($this->apiToken . ':X');
         return new Request($method, $this->apiUrl . $endpoint, $headers, $body);
     }

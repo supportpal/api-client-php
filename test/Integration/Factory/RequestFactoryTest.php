@@ -24,6 +24,11 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
      */
     private $apiToken;
 
+    /**
+     * @var string
+     */
+    private $apiContentType;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -32,6 +37,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
         $this->requestFactory = $requestFactory;
         $this->apiToken = $this->getContainer()->getParameter('apiToken');
         $this->apiUrl = $this->getContainer()->getParameter('apiUrl');
+        $this->apiContentType = $this->getContainer()->getParameter('apiContentType');
     }
 
     /**
@@ -47,18 +53,18 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
             $data['body']
         );
 
-        $data['headers']['Authorization'] =
-
         $headersArray = [];
         foreach ($data['headers'] as $header => $value) {
             $headersArray[$header] = [$value];
         }
         $headersArray['Authorization'] = ['Basic ' . base64_encode($this->apiToken . ':X')];
+        $headersArray['Content-Type'] = [$this->apiContentType];
+
         self::assertInstanceOf(Request::class, $request);
         self::assertSame($data['method'], $request->getMethod());
         self::assertSame($this->apiUrl . $data['endpoint'], $request->getUri()->getPath());
-        self::assertSame($headersArray, $request->getHeaders());
         self::assertSame($data['body'] ?? '', $request->getBody()->getContents());
+        self::assertEquals($headersArray, $request->getHeaders());
     }
 
     /**

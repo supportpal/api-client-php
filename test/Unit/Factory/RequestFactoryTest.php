@@ -17,7 +17,7 @@ class RequestFactoryTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->requestFactory = new RequestFactory('test', 'test');
+        $this->requestFactory = new RequestFactory('test', 'test', 'test');
     }
 
     /**
@@ -33,17 +33,16 @@ class RequestFactoryTest extends TestCase
             $data['body']
         );
 
-        $data['headers']['Authorization'] =
-
         $headersArray = [];
         foreach ($data['headers'] as $header => $value) {
             $headersArray[$header] = [$value];
         }
         $headersArray['Authorization'] = ['Basic ' . base64_encode('test' . ':X')];
+        $headersArray['Content-Type'] = ['test'];
         self::assertInstanceOf(Request::class, $request);
         self::assertSame($data['method'], $request->getMethod());
         self::assertSame('test' . $data['endpoint'], $request->getUri()->getPath());
-        self::assertSame($headersArray, $request->getHeaders());
+        self::assertEquals($headersArray, $request->getHeaders());
         self::assertSame($data['body'] ?? '', $request->getBody()->getContents());
     }
 

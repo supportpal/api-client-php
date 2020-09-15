@@ -4,6 +4,7 @@ imports:
 parameters:
     apiUrl: ''
     apiToken: ''
+    apiContentType: ''
 
 services:
     _defaults:
@@ -30,6 +31,7 @@ services:
         arguments:
             $apiUrl: '%apiUrl%'
             $apiToken: '%apiToken%'
+            $contentType: '%apiToken%'
 
     SupportPal\ApiClient\ApiClient:
         public: true
