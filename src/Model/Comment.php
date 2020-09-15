@@ -66,6 +66,12 @@ class Comment implements Model
     private $authorId;
 
     /**
+     * @var string|null
+     * @SerializedName("purified_text")
+     */
+    private $purifiedText;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -206,6 +212,24 @@ class Comment implements Model
     public function setAuthorId(?int $authorId): self
     {
         $this->authorId = $authorId;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPurifiedText(): ?string
+    {
+        return $this->purifiedText;
+    }
+
+    /**
+     * @param string|null $purifiedText
+     * @return self
+     */
+    public function setPurifiedText(?string $purifiedText): self
+    {
+        $this->purifiedText = $purifiedText;
         return $this;
     }
 }

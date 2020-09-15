@@ -7,6 +7,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\SupportPal;
 use Symfony\Component\Config\FileLocator;
@@ -22,7 +23,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
      */
     private $genericErrorResponse = [
         'status' => 'error',
-        'message' => null,
+        'message' => 'unsuccessful error',
         'data' => []
     ];
 
@@ -123,5 +124,23 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     {
         $this->mockRequestHandler->reset();
         $this->mockRequestHandler->append($response);
+    }
+
+    protected function prepareUnsuccessfulApiRequest(Response $response): void
+    {
+        $this->appendRequestResponse($response);
+        self::expectException(HttpResponseException::class);
+        self::expectExceptionMessage(json_decode((string) $response->getBody(), true)['message']);
+    }
+
+    /**
+     * @param object $obj
+     * @param array<mixed> $array
+     */
+    protected function assertArrayEqualsObjectFields(object $obj, array $array): void
+    {
+        foreach ($array as $key => $value) {
+            self::assertSame($value, $obj->{'get'.$this->snakeCaseToPascalCase($key)}());
+        }
     }
 }

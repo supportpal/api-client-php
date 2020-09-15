@@ -50,6 +50,7 @@ class RequestFactory
     ): RequestInterface {
         $headers['Content-Type'] = $this->contentType;
         $headers['Authorization'] = 'Basic ' . base64_encode($this->apiToken . ':X');
+
         return new Request($method, $this->apiUrl . $endpoint, $headers, $body);
     }
 }

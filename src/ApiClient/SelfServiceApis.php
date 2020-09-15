@@ -39,7 +39,29 @@ trait SelfServiceApis
 
         return $this->sendRequest($request);
     }
+
+    /**
+     * @param array<mixed> $queryParameters
+     * @return ResponseInterface
+     */
+    public function getComments(array $queryParameters): ResponseInterface
+    {
+        $request = $this->requestFactory->create(
+            'GET',
+            ApiDictionary::SELF_SERVICE_COMMENT . '?' . http_build_query($queryParameters)
+        );
+
+        return $this->sendRequest($request);
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @return ResponseInterface
+     */
     abstract public function sendRequest(RequestInterface $request): ResponseInterface;
 
+    /**
+     * @param ResponseInterface $response
+     */
     abstract protected function assertRequestSuccessful(ResponseInterface $response): void;
 }

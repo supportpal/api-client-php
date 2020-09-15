@@ -4,7 +4,6 @@ namespace SupportPal\ApiClient\Tests\Integration\Api;
 
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Api;
-use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\CoreSettings;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
 
@@ -27,9 +26,7 @@ trait CoreApisTestCase
         );
         $coreSettings = $this->api->getCoreSettings();
         self::assertInstanceOf(CoreSettings::class, $coreSettings);
-        foreach ($this->coreSettingsSuccessfulResponse['data'] as $key => $value) {
-            self::assertSame($value, $coreSettings->{'get'.$this->snakeCaseToPascalCase($key)}());
-        }
+        $this->assertArrayEqualsObjectFields($coreSettings, $this->coreSettingsSuccessfulResponse['data']);
     }
 
     /**
@@ -39,13 +36,22 @@ trait CoreApisTestCase
      */
     public function testUnsuccessfulGetCoreSettings(Response $response): void
     {
-        $this->appendRequestResponse($response);
-        self::expectException(HttpResponseException::class);
-        self::expectExceptionMessage((string) json_decode((string) $response->getBody(), true)['status']);
+        $this->prepareUnsuccessfulApiRequest($response);
         $this->api->getCoreSettings();
     }
 
+    /**
+     * @param Response $response
+     */
+    abstract protected function prepareUnsuccessfulApiRequest(Response $response): void;
+
+    /**
+     * @param Response $response
+     */
     abstract protected function appendRequestResponse(Response $response): void;
 
+    /**
+     * @return iterable
+     */
     abstract public function provideUnsuccessfulTestCases(): iterable;
 }

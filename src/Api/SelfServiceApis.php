@@ -42,9 +42,29 @@ trait SelfServiceApis
         );
         $body = json_decode((string) $response->getBody(), true)['data'];
 
-        /** @var Comment $model */
-        $model = $this->modelCollectionFactory->create(Comment::class, $body);
+        return $this->createComment($body);
+    }
 
+    /**
+     * @param array<mixed> $queryParameters
+     * @return Comment[]
+     */
+    public function getComments(array $queryParameters): array
+    {
+        $response = $this->apiClient->getComments($queryParameters);
+        $body = json_decode((string) $response->getBody(), true)['data'];
+
+        return array_map([$this, 'createComment'], $body);
+    }
+
+    /**
+     * @param array<mixed> $data
+     * @return Comment
+     */
+    private function createComment(array $data): Comment
+    {
+        /** @var Comment $model */
+        $model = $this->modelCollectionFactory->create(Comment::class, $data);
         return $model;
     }
 }

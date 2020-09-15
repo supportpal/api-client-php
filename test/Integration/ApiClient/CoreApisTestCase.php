@@ -38,11 +38,17 @@ trait CoreApisTestCase
     {
         $this->appendRequestResponse($response);
         self::expectException(HttpResponseException::class);
-        self::expectExceptionMessage((string) json_decode((string) $response->getBody(), true)['status']);
+        self::expectExceptionMessage((string) json_decode((string) $response->getBody(), true)['message']);
         $this->apiClient->getCoreSettings();
     }
 
+    /**
+     * @param Response $response
+     */
     abstract protected function appendRequestResponse(Response $response): void;
 
+    /**
+     * @return iterable
+     */
     abstract public function provideUnsuccessfulTestCases(): iterable;
 }
