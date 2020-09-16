@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Model\CoreSettings;
+use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
 trait CoreApis
 {
@@ -20,6 +21,16 @@ trait CoreApis
     private $modelCollectionFactory;
 
     /**
+     * @var DecoderInterface
+     */
+    private $decoder;
+
+    /**
+     * @var string
+     */
+    private $formatType;
+
+    /**
      * This method fetches all core settings
      * @return CoreSettings
      * @throws \SupportPal\ApiClient\Exception\HttpResponseException
@@ -27,7 +38,7 @@ trait CoreApis
     public function getCoreSettings(): CoreSettings
     {
         $response = $this->apiClient->getCoreSettings();
-        $body = json_decode((string) $response->getBody(), true)['data'];
+        $body = $this->decoder->decode((string) $response->getBody(), $this->formatType)['data'];
         /** @var CoreSettings $model */
         $model = $this->modelCollectionFactory->create(CoreSettings::class, $body);
 

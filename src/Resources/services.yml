@@ -5,6 +5,7 @@ imports:
 
 parameters:
     apiContentType: 'application/json'
+    contentType: 'json'
 
 services:
     _defaults:
@@ -16,5 +17,5 @@ services:
         public: true
         arguments:
             $httpClient: '@GuzzleHttp\Client'
-
-
+            $decoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+            $formatType: '%contentType%'

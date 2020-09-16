@@ -3,8 +3,9 @@
 namespace SupportPal\ApiClient\Factory;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
+use SupportPal\ApiClient\Helper\FieldsValidationHelper;
 use SupportPal\ApiClient\Model\Model;
+use Symfony\Component\Serializer\Encoder\EncoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -14,6 +15,8 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 abstract class BaseModelFactory implements ModelFactory
 {
+    use FieldsValidationHelper;
+
     /**
      * @var SerializerInterface
      */
@@ -24,14 +27,21 @@ abstract class BaseModelFactory implements ModelFactory
     private $formatType;
 
     /**
+     * @var EncoderInterface
+     */
+    private $encoder;
+
+    /**
      * AbstractModelFactory constructor.
      * @param SerializerInterface $serializer
      * @param string $formatType
+     * @param EncoderInterface $encoder
      */
-    public function __construct(SerializerInterface $serializer, string $formatType)
+    public function __construct(SerializerInterface $serializer, string $formatType, EncoderInterface $encoder)
     {
         $this->serializer = $serializer;
         $this->formatType = $formatType;
+        $this->encoder = $encoder;
     }
 
     /**
@@ -40,40 +50,22 @@ abstract class BaseModelFactory implements ModelFactory
     public function create(array $data): Model
     {
         $this->assertRequiredFieldsExists($data);
-
         try {
             /** @var Model $model */
-            $model = $this->serializer->deserialize(json_encode($data), $this->getModel(), $this->formatType);
+            $model = $this->serializer->deserialize(
+                $this->encoder->encode($data, $this->formatType),
+                $this->getModel(),
+                $this->formatType
+            );
         } catch (\Exception $invalidArgumentException) {
             throw new InvalidArgumentException(
                 $invalidArgumentException->getMessage(),
-                0,
+                $invalidArgumentException->getCode(),
                 $invalidArgumentException->getPrevious()
             );
         }
 
         return $model;
-    }
-
-    /**
-     * This functions asserts that all the required values for the API are passed correctly
-     * @param array<mixed> $data
-     * @throws MissingRequiredFieldsException
-     * @return void
-     */
-    protected function assertRequiredFieldsExists(array $data): void
-    {
-        $missingFields = [];
-        foreach ($this->getRequiredFields() as $required) {
-            if (! isset($data[$required])) {
-                array_push($missingFields, $required);
-            }
-        }
-        if (count($missingFields) > 0) {
-            throw new MissingRequiredFieldsException(
-                'incomplete required fields, the following are missing: ' .  join(',', $missingFields)
-            );
-        }
     }
 
     /**

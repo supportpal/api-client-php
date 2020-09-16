@@ -10,11 +10,14 @@ services:
     SupportPal\ApiClient\Factory\CoreSettingsFactory:
         tags: ['factory.model_factory']
         arguments:
-            $formatType: 'json'
+            $formatType: '%contentType%'
             $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     SupportPal\ApiClient\Factory\CommentFactory:
         tags: [ 'factory.model_factory' ]
         arguments:
-            $formatType: 'json'
+            $formatType: '%contentType%'
             $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+

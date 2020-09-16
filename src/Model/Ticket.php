@@ -29,4 +29,12 @@ class Ticket extends BaseModel implements Model
         $this->text = $text;
         return $this;
     }
+
+    /**
+     * @return string[]
+     */
+    protected function getRequiredFields(): array
+    {
+        return self::REQUIRED_FIELDS;
+    }
 }

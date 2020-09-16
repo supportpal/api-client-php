@@ -10,6 +10,8 @@ use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\FactoryTestCase;
+use Symfony\Component\Serializer\Encoder\EncoderInterface;
+use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 use Symfony\Component\Serializer\SerializerInterface;
 
 abstract class BaseModelFactoryTestCase extends TestCase
@@ -19,7 +21,7 @@ abstract class BaseModelFactoryTestCase extends TestCase
     use StringHelper;
 
     /**
-     * @var ObjectProphecy|SerializerInterface
+     * @var ObjectProphecy
      */
     protected $serializer;
 
@@ -28,18 +30,26 @@ abstract class BaseModelFactoryTestCase extends TestCase
      */
     protected $format = 'json';
 
+    /**
+     * @var ObjectProphecy
+     */
+    private $encoder;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->serializer = $this->prophesize(SerializerInterface::class);
+        $this->encoder = $this->prophesize(EncoderInterface::class);
     }
 
     public function testCreateModel(): void
     {
+        $this->encoder->encode($this->getModelData(), $this->format)->willReturn(json_encode($this->getModelData()));
         $this->serializer
             ->deserialize(json_encode($this->getModelData()), $this->getModel(), $this->format)
             ->shouldBeCalled()
             ->willReturn($this->getModelInstance());
+
         $model = $this->getModelFactory()->create($this->getModelData());
         self::assertInstanceOf($this->getModel(), $model);
     }
@@ -61,10 +71,20 @@ abstract class BaseModelFactoryTestCase extends TestCase
 
     public function testCreateWithFailedDeserialize(): void
     {
+        $this->encoder->encode($this->getModelData(), $this->format)->willReturn(json_encode($this->getModelData()));
         $this->serializer
             ->deserialize(json_encode($this->getModelData()), $this->getModel(), $this->format)
             ->shouldBeCalled()
             ->willThrow(InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
+        $this->getModelFactory()->create($this->getModelData());
+    }
+
+    public function testCreateWithFailedEncode(): void
+    {
+        $this->encoder
+            ->encode($this->getModelData(), $this->format)
+            ->willThrow(UnexpectedValueException::class);
         self::expectException(InvalidArgumentException::class);
         $this->getModelFactory()->create($this->getModelData());
     }
@@ -76,5 +96,14 @@ abstract class BaseModelFactoryTestCase extends TestCase
 
         return $serializer;
     }
+
+    protected function getEncoder(): EncoderInterface
+    {
+        /** @var EncoderInterface $encoder */
+        $encoder = $this->encoder->reveal();
+
+        return $encoder;
+    }
+
     abstract protected function getModelInstance(): Model;
 }

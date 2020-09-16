@@ -21,7 +21,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     /**
      * @var array<mixed>
      */
-    private $genericErrorResponse = [
+    protected $genericErrorResponse = [
         'status' => 'error',
         'message' => 'unsuccessful error',
         'data' => []

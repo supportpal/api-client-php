@@ -2,9 +2,10 @@ imports:
     - { resource: ../../src/Resources/services.yml }
 
 parameters:
-    apiUrl: ''
-    apiToken: ''
-    apiContentType: ''
+    apiUrl: 'test1'
+    apiToken: 'test2'
+    apiContentType: 'test3'
+    contentType: 'json'
 
 services:
     _defaults:
@@ -16,24 +17,28 @@ services:
         public: true
         tags: [ 'factory.model_factory' ]
         arguments:
-            $formatType: 'json'
+            $formatType: '%contentType%'
             $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     SupportPal\ApiClient\Factory\CoreSettingsFactory:
         public: true
         tags: [ 'factory.model_factory' ]
         arguments:
-            $formatType: 'json'
+            $formatType: '%contentType%'
             $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     SupportPal\ApiClient\Factory\RequestFactory:
         public: true
         arguments:
             $apiUrl: '%apiUrl%'
             $apiToken: '%apiToken%'
-            $contentType: '%apiToken%'
+            $contentType: '%apiContentType%'
 
     SupportPal\ApiClient\ApiClient:
         public: true
         arguments:
             $httpClient: '@GuzzleHttp\Client'
+            $decoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+            $formatType: '%contentType%'

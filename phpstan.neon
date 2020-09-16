@@ -6,5 +6,3 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     ignoreErrors:
             - '#Call to an undefined method Prophecy\\Prophecy\\ObjectProphecy#'
-            - '#Cannot call method shouldBeCalled\(\) on [a-zA-Z0-9_|]+#'
-            - '#Cannot call method shouldNotBeCalled\(\) on [a-zA-Z0-9_|]+#'

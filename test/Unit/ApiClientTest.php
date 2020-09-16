@@ -9,6 +9,7 @@ use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use SupportPal\ApiClient\Tests\Unit\ApiClient\CoreApisTestCase;
 use SupportPal\ApiClient\Tests\Unit\ApiClient\SelfServiceApisTestCase;
+use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
 class ApiClientTest extends TestCase
 {
@@ -37,19 +38,29 @@ class ApiClientTest extends TestCase
      */
     private $apiClient;
 
+    /**
+     * @var \Prophecy\Prophecy\ObjectProphecy
+     */
+    private $decoder;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->httpClient = $this->prophesize(ClientInterface::class);
         $this->requestFactory = $this->prophesize(RequestFactory::class);
+        $this->decoder = $this->prophesize(DecoderInterface::class);
 
         /** @var Client $httpClient */
         $httpClient = $this->httpClient->reveal();
         /** @var RequestFactory $requestFactory */
         $requestFactory = $this->requestFactory->reveal();
+        /** @var DecoderInterface $decoder */
+        $decoder = $this->decoder->reveal();
         $this->apiClient = new ApiClient(
             $httpClient,
-            $requestFactory
+            $requestFactory,
+            $decoder,
+            'json'
         );
     }
 

@@ -10,6 +10,7 @@ use SupportPal\ApiClient\ApiClient\CoreApis;
 use SupportPal\ApiClient\ApiClient\SelfServiceApis;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
+use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
 /**
  * This class includes all the API calls
@@ -20,6 +21,7 @@ class ApiClient
 {
     use CoreApis;
     use SelfServiceApis;
+
     /**
      * @var ClientInterface
      */
@@ -31,17 +33,33 @@ class ApiClient
     private $requestFactory;
 
     /**
+     * @var DecoderInterface
+     */
+    private $decoder;
+
+    /**
+     * @var string
+     */
+    private $formatType;
+
+    /**
      * ApiClient constructor.
      * @param ClientInterface $httpClient
      * @param RequestFactory $requestFactory
+     * @param DecoderInterface $decoder
+     * @param string $formatType
      */
     public function __construct(
         ClientInterface $httpClient,
-        RequestFactory $requestFactory
+        RequestFactory $requestFactory,
+        DecoderInterface $decoder,
+        string $formatType
     ) {
 
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
+        $this->decoder = $decoder;
+        $this->formatType = $formatType;
     }
 
     /**
@@ -69,7 +87,7 @@ class ApiClient
      */
     protected function assertRequestSuccessful(ResponseInterface $response): void
     {
-        $body = json_decode((string) $response->getBody(), true);
+        $body = $this->decoder->decode((string) $response->getBody(), $this->formatType);
         if ($response->getStatusCode() !== 200
             || ! is_array($body)
             || ! isset($body['status'])

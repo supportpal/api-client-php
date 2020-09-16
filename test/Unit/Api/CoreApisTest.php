@@ -35,11 +35,17 @@ trait CoreApisTest
     public function testGetCoreSettings(): void
     {
         $coreSettingsOutput = $this->prophesize(CoreSettings::class);
+        $formatType = 'json';
 
         $response = $this->prophesize(ResponseInterface::class);
         $response
             ->getBody()
             ->willReturn(json_encode($this->coreSettingsSuccessfulResponse));
+
+        $this->decoder
+            ->decode(json_encode($this->coreSettingsSuccessfulResponse), $formatType)
+            ->shouldBeCalled()
+            ->willReturn($this->coreSettingsSuccessfulResponse);
 
         $this
             ->apiClient

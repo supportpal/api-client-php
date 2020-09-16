@@ -34,12 +34,8 @@ trait SelfServiceApisTestCase
         /** @var string $jsonSuccessfulBody */
         $jsonSuccessfulBody = json_encode($this->postCommentSuccessfulResponse);
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
-        /** @var Comment $comment */
-        $comment = $this
-            ->getSupportPal()
-            ->getCollectionFactory()
-            ->create(Comment::class, $this->postCommentSuccessfulResponse['data']);
-
+        $comment = new Comment;
+        $comment->fill($this->postCommentSuccessfulResponse['data']);
         $postedComment = $this->api->postComment($comment);
         $this->assertArrayEqualsObjectFields($postedComment, $this->postCommentSuccessfulResponse['data']);
     }
@@ -53,10 +49,7 @@ trait SelfServiceApisTestCase
     {
         $this->prepareUnsuccessfulApiRequest($response);
         /** @var Comment $comment */
-        $comment = $this
-            ->getSupportPal()
-            ->getCollectionFactory()
-            ->create(Comment::class, $this->commentData);
+        $comment = (new Comment)->fill($this->commentData);
         $this->api->postComment($comment);
     }
 

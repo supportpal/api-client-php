@@ -3,9 +3,10 @@ services:
         public: true
         arguments:
             $serializer: '@Symfony\Component\Serializer\Serializer'
-            $serializationType: 'json'
+            $formatType: '%contentType%'
             $modelCollectionFactory: '@SupportPal\ApiClient\Factory\ModelCollectionFactory'
             $apiClient: '@SupportPal\ApiClient\ApiClient'
+            $decoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     SupportPal\ApiClient\Factory\ModelCollectionFactory:
         public: true

@@ -54,6 +54,7 @@ trait SelfServiceApisTest
         /** @var ObjectProphecy $commentInput */
         $commentInput = $this->prophesize(Comment::class);
         $commentOutput = $this->prophesize(Comment::class);
+        $formatType = 'json';
 
         /** @var Comment $commentMock */
         $commentMock = $commentInput->reveal();
@@ -67,6 +68,11 @@ trait SelfServiceApisTest
         $response
             ->getBody()
             ->willReturn(json_encode($this->postCommentSuccessfulResponse));
+
+        $this->decoder
+            ->decode(json_encode($this->postCommentSuccessfulResponse), $formatType)
+            ->shouldBeCalled()
+            ->willReturn($this->postCommentSuccessfulResponse);
 
         $this
             ->apiClient
@@ -85,9 +91,15 @@ trait SelfServiceApisTest
     public function testGetComments(): void
     {
         $response = $this->prophesize(ResponseInterface::class);
+        $formatType = 'json';
         $response
             ->getBody()
             ->willReturn(json_encode($this->getCommentsSuccessfulResponse));
+
+        $this->decoder
+            ->decode(json_encode($this->getCommentsSuccessfulResponse), $formatType)
+            ->shouldBeCalled()
+            ->willReturn($this->getCommentsSuccessfulResponse);
 
         $returnedComments = [];
         foreach ($this->getCommentsSuccessfulResponse['data'] as $key => $value) {

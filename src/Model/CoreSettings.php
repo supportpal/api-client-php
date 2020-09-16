@@ -896,4 +896,12 @@ class CoreSettings extends BaseModel implements Model
         $this->recaptchaSecretKey = $recaptchaSecretKey;
         return $this;
     }
+
+    /**
+     * @return string[]
+     */
+    protected function getRequiredFields(): array
+    {
+        return self::REQUIRED_FIELDS;
+    }
 }

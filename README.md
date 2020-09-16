@@ -16,7 +16,7 @@ $apiToken = 'token_api'; #refer to documentation: https://docs.supportpal.com/cu
 $supportPal = new SupportPal($baseApiUrl, $apiToken);
 ```
 
-In order to access any supported resource, you need to use the Api component and CollectionFactory.
+In order to access any supported resource, you need to use the Api component.
 ```php
 $api = $supportPal->getApi();
 $coreSettings = $api->getCoreSettings();
@@ -34,9 +34,8 @@ $commentDataArray = [
                         'status' => 3,
                         'notify_reply' => 0
                     ];
-$commentObject = $supportPal
-                ->getCollectionFactory()
-                ->create(Comment::class, $commentDataArray);
+$commentObject = new \SupportPal\ApiClient\Model\Comment;
+$commentObject->fill($commentDataArray);
 $savedComment = $api->postComment($commentObject);
 ```
 

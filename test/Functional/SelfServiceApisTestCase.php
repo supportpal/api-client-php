@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Tests\Functional;
 
 use GuzzleHttp\Psr7\Response;
-use SupportPal\ApiClient\Model\Comment;
 use SupportPal\ApiClient\SupportPal;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
@@ -18,37 +17,6 @@ trait SelfServiceApisTestCase
      * @var array<mixed>
      */
     protected $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
-
-    public function testPostComment(): void
-    {
-        /** @var Comment $comment */
-        $comment = $this
-            ->getSupportPal()
-            ->getCollectionFactory()
-            ->create(Comment::class, $this->postCommentSuccessfulResponse['data']);
-        /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode($this->postCommentSuccessfulResponse);
-        $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
-        $postedComment = $this->getSupportPal()->getApi()->postComment($comment);
-        $this->assertArrayEqualsObjectFields($postedComment, $this->postCommentSuccessfulResponse['data']);
-    }
-
-    /**
-     * @param Response $response
-     * @dataProvider provideUnsuccessfulTestCases
-     * @throws \Exception
-     */
-    public function testUnsuccessfulPostComment(Response $response): void
-    {
-        /** @var Comment $comment */
-        $comment = $this
-            ->getSupportPal()
-            ->getCollectionFactory()
-            ->create(Comment::class, $this->postCommentSuccessfulResponse['data']);
-
-        $this->prepareUnsuccessfulApiRequest($response);
-        $this->getSupportPal()->getApi()->postComment($comment);
-    }
 
     public function testGetComments(): void
     {

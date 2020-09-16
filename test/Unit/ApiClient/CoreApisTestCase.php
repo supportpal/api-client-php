@@ -26,6 +26,11 @@ trait CoreApisTestCase
     private $apiClient;
 
     /**
+     * @var string
+     */
+    private $formatType = 'json';
+
+    /**
      * @var array<mixed>
      */
     private $coreSettingsSuccessfulResponse = CoreSettingsData::CORE_SETTINGS_SUCCESSFUL_RESPONSE;
@@ -93,6 +98,11 @@ trait CoreApisTestCase
         $response->getStatusCode()->willReturn($statusCode);
         $response->getBody()->willReturn($responseBody);
         $this->httpClient->sendRequest($request->reveal())->shouldBeCalled()->willReturn($response->reveal());
+        $this
+            ->decoder
+            ->decode($responseBody, $this->formatType)
+            ->shouldBeCalled()
+            ->willReturn(json_decode($responseBody, true));
 
         return $response;
     }
