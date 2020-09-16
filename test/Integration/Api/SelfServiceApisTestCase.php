@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\Integration\Api;
 
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Api;
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
@@ -38,6 +39,13 @@ trait SelfServiceApisTestCase
         $comment->fill($this->postCommentSuccessfulResponse['data']);
         $postedComment = $this->api->postComment($comment);
         $this->assertArrayEqualsObjectFields($postedComment, $this->postCommentSuccessfulResponse['data']);
+    }
+
+    public function testPostCommentWithIncompleteData(): void
+    {
+        $comment = new Comment;
+        $this->expectException(InvalidArgumentException::class);
+        $this->api->postComment($comment);
     }
 
     /**

@@ -6,9 +6,11 @@ use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\ApiClient;
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Model\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 use Symfony\Component\Serializer\SerializerInterface;
 
 trait SelfServiceApisTest
@@ -86,6 +88,24 @@ trait SelfServiceApisTest
 
         $comment = $this->api->postComment($commentMock);
         $this->assertSame($commentOutput->reveal(), $comment);
+    }
+
+    public function testPostCommentWithIncompleteData(): void
+    {
+        /** @var ObjectProphecy $commentInput */
+        $commentInput = $this->prophesize(Comment::class);
+        /** @var Comment $commentMock */
+        $commentMock = $commentInput->reveal();
+        $this
+            ->serializer
+            ->serialize($commentMock, $this->serializationType)
+            ->willThrow(UninitializedPropertyException::class)
+            ->shouldBeCalled();
+
+        /** @var Comment $commentMock */
+        $commentMock = $commentInput->reveal();
+        $this->expectException(InvalidArgumentException::class);
+        $this->api->postComment($commentMock);
     }
 
     public function testGetComments(): void

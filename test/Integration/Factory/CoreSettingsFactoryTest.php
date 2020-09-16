@@ -10,6 +10,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
 class CoreSettingsFactoryTest extends BaseModelFactoryTestCase
 {
     const CORE_SETTINGS_DATA = CoreSettingsData::CORE_SETTINGS_DATA;
+
     /**
      * @inheritDoc
      */

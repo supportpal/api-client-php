@@ -13,20 +13,22 @@ abstract class BaseModel implements Model
     use FieldsValidationHelper;
     use StringHelper;
 
+
     /**
-     * @param array<string, mixed> $data
-     * @return Model
-     * @throws InvalidArgumentException
+     * @inheritDoc
      */
     public function fill(array $data): Model
     {
-        $this->assertRequiredFieldsExists($data);
         foreach ($data as $key => $value) {
             if (! is_string($key)) {
                 throw new InvalidArgumentException(
                     'Supplied input must be an associative array of template: array<string, mixed>'
                 );
             }
+        }
+
+        $this->assertRequiredFieldsExists($data);
+        foreach ($data as $key => $value) {
             $attributeSetter = 'set' . $this->snakeCaseToPascalCase($key);
             if (method_exists($this, $attributeSetter)) {
                 try {
@@ -34,7 +36,7 @@ abstract class BaseModel implements Model
                 } catch (\TypeError $exception) {
                     throw new InvalidArgumentException(
                         $exception->getMessage(),
-                        0,
+                        $exception->getCode(),
                         $exception->getPrevious()
                     );
                 }

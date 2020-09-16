@@ -7,6 +7,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Client\RequestExceptionInterface;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\SupportPal;
@@ -120,12 +121,27 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         return $this->container;
     }
 
+    /**
+     * @param Response $response
+     */
     protected function appendRequestResponse(Response $response): void
     {
         $this->mockRequestHandler->reset();
         $this->mockRequestHandler->append($response);
     }
 
+    /**
+     * @param RequestExceptionInterface $requestException
+     */
+    protected function appendRequestException(RequestExceptionInterface $requestException): void
+    {
+        $this->mockRequestHandler->reset();
+        $this->mockRequestHandler->append($requestException);
+    }
+
+    /**
+     * @param Response $response
+     */
     protected function prepareUnsuccessfulApiRequest(Response $response): void
     {
         $this->appendRequestResponse($response);
