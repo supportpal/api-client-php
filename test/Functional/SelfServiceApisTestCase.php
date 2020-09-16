@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Tests\Functional;
 
 use GuzzleHttp\Psr7\Response;
-use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\Comment;
 use SupportPal\ApiClient\SupportPal;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
@@ -15,6 +14,10 @@ trait SelfServiceApisTestCase
      */
     private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
 
+    /**
+     * @var array<mixed>
+     */
+    protected $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
 
     public function testPostComment(): void
     {
@@ -27,9 +30,7 @@ trait SelfServiceApisTestCase
         $jsonSuccessfulBody = json_encode($this->postCommentSuccessfulResponse);
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         $postedComment = $this->getSupportPal()->getApi()->postComment($comment);
-        foreach ($this->postCommentSuccessfulResponse['data'] as $key => $value) {
-            self::assertSame($value, $postedComment->{'get'.$this->snakeCaseToPascalCase($key)}());
-        }
+        $this->assertArrayEqualsObjectFields($postedComment, $this->postCommentSuccessfulResponse['data']);
     }
 
     /**
@@ -44,14 +45,43 @@ trait SelfServiceApisTestCase
             ->getSupportPal()
             ->getCollectionFactory()
             ->create(Comment::class, $this->postCommentSuccessfulResponse['data']);
-        $this->appendRequestResponse($response);
-        self::expectException(HttpResponseException::class);
-        self::expectExceptionMessage(json_decode((string) $response->getBody(), true)['status']);
 
+        $this->prepareUnsuccessfulApiRequest($response);
         $this->getSupportPal()->getApi()->postComment($comment);
     }
 
+    public function testGetComments(): void
+    {
+        $this->appendRequestResponse(new Response(200, [], (string) json_encode($this->getCommentsSuccessfulResponse)));
+        $comments = $this->getSupportPal()->getApi()->getComments([]);
+        foreach ($comments as $offset => $object) {
+            $this->assertArrayEqualsObjectFields($object, $this->getCommentsSuccessfulResponse['data'][$offset]);
+        }
+    }
+
+    /**
+     * @param Response $response
+     * @dataProvider provideUnsuccessfulTestCases
+     * @throws \Exception
+     */
+    public function testUnsuccessfulGetComments(Response $response): void
+    {
+        $this->prepareUnsuccessfulApiRequest($response);
+        $this->getSupportPal()->getApi()->getComments([]);
+    }
+
+    /**
+     * @param Response $response
+     */
+    abstract protected function prepareUnsuccessfulApiRequest(Response $response): void;
+
+    /**
+     * @param Response $response
+     */
     abstract protected function appendRequestResponse(Response $response): void;
 
+    /**
+     * @return SupportPal
+     */
     abstract protected function getSupportPal(): SupportPal;
 }

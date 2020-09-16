@@ -18,6 +18,11 @@ trait SelfServiceApisTestCase
     private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
 
     /**
+     * @var array<mixed>
+     */
+    protected $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
+
+    /**
      * @var ApiClient
      */
     private $apiClient;
@@ -26,7 +31,7 @@ trait SelfServiceApisTestCase
     public function testPostSelfServiceComment(): void
     {
         $request = $this->postSelfServiceCommentRequestExpectations('{test}');
-        $response = $this->postSelfServiceCommentExpectations(
+        $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode($this->postCommentSuccessfulResponse),
             $request
@@ -44,7 +49,7 @@ trait SelfServiceApisTestCase
     {
         $this->expectException(HttpResponseException::class);
         $request = $this->postSelfServiceCommentRequestExpectations('test');
-        $this->postSelfServiceCommentExpectations($statusCode, $responseBody, $request);
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->postSelfServiceComment('test');
     }
 
@@ -54,6 +59,42 @@ trait SelfServiceApisTestCase
         $request = $this->postSelfServiceCommentRequestExpectations('{test}');
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->postSelfServiceComment('{test}');
+    }
+
+    public function testGetComments(): void
+    {
+        $queryParams = ['test' => 'value'];
+        $request = $this->getCommentsRequestExpectations($queryParams);
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode($this->getCommentsSuccessfulResponse),
+            $request
+        );
+        $getCommentsResponse = $this->apiClient->getComments($queryParams);
+        self::assertSame($response->reveal(), $getCommentsResponse);
+    }
+
+    public function testHttpExceptionGetComments(): void
+    {
+        $queryParams = ['test' => 'value'];
+        $this->expectException(HttpResponseException::class);
+        $request = $this->getCommentsRequestExpectations($queryParams);
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->getComments($queryParams);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetComments(int $statusCode, string $responseBody): void
+    {
+        $queryParams = ['test' => 'value'];
+        $this->expectException(HttpResponseException::class);
+        $request = $this->getCommentsRequestExpectations($queryParams);
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->getComments($queryParams);
     }
 
     /**
@@ -71,12 +112,27 @@ trait SelfServiceApisTestCase
     }
 
     /**
+     * @param array<mixed> $parameters
+     * @return ObjectProphecy
+     */
+    private function getCommentsRequestExpectations(array $parameters): ObjectProphecy
+    {
+        $request = $this->prophesize(Request::class);
+        $this->requestFactory
+            ->create('GET', ApiDictionary::SELF_SERVICE_COMMENT, [], null, $parameters)
+            ->shouldBeCalled()
+            ->willReturn($request->reveal());
+
+        return $request;
+    }
+
+    /**
      * @param int $statusCode
      * @param string $responseBody
      * @param ObjectProphecy $request
      * @return ObjectProphecy
      */
-    private function postSelfServiceCommentExpectations(
+    private function sendRequestCommonExpectations(
         int $statusCode,
         string $responseBody,
         ObjectProphecy $request

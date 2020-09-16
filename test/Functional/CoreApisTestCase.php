@@ -37,7 +37,7 @@ trait CoreApisTestCase
     {
         $this->appendRequestResponse($response);
         self::expectException(HttpResponseException::class);
-        self::expectExceptionMessage((string) json_decode((string) $response->getBody(), true)['status']);
+        self::expectExceptionMessage((string) json_decode((string) $response->getBody(), true)['message']);
         $this->getSupportPal()->getApi()->getCoreSettings();
     }
 

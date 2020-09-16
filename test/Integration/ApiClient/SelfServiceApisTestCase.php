@@ -4,7 +4,6 @@ namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\ApiClient;
-use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
 trait SelfServiceApisTestCase
@@ -14,6 +13,10 @@ trait SelfServiceApisTestCase
      */
     private $commentData = CommentData::COMMENT_DATA;
 
+    /**
+     * @var array<mixed>
+     */
+    protected $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
     /**
      * @var array<mixed>
      */
@@ -40,13 +43,42 @@ trait SelfServiceApisTestCase
      */
     public function testUnsuccessfulPostComment(Response $response): void
     {
-        $this->appendRequestResponse($response);
-        self::expectException(HttpResponseException::class);
-        self::expectExceptionMessage(json_decode((string) $response->getBody(), true)['status']);
+        $this->prepareUnsuccessfulApiRequest($response);
         $this->apiClient->postSelfServiceComment((string) json_encode($this->commentData));
     }
 
+    public function testGetComments(): void
+    {
+        /** @var string $jsonSuccessfulBody */
+        $jsonSuccessfulBody = json_encode($this->getCommentsSuccessfulResponse);
+        $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
+        $response = $this->apiClient->getComments([]);
+        self::assertSame($this->getCommentsSuccessfulResponse, json_decode((string) $response->getBody(), true));
+    }
+
+    /**
+     * @param Response $response
+     * @dataProvider provideUnsuccessfulTestCases
+     * @throws \Exception
+     */
+    public function testUnsuccessfulGetComments(Response $response): void
+    {
+        $this->prepareUnsuccessfulApiRequest($response);
+        $this->apiClient->getComments([]);
+    }
+
+    /**
+     * @param Response $response
+     */
+    abstract protected function prepareUnsuccessfulApiRequest(Response $response): void;
+
+    /**
+     * @param Response $response
+     */
     abstract protected function appendRequestResponse(Response $response): void;
 
+    /**
+     * @return iterable
+     */
     abstract public function provideUnsuccessfulTestCases(): iterable;
 }

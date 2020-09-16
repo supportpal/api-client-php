@@ -20,6 +20,11 @@ trait SelfServiceApisTest
     private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
 
     /**
+     * @var array<mixed>
+     */
+    protected $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
+
+    /**
      * @var SerializerInterface
      */
     private $serializer;
@@ -75,5 +80,31 @@ trait SelfServiceApisTest
 
         $comment = $this->api->postComment($commentMock);
         $this->assertSame($commentOutput->reveal(), $comment);
+    }
+
+    public function testGetComments(): void
+    {
+        $response = $this->prophesize(ResponseInterface::class);
+        $response
+            ->getBody()
+            ->willReturn(json_encode($this->getCommentsSuccessfulResponse));
+
+        $returnedComments = [];
+        foreach ($this->getCommentsSuccessfulResponse['data'] as $key => $value) {
+            $comment = $this->prophesize(Comment::class);
+            $this->modelCollectionFactory
+                ->create(Comment::class, $value)
+                ->shouldBeCalled()
+                ->willReturn($comment->reveal());
+            array_push($returnedComments, $comment->reveal());
+        }
+
+        $this
+            ->apiClient
+            ->getComments([])
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+        $comments = $this->api->getComments([]);
+        self::assertSame($returnedComments, $comments);
     }
 }

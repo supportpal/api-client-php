@@ -75,7 +75,7 @@ class ApiClient
             || ! isset($body['status'])
             || $body['status'] === 'error'
         ) {
-            throw new HttpResponseException($body['status'] ?? '');
+            throw new HttpResponseException($body['message'] ?? '');
         }
     }
 }

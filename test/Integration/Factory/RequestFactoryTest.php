@@ -50,7 +50,8 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
             $data['method'],
             $data['endpoint'],
             $data['headers'],
-            $data['body']
+            $data['body'],
+            $data['parameters']
         );
 
         $headersArray = [];
@@ -65,6 +66,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
         self::assertSame($this->apiUrl . $data['endpoint'], $request->getUri()->getPath());
         self::assertSame($data['body'] ?? '', $request->getBody()->getContents());
         self::assertEquals($headersArray, $request->getHeaders());
+        self::assertSame(http_build_query($data['parameters']), $request->getUri()->getQuery());
     }
 
     /**
@@ -78,6 +80,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
                 'endpoint' => 'api/comment',
                 'headers' => [],
                 'body' => json_encode(['test' => 'test']),
+                'parameters' => []
             ]
         ];
 
@@ -87,6 +90,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
                 'endpoint' => 'api/core',
                 'headers' => ['test' => 'header'],
                 'body' => null,
+                'parameters' => ['test' => 'test']
             ]
         ];
 
@@ -96,6 +100,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
                 'endpoint' => 'test/api/core',
                 'headers' => ['Authorization' => 'header'],
                 'body' => null,
+                'parameters' => ['test' => 'test']
             ]
         ];
     }

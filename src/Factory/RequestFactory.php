@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Factory;
 
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -40,16 +41,20 @@ class RequestFactory
      * @param string $endpoint
      * @param array<mixed> $headers
      * @param string|null $body
+     * @param array<mixed> $queryParameters
      * @return RequestInterface
      */
     public function create(
         string $method,
         string $endpoint,
         array $headers = [],
-        ?string $body = null
+        ?string $body = null,
+        array $queryParameters = []
     ): RequestInterface {
         $headers['Content-Type'] = $this->contentType;
         $headers['Authorization'] = 'Basic ' . base64_encode($this->apiToken . ':X');
-        return new Request($method, $this->apiUrl . $endpoint, $headers, $body);
+
+        $uri = new Uri($this->apiUrl . $endpoint);
+        return new Request($method, $uri->withQuery(http_build_query($queryParameters)), $headers, $body);
     }
 }
