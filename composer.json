@@ -25,6 +25,7 @@
     "larapack/dd": "^1.1",
     "phpstan/phpstan": "^0.12.42",
     "phpunit/phpunit": "^8",
+    "rregeer/phpunit-coverage-check": "^0.3.1",
     "slevomat/coding-standard": "^6.4",
     "squizlabs/php_codesniffer": "^3.5",
     "supportpal/coding-standard": "^0.0.5"
