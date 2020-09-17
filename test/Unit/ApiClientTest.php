@@ -3,13 +3,24 @@
 namespace SupportPal\ApiClient\Tests\Unit;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 use SupportPal\ApiClient\ApiClient;
+use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use SupportPal\ApiClient\Tests\Unit\ApiClient\CoreApisTestCase;
 use SupportPal\ApiClient\Tests\Unit\ApiClient\SelfServiceApisTestCase;
+use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
+/**
+ * @covers \SupportPal\ApiClient\ApiClient
+ * Class ApiClientTest
+ * @package SupportPal\ApiClient\Tests\Unit
+ */
 class ApiClientTest extends TestCase
 {
     use CoreApisTestCase;
@@ -37,20 +48,46 @@ class ApiClientTest extends TestCase
      */
     private $apiClient;
 
+    /**
+     * @var \Prophecy\Prophecy\ObjectProphecy
+     */
+    private $decoder;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->httpClient = $this->prophesize(ClientInterface::class);
         $this->requestFactory = $this->prophesize(RequestFactory::class);
+        $this->decoder = $this->prophesize(DecoderInterface::class);
 
         /** @var Client $httpClient */
         $httpClient = $this->httpClient->reveal();
         /** @var RequestFactory $requestFactory */
         $requestFactory = $this->requestFactory->reveal();
+        /** @var DecoderInterface $decoder */
+        $decoder = $this->decoder->reveal();
         $this->apiClient = new ApiClient(
             $httpClient,
-            $requestFactory
+            $requestFactory,
+            $decoder,
+            'json'
         );
+    }
+
+    public function testClientExceptionThrown(): void
+    {
+        $request = $this->prophesize(RequestInterface::class);
+        /** @var Request $requestMock */
+        $requestMock = $request->reveal();
+        $this
+            ->httpClient
+            ->sendRequest($requestMock)
+            ->shouldBeCalled()
+            ->willThrow(ClientExceptionInterface::class)
+            ->willReturn($this->prophesize(Response::class)->reveal());
+
+        $this->expectException(HttpResponseException::class);
+        $this->apiClient->sendRequest($requestMock);
     }
 
     /**

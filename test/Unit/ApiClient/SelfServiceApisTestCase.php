@@ -141,6 +141,11 @@ trait SelfServiceApisTestCase
         $response->getStatusCode()->willReturn($statusCode);
         $response->getBody()->willReturn($responseBody);
         $this->httpClient->sendRequest($request->reveal())->shouldBeCalled()->willReturn($response->reveal());
+        $this
+            ->decoder
+            ->decode($responseBody, $this->formatType)
+            ->shouldBeCalled()
+            ->willReturn(json_decode($responseBody, true));
 
         return $response;
     }

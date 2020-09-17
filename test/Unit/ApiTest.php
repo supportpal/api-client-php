@@ -9,6 +9,7 @@ use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Tests\Unit\Api\CoreApisTest;
 use SupportPal\ApiClient\Tests\Unit\Api\SelfServiceApisTest;
+use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ApiTest extends TestCase
@@ -42,6 +43,11 @@ class ApiTest extends TestCase
      */
     private $api;
 
+    /**
+     * @var ObjectProphecy
+     */
+    private $decoder;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -49,18 +55,22 @@ class ApiTest extends TestCase
         $this->apiClient = $this->prophesize(ApiClient::class);
         $this->serializationType = 'json';
         $this->modelCollectionFactory = $this->prophesize(ModelCollectionFactory::class);
+        $this->decoder = $this->prophesize(DecoderInterface::class);
 
         /** @var SerializerInterface $serializer */
         $serializer = $this->serializer->reveal();
         /** @var ApiClient $apiClient */
         $apiClient = $this->apiClient->reveal();
+        /** @var DecoderInterface $decoder */
+        $decoder = $this->decoder->reveal();
         /** @var ModelCollectionFactory $modelCollectionFactory */
         $modelCollectionFactory = $this->modelCollectionFactory->reveal();
         $this->api = new Api(
             $serializer,
             $apiClient,
             $modelCollectionFactory,
-            $this->serializationType
+            $this->serializationType,
+            $decoder
         );
     }
 }

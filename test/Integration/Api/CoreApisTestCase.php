@@ -6,9 +6,12 @@ use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Model\CoreSettings;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
+use SupportPal\ApiClient\Tests\Functional\Api\ApiAwareTestCase;
 
 trait CoreApisTestCase
 {
+    use ApiAwareTestCase;
+
     /**
      * @var array<mixed>
      */
@@ -22,7 +25,11 @@ trait CoreApisTestCase
     public function testGetCoreSettings(): void
     {
         $this->appendRequestResponse(
-            new Response(200, [], (string) json_encode($this->coreSettingsSuccessfulResponse))
+            new Response(
+                200,
+                [],
+                (string) $this->getEncoder()->encode($this->coreSettingsSuccessfulResponse, $this->getFormatType())
+            )
         );
         $coreSettings = $this->api->getCoreSettings();
         self::assertInstanceOf(CoreSettings::class, $coreSettings);
@@ -39,16 +46,6 @@ trait CoreApisTestCase
         $this->prepareUnsuccessfulApiRequest($response);
         $this->api->getCoreSettings();
     }
-
-    /**
-     * @param Response $response
-     */
-    abstract protected function prepareUnsuccessfulApiRequest(Response $response): void;
-
-    /**
-     * @param Response $response
-     */
-    abstract protected function appendRequestResponse(Response $response): void;
 
     /**
      * @return iterable

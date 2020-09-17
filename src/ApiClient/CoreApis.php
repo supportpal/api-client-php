@@ -2,24 +2,18 @@
 
 namespace SupportPal\ApiClient\ApiClient;
 
-use Psr\Http\Client\ClientInterface;
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Factory\RequestFactory;
 
+/**
+ * Contains all ApiClient calls to Core Apis
+ * Trait CoreApis
+ * @package SupportPal\ApiClient\ApiClient
+ */
 trait CoreApis
 {
-    /**
-     * @var ClientInterface
-     */
-    private $httpClient;
-
-    /**
-     * @var RequestFactory
-     */
-    private $requestFactory;
+    use ApiClientAware;
 
     /**
      * This method sends an http request to fetch coreSettings
@@ -28,11 +22,7 @@ trait CoreApis
      */
     public function getCoreSettings(): ResponseInterface
     {
-        $request = $this->requestFactory->create('GET', ApiDictionary::CORE_SETTINGS);
+        $request = $this->getRequestFactory()->create('GET', ApiDictionary::CORE_SETTINGS);
         return $this->sendRequest($request);
     }
-
-    abstract public function sendRequest(RequestInterface $request): ResponseInterface;
-
-    abstract protected function assertRequestSuccessful(ResponseInterface $response): void;
 }

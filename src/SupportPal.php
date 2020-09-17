@@ -4,15 +4,17 @@ namespace SupportPal\ApiClient;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
+/**
+ * Class SupportPal
+ * @package SupportPal\ApiClient
+ */
 class SupportPal
 {
-
     /**
      * @var ContainerBuilder
      */
@@ -31,7 +33,7 @@ class SupportPal
     }
 
     /**
-     * This method returns the api for supportpal system
+     * This method returns the api for SupportPal system
      * @return Api
      * @throws \Exception
      */
@@ -40,18 +42,6 @@ class SupportPal
         /** @var Api $api */
         $api = $this->containerBuilder->get(Api::class);
         return $api;
-    }
-
-    /**
-     * This method returns the factory for SupportPal models
-     * @return ModelCollectionFactory
-     * @throws \Exception
-     */
-    public function getCollectionFactory(): ModelCollectionFactory
-    {
-        /** @var ModelCollectionFactory $modelCollectionFactory */
-        $modelCollectionFactory = $this->containerBuilder->get(ModelCollectionFactory::class);
-        return $modelCollectionFactory;
     }
 
     /**

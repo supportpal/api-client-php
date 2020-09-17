@@ -9,7 +9,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * Class Comment
  * @package SupportPal\ApiClient\Model
  */
-class Comment implements Model
+class Comment extends BaseModel implements Model
 {
     public const REQUIRED_FIELDS = [
         'article_id',
@@ -51,13 +51,13 @@ class Comment implements Model
      * @var int
      * @SerializedName("status")
      */
-    private $status;
+    private $status = 0;
 
     /**
      * @var int
      * @SerializedName("notify_reply")
      */
-    private $notifyReply;
+    private $notifyReply = 0;
 
     /**
      * @var int|null
@@ -70,6 +70,12 @@ class Comment implements Model
      * @SerializedName("purified_text")
      */
     private $purifiedText;
+
+    /**
+     * @var string|null
+     * @SerializedName("name")
+     */
+    private $name;
 
     /**
      * @return int|null
@@ -231,5 +237,31 @@ class Comment implements Model
     {
         $this->purifiedText = $purifiedText;
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string|null $name
+     * @return self
+     */
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getRequiredFields(): array
+    {
+        return self::REQUIRED_FIELDS;
     }
 }

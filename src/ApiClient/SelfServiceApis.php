@@ -2,24 +2,18 @@
 
 namespace SupportPal\ApiClient\ApiClient;
 
-use Psr\Http\Client\ClientInterface;
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Factory\RequestFactory;
 
+/**
+ * Contains all ApiClient calls to SelfService Apis
+ * Trait SelfServiceApis
+ * @package SupportPal\ApiClient\ApiClient
+ */
 trait SelfServiceApis
 {
-    /**
-     * @var ClientInterface
-     */
-    private $httpClient;
-
-    /**
-     * @var RequestFactory
-     */
-    private $requestFactory;
+    use ApiClientAware;
 
     /**
      *
@@ -30,7 +24,7 @@ trait SelfServiceApis
      */
     public function postSelfServiceComment(string $body): ResponseInterface
     {
-        $request = $this->requestFactory->create(
+        $request = $this->getRequestFactory()->create(
             'POST',
             ApiDictionary::SELF_SERVICE_COMMENT,
             [],
@@ -43,10 +37,11 @@ trait SelfServiceApis
     /**
      * @param array<mixed> $queryParameters
      * @return ResponseInterface
+     * @throws HttpResponseException
      */
     public function getComments(array $queryParameters): ResponseInterface
     {
-        $request = $this->requestFactory->create(
+        $request = $this->getRequestFactory()->create(
             'GET',
             ApiDictionary::SELF_SERVICE_COMMENT,
             [],
@@ -56,15 +51,4 @@ trait SelfServiceApis
 
         return $this->sendRequest($request);
     }
-
-    /**
-     * @param RequestInterface $request
-     * @return ResponseInterface
-     */
-    abstract public function sendRequest(RequestInterface $request): ResponseInterface;
-
-    /**
-     * @param ResponseInterface $response
-     */
-    abstract protected function assertRequestSuccessful(ResponseInterface $response): void;
 }

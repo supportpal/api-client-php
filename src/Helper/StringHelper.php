@@ -4,7 +4,6 @@ namespace SupportPal\ApiClient\Helper;
 
 trait StringHelper
 {
-
     /**
      * @param string $key
      * @return string

@@ -16,7 +16,8 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
     {
         return new CommentFactory(
             $this->getSerializer(),
-            $this->format
+            $this->format,
+            $this->getEncoder()
         );
     }
 
@@ -32,7 +33,7 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
 
     protected function getModelInstance(): Model
     {
-        return new Comment;
+        return (new Comment)->fill(self::COMMENT_DATA);
     }
 
     protected function getModel(): string

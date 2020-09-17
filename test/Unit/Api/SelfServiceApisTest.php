@@ -6,9 +6,11 @@ use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\ApiClient;
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Model\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 use Symfony\Component\Serializer\SerializerInterface;
 
 trait SelfServiceApisTest
@@ -54,6 +56,7 @@ trait SelfServiceApisTest
         /** @var ObjectProphecy $commentInput */
         $commentInput = $this->prophesize(Comment::class);
         $commentOutput = $this->prophesize(Comment::class);
+        $formatType = 'json';
 
         /** @var Comment $commentMock */
         $commentMock = $commentInput->reveal();
@@ -67,6 +70,11 @@ trait SelfServiceApisTest
         $response
             ->getBody()
             ->willReturn(json_encode($this->postCommentSuccessfulResponse));
+
+        $this->decoder
+            ->decode(json_encode($this->postCommentSuccessfulResponse), $formatType)
+            ->shouldBeCalled()
+            ->willReturn($this->postCommentSuccessfulResponse);
 
         $this
             ->apiClient
@@ -82,12 +90,36 @@ trait SelfServiceApisTest
         $this->assertSame($commentOutput->reveal(), $comment);
     }
 
+    public function testPostCommentWithIncompleteData(): void
+    {
+        /** @var ObjectProphecy $commentInput */
+        $commentInput = $this->prophesize(Comment::class);
+        /** @var Comment $commentMock */
+        $commentMock = $commentInput->reveal();
+        $this
+            ->serializer
+            ->serialize($commentMock, $this->serializationType)
+            ->willThrow(UninitializedPropertyException::class)
+            ->shouldBeCalled();
+
+        /** @var Comment $commentMock */
+        $commentMock = $commentInput->reveal();
+        $this->expectException(InvalidArgumentException::class);
+        $this->api->postComment($commentMock);
+    }
+
     public function testGetComments(): void
     {
         $response = $this->prophesize(ResponseInterface::class);
+        $formatType = 'json';
         $response
             ->getBody()
             ->willReturn(json_encode($this->getCommentsSuccessfulResponse));
+
+        $this->decoder
+            ->decode(json_encode($this->getCommentsSuccessfulResponse), $formatType)
+            ->shouldBeCalled()
+            ->willReturn($this->getCommentsSuccessfulResponse);
 
         $returnedComments = [];
         foreach ($this->getCommentsSuccessfulResponse['data'] as $key => $value) {

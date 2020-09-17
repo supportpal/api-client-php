@@ -14,7 +14,7 @@ class CoreSettingsFactoryTest extends BaseModelFactoryTestCase
 
     protected function getModelInstance(): Model
     {
-        return new CoreSettings;
+        return (new CoreSettings)->fill(self::CORE_SETTINGS_DATA);
     }
 
     protected function getRequiredFields(): array
@@ -36,7 +36,8 @@ class CoreSettingsFactoryTest extends BaseModelFactoryTestCase
     {
         return new CoreSettingsFactory(
             $this->getSerializer(),
-            $this->format
+            $this->format,
+            $this->getEncoder()
         );
     }
 }

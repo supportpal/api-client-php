@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Factory;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;
+use function GuzzleHttp\Psr7\stream_for;
 
 /**
  * Class RequestFactory
@@ -18,7 +19,7 @@ class RequestFactory
      */
     private $apiUrl;
     /**
-     * token used to authenticate with supportpal
+     * token used to authenticate with SupportPal
      * @var string
      */
     private $apiToken;
@@ -40,7 +41,7 @@ class RequestFactory
      * @param string $method
      * @param string $endpoint
      * @param array<mixed> $headers
-     * @param string|null $body
+     * @param mixed|null $body
      * @param array<mixed> $queryParameters
      * @return RequestInterface
      */
@@ -48,13 +49,13 @@ class RequestFactory
         string $method,
         string $endpoint,
         array $headers = [],
-        ?string $body = null,
+        $body = null,
         array $queryParameters = []
     ): RequestInterface {
         $headers['Content-Type'] = $this->contentType;
         $headers['Authorization'] = 'Basic ' . base64_encode($this->apiToken . ':X');
 
         $uri = new Uri($this->apiUrl . $endpoint);
-        return new Request($method, $uri->withQuery(http_build_query($queryParameters)), $headers, $body);
+        return new Request($method, $uri->withQuery(http_build_query($queryParameters)), $headers, stream_for($body));
     }
 }
