@@ -19,7 +19,7 @@ class RequestFactory
      */
     private $apiUrl;
     /**
-     * token used to authenticate with supportpal
+     * token used to authenticate with SupportPal
      * @var string
      */
     private $apiToken;

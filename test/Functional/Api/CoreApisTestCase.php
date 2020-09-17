@@ -1,15 +1,15 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Functional;
+namespace SupportPal\ApiClient\Tests\Functional\Api;
 
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\CoreSettings;
-use SupportPal\ApiClient\SupportPal;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
 
 trait CoreApisTestCase
 {
+    use ApiAwareTestCase;
 
     /**
      * @var array<mixed>
@@ -19,7 +19,9 @@ trait CoreApisTestCase
     public function testSuccessfulGetCoreSettings(): void
     {
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode($this->coreSettingsSuccessfulResponse);
+        $jsonSuccessfulBody = $this
+            ->getEncoder()
+            ->encode($this->coreSettingsSuccessfulResponse, $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         $coreSettings = $this->getSupportPal()->getApi()->getCoreSettings();
         self::assertInstanceOf(CoreSettings::class, $coreSettings);
@@ -37,16 +39,9 @@ trait CoreApisTestCase
     {
         $this->appendRequestResponse($response);
         self::expectException(HttpResponseException::class);
-        self::expectExceptionMessage((string) json_decode((string) $response->getBody(), true)['message']);
+        self::expectExceptionMessage(
+            (string) $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['message']
+        );
         $this->getSupportPal()->getApi()->getCoreSettings();
     }
-
-    /**
-     * @return iterable<array<string, Response>>
-     */
-    abstract public function provideUnsuccessfulTestCases(): iterable;
-
-    abstract protected function appendRequestResponse(Response $response): void;
-
-    abstract protected function getSupportPal(): SupportPal;
 }

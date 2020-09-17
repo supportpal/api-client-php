@@ -4,7 +4,11 @@ namespace SupportPal\ApiClient\Model;
 
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
-class Ticket extends BaseModel implements Model
+/**
+ * Class Ticket
+ * @package SupportPal\ApiClient\Model
+ */
+class Ticket extends BaseModel
 {
     /**
      * @SerializedName("text")
@@ -31,7 +35,7 @@ class Ticket extends BaseModel implements Model
     }
 
     /**
-     * @return string[]
+     * @inheritDoc
      */
     protected function getRequiredFields(): array
     {

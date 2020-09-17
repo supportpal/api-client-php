@@ -8,7 +8,7 @@ use SupportPal\ApiClient\Model\Comment;
  * Class CommentFactory
  * @package SupportPal\ApiClient\Factory
  */
-class CommentFactory extends BaseModelFactory implements ModelFactory
+class CommentFactory extends BaseModelFactory
 {
     /**
      * @inheritDoc

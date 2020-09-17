@@ -1,13 +1,14 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Functional;
+namespace SupportPal\ApiClient\Tests\Functional\Api;
 
 use GuzzleHttp\Psr7\Response;
-use SupportPal\ApiClient\SupportPal;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
 trait SelfServiceApisTestCase
 {
+    use ApiAwareTestCase;
+
     /**
      * @var array<mixed>
      */
@@ -20,7 +21,14 @@ trait SelfServiceApisTestCase
 
     public function testGetComments(): void
     {
-        $this->appendRequestResponse(new Response(200, [], (string) json_encode($this->getCommentsSuccessfulResponse)));
+        $this->appendRequestResponse(
+            new Response(
+                200,
+                [],
+                (string) $this->getEncoder()->encode($this->getCommentsSuccessfulResponse, $this->getFormatType())
+            )
+        );
+
         $comments = $this->getSupportPal()->getApi()->getComments([]);
         foreach ($comments as $offset => $object) {
             $this->assertArrayEqualsObjectFields($object, $this->getCommentsSuccessfulResponse['data'][$offset]);
@@ -37,19 +45,4 @@ trait SelfServiceApisTestCase
         $this->prepareUnsuccessfulApiRequest($response);
         $this->getSupportPal()->getApi()->getComments([]);
     }
-
-    /**
-     * @param Response $response
-     */
-    abstract protected function prepareUnsuccessfulApiRequest(Response $response): void;
-
-    /**
-     * @param Response $response
-     */
-    abstract protected function appendRequestResponse(Response $response): void;
-
-    /**
-     * @return SupportPal
-     */
-    abstract protected function getSupportPal(): SupportPal;
 }

@@ -2,45 +2,29 @@
 
 namespace SupportPal\ApiClient\Api;
 
-use SupportPal\ApiClient\ApiClient;
-use SupportPal\ApiClient\Factory\ModelCollectionFactory;
+use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\CoreSettings;
-use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
+/**
+ * Contains all ApiCalls pre and post processing that falls under Core Module
+ * Trait CoreApis
+ * @package SupportPal\ApiClient\Api
+ */
 trait CoreApis
 {
-
-    /**
-     * @var ApiClient
-     */
-    private $apiClient;
-
-    /**
-     * @var ModelCollectionFactory
-     */
-    private $modelCollectionFactory;
-
-    /**
-     * @var DecoderInterface
-     */
-    private $decoder;
-
-    /**
-     * @var string
-     */
-    private $formatType;
+    use ApiAware;
 
     /**
      * This method fetches all core settings
      * @return CoreSettings
-     * @throws \SupportPal\ApiClient\Exception\HttpResponseException
+     * @throws HttpResponseException
      */
     public function getCoreSettings(): CoreSettings
     {
-        $response = $this->apiClient->getCoreSettings();
-        $body = $this->decoder->decode((string) $response->getBody(), $this->formatType)['data'];
+        $response = $this->getApiClient()->getCoreSettings();
+        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
         /** @var CoreSettings $model */
-        $model = $this->modelCollectionFactory->create(CoreSettings::class, $body);
+        $model = $this->getModelCollectionFactory()->create(CoreSettings::class, $body);
 
         return $model;
     }

@@ -2,51 +2,30 @@
 
 namespace SupportPal\ApiClient\Api;
 
-use SupportPal\ApiClient\ApiClient;
+use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Model\Comment;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
-use Symfony\Component\Serializer\Encoder\DecoderInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
+/**
+ * Contains all ApiCalls pre and post processing that falls under SelfService Module
+ * Trait SelfServiceApis
+ * @package SupportPal\ApiClient\Api
+ */
 trait SelfServiceApis
 {
-    /**
-     * @var SerializerInterface
-     */
-    private $serializer;
-
-    /**
-     * @var ApiClient
-     */
-    private $apiClient;
-
-    /**
-     * @var string
-     */
-    private $formatType;
-
-    /**
-     * @var ModelCollectionFactory
-     */
-    private $modelCollectionFactory;
-
-    /**
-     * @var DecoderInterface
-     */
-    private $decoder;
+    use ApiAware;
 
     /**
      * This method creates a comment in supportPalSystem
      * @param Comment $comment
      * @return Comment
-     * @throws \SupportPal\ApiClient\Exception\HttpResponseException
+     * @throws HttpResponseException|InvalidArgumentException
      */
     public function postComment(Comment $comment): Comment
     {
         try {
-            $serializedComment = $this->serializer->serialize($comment, $this->formatType);
+            $serializedComment = $this->getSerializer()->serialize($comment, $this->getFormatType());
         } catch (UninitializedPropertyException $exception) {
             throw new InvalidArgumentException(
                 $exception->getMessage(),
@@ -55,11 +34,9 @@ trait SelfServiceApis
             );
         }
 
-        $response = $this->apiClient->postSelfServiceComment(
-            $serializedComment
-        );
+        $response = $this->getApiClient()->postSelfServiceComment($serializedComment);
         /** @var array<mixed> $body */
-        $body = $this->decoder->decode((string) $response->getBody(), $this->formatType)['data'];
+        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
         return $this->createComment($body);
     }
 
@@ -69,10 +46,10 @@ trait SelfServiceApis
      */
     public function getComments(array $queryParameters): array
     {
-        $response = $this->apiClient->getComments($queryParameters);
+        $response = $this->getApiClient()->getComments($queryParameters);
 
         /** @var array<mixed> $body */
-        $body = $this->decoder->decode((string) $response->getBody(), $this->formatType)['data'];
+        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
 
         return array_map([$this, 'createComment'], $body);
     }
@@ -84,7 +61,7 @@ trait SelfServiceApis
     private function createComment(array $data): Comment
     {
         /** @var Comment $model */
-        $model = $this->modelCollectionFactory->create(Comment::class, $data);
+        $model = $this->getModelCollectionFactory()->create(Comment::class, $data);
         return $model;
     }
 }

@@ -7,6 +7,8 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\Functional\Api\CoreApisTestCase;
+use SupportPal\ApiClient\Tests\Functional\Api\SelfServiceApisTestCase;
 
 class SupportPalTest extends ContainerAwareBaseTestCase
 {
@@ -20,7 +22,11 @@ class SupportPalTest extends ContainerAwareBaseTestCase
 
     public function testSendRequestSuccessful(): void
     {
-        $response = new Response(200, [], (string) json_encode(CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE));
+        $response = new Response(
+            200,
+            [],
+            (string) $this->getEncoder()->encode(CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE, $this->getFormatType())
+        );
         $this->appendRequestResponse($response);
         $request = $this->getSupportPal()->getRequestFactory()->create('GET', 'test_endpoint');
         $this->assertSame($response, $this->getSupportPal()->sendRequest($request));
@@ -29,7 +35,11 @@ class SupportPalTest extends ContainerAwareBaseTestCase
     public function testSendRequestUnSuccessful(): void
     {
         $this->expectException(HttpResponseException::class);
-        $response = new Response(200, [], (string) json_encode($this->genericErrorResponse));
+        $response = new Response(
+            200,
+            [],
+            (string) $this->getEncoder()->encode($this->genericErrorResponse, $this->getFormatType())
+        );
         $this->appendRequestResponse($response);
         $request = $this->getSupportPal()->getRequestFactory()->create('GET', 'test_endpoint');
         $this->getSupportPal()->sendRequest($request);

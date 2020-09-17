@@ -4,6 +4,10 @@ namespace SupportPal\ApiClient\Model;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 
+/**
+ * Interface Model
+ * @package SupportPal\ApiClient\Model
+ */
 interface Model
 {
     /**

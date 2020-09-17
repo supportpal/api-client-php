@@ -69,8 +69,7 @@ abstract class BaseModelFactory implements ModelFactory
     }
 
     /**
-     * This method fetches the list of all required fields in a model
-     * @return array<mixed>
+     * @return string[]
      */
     abstract protected function getRequiredFields(): array;
 }

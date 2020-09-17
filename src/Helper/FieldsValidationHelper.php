@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types = 1);
 
 namespace SupportPal\ApiClient\Helper;
 
@@ -28,6 +27,7 @@ trait FieldsValidationHelper
     }
 
     /**
+     * This method fetches the list of all required fields in a model
      * @return string[]
      */
     abstract protected function getRequiredFields(): array;

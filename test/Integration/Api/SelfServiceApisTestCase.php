@@ -7,9 +7,12 @@ use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\Functional\Api\ApiAwareTestCase;
 
 trait SelfServiceApisTestCase
 {
+    use ApiAwareTestCase;
+
     /**
      * @var array<mixed>
      */
@@ -33,7 +36,10 @@ trait SelfServiceApisTestCase
     public function testPostComment(): void
     {
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode($this->postCommentSuccessfulResponse);
+        $jsonSuccessfulBody = $this
+            ->getEncoder()
+            ->encode($this->postCommentSuccessfulResponse, $this->getFormatType());
+
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         $comment = new Comment;
         $comment->fill($this->postCommentSuccessfulResponse['data']);
@@ -63,7 +69,13 @@ trait SelfServiceApisTestCase
 
     public function testGetComments(): void
     {
-        $this->appendRequestResponse(new Response(200, [], (string) json_encode($this->getCommentsSuccessfulResponse)));
+        $this->appendRequestResponse(
+            new Response(
+                200,
+                [],
+                (string) $this->getEncoder()->encode($this->getCommentsSuccessfulResponse, $this->getFormatType())
+            )
+        );
         $comments = $this->api->getComments([]);
         foreach ($comments as $offset => $object) {
             $this->assertArrayEqualsObjectFields($object, $this->getCommentsSuccessfulResponse['data'][$offset]);
@@ -80,16 +92,6 @@ trait SelfServiceApisTestCase
         $this->prepareUnsuccessfulApiRequest($response);
         $this->api->getComments([]);
     }
-
-    /**
-     * @param Response $response
-     */
-    abstract protected function prepareUnsuccessfulApiRequest(Response $response): void;
-
-    /**
-     * @param Response $response
-     */
-    abstract protected function appendRequestResponse(Response $response): void;
 
     /**
      * @return iterable

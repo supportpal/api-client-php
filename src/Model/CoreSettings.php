@@ -898,7 +898,7 @@ class CoreSettings extends BaseModel implements Model
     }
 
     /**
-     * @return string[]
+     * @inheritDoc
      */
     protected function getRequiredFields(): array
     {

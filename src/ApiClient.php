@@ -63,9 +63,7 @@ class ApiClient
     }
 
     /**
-     * @param RequestInterface $request
-     * @return ResponseInterface
-     * @throws HttpResponseException
+     * @inheritDoc
      */
     public function sendRequest(RequestInterface $request): ResponseInterface
     {
@@ -81,9 +79,7 @@ class ApiClient
 
 
     /**
-     * This method asserts that the request returned a successful response
-     * @param ResponseInterface $response
-     * @throws HttpResponseException
+     * @inheritDoc
      */
     protected function assertRequestSuccessful(ResponseInterface $response): void
     {
@@ -95,5 +91,21 @@ class ApiClient
         ) {
             throw new HttpResponseException($body['message'] ?? '');
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getHttpClient(): ClientInterface
+    {
+        return $this->httpClient;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getRequestFactory(): RequestFactory
+    {
+        return $this->requestFactory;
     }
 }

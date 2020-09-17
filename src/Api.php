@@ -51,4 +51,44 @@ class Api
         $this->modelCollectionFactory = $modelCollectionFactory;
         $this->decoder = $decoder;
     }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getSerializer(): SerializerInterface
+    {
+        return $this->serializer;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClient(): ApiClient
+    {
+        return $this->apiClient;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getFormatType(): string
+    {
+        return $this->formatType;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getModelCollectionFactory(): ModelCollectionFactory
+    {
+        return $this->modelCollectionFactory;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getDecoder(): DecoderInterface
+    {
+        return $this->decoder;
+    }
 }

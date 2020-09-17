@@ -5,9 +5,12 @@ namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\Functional\Api\ApiAwareTestCase;
 
 trait SelfServiceApisTestCase
 {
+    use ApiAwareTestCase;
+    
     /**
      * @var array<mixed>
      */
@@ -30,10 +33,15 @@ trait SelfServiceApisTestCase
     public function testPostComment(): void
     {
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode($this->postCommentSuccessfulResponse);
+        $jsonSuccessfulBody = $this->getEncoder()->encode($this->postCommentSuccessfulResponse, $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
-        $response = $this->apiClient->postSelfServiceComment((string) json_encode($this->commentData));
-        self::assertSame($this->postCommentSuccessfulResponse, json_decode((string) $response->getBody(), true));
+        $response = $this
+            ->apiClient
+            ->postSelfServiceComment((string) $this->getEncoder()->encode($this->commentData, $this->getFormatType()));
+        self::assertSame(
+            $this->postCommentSuccessfulResponse,
+            $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
+        );
     }
 
     /**
@@ -44,16 +52,21 @@ trait SelfServiceApisTestCase
     public function testUnsuccessfulPostComment(Response $response): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
-        $this->apiClient->postSelfServiceComment((string) json_encode($this->commentData));
+        $this->apiClient->postSelfServiceComment(
+            (string) $this->getEncoder()->encode($this->commentData, $this->getFormatType())
+        );
     }
 
     public function testGetComments(): void
     {
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode($this->getCommentsSuccessfulResponse);
+        $jsonSuccessfulBody = $this->getEncoder()->encode($this->getCommentsSuccessfulResponse, $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         $response = $this->apiClient->getComments([]);
-        self::assertSame($this->getCommentsSuccessfulResponse, json_decode((string) $response->getBody(), true));
+        self::assertSame(
+            $this->getCommentsSuccessfulResponse,
+            $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
+        );
     }
 
     /**
@@ -66,17 +79,7 @@ trait SelfServiceApisTestCase
         $this->prepareUnsuccessfulApiRequest($response);
         $this->apiClient->getComments([]);
     }
-
-    /**
-     * @param Response $response
-     */
-    abstract protected function prepareUnsuccessfulApiRequest(Response $response): void;
-
-    /**
-     * @param Response $response
-     */
-    abstract protected function appendRequestResponse(Response $response): void;
-
+    
     /**
      * @return iterable
      */

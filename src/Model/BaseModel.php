@@ -6,13 +6,16 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Helper\FieldsValidationHelper;
 use SupportPal\ApiClient\Helper\StringHelper;
 
+/**
+ * Class BaseModel
+ * @package SupportPal\ApiClient\Model
+ */
 abstract class BaseModel implements Model
 {
     public const REQUIRED_FIELDS = [];
 
     use FieldsValidationHelper;
     use StringHelper;
-
 
     /**
      * @inheritDoc
@@ -45,4 +48,9 @@ abstract class BaseModel implements Model
 
         return $this;
     }
+
+    /**
+     * @return string[]
+     */
+    abstract protected function getRequiredFields(): array;
 }

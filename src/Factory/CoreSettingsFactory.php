@@ -4,7 +4,11 @@ namespace SupportPal\ApiClient\Factory;
 
 use SupportPal\ApiClient\Model\CoreSettings;
 
-class CoreSettingsFactory extends BaseModelFactory implements ModelFactory
+/**
+ * Class CoreSettingsFactory
+ * @package SupportPal\ApiClient\Factory
+ */
+class CoreSettingsFactory extends BaseModelFactory
 {
     /**
      * @inheritDoc

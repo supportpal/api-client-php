@@ -9,9 +9,9 @@ parameters:
 
 services:
     _defaults:
-        public: true
         autoconfigure: true
         autowire: true
+        public: true
 
     SupportPal\ApiClient\Factory\CommentFactory:
         public: true
@@ -42,3 +42,6 @@ services:
             $httpClient: '@GuzzleHttp\Client'
             $decoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
             $formatType: '%contentType%'
+
+    Symfony\Component\Serializer\Encoder\JsonEncoder:
+        public: true

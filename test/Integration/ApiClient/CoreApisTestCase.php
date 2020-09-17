@@ -6,9 +6,12 @@ use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
+use SupportPal\ApiClient\Tests\Functional\Api\ApiAwareTestCase;
 
 trait CoreApisTestCase
 {
+    use ApiAwareTestCase;
+    
     /**
      * @var array<mixed>
      */
@@ -22,11 +25,18 @@ trait CoreApisTestCase
     public function testGetCoreSettings(): void
     {
         $this->appendRequestResponse(
-            new Response(200, [], (string) json_encode($this->coreSettingsSuccessfulResponse))
+            new Response(
+                200,
+                [],
+                (string) $this->getEncoder()->encode($this->coreSettingsSuccessfulResponse, $this->getFormatType())
+            )
         );
         $response = $this->apiClient->getCoreSettings();
         self::assertInstanceOf(Response::class, $response);
-        self::assertSame($this->coreSettingsSuccessfulResponse, json_decode((string) $response->getBody(), true));
+        self::assertSame(
+            $this->coreSettingsSuccessfulResponse,
+            $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
+        );
     }
 
     /**
@@ -38,15 +48,12 @@ trait CoreApisTestCase
     {
         $this->appendRequestResponse($response);
         self::expectException(HttpResponseException::class);
-        self::expectExceptionMessage((string) json_decode((string) $response->getBody(), true)['message']);
+        self::expectExceptionMessage(
+            (string) $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['message']
+        );
         $this->apiClient->getCoreSettings();
     }
-
-    /**
-     * @param Response $response
-     */
-    abstract protected function appendRequestResponse(Response $response): void;
-
+    
     /**
      * @return iterable
      */
