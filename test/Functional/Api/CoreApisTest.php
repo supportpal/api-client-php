@@ -5,12 +5,11 @@ namespace SupportPal\ApiClient\Tests\Functional\Api;
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\CoreSettings;
+use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
 
-trait CoreApisTestCase
+class CoreApisTest extends ContainerAwareBaseTestCase
 {
-    use ApiAwareTestCase;
-
     /**
      * @var array<mixed>
      */

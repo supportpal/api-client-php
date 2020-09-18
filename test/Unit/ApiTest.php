@@ -7,46 +7,40 @@ use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
-use SupportPal\ApiClient\Tests\Unit\Api\CoreApisTest;
-use SupportPal\ApiClient\Tests\Unit\Api\SelfServiceApisTest;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ApiTest extends TestCase
 {
-
-    use SelfServiceApisTest;
-    use CoreApisTest;
+    /**
+     * @var ObjectProphecy
+     */
+    protected $serializer;
 
     /**
      * @var ObjectProphecy
      */
-    private $serializer;
-
-    /**
-     * @var ObjectProphecy
-     */
-    private $apiClient;
+    protected $apiClient;
 
     /**
      * @var string
      */
-    private $serializationType;
+    protected $serializationType;
 
     /**
      * @var ObjectProphecy
      */
-    private $modelCollectionFactory;
+    protected $modelCollectionFactory;
 
     /**
      * @var Api
      */
-    private $api;
+    protected $api;
 
     /**
      * @var ObjectProphecy
      */
-    private $decoder;
+    protected $decoder;
 
     protected function setUp(): void
     {

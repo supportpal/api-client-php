@@ -71,16 +71,6 @@ abstract class BaseModelTestCase extends TestCase
     /**
      * @return array<mixed>
      */
-    abstract protected function getModelData(): array;
-
-    /**
-     * @return Model
-     */
-    abstract protected function getModel(): Model;
-
-    /**
-     * @return array<mixed>
-     */
     protected function getInvalidTypesData(): array
     {
         $data = [];
@@ -89,4 +79,14 @@ abstract class BaseModelTestCase extends TestCase
         }
         return $data;
     }
+
+    /**
+     * @return array<mixed>
+     */
+    abstract protected function getModelData(): array;
+
+    /**
+     * @return Model
+     */
+    abstract protected function getModel(): Model;
 }

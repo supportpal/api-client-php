@@ -3,14 +3,11 @@
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
 use GuzzleHttp\Psr7\Response;
-use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
-use SupportPal\ApiClient\Tests\Functional\Api\ApiAwareTestCase;
+use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 
-trait SelfServiceApisTestCase
+class SelfServiceApisTest extends ApiClientTest
 {
-    use ApiAwareTestCase;
-    
     /**
      * @var array<mixed>
      */
@@ -24,11 +21,6 @@ trait SelfServiceApisTestCase
      * @var array<mixed>
      */
     private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var ApiClient
-     */
-    private $apiClient;
 
     public function testPostComment(): void
     {
@@ -79,9 +71,4 @@ trait SelfServiceApisTestCase
         $this->prepareUnsuccessfulApiRequest($response);
         $this->apiClient->getComments([]);
     }
-    
-    /**
-     * @return iterable
-     */
-    abstract public function provideUnsuccessfulTestCases(): iterable;
 }

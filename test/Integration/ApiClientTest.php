@@ -7,18 +7,13 @@ use GuzzleHttp\Psr7\Request;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
-use SupportPal\ApiClient\Tests\Integration\ApiClient\CoreApisTestCase;
-use SupportPal\ApiClient\Tests\Integration\ApiClient\SelfServiceApisTestCase;
 
 class ApiClientTest extends ContainerAwareBaseTestCase
 {
-    use CoreApisTestCase;
-    use SelfServiceApisTestCase;
-
     /**
      * @var ApiClient
      */
-    private $apiClient;
+    protected $apiClient;
 
     protected function setUp(): void
     {

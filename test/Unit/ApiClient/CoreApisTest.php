@@ -5,30 +5,13 @@ namespace SupportPal\ApiClient\Tests\Unit\ApiClient;
 use GuzzleHttp\Psr7\Request;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
+use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
-trait CoreApisTestCase
+class CoreApisTest extends ApiClientTest
 {
-    /**
-     * @var \Prophecy\Prophecy\ObjectProphecy
-     */
-    private $httpClient;
-    /**
-     * @var \Prophecy\Prophecy\ObjectProphecy
-     */
-    private $requestFactory;
-    /**
-     * @var ApiClient
-     */
-    private $apiClient;
-
-    /**
-     * @var string
-     */
-    private $formatType = 'json';
 
     /**
      * @var array<mixed>

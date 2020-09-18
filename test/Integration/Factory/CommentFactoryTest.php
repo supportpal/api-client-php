@@ -20,21 +20,6 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
     /**
      * @inheritDoc
      */
-    protected function getInvalidTypesData(): array
-    {
-        return [
-            'text' => new \stdClass,
-            'article_id' => 'text',
-            'type_id' => 'text',
-            'parent_id' => 'text',
-            'status' => 'text',
-            'notify_reply' => null
-        ];
-    }
-
-    /**
-     * @inheritDoc
-     */
     protected function getRequiredFields(): array
     {
         return Comment::REQUIRED_FIELDS;

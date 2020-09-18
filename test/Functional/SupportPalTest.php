@@ -7,14 +7,9 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
-use SupportPal\ApiClient\Tests\Functional\Api\CoreApisTestCase;
-use SupportPal\ApiClient\Tests\Functional\Api\SelfServiceApisTestCase;
 
 class SupportPalTest extends ContainerAwareBaseTestCase
 {
-    use SelfServiceApisTestCase;
-    use CoreApisTestCase;
-
     public function testGetRequestFactory(): void
     {
         $this->assertInstanceOf(RequestFactory::class, $this->getSupportPal()->getRequestFactory());

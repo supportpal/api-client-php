@@ -3,34 +3,17 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api;
 
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\Api;
-use SupportPal\ApiClient\ApiClient;
-use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Model\CoreSettings;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
+use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-trait CoreApisTest
+class CoreApisTest extends ApiTest
 {
 
     /**
      * @var array<mixed>
      */
     private $coreSettingsSuccessfulResponse = CoreSettingsData::CORE_SETTINGS_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var ApiClient
-     */
-    private $apiClient;
-
-    /**
-     * @var ModelCollectionFactory
-     */
-    private $modelCollectionFactory;
-
-    /**
-     * @var Api
-     */
-    private $api;
 
     public function testGetCoreSettings(): void
     {

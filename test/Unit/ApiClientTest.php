@@ -12,8 +12,6 @@ use Psr\Http\Message\RequestInterface;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
-use SupportPal\ApiClient\Tests\Unit\ApiClient\CoreApisTestCase;
-use SupportPal\ApiClient\Tests\Unit\ApiClient\SelfServiceApisTestCase;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
 /**
@@ -23,13 +21,10 @@ use Symfony\Component\Serializer\Encoder\DecoderInterface;
  */
 class ApiClientTest extends TestCase
 {
-    use CoreApisTestCase;
-    use SelfServiceApisTestCase;
-
     /**
      * @var array<mixed>
      */
-    private $genericErrorResponse = [
+    protected $genericErrorResponse = [
         'status' => 'error',
         'message' => null,
         'data' => []
@@ -38,20 +33,25 @@ class ApiClientTest extends TestCase
     /**
      * @var \Prophecy\Prophecy\ObjectProphecy
      */
-    private $httpClient;
+    protected $httpClient;
     /**
      * @var \Prophecy\Prophecy\ObjectProphecy
      */
-    private $requestFactory;
+    protected $requestFactory;
     /**
      * @var ApiClient
      */
-    private $apiClient;
+    protected $apiClient;
 
     /**
      * @var \Prophecy\Prophecy\ObjectProphecy
      */
-    private $decoder;
+    protected $decoder;
+
+    /**
+     * @var string
+     */
+    protected $formatType = 'json';
 
     protected function setUp(): void
     {

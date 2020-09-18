@@ -25,14 +25,6 @@ class CoreSettingsFactoryTest extends BaseModelFactoryTestCase
     /**
      * @inheritDoc
      */
-    protected function getInvalidTypesData(): array
-    {
-        return [];
-    }
-
-    /**
-     * @inheritDoc
-     */
     protected function getRequiredFields(): array
     {
         return CoreSettings::REQUIRED_FIELDS;

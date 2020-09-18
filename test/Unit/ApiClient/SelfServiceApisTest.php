@@ -5,12 +5,12 @@ namespace SupportPal\ApiClient\Tests\Unit\ApiClient;
 use GuzzleHttp\Psr7\Request;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
-trait SelfServiceApisTestCase
+class SelfServiceApisTest extends ApiClientTest
 {
     /**
      * @var array<mixed>
@@ -21,12 +21,6 @@ trait SelfServiceApisTestCase
      * @var array<mixed>
      */
     protected $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var ApiClient
-     */
-    private $apiClient;
-
 
     public function testPostSelfServiceComment(): void
     {
