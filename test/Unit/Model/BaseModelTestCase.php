@@ -60,7 +60,11 @@ abstract class BaseModelTestCase extends TestCase
     protected function assertArrayEqualsObjectFields(object $obj, array $array): void
     {
         foreach ($array as $key => $value) {
-            self::assertSame($value, $obj->{'get'.$this->snakeCaseToPascalCase($key)}());
+            if (! is_array($value)) {
+                self::assertSame($value, $obj->{'get'.$this->snakeCaseToPascalCase($key)}());
+            } else {
+                $this->assertArrayEqualsObjectFields($obj->{'get'.$this->snakeCaseToPascalCase($key)}(), $value);
+            }
         }
     }
 
@@ -77,5 +81,12 @@ abstract class BaseModelTestCase extends TestCase
     /**
      * @return array<mixed>
      */
-    abstract protected function getInvalidTypesData(): array;
+    protected function getInvalidTypesData(): array
+    {
+        $data = [];
+        foreach ($this->getModelData() as $key => $value) {
+            $data[$key] = new \stdClass;
+        }
+        return $data;
+    }
 }

@@ -191,7 +191,11 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     protected function assertArrayEqualsObjectFields(object $obj, array $array): void
     {
         foreach ($array as $key => $value) {
-            self::assertSame($value, $obj->{'get'.$this->snakeCaseToPascalCase($key)}());
+            if (! is_array($value)) {
+                self::assertSame($value, $obj->{'get'.$this->snakeCaseToPascalCase($key)}());
+            } else {
+                $this->assertArrayEqualsObjectFields($obj->{'get'.$this->snakeCaseToPascalCase($key)}(), $value);
+            }
         }
     }
 }

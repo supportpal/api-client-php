@@ -26,7 +26,7 @@ final class CommentData
         'type_id' => 1,
         'parent_id' => 1,
         'status' => 3,
-        'notify_reply' => 0
+        'notify_reply' => 0,
     ];
 
     public const GET_COMMENTS_SUCCESSFUL_RESPONSE = [
@@ -46,6 +46,9 @@ final class CommentData
                         'parent_id' => null,
                         'status' => 0,
                         'notify_reply' => 0,
+                        'author' => UserData::USER_DATA,
+                        'article' => ArticleData::ARTICLE_DATA,
+                        'type' => ArticleTypeData::ARTICLE_TYPE_DATA,
                     ],
             ],
     ];

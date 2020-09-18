@@ -2,21 +2,20 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model;
 
-use SupportPal\ApiClient\Model\CoreSettings;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
+use SupportPal\ApiClient\Model\User;
+use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 
-class CoreSettingsTest extends BaseModelTestCase
+class UserTest extends BaseModelTestCase
 {
-
-    const CORE_SETTINGS_DATA = CoreSettingsData::CORE_SETTINGS_DATA;
+    const USER_DATA = UserData::USER_DATA;
 
     /**
      * @inheritDoc
      */
     protected function getModel(): Model
     {
-        return new CoreSettings;
+        return new User;
     }
 
     /**
@@ -24,6 +23,6 @@ class CoreSettingsTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return self::CORE_SETTINGS_DATA;
+        return self::USER_DATA;
     }
 }

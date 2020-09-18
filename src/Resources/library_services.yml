@@ -4,7 +4,7 @@ services:
             $classMetadataFactory: '@Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory'
             $nameConverter: '@Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter'
             $propertyAccessor: ~
-            $propertyTypeExtractor: ~
+            $propertyTypeExtractor: '@Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor'
             $classDiscriminatorResolver: ~
             $objectClassResolver: ~
             $defaultContext:
@@ -32,3 +32,5 @@ services:
         arguments:
             - [ '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer' ]
             - [ '@Symfony\Component\Serializer\Encoder\JsonEncoder' ]
+
+    Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor:

@@ -44,7 +44,7 @@ trait SelfServiceApis
      * @param array<mixed> $queryParameters
      * @return Comment[]
      */
-    public function getComments(array $queryParameters): array
+    public function getComments(array $queryParameters = []): array
     {
         $response = $this->getApiClient()->getComments($queryParameters);
 

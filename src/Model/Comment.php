@@ -78,6 +78,24 @@ class Comment extends BaseModel implements Model
     private $name;
 
     /**
+     * @var User|null
+     * @SerializedName("author")
+     */
+    private $author;
+
+    /**
+     * @var Article|null
+     * @SerializedName("article")
+     */
+    private $article;
+
+    /**
+     * @var ArticleType|null
+     * @SerializedName("type")
+     */
+    private $type;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -254,6 +272,60 @@ class Comment extends BaseModel implements Model
     public function setName(?string $name): self
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return User|null
+     */
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     * @return self
+     */
+    public function setAuthor(User $author): self
+    {
+        $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return Article|null
+     */
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    /**
+     * @param Article $article
+     * @return self
+     */
+    public function setArticle(Article $article): self
+    {
+        $this->article = $article;
+        return $this;
+    }
+
+    /**
+     * @return ArticleType|null
+     */
+    public function getType(): ?ArticleType
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param ArticleType $type
+     * @return self
+     */
+    public function setType(ArticleType $type): self
+    {
+        $this->type = $type;
         return $this;
     }
 
