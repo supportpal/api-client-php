@@ -22,21 +22,6 @@ class CommentTest extends BaseModelTestCase
     /**
      * @inheritDoc
      */
-    protected function getInvalidTypesData(): array
-    {
-        return [
-            'text' => new \stdClass,
-            'article_id' => 'text',
-            'type_id' => 'text',
-            'parent_id' => 'text',
-            'status' => 'text',
-            'notify_reply' => null
-        ];
-    }
-
-    /**
-     * @inheritDoc
-     */
     protected function getModelData(): array
     {
         return self::COMMENT_DATA;

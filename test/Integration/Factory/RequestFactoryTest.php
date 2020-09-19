@@ -74,12 +74,13 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
      */
     public function provideRequestTestCases(): iterable
     {
+        $this->setUp();
         yield [
             [
                 'method' => 'POST',
                 'endpoint' => 'api/comment',
                 'headers' => [],
-                'body' => json_encode(['test' => 'test']),
+                'body' => $this->getEncoder()->encode(['test' => 'test'], $this->getFormatType()),
                 'parameters' => []
             ]
         ];

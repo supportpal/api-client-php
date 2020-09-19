@@ -4,16 +4,13 @@ namespace SupportPal\ApiClient\Tests\Unit\Api;
 
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\Api;
-use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Model\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\Unit\ApiTest;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
-use Symfony\Component\Serializer\SerializerInterface;
 
-trait SelfServiceApisTest
+class SelfServiceApisTest extends ApiTest
 {
 
     /**
@@ -25,31 +22,6 @@ trait SelfServiceApisTest
      * @var array<mixed>
      */
     protected $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var SerializerInterface
-     */
-    private $serializer;
-
-    /**
-     * @var ApiClient
-     */
-    private $apiClient;
-
-    /**
-     * @var string
-     */
-    private $serializationType;
-
-    /**
-     * @var ModelCollectionFactory
-     */
-    private $modelCollectionFactory;
-
-    /**
-     * @var Api
-     */
-    private $api;
 
     public function testPostComment(): void
     {

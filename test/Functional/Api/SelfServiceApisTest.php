@@ -3,21 +3,15 @@
 namespace SupportPal\ApiClient\Tests\Functional\Api;
 
 use GuzzleHttp\Psr7\Response;
+use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
-trait SelfServiceApisTestCase
+class SelfServiceApisTest extends ContainerAwareBaseTestCase
 {
-    use ApiAwareTestCase;
-
     /**
      * @var array<mixed>
      */
-    private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var array<mixed>
-     */
-    protected $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
+    private $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
 
     public function testGetComments(): void
     {

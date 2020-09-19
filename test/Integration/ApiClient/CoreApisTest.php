@@ -3,24 +3,18 @@
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
 use GuzzleHttp\Psr7\Response;
-use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
-use SupportPal\ApiClient\Tests\Functional\Api\ApiAwareTestCase;
+use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 
-trait CoreApisTestCase
+class CoreApisTest extends ApiClientTest
 {
-    use ApiAwareTestCase;
-    
+
     /**
      * @var array<mixed>
      */
     private $coreSettingsSuccessfulResponse = CoreSettingsData::CORE_SETTINGS_SUCCESSFUL_RESPONSE;
 
-    /**
-     * @var ApiClient
-     */
-    private $apiClient;
 
     public function testGetCoreSettings(): void
     {
@@ -53,9 +47,4 @@ trait CoreApisTestCase
         );
         $this->apiClient->getCoreSettings();
     }
-    
-    /**
-     * @return iterable
-     */
-    abstract public function provideUnsuccessfulTestCases(): iterable;
 }

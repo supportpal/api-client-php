@@ -51,15 +51,10 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
      */
     public function provideDataWithInvalidTypes(): iterable
     {
-        foreach ($this->getInvalidTypesData() as $key => $value) {
+        foreach ($this->getModelData() as $key => $value) {
             $commentDataCopy = $this->getModelData();
-            $commentDataCopy[$key] = $value;
+            $commentDataCopy[$key] = new \stdClass;
             yield [$commentDataCopy, $key];
         }
     }
-
-    /**
-     * @return array<mixed>
-     */
-    abstract protected function getInvalidTypesData(): array;
 }

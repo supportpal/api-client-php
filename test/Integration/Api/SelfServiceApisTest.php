@@ -3,16 +3,13 @@
 namespace SupportPal\ApiClient\Tests\Integration\Api;
 
 use GuzzleHttp\Psr7\Response;
-use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
-use SupportPal\ApiClient\Tests\Functional\Api\ApiAwareTestCase;
+use SupportPal\ApiClient\Tests\Integration\ApiTest;
 
-trait SelfServiceApisTestCase
+class SelfServiceApisTest extends ApiTest
 {
-    use ApiAwareTestCase;
-
     /**
      * @var array<mixed>
      */
@@ -27,11 +24,6 @@ trait SelfServiceApisTestCase
      * @var array<mixed>
      */
     private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var Api
-     */
-    private $api;
 
     public function testPostComment(): void
     {
@@ -92,9 +84,4 @@ trait SelfServiceApisTestCase
         $this->prepareUnsuccessfulApiRequest($response);
         $this->api->getComments([]);
     }
-
-    /**
-     * @return iterable
-     */
-    abstract public function provideUnsuccessfulTestCases(): iterable;
 }

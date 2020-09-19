@@ -88,7 +88,7 @@ class CoreSettings extends BaseModel implements Model
      * @var string
      * @SerializedName("simpleauth_key")
      */
-    private $simpleAuthKey;
+    private $simpleauthKey;
 
     /**
      * @var string
@@ -100,7 +100,7 @@ class CoreSettings extends BaseModel implements Model
      * @var string
      * @SerializedName("simpleauth_operators")
      */
-    private $simpleAuthOperators;
+    private $simpleauthOperators;
     /**
      * @var string
      * @SerializedName("debug_mode")
@@ -468,18 +468,18 @@ class CoreSettings extends BaseModel implements Model
     /**
      * @return string
      */
-    public function getSimpleAuthKey(): string
+    public function getSimpleauthKey(): string
     {
-        return $this->simpleAuthKey;
+        return $this->simpleauthKey;
     }
 
     /**
-     * @param string $simpleAuthKey
-     * @return self
+     * @param string $simpleauthKey
+     * @return $this
      */
-    public function setSimpleAuthKey(string $simpleAuthKey): self
+    public function setSimpleauthKey(string $simpleauthKey): self
     {
-        $this->simpleAuthKey = $simpleAuthKey;
+        $this->simpleauthKey = $simpleauthKey;
         return $this;
     }
 
@@ -504,18 +504,18 @@ class CoreSettings extends BaseModel implements Model
     /**
      * @return string
      */
-    public function getSimpleAuthOperators(): string
+    public function getSimpleauthOperators(): string
     {
-        return $this->simpleAuthOperators;
+        return $this->simpleauthOperators;
     }
 
     /**
-     * @param string $simpleAuthOperators
+     * @param string $simpleauthOperators
      * @return self
      */
-    public function setSimpleAuthOperators(string $simpleAuthOperators): self
+    public function setSimpleauthOperators(string $simpleauthOperators): self
     {
-        $this->simpleAuthOperators = $simpleAuthOperators;
+        $this->simpleauthOperators = $simpleauthOperators;
         return $this;
     }
 
@@ -844,18 +844,18 @@ class CoreSettings extends BaseModel implements Model
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getIncludeLocaleInUri()
+    public function getIncludeLocaleInUri(): string
     {
         return $this->includeLocaleInUri;
     }
 
     /**
-     * @param mixed $includeLocaleInUri
+     * @param string $includeLocaleInUri
      * @return self
      */
-    public function setIncludeLocaleInUri($includeLocaleInUri)
+    public function setIncludeLocaleInUri(string $includeLocaleInUri): self
     {
         $this->includeLocaleInUri = $includeLocaleInUri;
         return $this;

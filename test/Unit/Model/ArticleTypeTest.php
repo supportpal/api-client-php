@@ -2,20 +2,20 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model;
 
+use SupportPal\ApiClient\Model\ArticleType;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Model\Ticket;
+use SupportPal\ApiClient\Tests\DataFixtures\ArticleTypeData;
 
-class TicketTest extends BaseModelTestCase
+class ArticleTypeTest extends BaseModelTestCase
 {
+    const ARTICLE_TYPE_DATA = ArticleTypeData::ARTICLE_TYPE_DATA;
 
     /**
      * @inheritDoc
      */
     protected function getModelData(): array
     {
-        return  [
-            'text' => 'test'
-        ];
+        return self::ARTICLE_TYPE_DATA;
     }
 
     /**
@@ -23,6 +23,6 @@ class TicketTest extends BaseModelTestCase
      */
     protected function getModel(): Model
     {
-        return new Ticket;
+        return new ArticleType;
     }
 }

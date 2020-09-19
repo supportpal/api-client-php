@@ -4,18 +4,13 @@ namespace SupportPal\ApiClient\Tests\Integration;
 
 use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
-use SupportPal\ApiClient\Tests\Integration\Api\CoreApisTestCase;
-use SupportPal\ApiClient\Tests\Integration\Api\SelfServiceApisTestCase;
 
 class ApiTest extends ContainerAwareBaseTestCase
 {
-    use CoreApisTestCase;
-    use SelfServiceApisTestCase;
-
     /**
      * @var Api
      */
-    private $api;
+    protected $api;
 
     protected function setUp(): void
     {
