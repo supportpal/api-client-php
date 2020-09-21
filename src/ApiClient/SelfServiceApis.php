@@ -41,15 +41,7 @@ trait SelfServiceApis
      */
     public function getComments(array $queryParameters): ResponseInterface
     {
-        $request = $this->getRequestFactory()->create(
-            'GET',
-            ApiDictionary::SELF_SERVICE_COMMENT,
-            [],
-            null,
-            $queryParameters
-        );
-
-        return $this->sendRequest($request);
+        return $this->sendGetRequest(ApiDictionary::SELF_SERVICE_COMMENT, $queryParameters);
     }
 
     /**
@@ -59,14 +51,6 @@ trait SelfServiceApis
      */
     public function getArticleTypes(array $queryParameters): ResponseInterface
     {
-        $request = $this->getRequestFactory()->create(
-            'GET',
-            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE,
-            [],
-            null,
-            $queryParameters
-        );
-
-        return $this->sendRequest($request);
+        return $this->sendGetRequest(ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParameters);
     }
 }

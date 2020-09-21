@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient;
 
 use SupportPal\ApiClient\Api\CoreApis;
 use SupportPal\ApiClient\Api\SelfServiceApis;
+use SupportPal\ApiClient\Api\UserApis;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -12,6 +13,7 @@ class Api
 {
     use SelfServiceApis;
     use CoreApis;
+    use UserApis;
 
     /**
      * @var SerializerInterface

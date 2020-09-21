@@ -1,19 +1,24 @@
-<?php declare(strict_types = 1);
+<?php
+
 
 namespace SupportPal\ApiClient\Tests\Functional\Api;
 
 use SupportPal\ApiClient\Tests\ApiTestCase;
-use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
+use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 
-class CoreApisTest extends ApiTestCase
+class UserApisTest extends ApiTestCase
 {
+
     /**
      * @var array<mixed>
      */
     private $getEndpoints = [
-        'getCoreSettings' => CoreSettingsData::CORE_SETTINGS_SUCCESSFUL_RESPONSE,
+        'getUsers' => UserData::GET_USER_SUCCESSFUL_RESPONSE,
     ];
 
+    /**
+     * @inheritDoc
+     */
     protected function getGetEndpoints(): array
     {
         return $this->getEndpoints;

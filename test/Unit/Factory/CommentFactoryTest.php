@@ -12,6 +12,9 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
 {
     const COMMENT_DATA = CommentData::COMMENT_DATA;
 
+    /**
+     * @inheritDoc
+     */
     protected function getModelFactory(): ModelFactory
     {
         return new CommentFactory(
@@ -21,21 +24,33 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
         );
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getModelData(): array
     {
         return self::COMMENT_DATA;
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getRequiredFields(): array
     {
         return Comment::REQUIRED_FIELDS;
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getModelInstance(): Model
     {
         return (new Comment)->fill(self::COMMENT_DATA);
     }
 
+    /**
+     * @inheritDoc
+     */
     protected function getModel(): string
     {
         return Comment::class;

@@ -38,4 +38,12 @@ trait ApiClientAware
      * @throws HttpResponseException
      */
     abstract protected function assertRequestSuccessful(ResponseInterface $response): void;
+
+    /**
+     * @param string $endpoint
+     * @param array<mixed> $queryParameters
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    abstract protected function sendGetRequest(string $endpoint, array $queryParameters): ResponseInterface;
 }

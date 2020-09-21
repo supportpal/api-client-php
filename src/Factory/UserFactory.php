@@ -3,21 +3,20 @@
 
 namespace SupportPal\ApiClient\Factory;
 
-use SupportPal\ApiClient\Model\ArticleType;
+use SupportPal\ApiClient\Model\User;
 
 /**
- * Class ArticleTypeFactory
+ * Class UserFactory
  * @package SupportPal\ApiClient\Factory
  */
-class ArticleTypeFactory extends BaseModelFactory
+class UserFactory extends BaseModelFactory
 {
-
     /**
      * @inheritDoc
      */
     protected function getRequiredFields(): array
     {
-        return ArticleType::REQUIRED_FIELDS;
+        return User::REQUIRED_FIELDS;
     }
 
     /**
@@ -25,6 +24,6 @@ class ArticleTypeFactory extends BaseModelFactory
      */
     public function getModel(): string
     {
-        return ArticleType::class;
+        return User::class;
     }
 }

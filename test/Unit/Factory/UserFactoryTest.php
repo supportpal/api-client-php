@@ -3,22 +3,23 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
-use SupportPal\ApiClient\Factory\ArticleTypeFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Model\ArticleType;
+use SupportPal\ApiClient\Factory\UserFactory;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Tests\DataFixtures\ArticleTypeData;
+use SupportPal\ApiClient\Model\User;
+use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 
-class ArticleTypeFactoryTest extends BaseModelFactoryTestCase
+class UserFactoryTest extends BaseModelFactoryTestCase
 {
-    const ARTICLE_TYPE_DATA = ArticleTypeData::ARTICLE_TYPE_DATA;
+
+    const USER_DATA = UserData::USER_DATA;
 
     /**
      * @inheritDoc
      */
     protected function getModelFactory(): ModelFactory
     {
-        return new ArticleTypeFactory(
+        return new UserFactory(
             $this->getSerializer(),
             $this->format,
             $this->getEncoder()
@@ -30,7 +31,7 @@ class ArticleTypeFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return self::ARTICLE_TYPE_DATA;
+        return self::USER_DATA;
     }
 
     /**
@@ -38,7 +39,7 @@ class ArticleTypeFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getRequiredFields(): array
     {
-        return ArticleType::REQUIRED_FIELDS;
+        return User::REQUIRED_FIELDS;
     }
 
     /**
@@ -46,7 +47,7 @@ class ArticleTypeFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new ArticleType)->fill(self::ARTICLE_TYPE_DATA);
+        return (new User)->fill(self::USER_DATA);
     }
 
     /**
@@ -54,6 +55,6 @@ class ArticleTypeFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModel(): string
     {
-        return ArticleType::class;
+        return User::class;
     }
 }

@@ -70,6 +70,7 @@ class SelfServiceApisTest extends ApiClientTest
         $jsonSuccessfulBody = $this->getEncoder()->encode($data, $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         $response = $this->apiClient->{$endpoint}([]);
+        self::assertInstanceOf(Response::class, $response);
         self::assertSame(
             $data,
             $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())

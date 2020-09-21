@@ -3,6 +3,8 @@
 
 namespace SupportPal\ApiClient\Tests;
 
+use GuzzleHttp\Psr7\Response;
+
 abstract class ApiTestCase extends ContainerAwareBaseTestCase
 {
     /**
@@ -25,6 +27,44 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
                 yield [current($testCase), $endpoint];
             }
         }
+    }
+
+    /**
+     * @dataProvider provideGetEndpointsTestCases
+     * @param array<mixed> $data
+     * @param string $functionName
+     * @throws \Exception
+     */
+    public function testGetEndpoint(array $data, string $functionName): void
+    {
+        $this->appendRequestResponse(
+            new Response(
+                200,
+                [],
+                (string) $this->getEncoder()->encode($data, $this->getFormatType())
+            )
+        );
+
+        $models = $this->getSupportPal()->getApi()->{$functionName}();
+        if (is_array($models)) {
+            foreach ($models as $offset => $object) {
+                $this->assertArrayEqualsObjectFields($object, $data['data'][$offset]);
+            }
+        } else {
+            $this->assertArrayEqualsObjectFields($models, $data['data']);
+        }
+    }
+
+    /**
+     * @param Response $response
+     * @param string $endpoint
+     * @throws \Exception
+     * @dataProvider provideGetEndpointsUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint): void
+    {
+        $this->prepareUnsuccessfulApiRequest($response);
+        $this->getSupportPal()->getApi()->{$endpoint}();
     }
 
     /**

@@ -69,28 +69,6 @@ class SelfServiceApisTest extends ApiTest
     }
 
     /**
-     * @dataProvider provideGetEndpointsTestCases
-     * @param array<mixed> $data
-     * @param string $functionName
-     * @throws \Exception
-     */
-    public function testGetEndpoint(array $data, string $functionName): void
-    {
-        $this->appendRequestResponse(
-            new Response(
-                200,
-                [],
-                (string) $this->getEncoder()->encode($data, $this->getFormatType())
-            )
-        );
-
-        $models = $this->api->{$functionName}();
-        foreach ($models as $offset => $object) {
-            $this->assertArrayEqualsObjectFields($object, $data['data'][$offset]);
-        }
-    }
-
-    /**
      * @inheritDoc
      */
     protected function getGetEndpoints(): array

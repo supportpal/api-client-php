@@ -24,10 +24,6 @@ class ModelCollectionFactoryTest extends TestCase
     private $modelCollectionFactory;
 
     /**
-     * @var iterable<ModelFactory>
-     */
-    private $modelFactories;
-    /**
      * @var \Prophecy\Prophecy\ObjectProphecy
      */
     private $commentFactory;

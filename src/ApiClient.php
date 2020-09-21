@@ -8,6 +8,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\ApiClient\CoreApis;
 use SupportPal\ApiClient\ApiClient\SelfServiceApis;
+use SupportPal\ApiClient\ApiClient\UserApis;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
@@ -21,6 +22,7 @@ class ApiClient
 {
     use CoreApis;
     use SelfServiceApis;
+    use UserApis;
 
     /**
      * @var ClientInterface
@@ -77,6 +79,19 @@ class ApiClient
         return $response;
     }
 
+
+    /**
+     * @param string $endpoint
+     * @param array<mixed> $queryParameters
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    protected function sendGetRequest(string $endpoint, array $queryParameters): ResponseInterface
+    {
+        $request = $this->getRequestFactory()->create('GET', $endpoint, [], null, $queryParameters);
+
+        return $this->sendRequest($request);
+    }
 
     /**
      * @inheritDoc

@@ -89,6 +89,9 @@ abstract class BaseModelFactoryTestCase extends TestCase
         $this->getModelFactory()->create($this->getModelData());
     }
 
+    /**
+     * @return SerializerInterface
+     */
     protected function getSerializer(): SerializerInterface
     {
         /** @var SerializerInterface $serializer */
@@ -97,6 +100,9 @@ abstract class BaseModelFactoryTestCase extends TestCase
         return $serializer;
     }
 
+    /**
+     * @return EncoderInterface
+     */
     protected function getEncoder(): EncoderInterface
     {
         /** @var EncoderInterface $encoder */
@@ -105,5 +111,8 @@ abstract class BaseModelFactoryTestCase extends TestCase
         return $encoder;
     }
 
+    /**
+     * @return Model
+     */
     abstract protected function getModelInstance(): Model;
 }
