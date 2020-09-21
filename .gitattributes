@@ -3,3 +3,4 @@
 /composer.json export-ignore
 /phpunit.dist.xml export-ignore
 /test export-ignore
+/ModelParser export-ignore
