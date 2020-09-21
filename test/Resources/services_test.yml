@@ -45,3 +45,11 @@ services:
 
     Symfony\Component\Serializer\Encoder\JsonEncoder:
         public: true
+
+    SupportPal\ApiClient\Factory\ArticleTypeFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: '%contentType%'
+            $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'

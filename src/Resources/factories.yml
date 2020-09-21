@@ -21,3 +21,10 @@ services:
             $serializer: '@Symfony\Component\Serializer\Serializer'
             $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
+    SupportPal\ApiClient\Factory\ArticleTypeFactory:
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: '%contentType%'
+            $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+

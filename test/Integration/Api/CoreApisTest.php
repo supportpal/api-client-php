@@ -14,6 +14,13 @@ class CoreApisTest extends ApiTest
      */
     private $coreSettingsSuccessfulResponse = CoreSettingsData::CORE_SETTINGS_SUCCESSFUL_RESPONSE;
 
+    /**
+     * @var array<mixed>
+     */
+    private $getEndpoints = [
+        'getCoreSettings' => CoreSettingsData::CORE_SETTINGS_SUCCESSFUL_RESPONSE,
+    ];
+
     public function testGetCoreSettings(): void
     {
         $this->appendRequestResponse(
@@ -29,13 +36,10 @@ class CoreApisTest extends ApiTest
     }
 
     /**
-     * @param Response $response
-     * @dataProvider provideUnsuccessfulTestCases
-     * @throws \Exception
+     * @inheritDoc
      */
-    public function testUnsuccessfulGetCoreSettings(Response $response): void
+    protected function getGetEndpoints(): array
     {
-        $this->prepareUnsuccessfulApiRequest($response);
-        $this->api->getCoreSettings();
+        return $this->getEndpoints;
     }
 }

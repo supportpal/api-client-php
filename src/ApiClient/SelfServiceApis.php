@@ -51,4 +51,22 @@ trait SelfServiceApis
 
         return $this->sendRequest($request);
     }
+
+    /**
+     * @param array<mixed> $queryParameters
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function getArticleTypes(array $queryParameters): ResponseInterface
+    {
+        $request = $this->getRequestFactory()->create(
+            'GET',
+            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE,
+            [],
+            null,
+            $queryParameters
+        );
+
+        return $this->sendRequest($request);
+    }
 }

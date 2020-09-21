@@ -121,6 +121,12 @@ class ArticleType extends BaseModel
     private $content;
 
     /**
+     * @var Brand|null
+     * @SerializedName("brand")
+     */
+    private $brand;
+
+    /**
      * @return string|null
      */
     public function getIcon(): ?string
@@ -425,7 +431,25 @@ class ArticleType extends BaseModel
         $this->content = $content;
         return $this;
     }
-    
+
+    /**
+     * @return Brand|null
+     */
+    public function getBrand(): ?Brand
+    {
+        return $this->brand;
+    }
+
+    /**
+     * @param Brand $brand
+     * @return self
+     */
+    public function setBrand(Brand $brand): self
+    {
+        $this->brand = $brand;
+        return $this;
+    }
+
     protected function getRequiredFields(): array
     {
         return self::REQUIRED_FIELDS;

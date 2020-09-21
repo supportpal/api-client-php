@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Api;
 
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\ArticleType;
 use SupportPal\ApiClient\Model\Comment;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
@@ -56,6 +57,21 @@ trait SelfServiceApis
     }
 
     /**
+     * @param array<mixed> $queryParameters
+     * @return ArticleType[]
+     * @throws HttpResponseException
+     */
+    public function getArticleTypes(array $queryParameters = []): array
+    {
+        $response = $this->getApiClient()->getArticleTypes($queryParameters);
+
+        /** @var array<mixed> $body */
+        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
+
+        return array_map([$this, 'createArticleType'], $body);
+    }
+
+    /**
      * @param array<mixed> $data
      * @return Comment
      */
@@ -63,6 +79,17 @@ trait SelfServiceApis
     {
         /** @var Comment $model */
         $model = $this->getModelCollectionFactory()->create(Comment::class, $data);
+        return $model;
+    }
+
+    /**
+     * @param array<mixed> $data
+     * @return ArticleType
+     */
+    private function createArticleType(array $data): ArticleType
+    {
+        /** @var ArticleType $model */
+        $model = $this->getModelCollectionFactory()->create(ArticleType::class, $data);
         return $model;
     }
 }
