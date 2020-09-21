@@ -43,6 +43,7 @@ trait SelfServiceApis
     /**
      * @param array<mixed> $queryParameters
      * @return Comment[]
+     * @throws HttpResponseException
      */
     public function getComments(array $queryParameters = []): array
     {
