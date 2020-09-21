@@ -1,6 +1,6 @@
 # Model Parse Helper
 
-Creating models can be a time-consuming experience. This script is written to help ease that process..
+Creating models can be a time-consuming experience. This script is written to help ease that process.
 The goal is to provide the script two main pieces of information, and it generates the PHP Model class data attributes.
 
 Required information:
