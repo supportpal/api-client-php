@@ -96,13 +96,13 @@ class Comment extends BaseModel implements Model
     private $type;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("created_at")
      */
     private $createdAt;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("updated_at")
      */
     private $updatedAt;
@@ -342,9 +342,9 @@ class Comment extends BaseModel implements Model
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCreatedAt(): int
+    public function getCreatedAt(): ?int
     {
         return $this->createdAt;
     }
@@ -360,9 +360,9 @@ class Comment extends BaseModel implements Model
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getUpdatedAt(): int
+    public function getUpdatedAt(): ?int
     {
         return $this->updatedAt;
     }
