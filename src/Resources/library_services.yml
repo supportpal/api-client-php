@@ -12,8 +12,6 @@ services:
 
     Symfony\Component\Serializer\Encoder\JsonEncoder: ~
 
-    GuzzleHttp\Client: ~
-
     Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter:
         arguments:
             $metadataFactory: '@Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory'

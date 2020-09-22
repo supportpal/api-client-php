@@ -2,8 +2,22 @@
 
 namespace SupportPal\ApiClient;
 
+use Doctrine\Common\Cache\ArrayCache;
+use Doctrine\Common\Cache\ChainCache;
+use Doctrine\Common\Cache\FilesystemCache;
+use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\HandlerStack;
+use Kevinrob\GuzzleCache\CacheMiddleware;
+use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
+use Kevinrob\GuzzleCache\Strategy\CacheStrategyInterface;
+use Kevinrob\GuzzleCache\Strategy\Delegate\DelegatingCacheStrategy;
+use Kevinrob\GuzzleCache\Strategy\GreedyCacheStrategy;
+use Kevinrob\GuzzleCache\Strategy\NullCacheStrategy;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use SupportPal\ApiClient\Cache\ApiCacheMap;
+use SupportPal\ApiClient\Cache\CacheableRequestMatcher;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -20,13 +34,15 @@ class SupportPal
      */
     private $containerBuilder;
 
-    public function __construct(string $apiUrl, string $apiToken)
+    public function __construct(string $apiUrl, string $apiToken, ?string $cacheDir = null)
     {
+        $cacheDir = $cacheDir ?? sys_get_temp_dir();
         $containerBuilder = new ContainerBuilder;
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
         $loader->load('Resources/services.yml');
         $containerBuilder->setParameter('apiUrl', $apiUrl);
         $containerBuilder->setParameter('apiToken', $apiToken);
+        $containerBuilder->set(Client::class, $this->getGuzzleClient($cacheDir));
         $containerBuilder->compile();
 
         $this->containerBuilder = $containerBuilder;
@@ -65,5 +81,45 @@ class SupportPal
         /** @var ApiClient $apiClient */
         $apiClient = $this->containerBuilder->get(ApiClient::class);
         return $apiClient->sendRequest($request);
+    }
+
+    /**
+     * This function sets the cache strategy used in the application.
+     * By default, endpoints will not be cached unless specified per path, per method.
+     * We also use two types of cache, ArrayCache, and FileSystem cache sorted from faster to slower.
+     * We always use a greedy strategy (ignore headers returned by the server)
+     *
+     * read more @https://github.com/Kevinrob/guzzle-cache-middleware
+     * @param string $cacheDir
+     * @return CacheStrategyInterface
+     */
+    private function buildCacheStrategy(string $cacheDir): CacheStrategyInterface
+    {
+        $delegatingCacheStrategy = new DelegatingCacheStrategy(new NullCacheStrategy);
+
+        /**
+         * For every set of Apis, clustered by a default TTL, we create a cache storage.
+         */
+        foreach (ApiCacheMap::CACHE_MAP as $ttl => $apis) {
+            $cacheStorage = new DoctrineCacheStorage(new ChainCache([new ArrayCache, new FilesystemCache($cacheDir)]));
+            $cacheStrategy = new GreedyCacheStrategy($cacheStorage, $ttl);
+            /**
+             * request matcher handlers linking the caching strategy to every specific endpoint
+             */
+            $delegatingCacheStrategy->registerRequestMatcher(new CacheableRequestMatcher($apis), $cacheStrategy);
+        }
+
+        return $delegatingCacheStrategy;
+    }
+
+    /**
+     * @param string $cacheDir
+     * @return ClientInterface
+     */
+    private function getGuzzleClient(string $cacheDir): ClientInterface
+    {
+        $stack = HandlerStack::create();
+        $stack->push(new CacheMiddleware($this->buildCacheStrategy($cacheDir)));
+        return new Client(['handler' => $stack]);
     }
 }
