@@ -56,6 +56,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         $jsonErrorBody['status'] = 'success';
         /** @var string $jsonSuccessfulBody */
         $jsonSuccessfulBody = $this->getEncoder()->encode($jsonErrorBody, $this->getFormatType());
+
         yield ['error 400 response' => new Response(400, [], $jsonSuccessfulBody)];
         yield ['error 401 response' => new Response(401, [], $jsonSuccessfulBody)];
         yield ['error 403 response' => new Response(403, [], $jsonSuccessfulBody)];
@@ -63,6 +64,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
 
         /** @var string $jsonErrorBody */
         $jsonErrorBody = $this->getEncoder()->encode($this->genericErrorResponse, $this->getFormatType());
+
         yield [
             'error status response' => new Response(200, [], $jsonErrorBody)
         ];
@@ -132,6 +134,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     {
         /** @var EncoderInterface $encoder */
         $encoder = $this->container->get(JsonEncoder::class);
+
         return $encoder;
     }
 
@@ -143,6 +146,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     {
         /** @var DecoderInterface $decoder */
         $decoder = $this->container->get(JsonEncoder::class);
+
         return $decoder;
     }
 

@@ -11,7 +11,6 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 class CoreApisTest extends ApiClientTest
 {
-
     /**
      * @var array<mixed>
      */

@@ -28,6 +28,7 @@ class ModelCollectionFactory
             if (! $factory instanceof ModelFactory) {
                 throw new InvalidArgumentException;
             }
+
             $this->factories[$factory->getModel()] = $factory;
         }
     }

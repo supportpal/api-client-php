@@ -14,7 +14,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
  */
 class CommentFactoryTest extends BaseModelFactoryTestCase
 {
-
     const COMMENT_DATA = CommentData::COMMENT_DATA;
 
     /**

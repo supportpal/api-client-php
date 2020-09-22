@@ -54,6 +54,7 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
         foreach ($this->getModelData() as $key => $value) {
             $commentDataCopy = $this->getModelData();
             $commentDataCopy[$key] = new \stdClass;
+
             yield [$commentDataCopy, $key];
         }
     }

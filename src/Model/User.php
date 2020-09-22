@@ -189,6 +189,7 @@ class User extends BaseModel
     public function setTwofaToken(?string $twofaToken): self
     {
         $this->twofaToken = $twofaToken;
+
         return $this;
     }
 
@@ -207,6 +208,7 @@ class User extends BaseModel
     public function setTemplateMode(?int $templateMode): self
     {
         $this->templateMode = $templateMode;
+
         return $this;
     }
 
@@ -225,6 +227,7 @@ class User extends BaseModel
     public function setEmail(?string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -243,6 +246,7 @@ class User extends BaseModel
     public function setActive(int $active): self
     {
         $this->active = $active;
+
         return $this;
     }
 
@@ -261,6 +265,7 @@ class User extends BaseModel
     public function setTimezone(?string $timezone): self
     {
         $this->timezone = $timezone;
+
         return $this;
     }
 
@@ -279,6 +284,7 @@ class User extends BaseModel
     public function setLastActiveAt(?int $lastActiveAt): self
     {
         $this->lastActiveAt = $lastActiveAt;
+
         return $this;
     }
 
@@ -297,6 +303,7 @@ class User extends BaseModel
     public function setOrganisationId(?int $organisationId): self
     {
         $this->organisationId = $organisationId;
+
         return $this;
     }
 
@@ -315,6 +322,7 @@ class User extends BaseModel
     public function setTwitterId(?int $twitterId): self
     {
         $this->twitterId = $twitterId;
+
         return $this;
     }
 
@@ -333,6 +341,7 @@ class User extends BaseModel
     public function setNotes(?string $notes): self
     {
         $this->notes = $notes;
+
         return $this;
     }
 
@@ -351,6 +360,7 @@ class User extends BaseModel
     public function setLanguageCode(?string $languageCode): self
     {
         $this->languageCode = $languageCode;
+
         return $this;
     }
 
@@ -369,6 +379,7 @@ class User extends BaseModel
     public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
+
         return $this;
     }
 
@@ -387,6 +398,7 @@ class User extends BaseModel
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -405,6 +417,7 @@ class User extends BaseModel
     public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
+
         return $this;
     }
 
@@ -423,6 +436,7 @@ class User extends BaseModel
     public function setId(int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -441,6 +455,7 @@ class User extends BaseModel
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
         return $this;
     }
 
@@ -459,6 +474,7 @@ class User extends BaseModel
     public function setFacebookId(?int $facebookId): self
     {
         $this->facebookId = $facebookId;
+
         return $this;
     }
 
@@ -477,6 +493,7 @@ class User extends BaseModel
     public function setOrganisationAccessLevel(?int $organisationAccessLevel): self
     {
         $this->organisationAccessLevel = $organisationAccessLevel;
+
         return $this;
     }
 
@@ -495,6 +512,7 @@ class User extends BaseModel
     public function setRole(int $role): self
     {
         $this->role = $role;
+
         return $this;
     }
 
@@ -513,6 +531,7 @@ class User extends BaseModel
     public function setTwofaSecret(?string $twofaSecret): self
     {
         $this->twofaSecret = $twofaSecret;
+
         return $this;
     }
 
@@ -531,6 +550,7 @@ class User extends BaseModel
     public function setTwitterHandle(?string $twitterHandle): self
     {
         $this->twitterHandle = $twitterHandle;
+
         return $this;
     }
 
@@ -549,6 +569,7 @@ class User extends BaseModel
     public function setBrandId(?int $brandId): self
     {
         $this->brandId = $brandId;
+
         return $this;
     }
 
@@ -567,6 +588,7 @@ class User extends BaseModel
     public function setConfirmed(int $confirmed): self
     {
         $this->confirmed = $confirmed;
+
         return $this;
     }
 
@@ -585,6 +607,7 @@ class User extends BaseModel
     public function setOrganisationNotifications(?int $organisationNotifications): self
     {
         $this->organisationNotifications = $organisationNotifications;
+
         return $this;
     }
 
@@ -603,6 +626,7 @@ class User extends BaseModel
     public function setTwofaEnabled(int $twofaEnabled): self
     {
         $this->twofaEnabled = $twofaEnabled;
+
         return $this;
     }
 
@@ -621,6 +645,7 @@ class User extends BaseModel
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
@@ -639,6 +664,7 @@ class User extends BaseModel
     public function setCountry(?string $country): self
     {
         $this->country = $country;
+
         return $this;
     }
 
@@ -657,6 +683,7 @@ class User extends BaseModel
     public function setFormattedName(string $formattedName): self
     {
         $this->formattedName = $formattedName;
+
         return $this;
     }
 
@@ -675,9 +702,10 @@ class User extends BaseModel
     public function setAvatarUrl(string $avatarUrl): self
     {
         $this->avatarUrl = $avatarUrl;
+
         return $this;
     }
-    
+
     protected function getRequiredFields(): array
     {
         return [];

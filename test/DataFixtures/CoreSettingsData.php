@@ -4,7 +4,6 @@ namespace SupportPal\ApiClient\Tests\DataFixtures;
 
 final class CoreSettingsData
 {
-
     public const CORE_SETTINGS_SUCCESSFUL_RESPONSE = [
         'status' => 'success',
         'message' => null,

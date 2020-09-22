@@ -228,6 +228,7 @@ class CoreSettings extends BaseModel implements Model
     public function setAdminFolder(string $adminFolder): self
     {
         $this->adminFolder = $adminFolder;
+
         return $this;
     }
 
@@ -246,6 +247,7 @@ class CoreSettings extends BaseModel implements Model
     public function setDateFormat(string $dateFormat): self
     {
         $this->dateFormat = $dateFormat;
+
         return $this;
     }
 
@@ -264,6 +266,7 @@ class CoreSettings extends BaseModel implements Model
     public function setDefaultCountry(string $defaultCountry): self
     {
         $this->defaultCountry = $defaultCountry;
+
         return $this;
     }
 
@@ -282,6 +285,7 @@ class CoreSettings extends BaseModel implements Model
     public function setDefaultFrontendLanguage(string $defaultFrontendLanguage): self
     {
         $this->defaultFrontendLanguage = $defaultFrontendLanguage;
+
         return $this;
     }
 
@@ -300,6 +304,7 @@ class CoreSettings extends BaseModel implements Model
     public function setDefaultOperatorLanguage(string $defaultOperatorLanguage): self
     {
         $this->defaultOperatorLanguage = $defaultOperatorLanguage;
+
         return $this;
     }
 
@@ -318,6 +323,7 @@ class CoreSettings extends BaseModel implements Model
     public function setDefaultTimezone(string $defaultTimezone): self
     {
         $this->defaultTimezone = $defaultTimezone;
+
         return $this;
     }
 
@@ -336,6 +342,7 @@ class CoreSettings extends BaseModel implements Model
     public function setEnableSsl(string $enableSsl): self
     {
         $this->enableSsl = $enableSsl;
+
         return $this;
     }
 
@@ -354,6 +361,7 @@ class CoreSettings extends BaseModel implements Model
     public function setFrontendLanguage(string $frontendLanguage): self
     {
         $this->frontendLanguage = $frontendLanguage;
+
         return $this;
     }
 
@@ -372,6 +380,7 @@ class CoreSettings extends BaseModel implements Model
     public function setIsInstalled(string $isInstalled): self
     {
         $this->isInstalled = $isInstalled;
+
         return $this;
     }
 
@@ -390,6 +399,7 @@ class CoreSettings extends BaseModel implements Model
     public function setLanguageFrontendToggle(string $languageFrontendToggle): self
     {
         $this->languageFrontendToggle = $languageFrontendToggle;
+
         return $this;
     }
 
@@ -408,6 +418,7 @@ class CoreSettings extends BaseModel implements Model
     public function setLanguageOperatorToggle(string $languageOperatorToggle): self
     {
         $this->languageOperatorToggle = $languageOperatorToggle;
+
         return $this;
     }
 
@@ -426,6 +437,7 @@ class CoreSettings extends BaseModel implements Model
     public function setMaintenanceMode(string $maintenanceMode): self
     {
         $this->maintenanceMode = $maintenanceMode;
+
         return $this;
     }
 
@@ -444,6 +456,7 @@ class CoreSettings extends BaseModel implements Model
     public function setOperatorLanguage(string $operatorLanguage): self
     {
         $this->operatorLanguage = $operatorLanguage;
+
         return $this;
     }
 
@@ -462,6 +475,7 @@ class CoreSettings extends BaseModel implements Model
     public function setOperatorTemplate(string $operatorTemplate): self
     {
         $this->operatorTemplate = $operatorTemplate;
+
         return $this;
     }
 
@@ -480,6 +494,7 @@ class CoreSettings extends BaseModel implements Model
     public function setSimpleauthKey(string $simpleauthKey): self
     {
         $this->simpleauthKey = $simpleauthKey;
+
         return $this;
     }
 
@@ -498,6 +513,7 @@ class CoreSettings extends BaseModel implements Model
     public function setTimeFormat(string $timeFormat): self
     {
         $this->timeFormat = $timeFormat;
+
         return $this;
     }
 
@@ -516,6 +532,7 @@ class CoreSettings extends BaseModel implements Model
     public function setSimpleauthOperators(string $simpleauthOperators): self
     {
         $this->simpleauthOperators = $simpleauthOperators;
+
         return $this;
     }
 
@@ -534,6 +551,7 @@ class CoreSettings extends BaseModel implements Model
     public function setDebugMode(string $debugMode): self
     {
         $this->debugMode = $debugMode;
+
         return $this;
     }
 
@@ -552,6 +570,7 @@ class CoreSettings extends BaseModel implements Model
     public function setPrettyUrls(string $prettyUrls): self
     {
         $this->prettyUrls = $prettyUrls;
+
         return $this;
     }
 
@@ -570,6 +589,7 @@ class CoreSettings extends BaseModel implements Model
     public function setDefaultBrand(string $defaultBrand): self
     {
         $this->defaultBrand = $defaultBrand;
+
         return $this;
     }
 
@@ -588,6 +608,7 @@ class CoreSettings extends BaseModel implements Model
     public function setAttachmentSize(string $attachmentSize): self
     {
         $this->attachmentSize = $attachmentSize;
+
         return $this;
     }
 
@@ -606,6 +627,7 @@ class CoreSettings extends BaseModel implements Model
     public function setCaptchaType(string $captchaType): self
     {
         $this->captchaType = $captchaType;
+
         return $this;
     }
 
@@ -624,6 +646,7 @@ class CoreSettings extends BaseModel implements Model
     public function setUpgradeTime(string $upgradeTime): self
     {
         $this->upgradeTime = $upgradeTime;
+
         return $this;
     }
 
@@ -642,6 +665,7 @@ class CoreSettings extends BaseModel implements Model
     public function setLastEmailLogId(string $lastEmailLogId): self
     {
         $this->lastEmailLogId = $lastEmailLogId;
+
         return $this;
     }
 
@@ -660,6 +684,7 @@ class CoreSettings extends BaseModel implements Model
     public function setInstalledVersion(string $installedVersion): self
     {
         $this->installedVersion = $installedVersion;
+
         return $this;
     }
 
@@ -678,6 +703,7 @@ class CoreSettings extends BaseModel implements Model
     public function setInstallTime(string $installTime): self
     {
         $this->installTime = $installTime;
+
         return $this;
     }
 
@@ -696,6 +722,7 @@ class CoreSettings extends BaseModel implements Model
     public function setIncludeOperatorName(string $includeOperatorName): self
     {
         $this->includeOperatorName = $includeOperatorName;
+
         return $this;
     }
 
@@ -714,6 +741,7 @@ class CoreSettings extends BaseModel implements Model
     public function setIncludeDepartmentName(string $includeDepartmentName): self
     {
         $this->includeDepartmentName = $includeDepartmentName;
+
         return $this;
     }
 
@@ -732,6 +760,7 @@ class CoreSettings extends BaseModel implements Model
     public function setEmailMethod(string $emailMethod): self
     {
         $this->emailMethod = $emailMethod;
+
         return $this;
     }
 
@@ -750,6 +779,7 @@ class CoreSettings extends BaseModel implements Model
     public function setSmtpHost(string $smtpHost): self
     {
         $this->smtpHost = $smtpHost;
+
         return $this;
     }
 
@@ -768,6 +798,7 @@ class CoreSettings extends BaseModel implements Model
     public function setSmtpPort(string $smtpPort): self
     {
         $this->smtpPort = $smtpPort;
+
         return $this;
     }
 
@@ -786,6 +817,7 @@ class CoreSettings extends BaseModel implements Model
     public function setSmtpEncryption(string $smtpEncryption): self
     {
         $this->smtpEncryption = $smtpEncryption;
+
         return $this;
     }
 
@@ -804,6 +836,7 @@ class CoreSettings extends BaseModel implements Model
     public function setSmtpRequiresAuth(string $smtpRequiresAuth): self
     {
         $this->smtpRequiresAuth = $smtpRequiresAuth;
+
         return $this;
     }
 
@@ -822,6 +855,7 @@ class CoreSettings extends BaseModel implements Model
     public function setSmtpUsername(string $smtpUsername): self
     {
         $this->smtpUsername = $smtpUsername;
+
         return $this;
     }
 
@@ -840,6 +874,7 @@ class CoreSettings extends BaseModel implements Model
     public function setSmtpPassword(string $smtpPassword): self
     {
         $this->smtpPassword = $smtpPassword;
+
         return $this;
     }
 
@@ -858,6 +893,7 @@ class CoreSettings extends BaseModel implements Model
     public function setIncludeLocaleInUri(string $includeLocaleInUri): self
     {
         $this->includeLocaleInUri = $includeLocaleInUri;
+
         return $this;
     }
 
@@ -876,6 +912,7 @@ class CoreSettings extends BaseModel implements Model
     public function setRecaptchaSiteKey(string $recaptchaSiteKey): self
     {
         $this->recaptchaSiteKey = $recaptchaSiteKey;
+
         return $this;
     }
 
@@ -894,6 +931,7 @@ class CoreSettings extends BaseModel implements Model
     public function setRecaptchaSecretKey(string $recaptchaSecretKey): self
     {
         $this->recaptchaSecretKey = $recaptchaSecretKey;
+
         return $this;
     }
 

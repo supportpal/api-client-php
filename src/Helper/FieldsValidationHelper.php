@@ -19,9 +19,10 @@ trait FieldsValidationHelper
                 array_push($missingFields, $required);
             }
         }
+
         if (count($missingFields) > 0) {
             throw new MissingRequiredFieldsException(
-                'incomplete required fields, the following are missing: ' .  join(',', $missingFields)
+                'incomplete required fields, the following are missing: ' .  implode(',', $missingFields)
             );
         }
     }

@@ -8,7 +8,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
 class CommentTest extends BaseModelTestCase
 {
-
     const COMMENT_DATA = CommentData::COMMENT_DATA;
 
     /**

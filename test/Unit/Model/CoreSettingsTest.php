@@ -8,7 +8,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
 
 class CoreSettingsTest extends BaseModelTestCase
 {
-
     const CORE_SETTINGS_DATA = CoreSettingsData::CORE_SETTINGS_DATA;
 
     /**

@@ -31,6 +31,7 @@ class Ticket extends BaseModel
     public function setText(string $text): self
     {
         $this->text = $text;
+
         return $this;
     }
 

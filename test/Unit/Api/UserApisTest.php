@@ -9,12 +9,11 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
 class UserApisTest extends ApiTest
 {
-
     /**
      * @var array<mixed>
      */
     protected $getUsersSuccessfulResponse = UserData::GET_USER_SUCCESSFUL_RESPONSE;
-    
+
     public function testGetUsers(): void
     {
         $response = $this->prophesize(ResponseInterface::class);

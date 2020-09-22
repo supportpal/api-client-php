@@ -9,7 +9,6 @@ use SupportPal\ApiClient\Model\Model;
 
 abstract class BaseModelTestCase extends TestCase
 {
-
     use StringHelper;
 
     public function testCreateModel():void
@@ -49,6 +48,7 @@ abstract class BaseModelTestCase extends TestCase
         foreach ($this->getInvalidTypesData() as $key => $value) {
             $commentDataCopy = $this->getModelData();
             $commentDataCopy[$key] = $value;
+
             yield [$commentDataCopy, $key];
         }
     }
@@ -77,6 +77,7 @@ abstract class BaseModelTestCase extends TestCase
         foreach ($this->getModelData() as $key => $value) {
             $data[$key] = new \stdClass;
         }
+
         return $data;
     }
 

@@ -23,6 +23,7 @@ trait CoreApis
     public function getCoreSettings(): ResponseInterface
     {
         $request = $this->getRequestFactory()->create('GET', ApiDictionary::CORE_SETTINGS);
+
         return $this->sendRequest($request);
     }
 }

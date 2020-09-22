@@ -6,7 +6,6 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 class Article extends BaseModel
 {
-
     public const REQUIRED_FIELDS = [
         'pinned',
         'text',
@@ -125,6 +124,7 @@ class Article extends BaseModel
     public function setId(int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -143,6 +143,7 @@ class Article extends BaseModel
     public function setAuthorId(?int $authorId): self
     {
         $this->authorId = $authorId;
+
         return $this;
     }
 
@@ -161,6 +162,7 @@ class Article extends BaseModel
     public function setPinned(int $pinned): self
     {
         $this->pinned = $pinned;
+
         return $this;
     }
 
@@ -179,6 +181,7 @@ class Article extends BaseModel
     public function setText(string $text): self
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -197,6 +200,7 @@ class Article extends BaseModel
     public function setProtected(int $protected): self
     {
         $this->protected = $protected;
+
         return $this;
     }
 
@@ -215,6 +219,7 @@ class Article extends BaseModel
     public function setPublishedAt(?int $publishedAt): self
     {
         $this->publishedAt = $publishedAt;
+
         return $this;
     }
 
@@ -233,6 +238,7 @@ class Article extends BaseModel
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -251,6 +257,7 @@ class Article extends BaseModel
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -269,6 +276,7 @@ class Article extends BaseModel
     public function setPlainText(string $plainText): self
     {
         $this->plainText = $plainText;
+
         return $this;
     }
 
@@ -287,6 +295,7 @@ class Article extends BaseModel
     public function setKeywords(?string $keywords): self
     {
         $this->keywords = $keywords;
+
         return $this;
     }
 
@@ -305,6 +314,7 @@ class Article extends BaseModel
     public function setPublished(int $published): self
     {
         $this->published = $published;
+
         return $this;
     }
 
@@ -323,6 +333,7 @@ class Article extends BaseModel
     public function setExcerpt(?string $excerpt): self
     {
         $this->excerpt = $excerpt;
+
         return $this;
     }
 
@@ -341,6 +352,7 @@ class Article extends BaseModel
     public function setPurifiedText(string $purifiedText): self
     {
         $this->purifiedText = $purifiedText;
+
         return $this;
     }
 
@@ -359,6 +371,7 @@ class Article extends BaseModel
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
@@ -377,10 +390,11 @@ class Article extends BaseModel
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
         return $this;
     }
 
-    
+
     protected function getRequiredFields(): array
     {
         return self::REQUIRED_FIELDS;

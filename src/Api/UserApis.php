@@ -31,6 +31,7 @@ trait UserApis
     {
         /** @var User $model */
         $model = $this->getModelCollectionFactory()->create(User::class, $data);
+
         return $model;
     }
 }

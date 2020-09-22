@@ -9,7 +9,6 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
 class CoreApisTest extends ApiTest
 {
-
     /**
      * @var array<mixed>
      */

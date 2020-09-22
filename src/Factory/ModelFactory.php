@@ -10,7 +10,6 @@ use SupportPal\ApiClient\Model\Model;
  */
 interface ModelFactory
 {
-
     /**
      * This method creates an instance of a SupportPalModel
      * @param array<mixed> $data

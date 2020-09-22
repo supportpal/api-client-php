@@ -7,13 +7,12 @@ use SupportPal\ApiClient\Model\Ticket;
 
 class TicketTest extends BaseModelTestCase
 {
-
     /**
      * @inheritDoc
      */
     protected function getModelData(): array
     {
-        return  [
+        return [
             'text' => 'test'
         ];
     }
