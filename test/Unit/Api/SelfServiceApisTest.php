@@ -14,7 +14,6 @@ use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
 class SelfServiceApisTest extends ApiTest
 {
-
     /**
      * @var array<mixed>
      */

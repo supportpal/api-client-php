@@ -8,7 +8,6 @@ use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 
 class RequestFactoryTest extends ContainerAwareBaseTestCase
 {
-
     /**
      * @var RequestFactory
      */
@@ -58,6 +57,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
         foreach ($data['headers'] as $header => $value) {
             $headersArray[$header] = [$value];
         }
+
         $headersArray['Authorization'] = ['Basic ' . base64_encode($this->apiToken . ':X')];
         $headersArray['Content-Type'] = [$this->apiContentType];
 
@@ -75,6 +75,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
     public function provideRequestTestCases(): iterable
     {
         $this->setUp();
+
         yield [
             [
                 'method' => 'POST',

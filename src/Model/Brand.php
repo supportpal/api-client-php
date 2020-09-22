@@ -240,6 +240,7 @@ class Brand extends BaseModel
     public function setOperatorTemplate(?string $operatorTemplate): self
     {
         $this->operatorTemplate = $operatorTemplate;
+
         return $this;
     }
 
@@ -258,6 +259,7 @@ class Brand extends BaseModel
     public function setDefaultLanguage(string $defaultLanguage): self
     {
         $this->defaultLanguage = $defaultLanguage;
+
         return $this;
     }
 
@@ -276,6 +278,7 @@ class Brand extends BaseModel
     public function setFavicon(?string $favicon): self
     {
         $this->favicon = $favicon;
+
         return $this;
     }
 
@@ -294,6 +297,7 @@ class Brand extends BaseModel
     public function setSmtpUsername(?string $smtpUsername): self
     {
         $this->smtpUsername = $smtpUsername;
+
         return $this;
     }
 
@@ -312,6 +316,7 @@ class Brand extends BaseModel
     public function setDefaultCountry(string $defaultCountry): self
     {
         $this->defaultCountry = $defaultCountry;
+
         return $this;
     }
 
@@ -330,6 +335,7 @@ class Brand extends BaseModel
     public function setFrontendTemplateMode(int $frontendTemplateMode): self
     {
         $this->frontendTemplateMode = $frontendTemplateMode;
+
         return $this;
     }
 
@@ -348,6 +354,7 @@ class Brand extends BaseModel
     public function setOperatorIcon(?string $operatorIcon): self
     {
         $this->operatorIcon = $operatorIcon;
+
         return $this;
     }
 
@@ -366,6 +373,7 @@ class Brand extends BaseModel
     public function setEnabled(int $enabled): self
     {
         $this->enabled = $enabled;
+
         return $this;
     }
 
@@ -384,6 +392,7 @@ class Brand extends BaseModel
     public function setEmailMethod(string $emailMethod): self
     {
         $this->emailMethod = $emailMethod;
+
         return $this;
     }
 
@@ -402,6 +411,7 @@ class Brand extends BaseModel
     public function setSystemUrl(string $systemUrl): self
     {
         $this->systemUrl = $systemUrl;
+
         return $this;
     }
 
@@ -420,6 +430,7 @@ class Brand extends BaseModel
     public function setSmtpPort(?int $smtpPort): self
     {
         $this->smtpPort = $smtpPort;
+
         return $this;
     }
 
@@ -438,6 +449,7 @@ class Brand extends BaseModel
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -456,6 +468,7 @@ class Brand extends BaseModel
     public function setSmtpPassword(?string $smtpPassword): self
     {
         $this->smtpPassword = $smtpPassword;
+
         return $this;
     }
 
@@ -474,6 +487,7 @@ class Brand extends BaseModel
     public function setSmtpRequiresAuth(?int $smtpRequiresAuth): self
     {
         $this->smtpRequiresAuth = $smtpRequiresAuth;
+
         return $this;
     }
 
@@ -492,6 +506,7 @@ class Brand extends BaseModel
     public function setEnableSsl(?int $enableSsl): self
     {
         $this->enableSsl = $enableSsl;
+
         return $this;
     }
 
@@ -510,6 +525,7 @@ class Brand extends BaseModel
     public function setFrontendLogoDarkMode(?string $frontendLogoDarkMode): self
     {
         $this->frontendLogoDarkMode = $frontendLogoDarkMode;
+
         return $this;
     }
 
@@ -528,6 +544,7 @@ class Brand extends BaseModel
     public function setDefaultEmail(string $defaultEmail): self
     {
         $this->defaultEmail = $defaultEmail;
+
         return $this;
     }
 
@@ -546,6 +563,7 @@ class Brand extends BaseModel
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -564,6 +582,7 @@ class Brand extends BaseModel
     public function setFrontendTemplate(string $frontendTemplate): self
     {
         $this->frontendTemplate = $frontendTemplate;
+
         return $this;
     }
 
@@ -582,6 +601,7 @@ class Brand extends BaseModel
     public function setWebsiteUrl(?string $websiteUrl): self
     {
         $this->websiteUrl = $websiteUrl;
+
         return $this;
     }
 
@@ -600,6 +620,7 @@ class Brand extends BaseModel
     public function setSmtpHost(?string $smtpHost): self
     {
         $this->smtpHost = $smtpHost;
+
         return $this;
     }
 
@@ -618,6 +639,7 @@ class Brand extends BaseModel
     public function setDateFormat(string $dateFormat): self
     {
         $this->dateFormat = $dateFormat;
+
         return $this;
     }
 
@@ -636,6 +658,7 @@ class Brand extends BaseModel
     public function setTimeFormat(string $timeFormat): self
     {
         $this->timeFormat = $timeFormat;
+
         return $this;
     }
 
@@ -654,6 +677,7 @@ class Brand extends BaseModel
     public function setFrontendLogo(?string $frontendLogo): self
     {
         $this->frontendLogo = $frontendLogo;
+
         return $this;
     }
 
@@ -672,6 +696,7 @@ class Brand extends BaseModel
     public function setGlobalEmailHeader(string $globalEmailHeader): self
     {
         $this->globalEmailHeader = $globalEmailHeader;
+
         return $this;
     }
 
@@ -690,6 +715,7 @@ class Brand extends BaseModel
     public function setGlobalEmailFooter(string $globalEmailFooter): self
     {
         $this->globalEmailFooter = $globalEmailFooter;
+
         return $this;
     }
 
@@ -708,6 +734,7 @@ class Brand extends BaseModel
     public function setSmtpEncryption(?string $smtpEncryption): self
     {
         $this->smtpEncryption = $smtpEncryption;
+
         return $this;
     }
 
@@ -726,6 +753,7 @@ class Brand extends BaseModel
     public function setDefaultTimezone(string $defaultTimezone): self
     {
         $this->defaultTimezone = $defaultTimezone;
+
         return $this;
     }
 
@@ -744,6 +772,7 @@ class Brand extends BaseModel
     public function setId(?int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -762,6 +791,7 @@ class Brand extends BaseModel
     public function setLanguageToggle(int $languageToggle): self
     {
         $this->languageToggle = $languageToggle;
+
         return $this;
     }
 
@@ -780,6 +810,7 @@ class Brand extends BaseModel
     public function setOperatorTemplateMode(int $operatorTemplateMode): self
     {
         $this->operatorTemplateMode = $operatorTemplateMode;
+
         return $this;
     }
 
@@ -798,6 +829,7 @@ class Brand extends BaseModel
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
@@ -816,6 +848,7 @@ class Brand extends BaseModel
     public function setBrandColour(?string $brandColour): Brand
     {
         $this->brandColour = $brandColour;
+
         return $this;
     }
 

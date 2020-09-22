@@ -9,7 +9,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 
 class UserFactoryTest extends BaseModelFactoryTestCase
 {
-
     /**
      * @inheritDoc
      */

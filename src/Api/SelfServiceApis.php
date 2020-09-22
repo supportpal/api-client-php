@@ -38,6 +38,7 @@ trait SelfServiceApis
         $response = $this->getApiClient()->postSelfServiceComment($serializedComment);
         /** @var array<mixed> $body */
         $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
+
         return $this->createComment($body);
     }
 
@@ -79,6 +80,7 @@ trait SelfServiceApis
     {
         /** @var Comment $model */
         $model = $this->getModelCollectionFactory()->create(Comment::class, $data);
+
         return $model;
     }
 
@@ -90,6 +92,7 @@ trait SelfServiceApis
     {
         /** @var ArticleType $model */
         $model = $this->getModelCollectionFactory()->create(ArticleType::class, $data);
+
         return $model;
     }
 }

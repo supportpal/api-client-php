@@ -8,7 +8,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\ArticleData;
 
 class ArticleTest extends BaseModelTestCase
 {
-
     const ARTICLE_DATA = ArticleData::ARTICLE_DATA;
 
     /**

@@ -14,6 +14,7 @@ trait FactoryTestCase
         foreach ($this->getRequiredFields() as $requiredField) {
             $commentDataCopy = $this->getModelData();
             unset($commentDataCopy[$requiredField]);
+
             yield [$commentDataCopy, $requiredField];
         }
     }

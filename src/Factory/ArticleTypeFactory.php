@@ -10,7 +10,6 @@ use SupportPal\ApiClient\Model\ArticleType;
  */
 class ArticleTypeFactory extends BaseModelFactory
 {
-
     /**
      * @inheritDoc
      */

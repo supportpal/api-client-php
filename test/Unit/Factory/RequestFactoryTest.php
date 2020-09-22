@@ -8,7 +8,6 @@ use SupportPal\ApiClient\Factory\RequestFactory;
 
 class RequestFactoryTest extends TestCase
 {
-
     /**
      * @var RequestFactory
      */
@@ -38,6 +37,7 @@ class RequestFactoryTest extends TestCase
         foreach ($data['headers'] as $header => $value) {
             $headersArray[$header] = [$value];
         }
+
         $headersArray['Authorization'] = ['Basic ' . base64_encode('test' . ':X')];
         $headersArray['Content-Type'] = ['test'];
         self::assertInstanceOf(Request::class, $request);

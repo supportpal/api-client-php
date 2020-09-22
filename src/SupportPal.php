@@ -57,6 +57,7 @@ class SupportPal
     {
         /** @var Api $api */
         $api = $this->containerBuilder->get(Api::class);
+
         return $api;
     }
 
@@ -68,6 +69,7 @@ class SupportPal
     {
         /** @var RequestFactory $requestFactory */
         $requestFactory = $this->containerBuilder->get(RequestFactory::class);
+
         return $requestFactory;
     }
 
@@ -80,6 +82,7 @@ class SupportPal
     {
         /** @var ApiClient $apiClient */
         $apiClient = $this->containerBuilder->get(ApiClient::class);
+
         return $apiClient->sendRequest($request);
     }
 
@@ -120,6 +123,7 @@ class SupportPal
     {
         $stack = HandlerStack::create();
         $stack->push(new CacheMiddleware($this->buildCacheStrategy($cacheDir)));
+
         return new Client(['handler' => $stack]);
     }
 }

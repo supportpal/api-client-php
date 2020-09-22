@@ -17,7 +17,6 @@ use SupportPal\ApiClient\Model\CoreSettings;
 
 class ModelCollectionFactoryTest extends TestCase
 {
-
     /**
      * @var ModelCollectionFactory
      */
@@ -100,6 +99,7 @@ class ModelCollectionFactoryTest extends TestCase
         foreach ($this->factories as $factoryProphecy) {
             /** @var ModelFactory $factory */
             $factory = $factoryProphecy->reveal();
+
             yield $factory;
         }
     }

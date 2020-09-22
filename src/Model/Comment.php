@@ -122,6 +122,7 @@ class Comment extends BaseModel implements Model
     public function setId(int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -140,6 +141,7 @@ class Comment extends BaseModel implements Model
     public function setText(string $text): self
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -158,6 +160,7 @@ class Comment extends BaseModel implements Model
     public function setArticleId(int $articleId): self
     {
         $this->articleId = $articleId;
+
         return $this;
     }
 
@@ -176,6 +179,7 @@ class Comment extends BaseModel implements Model
     public function setTypeId(int $typeId): self
     {
         $this->typeId = $typeId;
+
         return $this;
     }
 
@@ -194,6 +198,7 @@ class Comment extends BaseModel implements Model
     public function setParentId(?int $parentId): self
     {
         $this->parentId = $parentId;
+
         return $this;
     }
 
@@ -212,6 +217,7 @@ class Comment extends BaseModel implements Model
     public function setStatus(int $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -230,6 +236,7 @@ class Comment extends BaseModel implements Model
     public function setNotifyReply(int $notifyReply): self
     {
         $this->notifyReply = $notifyReply;
+
         return $this;
     }
 
@@ -248,6 +255,7 @@ class Comment extends BaseModel implements Model
     public function setAuthorId(?int $authorId): self
     {
         $this->authorId = $authorId;
+
         return $this;
     }
 
@@ -266,6 +274,7 @@ class Comment extends BaseModel implements Model
     public function setPurifiedText(?string $purifiedText): self
     {
         $this->purifiedText = $purifiedText;
+
         return $this;
     }
 
@@ -284,6 +293,7 @@ class Comment extends BaseModel implements Model
     public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -302,6 +312,7 @@ class Comment extends BaseModel implements Model
     public function setAuthor(User $author): self
     {
         $this->author = $author;
+
         return $this;
     }
 
@@ -320,6 +331,7 @@ class Comment extends BaseModel implements Model
     public function setArticle(Article $article): self
     {
         $this->article = $article;
+
         return $this;
     }
 
@@ -338,6 +350,7 @@ class Comment extends BaseModel implements Model
     public function setType(ArticleType $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -356,6 +369,7 @@ class Comment extends BaseModel implements Model
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -374,6 +388,7 @@ class Comment extends BaseModel implements Model
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 

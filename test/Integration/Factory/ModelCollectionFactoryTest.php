@@ -12,7 +12,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
 class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
 {
-
     /**
      * @var array<mixed>
      */
@@ -140,6 +139,7 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
         foreach ($InvalidCommentData as $key => $value) {
             $commentDataCopy = $this->commentData;
             $commentDataCopy[$key] = $value;
+
             yield [$commentDataCopy, Comment::class, $key];
         }
     }
@@ -152,6 +152,7 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
         foreach (Comment::REQUIRED_FIELDS as $required) {
             $commentData = $this->commentData;
             unset($commentData[$required]);
+
             yield [$commentData, Comment::class, $required];
         }
     }

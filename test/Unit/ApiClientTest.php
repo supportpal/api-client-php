@@ -102,6 +102,7 @@ class ApiClientTest extends TestCase
         $jsonErrorBody['status'] = 'success';
         /** @var string $jsonSuccessfulBody */
         $jsonSuccessfulBody = json_encode($jsonErrorBody);
+
         yield ['error 400 response' => 400, $jsonSuccessfulBody];
         yield ['error 401 response' => 401, $jsonSuccessfulBody];
         yield ['error 403 response' => 403, $jsonSuccessfulBody];
@@ -109,6 +110,7 @@ class ApiClientTest extends TestCase
 
         /** @var string $jsonErrorBody */
         $jsonErrorBody = json_encode($this->genericErrorResponse);
+
         yield [
             'error status response' => 200, $jsonErrorBody,
         ];
@@ -128,7 +130,7 @@ class ApiClientTest extends TestCase
         ?string $body
     ): ObjectProphecy {
         $request = $this->prophesize(Request::class);
-        if ('GET' === $method) {
+        if ($method === 'GET') {
             $create = $this->requestFactory->create($method, $endpoint, [], null, $parameters);
         } else {
             $create = $this->requestFactory->create($method, $endpoint, [], $body);

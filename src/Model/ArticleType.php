@@ -17,7 +17,7 @@ class ArticleType extends BaseModel
         'updated_at',
         'internal',
     ];
-    
+
     /**
      * @var string|null
      * @SerializedName("icon")
@@ -141,6 +141,7 @@ class ArticleType extends BaseModel
     public function setIcon(?string $icon): self
     {
         $this->icon = $icon;
+
         return $this;
     }
 
@@ -159,6 +160,7 @@ class ArticleType extends BaseModel
     public function setId(?int $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -177,6 +179,7 @@ class ArticleType extends BaseModel
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -195,6 +198,7 @@ class ArticleType extends BaseModel
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -213,6 +217,7 @@ class ArticleType extends BaseModel
     public function setBrandId(int $brandId): self
     {
         $this->brandId = $brandId;
+
         return $this;
     }
 
@@ -231,6 +236,7 @@ class ArticleType extends BaseModel
     public function setArticleOrdering(?int $articleOrdering): self
     {
         $this->articleOrdering = $articleOrdering;
+
         return $this;
     }
 
@@ -249,6 +255,7 @@ class ArticleType extends BaseModel
     public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
+
         return $this;
     }
 
@@ -267,6 +274,7 @@ class ArticleType extends BaseModel
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
@@ -285,6 +293,7 @@ class ArticleType extends BaseModel
     public function setInternal(int $internal): self
     {
         $this->internal = $internal;
+
         return $this;
     }
 
@@ -303,6 +312,7 @@ class ArticleType extends BaseModel
     public function setShowOnDashboard(?int $showOnDashboard): self
     {
         $this->showOnDashboard = $showOnDashboard;
+
         return $this;
     }
 
@@ -321,6 +331,7 @@ class ArticleType extends BaseModel
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -339,6 +350,7 @@ class ArticleType extends BaseModel
     public function setView(?int $view): self
     {
         $this->view = $view;
+
         return $this;
     }
 
@@ -357,6 +369,7 @@ class ArticleType extends BaseModel
     public function setProtected(int $protected): self
     {
         $this->protected = $protected;
+
         return $this;
     }
 
@@ -375,6 +388,7 @@ class ArticleType extends BaseModel
     public function setOrder(?int $order): self
     {
         $this->order = $order;
+
         return $this;
     }
 
@@ -393,6 +407,7 @@ class ArticleType extends BaseModel
     public function setExternalLink(?string $externalLink): self
     {
         $this->externalLink = $externalLink;
+
         return $this;
     }
 
@@ -411,6 +426,7 @@ class ArticleType extends BaseModel
     public function setEnabled(int $enabled): self
     {
         $this->enabled = $enabled;
+
         return $this;
     }
 
@@ -429,6 +445,7 @@ class ArticleType extends BaseModel
     public function setContent(int $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -447,6 +464,7 @@ class ArticleType extends BaseModel
     public function setBrand(Brand $brand): self
     {
         $this->brand = $brand;
+
         return $this;
     }
 

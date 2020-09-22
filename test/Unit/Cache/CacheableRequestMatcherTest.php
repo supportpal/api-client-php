@@ -10,7 +10,6 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 
 class CacheableRequestMatcherTest extends TestCase
 {
-
     /**
      * @var CacheableRequestMatcher
      */

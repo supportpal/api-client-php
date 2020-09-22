@@ -4,21 +4,20 @@ namespace SupportPal\ApiClient\Tests\DataFixtures;
 
 final class CommentData
 {
-
     public const POST_COMMENT_SUCCESSFUL_RESPONSE = [
-        "status" => "success",
-        "message" => "Successfully created new comment!",
-        "data" => [
-            "article_id" => 1,
-            "type_id" => 1,
-            "text" => "test",
-            "status" => 0,
-            "author_id" => 23,
-            "notify_reply" => 0,
-            "parent_id" => null,
-            "id" => 1,
-            "created_at" => 1,
-            "updated_at" => 1,
+        'status' => 'success',
+        'message' => 'Successfully created new comment!',
+        'data' => [
+            'article_id' => 1,
+            'type_id' => 1,
+            'text' => 'test',
+            'status' => 0,
+            'author_id' => 23,
+            'notify_reply' => 0,
+            'parent_id' => null,
+            'id' => 1,
+            'created_at' => 1,
+            'updated_at' => 1,
         ]
     ];
 
@@ -29,8 +28,8 @@ final class CommentData
         'parent_id' => 1,
         'status' => 3,
         'notify_reply' => 0,
-        "created_at" => 1,
-        "updated_at" => 1,
+        'created_at' => 1,
+        'updated_at' => 1,
     ];
 
     public const GET_COMMENTS_SUCCESSFUL_RESPONSE = [
@@ -53,8 +52,8 @@ final class CommentData
                         'author' => UserData::USER_DATA,
                         'article' => ArticleData::ARTICLE_DATA,
                         'type' => ArticleTypeData::ARTICLE_TYPE_DATA,
-                        "created_at" => 1,
-                        "updated_at" => 1,
+                        'created_at' => 1,
+                        'updated_at' => 1,
                     ],
             ],
     ];

@@ -7,7 +7,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 
 class UserApisTest extends ApiTestCase
 {
-
     /**
      * @var array<mixed>
      */

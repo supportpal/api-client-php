@@ -56,6 +56,7 @@ class RequestFactory
         $headers['Authorization'] = 'Basic ' . base64_encode($this->apiToken . ':X');
 
         $uri = new Uri($this->apiUrl . $endpoint);
+
         return new Request($method, $uri->withQuery(http_build_query($queryParameters)), $headers, stream_for($body));
     }
 }

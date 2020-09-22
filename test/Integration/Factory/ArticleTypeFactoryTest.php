@@ -9,7 +9,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\ArticleTypeData;
 
 class ArticleTypeFactoryTest extends BaseModelFactoryTestCase
 {
-
     const ARTICLE_TYPE_DATA = ArticleTypeData::ARTICLE_TYPE_DATA;
 
     /**

@@ -10,7 +10,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 
 class UserFactoryTest extends BaseModelFactoryTestCase
 {
-
     const USER_DATA = UserData::USER_DATA;
 
     /**
