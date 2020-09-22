@@ -6,9 +6,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
@@ -110,5 +112,54 @@ class ApiClientTest extends TestCase
         yield [
             'error status response' => 200, $jsonErrorBody,
         ];
+    }
+
+    /**
+     * @param string $method
+     * @param string $endpoint
+     * @param array<mixed> $parameters
+     * @param string|null $body
+     * @return ObjectProphecy
+     */
+    protected function requestCommonExpectations(
+        string $method,
+        string $endpoint,
+        array $parameters,
+        ?string $body
+    ): ObjectProphecy {
+        $request = $this->prophesize(Request::class);
+        if ('GET' === $method) {
+            $create = $this->requestFactory->create($method, $endpoint, [], null, $parameters);
+        } else {
+            $create = $this->requestFactory->create($method, $endpoint, [], $body);
+        }
+
+        $create->shouldBeCalled()->willReturn($request->reveal());
+
+        return $request;
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @param ObjectProphecy $request
+     * @return ObjectProphecy
+     */
+    protected function sendRequestCommonExpectations(
+        int $statusCode,
+        string $responseBody,
+        ObjectProphecy $request
+    ): ObjectProphecy {
+        $response = $this->prophesize(ResponseInterface::class);
+        $response->getStatusCode()->willReturn($statusCode);
+        $response->getBody()->willReturn($responseBody);
+        $this->httpClient->sendRequest($request->reveal())->shouldBeCalled()->willReturn($response->reveal());
+        $this
+            ->decoder
+            ->decode($responseBody, $this->formatType)
+            ->shouldBeCalled()
+            ->willReturn(json_decode($responseBody, true));
+
+        return $response;
     }
 }

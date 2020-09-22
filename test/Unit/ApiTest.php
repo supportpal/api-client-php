@@ -10,7 +10,7 @@ use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class ApiTest extends TestCase
+abstract class ApiTest extends TestCase
 {
     /**
      * @var ObjectProphecy

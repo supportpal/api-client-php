@@ -2,22 +2,23 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
-use SupportPal\ApiClient\Factory\CommentFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Model\Comment;
+use SupportPal\ApiClient\Factory\UserFactory;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Model\User;
+use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 
-class CommentFactoryTest extends BaseModelFactoryTestCase
+class UserFactoryTest extends BaseModelFactoryTestCase
 {
-    const COMMENT_DATA = CommentData::COMMENT_DATA;
+
+    const USER_DATA = UserData::USER_DATA;
 
     /**
      * @inheritDoc
      */
     protected function getModelFactory(): ModelFactory
     {
-        return new CommentFactory(
+        return new UserFactory(
             $this->getSerializer(),
             $this->format,
             $this->getEncoder()
@@ -29,7 +30,7 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return self::COMMENT_DATA;
+        return self::USER_DATA;
     }
 
     /**
@@ -37,7 +38,7 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getRequiredFields(): array
     {
-        return Comment::REQUIRED_FIELDS;
+        return User::REQUIRED_FIELDS;
     }
 
     /**
@@ -45,7 +46,7 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new Comment)->fill(self::COMMENT_DATA);
+        return (new User)->fill(self::USER_DATA);
     }
 
     /**
@@ -53,6 +54,6 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModel(): string
     {
-        return Comment::class;
+        return User::class;
     }
 }

@@ -96,6 +96,18 @@ class Comment extends BaseModel implements Model
     private $type;
 
     /**
+     * @var int|null
+     * @SerializedName("created_at")
+     */
+    private $createdAt;
+
+    /**
+     * @var int|null
+     * @SerializedName("updated_at")
+     */
+    private $updatedAt;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -326,6 +338,42 @@ class Comment extends BaseModel implements Model
     public function setType(ArticleType $type): self
     {
         $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getCreatedAt(): ?int
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param int $createdAt
+     * @return self
+     */
+    public function setCreatedAt(int $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getUpdatedAt(): ?int
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param int $updatedAt
+     * @return self
+     */
+    public function setUpdatedAt(int $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 

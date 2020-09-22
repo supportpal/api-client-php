@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
 use GuzzleHttp\Psr7\Response;
+use SupportPal\ApiClient\Tests\DataFixtures\ArticleTypeData;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 
@@ -21,6 +22,14 @@ class SelfServiceApisTest extends ApiClientTest
      * @var array<mixed>
      */
     private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
+
+    /**
+     * @var array<mixed>
+     */
+    private $getEndpoints = [
+        'getComments' => CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE,
+        'getArticleTypes' => ArticleTypeData::GET_ARTICLES_SUCCESSFUL_RESPONSE,
+    ];
 
     public function testPostComment(): void
     {
@@ -49,26 +58,30 @@ class SelfServiceApisTest extends ApiClientTest
         );
     }
 
-    public function testGetComments(): void
+    /**
+     * @dataProvider provideGetEndpointsTestCases
+     * @param array<mixed> $data
+     * @param string $endpoint
+     * @throws \Exception
+     */
+    public function testGetEndpoints(array $data, string $endpoint): void
     {
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($this->getCommentsSuccessfulResponse, $this->getFormatType());
+        $jsonSuccessfulBody = $this->getEncoder()->encode($data, $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
-        $response = $this->apiClient->getComments([]);
+        $response = $this->apiClient->{$endpoint}([]);
+        self::assertInstanceOf(Response::class, $response);
         self::assertSame(
-            $this->getCommentsSuccessfulResponse,
+            $data,
             $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
         );
     }
 
     /**
-     * @param Response $response
-     * @dataProvider provideUnsuccessfulTestCases
-     * @throws \Exception
+     * @inheritDoc
      */
-    public function testUnsuccessfulGetComments(Response $response): void
+    protected function getGetEndpoints(): array
     {
-        $this->prepareUnsuccessfulApiRequest($response);
-        $this->apiClient->getComments([]);
+        return $this->getEndpoints;
     }
 }

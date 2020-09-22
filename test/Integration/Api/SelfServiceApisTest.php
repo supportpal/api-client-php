@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Tests\Integration\Api;
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Comment;
+use SupportPal\ApiClient\Tests\DataFixtures\ArticleTypeData;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 use SupportPal\ApiClient\Tests\Integration\ApiTest;
 
@@ -24,6 +25,14 @@ class SelfServiceApisTest extends ApiTest
      * @var array<mixed>
      */
     private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
+
+    /**
+     * @var array<mixed>
+     */
+    private $getEndpoints = [
+        'getArticleTypes' => ArticleTypeData::GET_ARTICLES_SUCCESSFUL_RESPONSE,
+        'getComments' => CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE
+    ];
 
     public function testPostComment(): void
     {
@@ -59,29 +68,11 @@ class SelfServiceApisTest extends ApiTest
         $this->api->postComment($comment);
     }
 
-    public function testGetComments(): void
-    {
-        $this->appendRequestResponse(
-            new Response(
-                200,
-                [],
-                (string) $this->getEncoder()->encode($this->getCommentsSuccessfulResponse, $this->getFormatType())
-            )
-        );
-        $comments = $this->api->getComments([]);
-        foreach ($comments as $offset => $object) {
-            $this->assertArrayEqualsObjectFields($object, $this->getCommentsSuccessfulResponse['data'][$offset]);
-        }
-    }
-
     /**
-     * @param Response $response
-     * @dataProvider provideUnsuccessfulTestCases
-     * @throws \Exception
+     * @inheritDoc
      */
-    public function testUnsuccessfulGetComments(Response $response): void
+    protected function getGetEndpoints(): array
     {
-        $this->prepareUnsuccessfulApiRequest($response);
-        $this->api->getComments([]);
+        return $this->getEndpoints;
     }
 }

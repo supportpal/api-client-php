@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
-./vendor/squizlabs/php_codesniffer/bin/phpcs --standard=vendor/supportpal/coding-standard src/ test/
-./vendor/phpstan/phpstan/phpstan analyse
+set -ex
+
+./vendor/bin/phpcs --standard=phpcs.xml src/ test/
+./vendor/bin/phpstan analyse

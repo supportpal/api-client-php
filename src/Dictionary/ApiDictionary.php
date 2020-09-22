@@ -12,4 +12,8 @@ final class ApiDictionary
     public const CORE_SETTINGS = 'core/settings';
 
     public const SELF_SERVICE_COMMENT = 'selfservice/comment';
+
+    public const SELF_SERVICE_ARTICLE_TYPE = 'selfservice/type';
+
+    public const USER_USER = 'user/user';
 }

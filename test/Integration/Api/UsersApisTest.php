@@ -2,16 +2,16 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\Api;
 
-use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
+use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 use SupportPal\ApiClient\Tests\Integration\ApiTest;
 
-class CoreApisTest extends ApiTest
+class UsersApisTest extends ApiTest
 {
     /**
      * @var array<mixed>
      */
     private $getEndpoints = [
-        'getCoreSettings' => CoreSettingsData::CORE_SETTINGS_SUCCESSFUL_RESPONSE,
+        'getUsers' => UserData::GET_USER_SUCCESSFUL_RESPONSE,
     ];
 
     /**

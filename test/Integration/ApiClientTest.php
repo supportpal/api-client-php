@@ -4,11 +4,12 @@ namespace SupportPal\ApiClient\Tests\Integration;
 
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
+use SupportPal\ApiClient\Tests\ApiTestCase;
 
-class ApiClientTest extends ContainerAwareBaseTestCase
+class ApiClientTest extends ApiTestCase
 {
     /**
      * @var ApiClient
@@ -33,5 +34,25 @@ class ApiClientTest extends ContainerAwareBaseTestCase
 
         $this->expectException(HttpResponseException::class);
         $this->apiClient->sendRequest($request);
+    }
+
+    /**
+     * @param Response $response
+     * @param string $endpoint
+     * @throws \Exception
+     * @dataProvider provideGetEndpointsUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint): void
+    {
+        $this->prepareUnsuccessfulApiRequest($response);
+        $this->apiClient->{$endpoint}([]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getGetEndpoints(): array
+    {
+        return [];
     }
 }
