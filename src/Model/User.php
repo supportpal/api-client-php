@@ -705,9 +705,4 @@ class User extends BaseModel
 
         return $this;
     }
-
-    protected function getRequiredFields(): array
-    {
-        return [];
-    }
 }

@@ -34,3 +34,31 @@ services:
             $formatType: '%contentType%'
             $serializer: '@Symfony\Component\Serializer\Serializer'
             $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+
+    SupportPal\ApiClient\Factory\ArticleFactory:
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: '%contentType%'
+            $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+
+    SupportPal\ApiClient\Factory\SelfService\SelfServiceCategoryFactory:
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: '%contentType%'
+            $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+
+    SupportPal\ApiClient\Factory\SelfService\SelfServiceSettingsFactory:
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: '%contentType%'
+            $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+
+    SupportPal\ApiClient\Factory\SelfService\SelfServiceTagFactory:
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: '%contentType%'
+            $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'

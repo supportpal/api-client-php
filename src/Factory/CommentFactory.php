@@ -17,12 +17,4 @@ class CommentFactory extends BaseModelFactory
     {
         return Comment::class;
     }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getRequiredFields(): array
-    {
-        return Comment::REQUIRED_FIELDS;
-    }
 }

@@ -13,14 +13,6 @@ class CoreSettingsFactory extends BaseModelFactory
     /**
      * @inheritDoc
      */
-    protected function getRequiredFields(): array
-    {
-        return CoreSettings::REQUIRED_FIELDS;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function getModel(): string
     {
         return CoreSettings::class;

@@ -71,5 +71,8 @@ abstract class BaseModelFactory implements ModelFactory
     /**
      * @return string[]
      */
-    abstract protected function getRequiredFields(): array;
+    protected function getRequiredFields(): array
+    {
+        return $this->getModel()::REQUIRED_FIELDS;
+    }
 }

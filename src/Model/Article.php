@@ -393,10 +393,4 @@ class Article extends BaseModel
 
         return $this;
     }
-
-
-    protected function getRequiredFields(): array
-    {
-        return self::REQUIRED_FIELDS;
-    }
 }
