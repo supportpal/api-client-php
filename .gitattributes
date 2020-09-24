@@ -1,6 +1,8 @@
 .gitattributes export-ignore
 .gitignore export-ignore
 /composer.json export-ignore
+/phpstan.neon export-ignore
+/phpcs.xml export-ignore
 /phpunit.dist.xml export-ignore
 /test export-ignore
 /ModelParser export-ignore
