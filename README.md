@@ -27,13 +27,13 @@ To create a post request that requires sending data:
 ```php
 $api = $supportPal->getApi();
 $commentDataArray = [
-                        'text' => 'text',
-                        'article_id' => 3,
-                        'type_id' => 1,
-                        'parent_id' => 1,
-                        'status' => 3,
-                        'notify_reply' => 0
-                    ];
+    'text'         => 'text',
+    'article_id'   => 3,
+    'type_id'      => 1,
+    'parent_id'    => 1,
+    'status'       => 3,
+    'notify_reply' => 0
+];
 $commentObject = new \SupportPal\ApiClient\Model\Comment;
 $commentObject->fill($commentDataArray);
 $savedComment = $api->postComment($commentObject);
@@ -42,13 +42,13 @@ $savedComment = $api->postComment($commentObject);
 For unsupported APIs, you can send a generic request
 ```php
 $commentDataArray = [
-                        'text' => 'text',
-                        'article_id' => 3,
-                        'type_id' => 1,
-                        'parent_id' => 1,
-                        'status' => 3,
-                        'notify_reply' => 0
-                    ];
+    'text'         => 'text',
+    'article_id'   => 3,
+    'type_id'      => 1,
+    'parent_id'    => 1,
+    'status'       => 3,
+    'notify_reply' => 0
+];
 $request = $supportPal
     ->getRequestFactory()
     ->create('POST', 'selfservice/comment', [], $commentDataArray);
