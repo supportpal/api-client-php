@@ -4,5 +4,7 @@
 /phpstan.neon export-ignore
 /phpcs.xml export-ignore
 /phpunit.dist.xml export-ignore
+/.github export-ignore
+/ci export-ignore
 /test export-ignore
 /ModelParser export-ignore
