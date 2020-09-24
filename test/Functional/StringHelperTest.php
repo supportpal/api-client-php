@@ -5,6 +5,10 @@ namespace SupportPal\ApiClient\Tests\Functional;
 use PHPUnit\Framework\TestCase;
 use SupportPal\ApiClient\Helper\StringHelper;
 
+/**
+ * Class StringHelperTest
+ * @package SupportPal\ApiClient\Tests\Functional
+ */
 class StringHelperTest extends TestCase
 {
     use StringHelper;

@@ -7,6 +7,10 @@ use SupportPal\ApiClient\Model\CoreSettings;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
+/**
+ * Class CoreApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\Api
+ */
 class CoreApisTest extends ApiTest
 {
     /**

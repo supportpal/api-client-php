@@ -6,6 +6,11 @@ use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\User;
 use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 
+/**
+ * Class UserTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model
+ * @covers \SupportPal\ApiClient\Model\User
+ */
 class UserTest extends BaseModelTestCase
 {
     const USER_DATA = UserData::USER_DATA;

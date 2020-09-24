@@ -14,14 +14,14 @@ services:
             $serializer: '@Symfony\Component\Serializer\Serializer'
             $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
-    SupportPal\ApiClient\Factory\CommentFactory:
+    SupportPal\ApiClient\Factory\SelfService\CommentFactory:
         tags: [ 'factory.model_factory' ]
         arguments:
             $formatType: '%contentType%'
             $serializer: '@Symfony\Component\Serializer\Serializer'
             $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
-    SupportPal\ApiClient\Factory\ArticleTypeFactory:
+    SupportPal\ApiClient\Factory\SelfService\TypeFactory:
         tags: [ 'factory.model_factory' ]
         arguments:
             $formatType: '%contentType%'
@@ -35,28 +35,28 @@ services:
             $serializer: '@Symfony\Component\Serializer\Serializer'
             $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
-    SupportPal\ApiClient\Factory\ArticleFactory:
+    SupportPal\ApiClient\Factory\SelfService\ArticleFactory:
         tags: [ 'factory.model_factory' ]
         arguments:
             $formatType: '%contentType%'
             $serializer: '@Symfony\Component\Serializer\Serializer'
             $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
-    SupportPal\ApiClient\Factory\SelfService\SelfServiceCategoryFactory:
+    SupportPal\ApiClient\Factory\SelfService\CategoryFactory:
         tags: [ 'factory.model_factory' ]
         arguments:
             $formatType: '%contentType%'
             $serializer: '@Symfony\Component\Serializer\Serializer'
             $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
-    SupportPal\ApiClient\Factory\SelfService\SelfServiceSettingsFactory:
+    SupportPal\ApiClient\Factory\SelfService\SettingsFactory:
         tags: [ 'factory.model_factory' ]
         arguments:
             $formatType: '%contentType%'
             $serializer: '@Symfony\Component\Serializer\Serializer'
             $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
-    SupportPal\ApiClient\Factory\SelfService\SelfServiceTagFactory:
+    SupportPal\ApiClient\Factory\SelfService\TagFactory:
         tags: [ 'factory.model_factory' ]
         arguments:
             $formatType: '%contentType%'

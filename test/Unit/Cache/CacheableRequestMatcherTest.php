@@ -8,6 +8,11 @@ use PHPUnit\Framework\TestCase;
 use SupportPal\ApiClient\Cache\CacheableRequestMatcher;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 
+/**
+ * Class CacheableRequestMatcherTest
+ * @package SupportPal\ApiClient\Tests\Unit\Cache
+ * @covers \SupportPal\ApiClient\Cache\CacheableRequestMatcher
+ */
 class CacheableRequestMatcherTest extends TestCase
 {
     /**

@@ -5,13 +5,17 @@ namespace SupportPal\ApiClient\Tests\Unit\Api;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Model\ArticleType;
-use SupportPal\ApiClient\Model\Comment;
-use SupportPal\ApiClient\Tests\DataFixtures\ArticleTypeData;
+use SupportPal\ApiClient\Model\SelfService\Comment;
+use SupportPal\ApiClient\Model\SelfService\Type;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
+/**
+ * Class SelfServiceApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\Api
+ */
 class SelfServiceApisTest extends ApiTest
 {
     /**
@@ -27,7 +31,7 @@ class SelfServiceApisTest extends ApiTest
     /**
      * @var array<mixed>
      */
-    private $getArticleTypeSuccessfulResponse = ArticleTypeData::GET_ARTICLES_SUCCESSFUL_RESPONSE;
+    private $getArticleTypeSuccessfulResponse = TypeData::GET_TYPES_SUCCESSFUL_RESPONSE;
 
     public function testPostComment(): void
     {
@@ -133,9 +137,9 @@ class SelfServiceApisTest extends ApiTest
 
         $returnedArticleTypes = [];
         foreach ($this->getArticleTypeSuccessfulResponse['data'] as $key => $value) {
-            $articleType = $this->prophesize(ArticleType::class);
+            $articleType = $this->prophesize(Type::class);
             $this->modelCollectionFactory
-                ->create(ArticleType::class, $value)
+                ->create(Type::class, $value)
                 ->shouldBeCalled()
                 ->willReturn($articleType->reveal());
             array_push($returnedArticleTypes, $articleType->reveal());
@@ -143,10 +147,10 @@ class SelfServiceApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getArticleTypes([])
+            ->getTypes([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
-        $articleTypes = $this->api->getArticleTypes();
+        $articleTypes = $this->api->getTypes();
         self::assertSame($returnedArticleTypes, $articleTypes);
     }
 }

@@ -5,13 +5,18 @@ namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 
+/**
+ * Class UsersApisTest
+ * @package SupportPal\ApiClient\Tests\Integration\ApiClient
+ * @coversNothing
+ */
 class UsersApisTest extends ApiClientTest
 {
     /**
      * @var array<mixed>
      */
     private $getEndpoints = [
-        'getUsers' => UserData::GET_USER_SUCCESSFUL_RESPONSE,
+        'getUsers' => [UserData::GET_USER_SUCCESSFUL_RESPONSE, [[]]],
     ];
 
     /**

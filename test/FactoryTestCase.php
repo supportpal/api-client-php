@@ -4,6 +4,10 @@ namespace SupportPal\ApiClient\Tests;
 
 use SupportPal\ApiClient\Factory\ModelFactory;
 
+/**
+ * Trait FactoryTestCase
+ * @package SupportPal\ApiClient\Tests
+ */
 trait FactoryTestCase
 {
     /**

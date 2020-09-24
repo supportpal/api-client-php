@@ -7,6 +7,10 @@ use SupportPal\ApiClient\Model\User;
 use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
+/**
+ * Class UserApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\Api
+ */
 class UserApisTest extends ApiTest
 {
     /**

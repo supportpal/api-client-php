@@ -2,14 +2,19 @@
 
 namespace SupportPal\ApiClient\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
+use SupportPal\ApiClient\Tests\TestCase;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
+/**
+ * Class ApiTest
+ * @package SupportPal\ApiClient\Tests\Unit
+ * @coversNothing
+ */
 abstract class ApiTest extends TestCase
 {
     /**

@@ -17,6 +17,6 @@ trait UserApis
      */
     public function getUsers(array $queryParameters): ResponseInterface
     {
-        return $this->sendGetRequest(ApiDictionary::USER_USER, $queryParameters);
+        return $this->prepareAndSendGetRequest(ApiDictionary::USER_USER, $queryParameters);
     }
 }

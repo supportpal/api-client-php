@@ -3,11 +3,10 @@
 namespace SupportPal\ApiClient\Tests\Unit;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -17,9 +16,9 @@ use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
 /**
- * @covers \SupportPal\ApiClient\ApiClient
  * Class ApiClientTest
  * @package SupportPal\ApiClient\Tests\Unit
+ * @covers \SupportPal\ApiClient\ApiClient
  */
 class ApiClientTest extends TestCase
 {
@@ -78,18 +77,15 @@ class ApiClientTest extends TestCase
 
     public function testClientExceptionThrown(): void
     {
+        $this->expectException(HttpResponseException::class);
         $request = $this->prophesize(RequestInterface::class);
-        /** @var Request $requestMock */
-        $requestMock = $request->reveal();
         $this
             ->httpClient
-            ->sendRequest($requestMock)
-            ->shouldBeCalled()
-            ->willThrow(ClientExceptionInterface::class)
-            ->willReturn($this->prophesize(Response::class)->reveal());
+            ->sendRequest($request->reveal())
+            ->willThrow(ClientException::class)
+            ->shouldBeCalled();
 
-        $this->expectException(HttpResponseException::class);
-        $this->apiClient->sendRequest($requestMock);
+        $this->apiClient->sendRequest($request->reveal());
     }
 
     /**

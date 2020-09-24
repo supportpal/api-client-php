@@ -45,5 +45,5 @@ trait ApiClientAware
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    abstract protected function sendGetRequest(string $endpoint, array $queryParameters): ResponseInterface;
+    abstract protected function prepareAndSendGetRequest(string $endpoint, array $queryParameters): ResponseInterface;
 }

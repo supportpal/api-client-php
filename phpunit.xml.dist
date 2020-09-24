@@ -27,7 +27,6 @@
             <exclude>
                 <directory>src/Dictionary/*</directory>
                 <directory>src/Exception/*</directory>
-                <directory>src/Model/*</directory>
             </exclude>
         </whitelist>
     </filter>

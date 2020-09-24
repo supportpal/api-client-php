@@ -8,6 +8,11 @@ use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\User;
 use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 
+/**
+ * Class UserFactoryTest
+ * @package SupportPal\ApiClient\Tests\Unit\Factory
+ * @covers \SupportPal\ApiClient\Factory\UserFactory
+ */
 class UserFactoryTest extends BaseModelFactoryTestCase
 {
     const USER_DATA = UserData::USER_DATA;

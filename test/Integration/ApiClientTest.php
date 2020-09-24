@@ -7,10 +7,18 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Tests\ApiTestCase;
+use SupportPal\ApiClient\Tests\ApiDataProviders;
+use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 
-class ApiClientTest extends ApiTestCase
+/**
+ * Class ApiClientTest
+ * @package SupportPal\ApiClient\Tests\Integration
+ * @coversNothing
+ */
+class ApiClientTest extends ContainerAwareBaseTestCase
 {
+    use ApiDataProviders;
+
     /**
      * @var ApiClient
      */
@@ -37,15 +45,38 @@ class ApiClientTest extends ApiTestCase
     }
 
     /**
+     * @dataProvider provideGetEndpointsTestCases
+     * @param array<mixed> $data
+     * @param string $functionName
+     * @param array $parameters
+     * @throws \Exception
+     */
+    public function testGetEndpoints(array $data, string $functionName, array $parameters): void
+    {
+        $this->appendRequestResponse(
+            new Response(
+                200,
+                [],
+                (string) $this->getEncoder()->encode($data, $this->getFormatType())
+            )
+        );
+
+        $response = call_user_func_array([$this->apiClient, $functionName], $parameters);
+        self::assertInstanceOf(Response::class, $response);
+        self::assertSame($data, $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType()));
+    }
+
+    /**
      * @param Response $response
      * @param string $endpoint
+     * @param array $parameters
      * @throws \Exception
      * @dataProvider provideGetEndpointsUnsuccessfulTestCases
      */
-    public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint): void
+    public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
-        $this->apiClient->{$endpoint}([]);
+        call_user_func_array([$this->apiClient, $endpoint], $parameters);
     }
 
     /**

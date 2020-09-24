@@ -9,6 +9,11 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
+/**
+ * Class CoreApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\ApiClient
+ * @covers \SupportPal\ApiClient\ApiClient
+ */
 class CoreApisTest extends ApiClientTest
 {
     /**
@@ -57,7 +62,7 @@ class CoreApisTest extends ApiClientTest
     {
         $request = $this->prophesize(Request::class);
         $this->requestFactory
-            ->create('GET', ApiDictionary::CORE_SETTINGS)
+            ->create('GET', ApiDictionary::CORE_SETTINGS, [], null, [])
             ->shouldBeCalled()
             ->willReturn($request->reveal());
 

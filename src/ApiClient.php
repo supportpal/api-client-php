@@ -69,7 +69,7 @@ class ApiClient
     public function sendRequest(RequestInterface $request): ResponseInterface
     {
         try {
-            $response = $this->httpClient->sendRequest($request);
+            $response = $this->getHttpClient()->sendRequest($request);
             $this->assertRequestSuccessful($response);
         } catch (ClientExceptionInterface $exception) {
             throw new HttpResponseException;
@@ -85,7 +85,7 @@ class ApiClient
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    protected function sendGetRequest(string $endpoint, array $queryParameters): ResponseInterface
+    protected function prepareAndSendGetRequest(string $endpoint, array $queryParameters): ResponseInterface
     {
         $request = $this->getRequestFactory()->create('GET', $endpoint, [], null, $queryParameters);
 

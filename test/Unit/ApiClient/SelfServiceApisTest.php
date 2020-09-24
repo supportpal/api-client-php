@@ -4,10 +4,15 @@ namespace SupportPal\ApiClient\Tests\Unit\ApiClient;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Tests\DataFixtures\ArticleTypeData;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
+/**
+ * Class SelfServiceApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\ApiClient
+ * @covers \SupportPal\ApiClient\ApiClient
+ */
 class SelfServiceApisTest extends ApiClientTest
 {
     /**
@@ -23,7 +28,7 @@ class SelfServiceApisTest extends ApiClientTest
     /**
      * @var array<mixed>
      */
-    private $getArticleTypeSuccessfulResponse = ArticleTypeData::GET_ARTICLES_SUCCESSFUL_RESPONSE;
+    private $getArticleTypeSuccessfulResponse = TypeData::GET_TYPES_SUCCESSFUL_RESPONSE;
 
     public function testPostSelfServiceComment(): void
     {
@@ -103,7 +108,7 @@ class SelfServiceApisTest extends ApiClientTest
             (string) json_encode($this->getArticleTypeSuccessfulResponse),
             $request
         );
-        $getArticleTypeSuccessfulResponse = $this->apiClient->getArticleTypes($queryParams);
+        $getArticleTypeSuccessfulResponse = $this->apiClient->getTypes($queryParams);
         self::assertSame($response->reveal(), $getArticleTypeSuccessfulResponse);
     }
 
@@ -113,7 +118,7 @@ class SelfServiceApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, null);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getArticleTypes($queryParams);
+        $this->apiClient->getTypes($queryParams);
     }
 
     /**
@@ -127,6 +132,6 @@ class SelfServiceApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, null);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getArticleTypes($queryParams);
+        $this->apiClient->getTypes($queryParams);
     }
 }

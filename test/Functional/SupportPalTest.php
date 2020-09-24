@@ -8,6 +8,11 @@ use SupportPal\ApiClient\Factory\RequestFactory;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
+/**
+ * Class SupportPalTest
+ * @package SupportPal\ApiClient\Tests\Functional
+ * @coversNothing
+ */
 class SupportPalTest extends ContainerAwareBaseTestCase
 {
     public function testGetRequestFactory(): void

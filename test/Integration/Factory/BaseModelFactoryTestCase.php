@@ -8,6 +8,11 @@ use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\FactoryTestCase;
 
+/**
+ * Class BaseModelFactoryTestCase
+ * @package SupportPal\ApiClient\Tests\Integration\Factory
+ * @coversNothing
+ */
 abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
 {
     use StringHelper;

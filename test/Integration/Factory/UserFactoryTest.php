@@ -7,6 +7,11 @@ use SupportPal\ApiClient\Factory\UserFactory;
 use SupportPal\ApiClient\Model\User;
 use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 
+/**
+ * Class UserFactoryTest
+ * @package SupportPal\ApiClient\Tests\Integration\Factory
+ * @coversNothing
+ */
 class UserFactoryTest extends BaseModelFactoryTestCase
 {
     /**

@@ -6,6 +6,11 @@ use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\TestCase;
 use SupportPal\ApiClient\Factory\RequestFactory;
 
+/**
+ * Class RequestFactoryTest
+ * @package SupportPal\ApiClient\Tests\Unit\Factory
+ * @covers \SupportPal\ApiClient\Factory\RequestFactory
+ */
 class RequestFactoryTest extends TestCase
 {
     /**
