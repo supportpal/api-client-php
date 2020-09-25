@@ -5,11 +5,15 @@ namespace SupportPal\ApiClient\Tests\Integration\Factory;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
-use SupportPal\ApiClient\Model\Comment;
 use SupportPal\ApiClient\Model\CoreSettings;
+use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
+/**
+ * Class ModelCollectionFactoryTest
+ * @package SupportPal\ApiClient\Tests\Integration\Factory
+ */
 class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
 {
     /**
@@ -66,7 +70,6 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
         self::expectExceptionMessage($missingKey);
         $this->modelCollectionFactory->create($model, $data);
     }
-
 
     /**
      * @return iterable<mixed>

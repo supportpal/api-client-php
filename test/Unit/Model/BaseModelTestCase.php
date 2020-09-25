@@ -2,11 +2,16 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model;
 
-use PHPUnit\Framework\TestCase;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
+use SupportPal\ApiClient\Tests\TestCase;
 
+/**
+ * Class BaseModelTestCase
+ * @package SupportPal\ApiClient\Tests\Unit\Model
+ * @coversNothing
+ */
 abstract class BaseModelTestCase extends TestCase
 {
     use StringHelper;
@@ -14,8 +19,9 @@ abstract class BaseModelTestCase extends TestCase
     public function testCreateModel():void
     {
         $model = $this->getModel();
-        $model->fill($this->getModelData());
-        $this->assertArrayEqualsObjectFields($model, $this->getModelData());
+        $modelData = $this->getModelData();
+        $model->fill($modelData);
+        $this->assertArrayEqualsObjectFields($model, $modelData);
     }
 
     public function testFillModelWithIncorrectData(): void
@@ -50,21 +56,6 @@ abstract class BaseModelTestCase extends TestCase
             $commentDataCopy[$key] = $value;
 
             yield [$commentDataCopy, $key];
-        }
-    }
-
-    /**
-     * @param object $obj
-     * @param array<mixed> $array
-     */
-    protected function assertArrayEqualsObjectFields(object $obj, array $array): void
-    {
-        foreach ($array as $key => $value) {
-            if (! is_array($value)) {
-                self::assertSame($value, $obj->{'get'.$this->snakeCaseToPascalCase($key)}());
-            } else {
-                $this->assertArrayEqualsObjectFields($obj->{'get'.$this->snakeCaseToPascalCase($key)}(), $value);
-            }
         }
     }
 

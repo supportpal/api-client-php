@@ -31,5 +31,11 @@ jobs:
             - name: Code Standard and Static Analysis
               run: ci/analyse.sh
 
-            - name: Execute tests
-              run: ci/test.sh
+            - name: Execute Functional tests
+              run: TESTSUITE=functional ci/test.sh
+
+            - name: Execute Integration tests
+              run: TESTSUITE=integration ci/test.sh
+
+            - name: Execute Unit tests
+              run: TESTSUITE=unit ci/test.sh

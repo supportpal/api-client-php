@@ -9,11 +9,30 @@ namespace SupportPal\ApiClient\Dictionary;
  */
 final class ApiDictionary
 {
-    public const CORE_SETTINGS = 'core/settings';
+    /**
+     * Core Apis
+     */
+    public const CORE_SETTINGS = 'core/settings/';
 
+    /**
+     * Self Service APIs
+     */
     public const SELF_SERVICE_COMMENT = 'selfservice/comment';
 
     public const SELF_SERVICE_ARTICLE_TYPE = 'selfservice/type';
 
+    public const SELF_SERVICE_ARTICLE = 'selfservice/article';
+
+    public const SELF_SERVICE_ARTICLE_SEARCH = self::SELF_SERVICE_ARTICLE . '/search';
+
+    public const SELF_SERVICE_SETTINGS = 'selfservice/settings';
+
+    public const SELF_SERVICE_CATEGORY = 'selfservice/category';
+
+    public const SELF_SERVICE_TAG = 'selfservice/tag';
+
+    /**
+     * Use Apis
+     */
     public const USER_USER = 'user/user';
 }

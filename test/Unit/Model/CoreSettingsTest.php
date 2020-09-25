@@ -6,6 +6,11 @@ use SupportPal\ApiClient\Model\CoreSettings;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
 
+/**
+ * Class CoreSettingsTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model
+ * @covers \SupportPal\ApiClient\Model\CoreSettings
+ */
 class CoreSettingsTest extends BaseModelTestCase
 {
     const CORE_SETTINGS_DATA = CoreSettingsData::CORE_SETTINGS_DATA;

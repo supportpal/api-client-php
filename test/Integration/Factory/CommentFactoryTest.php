@@ -2,13 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\Factory;
 
-use SupportPal\ApiClient\Factory\CommentFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Model\Comment;
+use SupportPal\ApiClient\Factory\SelfService\CommentFactory;
+use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 
 /**
- * @covers \SupportPal\ApiClient\Factory\CommentFactory
  * Class CommentFactoryTest
  * @package SupportPal\ApiClient\Tests\Integration
  */

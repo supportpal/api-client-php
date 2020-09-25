@@ -7,6 +7,11 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\UserData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
+/**
+ * Class UserApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\ApiClient
+ * @covers \SupportPal\ApiClient\ApiClient
+ */
 class UserApisTest extends ApiClientTest
 {
     /**

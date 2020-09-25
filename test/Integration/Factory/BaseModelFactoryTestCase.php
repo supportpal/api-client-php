@@ -8,6 +8,10 @@ use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\FactoryTestCase;
 
+/**
+ * Class BaseModelFactoryTestCase
+ * @package SupportPal\ApiClient\Tests\Integration\Factory
+ */
 abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
 {
     use StringHelper;
@@ -22,6 +26,7 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
             self::assertSame($value, $model->{'get'.$this->snakeCaseToPascalCase($key)}());
         }
     }
+
     /**
      * @dataProvider provideDataWithInvalidTypes
      * @param array<mixed> $data

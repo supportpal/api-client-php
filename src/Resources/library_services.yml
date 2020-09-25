@@ -4,7 +4,7 @@ services:
             $classMetadataFactory: '@Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory'
             $nameConverter: '@Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter'
             $propertyAccessor: ~
-            $propertyTypeExtractor: '@Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor'
+            $propertyTypeExtractor: '@Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor'
             $classDiscriminatorResolver: ~
             $objectClassResolver: ~
             $defaultContext:
@@ -28,7 +28,9 @@ services:
 
     Symfony\Component\Serializer\Serializer:
         arguments:
-            - [ '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer' ]
+            - [ '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer', '@Symfony\Component\Serializer\Normalizer\ArrayDenormalizer' ]
             - [ '@Symfony\Component\Serializer\Encoder\JsonEncoder' ]
 
-    Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor:
+    Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor:
+
+    Symfony\Component\Serializer\Normalizer\ArrayDenormalizer:

@@ -14,6 +14,11 @@ use Symfony\Component\Serializer\Encoder\EncoderInterface;
 use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 use Symfony\Component\Serializer\SerializerInterface;
 
+/**
+ * Class BaseModelFactoryTestCase
+ * @package SupportPal\ApiClient\Tests\Unit\Factory
+ * @coversNothing
+ */
 abstract class BaseModelFactoryTestCase extends TestCase
 {
     use FactoryTestCase;

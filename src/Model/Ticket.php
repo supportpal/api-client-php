@@ -34,12 +34,4 @@ class Ticket extends BaseModel
 
         return $this;
     }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getRequiredFields(): array
-    {
-        return self::REQUIRED_FIELDS;
-    }
 }

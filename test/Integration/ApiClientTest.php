@@ -7,10 +7,17 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Tests\ApiTestCase;
+use SupportPal\ApiClient\Tests\ApiDataProviders;
+use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 
-class ApiClientTest extends ApiTestCase
+/**
+ * Class ApiClientTest
+ * @package SupportPal\ApiClient\Tests\Integration
+ */
+class ApiClientTest extends ContainerAwareBaseTestCase
 {
+    use ApiDataProviders;
+
     /**
      * @var ApiClient
      */
@@ -37,19 +44,46 @@ class ApiClientTest extends ApiTestCase
     }
 
     /**
-     * @param Response $response
-     * @param string $endpoint
+     * @dataProvider provideGetEndpointsTestCases
+     * @param array<mixed> $data
+     * @param string $functionName
+     * @param array<mixed> $parameters
      * @throws \Exception
-     * @dataProvider provideGetEndpointsUnsuccessfulTestCases
      */
-    public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint): void
+    public function testGetEndpoints(array $data, string $functionName, array $parameters): void
     {
-        $this->prepareUnsuccessfulApiRequest($response);
-        $this->apiClient->{$endpoint}([]);
+        $this->appendRequestResponse(
+            new Response(
+                200,
+                [],
+                (string) $this->getEncoder()->encode($data, $this->getFormatType())
+            )
+        );
+
+        /** @var callable $callable */
+        $callable = [$this->apiClient, $functionName];
+        $response = call_user_func_array($callable, $parameters);
+        self::assertInstanceOf(Response::class, $response);
+        self::assertSame($data, $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType()));
     }
 
     /**
-     * @inheritDoc
+     * @param Response $response
+     * @param string $endpoint
+     * @param array<mixed> $parameters
+     * @throws \Exception
+     * @dataProvider provideGetEndpointsUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
+    {
+        $this->prepareUnsuccessfulApiRequest($response);
+        /** @var callable $callable */
+        $callable = [$this->apiClient, $endpoint];
+        call_user_func_array($callable, $parameters);
+    }
+
+    /**
+     * @return array<mixed>
      */
     protected function getGetEndpoints(): array
     {

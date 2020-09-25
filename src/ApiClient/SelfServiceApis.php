@@ -2,9 +2,12 @@
 
 namespace SupportPal\ApiClient\ApiClient;
 
-use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\Dictionary\ApiDictionary;
-use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\ApiClient\SelfService\ArticleApis;
+use SupportPal\ApiClient\ApiClient\SelfService\CategoryApis;
+use SupportPal\ApiClient\ApiClient\SelfService\CommentApis;
+use SupportPal\ApiClient\ApiClient\SelfService\SettingsApis;
+use SupportPal\ApiClient\ApiClient\SelfService\TagApis;
+use SupportPal\ApiClient\ApiClient\SelfService\TypeApis;
 
 /**
  * Contains all ApiClient calls to SelfService Apis
@@ -13,44 +16,10 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
  */
 trait SelfServiceApis
 {
-    use ApiClientAware;
-
-    /**
-     *
-     * This method posts a self service comment
-     * @param string $body
-     * @return ResponseInterface
-     * @throws HttpResponseException
-     */
-    public function postSelfServiceComment(string $body): ResponseInterface
-    {
-        $request = $this->getRequestFactory()->create(
-            'POST',
-            ApiDictionary::SELF_SERVICE_COMMENT,
-            [],
-            $body
-        );
-
-        return $this->sendRequest($request);
-    }
-
-    /**
-     * @param array<mixed> $queryParameters
-     * @return ResponseInterface
-     * @throws HttpResponseException
-     */
-    public function getComments(array $queryParameters): ResponseInterface
-    {
-        return $this->sendGetRequest(ApiDictionary::SELF_SERVICE_COMMENT, $queryParameters);
-    }
-
-    /**
-     * @param array<mixed> $queryParameters
-     * @return ResponseInterface
-     * @throws HttpResponseException
-     */
-    public function getArticleTypes(array $queryParameters): ResponseInterface
-    {
-        return $this->sendGetRequest(ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParameters);
-    }
+    use ArticleApis;
+    use CategoryApis;
+    use CommentApis;
+    use SettingsApis;
+    use TagApis;
+    use TypeApis;
 }

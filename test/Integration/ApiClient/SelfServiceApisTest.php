@@ -3,10 +3,18 @@
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
 use GuzzleHttp\Psr7\Response;
-use SupportPal\ApiClient\Tests\DataFixtures\ArticleTypeData;
+use SupportPal\ApiClient\Tests\DataFixtures\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 
+/**
+ * Class SelfServiceApisTest
+ * @package SupportPal\ApiClient\Tests\Integration\ApiClient
+ */
 class SelfServiceApisTest extends ApiClientTest
 {
     /**
@@ -27,8 +35,14 @@ class SelfServiceApisTest extends ApiClientTest
      * @var array<mixed>
      */
     private $getEndpoints = [
-        'getComments' => CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE,
-        'getArticleTypes' => ArticleTypeData::GET_ARTICLES_SUCCESSFUL_RESPONSE,
+        'getComments' => [CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE, [[]]],
+        'getTypes' => [TypeData::GET_TYPES_SUCCESSFUL_RESPONSE, [[]]],
+        'getSelfServiceSettings' => [SettingsData::GET_SETTINGS_SUCCESSFUL_RESPONSE, [[]]],
+        'getArticle' => [ArticleData::GET_ARTICLE_SUCCESSFUL_RESPONSE, [1, []]],
+        'getArticlesByTerm' => [ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE, [[]]],
+        'getCategory' => [CategoryData::GET_CATEGORY_SUCCESSFUL_RESPONSE, [1]],
+        'getCategories' => [CategoryData::GET_CATEGORIES_SUCCESSFUL_RESPONSE, [[]]],
+        'getTag' => [TagData::GET_TAG_SUCCESSFUL_RESPONSE, [1]],
     ];
 
     public function testPostComment(): void
@@ -55,25 +69,6 @@ class SelfServiceApisTest extends ApiClientTest
         $this->prepareUnsuccessfulApiRequest($response);
         $this->apiClient->postSelfServiceComment(
             (string) $this->getEncoder()->encode($this->commentData, $this->getFormatType())
-        );
-    }
-
-    /**
-     * @dataProvider provideGetEndpointsTestCases
-     * @param array<mixed> $data
-     * @param string $endpoint
-     * @throws \Exception
-     */
-    public function testGetEndpoints(array $data, string $endpoint): void
-    {
-        /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($data, $this->getFormatType());
-        $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
-        $response = $this->apiClient->{$endpoint}([]);
-        self::assertInstanceOf(Response::class, $response);
-        self::assertSame(
-            $data,
-            $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
         );
     }
 

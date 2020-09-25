@@ -934,12 +934,4 @@ class CoreSettings extends BaseModel implements Model
 
         return $this;
     }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getRequiredFields(): array
-    {
-        return self::REQUIRED_FIELDS;
-    }
 }

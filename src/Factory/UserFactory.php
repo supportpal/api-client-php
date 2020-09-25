@@ -13,14 +13,6 @@ class UserFactory extends BaseModelFactory
     /**
      * @inheritDoc
      */
-    protected function getRequiredFields(): array
-    {
-        return User::REQUIRED_FIELDS;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function getModel(): string
     {
         return User::class;

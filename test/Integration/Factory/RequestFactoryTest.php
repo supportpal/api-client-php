@@ -6,6 +6,10 @@ use GuzzleHttp\Psr7\Request;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 
+/**
+ * Class RequestFactoryTest
+ * @package SupportPal\ApiClient\Tests\Integration\Factory
+ */
 class RequestFactoryTest extends ContainerAwareBaseTestCase
 {
     /**

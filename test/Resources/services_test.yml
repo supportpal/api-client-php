@@ -13,7 +13,7 @@ services:
         autowire: true
         public: true
 
-    SupportPal\ApiClient\Factory\CommentFactory:
+    SupportPal\ApiClient\Factory\SelfService\CommentFactory:
         public: true
         tags: [ 'factory.model_factory' ]
         arguments:
@@ -46,7 +46,7 @@ services:
     Symfony\Component\Serializer\Encoder\JsonEncoder:
         public: true
 
-    SupportPal\ApiClient\Factory\ArticleTypeFactory:
+    SupportPal\ApiClient\Factory\SelfService\TypeFactory:
         public: true
         tags: [ 'factory.model_factory' ]
         arguments:
@@ -55,6 +55,30 @@ services:
             $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     SupportPal\ApiClient\Factory\UserFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: '%contentType%'
+            $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+
+    SupportPal\ApiClient\Factory\SelfService\ArticleFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: '%contentType%'
+            $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+
+    SupportPal\ApiClient\Factory\SelfService\SettingsFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        arguments:
+            $formatType: '%contentType%'
+            $serializer: '@Symfony\Component\Serializer\Serializer'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+
+    SupportPal\ApiClient\Factory\SelfService\CategoryFactory:
         public: true
         tags: [ 'factory.model_factory' ]
         arguments:

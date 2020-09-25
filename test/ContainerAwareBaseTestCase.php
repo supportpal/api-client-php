@@ -6,10 +6,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\RequestExceptionInterface;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\SupportPal;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -18,10 +16,13 @@ use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
+/**
+ * Class ContainerAwareBaseTestCase
+ * @package SupportPal\ApiClient\Tests
+ * @coversNothing
+ */
 abstract class ContainerAwareBaseTestCase extends TestCase
 {
-    use StringHelper;
-
     /**
      * @var array<mixed>
      */
@@ -34,7 +35,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     /**
      * @var SupportPal
      */
-    private $supportPal;
+    protected $supportPal;
 
     /**
      * @var ContainerBuilder
@@ -52,10 +53,10 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     public function provideUnsuccessfulTestCases(): iterable
     {
         $this->setUp();
-        $jsonErrorBody = $this->genericErrorResponse;
-        $jsonErrorBody['status'] = 'success';
+        $jsonSuccessfulBody = $this->genericErrorResponse;
+        $jsonSuccessfulBody['status'] = 'success';
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($jsonErrorBody, $this->getFormatType());
+        $jsonSuccessfulBody = $this->getEncoder()->encode($jsonSuccessfulBody, $this->getFormatType());
 
         yield ['error 400 response' => new Response(400, [], $jsonSuccessfulBody)];
         yield ['error 401 response' => new Response(401, [], $jsonSuccessfulBody)];
@@ -178,6 +179,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
 
     /**
      * @param Response $response
+     * @throws \Exception
      */
     protected function prepareUnsuccessfulApiRequest(Response $response): void
     {
@@ -186,20 +188,5 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         self::expectExceptionMessage(
             $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['message']
         );
-    }
-
-    /**
-     * @param object $obj
-     * @param array<mixed> $array
-     */
-    protected function assertArrayEqualsObjectFields(object $obj, array $array): void
-    {
-        foreach ($array as $key => $value) {
-            if (! is_array($value)) {
-                self::assertSame($value, $obj->{'get'.$this->snakeCaseToPascalCase($key)}());
-            } else {
-                $this->assertArrayEqualsObjectFields($obj->{'get'.$this->snakeCaseToPascalCase($key)}(), $value);
-            }
-        }
     }
 }

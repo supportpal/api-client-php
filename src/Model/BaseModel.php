@@ -52,5 +52,8 @@ abstract class BaseModel implements Model
     /**
      * @return string[]
      */
-    abstract protected function getRequiredFields(): array;
+    protected function getRequiredFields(): array
+    {
+        return static::REQUIRED_FIELDS;
+    }
 }

@@ -8,6 +8,11 @@ use SupportPal\ApiClient\Model\CoreSettings;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
 
+/**
+ * Class CoreSettingsFactoryTest
+ * @package SupportPal\ApiClient\Tests\Unit\Factory
+ * @covers \SupportPal\ApiClient\Factory\CoreSettingsFactory
+ */
 class CoreSettingsFactoryTest extends BaseModelFactoryTestCase
 {
     const CORE_SETTINGS_DATA = CoreSettingsData::CORE_SETTINGS_DATA;
