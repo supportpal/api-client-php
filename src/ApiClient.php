@@ -57,7 +57,6 @@ class ApiClient
         DecoderInterface $decoder,
         string $formatType
     ) {
-
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
         $this->decoder = $decoder;

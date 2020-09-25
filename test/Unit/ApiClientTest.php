@@ -97,7 +97,6 @@ class ApiClientTest extends TestCase
      */
     public function provideUnsuccessfulTestCases(): iterable
     {
-
         $jsonErrorBody = $this->genericErrorResponse;
         $jsonErrorBody['status'] = 'success';
         /** @var string $jsonSuccessfulBody */
