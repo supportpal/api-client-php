@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient;
 
+use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Api\CoreApis;
 use SupportPal\ApiClient\Api\SelfServiceApis;
 use SupportPal\ApiClient\Api\UserApis;
@@ -92,5 +93,17 @@ class Api
     protected function getDecoder(): DecoderInterface
     {
         return $this->decoder;
+    }
+
+    /**
+     * @param ResponseInterface $response
+     * @return array<mixed>
+     */
+    protected function decodeBody(ResponseInterface $response): array
+    {
+        /** @var array<mixed> $body */
+        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
+
+        return $body;
     }
 }

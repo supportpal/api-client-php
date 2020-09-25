@@ -74,7 +74,7 @@ class Category extends BaseModel
     private $type;
 
     /**
-     * @var array
+     * @var array<mixed>
      * @SerializedName("pivot")
      */
     private $pivot;
@@ -289,7 +289,7 @@ class Category extends BaseModel
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getPivot(): array
     {
@@ -297,7 +297,7 @@ class Category extends BaseModel
     }
 
     /**
-     * @param array $pivot
+     * @param array<mixed> $pivot
      * @return self
      */
     public function setPivot(array $pivot): self

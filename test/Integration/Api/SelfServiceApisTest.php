@@ -16,7 +16,6 @@ use SupportPal\ApiClient\Tests\Integration\ApiTestCase;
 /**
  * Class SelfServiceApisTest
  * @package SupportPal\ApiClient\Tests\Integration\Api
- * @coversNothing
  */
 class SelfServiceApisTest extends ApiTestCase
 {

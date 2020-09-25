@@ -85,7 +85,9 @@ class ApiClientTest extends TestCase
             ->willThrow(ClientException::class)
             ->shouldBeCalled();
 
-        $this->apiClient->sendRequest($request->reveal());
+        /** @var RequestInterface $requestMock */
+        $requestMock = $request->reveal();
+        $this->apiClient->sendRequest($requestMock);
     }
 
     /**

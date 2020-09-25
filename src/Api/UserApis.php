@@ -17,10 +17,7 @@ trait UserApis
     {
         $response = $this->getApiClient()->getUsers($queryParameters);
 
-        /** @var array<mixed> $body */
-        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
-
-        return array_map([$this, 'createUser'], $body);
+        return array_map([$this, 'createUser'], $this->decodeBody($response));
     }
 
     /**

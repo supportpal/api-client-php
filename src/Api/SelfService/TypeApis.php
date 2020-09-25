@@ -19,10 +19,7 @@ trait TypeApis
     {
         $response = $this->getApiClient()->getTypes($queryParameters);
 
-        /** @var array<mixed> $body */
-        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
-
-        return array_map([$this, 'createType'], $body);
+        return array_map([$this, 'createType'], $this->decodeBody($response));
     }
 
     /**

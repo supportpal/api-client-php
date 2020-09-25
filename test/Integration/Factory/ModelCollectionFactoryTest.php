@@ -13,7 +13,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 /**
  * Class ModelCollectionFactoryTest
  * @package SupportPal\ApiClient\Tests\Integration\Factory
- * @coversNothing
  */
 class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
 {
@@ -71,7 +70,6 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
         self::expectExceptionMessage($missingKey);
         $this->modelCollectionFactory->create($model, $data);
     }
-
 
     /**
      * @return iterable<mixed>

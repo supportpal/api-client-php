@@ -1,37 +1,21 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Unit\Api;
+namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\SelfService\Comment;
-use SupportPal\ApiClient\Model\SelfService\Type;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
-use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
-/**
- * Class SelfServiceApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api
- */
-class SelfServiceApisTest extends ApiTest
+class CommentApisTest extends ApiTest
 {
     /**
      * @var array<mixed>
      */
     private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var array<mixed>
-     */
-    protected $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getArticleTypeSuccessfulResponse = TypeData::GET_TYPES_SUCCESSFUL_RESPONSE;
 
     public function testPostComment(): void
     {
@@ -92,26 +76,10 @@ class SelfServiceApisTest extends ApiTest
 
     public function testGetComments(): void
     {
-        $response = $this->prophesize(ResponseInterface::class);
-        $formatType = 'json';
-        $response
-            ->getBody()
-            ->willReturn(json_encode($this->getCommentsSuccessfulResponse));
-
-        $this->decoder
-            ->decode(json_encode($this->getCommentsSuccessfulResponse), $formatType)
-            ->shouldBeCalled()
-            ->willReturn($this->getCommentsSuccessfulResponse);
-
-        $returnedComments = [];
-        foreach ($this->getCommentsSuccessfulResponse['data'] as $key => $value) {
-            $comment = $this->prophesize(Comment::class);
-            $this->modelCollectionFactory
-                ->create(Comment::class, $value)
-                ->shouldBeCalled()
-                ->willReturn($comment->reveal());
-            array_push($returnedComments, $comment->reveal());
-        }
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE,
+            Comment::class
+        );
 
         $this
             ->apiClient
@@ -119,38 +87,6 @@ class SelfServiceApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $comments = $this->api->getComments([]);
-        self::assertSame($returnedComments, $comments);
-    }
-
-    public function testGetArticleTypes(): void
-    {
-        $response = $this->prophesize(ResponseInterface::class);
-        $formatType = 'json';
-        $response
-            ->getBody()
-            ->willReturn(json_encode($this->getArticleTypeSuccessfulResponse));
-
-        $this->decoder
-            ->decode(json_encode($this->getArticleTypeSuccessfulResponse), $formatType)
-            ->shouldBeCalled()
-            ->willReturn($this->getArticleTypeSuccessfulResponse);
-
-        $returnedArticleTypes = [];
-        foreach ($this->getArticleTypeSuccessfulResponse['data'] as $key => $value) {
-            $articleType = $this->prophesize(Type::class);
-            $this->modelCollectionFactory
-                ->create(Type::class, $value)
-                ->shouldBeCalled()
-                ->willReturn($articleType->reveal());
-            array_push($returnedArticleTypes, $articleType->reveal());
-        }
-
-        $this
-            ->apiClient
-            ->getTypes([])
-            ->shouldBeCalled()
-            ->willReturn($response->reveal());
-        $articleTypes = $this->api->getTypes();
-        self::assertSame($returnedArticleTypes, $articleTypes);
+        self::assertSame($expectedOutput, $comments);
     }
 }

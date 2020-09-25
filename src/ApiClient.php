@@ -78,7 +78,6 @@ class ApiClient
         return $response;
     }
 
-
     /**
      * @param string $endpoint
      * @param array<mixed> $queryParameters

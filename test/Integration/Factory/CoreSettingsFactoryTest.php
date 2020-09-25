@@ -10,7 +10,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
 /**
  * Class CoreSettingsFactoryTest
  * @package SupportPal\ApiClient\Tests\Integration\Factory
- * @coversNothing
  */
 class CoreSettingsFactoryTest extends BaseModelFactoryTestCase
 {

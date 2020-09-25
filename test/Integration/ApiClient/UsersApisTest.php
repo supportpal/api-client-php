@@ -8,7 +8,6 @@ use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 /**
  * Class UsersApisTest
  * @package SupportPal\ApiClient\Tests\Integration\ApiClient
- * @coversNothing
  */
 class UsersApisTest extends ApiClientTest
 {

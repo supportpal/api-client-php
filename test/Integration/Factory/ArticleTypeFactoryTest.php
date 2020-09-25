@@ -10,7 +10,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 /**
  * Class ArticleTypeFactoryTest
  * @package SupportPal\ApiClient\Tests\Integration\Factory
- * @coversNothing
  */
 class ArticleTypeFactoryTest extends BaseModelFactoryTestCase
 {

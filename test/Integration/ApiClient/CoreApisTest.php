@@ -8,7 +8,6 @@ use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 /**
  * Class CoreApisTest
  * @package SupportPal\ApiClient\Tests\Integration\ApiClient
- * @coversNothing
  */
 class CoreApisTest extends ApiClientTest
 {

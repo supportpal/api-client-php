@@ -10,7 +10,6 @@ use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 /**
  * Class ApiTestCase
  * @package SupportPal\ApiClient\Tests
- * @coversNothing
  */
 abstract class ApiTestCase extends ContainerAwareBaseTestCase
 {
@@ -24,14 +23,16 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->api = $this->getContainer()->get(Api::class);
+        /** @var Api $api */
+        $api = $this->getContainer()->get(Api::class);
+        $this->api = $api;
     }
 
     /**
      * @dataProvider provideGetEndpointsTestCases
      * @param array<mixed> $data
      * @param string $functionName
-     * @param array $parameters
+     * @param array<mixed> $parameters
      * @throws \Exception
      */
     public function testGetEndpoint(array $data, string $functionName, array $parameters): void
@@ -44,7 +45,9 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
             )
         );
 
-        $models = call_user_func_array([$this->api, $functionName], $parameters);
+        /** @var callable $callable */
+        $callable = [$this->api, $functionName];
+        $models = call_user_func_array($callable, $parameters);
         if (is_array($models)) {
             foreach ($models as $offset => $object) {
                 $this->assertArrayEqualsObjectFields($object, $data['data'][$offset]);
@@ -57,14 +60,16 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     /**
      * @param Response $response
      * @param string $endpoint
-     * @param array $parameters
+     * @param array<mixed> $parameters
      * @throws \Exception
      * @dataProvider provideGetEndpointsUnsuccessfulTestCases
      */
     public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
-        call_user_func_array([$this->api, $endpoint], $parameters);
+        /** @var callable $callable */
+        $callable = [$this->api, $endpoint];
+        call_user_func_array($callable, $parameters);
     }
 
     /**

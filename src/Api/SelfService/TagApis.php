@@ -18,9 +18,8 @@ trait TagApis
     public function getTag(int $tagId): SelfServiceTagAlias
     {
         $response = $this->getApiClient()->getTag($tagId);
-        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
 
-        return $this->createTag($body);
+        return $this->createTag($this->decodeBody($response));
     }
 
     /**

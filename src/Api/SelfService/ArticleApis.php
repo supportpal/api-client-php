@@ -20,10 +20,7 @@ trait ArticleApis
     {
         $response = $this->getApiClient()->getArticle($articleId, $queryParameters);
 
-        /** @var array<mixed> $body */
-        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
-
-        return $this->createArticle($body);
+        return $this->createArticle($this->decodeBody($response));
     }
 
     /**
@@ -37,10 +34,7 @@ trait ArticleApis
         $queryParameters['term'] = $term;
         $response = $this->getApiClient()->getArticlesByTerm($queryParameters);
 
-        /** @var array<mixed> $body */
-        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
-
-        return array_map([$this, 'createArticle'], $body);
+        return array_map([$this, 'createArticle'], $this->decodeBody($response));
     }
 
     /**

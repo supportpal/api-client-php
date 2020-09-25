@@ -1,0 +1,44 @@
+<?php declare(strict_types = 1);
+
+namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
+
+use SupportPal\ApiClient\Model\SelfService\Category;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
+use SupportPal\ApiClient\Tests\Unit\ApiTest;
+
+class CategoryApisTest extends ApiTest
+{
+    public function testGetCategory(): void
+    {
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            CategoryData::GET_CATEGORY_SUCCESSFUL_RESPONSE,
+            Category::class
+        );
+
+        $this
+            ->apiClient
+            ->getCategory(1)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $returnedCategory = $this->api->getCategory(1);
+        self::assertSame($expectedOutput, $returnedCategory);
+    }
+
+    public function testGetCategories(): void
+    {
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            CategoryData::GET_CATEGORIES_SUCCESSFUL_RESPONSE,
+            Category::class
+        );
+
+        $this
+            ->apiClient
+            ->getCategories([])
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $returnedCategories = $this->api->getCategories([]);
+        self::assertSame($expectedOutput, $returnedCategories);
+    }
+}

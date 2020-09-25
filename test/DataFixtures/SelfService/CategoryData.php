@@ -35,6 +35,9 @@ class CategoryData
         'data' => self::CATEGORY_DATA,
     ];
 
+    /**
+     * @return array<mixed>
+     */
     public static function getCategoryData(): array
     {
         $data = self::CATEGORY_DATA;

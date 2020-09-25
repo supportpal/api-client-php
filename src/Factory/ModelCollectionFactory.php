@@ -33,7 +33,6 @@ class ModelCollectionFactory
         }
     }
 
-
     /**
      * This method creates a Model instance
      * @param string $key

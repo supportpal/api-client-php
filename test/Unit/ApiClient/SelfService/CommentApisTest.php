@@ -1,19 +1,13 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Unit\ApiClient;
+namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
-use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
-/**
- * Class SelfServiceApisTest
- * @package SupportPal\ApiClient\Tests\Unit\ApiClient
- * @covers \SupportPal\ApiClient\ApiClient
- */
-class SelfServiceApisTest extends ApiClientTest
+class CommentApisTest extends ApiClientTest
 {
     /**
      * @var array<mixed>
@@ -24,11 +18,6 @@ class SelfServiceApisTest extends ApiClientTest
      * @var array<mixed>
      */
     private $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getArticleTypeSuccessfulResponse = TypeData::GET_TYPES_SUCCESSFUL_RESPONSE;
 
     public function testPostSelfServiceComment(): void
     {
@@ -97,41 +86,5 @@ class SelfServiceApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_COMMENT, $queryParams, null);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getComments($queryParams);
-    }
-
-    public function testGetArticleTypes(): void
-    {
-        $queryParams = ['test' => 'value'];
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, null);
-        $response = $this->sendRequestCommonExpectations(
-            200,
-            (string) json_encode($this->getArticleTypeSuccessfulResponse),
-            $request
-        );
-        $getArticleTypeSuccessfulResponse = $this->apiClient->getTypes($queryParams);
-        self::assertSame($response->reveal(), $getArticleTypeSuccessfulResponse);
-    }
-
-    public function testHttpExceptionGetArticleTypes(): void
-    {
-        $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, null);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getTypes($queryParams);
-    }
-
-    /**
-     * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
-    public function testUnsuccessfulGetArticleTypes(int $statusCode, string $responseBody): void
-    {
-        $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, null);
-        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getTypes($queryParams);
     }
 }

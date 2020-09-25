@@ -30,12 +30,12 @@ trait ApiDataProviders
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     abstract protected function getGetEndpoints(): array;
 
     /**
-     * @return iterable
+     * @return iterable<mixed>
      */
     abstract protected function provideUnsuccessfulTestCases(): iterable;
 }

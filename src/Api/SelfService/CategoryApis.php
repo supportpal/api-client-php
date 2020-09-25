@@ -18,9 +18,8 @@ trait CategoryApis
     public function getCategory(int $categoryId): Category
     {
         $response = $this->getApiClient()->getCategory($categoryId);
-        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
 
-        return $this->createCategory($body);
+        return $this->createCategory($this->decodeBody($response));
     }
 
     /**
@@ -31,10 +30,8 @@ trait CategoryApis
     public function getCategories(array $queryParameters = []): array
     {
         $response = $this->getApiClient()->getCategories($queryParameters);
-        /** @var array<mixed> $body */
-        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
 
-        return array_map([$this, 'createCategory'], $body);
+        return array_map([$this, 'createCategory'], $this->decodeBody($response));
     }
 
     /**

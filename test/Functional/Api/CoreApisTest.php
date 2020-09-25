@@ -8,7 +8,6 @@ use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
 /**
  * Class CoreApisTest
  * @package SupportPal\ApiClient\Tests\Functional\Api
- * @coversNothing
  */
 class CoreApisTest extends ApiComponentTest
 {

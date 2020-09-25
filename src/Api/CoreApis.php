@@ -22,9 +22,8 @@ trait CoreApis
     public function getCoreSettings(): CoreSettings
     {
         $response = $this->getApiClient()->getCoreSettings();
-        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
         /** @var CoreSettings $model */
-        $model = $this->getModelCollectionFactory()->create(CoreSettings::class, $body);
+        $model = $this->getModelCollectionFactory()->create(CoreSettings::class, $this->decodeBody($response));
 
         return $model;
     }

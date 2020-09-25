@@ -10,7 +10,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
 /**
  * Class CommentFactoryTest
  * @package SupportPal\ApiClient\Tests\Integration
- * @coversNothing
  */
 class CommentFactoryTest extends BaseModelFactoryTestCase
 {

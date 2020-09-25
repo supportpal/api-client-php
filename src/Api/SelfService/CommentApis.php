@@ -13,7 +13,7 @@ trait CommentApis
     use ApiAware;
 
     /**
-     * This method creates a comment in supportPalSystem
+     * This method creates a comment in SupportPal
      * @param Comment $comment
      * @return Comment
      * @throws HttpResponseException|InvalidArgumentException
@@ -31,10 +31,8 @@ trait CommentApis
         }
 
         $response = $this->getApiClient()->postSelfServiceComment($serializedComment);
-        /** @var array<mixed> $body */
-        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
 
-        return $this->createComment($body);
+        return $this->createComment($this->decodeBody($response));
     }
 
     /**
@@ -46,10 +44,7 @@ trait CommentApis
     {
         $response = $this->getApiClient()->getComments($queryParameters);
 
-        /** @var array<mixed> $body */
-        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
-
-        return array_map([$this, 'createComment'], $body);
+        return array_map([$this, 'createComment'], $this->decodeBody($response));
     }
 
     /**

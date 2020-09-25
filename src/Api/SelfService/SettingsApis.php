@@ -17,9 +17,8 @@ trait SettingsApis
     public function getSelfServiceSettings(): Settings
     {
         $response = $this->getApiClient()->getSelfServiceSettings();
-        $body = $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['data'];
         /** @var Settings $model */
-        $model = $this->getModelCollectionFactory()->create(Settings::class, $body);
+        $model = $this->getModelCollectionFactory()->create(Settings::class, $this->decodeBody($response));
 
         return $model;
     }

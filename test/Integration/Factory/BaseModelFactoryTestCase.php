@@ -11,7 +11,6 @@ use SupportPal\ApiClient\Tests\FactoryTestCase;
 /**
  * Class BaseModelFactoryTestCase
  * @package SupportPal\ApiClient\Tests\Integration\Factory
- * @coversNothing
  */
 abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
 {
@@ -27,6 +26,7 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
             self::assertSame($value, $model->{'get'.$this->snakeCaseToPascalCase($key)}());
         }
     }
+
     /**
      * @dataProvider provideDataWithInvalidTypes
      * @param array<mixed> $data

@@ -13,7 +13,6 @@ use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 /**
  * Class ApiClientTest
  * @package SupportPal\ApiClient\Tests\Integration
- * @coversNothing
  */
 class ApiClientTest extends ContainerAwareBaseTestCase
 {
@@ -48,7 +47,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      * @dataProvider provideGetEndpointsTestCases
      * @param array<mixed> $data
      * @param string $functionName
-     * @param array $parameters
+     * @param array<mixed> $parameters
      * @throws \Exception
      */
     public function testGetEndpoints(array $data, string $functionName, array $parameters): void
@@ -61,7 +60,9 @@ class ApiClientTest extends ContainerAwareBaseTestCase
             )
         );
 
-        $response = call_user_func_array([$this->apiClient, $functionName], $parameters);
+        /** @var callable $callable */
+        $callable = [$this->apiClient, $functionName];
+        $response = call_user_func_array($callable, $parameters);
         self::assertInstanceOf(Response::class, $response);
         self::assertSame($data, $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType()));
     }
@@ -69,18 +70,20 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @param Response $response
      * @param string $endpoint
-     * @param array $parameters
+     * @param array<mixed> $parameters
      * @throws \Exception
      * @dataProvider provideGetEndpointsUnsuccessfulTestCases
      */
     public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
-        call_user_func_array([$this->apiClient, $endpoint], $parameters);
+        /** @var callable $callable */
+        $callable = [$this->apiClient, $endpoint];
+        call_user_func_array($callable, $parameters);
     }
 
     /**
-     * @inheritDoc
+     * @return array<mixed>
      */
     protected function getGetEndpoints(): array
     {
