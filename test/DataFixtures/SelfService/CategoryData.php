@@ -26,6 +26,7 @@ class CategoryData
     public const GET_CATEGORIES_SUCCESSFUL_RESPONSE = [
         'status' => 'success',
         'message' => null,
+        'count' => 1,
         'data' => [self::CATEGORY_DATA],
     ];
 

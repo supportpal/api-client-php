@@ -6,7 +6,9 @@ use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\ApiClient;
+use SupportPal\ApiClient\Factory\Collection\CollectionFactory;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
+use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Tests\TestCase;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -48,6 +50,11 @@ abstract class ApiTest extends TestCase
      */
     protected $decoder;
 
+    /**
+     * @var ObjectProphecy
+     */
+    private $collectionFactory;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -56,6 +63,7 @@ abstract class ApiTest extends TestCase
         $this->serializationType = 'json';
         $this->modelCollectionFactory = $this->prophesize(ModelCollectionFactory::class);
         $this->decoder = $this->prophesize(DecoderInterface::class);
+        $this->collectionFactory = $this->prophesize(CollectionFactory::class);
 
         /** @var SerializerInterface $serializer */
         $serializer = $this->serializer->reveal();
@@ -65,12 +73,16 @@ abstract class ApiTest extends TestCase
         $decoder = $this->decoder->reveal();
         /** @var ModelCollectionFactory $modelCollectionFactory */
         $modelCollectionFactory = $this->modelCollectionFactory->reveal();
+        /** @var CollectionFactory $collectionFactory */
+        $collectionFactory = $this->collectionFactory->reveal();
+
         $this->api = new Api(
             $serializer,
             $apiClient,
             $modelCollectionFactory,
             $this->serializationType,
-            $decoder
+            $decoder,
+            $collectionFactory
         );
     }
 
@@ -93,17 +105,25 @@ abstract class ApiTest extends TestCase
             ->willReturn($responseData);
 
         if (is_array(current($responseData['data']))) {
-            $expectedOutput = [];
+            $models = [];
             foreach ($responseData['data'] as $key => $value) {
                 $model = $this->prophesize($expectedClass);
                 $this->modelCollectionFactory
                     ->create($expectedClass, $value)
                     ->shouldBeCalled()
                     ->willReturn($model->reveal());
-                array_push($expectedOutput, $model->reveal());
+                array_push($models, $model->reveal());
             }
 
-            return [$expectedOutput, $response];
+            $collection = $this->prophesize(Collection::class);
+
+            $this->collectionFactory->create(
+                $responseData['count'] ?? count($models),
+                $models
+            )->shouldBeCalled()
+            ->willReturn($collection->reveal());
+
+            return [$collection->reveal(), $response];
         }
 
         $expectedOutput = $this->prophesize($expectedClass);

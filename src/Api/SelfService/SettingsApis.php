@@ -18,7 +18,7 @@ trait SettingsApis
     {
         $response = $this->getApiClient()->getSelfServiceSettings();
         /** @var Settings $model */
-        $model = $this->getModelCollectionFactory()->create(Settings::class, $this->decodeBody($response));
+        $model = $this->getModelCollectionFactory()->create(Settings::class, $this->decodeBody($response)['data']);
 
         return $model;
     }

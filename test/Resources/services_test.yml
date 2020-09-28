@@ -85,3 +85,6 @@ services:
             $formatType: '%contentType%'
             $serializer: '@Symfony\Component\Serializer\Serializer'
             $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+
+    SupportPal\ApiClient\Factory\Collection\CollectionFactory:
+        public: true

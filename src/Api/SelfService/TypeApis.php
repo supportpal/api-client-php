@@ -4,6 +4,8 @@ namespace SupportPal\ApiClient\Api\SelfService;
 
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Type;
 
 trait TypeApis
@@ -12,14 +14,17 @@ trait TypeApis
 
     /**
      * @param array<mixed> $queryParameters
-     * @return Type[]
+     * @return Collection
      * @throws HttpResponseException
+     * @throws InvalidArgumentException
      */
-    public function getTypes(array $queryParameters = []): array
+    public function getTypes(array $queryParameters = []): Collection
     {
         $response = $this->getApiClient()->getTypes($queryParameters);
+        $body = $this->decodeBody($response);
+        $models = array_map([$this, 'createType'], $body['data']);
 
-        return array_map([$this, 'createType'], $this->decodeBody($response));
+        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
     }
 
     /**

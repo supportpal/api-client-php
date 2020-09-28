@@ -7,6 +7,7 @@ services:
             $modelCollectionFactory: '@SupportPal\ApiClient\Factory\ModelCollectionFactory'
             $apiClient: '@SupportPal\ApiClient\ApiClient'
             $decoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+            $collectionFactory: '@SupportPal\ApiClient\Factory\Collection\CollectionFactory'
 
     SupportPal\ApiClient\Factory\ModelCollectionFactory:
         public: true
