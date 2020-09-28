@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Api\SelfService;
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
@@ -32,19 +33,22 @@ trait CommentApis
 
         $response = $this->getApiClient()->postSelfServiceComment($serializedComment);
 
-        return $this->createComment($this->decodeBody($response));
+        return $this->createComment($this->decodeBody($response)['data']);
     }
 
     /**
      * @param array<mixed> $queryParameters
-     * @return Comment[]
+     * @return Collection
      * @throws HttpResponseException
+     * @throws InvalidArgumentException
      */
-    public function getComments(array $queryParameters = []): array
+    public function getComments(array $queryParameters = []): Collection
     {
         $response = $this->getApiClient()->getComments($queryParameters);
+        $body = $this->decodeBody($response);
+        $models = array_map([$this, 'createComment'], $body['data']);
 
-        return array_map([$this, 'createComment'], $this->decodeBody($response));
+        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
     }
 
     /**

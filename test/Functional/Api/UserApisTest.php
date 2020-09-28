@@ -15,7 +15,7 @@ class UserApisTest extends ApiComponentTest
      * @var array<mixed>
      */
     private $getEndpoints = [
-        'getUsers' => [UserData::GET_USER_SUCCESSFUL_RESPONSE, []],
+        'getUsers' => [UserData::GET_USERS_SUCCESSFUL_RESPONSE, []],
     ];
 
     /**

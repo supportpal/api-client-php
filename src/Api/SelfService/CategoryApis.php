@@ -4,6 +4,8 @@ namespace SupportPal\ApiClient\Api\SelfService;
 
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Category;
 
 trait CategoryApis
@@ -19,19 +21,22 @@ trait CategoryApis
     {
         $response = $this->getApiClient()->getCategory($categoryId);
 
-        return $this->createCategory($this->decodeBody($response));
+        return $this->createCategory($this->decodeBody($response)['data']);
     }
 
     /**
      * @param array<mixed> $queryParameters
-     * @return Category[]
+     * @return Collection
      * @throws HttpResponseException
+     * @throws InvalidArgumentException
      */
-    public function getCategories(array $queryParameters = []): array
+    public function getCategories(array $queryParameters = []): Collection
     {
         $response = $this->getApiClient()->getCategories($queryParameters);
+        $body = $this->decodeBody($response);
+        $models = array_map([$this, 'createCategory'], $body['data']);
 
-        return array_map([$this, 'createCategory'], $this->decodeBody($response));
+        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
     }
 
     /**

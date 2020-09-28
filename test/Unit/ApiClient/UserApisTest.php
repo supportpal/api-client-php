@@ -17,7 +17,7 @@ class UserApisTest extends ApiClientTest
     /**
      * @var array<mixed>
      */
-    private $getUsersSuccessfulResponse = UserData::GET_USER_SUCCESSFUL_RESPONSE;
+    private $getUsersSuccessfulResponse = UserData::GET_USERS_SUCCESSFUL_RESPONSE;
 
     public function testGetUsers(): void
     {

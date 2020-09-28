@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Api;
 
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\ApiClient;
+use SupportPal\ApiClient\Factory\Collection\CollectionFactory;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -45,4 +46,9 @@ trait ApiAware
      * @return array<mixed>
      */
     abstract protected function decodeBody(ResponseInterface $response): array;
+
+    /**
+     * @return CollectionFactory
+     */
+    abstract protected function getCollectionFactory(): CollectionFactory;
 }

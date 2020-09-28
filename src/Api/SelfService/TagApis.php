@@ -19,7 +19,7 @@ trait TagApis
     {
         $response = $this->getApiClient()->getTag($tagId);
 
-        return $this->createTag($this->decodeBody($response));
+        return $this->createTag($this->decodeBody($response)['data']);
     }
 
     /**

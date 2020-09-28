@@ -68,6 +68,7 @@ class ArticleData
     const GET_ARTICLES_SUCCESSFUL_RESPONSE = [
         'status' => 'success',
         'message' => null,
+        'count' => 1,
         'data' => [self::ARTICLE_DATA],
     ];
 }

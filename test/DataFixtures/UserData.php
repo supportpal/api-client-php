@@ -35,9 +35,10 @@ class UserData
             'avatar_url' => 'http =>//localhost =>8080/resources/assets/frontend/img/user.gif?v=3.2.0',
     ];
 
-    public const GET_USER_SUCCESSFUL_RESPONSE = [
+    public const GET_USERS_SUCCESSFUL_RESPONSE = [
         'status' => 'success',
         'message' => null,
+        'count' => 1,
         'data' => [ self::USER_DATA ]
     ];
 }

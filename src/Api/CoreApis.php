@@ -23,7 +23,7 @@ trait CoreApis
     {
         $response = $this->getApiClient()->getCoreSettings();
         /** @var CoreSettings $model */
-        $model = $this->getModelCollectionFactory()->create(CoreSettings::class, $this->decodeBody($response));
+        $model = $this->getModelCollectionFactory()->create(CoreSettings::class, $this->decodeBody($response)['data']);
 
         return $model;
     }
