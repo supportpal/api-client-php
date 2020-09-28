@@ -116,7 +116,7 @@ class Comment extends BaseModel
     private $rootParentId;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("rating")
      */
     private $rating;
@@ -426,18 +426,18 @@ class Comment extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getRating(): int
+    public function getRating(): ?int
     {
         return $this->rating;
     }
 
     /**
-     * @param int $rating
+     * @param int|null $rating
      * @return self
      */
-    public function setRating(int $rating): self
+    public function setRating(?int $rating): self
     {
         $this->rating = $rating;
 

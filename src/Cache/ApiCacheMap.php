@@ -15,6 +15,7 @@ class ApiCacheMap
     public const CACHE_MAP = [
         self::DEFAULT_CACHE_TTL => [
             ApiDictionary::CORE_SETTINGS => 'GET',
+            ApiDictionary::SELF_SERVICE_SETTINGS => 'GET',
         ],
     ];
 }

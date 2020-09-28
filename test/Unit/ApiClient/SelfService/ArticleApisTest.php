@@ -24,7 +24,7 @@ class ArticleApisTest extends ApiClientTest
      */
     private $testArticleId = 1;
 
-    public function testGetArticles(): void
+    public function testGetArticlesByTerm(): void
     {
         $queryParams = ['test' => 'value'];
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH, $queryParams, null);
@@ -37,7 +37,7 @@ class ArticleApisTest extends ApiClientTest
         self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
     }
 
-    public function testHttpExceptionGetArticles(): void
+    public function testHttpExceptionGetArticlesByTerm(): void
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
@@ -51,7 +51,7 @@ class ArticleApisTest extends ApiClientTest
      * @param string $responseBody
      * @dataProvider provideUnsuccessfulTestCases
      */
-    public function testUnsuccessfulGetArticles(int $statusCode, string $responseBody): void
+    public function testUnsuccessfulGetArticlesByTerm(int $statusCode, string $responseBody): void
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
@@ -108,5 +108,41 @@ class ArticleApisTest extends ApiClientTest
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getArticle($this->testArticleId, []);
+    }
+
+    public function testGetArticles(): void
+    {
+        $queryParams = [];
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, null);
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode($this->getArticlesSuccessfulResponse),
+            $request
+        );
+        $getTypeSuccessfulResponse = $this->apiClient->getArticles($queryParams);
+        self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
+    }
+
+    public function testHttpExceptionGetArticles(): void
+    {
+        $queryParams = [];
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, null);
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->getArticles($queryParams);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetArticles(int $statusCode, string $responseBody): void
+    {
+        $queryParams = [];
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, null);
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->getArticles($queryParams);
     }
 }

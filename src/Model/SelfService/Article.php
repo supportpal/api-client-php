@@ -111,7 +111,7 @@ class Article extends BaseModel
     private $published;
 
     /**
-     * @var Category[]
+     * @var Category[]|null
      * @SerializedName("categories")
      */
     private $categories;
@@ -402,18 +402,18 @@ class Article extends BaseModel
     }
 
     /**
-     * @return Category[]
+     * @return Category[]|null
      */
-    public function getCategories(): array
+    public function getCategories(): ?array
     {
         return $this->categories;
     }
 
     /**
-     * @param Category[] $categories
+     * @param Category[]|null $categories
      * @return self
      */
-    public function setCategories(array $categories): self
+    public function setCategories(?array $categories): self
     {
         $this->categories = $categories;
 

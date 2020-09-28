@@ -38,6 +38,18 @@ trait ArticleApis
     }
 
     /**
+     * @param array<mixed> $queryParameters
+     * @return Article[]
+     * @throws HttpResponseException
+     */
+    public function getArticles(array $queryParameters = []): array
+    {
+        $response = $this->getApiClient()->getArticles($queryParameters);
+
+        return array_map([$this, 'createArticle'], $this->decodeBody($response));
+    }
+
+    /**
      * @param array<mixed> $data
      * @return Article
      */

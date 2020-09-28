@@ -30,6 +30,7 @@ class SelfServiceApisTest extends ApiComponentTest
         'getCategory' => [CategoryData::GET_CATEGORY_SUCCESSFUL_RESPONSE, [1]],
         'getArticle' => [ArticleData::GET_ARTICLE_SUCCESSFUL_RESPONSE, [1]],
         'getArticlesByTerm' => [ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE, ['search term']],
+        'getArticles' => [ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE, [[]]],
         'getTag' => [TagData::GET_TAG_SUCCESSFUL_RESPONSE, [1]],
     ];
 
