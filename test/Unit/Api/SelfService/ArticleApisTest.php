@@ -13,7 +13,7 @@ class ArticleApisTest extends ApiTest
      */
     protected $testArticleId = 1;
 
-    public function testGetArticles(): void
+    public function testGetArticlesByTerm(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
             ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE,
@@ -44,5 +44,21 @@ class ArticleApisTest extends ApiTest
 
         $returnedArticle = $this->api->getArticle($this->testArticleId, []);
         self::assertSame($expectedOutput, $returnedArticle);
+    }
+
+    public function testGetArticles(): void
+    {
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE,
+            Article::class
+        );
+
+        $this
+            ->apiClient
+            ->getArticles([])
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+        $articles = $this->api->getArticles([]);
+        self::assertSame($expectedOutput, $articles);
     }
 }

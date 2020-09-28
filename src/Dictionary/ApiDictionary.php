@@ -12,7 +12,7 @@ final class ApiDictionary
     /**
      * Core Apis
      */
-    public const CORE_SETTINGS = 'core/settings/';
+    public const CORE_SETTINGS = 'core/settings';
 
     /**
      * Self Service APIs
@@ -32,7 +32,7 @@ final class ApiDictionary
     public const SELF_SERVICE_TAG = 'selfservice/tag';
 
     /**
-     * Use Apis
+     * User Apis
      */
     public const USER_USER = 'user/user';
 }

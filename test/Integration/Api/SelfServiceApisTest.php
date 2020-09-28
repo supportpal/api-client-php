@@ -43,6 +43,7 @@ class SelfServiceApisTest extends ApiTestCase
         'getSelfServiceSettings' => [SettingsData::GET_SETTINGS_SUCCESSFUL_RESPONSE, []],
         'getArticle' => [ArticleData::GET_ARTICLE_SUCCESSFUL_RESPONSE, [1, []]],
         'getArticlesByTerm' => [ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE, ['test', []]],
+        'getArticles' => [ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE, [[]]],
         'getCategory' => [CategoryData::GET_CATEGORY_SUCCESSFUL_RESPONSE, [1]],
         'getCategories' => [CategoryData::GET_CATEGORIES_SUCCESSFUL_RESPONSE, [[]]],
         'getTag' => [TagData::GET_TAG_SUCCESSFUL_RESPONSE, [1]],
