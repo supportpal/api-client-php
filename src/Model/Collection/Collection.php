@@ -42,4 +42,26 @@ class Collection
     {
         return $this->models;
     }
+
+    /**
+     * @param \Closure $closure
+     * @return Collection
+     */
+    public function map(\Closure $closure): Collection
+    {
+        $value = array_map($closure, $this->getModels());
+
+        return new self($this->getCount(), $value);
+    }
+
+    /**
+     * @param \Closure $closure
+     * @return Collection
+     */
+    public function filter(\Closure $closure): Collection
+    {
+        $value = array_filter($this->getModels(), $closure);
+
+        return new self(count($value), $value);
+    }
 }

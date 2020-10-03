@@ -32,10 +32,10 @@ jobs:
               run: ci/analyse.sh
 
             - name: Execute Functional tests
-              run: TESTSUITE=functional ci/test.sh
+              run: TESTSUITE=functional MINCOVERAGE=85 ci/test.sh
 
             - name: Execute Integration tests
-              run: TESTSUITE=integration ci/test.sh
+              run: TESTSUITE=integration MINCOVERAGE=85 ci/test.sh
 
             - name: Execute Unit tests
-              run: TESTSUITE=unit ci/test.sh
+              run: TESTSUITE=unit MINCOVERAGE=95 ci/test.sh
