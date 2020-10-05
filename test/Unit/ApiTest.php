@@ -6,12 +6,12 @@ use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\ApiClient;
+use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Factory\Collection\CollectionFactory;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Tests\TestCase;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Class ApiTest
@@ -23,7 +23,7 @@ abstract class ApiTest extends TestCase
     /**
      * @var ObjectProphecy
      */
-    protected $serializer;
+    protected $modelToArrayConverter;
 
     /**
      * @var ObjectProphecy
@@ -58,15 +58,15 @@ abstract class ApiTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->serializer = $this->prophesize(SerializerInterface::class);
+        $this->modelToArrayConverter = $this->prophesize(ModelToArrayConverter::class);
         $this->apiClient = $this->prophesize(ApiClient::class);
         $this->serializationType = 'json';
         $this->modelCollectionFactory = $this->prophesize(ModelCollectionFactory::class);
         $this->decoder = $this->prophesize(DecoderInterface::class);
         $this->collectionFactory = $this->prophesize(CollectionFactory::class);
 
-        /** @var SerializerInterface $serializer */
-        $serializer = $this->serializer->reveal();
+        /** @var ModelToArrayConverter $modelToArrayConverter */
+        $modelToArrayConverter = $this->modelToArrayConverter->reveal();
         /** @var ApiClient $apiClient */
         $apiClient = $this->apiClient->reveal();
         /** @var DecoderInterface $decoder */
@@ -77,7 +77,7 @@ abstract class ApiTest extends TestCase
         $collectionFactory = $this->collectionFactory->reveal();
 
         $this->api = new Api(
-            $serializer,
+            $modelToArrayConverter,
             $apiClient,
             $modelCollectionFactory,
             $this->serializationType,

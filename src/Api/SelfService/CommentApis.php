@@ -22,7 +22,7 @@ trait CommentApis
     public function postComment(Comment $comment): Comment
     {
         try {
-            $serializedComment = $this->getSerializer()->serialize($comment, $this->getFormatType());
+            $commentArray = $this->getModelToArrayConverter()->convertOne($comment);
         } catch (UninitializedPropertyException $exception) {
             throw new InvalidArgumentException(
                 $exception->getMessage(),
@@ -31,7 +31,7 @@ trait CommentApis
             );
         }
 
-        $response = $this->getApiClient()->postSelfServiceComment($serializedComment);
+        $response = $this->getApiClient()->postSelfServiceComment($commentArray);
 
         return $this->createComment($this->decodeBody($response)['data']);
     }

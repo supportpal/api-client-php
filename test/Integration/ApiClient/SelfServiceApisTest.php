@@ -53,7 +53,8 @@ class SelfServiceApisTest extends ApiClientTest
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         $response = $this
             ->apiClient
-            ->postSelfServiceComment((string) $this->getEncoder()->encode($this->commentData, $this->getFormatType()));
+            ->postSelfServiceComment($this->commentData);
+
         self::assertSame(
             $this->postCommentSuccessfulResponse,
             $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
@@ -68,9 +69,7 @@ class SelfServiceApisTest extends ApiClientTest
     public function testUnsuccessfulPostComment(Response $response): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
-        $this->apiClient->postSelfServiceComment(
-            (string) $this->getEncoder()->encode($this->commentData, $this->getFormatType())
-        );
+        $this->apiClient->postSelfServiceComment($this->commentData);
     }
 
     /**

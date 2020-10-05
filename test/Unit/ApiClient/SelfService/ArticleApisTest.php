@@ -27,7 +27,7 @@ class ArticleApisTest extends ApiClientTest
     public function testGetArticlesByTerm(): void
     {
         $queryParams = ['test' => 'value'];
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode($this->getArticlesSuccessfulResponse),
@@ -41,7 +41,7 @@ class ArticleApisTest extends ApiClientTest
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getArticlesByTerm($queryParams);
     }
@@ -55,7 +55,7 @@ class ArticleApisTest extends ApiClientTest
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getArticlesByTerm($queryParams);
     }
@@ -66,7 +66,7 @@ class ArticleApisTest extends ApiClientTest
             'GET',
             ApiDictionary::SELF_SERVICE_ARTICLE . '/' . $this->testArticleId,
             [],
-            null
+            []
         );
 
         $response = $this->sendRequestCommonExpectations(
@@ -86,7 +86,7 @@ class ArticleApisTest extends ApiClientTest
             'GET',
             ApiDictionary::SELF_SERVICE_ARTICLE . '/' . $this->testArticleId,
             [],
-            null
+            []
         );
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getArticle($this->testArticleId, []);
@@ -104,7 +104,7 @@ class ArticleApisTest extends ApiClientTest
             'GET',
             ApiDictionary::SELF_SERVICE_ARTICLE . '/' . $this->testArticleId,
             [],
-            null
+            []
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getArticle($this->testArticleId, []);
@@ -113,7 +113,7 @@ class ArticleApisTest extends ApiClientTest
     public function testGetArticles(): void
     {
         $queryParams = [];
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode($this->getArticlesSuccessfulResponse),
@@ -127,7 +127,7 @@ class ArticleApisTest extends ApiClientTest
     {
         $queryParams = [];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getArticles($queryParams);
     }
@@ -141,7 +141,7 @@ class ArticleApisTest extends ApiClientTest
     {
         $queryParams = [];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getArticles($queryParams);
     }

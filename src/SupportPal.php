@@ -34,14 +34,31 @@ class SupportPal
      */
     private $containerBuilder;
 
-    public function __construct(string $apiUrl, string $apiToken, ?string $cacheDir = null)
-    {
+    /**
+     * SupportPal constructor.
+     * @param string $apiUrl
+     * @param string $apiToken
+     * @param array<mixed> $defaultParameters Parameters that will always be passed
+     * @param array<mixed> $defaultBodyContent Body content that will always be passed
+     * @param string|null $cacheDir
+     * @throws \Exception
+     */
+    public function __construct(
+        string $apiUrl,
+        string $apiToken,
+        array $defaultParameters = [],
+        array $defaultBodyContent = [],
+        ?string $cacheDir = null
+    ) {
         $cacheDir = $cacheDir ?? sys_get_temp_dir();
         $containerBuilder = new ContainerBuilder;
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
         $loader->load('Resources/services.yml');
         $containerBuilder->setParameter('apiUrl', $apiUrl);
         $containerBuilder->setParameter('apiToken', $apiToken);
+        $containerBuilder->setParameter('defaultParameters', $defaultParameters);
+        $containerBuilder->setParameter('defaultBodyContent', $defaultBodyContent);
+
         $containerBuilder->set(Client::class, $this->getGuzzleClient($cacheDir));
         $containerBuilder->compile();
 

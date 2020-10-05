@@ -117,18 +117,18 @@ class ApiClientTest extends TestCase
      * @param string $method
      * @param string $endpoint
      * @param array<mixed> $parameters
-     * @param string|null $body
+     * @param array<mixed> $body
      * @return ObjectProphecy
      */
     protected function requestCommonExpectations(
         string $method,
         string $endpoint,
         array $parameters,
-        ?string $body
+        array $body = []
     ): ObjectProphecy {
         $request = $this->prophesize(Request::class);
         if ($method === 'GET') {
-            $create = $this->requestFactory->create($method, $endpoint, [], null, $parameters);
+            $create = $this->requestFactory->create($method, $endpoint, [], [], $parameters);
         } else {
             $create = $this->requestFactory->create($method, $endpoint, [], $body);
         }

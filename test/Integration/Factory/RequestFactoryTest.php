@@ -32,6 +32,16 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
      */
     private $apiContentType;
 
+    /**
+     * @var array<mixed>
+     */
+    private $defaultBodyContent;
+
+    /**
+     * @var array<mixed>
+     */
+    private $defaultParameters;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -41,11 +51,14 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
         $this->apiToken = $this->getContainer()->getParameter('apiToken');
         $this->apiUrl = $this->getContainer()->getParameter('apiUrl');
         $this->apiContentType = $this->getContainer()->getParameter('apiContentType');
+        $this->defaultBodyContent = $this->getContainer()->getParameter('defaultBodyContent');
+        $this->defaultParameters = $this->getContainer()->getParameter('defaultParameters');
     }
 
     /**
      * @param array<mixed> $data
      * @dataProvider provideRequestTestCases
+     * @throws \Exception
      */
     public function testCreateRequest(array $data): void
     {
@@ -65,16 +78,24 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
         $headersArray['Authorization'] = ['Basic ' . base64_encode($this->apiToken . ':X')];
         $headersArray['Content-Type'] = [$this->apiContentType];
 
+        $encodedBody = ! empty($data['body']) || ! empty($this->defaultBodyContent)
+            ? $this->getEncoder()->encode(array_merge($data['body'], $this->defaultBodyContent), $this->getFormatType())
+            : '';
+
         self::assertInstanceOf(Request::class, $request);
         self::assertSame($data['method'], $request->getMethod());
         self::assertSame($this->apiUrl . $data['endpoint'], $request->getUri()->getPath());
-        self::assertSame($data['body'] ?? '', $request->getBody()->getContents());
+        self::assertSame($encodedBody, $request->getBody()->getContents());
         self::assertEquals($headersArray, $request->getHeaders());
-        self::assertSame(http_build_query($data['parameters']), $request->getUri()->getQuery());
+        self::assertSame(
+            http_build_query(array_merge($data['parameters'], $this->defaultParameters)),
+            $request->getUri()->getQuery()
+        );
     }
 
     /**
      * @return iterable<mixed>
+     * @throws \ReflectionException
      */
     public function provideRequestTestCases(): iterable
     {
@@ -85,7 +106,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
                 'method' => 'POST',
                 'endpoint' => 'api/comment',
                 'headers' => [],
-                'body' => $this->getEncoder()->encode(['test' => 'test'], $this->getFormatType()),
+                'body' => ['test' => 'test'],
                 'parameters' => []
             ]
         ];
@@ -95,7 +116,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
                 'method' => 'GET',
                 'endpoint' => 'api/core',
                 'headers' => ['test' => 'header'],
-                'body' => null,
+                'body' => [],
                 'parameters' => ['test' => 'test']
             ]
         ];
@@ -105,7 +126,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
                 'method' => 'DELETE',
                 'endpoint' => 'test/api/core',
                 'headers' => ['Authorization' => 'header'],
-                'body' => null,
+                'body' => [],
                 'parameters' => ['test' => 'test']
             ]
         ];

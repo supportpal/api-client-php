@@ -6,10 +6,10 @@ use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Api\CoreApis;
 use SupportPal\ApiClient\Api\SelfServiceApis;
 use SupportPal\ApiClient\Api\UserApis;
+use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Factory\Collection\CollectionFactory;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class Api
 {
@@ -18,9 +18,9 @@ class Api
     use UserApis;
 
     /**
-     * @var SerializerInterface
+     * @var ModelToArrayConverter
      */
-    private $serializer;
+    private $modelToArrayConverter;
 
     /**
      * @var ApiClient
@@ -48,14 +48,14 @@ class Api
     private $collectionFactory;
 
     public function __construct(
-        SerializerInterface $serializer,
+        ModelToArrayConverter $modelToArrayConverter,
         ApiClient $apiClient,
         ModelCollectionFactory $modelCollectionFactory,
         string $formatType,
         DecoderInterface $decoder,
         CollectionFactory $collectionFactory
     ) {
-        $this->serializer = $serializer;
+        $this->modelToArrayConverter = $modelToArrayConverter;
         $this->apiClient = $apiClient;
         $this->formatType = $formatType;
         $this->modelCollectionFactory = $modelCollectionFactory;
@@ -66,9 +66,9 @@ class Api
     /**
      * @inheritDoc
      */
-    protected function getSerializer(): SerializerInterface
+    protected function getModelToArrayConverter(): ModelToArrayConverter
     {
-        return $this->serializer;
+        return $this->modelToArrayConverter;
     }
 
     /**

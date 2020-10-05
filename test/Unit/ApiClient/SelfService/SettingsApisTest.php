@@ -16,7 +16,7 @@ class SettingsApisTest extends ApiClientTest
 
     public function testGetSettings(): void
     {
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_SETTINGS, [], null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_SETTINGS, [], []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode($this->getSettingsTypeSuccessfulResponse),
@@ -30,7 +30,7 @@ class SettingsApisTest extends ApiClientTest
     public function testHttpExceptionGetSettings(): void
     {
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_SETTINGS, [], null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_SETTINGS, [], []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getSelfServiceSettings();
     }
@@ -43,7 +43,7 @@ class SettingsApisTest extends ApiClientTest
     public function testUnsuccessfulGetSettings(int $statusCode, string $responseBody): void
     {
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_SETTINGS, [], null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_SETTINGS, [], []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getSelfServiceSettings();
     }

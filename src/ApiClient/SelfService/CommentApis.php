@@ -14,11 +14,11 @@ trait CommentApis
     /**
      *
      * This method posts a self service comment
-     * @param string $body
+     * @param array<mixed> $body
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function postSelfServiceComment(string $body): ResponseInterface
+    public function postSelfServiceComment(array $body): ResponseInterface
     {
         $request = $this->getRequestFactory()->create(
             'POST',

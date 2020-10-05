@@ -4,10 +4,10 @@ namespace SupportPal\ApiClient\Api;
 
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\ApiClient;
+use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Factory\Collection\CollectionFactory;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Contains all required method definitions and attribute dependencies in Api traits
@@ -37,9 +37,9 @@ trait ApiAware
     abstract protected function getFormatType(): string;
 
     /**
-     * @return SerializerInterface
+     * @return ModelToArrayConverter
      */
-    abstract protected function getSerializer(): SerializerInterface;
+    abstract protected function getModelToArrayConverter(): ModelToArrayConverter;
 
     /**
      * @param ResponseInterface $response

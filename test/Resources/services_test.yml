@@ -6,6 +6,10 @@ parameters:
     apiToken: 'test2'
     apiContentType: 'test3'
     contentType: 'json'
+    defaultBodyContent:
+        test: 'test'
+    defaultParameters:
+        test: 'test'
 
 services:
     _defaults:
@@ -35,6 +39,10 @@ services:
             $apiUrl: '%apiUrl%'
             $apiToken: '%apiToken%'
             $contentType: '%apiContentType%'
+            $defaultBodyContent: '%defaultBodyContent%'
+            $defaultParameters: '%defaultParameters%'
+            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+            $formatType: '%contentType%'
 
     SupportPal\ApiClient\ApiClient:
         public: true
