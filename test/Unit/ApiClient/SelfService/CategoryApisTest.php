@@ -27,7 +27,7 @@ class CategoryApisTest extends ApiClientTest
     public function testGetCategories(): void
     {
         $queryParams = ['test' => 'value'];
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_CATEGORY, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_CATEGORY, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode($this->getCategoriesTypeSuccessfulResponse),
@@ -41,7 +41,7 @@ class CategoryApisTest extends ApiClientTest
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_CATEGORY, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_CATEGORY, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getCategories($queryParams);
     }
@@ -55,7 +55,7 @@ class CategoryApisTest extends ApiClientTest
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_CATEGORY, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_CATEGORY, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getCategories($queryParams);
     }
@@ -66,7 +66,7 @@ class CategoryApisTest extends ApiClientTest
             'GET',
             ApiDictionary::SELF_SERVICE_CATEGORY . '/' . $this->testCategoryId,
             [],
-            null
+            []
         );
 
         $response = $this->sendRequestCommonExpectations(
@@ -86,7 +86,7 @@ class CategoryApisTest extends ApiClientTest
             'GET',
             ApiDictionary::SELF_SERVICE_CATEGORY . '/' . $this->testCategoryId,
             [],
-            null
+            []
         );
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getCategory($this->testCategoryId);
@@ -104,7 +104,7 @@ class CategoryApisTest extends ApiClientTest
             'GET',
             ApiDictionary::SELF_SERVICE_CATEGORY . '/' . $this->testCategoryId,
             [],
-            null
+            []
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getCategory($this->testCategoryId);

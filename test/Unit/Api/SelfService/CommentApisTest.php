@@ -27,9 +27,9 @@ class CommentApisTest extends ApiTest
         /** @var Comment $commentMock */
         $commentMock = $commentInput->reveal();
         $this
-            ->serializer
-            ->serialize($commentMock, $this->serializationType)
-            ->willReturn('comment')
+            ->modelToArrayConverter
+            ->convertOne($commentMock)
+            ->willReturn(CommentData::COMMENT_DATA)
             ->shouldBeCalled();
 
         $response = $this->prophesize(ResponseInterface::class);
@@ -44,7 +44,7 @@ class CommentApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->postSelfServiceComment('comment')
+            ->postSelfServiceComment(CommentData::COMMENT_DATA)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $this
@@ -63,8 +63,8 @@ class CommentApisTest extends ApiTest
         /** @var Comment $commentMock */
         $commentMock = $commentInput->reveal();
         $this
-            ->serializer
-            ->serialize($commentMock, $this->serializationType)
+            ->modelToArrayConverter
+            ->convertOne($commentMock)
             ->willThrow(UninitializedPropertyException::class)
             ->shouldBeCalled();
 

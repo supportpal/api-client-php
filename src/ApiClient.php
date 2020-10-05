@@ -86,7 +86,7 @@ class ApiClient
      */
     protected function prepareAndSendGetRequest(string $endpoint, array $queryParameters): ResponseInterface
     {
-        $request = $this->getRequestFactory()->create('GET', $endpoint, [], null, $queryParameters);
+        $request = $this->getRequestFactory()->create('GET', $endpoint, [], [], $queryParameters);
 
         return $this->sendRequest($request);
     }

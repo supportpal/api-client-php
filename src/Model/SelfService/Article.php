@@ -117,6 +117,24 @@ class Article extends BaseModel
     private $categories;
 
     /**
+     * @var Type[]|null
+     * @SerializedName("types")
+     */
+    private $types;
+
+    /**
+     * @var ArticleAttachment[]|null
+     * @SerializedName("attachments")
+     */
+    private $attachments;
+
+    /**
+     * @var int|null
+     * @SerializedName("views")
+     */
+    private $views;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -416,6 +434,63 @@ class Article extends BaseModel
     public function setCategories(?array $categories): self
     {
         $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
+     * @return Type[]|null
+     */
+    public function getTypes(): ?array
+    {
+        return $this->types;
+    }
+
+    /**
+     * @param Type[]|null $types
+     * @return Article
+     */
+    public function setTypes(?array $types): Article
+    {
+        $this->types = $types;
+
+        return $this;
+    }
+
+    /**
+     * @return ArticleAttachment[]|null
+     */
+    public function getAttachments(): ?array
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * @param ArticleAttachment[]|null $attachments
+     * @return self
+     */
+    public function setAttachments(?array $attachments): self
+    {
+        $this->attachments = $attachments;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getViews(): ?int
+    {
+        return $this->views;
+    }
+
+    /**
+     * @param int|null $views
+     * @return self
+     */
+    public function setViews(?int $views): self
+    {
+        $this->views = $views;
 
         return $this;
     }

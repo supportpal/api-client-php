@@ -17,7 +17,7 @@ class TypeApisTest extends ApiClientTest
     public function testGetTypes(): void
     {
         $queryParams = ['test' => 'value'];
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode($this->getTypeSuccessfulResponse),
@@ -31,7 +31,7 @@ class TypeApisTest extends ApiClientTest
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getTypes($queryParams);
     }
@@ -45,7 +45,7 @@ class TypeApisTest extends ApiClientTest
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getTypes($queryParams);
     }

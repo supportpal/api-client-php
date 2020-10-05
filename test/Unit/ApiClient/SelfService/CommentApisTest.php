@@ -21,13 +21,13 @@ class CommentApisTest extends ApiClientTest
 
     public function testPostSelfServiceComment(): void
     {
-        $request = $this->requestCommonExpectations('POST', ApiDictionary::SELF_SERVICE_COMMENT, [], '{test}');
+        $request = $this->requestCommonExpectations('POST', ApiDictionary::SELF_SERVICE_COMMENT, [], []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode($this->postCommentSuccessfulResponse),
             $request
         );
-        $postCommentResponse = $this->apiClient->postSelfServiceComment('{test}');
+        $postCommentResponse = $this->apiClient->postSelfServiceComment([]);
         self::assertSame($response->reveal(), $postCommentResponse);
     }
 
@@ -39,23 +39,23 @@ class CommentApisTest extends ApiClientTest
     public function testUnsuccessfulPostSelfServiceComment(int $statusCode, string $responseBody): void
     {
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('POST', ApiDictionary::SELF_SERVICE_COMMENT, [], '{test}');
+        $request = $this->requestCommonExpectations('POST', ApiDictionary::SELF_SERVICE_COMMENT, [], []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->postSelfServiceComment('{test}');
+        $this->apiClient->postSelfServiceComment([]);
     }
 
     public function testHttpExceptionPostSelfServiceComment(): void
     {
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('POST', ApiDictionary::SELF_SERVICE_COMMENT, [], '{test}');
+        $request = $this->requestCommonExpectations('POST', ApiDictionary::SELF_SERVICE_COMMENT, [], []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->postSelfServiceComment('{test}');
+        $this->apiClient->postSelfServiceComment([]);
     }
 
     public function testGetComments(): void
     {
         $queryParams = ['test' => 'value'];
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_COMMENT, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_COMMENT, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode($this->getCommentsSuccessfulResponse),
@@ -69,7 +69,7 @@ class CommentApisTest extends ApiClientTest
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_COMMENT, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_COMMENT, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getComments($queryParams);
     }
@@ -83,7 +83,7 @@ class CommentApisTest extends ApiClientTest
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_COMMENT, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_COMMENT, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getComments($queryParams);
     }

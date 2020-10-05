@@ -25,7 +25,7 @@ class TagApisTest extends ApiClientTest
             'GET',
             ApiDictionary::SELF_SERVICE_TAG . '/' . $this->testTagId,
             [],
-            null
+            []
         );
 
         $response = $this->sendRequestCommonExpectations(
@@ -45,7 +45,7 @@ class TagApisTest extends ApiClientTest
             'GET',
             ApiDictionary::SELF_SERVICE_TAG . '/' . $this->testTagId,
             [],
-            null
+            []
         );
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getTag($this->testTagId);
@@ -63,7 +63,7 @@ class TagApisTest extends ApiClientTest
             'GET',
             ApiDictionary::SELF_SERVICE_TAG . '/' . $this->testTagId,
             [],
-            null
+            []
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getTag($this->testTagId);

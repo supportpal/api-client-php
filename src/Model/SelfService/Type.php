@@ -129,6 +129,12 @@ class Type extends BaseModel
     private $brand;
 
     /**
+     * @var array<mixed>|null
+     * @SerializedName("pivot")
+     */
+    private $pivot;
+
+    /**
      * @return string|null
      */
     public function getIcon(): ?string
@@ -466,6 +472,25 @@ class Type extends BaseModel
     public function setBrand(Brand $brand): self
     {
         $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * @return array<mixed>|null
+     */
+    public function getPivot(): ?array
+    {
+        return $this->pivot;
+    }
+
+    /**
+     * @param array<mixed>|null $pivot
+     * @return self
+     */
+    public function setPivot(?array $pivot): self
+    {
+        $this->pivot = $pivot;
 
         return $this;
     }

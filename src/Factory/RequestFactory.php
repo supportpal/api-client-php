@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Factory;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;
+use Symfony\Component\Serializer\Encoder\EncoderInterface;
 use function GuzzleHttp\Psr7\stream_for;
 
 /**
@@ -30,18 +31,60 @@ class RequestFactory
      */
     private $contentType;
 
-    public function __construct(string $apiUrl, string $apiToken, string $contentType)
-    {
+    /**
+     * @var string
+     */
+    private $formatType;
+
+    /**
+     * @var EncoderInterface
+     */
+    private $encoder;
+
+    /**
+     * @var array<mixed>
+     */
+    private $defaultParameters;
+
+    /**
+     *
+     * @var array<mixed>
+     */
+    private $defaultBodyContent;
+
+    /**
+     * RequestFactory constructor.
+     * @param string $apiUrl
+     * @param string $apiToken
+     * @param string $contentType
+     * @param string $formatType
+     * @param EncoderInterface $encoder
+     * @param array<mixed> $defaultBodyContent Body content that are always passed in the body of the result request
+     * @param array<mixed> $defaultParameters Parameters that are always appended to the result request
+     */
+    public function __construct(
+        string $apiUrl,
+        string $apiToken,
+        string $contentType,
+        string $formatType,
+        EncoderInterface $encoder,
+        array $defaultBodyContent = [],
+        array $defaultParameters = []
+    ) {
         $this->apiUrl = $apiUrl;
         $this->apiToken = $apiToken;
         $this->contentType = $contentType;
+        $this->formatType = $formatType;
+        $this->encoder = $encoder;
+        $this->defaultBodyContent = $defaultBodyContent;
+        $this->defaultParameters = $defaultParameters;
     }
 
     /**
      * @param string $method
      * @param string $endpoint
      * @param array<mixed> $headers
-     * @param mixed|null $body
+     * @param array<mixed> $body
      * @param array<mixed> $queryParameters
      * @return RequestInterface
      */
@@ -49,14 +92,22 @@ class RequestFactory
         string $method,
         string $endpoint,
         array $headers = [],
-        $body = null,
+        array $body = [],
         array $queryParameters = []
     ): RequestInterface {
         $headers['Content-Type'] = $this->contentType;
         $headers['Authorization'] = 'Basic ' . base64_encode($this->apiToken . ':X');
+        $bodyArray = array_merge($body, $this->defaultBodyContent);
+
+        $body = ! empty($bodyArray) ? stream_for($this->encoder->encode($bodyArray, $this->formatType)) : null;
 
         $uri = new Uri($this->apiUrl . $endpoint);
 
-        return new Request($method, $uri->withQuery(http_build_query($queryParameters)), $headers, stream_for($body));
+        return new Request(
+            $method,
+            $uri->withQuery(http_build_query(array_merge($queryParameters, $this->defaultParameters))),
+            $headers,
+            $body
+        );
     }
 }

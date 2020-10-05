@@ -21,7 +21,7 @@ class CoreApisTest extends ApiClientTest
 
     public function testSuccessfulGetCoreSettings(): void
     {
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode($this->coreSettingsSuccessfulResponse),
@@ -40,7 +40,7 @@ class CoreApisTest extends ApiClientTest
     public function testUnsuccessfulGetCoreSettings(int $statusCode, string $responseBody): void
     {
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getCoreSettings();
     }
@@ -48,7 +48,7 @@ class CoreApisTest extends ApiClientTest
     public function testHttpExceptionGetCoreSettings(): void
     {
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getCoreSettings();
     }

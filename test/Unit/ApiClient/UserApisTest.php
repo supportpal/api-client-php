@@ -22,7 +22,7 @@ class UserApisTest extends ApiClientTest
     public function testGetUsers(): void
     {
         $queryParams = ['test' => 'value'];
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USER, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USER, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode($this->getUsersSuccessfulResponse),
@@ -36,7 +36,7 @@ class UserApisTest extends ApiClientTest
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USER, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USER, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getUsers($queryParams);
     }
@@ -50,7 +50,7 @@ class UserApisTest extends ApiClientTest
     {
         $queryParams = ['test' => 'value'];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USER, $queryParams, null);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USER, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getUsers($queryParams);
     }
