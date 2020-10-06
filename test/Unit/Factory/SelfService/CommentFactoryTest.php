@@ -24,8 +24,8 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
     protected function getModelFactory(): ModelFactory
     {
         return new CommentFactory(
-            $this->getSerializer(),
             $this->format,
+            $this->getSerializer(),
             $this->getEncoder()
         );
     }

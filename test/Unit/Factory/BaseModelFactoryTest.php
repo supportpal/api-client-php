@@ -31,21 +31,30 @@ class BaseModelFactoryTest extends BaseModelFactoryTestCase
         return Comment::REQUIRED_FIELDS;
     }
 
+    /**
+     * @return array<mixed>
+     */
     protected function getModelData(): array
     {
         return CommentData::COMMENT_DATA;
     }
 
+    /**
+     * @return string
+     */
     protected function getModel(): string
     {
         return Comment::class;
     }
 
+    /**
+     * @return ModelFactory
+     */
     protected function getModelFactory(): ModelFactory
     {
         $mock = $this->getMockForAbstractClass(
             BaseModelFactory::class,
-            [$this->getSerializer(), $this->format, $this->getEncoder()]
+            [$this->format, $this->getSerializer(), $this->getEncoder()]
         );
 
         $mock->expects($this->any())

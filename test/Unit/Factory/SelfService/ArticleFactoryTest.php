@@ -24,8 +24,8 @@ class ArticleFactoryTest extends BaseModelFactoryTestCase
     protected function getModelFactory(): ModelFactory
     {
         return new ArticleFactory(
-            $this->getSerializer(),
             $this->format,
+            $this->getSerializer(),
             $this->getEncoder()
         );
     }

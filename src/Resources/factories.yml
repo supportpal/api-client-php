@@ -1,4 +1,8 @@
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
 
     SupportPal\ApiClient\Factory\RequestFactory:
         public: true
@@ -8,63 +12,46 @@ services:
             $contentType: '%apiContentType%'
             $defaultBodyContent: '%defaultBodyContent%'
             $defaultParameters: '%defaultParameters%'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+            $formatType: '%contentType%'
+
+    SupportPal\ApiClient\Factory\BaseModelFactory:
+        arguments:
             $formatType: '%contentType%'
 
     SupportPal\ApiClient\Factory\CoreSettingsFactory:
-        tags: ['factory.model_factory']
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\SelfService\CommentFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     SupportPal\ApiClient\Factory\SelfService\TypeFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     SupportPal\ApiClient\Factory\UserFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     SupportPal\ApiClient\Factory\SelfService\ArticleFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     SupportPal\ApiClient\Factory\SelfService\CategoryFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     SupportPal\ApiClient\Factory\SelfService\SettingsFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     SupportPal\ApiClient\Factory\SelfService\TagFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+
+    SupportPal\ApiClient\Factory\Ticket\DepartmentFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Collection\CollectionFactory: ~

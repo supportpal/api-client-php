@@ -35,4 +35,9 @@ final class ApiDictionary
      * User Apis
      */
     public const USER_USER = 'user/user';
+
+    /**
+     * Ticket Apis
+     */
+    public const TICKET_DEPARTMENT = 'ticket/department';
 }

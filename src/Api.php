@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Api\CoreApis;
 use SupportPal\ApiClient\Api\SelfServiceApis;
+use SupportPal\ApiClient\Api\TicketApis;
 use SupportPal\ApiClient\Api\UserApis;
 use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Factory\Collection\CollectionFactory;
@@ -16,6 +17,7 @@ class Api
     use SelfServiceApis;
     use CoreApis;
     use UserApis;
+    use TicketApis;
 
     /**
      * @var ModelToArrayConverter

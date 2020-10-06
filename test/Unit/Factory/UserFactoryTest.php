@@ -23,8 +23,8 @@ class UserFactoryTest extends BaseModelFactoryTestCase
     protected function getModelFactory(): ModelFactory
     {
         return new UserFactory(
-            $this->getSerializer(),
             $this->format,
+            $this->getSerializer(),
             $this->getEncoder()
         );
     }

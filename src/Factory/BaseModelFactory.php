@@ -37,7 +37,7 @@ abstract class BaseModelFactory implements ModelFactory
      * @param string $formatType
      * @param EncoderInterface $encoder
      */
-    public function __construct(SerializerInterface $serializer, string $formatType, EncoderInterface $encoder)
+    public function __construct(string $formatType, SerializerInterface $serializer, EncoderInterface $encoder)
     {
         $this->serializer = $serializer;
         $this->formatType = $formatType;

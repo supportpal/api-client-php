@@ -1,22 +1,19 @@
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
     SupportPal\ApiClient\Api:
         public: true
         arguments:
-            $modelToArrayConverter: '@SupportPal\ApiClient\Converter\ModelToArrayConverter'
             $formatType: '%contentType%'
-            $modelCollectionFactory: '@SupportPal\ApiClient\Factory\ModelCollectionFactory'
-            $apiClient: '@SupportPal\ApiClient\ApiClient'
-            $decoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
-            $collectionFactory: '@SupportPal\ApiClient\Factory\Collection\CollectionFactory'
 
     SupportPal\ApiClient\Factory\ModelCollectionFactory:
         public: true
         arguments:
             $factories: !tagged factory.model_factory
 
-
     SupportPal\ApiClient\Converter\ModelToArrayConverter:
         arguments:
-            $decoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
             $format: '%contentType%'

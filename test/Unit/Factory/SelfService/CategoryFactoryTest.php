@@ -24,8 +24,8 @@ class CategoryFactoryTest extends BaseModelFactoryTestCase
     protected function getModelFactory(): ModelFactory
     {
         return new CategoryFactory(
-            $this->getSerializer(),
             $this->format,
+            $this->getSerializer(),
             $this->getEncoder()
         );
     }

@@ -55,8 +55,8 @@ class CoreSettingsFactoryTest extends BaseModelFactoryTestCase
     protected function getModelFactory(): ModelFactory
     {
         return new CoreSettingsFactory(
-            $this->getSerializer(),
             $this->format,
+            $this->getSerializer(),
             $this->getEncoder()
         );
     }
