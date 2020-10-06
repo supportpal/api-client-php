@@ -40,4 +40,6 @@ final class ApiDictionary
      * Ticket Apis
      */
     public const TICKET_DEPARTMENT = 'ticket/department';
+
+    public const TICKET_SETTINGS = 'ticket/settings';
 }

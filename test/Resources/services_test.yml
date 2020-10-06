@@ -76,5 +76,10 @@ services:
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
+    SupportPal\ApiClient\Factory\Ticket\SettingsFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+
     SupportPal\ApiClient\Factory\Collection\CollectionFactory:
         public: true

@@ -3,8 +3,10 @@
 namespace SupportPal\ApiClient\Api;
 
 use SupportPal\ApiClient\Api\Ticket\DepartmentApis;
+use SupportPal\ApiClient\Api\Ticket\SettingsApis;
 
 trait TicketApis
 {
     use DepartmentApis;
+    use SettingsApis;
 }

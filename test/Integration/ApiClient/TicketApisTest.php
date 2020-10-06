@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
 
 class TicketApisTest extends ApiComponentTest
@@ -12,6 +13,7 @@ class TicketApisTest extends ApiComponentTest
      */
     private $getEndpoints = [
         'getDepartments' => [DepartmentData::GET_DEPARTMENTS_SUCCESSFUL_RESPONSE, []],
+        'getTicketSettings' => [SettingsData::SUCCESSFUL_GET_RESPONSE, []],
     ];
 
     /**

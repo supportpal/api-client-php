@@ -3,19 +3,19 @@
 namespace SupportPal\ApiClient\Tests\Integration\Factory\Ticket;
 
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Factory\Ticket\DepartmentFactory;
-use SupportPal\ApiClient\Model\Ticket\Department;
-use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
+use SupportPal\ApiClient\Factory\Ticket\SettingsFactory;
+use SupportPal\ApiClient\Model\Ticket\Settings;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
 
-class DepartmentFactoryTest extends BaseModelFactoryTestCase
+class SettingsFactoryTest extends BaseModelFactoryTestCase
 {
     /**
      * @inheritDoc
      */
     protected function getRequiredFields(): array
     {
-        return Department::REQUIRED_FIELDS;
+        return Settings::REQUIRED_FIELDS;
     }
 
     /**
@@ -23,7 +23,7 @@ class DepartmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return DepartmentData::DEPARTMENT_DATA;
+        return SettingsData::SETTINGS_DATA;
     }
 
     /**
@@ -31,7 +31,7 @@ class DepartmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModel(): string
     {
-        return Department::class;
+        return Settings::class;
     }
 
     /**
@@ -40,7 +40,7 @@ class DepartmentFactoryTest extends BaseModelFactoryTestCase
     protected function getModelFactory(): ModelFactory
     {
         /** @var ModelFactory $modelFactory */
-        $modelFactory = $this->getContainer()->get(DepartmentFactory::class);
+        $modelFactory = $this->getContainer()->get(SettingsFactory::class);
 
         return $modelFactory;
     }

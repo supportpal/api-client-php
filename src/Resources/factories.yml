@@ -54,4 +54,8 @@ services:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 
+    SupportPal\ApiClient\Factory\Ticket\SettingsFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        tags: [ 'factory.model_factory' ]
+
     SupportPal\ApiClient\Factory\Collection\CollectionFactory: ~
