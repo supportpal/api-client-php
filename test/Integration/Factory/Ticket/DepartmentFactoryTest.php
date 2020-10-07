@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Tests\Integration\Factory\Ticket;
 
 use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Factory\Ticket\DepartmentFactory;
-use SupportPal\ApiClient\Model\Ticket\Department;
+use SupportPal\ApiClient\Model\Department\Department;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
 

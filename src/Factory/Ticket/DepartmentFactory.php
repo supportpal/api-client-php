@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Factory\Ticket;
 
 use SupportPal\ApiClient\Factory\BaseModelFactory;
-use SupportPal\ApiClient\Model\Ticket\Department;
+use SupportPal\ApiClient\Model\Department\Department;
 
 /**
  * Class DepartmentFactory

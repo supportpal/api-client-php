@@ -1,16 +1,16 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Unit\Model\Ticket;
+namespace SupportPal\ApiClient\Tests\Unit\Model\Department;
 
+use SupportPal\ApiClient\Model\Department\Operator;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Model\Ticket\Operator;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\OperatorData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
 /**
  * Class OperatorTest
  * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Ticket\Operator
+ * @covers \SupportPal\ApiClient\Model\Department\Operator
  */
 class OperatorTest extends BaseModelTestCase
 {

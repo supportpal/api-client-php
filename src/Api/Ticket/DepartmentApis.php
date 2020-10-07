@@ -6,7 +6,7 @@ use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
-use SupportPal\ApiClient\Model\Ticket\Department;
+use SupportPal\ApiClient\Model\Department\Department;
 
 /**
  * Trait DepartmentApis, includes all related apis to departments

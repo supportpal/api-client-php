@@ -3,9 +3,9 @@
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Model\Ticket\Email;
-use SupportPal\ApiClient\Model\Ticket\EmailTemplates;
-use SupportPal\ApiClient\Model\Ticket\Operator;
+use SupportPal\ApiClient\Model\Department\Email;
+use SupportPal\ApiClient\Model\Department\EmailTemplates;
+use SupportPal\ApiClient\Model\Department\Operator;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
 
 class DepartmentData

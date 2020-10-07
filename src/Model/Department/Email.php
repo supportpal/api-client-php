@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Model\Ticket;
+namespace SupportPal\ApiClient\Model\Department;
 
 use SupportPal\ApiClient\Model\BaseModel;
 use Symfony\Component\Serializer\Annotation\SerializedName;
