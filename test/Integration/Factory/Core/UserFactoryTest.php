@@ -2,9 +2,9 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\Factory\Core;
 
-use SupportPal\ApiClient\Factory\Core\UserFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Model\Core\User;
+use SupportPal\ApiClient\Factory\User\UserFactory;
+use SupportPal\ApiClient\Model\User\User;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
 use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
 

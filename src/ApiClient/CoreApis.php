@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\ApiClient;
 
 use SupportPal\ApiClient\ApiClient\Core\SettingsApis;
-use SupportPal\ApiClient\ApiClient\Core\UserApis;
 
 /**
  * Contains all ApiClient calls to Core Apis
@@ -13,5 +12,4 @@ use SupportPal\ApiClient\ApiClient\Core\UserApis;
 trait CoreApis
 {
     use SettingsApis;
-    use UserApis;
 }

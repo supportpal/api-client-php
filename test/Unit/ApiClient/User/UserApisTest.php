@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Core;
+namespace SupportPal\ApiClient\Tests\Unit\ApiClient\User;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
@@ -10,7 +10,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 /**
  * Class UserApisTest
  * @package SupportPal\ApiClient\Tests\Unit\ApiClient
- * @covers \SupportPal\ApiClient\ApiClient\Core\UserApis
+ * @covers \SupportPal\ApiClient\ApiClient\User\UserApis
  * @covers \SupportPal\ApiClient\ApiClient
  */
 class UserApisTest extends ApiClientTest

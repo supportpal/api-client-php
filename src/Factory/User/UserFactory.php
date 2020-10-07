@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Factory\Core;
+namespace SupportPal\ApiClient\Factory\User;
 
 use SupportPal\ApiClient\Factory\BaseModelFactory;
-use SupportPal\ApiClient\Model\Core\User;
+use SupportPal\ApiClient\Model\User\User;
 
 /**
  * Class UserFactory

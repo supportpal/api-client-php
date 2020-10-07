@@ -1,18 +1,18 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Unit\Factory\Core;
+namespace SupportPal\ApiClient\Tests\Unit\Factory\User;
 
-use SupportPal\ApiClient\Factory\Core\UserFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Model\Core\User;
+use SupportPal\ApiClient\Factory\User\UserFactory;
 use SupportPal\ApiClient\Model\Model;
+use SupportPal\ApiClient\Model\User\User;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
 use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
 
 /**
  * Class UserFactoryTest
  * @package SupportPal\ApiClient\Tests\Unit\Factory
- * @covers \SupportPal\ApiClient\Factory\Core\UserFactory
+ * @covers \SupportPal\ApiClient\Factory\User\UserFactory
  */
 class UserFactoryTest extends BaseModelFactoryTestCase
 {

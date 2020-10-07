@@ -41,7 +41,7 @@ services:
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
-    SupportPal\ApiClient\Factory\Core\UserFactory:
+    SupportPal\ApiClient\Factory\User\UserFactory:
         public: true
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'

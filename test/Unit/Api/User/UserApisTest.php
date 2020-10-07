@@ -1,15 +1,15 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
+namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
-use SupportPal\ApiClient\Model\Core\User;
+use SupportPal\ApiClient\Model\User\User;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
 /**
  * Class UserApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api
- * @covers SupportPal\ApiClient\Api\Core\UserApis
+ * @covers \SupportPal\ApiClient\Api\User\UserApis
  * @covers \SupportPal\ApiClient\Api
  */
 class UserApisTest extends ApiTest

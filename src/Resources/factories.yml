@@ -30,7 +30,7 @@ services:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 
-    SupportPal\ApiClient\Factory\Core\UserFactory:
+    SupportPal\ApiClient\Factory\User\UserFactory:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 

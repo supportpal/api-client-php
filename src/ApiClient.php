@@ -9,6 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\ApiClient\CoreApis;
 use SupportPal\ApiClient\ApiClient\SelfServiceApis;
 use SupportPal\ApiClient\ApiClient\TicketApis;
+use SupportPal\ApiClient\ApiClient\UserApis;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
@@ -23,6 +24,7 @@ class ApiClient
     use CoreApis;
     use SelfServiceApis;
     use TicketApis;
+    use UserApis;
 
     /**
      * @var ClientInterface

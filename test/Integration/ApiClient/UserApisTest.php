@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
  * Class UsersApisTest
  * @package SupportPal\ApiClient\Tests\Integration\ApiClient
  */
-class UsersApisTest extends ApiClientTest
+class UserApisTest extends ApiClientTest
 {
     /**
      * @var array<mixed>

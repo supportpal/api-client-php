@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Model\Ticket;
 
-use SupportPal\ApiClient\Model\Core\User;
+use SupportPal\ApiClient\Model\User\User;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 class Operator extends User

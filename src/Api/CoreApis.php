@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Api;
 
 use SupportPal\ApiClient\Api\Core\SettingsApis;
-use SupportPal\ApiClient\Api\Core\UserApis;
 
 /**
  * Contains all ApiCalls pre and post processing that falls under Core Module
@@ -13,5 +12,4 @@ use SupportPal\ApiClient\Api\Core\UserApis;
 trait CoreApis
 {
     use SettingsApis;
-    use UserApis;
 }
