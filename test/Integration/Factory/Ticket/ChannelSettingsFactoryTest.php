@@ -2,18 +2,18 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\Factory\Ticket;
 
-use SupportPal\ApiClient\Model\Ticket\Department;
-use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
+use SupportPal\ApiClient\Model\Ticket\ChannelSettings;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
 
-class DepartmentFactoryTest extends BaseModelFactoryTestCase
+class ChannelSettingsFactoryTest extends BaseModelFactoryTestCase
 {
     /**
      * @inheritDoc
      */
     protected function getRequiredFields(): array
     {
-        return Department::REQUIRED_FIELDS;
+        return ChannelSettings::REQUIRED_FIELDS;
     }
 
     /**
@@ -21,7 +21,7 @@ class DepartmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return DepartmentData::DEPARTMENT_DATA;
+        return ChannelSettingsData::CHANNEL_SETTINGS_DATA;
     }
 
     /**
@@ -29,6 +29,6 @@ class DepartmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModel(): string
     {
-        return Department::class;
+        return ChannelSettings::class;
     }
 }

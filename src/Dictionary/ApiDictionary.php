@@ -42,4 +42,6 @@ final class ApiDictionary
     public const TICKET_DEPARTMENT = 'ticket/department';
 
     public const TICKET_SETTINGS = 'ticket/settings';
+
+    public const TICKET_CHANNEL_SETTINGS = 'ticket/channel/%s/settings';
 }

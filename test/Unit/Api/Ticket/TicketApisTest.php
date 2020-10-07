@@ -2,8 +2,10 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
+use SupportPal\ApiClient\Model\Ticket\ChannelSettings;
 use SupportPal\ApiClient\Model\Ticket\Department;
 use SupportPal\ApiClient\Model\Ticket\Settings;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -41,6 +43,23 @@ class TicketApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $coreSettings = $this->api->getTicketSettings();
+        $this->assertSame($expectedOutput, $coreSettings);
+    }
+
+    public function testGetChannelSettings(): void
+    {
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            ChannelSettingsData::GET_SUCCESSFUL_RESPONSE_DATA,
+            ChannelSettings::class
+        );
+
+        $this
+            ->apiClient
+            ->getChannelSettings('web')
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $coreSettings = $this->api->getChannelSettings('web');
         $this->assertSame($expectedOutput, $coreSettings);
     }
 }

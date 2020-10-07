@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\Integration\Factory;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\FactoryTestCase;
@@ -62,5 +63,13 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
 
             yield [$commentDataCopy, $key];
         }
+    }
+
+    protected function getModelFactory(): ModelFactory
+    {
+        /** @var ModelFactory $modelFactory */
+        $modelFactory = $this->getContainer()->get($this->getModel());
+
+        return $modelFactory;
     }
 }
