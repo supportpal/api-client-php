@@ -5,6 +5,10 @@ namespace SupportPal\ApiClient\Factory\Ticket;
 use SupportPal\ApiClient\Factory\BaseModelFactory;
 use SupportPal\ApiClient\Model\Ticket\Settings;
 
+/**
+ * Class SettingsFactory
+ * @package SupportPal\ApiClient\Factory\Ticket
+ */
 class SettingsFactory extends BaseModelFactory
 {
     /**

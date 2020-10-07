@@ -6,6 +6,7 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Ticket\Email;
 use SupportPal\ApiClient\Model\Ticket\EmailTemplates;
 use SupportPal\ApiClient\Model\Ticket\Operator;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
 
 class DepartmentData
 {
@@ -25,6 +26,8 @@ class DepartmentData
         'registered_only' => 0,
         'created_at' => 1597245387,
         'updated_at' => 1597245387,
+        'default_assignedto' => [UserData::USER_DATA,],
+        'groups' => [],
     ];
 
     public const GET_DEPARTMENTS_SUCCESSFUL_RESPONSE = [

@@ -8,6 +8,10 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Type;
 
+/**
+ * Trait TypeApis, includes all related ApiCalls pre and post processing to selfservice types
+ * @package SupportPal\ApiClient\Api\SelfService
+ */
 trait TypeApis
 {
     use ApiAware;

@@ -10,6 +10,12 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
+/**
+ * Class CommentApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
+ * @covers SupportPal\ApiClient\Api\SelfService\CommentApis
+ * @covers \SupportPal\ApiClient\Api
+ */
 class CommentApisTest extends ApiTest
 {
     /**

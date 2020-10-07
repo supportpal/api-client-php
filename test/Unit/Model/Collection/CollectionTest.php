@@ -8,6 +8,11 @@ use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\TestCase;
 
+/**
+ * Class CollectionTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model\Collection
+ * @covers \SupportPal\ApiClient\Model\Collection\Collection
+ */
 class CollectionTest extends TestCase
 {
     public function testCreateCollection(): void

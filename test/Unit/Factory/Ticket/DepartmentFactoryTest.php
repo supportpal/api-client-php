@@ -9,6 +9,11 @@ use SupportPal\ApiClient\Model\Ticket\Department;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
 
+/**
+ * Class DepartmentFactoryTest
+ * @package SupportPal\ApiClient\Tests\Unit\Factory\Ticket
+ * @covers \SupportPal\ApiClient\Factory\Ticket\DepartmentFactory
+ */
 class DepartmentFactoryTest extends BaseModelFactoryTestCase
 {
     /**

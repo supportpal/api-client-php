@@ -7,6 +7,11 @@ use SupportPal\ApiClient\Model\Ticket\EmailTemplates;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\EmailTemplatesData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
+/**
+ * Class EmailTemplatesTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
+ * @covers \SupportPal\ApiClient\Model\Ticket\EmailTemplates
+ */
 class EmailTemplatesTest extends BaseModelTestCase
 {
     /**

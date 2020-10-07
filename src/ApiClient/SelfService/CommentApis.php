@@ -7,6 +7,10 @@ use SupportPal\ApiClient\ApiClient\ApiClientAware;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 
+/**
+ * Trait CommentApis, includes all api calls related to comments
+ * @package SupportPal\ApiClient\ApiClient\SelfService
+ */
 trait CommentApis
 {
     use ApiClientAware;

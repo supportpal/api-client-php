@@ -2,8 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Factory\Core;
 
-use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Factory\Core\UserFactory;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\Core\User;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
@@ -12,7 +12,7 @@ use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
 /**
  * Class UserFactoryTest
  * @package SupportPal\ApiClient\Tests\Unit\Factory
- * @covers \SupportPal\ApiClient\Factory\UserFactory
+ * @covers \SupportPal\ApiClient\Factory\Core\UserFactory
  */
 class UserFactoryTest extends BaseModelFactoryTestCase
 {

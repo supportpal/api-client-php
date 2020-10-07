@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Encoder\DecoderInterface;
 /**
  * Class ApiTest
  * @package SupportPal\ApiClient\Tests\Unit
- * @coversNothing
+ * @covers \SupportPal\ApiClient\Api
  */
 abstract class ApiTest extends TestCase
 {

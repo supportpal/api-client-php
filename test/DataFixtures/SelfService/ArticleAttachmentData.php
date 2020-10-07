@@ -15,6 +15,7 @@ class ArticleAttachmentData
         'original_name' => 'testattachment',
         'created_at' => 1601571606,
         'updated_at' => 1601571606,
+        'upload' => UploadData::UPLOAD_DATA,
     ];
 
     /**

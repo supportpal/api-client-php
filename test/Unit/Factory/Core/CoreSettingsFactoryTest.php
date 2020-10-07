@@ -12,7 +12,7 @@ use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
 /**
  * Class CoreSettingsFactoryTest
  * @package SupportPal\ApiClient\Tests\Unit\Factory
- * @covers \SupportPal\ApiClient\Factory\CoreSettingsFactory
+ * @covers \SupportPal\ApiClient\Factory\Core\CoreSettingsFactory
  */
 class CoreSettingsFactoryTest extends BaseModelFactoryTestCase
 {

@@ -7,6 +7,12 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
+/**
+ * Class TagApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService
+ * @covers \SupportPal\ApiClient\ApiClient\SelfService\TagApis
+ * @covers \SupportPal\ApiClient\ApiClient
+ */
 class TagApisTest extends ApiClientTest
 {
     /**

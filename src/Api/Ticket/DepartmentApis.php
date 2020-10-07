@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Ticket\Department;
 
 /**
- * Trait DepartmentApis
+ * Trait DepartmentApis, includes all related apis to departments
  * @package SupportPal\ApiClient\Api\Ticket
  */
 trait DepartmentApis

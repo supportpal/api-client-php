@@ -86,5 +86,15 @@ services:
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
+    SupportPal\ApiClient\Factory\SelfService\TagFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+
     SupportPal\ApiClient\Factory\Collection\CollectionFactory:
         public: true
+
+    SupportPal\ApiClient\Converter\ModelToArrayConverter:
+        public: true
+        arguments:
+            $format: '%contentType%'

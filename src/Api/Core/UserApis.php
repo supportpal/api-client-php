@@ -8,6 +8,10 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Core\User;
 
+/**
+ * Trait UserApis, includes all related ApiCalls pre and post processing related to Users
+ * @package SupportPal\ApiClient\Api\Core
+ */
 trait UserApis
 {
     use ApiAware;

@@ -9,6 +9,11 @@ use SupportPal\ApiClient\Model\Ticket\ChannelSettings;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
 
+/**
+ * Class ChannelSettingsFactoryTest
+ * @package SupportPal\ApiClient\Tests\Unit\Factory\Ticket
+ * @covers \SupportPal\ApiClient\Factory\Ticket\ChannelSettingsFactory
+ */
 class ChannelSettingsFactoryTest extends BaseModelFactoryTestCase
 {
     /**

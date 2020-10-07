@@ -6,6 +6,10 @@ use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\Ticket\ChannelSettings;
 
+/**
+ * Trait ChannelSettingsApis, includes all related apis to ticket channels
+ * @package SupportPal\ApiClient\Api\Ticket
+ */
 trait ChannelSettingsApis
 {
     use ApiAware;

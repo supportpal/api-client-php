@@ -6,6 +6,10 @@ use SupportPal\ApiClient\Api\Ticket\ChannelSettingsApis;
 use SupportPal\ApiClient\Api\Ticket\DepartmentApis;
 use SupportPal\ApiClient\Api\Ticket\SettingsApis;
 
+/**
+ * Contains all ApiCalls pre and post processing that falls under Tickets Module
+ * @package SupportPal\ApiClient\Api
+ */
 trait TicketApis
 {
     use DepartmentApis;

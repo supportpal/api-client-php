@@ -7,6 +7,11 @@ use SupportPal\ApiClient\Model\Ticket\Operator;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\OperatorData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
+/**
+ * Class OperatorTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
+ * @covers \SupportPal\ApiClient\Model\Ticket\Operator
+ */
 class OperatorTest extends BaseModelTestCase
 {
     /**

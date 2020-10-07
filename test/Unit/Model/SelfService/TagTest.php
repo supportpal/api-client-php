@@ -7,6 +7,11 @@ use SupportPal\ApiClient\Model\SelfService\Tag;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
+/**
+ * Class TagTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model\SelfService
+ * @covers \SupportPal\ApiClient\Model\SelfService\Tag
+ */
 class TagTest extends BaseModelTestCase
 {
     protected function getModelData(): array

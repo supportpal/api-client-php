@@ -8,6 +8,10 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Category;
 
+/**
+ * Trait CategoryApis, includes all related ApiCalls pre and post processing to categories
+ * @package SupportPal\ApiClient\Api\SelfService
+ */
 trait CategoryApis
 {
     use ApiAware;

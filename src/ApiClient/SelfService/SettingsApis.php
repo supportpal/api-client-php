@@ -7,6 +7,10 @@ use SupportPal\ApiClient\ApiClient\ApiClientAware;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 
+/**
+ * Trait SettingsApis, includes all api calls related to self service settings
+ * @package SupportPal\ApiClient\ApiClient\SelfService
+ */
 trait SettingsApis
 {
     use ApiClientAware;

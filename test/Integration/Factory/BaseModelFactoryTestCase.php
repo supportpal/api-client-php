@@ -18,13 +18,14 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
 
     use FactoryTestCase;
 
+    private const ATOMIC_VALUE = 'string';
+
     public function testCreateValidModel(): void
     {
-        $model = $this->getModelFactory()->create($this->getModelData());
+        $modelData = $this->getModelData();
+        $model = $this->getModelFactory()->create($modelData);
         self::assertInstanceOf($this->getModel(), $model);
-        foreach ($this->getModelData() as $key => $value) {
-            self::assertSame($value, $model->{'get'.$this->snakeCaseToPascalCase($key)}());
-        }
+        $this->assertArrayEqualsObjectFields($model, $modelData);
     }
 
     /**
@@ -35,7 +36,12 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
     public function testCreateWithInvalidTypes(array $data, string $invalidKey): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($this->snakeCaseToCamelCase($invalidKey));
+        if (! $data[$invalidKey] instanceof \stdClass) {
+            self::expectExceptionMessage(gettype(self::ATOMIC_VALUE));
+        } else {
+            self::expectExceptionMessage($this->snakeCaseToCamelCase($invalidKey));
+        }
+
         $this->getModelFactory()->create($data);
     }
 
@@ -58,7 +64,16 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
     {
         foreach ($this->getModelData() as $key => $value) {
             $commentDataCopy = $this->getModelData();
-            $commentDataCopy[$key] = new \stdClass;
+
+            if (is_array($value)) {
+                /**
+                 * All json objects are arrays, if it's an object,
+                 * change its type to an atomic value
+                 */
+                $commentDataCopy[$key] = self::ATOMIC_VALUE;
+            } else {
+                $commentDataCopy[$key] = new \stdClass;
+            }
 
             yield [$commentDataCopy, $key];
         }

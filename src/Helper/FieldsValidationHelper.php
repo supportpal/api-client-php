@@ -4,6 +4,11 @@ namespace SupportPal\ApiClient\Helper;
 
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 
+/**
+ * This includes functions that support validating fields or their values
+ * Trait FieldsValidationHelper
+ * @package SupportPal\ApiClient\Helper
+ */
 trait FieldsValidationHelper
 {
     /**

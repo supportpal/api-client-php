@@ -6,6 +6,10 @@ use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\SelfService\Tag as SelfServiceTagAlias;
 
+/**
+ * Trait TagApis, includes all related ApiCalls pre and post processing to Tags
+ * @package SupportPal\ApiClient\Api\SelfService
+ */
 trait TagApis
 {
     use ApiAware;

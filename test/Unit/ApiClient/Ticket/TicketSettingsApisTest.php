@@ -7,12 +7,18 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
-class TicketSettingsApis extends ApiClientTest
+/**
+ * Class TicketSettingsApis
+ * @package SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket
+ * @covers \SupportPal\ApiClient\ApiClient\Ticket\SettingsApis
+ * @covers \SupportPal\ApiClient\ApiClient
+ */
+class TicketSettingsApisTest extends ApiClientTest
 {
     /**
      * @var array<mixed>
      */
-    private $ticketSettingsSuccessfulResponse = SettingsData::SETTINGS_DATA;
+    private $ticketSettingsSuccessfulResponse = SettingsData::SUCCESSFUL_GET_RESPONSE;
 
     public function testSuccessfulGetTicketSettings(): void
     {

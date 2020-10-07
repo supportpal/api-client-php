@@ -7,6 +7,12 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
+/**
+ * Class ChannelSettingsApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket
+ * @covers \SupportPal\ApiClient\ApiClient\Ticket\ChannelSettingsApis
+ * @covers \SupportPal\ApiClient\ApiClient
+ */
 class ChannelSettingsApisTest extends ApiClientTest
 {
     /**

@@ -10,6 +10,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 /**
  * Class CoreApisTest
  * @package SupportPal\ApiClient\Tests\Unit\ApiClient
+ * @covers \SupportPal\ApiClient\ApiClient\Core\SettingsApis
  * @covers \SupportPal\ApiClient\ApiClient
  */
 class CoreApisTest extends ApiClientTest

@@ -1,15 +1,16 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Unit\Model;
+namespace SupportPal\ApiClient\Tests\Unit\Model\Core;
 
 use SupportPal\ApiClient\Model\Core\CoreSettings;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
+use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
 /**
  * Class CoreSettingsTest
  * @package SupportPal\ApiClient\Tests\Unit\Model
- * @covers \SupportPal\ApiClient\Model\CoreSettings
+ * @covers \SupportPal\ApiClient\Model\Core\CoreSettings
  */
 class CoreSettingsTest extends BaseModelTestCase
 {

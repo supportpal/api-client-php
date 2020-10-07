@@ -2,8 +2,14 @@
 
 namespace SupportPal\ApiClient\Model\Collection;
 
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * Wrap collection of Model values
+ * Class Collection
+ * @package SupportPal\ApiClient\Model\Collection
+ */
 class Collection
 {
     /**
@@ -20,9 +26,11 @@ class Collection
      * Response constructor.
      * @param int $count
      * @param Model[] $models
+     * @throws InvalidArgumentException
      */
     public function __construct(int $count, array $models)
     {
+        $this->assertSameTypeModelInstances($models);
         $this->count = $count;
         $this->models = $models;
     }
@@ -63,5 +71,21 @@ class Collection
         $value = array_filter($this->getModels(), $closure);
 
         return new self(count($value), $value);
+    }
+
+    /**
+     * @param Model[] $models
+     * @throws InvalidArgumentException
+     */
+    private function assertSameTypeModelInstances(array $models): void
+    {
+        $firstModelType = ! empty($models) && is_object(current($models)) ? get_class(current($models)) : null;
+        foreach ($models as $model) {
+            if (! $model instanceof Model || get_class($model) !== $firstModelType) {
+                throw new InvalidArgumentException(
+                    'Supplied models must implement' . Model::class . ' and belong to the same type'
+                );
+            }
+        }
     }
 }

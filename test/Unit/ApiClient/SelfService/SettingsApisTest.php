@@ -7,6 +7,12 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
+/**
+ * Class SettingsApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService
+ * @covers \SupportPal\ApiClient\ApiClient\SelfService\SettingsApis
+ * @covers \SupportPal\ApiClient\ApiClient
+ */
 class SettingsApisTest extends ApiClientTest
 {
     /**

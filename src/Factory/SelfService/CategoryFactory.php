@@ -5,6 +5,10 @@ namespace SupportPal\ApiClient\Factory\SelfService;
 use SupportPal\ApiClient\Factory\BaseModelFactory;
 use SupportPal\ApiClient\Model\SelfService\Category;
 
+/**
+ * Class CategoryFactory
+ * @package SupportPal\ApiClient\Factory\SelfService
+ */
 class CategoryFactory extends BaseModelFactory
 {
     /**

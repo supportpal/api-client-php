@@ -6,6 +6,12 @@ use SupportPal\ApiClient\Model\SelfService\Tag;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
+/**
+ * Class TagApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
+ * @covers SupportPal\ApiClient\Api\SelfService\TagApis
+ * @covers \SupportPal\ApiClient\Api
+ */
 class TagApisTest extends ApiTest
 {
     public function testGetComments(): void

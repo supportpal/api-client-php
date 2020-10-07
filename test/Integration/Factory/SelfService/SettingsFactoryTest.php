@@ -3,25 +3,19 @@
 namespace SupportPal\ApiClient\Tests\Integration\Factory\SelfService;
 
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Factory\SelfService\TypeFactory;
-use SupportPal\ApiClient\Model\SelfService\Type;
-use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
+use SupportPal\ApiClient\Factory\SelfService\SettingsFactory;
+use SupportPal\ApiClient\Model\SelfService\Settings;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
 
-/**
- * Class ArticleTypeFactoryTest
- * @package SupportPal\ApiClient\Tests\Integration\Factory
- */
-class ArticleTypeFactoryTest extends BaseModelFactoryTestCase
+class SettingsFactoryTest extends BaseModelFactoryTestCase
 {
-    const ARTICLE_TYPE_DATA = TypeData::ARTICLE_TYPE_DATA;
-
     /**
      * @inheritDoc
      */
     protected function getRequiredFields(): array
     {
-        return Type::REQUIRED_FIELDS;
+        return Settings::REQUIRED_FIELDS;
     }
 
     /**
@@ -29,7 +23,7 @@ class ArticleTypeFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return self::ARTICLE_TYPE_DATA;
+        return SettingsData::SETTINGS_DATA;
     }
 
     /**
@@ -37,7 +31,7 @@ class ArticleTypeFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModel(): string
     {
-        return Type::class;
+        return Settings::class;
     }
 
     /**
@@ -46,7 +40,7 @@ class ArticleTypeFactoryTest extends BaseModelFactoryTestCase
     protected function getModelFactory(): ModelFactory
     {
         /** @var ModelFactory $modelFactory */
-        $modelFactory = $this->getContainer()->get(TypeFactory::class);
+        $modelFactory = $this->getContainer()->get(SettingsFactory::class);
 
         return $modelFactory;
     }

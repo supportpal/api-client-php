@@ -7,7 +7,13 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
-class DepartmentApis extends ApiClientTest
+/**
+ * Class DepartmentApis
+ * @package SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket
+ * @covers \SupportPal\ApiClient\ApiClient\Ticket\DepartmentApis
+ * @covers \SupportPal\ApiClient\ApiClient
+ */
+class DepartmentApisTest extends ApiClientTest
 {
     /**
      * @var array<mixed>

@@ -7,6 +7,11 @@ use SupportPal\ApiClient\Model\Ticket\ChannelSettings;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
+/**
+ * Class ChannelSettingsTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
+ * @covers \SupportPal\ApiClient\Model\Ticket\ChannelSettings
+ */
 class ChannelSettingsTest extends BaseModelTestCase
 {
     /**

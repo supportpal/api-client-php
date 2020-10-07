@@ -7,6 +7,11 @@ use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
+/**
+ * This class handles the conversion of SupportPal Models to a <key, value> array
+ * Class ModelToArrayConverter
+ * @package SupportPal\ApiClient\Converter
+ */
 class ModelToArrayConverter
 {
     /**

@@ -1,25 +1,21 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Integration\Factory\Core;
+namespace SupportPal\ApiClient\Tests\Integration\Factory\SelfService;
 
-use SupportPal\ApiClient\Factory\Core\UserFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Model\Core\User;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
+use SupportPal\ApiClient\Factory\SelfService\CategoryFactory;
+use SupportPal\ApiClient\Model\SelfService\Category;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
 
-/**
- * Class UserFactoryTest
- * @package SupportPal\ApiClient\Tests\Integration\Factory
- */
-class UserFactoryTest extends BaseModelFactoryTestCase
+class CategoryFactoryTest extends BaseModelFactoryTestCase
 {
     /**
      * @inheritDoc
      */
     protected function getRequiredFields(): array
     {
-        return User::REQUIRED_FIELDS;
+        return Category::REQUIRED_FIELDS;
     }
 
     /**
@@ -27,7 +23,7 @@ class UserFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return UserData::USER_DATA;
+        return CategoryData::CATEGORY_DATA;
     }
 
     /**
@@ -35,7 +31,7 @@ class UserFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModel(): string
     {
-        return User::class;
+        return Category::class;
     }
 
     /**
@@ -44,7 +40,7 @@ class UserFactoryTest extends BaseModelFactoryTestCase
     protected function getModelFactory(): ModelFactory
     {
         /** @var ModelFactory $modelFactory */
-        $modelFactory = $this->getContainer()->get(UserFactory::class);
+        $modelFactory = $this->getContainer()->get(CategoryFactory::class);
 
         return $modelFactory;
     }

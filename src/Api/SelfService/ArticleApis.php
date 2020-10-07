@@ -8,6 +8,10 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Article;
 
+/**
+ * Trait ArticleApis, includes all related ApiCalls pre and post processing to Articles
+ * @package SupportPal\ApiClient\Api\SelfService
+ */
 trait ArticleApis
 {
     use ApiAware;
