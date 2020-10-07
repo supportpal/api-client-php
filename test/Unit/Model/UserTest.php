@@ -2,9 +2,9 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model;
 
+use SupportPal\ApiClient\Model\Core\User;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Model\User;
-use SupportPal\ApiClient\Tests\DataFixtures\UserData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
 
 /**
  * Class UserTest

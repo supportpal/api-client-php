@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Tests\DataFixtures\ArticleData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 class ArticleApisTest extends ApiClientTest

@@ -1,11 +1,12 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Integration\Factory;
+namespace SupportPal\ApiClient\Tests\Integration\Factory\Core;
 
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Factory\UserFactory;
-use SupportPal\ApiClient\Model\User;
-use SupportPal\ApiClient\Tests\DataFixtures\UserData;
+use SupportPal\ApiClient\Factory\Core\UserFactory;
+use SupportPal\ApiClient\Model\Core\User;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
+use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
 
 /**
  * Class UserFactoryTest

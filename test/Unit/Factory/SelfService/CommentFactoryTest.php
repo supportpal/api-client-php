@@ -6,7 +6,7 @@ use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Factory\SelfService\CommentFactory;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\SelfService\Comment;
-use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
 
 /**

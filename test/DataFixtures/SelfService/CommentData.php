@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\DataFixtures;
+namespace SupportPal\ApiClient\Tests\DataFixtures\SelfService;
 
+use SupportPal\ApiClient\Model\Core\User;
 use SupportPal\ApiClient\Model\SelfService\Article;
 use SupportPal\ApiClient\Model\SelfService\Type;
-use SupportPal\ApiClient\Model\User;
-use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
 
 final class CommentData
 {

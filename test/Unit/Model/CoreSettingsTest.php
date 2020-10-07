@@ -2,9 +2,9 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model;
 
-use SupportPal\ApiClient\Model\CoreSettings;
+use SupportPal\ApiClient\Model\Core\CoreSettings;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Tests\DataFixtures\CoreSettingsData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 
 /**
  * Class CoreSettingsTest

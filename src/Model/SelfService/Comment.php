@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use SupportPal\ApiClient\Model\User;
+use SupportPal\ApiClient\Model\Core\User;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**

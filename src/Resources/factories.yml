@@ -18,7 +18,7 @@ services:
         arguments:
             $formatType: '%contentType%'
 
-    SupportPal\ApiClient\Factory\CoreSettingsFactory:
+    SupportPal\ApiClient\Factory\Core\CoreSettingsFactory:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 
@@ -30,7 +30,7 @@ services:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 
-    SupportPal\ApiClient\Factory\UserFactory:
+    SupportPal\ApiClient\Factory\Core\UserFactory:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 

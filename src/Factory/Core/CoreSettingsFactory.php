@@ -1,8 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Factory;
+namespace SupportPal\ApiClient\Factory\Core;
 
-use SupportPal\ApiClient\Model\CoreSettings;
+use SupportPal\ApiClient\Factory\BaseModelFactory;
+use SupportPal\ApiClient\Model\Core\CoreSettings;
 
 /**
  * Class CoreSettingsFactory

@@ -1,7 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Model;
+namespace SupportPal\ApiClient\Model\Core;
 
+use SupportPal\ApiClient\Model\BaseModel;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
@@ -9,7 +10,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * Class self
  * @package SupportPal\ApiClient\Model
  */
-class CoreSettings extends BaseModel implements Model
+class CoreSettings extends BaseModel
 {
     /**
      * @var string

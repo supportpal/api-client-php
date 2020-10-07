@@ -41,7 +41,7 @@ services:
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
-    SupportPal\ApiClient\Factory\UserFactory:
+    SupportPal\ApiClient\Factory\Core\UserFactory:
         public: true
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
@@ -71,12 +71,17 @@ services:
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
-    SupportPal\ApiClient\Factory\CoreSettingsFactory:
+    SupportPal\ApiClient\Factory\Core\CoreSettingsFactory:
         public: true
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
     SupportPal\ApiClient\Factory\Ticket\SettingsFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+
+    SupportPal\ApiClient\Factory\Ticket\ChannelSettingsFactory:
         public: true
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'

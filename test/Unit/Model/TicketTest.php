@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Unit\Model;
 
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Model\Ticket;
+use SupportPal\ApiClient\Model\Ticket\Ticket;
 
 /**
  * Class TicketTest

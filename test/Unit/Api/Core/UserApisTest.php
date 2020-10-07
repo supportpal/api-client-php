@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Unit\Api;
+namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
 
-use SupportPal\ApiClient\Model\User;
-use SupportPal\ApiClient\Tests\DataFixtures\UserData;
+use SupportPal\ApiClient\Model\Core\User;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
 /**

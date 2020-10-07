@@ -1,11 +1,12 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Api;
+namespace SupportPal\ApiClient\Api\Core;
 
+use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
-use SupportPal\ApiClient\Model\User;
+use SupportPal\ApiClient\Model\Core\User;
 
 trait UserApis
 {

@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
-use SupportPal\ApiClient\Tests\DataFixtures\UserData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
 use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 
 /**
