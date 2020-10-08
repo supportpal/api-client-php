@@ -14,7 +14,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class PriorityApisTest extends ApiTest
 {
-    public function testGetTicketsPriority(): void
+    public function testGetTicketsPriorities(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
             PriorityData::GET_PRIORITIES_SUCCESSFUL_RESPONSE,
@@ -28,6 +28,23 @@ class PriorityApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketsPriority = $this->api->getTicketPriorities();
+        $this->assertSame($expectedOutput, $ticketsPriority);
+    }
+
+    public function testGetTicketsPriority(): void
+    {
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            PriorityData::GET_PRIORITY_SUCCESSFUL_RESPONSE,
+            Priority::class
+        );
+
+        $this
+            ->apiClient
+            ->getTicketPriority(1)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $ticketsPriority = $this->api->getTicketPriority(1);
         $this->assertSame($expectedOutput, $ticketsPriority);
     }
 }

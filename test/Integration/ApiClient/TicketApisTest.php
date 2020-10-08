@@ -21,6 +21,7 @@ class TicketApisTest extends ApiComponentTest
         'getChannelSettings' => [ChannelSettingsData::GET_SUCCESSFUL_RESPONSE_DATA, ['web']],
         'getTicketCustomFields' => [CustomFieldData::GET_CUSTOMFIELDS_SUCCESSFUL_RESPONSE_DATA, []],
         'getTicketPriorities' => [PriorityData::GET_PRIORITIES_SUCCESSFUL_RESPONSE, []],
+        'getTicketPriority' => [PriorityData::GET_PRIORITY_SUCCESSFUL_RESPONSE, [1]],
     ];
 
     /**

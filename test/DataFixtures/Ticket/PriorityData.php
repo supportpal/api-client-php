@@ -22,4 +22,10 @@ class PriorityData
         'count' => 1,
         'data' => [self::PRIORITY_DATA]
     ];
+
+    const GET_PRIORITY_SUCCESSFUL_RESPONSE = [
+        'status' => 'success',
+        'message' => null,
+        'data' => self::PRIORITY_DATA
+    ];
 }

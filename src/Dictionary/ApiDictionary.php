@@ -47,5 +47,5 @@ final class ApiDictionary
 
     public const TICKET_CUSTOMFIELD = 'ticket/customfield';
 
-    const TICKET_PRIORITY = 'ticket/priority';
+    public const TICKET_PRIORITY = 'ticket/priority';
 }

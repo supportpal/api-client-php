@@ -28,6 +28,18 @@ trait PriorityApis
     }
 
     /**
+     * @param int $priorityId
+     * @return Priority
+     * @throws HttpResponseException
+     */
+    public function getTicketPriority(int $priorityId): Priority
+    {
+        $response = $this->getApiClient()->getTicketPriority($priorityId);
+
+        return $this->createPriority($this->decodeBody($response)['data']);
+    }
+
+    /**
      * @param array<mixed> $data
      * @return Priority
      */

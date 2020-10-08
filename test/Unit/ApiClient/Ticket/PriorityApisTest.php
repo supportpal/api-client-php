@@ -20,6 +20,16 @@ class PriorityApisTest extends ApiClientTest
      */
     private $getPrioritiesSuccessfulResponse = PriorityData::GET_PRIORITIES_SUCCESSFUL_RESPONSE;
 
+    /**
+     * @var int
+     */
+    private $testPriorityId = 1;
+
+    /**
+     * @var array<mixed>
+     */
+    private $getPrioritySuccessfulResponse = PriorityData::GET_PRIORITY_SUCCESSFUL_RESPONSE;
+
     public function testGetPriorities(): void
     {
         $queryParams = [];
@@ -54,5 +64,55 @@ class PriorityApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_PRIORITY, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getTicketPriorities($queryParams);
+    }
+
+    public function testGetPriority(): void
+    {
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::TICKET_PRIORITY . '/' . $this->testPriorityId,
+            [],
+            []
+        );
+
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode($this->getPrioritySuccessfulResponse),
+            $request
+        );
+
+        $getPriorityTypeSuccessfulResponse = $this->apiClient->getTicketPriority($this->testPriorityId);
+        self::assertSame($response->reveal(), $getPriorityTypeSuccessfulResponse);
+    }
+
+    public function testHttpExceptionGetPriority(): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::TICKET_PRIORITY . '/' . $this->testPriorityId,
+            [],
+            []
+        );
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->getTicketPriority($this->testPriorityId);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetPriority(int $statusCode, string $responseBody): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::TICKET_PRIORITY . '/' . $this->testPriorityId,
+            [],
+            []
+        );
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->getTicketPriority($this->testPriorityId);
     }
 }

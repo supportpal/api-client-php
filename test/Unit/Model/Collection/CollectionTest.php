@@ -88,10 +88,7 @@ class CollectionTest extends TestCase
     public function testCreateWithInvalidTypes(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        /**
-         * bypass phpstan and allow test
-         * @var Model[] $models
-         */
+        /** @var Model[] $models */
         $models = [new \stdClass, new \stdClass];
         new Collection(2, $models);
     }
