@@ -212,6 +212,13 @@ class DepartmentData
         ]
     ];
 
+    const GET_DEPARTMENT_SUCCESSFUL_RESPONSE = [
+        'status' => 'success',
+        'message' => null,
+        'count' => 2,
+        'data' => self::DEPARTMENT_DATA
+    ];
+
     /**
      * @return array<mixed>
      * @throws InvalidArgumentException

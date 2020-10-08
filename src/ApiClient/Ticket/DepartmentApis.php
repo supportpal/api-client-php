@@ -24,4 +24,14 @@ trait DepartmentApis
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_DEPARTMENT, $queryParameters);
     }
+
+    /**
+     * @param int $departmentId
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function getDepartment(int $departmentId): ResponseInterface
+    {
+        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_DEPARTMENT . '/' .  $departmentId, []);
+    }
 }

@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class DepartmentApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers SupportPal\ApiClient\Api\Ticket\DepartmentApis
+ * @covers \SupportPal\ApiClient\Api\Ticket\DepartmentApis
  * @covers \SupportPal\ApiClient\Api
  */
 class DepartmentApisTest extends ApiTest
@@ -27,7 +27,7 @@ class DepartmentApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $articles = $this->api->getDepartments([]);
-        self::assertSame($expectedOutput, $articles);
+        $departments = $this->api->getDepartments([]);
+        self::assertSame($expectedOutput, $departments);
     }
 }
