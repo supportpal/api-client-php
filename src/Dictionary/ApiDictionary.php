@@ -48,4 +48,6 @@ final class ApiDictionary
     public const TICKET_CUSTOMFIELD = 'ticket/customfield';
 
     public const TICKET_PRIORITY = 'ticket/priority';
+
+    public const TICKET_STATUS = 'ticket/status';
 }

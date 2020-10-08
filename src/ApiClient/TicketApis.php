@@ -7,6 +7,7 @@ use SupportPal\ApiClient\ApiClient\Ticket\CustomFieldApis;
 use SupportPal\ApiClient\ApiClient\Ticket\DepartmentApis;
 use SupportPal\ApiClient\ApiClient\Ticket\PriorityApis;
 use SupportPal\ApiClient\ApiClient\Ticket\SettingsApis;
+use SupportPal\ApiClient\ApiClient\Ticket\StatusApis;
 
 /**
  *  Contains all ApiClient calls to Tickets module
@@ -20,4 +21,5 @@ trait TicketApis
     use DepartmentApis;
     use PriorityApis;
     use SettingsApis;
+    use StatusApis;
 }
