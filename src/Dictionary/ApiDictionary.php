@@ -46,4 +46,6 @@ final class ApiDictionary
     public const TICKET_CHANNEL_SETTINGS = 'ticket/channel/%s/settings';
 
     public const TICKET_CUSTOMFIELD = 'ticket/customfield';
+
+    public const TICKET_PRIORITY = 'ticket/priority';
 }

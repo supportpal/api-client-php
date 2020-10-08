@@ -4,6 +4,8 @@ namespace SupportPal\ApiClient\Tests\Unit\Model\Collection;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\Model;
+use SupportPal\ApiClient\Model\SelfService\Article;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\TestCase;
@@ -75,6 +77,20 @@ class CollectionTest extends TestCase
         $this->assertNotSame($models, $mappedCollection->getModels());
         $this->assertSame($count, $mappedCollection->getCount());
         $this->assertSame(0, $mappedCollection->getModelsCount());
+    }
+
+    public function testCreateWithDifferentModels(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new Collection(2, [new Comment, new Article]);
+    }
+
+    public function testCreateWithInvalidTypes(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        /** @var Model[] $models */
+        $models = [new \stdClass, new \stdClass];
+        new Collection(2, $models);
     }
 
     /**

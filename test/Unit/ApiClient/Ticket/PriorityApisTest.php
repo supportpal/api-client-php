@@ -4,52 +4,52 @@ namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 /**
- * Class DepartmentApis
+ * Class PriorityApisTest
  * @package SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket
- * @covers \SupportPal\ApiClient\ApiClient\Ticket\DepartmentApis
+ * @covers \SupportPal\ApiClient\ApiClient\Ticket\PriorityApis
  * @covers \SupportPal\ApiClient\ApiClient
  */
-class DepartmentApisTest extends ApiClientTest
+class PriorityApisTest extends ApiClientTest
 {
     /**
      * @var array<mixed>
      */
-    private $getDepartmentsSuccessfulResponse = DepartmentData::GET_DEPARTMENTS_SUCCESSFUL_RESPONSE;
+    private $getPrioritiesSuccessfulResponse = PriorityData::GET_PRIORITIES_SUCCESSFUL_RESPONSE;
 
     /**
      * @var int
      */
-    private $testDepartmentId = 5;
+    private $testPriorityId = 1;
 
     /**
      * @var array<mixed>
      */
-    private $getDepartmentSuccessfulResponse = DepartmentData::GET_DEPARTMENT_SUCCESSFUL_RESPONSE;
+    private $getPrioritySuccessfulResponse = PriorityData::GET_PRIORITY_SUCCESSFUL_RESPONSE;
 
-    public function testGetDepartments(): void
+    public function testGetPriorities(): void
     {
         $queryParams = [];
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_DEPARTMENT, $queryParams, []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_PRIORITY, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getDepartmentsSuccessfulResponse),
+            (string) json_encode($this->getPrioritiesSuccessfulResponse),
             $request
         );
-        $getTypeSuccessfulResponse = $this->apiClient->getDepartments($queryParams);
+        $getTypeSuccessfulResponse = $this->apiClient->getTicketPriorities($queryParams);
         self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
     }
 
-    public function testHttpExceptionGetDepartments(): void
+    public function testHttpExceptionGetPriorities(): void
     {
         $queryParams = [];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_DEPARTMENT, $queryParams, []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_PRIORITY, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getDepartments($queryParams);
+        $this->apiClient->getTicketPriorities($queryParams);
     }
 
     /**
@@ -57,45 +57,45 @@ class DepartmentApisTest extends ApiClientTest
      * @param string $responseBody
      * @dataProvider provideUnsuccessfulTestCases
      */
-    public function testUnsuccessfulGetDepartments(int $statusCode, string $responseBody): void
+    public function testUnsuccessfulGetPriorities(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
         $this->expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_DEPARTMENT, $queryParams, []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_PRIORITY, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getDepartments($queryParams);
+        $this->apiClient->getTicketPriorities($queryParams);
     }
 
-    public function testGetDepartment(): void
+    public function testGetPriority(): void
     {
         $request = $this->requestCommonExpectations(
             'GET',
-            ApiDictionary::TICKET_DEPARTMENT . '/' . $this->testDepartmentId,
+            ApiDictionary::TICKET_PRIORITY . '/' . $this->testPriorityId,
             [],
             []
         );
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getDepartmentSuccessfulResponse),
+            (string) json_encode($this->getPrioritySuccessfulResponse),
             $request
         );
 
-        $getDepartmentTypeSuccessfulResponse = $this->apiClient->getDepartment($this->testDepartmentId);
-        self::assertSame($response->reveal(), $getDepartmentTypeSuccessfulResponse);
+        $getPriorityTypeSuccessfulResponse = $this->apiClient->getTicketPriority($this->testPriorityId);
+        self::assertSame($response->reveal(), $getPriorityTypeSuccessfulResponse);
     }
 
-    public function testHttpExceptionGetDepartment(): void
+    public function testHttpExceptionGetPriority(): void
     {
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
-            ApiDictionary::TICKET_DEPARTMENT . '/' . $this->testDepartmentId,
+            ApiDictionary::TICKET_PRIORITY . '/' . $this->testPriorityId,
             [],
             []
         );
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getDepartment($this->testDepartmentId);
+        $this->apiClient->getTicketPriority($this->testPriorityId);
     }
 
     /**
@@ -103,16 +103,16 @@ class DepartmentApisTest extends ApiClientTest
      * @param string $responseBody
      * @dataProvider provideUnsuccessfulTestCases
      */
-    public function testUnsuccessfulGetDepartment(int $statusCode, string $responseBody): void
+    public function testUnsuccessfulGetPriority(int $statusCode, string $responseBody): void
     {
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
-            ApiDictionary::TICKET_DEPARTMENT . '/' . $this->testDepartmentId,
+            ApiDictionary::TICKET_PRIORITY . '/' . $this->testPriorityId,
             [],
             []
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getDepartment($this->testDepartmentId);
+        $this->apiClient->getTicketPriority($this->testPriorityId);
     }
 }

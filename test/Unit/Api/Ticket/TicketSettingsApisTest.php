@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class TicketApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers SupportPal\ApiClient\Api\Ticket\SettingsApis
+ * @covers \SupportPal\ApiClient\Api\Ticket\SettingsApis
  * @covers \SupportPal\ApiClient\Api
  */
 class TicketSettingsApisTest extends ApiTest

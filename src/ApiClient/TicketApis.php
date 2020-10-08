@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\ApiClient\Ticket\ChannelSettingsApis;
 use SupportPal\ApiClient\ApiClient\Ticket\CustomFieldApis;
 use SupportPal\ApiClient\ApiClient\Ticket\DepartmentApis;
+use SupportPal\ApiClient\ApiClient\Ticket\PriorityApis;
 use SupportPal\ApiClient\ApiClient\Ticket\SettingsApis;
 
 /**
@@ -17,5 +18,6 @@ trait TicketApis
     use ChannelSettingsApis;
     use CustomFieldApis;
     use DepartmentApis;
+    use PriorityApis;
     use SettingsApis;
 }
