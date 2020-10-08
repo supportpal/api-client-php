@@ -2,11 +2,18 @@
 
 namespace SupportPal\ApiClient\Model\Collection;
 
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * Wrap collection of Model values
+ * Class Collection
+ * @package SupportPal\ApiClient\Model\Collection
+ */
 class Collection
 {
     /**
+     * Total number of elements returned from API
      * @var int
      */
     private $count;
@@ -17,17 +24,27 @@ class Collection
     private $models;
 
     /**
+     * Total number of models in the collection
+     * @var int
+     */
+    private $modelsCount;
+
+    /**
      * Response constructor.
      * @param int $count
      * @param Model[] $models
+     * @throws InvalidArgumentException
      */
     public function __construct(int $count, array $models)
     {
+        $this->assertSameTypeModelInstances($models);
         $this->count = $count;
         $this->models = $models;
+        $this->modelsCount = count($models);
     }
 
     /**
+     * get total number of all models as returned from the API response in `count` field.
      * @return int
      */
     public function getCount(): int
@@ -44,8 +61,18 @@ class Collection
     }
 
     /**
+     * Actual number of elements in the collection
+     * @return int
+     */
+    public function getModelsCount(): int
+    {
+        return $this->modelsCount;
+    }
+
+    /**
      * @param \Closure $closure
      * @return Collection
+     * @throws InvalidArgumentException
      */
     public function map(\Closure $closure): Collection
     {
@@ -57,11 +84,28 @@ class Collection
     /**
      * @param \Closure $closure
      * @return Collection
+     * @throws InvalidArgumentException
      */
     public function filter(\Closure $closure): Collection
     {
         $value = array_filter($this->getModels(), $closure);
 
-        return new self(count($value), $value);
+        return new self($this->getCount(), $value);
+    }
+
+    /**
+     * @param Model[] $models
+     * @throws InvalidArgumentException
+     */
+    private function assertSameTypeModelInstances(array $models): void
+    {
+        $firstModelType = ! empty($models) && is_object(current($models)) ? get_class(current($models)) : null;
+        foreach ($models as $model) {
+            if (! $model instanceof Model || get_class($model) !== $firstModelType) {
+                throw new InvalidArgumentException(
+                    'Supplied models must implement' . Model::class . ' and belong to the same type'
+                );
+            }
+        }
     }
 }

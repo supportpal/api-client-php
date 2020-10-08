@@ -7,6 +7,12 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
+/**
+ * Class TypeApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService
+ * @covers \SupportPal\ApiClient\ApiClient\SelfService\TypeApis
+ * @covers \SupportPal\ApiClient\ApiClient
+ */
 class TypeApisTest extends ApiClientTest
 {
     /**

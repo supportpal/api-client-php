@@ -6,10 +6,16 @@ use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\SelfService\Comment;
-use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
+/**
+ * Class CommentApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
+ * @covers SupportPal\ApiClient\Api\SelfService\CommentApis
+ * @covers \SupportPal\ApiClient\Api
+ */
 class CommentApisTest extends ApiTest
 {
     /**

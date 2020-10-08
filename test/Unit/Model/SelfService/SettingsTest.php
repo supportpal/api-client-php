@@ -7,6 +7,11 @@ use SupportPal\ApiClient\Model\SelfService\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
+/**
+ * Class SettingsTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model\SelfService
+ * @covers \SupportPal\ApiClient\Model\SelfService\Settings
+ */
 class SettingsTest extends BaseModelTestCase
 {
     protected function getModelData(): array

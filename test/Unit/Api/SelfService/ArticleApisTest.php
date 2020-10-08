@@ -3,9 +3,15 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
 use SupportPal\ApiClient\Model\SelfService\Article;
-use SupportPal\ApiClient\Tests\DataFixtures\ArticleData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
+/**
+ * Class ArticleApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
+ * @covers SupportPal\ApiClient\Api\SelfService\ArticleApis
+ * @covers \SupportPal\ApiClient\Api
+ */
 class ArticleApisTest extends ApiTest
 {
     /**

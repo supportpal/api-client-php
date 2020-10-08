@@ -5,10 +5,10 @@ namespace SupportPal\ApiClient\Tests\Integration\Factory;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
-use SupportPal\ApiClient\Model\CoreSettings;
+use SupportPal\ApiClient\Model\Core\CoreSettings;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
-use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 
 /**
  * Class ModelCollectionFactoryTest

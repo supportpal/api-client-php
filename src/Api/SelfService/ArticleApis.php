@@ -8,6 +8,10 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Article;
 
+/**
+ * Trait ArticleApis, includes all related ApiCalls pre and post processing to Articles
+ * @package SupportPal\ApiClient\Api\SelfService
+ */
 trait ArticleApis
 {
     use ApiAware;
@@ -38,7 +42,7 @@ trait ArticleApis
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createArticle'], $body['data']);
 
-        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
+        return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**
@@ -52,7 +56,7 @@ trait ArticleApis
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createArticle'], $body['data']);
 
-        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
+        return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**

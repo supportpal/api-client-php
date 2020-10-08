@@ -6,6 +6,10 @@ use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\SelfService\Settings;
 
+/**
+ * Trait SettingsApis, includes all related ApiCalls pre and post processing to selfservice settings
+ * @package SupportPal\ApiClient\Api\SelfService
+ */
 trait SettingsApis
 {
     use ApiAware;

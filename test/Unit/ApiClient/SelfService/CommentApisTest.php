@@ -4,9 +4,15 @@ namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
+/**
+ * Class CommentApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService
+ * @covers \SupportPal\ApiClient\ApiClient\SelfService\CommentApis
+ * @covers \SupportPal\ApiClient\ApiClient
+ */
 class CommentApisTest extends ApiClientTest
 {
     /**

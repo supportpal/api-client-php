@@ -7,6 +7,11 @@ use SupportPal\ApiClient\Model\SelfService\Category;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
+/**
+ * Class CategoryTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model\SelfService
+ * @covers \SupportPal\ApiClient\Model\SelfService\Category
+ */
 class CategoryTest extends BaseModelTestCase
 {
     /**

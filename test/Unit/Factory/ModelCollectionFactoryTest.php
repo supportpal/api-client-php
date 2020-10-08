@@ -7,12 +7,12 @@ use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\NotSupportedException;
-use SupportPal\ApiClient\Factory\CoreSettingsFactory;
+use SupportPal\ApiClient\Factory\Core\CoreSettingsFactory;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Factory\SelfService\CommentFactory;
 use SupportPal\ApiClient\Model\BaseModel;
-use SupportPal\ApiClient\Model\CoreSettings;
+use SupportPal\ApiClient\Model\Core\CoreSettings;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 
 /**

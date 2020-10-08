@@ -10,7 +10,9 @@ services:
             $defaultContext:
                 skip_null_values: true
 
-    Symfony\Component\Serializer\Encoder\JsonEncoder: ~
+    Symfony\Component\Serializer\Encoder\DecoderInterface: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+
+    Symfony\Component\Serializer\Encoder\EncoderInterface: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 
     Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter:
         arguments:
@@ -24,13 +26,19 @@ services:
         arguments:
             - '@Doctrine\Common\Annotations\AnnotationReader'
 
-    Doctrine\Common\Annotations\AnnotationReader: ~
+    Symfony\Component\Serializer\SerializerInterface: '@Symfony\Component\Serializer\Serializer'
 
     Symfony\Component\Serializer\Serializer:
         arguments:
             - [ '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer', '@Symfony\Component\Serializer\Normalizer\ArrayDenormalizer' ]
             - [ '@Symfony\Component\Serializer\Encoder\JsonEncoder' ]
 
-    Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor:
+    Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor: ~
 
-    Symfony\Component\Serializer\Normalizer\ArrayDenormalizer:
+    Symfony\Component\Serializer\Normalizer\ArrayDenormalizer: ~
+
+    Doctrine\Common\Annotations\AnnotationReader: ~
+
+    Symfony\Component\Serializer\Encoder\JsonEncoder: ~
+
+

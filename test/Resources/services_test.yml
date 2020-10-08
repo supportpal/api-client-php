@@ -17,22 +17,6 @@ services:
         autowire: true
         public: true
 
-    SupportPal\ApiClient\Factory\SelfService\CommentFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
-
-    SupportPal\ApiClient\Factory\CoreSettingsFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
-
     SupportPal\ApiClient\Factory\RequestFactory:
         public: true
         arguments:
@@ -41,14 +25,12 @@ services:
             $contentType: '%apiContentType%'
             $defaultBodyContent: '%defaultBodyContent%'
             $defaultParameters: '%defaultParameters%'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
             $formatType: '%contentType%'
 
     SupportPal\ApiClient\ApiClient:
         public: true
         arguments:
             $httpClient: '@GuzzleHttp\Client'
-            $decoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
             $formatType: '%contentType%'
 
     Symfony\Component\Serializer\Encoder\JsonEncoder:
@@ -57,42 +39,62 @@ services:
     SupportPal\ApiClient\Factory\SelfService\TypeFactory:
         public: true
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
-    SupportPal\ApiClient\Factory\UserFactory:
+    SupportPal\ApiClient\Factory\User\UserFactory:
         public: true
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
     SupportPal\ApiClient\Factory\SelfService\ArticleFactory:
         public: true
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
     SupportPal\ApiClient\Factory\SelfService\SettingsFactory:
         public: true
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
     SupportPal\ApiClient\Factory\SelfService\CategoryFactory:
         public: true
         tags: [ 'factory.model_factory' ]
-        arguments:
-            $formatType: '%contentType%'
-            $serializer: '@Symfony\Component\Serializer\Serializer'
-            $encoder: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+
+    SupportPal\ApiClient\Factory\Ticket\DepartmentFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+
+    SupportPal\ApiClient\Factory\SelfService\CommentFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+
+    SupportPal\ApiClient\Factory\Core\CoreSettingsFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+
+    SupportPal\ApiClient\Factory\Ticket\SettingsFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+
+    SupportPal\ApiClient\Factory\Ticket\ChannelSettingsFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+
+    SupportPal\ApiClient\Factory\SelfService\TagFactory:
+        public: true
+        tags: [ 'factory.model_factory' ]
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
     SupportPal\ApiClient\Factory\Collection\CollectionFactory:
         public: true
+
+    SupportPal\ApiClient\Converter\ModelToArrayConverter:
+        public: true
+        arguments:
+            $format: '%contentType%'

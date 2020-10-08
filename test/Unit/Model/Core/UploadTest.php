@@ -7,6 +7,11 @@ use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\UploadData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
+/**
+ * Class UploadTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model\Core
+ * @covers \SupportPal\ApiClient\Model\Core\Upload
+ */
 class UploadTest extends BaseModelTestCase
 {
     protected function getModelData(): array

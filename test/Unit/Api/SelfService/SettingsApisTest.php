@@ -6,6 +6,12 @@ use SupportPal\ApiClient\Model\SelfService\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
+/**
+ * Class SettingsApisTest
+ * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
+ * @covers SupportPal\ApiClient\Api\SelfService\SettingsApis
+ * @covers \SupportPal\ApiClient\Api
+ */
 class SettingsApisTest extends ApiTest
 {
     public function testGetSettings(): void

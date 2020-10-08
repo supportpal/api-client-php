@@ -8,6 +8,10 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Type;
 
+/**
+ * Trait TypeApis, includes all related ApiCalls pre and post processing to selfservice types
+ * @package SupportPal\ApiClient\Api\SelfService
+ */
 trait TypeApis
 {
     use ApiAware;
@@ -24,7 +28,7 @@ trait TypeApis
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createType'], $body['data']);
 
-        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
+        return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**

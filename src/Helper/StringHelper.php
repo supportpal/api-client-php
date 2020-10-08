@@ -2,6 +2,11 @@
 
 namespace SupportPal\ApiClient\Helper;
 
+/**
+ * Includes various helper functions that processes strings
+ * Trait StringHelper
+ * @package SupportPal\ApiClient\Helper
+ */
 trait StringHelper
 {
     /**

@@ -6,6 +6,11 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * This class handles the creation of Collection datatype instance
+ * Class CollectionFactory
+ * @package SupportPal\ApiClient\Factory\Collection
+ */
 class CollectionFactory
 {
     /**
@@ -16,22 +21,6 @@ class CollectionFactory
      */
     public function create(int $count, array $models): Collection
     {
-        $this->assertSameTypeModelInstances($models);
-
         return new Collection($count, $models);
-    }
-
-    /**
-     * @param Model[] $models
-     * @throws InvalidArgumentException
-     */
-    private function assertSameTypeModelInstances(array $models): void
-    {
-        $firstModelType = ! empty($models) && is_object(current($models)) ? get_class(current($models)) : null;
-        foreach ($models as $model) {
-            if (! $model instanceof Model || get_class($model) !== $firstModelType) {
-                throw new InvalidArgumentException;
-            }
-        }
     }
 }

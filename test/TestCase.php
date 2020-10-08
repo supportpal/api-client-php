@@ -30,7 +30,14 @@ class TestCase extends \PHPUnit\Framework\TestCase
              */
             if (is_array($attributeValue) && ! empty($attributeValue) && is_object(current($attributeValue))) {
                 for ($i = 0; $i < count($attributeValue); ++$i) {
-                    self::assertArrayEqualsObjectFields($attributeValue[$i], $value[$i]);
+                    /**
+                     * handle array of objects vs nested arrays
+                     */
+                    if (! is_object($value[$i])) {
+                        self::assertArrayEqualsObjectFields($attributeValue[$i], $value[$i]);
+                    } else {
+                        self::assertSame($attributeValue[$i], $value[$i]);
+                    }
                 }
 
                 continue;

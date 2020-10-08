@@ -5,9 +5,14 @@ namespace SupportPal\ApiClient\Tests\Unit\Model\Collection;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Comment;
-use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\TestCase;
 
+/**
+ * Class CollectionTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model\Collection
+ * @covers \SupportPal\ApiClient\Model\Collection\Collection
+ */
 class CollectionTest extends TestCase
 {
     public function testCreateCollection(): void
@@ -18,6 +23,18 @@ class CollectionTest extends TestCase
 
         $this->assertSame($models, $collection->getModels());
         $this->assertSame($count, $collection->getCount());
+        $this->assertSame($count, $collection->getModelsCount());
+    }
+
+    public function testTotalModelsNotMatchingModelsCount(): void
+    {
+        $models = $this->getModelsTestData();
+        $count = count($models);
+        $collection = new Collection($count + 10, $models);
+
+        $this->assertSame($models, $collection->getModels());
+        $this->assertSame($count, $collection->getModelsCount());
+        $this->assertSame($count + 10, $collection->getCount());
     }
 
     public function testCollectionMap(): void
@@ -34,13 +51,15 @@ class CollectionTest extends TestCase
         $this->assertNotSame($collection, $mappedCollection);
         $this->assertSame($models, $mappedCollection->getModels());
         $this->assertSame($count, $mappedCollection->getCount());
+        $this->assertSame($count, $mappedCollection->getModelsCount());
+
         /** @var Comment $model */
         foreach ($mappedCollection->getModels() as $model) {
             $this->assertSame($name, $model->getName());
         }
     }
 
-    public function testCollectioFilter(): void
+    public function testCollectionFilter(): void
     {
         $models = $this->getModelsTestData();
         $count = count($models);
@@ -54,8 +73,8 @@ class CollectionTest extends TestCase
 
         $this->assertNotSame($collection, $mappedCollection);
         $this->assertNotSame($models, $mappedCollection->getModels());
-        $this->assertNotSame($count, $mappedCollection->getCount());
-        $this->assertSame(0, $mappedCollection->getCount());
+        $this->assertSame($count, $mappedCollection->getCount());
+        $this->assertSame(0, $mappedCollection->getModelsCount());
     }
 
     /**

@@ -5,8 +5,12 @@ namespace SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
-use SupportPal\ApiClient\Model\User;
+use SupportPal\ApiClient\Model\User\User;
 
+/**
+ * Trait UserApis, includes all related ApiCalls pre and post processing related to Users
+ * @package SupportPal\ApiClient\Api\Core
+ */
 trait UserApis
 {
     use ApiAware;
@@ -23,7 +27,7 @@ trait UserApis
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createUser'], $body['data']);
 
-        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
+        return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**

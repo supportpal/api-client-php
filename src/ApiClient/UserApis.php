@@ -6,6 +6,10 @@ use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 
+/**
+ * Trait UserApis, includes all api calls related to user apis
+ * @package SupportPal\ApiClient\ApiClient\Core
+ */
 trait UserApis
 {
     use ApiClientAware;

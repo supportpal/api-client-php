@@ -3,9 +3,9 @@
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
 use GuzzleHttp\Psr7\Response;
-use SupportPal\ApiClient\Tests\DataFixtures\ArticleData;
-use SupportPal\ApiClient\Tests\DataFixtures\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;

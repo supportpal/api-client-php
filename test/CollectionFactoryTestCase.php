@@ -29,6 +29,16 @@ abstract class CollectionFactoryTestCase extends ContainerAwareBaseTestCase
         $input = [new Comment, new Comment, new Comment];
         $collection = $this->collectionFactory->create(count($input), $input);
         $this->assertSame(count($input), $collection->getCount());
+        $this->assertSame(count($input), $collection->getModelsCount());
+        $this->assertSame($input, $collection->getModels());
+    }
+
+    public function testTotalModelsNotMatchingModelsCount(): void
+    {
+        $input = [new Comment, new Comment, new Comment];
+        $collection = $this->collectionFactory->create(count($input) + 10, $input);
+        $this->assertSame(count($input) + 10, $collection->getCount());
+        $this->assertSame(count($input), $collection->getModelsCount());
         $this->assertSame($input, $collection->getModels());
     }
 

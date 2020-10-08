@@ -8,6 +8,10 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Category;
 
+/**
+ * Trait CategoryApis, includes all related ApiCalls pre and post processing to categories
+ * @package SupportPal\ApiClient\Api\SelfService
+ */
 trait CategoryApis
 {
     use ApiAware;
@@ -36,7 +40,7 @@ trait CategoryApis
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createCategory'], $body['data']);
 
-        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
+        return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**

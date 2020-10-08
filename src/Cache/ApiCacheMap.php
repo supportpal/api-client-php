@@ -4,7 +4,12 @@ namespace SupportPal\ApiClient\Cache;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 
-class ApiCacheMap
+/**
+ * This class includes the list of cachable apis related to their behaviour
+ * Class ApiCacheMap
+ * @package SupportPal\ApiClient\Cache
+ */
+final class ApiCacheMap
 {
     private const DEFAULT_CACHE_TTL = 600;
 
