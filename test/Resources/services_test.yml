@@ -91,6 +91,11 @@ services:
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
+    SupportPal\ApiClient\Factory\Ticket\CustomFieldFactory:
+        public: true
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        tags: [ 'factory.model_factory' ]
+
     SupportPal\ApiClient\Factory\Collection\CollectionFactory:
         public: true
 

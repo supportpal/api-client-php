@@ -128,6 +128,12 @@ class Department extends BaseModel
     private $operators;
 
     /**
+     * @var array<mixed>|null
+     * @SerializedName("pivot")
+     */
+    private $pivot;
+
+    /**
      * @return int
      */
     public function getDisableUserEmailReplies(): int
@@ -503,6 +509,25 @@ class Department extends BaseModel
     public function setOperators(?array $operators): self
     {
         $this->operators = $operators;
+
+        return $this;
+    }
+
+    /**
+     * @return array<mixed>|null
+     */
+    public function getPivot(): ?array
+    {
+        return $this->pivot;
+    }
+
+    /**
+     * @param array<mixed>|null $pivot
+     * @return self
+     */
+    public function setPivot(?array $pivot): self
+    {
+        $this->pivot = $pivot;
 
         return $this;
     }

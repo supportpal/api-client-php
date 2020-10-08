@@ -227,6 +227,12 @@ class Brand extends BaseModel
     private $updatedAt;
 
     /**
+     * @var array<mixed>|null
+     * @SerializedName("pivot")
+     */
+    private $pivot;
+
+    /**
      * @return string|null
      */
     public function getOperatorTemplate(): ?string
@@ -849,6 +855,25 @@ class Brand extends BaseModel
     public function setBrandColour(?string $brandColour): Brand
     {
         $this->brandColour = $brandColour;
+
+        return $this;
+    }
+
+    /**
+     * @return array<mixed>|null
+     */
+    public function getPivot(): ?array
+    {
+        return $this->pivot;
+    }
+
+    /**
+     * @param array<mixed>|null $pivot
+     * @return self
+     */
+    public function setPivot(?array $pivot): self
+    {
+        $this->pivot = $pivot;
 
         return $this;
     }

@@ -32,6 +32,18 @@ trait DepartmentApis
     }
 
     /**
+     * @param int $departmentId
+     * @return Department
+     * @throws HttpResponseException
+     */
+    public function getDepartment(int $departmentId): Department
+    {
+        $response = $this->getApiClient()->getDepartment($departmentId);
+
+        return $this->createDepartment($this->decodeBody($response)['data']);
+    }
+
+    /**
      * @param array<mixed> $data
      * @return Department
      */

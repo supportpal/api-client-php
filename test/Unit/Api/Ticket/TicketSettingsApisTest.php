@@ -27,7 +27,7 @@ class TicketSettingsApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $coreSettings = $this->api->getTicketSettings();
-        $this->assertSame($expectedOutput, $coreSettings);
+        $ticketSettings = $this->api->getTicketSettings();
+        $this->assertSame($expectedOutput, $ticketSettings);
     }
 }

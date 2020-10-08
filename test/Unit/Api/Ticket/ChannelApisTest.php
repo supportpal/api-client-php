@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class ChannelApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers SupportPal\ApiClient\Api\Ticket\ChannelSettingsApis
+ * @covers \SupportPal\ApiClient\Api\Ticket\ChannelSettingsApis
  * @covers \SupportPal\ApiClient\Api
  */
 class ChannelApisTest extends ApiTest
@@ -27,7 +27,7 @@ class ChannelApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $coreSettings = $this->api->getChannelSettings('web');
-        $this->assertSame($expectedOutput, $coreSettings);
+        $channelSettings = $this->api->getChannelSettings('web');
+        $this->assertSame($expectedOutput, $channelSettings);
     }
 }

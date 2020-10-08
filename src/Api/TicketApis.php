@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api;
 
 use SupportPal\ApiClient\Api\Ticket\ChannelSettingsApis;
+use SupportPal\ApiClient\Api\Ticket\CustomFieldApis;
 use SupportPal\ApiClient\Api\Ticket\DepartmentApis;
 use SupportPal\ApiClient\Api\Ticket\SettingsApis;
 
@@ -12,7 +13,8 @@ use SupportPal\ApiClient\Api\Ticket\SettingsApis;
  */
 trait TicketApis
 {
+    use ChannelSettingsApis;
+    use CustomFieldApis;
     use DepartmentApis;
     use SettingsApis;
-    use ChannelSettingsApis;
 }

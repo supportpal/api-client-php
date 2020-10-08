@@ -10,7 +10,7 @@ use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 /**
  * Class UserTest
  * @package SupportPal\ApiClient\Tests\Unit\Model
- * @covers \SupportPal\ApiClient\Model\Core\User
+ * @covers \SupportPal\ApiClient\Model\User\User
  */
 class UserTest extends BaseModelTestCase
 {
