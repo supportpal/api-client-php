@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class TypeApiTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
- * @covers SupportPal\ApiClient\Api\SelfService\TypeApis
+ * @covers \SupportPal\ApiClient\Api\SelfService\TypeApis
  * @covers \SupportPal\ApiClient\Api
  */
 class TypeApiTest extends ApiTest

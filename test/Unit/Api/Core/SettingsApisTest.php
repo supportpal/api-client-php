@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class CoreApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api
- * @covers SupportPal\ApiClient\Api\Core\SettingsApis
+ * @covers \SupportPal\ApiClient\Api\Core\SettingsApis
  * @covers \SupportPal\ApiClient\Api
  */
 class SettingsApisTest extends ApiTest

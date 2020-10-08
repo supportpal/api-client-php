@@ -20,6 +20,16 @@ class DepartmentApisTest extends ApiClientTest
      */
     private $getDepartmentsSuccessfulResponse = DepartmentData::GET_DEPARTMENTS_SUCCESSFUL_RESPONSE;
 
+    /**
+     * @var int
+     */
+    private $testDepartmentId = 5;
+
+    /**
+     * @var array<mixed>
+     */
+    private $getDepartmentSuccessfulResponse = DepartmentData::GET_DEPARTMENT_SUCCESSFUL_RESPONSE;
+
     public function testGetDepartments(): void
     {
         $queryParams = [];
@@ -54,5 +64,55 @@ class DepartmentApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_DEPARTMENT, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getDepartments($queryParams);
+    }
+
+    public function testGetDepartment(): void
+    {
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::TICKET_DEPARTMENT . '/' . $this->testDepartmentId,
+            [],
+            []
+        );
+
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode($this->getDepartmentSuccessfulResponse),
+            $request
+        );
+
+        $getDepartmentTypeSuccessfulResponse = $this->apiClient->getDepartment($this->testDepartmentId);
+        self::assertSame($response->reveal(), $getDepartmentTypeSuccessfulResponse);
+    }
+
+    public function testHttpExceptionGetDepartment(): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::TICKET_DEPARTMENT . '/' . $this->testDepartmentId,
+            [],
+            []
+        );
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->getDepartment($this->testDepartmentId);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetDepartment(int $statusCode, string $responseBody): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::TICKET_DEPARTMENT . '/' . $this->testDepartmentId,
+            [],
+            []
+        );
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->getDepartment($this->testDepartmentId);
     }
 }

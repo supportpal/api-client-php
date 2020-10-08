@@ -14,6 +14,11 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class DepartmentApisTest extends ApiTest
 {
+    /**
+     * @var int
+     */
+    private $testDepartmentId = 1;
+
     public function testGetDepartments(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
@@ -29,5 +34,22 @@ class DepartmentApisTest extends ApiTest
 
         $departments = $this->api->getDepartments([]);
         self::assertSame($expectedOutput, $departments);
+    }
+
+    public function testGetDepartment(): void
+    {
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            DepartmentData::GET_DEPARTMENT_SUCCESSFUL_RESPONSE,
+            Department::class
+        );
+
+        $this
+            ->apiClient
+            ->getDepartment($this->testDepartmentId)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $returnedDepartment = $this->api->getDepartment($this->testDepartmentId);
+        self::assertSame($expectedOutput, $returnedDepartment);
     }
 }
