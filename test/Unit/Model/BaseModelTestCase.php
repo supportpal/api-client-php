@@ -10,7 +10,7 @@ use SupportPal\ApiClient\Tests\TestCase;
 /**
  * Class BaseModelTestCase
  * @package SupportPal\ApiClient\Tests\Unit\Model
- * @coversNothing
+ * @covers \SupportPal\ApiClient\Model\BaseModel
  */
 abstract class BaseModelTestCase extends TestCase
 {
