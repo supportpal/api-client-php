@@ -42,7 +42,7 @@ trait ArticleApis
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createArticle'], $body['data']);
 
-        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
+        return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**
@@ -56,7 +56,7 @@ trait ArticleApis
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createArticle'], $body['data']);
 
-        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
+        return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**

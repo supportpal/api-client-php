@@ -28,7 +28,7 @@ trait TypeApis
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createType'], $body['data']);
 
-        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
+        return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**

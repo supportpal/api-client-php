@@ -40,7 +40,7 @@ trait CategoryApis
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createCategory'], $body['data']);
 
-        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
+        return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**

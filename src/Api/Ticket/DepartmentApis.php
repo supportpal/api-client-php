@@ -28,7 +28,7 @@ trait DepartmentApis
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createDepartment'], $body['data']);
 
-        return $this->getCollectionFactory()->create($body['count'] ?? count($models), $models);
+        return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**

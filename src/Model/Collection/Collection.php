@@ -13,6 +13,7 @@ use SupportPal\ApiClient\Model\Model;
 class Collection
 {
     /**
+     * Total number of elements returned from API
      * @var int
      */
     private $count;
@@ -21,6 +22,12 @@ class Collection
      * @var Model[]
      */
     private $models;
+
+    /**
+     * Total number of models in the collection
+     * @var int
+     */
+    private $modelsCount;
 
     /**
      * Response constructor.
@@ -33,9 +40,11 @@ class Collection
         $this->assertSameTypeModelInstances($models);
         $this->count = $count;
         $this->models = $models;
+        $this->modelsCount = count($models);
     }
 
     /**
+     * get total number of all models as returned from the API response in `count` field.
      * @return int
      */
     public function getCount(): int
@@ -52,8 +61,18 @@ class Collection
     }
 
     /**
+     * Actual number of elements in the collection
+     * @return int
+     */
+    public function getModelsCount(): int
+    {
+        return $this->modelsCount;
+    }
+
+    /**
      * @param \Closure $closure
      * @return Collection
+     * @throws InvalidArgumentException
      */
     public function map(\Closure $closure): Collection
     {
@@ -65,12 +84,13 @@ class Collection
     /**
      * @param \Closure $closure
      * @return Collection
+     * @throws InvalidArgumentException
      */
     public function filter(\Closure $closure): Collection
     {
         $value = array_filter($this->getModels(), $closure);
 
-        return new self(count($value), $value);
+        return new self($this->getCount(), $value);
     }
 
     /**

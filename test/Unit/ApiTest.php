@@ -118,7 +118,7 @@ abstract class ApiTest extends TestCase
             $collection = $this->prophesize(Collection::class);
 
             $this->collectionFactory->create(
-                $responseData['count'] ?? count($models),
+                $responseData['count'],
                 $models
             )->shouldBeCalled()
             ->willReturn($collection->reveal());
