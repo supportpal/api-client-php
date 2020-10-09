@@ -9,7 +9,7 @@ class MessageData
         'ticket_id' => 1,
         'channel_id' => 3,
         'user_id' => 1,
-        'user_name' => 'gaith gaith',
+        'user_name' => 'test test',
         'user_ip_address' => null,
         'by' => 0,
         'type' => 2,

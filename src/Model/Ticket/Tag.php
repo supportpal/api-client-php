@@ -50,6 +50,11 @@ class Tag extends BaseModel
     private $originalName;
 
     /**
+     * @var array<mixed>|null
+     */
+    private $pivot;
+
+    /**
      * @return int
      */
     public function getUpdatedAt(): int
@@ -178,6 +183,25 @@ class Tag extends BaseModel
     public function setOriginalName(string $originalName): self
     {
         $this->originalName = $originalName;
+
+        return $this;
+    }
+
+    /**
+     * @return array<mixed>|null
+     */
+    public function getPivot(): ?array
+    {
+        return $this->pivot;
+    }
+
+    /**
+     * @param array<mixed>|null $pivot
+     * @return Tag
+     */
+    public function setPivot(?array $pivot): Tag
+    {
+        $this->pivot = $pivot;
 
         return $this;
     }

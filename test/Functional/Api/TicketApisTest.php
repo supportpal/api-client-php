@@ -9,6 +9,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
 use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
 
 class TicketApisTest extends ApiComponentTest
@@ -28,6 +29,8 @@ class TicketApisTest extends ApiComponentTest
         'getTicketStatus' => [StatusData::GET_STATUS_SUCCESSFUL_RESPONSE, [1]],
         'getTicketAttachments' => [AttachmentData::GET_ATTACHMENTS_SUCCESSFUL_RESPONSE, []],
         'getTicketAttachment' => [AttachmentData::GET_ATTACHMENT_SUCCESSFUL_RESPONSE, [1]],
+        'getTickets' => [TicketData::GET_TICKETS_SUCCESSFUL_RESPONSE, []],
+        'getTicket' => [TicketData::GET_TICKET_SUCCESSFUL_RESPONSE, [1]],
     ];
 
     /**

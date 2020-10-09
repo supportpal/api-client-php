@@ -65,15 +65,17 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
         foreach ($this->getModelData() as $key => $value) {
             $commentDataCopy = $this->getModelData();
 
-            if (is_array($value)) {
-                /**
-                 * All json objects are arrays, if it's an object,
-                 * change its type to an atomic value
-                 */
-                $commentDataCopy[$key] = self::ATOMIC_VALUE;
-            } else {
-                $commentDataCopy[$key] = new \stdClass;
+            /**
+             * test only support atomic values.
+             * Serializer dependency returns empty objects in case of not matching data attributes
+             * This shouldn't be a problem, since factories are only used internally (mapping API responses)
+             * Null values are also not processed.
+             */
+            if (is_array($value) || $value === null) {
+                continue;
             }
+
+            $commentDataCopy[$key] = new \stdClass;
 
             yield [$commentDataCopy, $key];
         }

@@ -25,7 +25,7 @@ class CustomFieldData
         'brands' => [
             [
                 'id' => 1,
-                'name' => 'gaith',
+                'name' => 'test',
                 'enabled' => 1,
                 'system_url' => 'localhost',
                 'brand_colour' => null,
