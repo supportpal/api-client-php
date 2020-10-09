@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\Api;
 
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\CustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
@@ -25,6 +26,8 @@ class TicketApisTest extends ApiTestCase
         'getTicketPriority' => [PriorityData::GET_PRIORITY_SUCCESSFUL_RESPONSE, [1]],
         'getTicketStatuses' => [StatusData::GET_STATUSES_SUCCESSFUL_RESPONSE, []],
         'getTicketStatus' => [StatusData::GET_STATUS_SUCCESSFUL_RESPONSE, [1]],
+        'getTicketAttachments' => [AttachmentData::GET_ATTACHMENTS_SUCCESSFUL_RESPONSE, []],
+        'getTicketAttachment' => [AttachmentData::GET_ATTACHMENT_SUCCESSFUL_RESPONSE, [1]],
     ];
 
     /**

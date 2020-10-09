@@ -99,8 +99,6 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
      */
     public function provideRequestTestCases(): iterable
     {
-        $this->setUp();
-
         yield [
             [
                 'method' => 'POST',

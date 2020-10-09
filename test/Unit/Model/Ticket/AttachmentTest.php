@@ -3,23 +3,23 @@
 namespace SupportPal\ApiClient\Tests\Unit\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Model\Ticket\Ticket;
-use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
+use SupportPal\ApiClient\Model\Ticket\Attachment;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
 /**
- * Class TicketTest
- * @package SupportPal\ApiClient\Tests\Unit\Model
- * @covers \SupportPal\ApiClient\Model\Ticket\Ticket
+ * Class AttachmentTest
+ * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
+ * @covers \SupportPal\ApiClient\Model\Ticket\Attachment
  */
-class TicketTest extends BaseModelTestCase
+class AttachmentTest extends BaseModelTestCase
 {
     /**
      * @inheritDoc
      */
     protected function getModelData(): array
     {
-        return TicketData::TICKET_DATA;
+        return AttachmentData::ATTACHMENT_DATA;
     }
 
     /**
@@ -27,6 +27,6 @@ class TicketTest extends BaseModelTestCase
      */
     protected function getModel(): Model
     {
-        return new Ticket;
+        return new Attachment;
     }
 }

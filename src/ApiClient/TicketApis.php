@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\ApiClient;
 
+use SupportPal\ApiClient\ApiClient\Ticket\AttachmentApis;
 use SupportPal\ApiClient\ApiClient\Ticket\ChannelSettingsApis;
 use SupportPal\ApiClient\ApiClient\Ticket\CustomFieldApis;
 use SupportPal\ApiClient\ApiClient\Ticket\DepartmentApis;
@@ -16,6 +17,7 @@ use SupportPal\ApiClient\ApiClient\Ticket\StatusApis;
  */
 trait TicketApis
 {
+    use AttachmentApis;
     use ChannelSettingsApis;
     use CustomFieldApis;
     use DepartmentApis;
