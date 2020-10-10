@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
-use SupportPal\ApiClient\Model\Ticket\CustomField;
+use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\CustomFieldData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
@@ -17,8 +17,8 @@ class CustomFieldApisTest extends ApiTest
     public function testGetCustomField(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            CustomFieldData::GET_CUSTOMFIELDS_SUCCESSFUL_RESPONSE_DATA,
-            CustomField::class
+            CustomFieldData::getAllResponse(),
+            TicketCustomField::class
         );
 
         $this

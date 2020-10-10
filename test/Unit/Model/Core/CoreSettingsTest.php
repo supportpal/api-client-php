@@ -14,8 +14,6 @@ use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
  */
 class CoreSettingsTest extends BaseModelTestCase
 {
-    const CORE_SETTINGS_DATA = CoreSettingsData::CORE_SETTINGS_DATA;
-
     /**
      * @inheritDoc
      */
@@ -29,6 +27,6 @@ class CoreSettingsTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return self::CORE_SETTINGS_DATA;
+        return CoreSettingsData::getDataWithObjects();
     }
 }

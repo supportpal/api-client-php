@@ -280,7 +280,7 @@ class Ticket extends BaseModel
     private $slaplan;
 
     /**
-     * @var CustomField[]
+     * @var TicketCustomField[]
      * @SerializedName("customfields")
      */
     private $customfields;
@@ -1134,7 +1134,7 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return CustomField[]
+     * @return TicketCustomField[]
      */
     public function getCustomfields(): array
     {
@@ -1142,7 +1142,7 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @param CustomField[] $customfields
+     * @param TicketCustomField[] $customfields
      * @return self
      */
     public function setCustomfields(array $customfields): self

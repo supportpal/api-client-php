@@ -23,7 +23,7 @@ class TicketFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return TicketData::TICKET_DATA;
+        return TicketData::DATA;
     }
 
     /**

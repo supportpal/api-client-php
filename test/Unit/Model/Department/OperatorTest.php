@@ -19,7 +19,7 @@ class OperatorTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return OperatorData::OPERATOR_DATA;
+        return OperatorData::getDataWithObjects();
     }
 
     /**

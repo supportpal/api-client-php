@@ -25,7 +25,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
         $response = new Response(
             200,
             [],
-            (string) $this->getEncoder()->encode(CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE, $this->getFormatType())
+            (string) $this->getEncoder()->encode(CommentData::POST_RESPONSE, $this->getFormatType())
         );
         $this->appendRequestResponse($response);
         $request = $this->getSupportPal()->getRequestFactory()->create('GET', 'test_endpoint');

@@ -6,9 +6,18 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Model\Core\CoreSettings;
+use SupportPal\ApiClient\Model\Department\Department;
+use SupportPal\ApiClient\Model\SelfService\Article;
 use SupportPal\ApiClient\Model\SelfService\Comment;
+use SupportPal\ApiClient\Model\Ticket\Ticket;
+use SupportPal\ApiClient\Model\User\User;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 
 /**
  * Class ModelCollectionFactoryTest
@@ -16,10 +25,14 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
  */
 class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
 {
-    /**
-     * @var array<mixed>
-     */
-    private $commentData = CommentData::COMMENT_DATA;
+    private const MODELS_MAP = [
+        Comment::class => CommentData::DATA,
+        CoreSettings::class => CoreSettingsData::DATA,
+        Article::class => ArticleData::DATA,
+        User::class => UserData::DATA,
+        Ticket::class => TicketData::DATA,
+        Department::class => DepartmentData::DATA,
+    ];
 
     /**
      * @var ModelCollectionFactory
@@ -42,14 +55,13 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
     public function testCreateValidModel(array $data, string $model): void
     {
         $model = $this->modelCollectionFactory->create($model, $data);
-        foreach ($data as $key => $value) {
-            self::assertSame($value, $model->{'get'.$this->snakeCaseToPascalCase($key)}());
-        }
+        $this->assertArrayEqualsObjectFields($model, $data);
     }
 
     /**
      * @dataProvider provideDataWithInvalidTypes
      * @param array<mixed> $data
+     * @param string $model
      * @param string $invalidKey
      */
     public function testCreateWithInvalidTypes(array $data, string $model, string $invalidKey): void
@@ -76,54 +88,9 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
      */
     public function provideValidModelData(): iterable
     {
-        yield [
-            $this->commentData,
-            Comment::class
-        ];
-
-        yield [
-            [
-                'admin_folder' => 'admin',
-                'date_format' => 'd/m/Y',
-                'default_country' => 'AF',
-                'default_frontend_language' => 'en',
-                'default_operator_language' => 'en',
-                'default_timezone' => 'Europe/London',
-                'enable_ssl' => '0',
-                'frontend_language' => '1',
-                'is_installed' => '1',
-                'language_frontend_toggle' => '1',
-                'language_operator_toggle' => '1',
-                'maintenance_mode' => '0',
-                'operator_language' => '1',
-                'operator_template' => 'default',
-                'simpleauth_key' => 'QkW6FbF5MXwEgbpoFlw2qSIZ1Mr3Q8of',
-                'time_format' => 'g =>i A',
-                'simpleauth_operators' => '1',
-                'debug_mode' => '1',
-                'pretty_urls' => '1',
-                'default_brand' => '1',
-                'attachment_size' => '10M',
-                'captcha_type' => '1',
-                'upgrade_time' => '1597245403',
-                'last_email_log_id' => '',
-                'installed_version' => '3.2.0',
-                'install_time' => '1597245408',
-                'include_operator_name' => '0',
-                'include_department_name' => '0',
-                'email_method' => 'mail',
-                'smtp_host' => '',
-                'smtp_port' => '',
-                'smtp_encryption' => '',
-                'smtp_requires_auth' => '',
-                'smtp_username' => '',
-                'smtp_password' => '',
-                'include_locale_in_uri' => '1',
-                'recaptcha_site_key' => '',
-                'recaptcha_secret_key' => ''
-            ],
-            CoreSettings::class
-        ];
+        foreach (self::MODELS_MAP as $model => $data) {
+            yield [$data, $model];
+        }
     }
 
     /**
@@ -131,19 +98,23 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
      */
     public function provideDataWithInvalidTypes(): iterable
     {
-        $InvalidCommentData = [
-            'text' => new \stdClass,
-            'article_id' => 'text',
-            'type_id' => 'text',
-            'parent_id' => 'text',
-            'status' => 'text',
-            'notify_reply' => null
-        ];
-        foreach ($InvalidCommentData as $key => $value) {
-            $commentDataCopy = $this->commentData;
-            $commentDataCopy[$key] = $value;
+        foreach (self::MODELS_MAP as $model => $data) {
+            foreach ($data as $key => $value) {
+                /**
+                 * test only support atomic values.
+                 * Serializer dependency returns empty objects in case of not matching data attributes
+                 * This shouldn't be a problem, since factories are only used internally (mapping API responses)
+                 * Null values are also not processed.
+                 */
+                if (is_array($value) || $value === null) {
+                    continue;
+                }
 
-            yield [$commentDataCopy, Comment::class, $key];
+                $dataCopy = self::MODELS_MAP[$model];
+                $dataCopy[$key] = new \stdClass;
+
+                yield [$dataCopy, $model, $key];
+            }
         }
     }
 
@@ -152,11 +123,13 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
      */
     public function provideDataWithMissingFields(): iterable
     {
-        foreach (Comment::REQUIRED_FIELDS as $required) {
-            $commentData = $this->commentData;
-            unset($commentData[$required]);
+        foreach (self::MODELS_MAP as $model => $data) {
+            foreach ($model::REQUIRED_FIELDS as $required) {
+                $dataCopy = self::MODELS_MAP[$model];
+                unset($dataCopy[$required]);
 
-            yield [$commentData, Comment::class, $required];
+                yield [$dataCopy, $model, $required];
+            }
         }
     }
 }

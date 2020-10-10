@@ -2,9 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\SelfService;
 
-class TagData
+use SupportPal\ApiClient\Model\SelfService\Tag;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class TagData extends BaseModelData
 {
-    public const TAG_DATA = [
+    public const DATA = [
         'id' => 1,
         'name' => 'test',
         'slug' => 'test',
@@ -12,9 +15,11 @@ class TagData
         'updated_at' => 1600880073
     ];
 
-    const GET_TAG_SUCCESSFUL_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'data' => self::TAG_DATA,
-    ];
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Tag::class;
+    }
 }

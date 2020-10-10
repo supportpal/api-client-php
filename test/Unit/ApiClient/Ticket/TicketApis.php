@@ -16,19 +16,9 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 class TicketApis extends ApiClientTest
 {
     /**
-     * @var array<mixed>
-     */
-    private $getTicketsSuccessfulResponse = TicketData::GET_TICKETS_SUCCESSFUL_RESPONSE;
-
-    /**
      * @var int
      */
     private $testTicketId = 1;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getTicketSuccessfulResponse = TicketData::GET_TICKET_SUCCESSFUL_RESPONSE;
 
     public function testGetTickets(): void
     {
@@ -36,7 +26,7 @@ class TicketApis extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_TICKET, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getTicketsSuccessfulResponse),
+            (string) json_encode(TicketData::getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTickets($queryParams);
@@ -77,7 +67,7 @@ class TicketApis extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getTicketSuccessfulResponse),
+            (string) json_encode(TicketData::getResponse()),
             $request
         );
 

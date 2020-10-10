@@ -3,23 +3,24 @@
 namespace SupportPal\ApiClient\Tests\Unit\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Model\Ticket\CustomField;
+use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\CustomFieldData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
 /**
  * Class CustomFieldTest
  * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Ticket\CustomField
+ * @covers \SupportPal\ApiClient\Model\Ticket\TicketCustomField
+ * @covers \SupportPal\ApiClient\Model\Shared\CustomField
  */
-class CustomFieldTest extends BaseModelTestCase
+class TicketCustomFieldTest extends BaseModelTestCase
 {
     /**
      * @inheritDoc
      */
     protected function getModelData(): array
     {
-        return CustomFieldData::CUSTOM_FIELD_DATA;
+        return CustomFieldData::getDataWithObjects();
     }
 
     /**
@@ -27,6 +28,6 @@ class CustomFieldTest extends BaseModelTestCase
      */
     protected function getModel(): Model
     {
-        return new CustomField;
+        return new TicketCustomField;
     }
 }

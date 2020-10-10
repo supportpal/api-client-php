@@ -15,11 +15,6 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
  */
 class ChannelSettingsApisTest extends ApiClientTest
 {
-    /**
-     * @var array<mixed>
-     */
-    private $channelSettingsSuccessfulResponse = ChannelSettingsData::GET_SUCCESSFUL_RESPONSE_DATA;
-
     private const TEST_CHANNEL = 'web';
 
     public function testSuccessfulGetChannelSettings(): void
@@ -33,7 +28,7 @@ class ChannelSettingsApisTest extends ApiClientTest
             );
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->channelSettingsSuccessfulResponse),
+            (string) json_encode(ChannelSettingsData::getResponse()),
             $request
         );
 

@@ -16,8 +16,6 @@ use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
  */
 class CategoryFactoryTest extends BaseModelFactoryTestCase
 {
-    const CATEGORY_DATA = CategoryData::CATEGORY_DATA;
-
     /**
      * @inheritDoc
      */
@@ -35,7 +33,7 @@ class CategoryFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return self::CATEGORY_DATA;
+        return CategoryData::DATA;
     }
 
     /**
@@ -51,7 +49,7 @@ class CategoryFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new Category)->fill(self::CATEGORY_DATA);
+        return CategoryData::getFilledInstance();
     }
 
     /**

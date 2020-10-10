@@ -16,7 +16,7 @@ class ArticleAttachmentTest extends BaseModelTestCase
 {
     protected function getModelData(): array
     {
-        return ArticleAttachmentData::getAttachmentData();
+        return ArticleAttachmentData::getDataWithObjects();
     }
 
     protected function getModel(): Model

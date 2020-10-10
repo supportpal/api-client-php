@@ -15,17 +15,12 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
  */
 class SettingsApisTest extends ApiClientTest
 {
-    /**
-     * @var array<mixed>
-     */
-    private $getSettingsTypeSuccessfulResponse = SettingsData::GET_SETTINGS_SUCCESSFUL_RESPONSE;
-
     public function testGetSettings(): void
     {
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_SETTINGS, [], []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getSettingsTypeSuccessfulResponse),
+            (string) json_encode(SettingsData::getResponse()),
             $request
         );
 

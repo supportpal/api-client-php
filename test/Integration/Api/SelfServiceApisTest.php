@@ -22,32 +22,7 @@ class SelfServiceApisTest extends ApiTestCase
     /**
      * @var array<mixed>
      */
-    private $commentData = CommentData::COMMENT_DATA;
-
-    /**
-     * @var array<mixed>
-     */
-    protected $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var array<mixed>
-     */
-    private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getEndpoints = [
-        'getTypes' => [TypeData::GET_TYPES_SUCCESSFUL_RESPONSE, []],
-        'getComments' => [CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE, []],
-        'getSelfServiceSettings' => [SettingsData::GET_SETTINGS_SUCCESSFUL_RESPONSE, []],
-        'getArticle' => [ArticleData::GET_ARTICLE_SUCCESSFUL_RESPONSE, [1, []]],
-        'getArticlesByTerm' => [ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE, ['test', []]],
-        'getArticles' => [ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE, [[]]],
-        'getCategory' => [CategoryData::GET_CATEGORY_SUCCESSFUL_RESPONSE, [1]],
-        'getCategories' => [CategoryData::GET_CATEGORIES_SUCCESSFUL_RESPONSE, [[]]],
-        'getTag' => [TagData::GET_TAG_SUCCESSFUL_RESPONSE, [1]],
-    ];
+    private $postCommentSuccessfulResponse = CommentData::POST_RESPONSE;
 
     public function testPostComment(): void
     {
@@ -58,7 +33,7 @@ class SelfServiceApisTest extends ApiTestCase
 
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         $comment = new Comment;
-        $comment->fill($this->postCommentSuccessfulResponse['data']);
+        $comment->fill(CommentData::getDataWithObjects());
         $postedComment = $this->api->postComment($comment);
         $this->assertArrayEqualsObjectFields($postedComment, $this->postCommentSuccessfulResponse['data']);
     }
@@ -79,7 +54,7 @@ class SelfServiceApisTest extends ApiTestCase
     {
         $this->prepareUnsuccessfulApiRequest($response);
         /** @var Comment $comment */
-        $comment = (new Comment)->fill($this->commentData);
+        $comment = (new Comment)->fill(CommentData::getDataWithObjects());
         $this->api->postComment($comment);
     }
 
@@ -88,6 +63,16 @@ class SelfServiceApisTest extends ApiTestCase
      */
     protected function getGetEndpoints(): array
     {
-        return $this->getEndpoints;
+        return [
+            'getTypes' => [TypeData::getAllResponse(), []],
+            'getComments' => [CommentData::getAllResponse(), []],
+            'getSelfServiceSettings' => [SettingsData::getResponse(), []],
+            'getArticle' => [ArticleData::getResponse(), [1, []]],
+            'getArticlesByTerm' => [ArticleData::getAllResponse(), ['test', []]],
+            'getArticles' => [ArticleData::getAllResponse(), [[]]],
+            'getCategory' => [CategoryData::getResponse(), [1]],
+            'getCategories' => [CategoryData::getAllResponse(), [[]]],
+            'getTag' => [TagData::getResponse(), [1]],
+        ];
     }
 }

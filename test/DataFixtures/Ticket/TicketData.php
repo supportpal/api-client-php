@@ -2,9 +2,14 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class TicketData
+use SupportPal\ApiClient\Model\Ticket\Ticket;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
+
+class TicketData extends BaseModelData
 {
-    public const TICKET_DATA = [
+    public const DATA = [
         'id' => 1,
         'number' => '6151997',
         'department_id' => 1,
@@ -40,194 +45,44 @@ class TicketData
         'updated_at' => 1598534607,
         'deleted_at' => null,
         'token' => 'e0f5cc66dfdbccb13f6930b8085ee65a26265a11',
-        'department' => [
-            'id' => 1,
-            'name' => 'Support',
-            'description' => 'This is an automatically generated department, please edit me.',
-            'order' => 1,
-            'parent_id' => null,
-            'public' => 1,
-            'ticket_number_format' => null,
-            'from_name' => null,
-            'default_assignedto' => [],
-            'notify_frontend_ticket' => 1,
-            'notify_email_ticket' => 1,
-            'notify_operators' => 1,
-            'disable_user_email_replies' => 0,
-            'registered_only' => 0,
-            'email_templates' => [
-                'user_ticket_opened' => 3,
-                'user_user_ticket_reply' => 29,
-                'user_ticket_reply' => 2,
-                'user_ticket_locked' => 8,
-                'user_ticket_waitingresponse' => 11,
-                'user_ticket_autoclose' => 13,
-                'user_ticket_operatorclose' => 20,
-                'user_email_attachmentrejected' => 21,
-                'user_ticket_disablereplies' => -1,
-                'user_ticket_registeredonly' => 28,
-                'operator_assigned' => 1,
-                'operator_ticket_opened' => 4,
-                'operator_user_ticket_reply' => 5,
-                'operator_internal_opened' => 18,
-                'operator_department_changed' => 19,
-                'operator_operator_ticket_reply' => 23,
-                'operator_ticket_note' => 24
-            ],
-            'created_at' => 1597245387,
-            'updated_at' => 1597245387
-        ],
-        'brand' => [
-            'id' => 1,
-            'name' => 'test',
-            'enabled' => 1,
-            'system_url' => 'localhost',
-            'brand_colour' => null,
-            'enable_ssl' => null,
-            'frontend_logo' => null,
-            'frontend_logo_dark_mode' => null,
-            'website_url' => null,
-            'favicon' => null,
-            'frontend_template' => 'default',
-            'frontend_template_mode' => 0,
-            'operator_icon' => null,
-            'operator_template' => null,
-            'operator_template_mode' => 0,
-            'default_email' => 'test@test.com',
-            'global_email_header' => "\n<!--[if !mso]><!-- -->\n<link href=\"https =>//fonts.googleapis.com/css?family=Open+Sans =>400,700\" rel=\"stylesheet\" type=\"text/css\" />\n<!--<![endif]-->\n<style type=\"text/css\">\ntd [ font => 13px \"Open Sans\", Arial, sans-serif; ]\n</style>\n<table style=\"border-collapse => collapse; max-width => 1000px;\">\n<tr>\n<td>\n",
-            'global_email_footer' => "\n</td>\n</tr>\n</table>\n",
-            'email_method' => 'default',
-            'smtp_host' => null,
-            'smtp_port' => null,
-            'smtp_encryption' => null,
-            'smtp_requires_auth' => null,
-            'smtp_username' => null,
-            'smtp_password' => null,
-            'default_country' => 'default',
-            'default_timezone' => 'default',
-            'date_format' => 'default',
-            'time_format' => 'default',
-            'default_language' => 'default',
-            'language_toggle' => 2,
-            'created_at' => 1597245387,
-            'updated_at' => 1597245396
-        ],
-        'channel' => [
-            'id' => 1,
-            'name' => 'Web',
-            'enabled' => 1,
-            'upgrade_available' => 0,
-            'version' => null,
-            'created_at' => 0,
-            'updated_at' => 0,
-            'formatted_name' => 'Web'
-        ],
-        'user' => [
-            'id' => 2,
-            'brand_id' => 1,
-            'role' => 0,
-            'firstname' => 'test@test.com',
-            'lastname' => 'test',
-            'email' => 'test@tests.com',
-            'confirmed' => 0,
-            'active' => 1,
-            'organisation_id' => null,
-            'organisation_access_level' => null,
-            'organisation_notifications' => null,
-            'country' => null,
-            'language_code' => null,
-            'timezone' => null,
-            'avatar' => 'R0lGODlhQABAANUAAAAAAP////7+/v39/fz8/Pv7+/r6+vn5+fj4+Pf39/b29vX19fT09PPz8/Ly8vHx8fDw8O/v7+7u7u3t7ezs7Orq6unp6ejo6Ofn5+bm5uXl5eTk5OPj4+Li4uHh4eDg4N/f393d3dzc3Nvb29ra2tnZ2djY2NfX19bW1tXV1dTU1NPT09LS0tHR0dDQ0M/Pz87Ozs3NzczMzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAAQABAAAAG/8CAcEgsGo/IpHLJbDqf0Kh0Sq1ar9isdss1JjKll+ylClkM3WsBFJO5324YCJ2WFlDw/LvVqDsFFHh6gzIwDH5LAyOEjDIqA4hJIY2NFpFHEZSNKZdGJZqNCJ1DBTCgjBKjQg2njBiqARKthBuwE7ODtaqZuHmvqqy9cBWwB23CbhSwAi3IbhGwAYvOCtEYzi+QsAzOJtEBAizIGd8BHMgL5QvHsykC5QInvRflQrezLnTlAyqzuvUB7oFqoa+egBWniAEcIkhTuoVCGlKqBpGAOFATIBr4dOoFBIMUms2K8UGUqgEUUjiLIeLBO0QKNoh09mYFhgJdAJlgRzMPDIoPB7RIQNiTEowOBKwM+FC0VYuMUwZwbNrqVxSmVHFBgxIs66wWSZ+Q8NpLwxMEPMkO1MbEgtpeH5uIeIvrQ5NwdGepaGIg78iCSB74neWg7eBWCpV0OHyqA5O5jDWJYCIvMqUTTIhaZrSCiZjNjFwwSQsaDgwmpRnFQJ160AvWrfN0XhJbDwkjQQAAOw==',
-            'template_mode' => null,
-            'notes' => null,
-            'twofa_enabled' => 0,
-            'twofa_secret' => null,
-            'twofa_token' => null,
-            'twitter_id' => null,
-            'twitter_handle' => null,
-            'facebook_id' => null,
-            'last_active_at' => null,
-            'created_at' => 1597247659,
-            'updated_at' => 1597247659,
-            'formatted_name' => 'test@test.com test',
-            'avatar_url' => 'http =>//localhost =>8080/resources/assets/frontend/img/user.gif?v=3.2.0'
-        ],
-        'status' => [
-            'id' => 1,
-            'name' => 'Open',
-            'colour' => '#35a600',
-            'auto_close' => 1,
-            'order' => 1,
-            'created_at' => 1597245387,
-            'updated_at' => 1597245387,
-            'icon' => '<div class="sp-inline-block sp-h-5 sp-w-5 sp-rounded-full sp-text-xs sp-text-center sp-font-bold sp-align-middle" style="background-color => #35a600; color => #fff; line-height => 1.25rem;" title="Open">O</div>',
-            'icon_without_tooltip' => '<div class="sp-inline-block sp-h-5 sp-w-5 sp-rounded-full sp-text-xs sp-text-center sp-font-bold sp-align-middle" style="background-color => #35a600; color => #fff; line-height => 1.25rem;">O</div>'
-        ],
-        'priority' => [
-            'id' => 1,
-            'name' => 'Low',
-            'colour' => '#3498db',
-            'order' => 1,
-            'created_at' => 1597245387,
-            'updated_at' => 1597245387,
-            'icon' => '<div class="sp-inline-block sp-h-5 sp-w-5 sp-text-xs sp-text-center sp-font-bold sp-align-middle sp-whitespace-no-wrap" style="background-color => #3498db; color => #fff; line-height => 1.25rem;" title="Low">1</div>',
-            'icon_without_tooltip' => '<div class="sp-inline-block sp-h-5 sp-w-5 sp-text-xs sp-text-center sp-font-bold sp-align-middle sp-whitespace-no-wrap" style="background-color => #3498db; color => #fff; line-height => 1.25rem;">1</div>'
-        ],
-        'slaplan' => null,
-        'customfields' => [],
-        'last_reply' => [
-            'id' => 60,
-            'ticket_id' => 1,
-            'channel_id' => 3,
-            'user_id' => 1,
-            'user_name' => 'test test',
-            'user_ip_address' => null,
-            'by' => 0,
-            'type' => 2,
-            'excerpt' => 'forward',
-            'text' => 'forward',
-            'purified_text' => 'forward',
-            'is_draft' => 0,
-            'social_id' => null,
-            'extra' => [
-                'to_address' => [
-                    'test@test.com'
-                ],
-                'cc_address' => [],
-                'bcc_address' => []
-            ],
-            'created_at' => 1598534452,
-            'updated_at' => 1598534452
-        ],
-        'tags' => [
-            [
-                'id' => 1,
-                'name' => 'tags',
-                'colour' => '#dddddd',
-                'created_at' => 0,
-                'updated_at' => 0,
-                'colour_text' => '#2d3748',
-                'original_name' => 'tags',
-                'pivot' => [
-                    'ticket_id' => 1,
-                    'tag_id' => 1
-                ]
-            ]
-        ],
-        'assigned' => [],
-        'watching' => []
+        'department' => DepartmentData::DATA,
+        'brand' => BrandData::DATA,
+        'channel' => ChannelData::DATA,
+        'user' => UserData::DATA,
+        'status' => StatusData::DATA,
+        'priority' => PriorityData::DATA,
+        'slaplan' => SlaPlanData::DATA,
+        'customfields' => [CustomFieldData::DATA,],
+        'last_reply' => MessageData::DATA,
+        'tags' => [TagData::DATA,],
+        'assigned' => [OperatorData::DATA,],
+        'watching' => [OperatorData::DATA,]
     ];
 
-    public const GET_TICKET_SUCCESSFUL_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'data' => self::TICKET_DATA,
-    ];
+    /**
+     * @inheritDoc
+     */
+    public static function getDataWithObjects(): array
+    {
+        $data = self::DATA;
+        $data['department'] = DepartmentData::getFilledInstance();
+        $data['brand'] = BrandData::getFilledInstance();
+        $data['channel'] = ChannelData::getFilledInstance();
+        $data['user'] = UserData::getFilledInstance();
+        $data['status'] = StatusData::getFilledInstance();
+        $data['priority'] = PriorityData::getFilledInstance();
+        $data['slaplan'] = SlaPlanData::getFilledInstance();
+        $data['customfields'] = [CustomFieldData::getFilledInstance(),];
+        $data['last_reply'] = MessageData::getFilledInstance();
+        $data['tags'] = [TagData::getFilledInstance(),];
+        $data['assigned'] = [OperatorData::getFilledInstance(),];
+        $data['watching'] = [OperatorData::getFilledInstance(),];
 
-    public const GET_TICKETS_SUCCESSFUL_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'count' => 1,
-        'data' => [self::TICKET_DATA],
-    ];
+        return $data;
+    }
+
+    public static function getModel(): string
+    {
+        return Ticket::class;
+    }
 }

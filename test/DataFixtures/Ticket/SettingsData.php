@@ -2,9 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class SettingsData
+use SupportPal\ApiClient\Model\Ticket\Settings;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class SettingsData extends BaseModelData
 {
-    public const SETTINGS_DATA = [
+    public const DATA = [
         'allowed_files' => 'doc|docx|xml|png|gif|jpg|jpeg|zip|rar|pdf|txt|log',
         'default_open_status' => '1',
         'default_resolved_status' => '2',
@@ -16,9 +19,11 @@ class SettingsData
         'default_reply_status' => '1'
     ];
 
-    public const SUCCESSFUL_GET_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'data' => self::SETTINGS_DATA,
-    ];
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Settings::class;
+    }
 }

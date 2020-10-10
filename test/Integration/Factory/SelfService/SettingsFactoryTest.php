@@ -23,7 +23,7 @@ class SettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return SettingsData::SETTINGS_DATA;
+        return SettingsData::DATA;
     }
 
     /**

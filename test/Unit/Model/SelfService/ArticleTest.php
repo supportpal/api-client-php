@@ -14,8 +14,6 @@ use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
  */
 class ArticleTest extends BaseModelTestCase
 {
-    const ARTICLE_DATA = ArticleData::ARTICLE_DATA;
-
     /**
      * @inheritDoc
      */
@@ -29,6 +27,6 @@ class ArticleTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return self::ARTICLE_DATA;
+        return ArticleData::getDataWithObjects();
     }
 }

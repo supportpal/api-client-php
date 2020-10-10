@@ -2,9 +2,13 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class MessageData
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\Ticket\Message;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class MessageData extends BaseModelData
 {
-    public const MESSAGE_DATA = [
+    public const DATA = [
         'id' => 60,
         'ticket_id' => 1,
         'channel_id' => 3,
@@ -19,6 +23,27 @@ class MessageData
         'is_draft' => 0,
         'social_id' => null,
         'created_at' => 1598534452,
-        'updated_at' => 1598534452
+        'updated_at' => 1598534452,
+        'extra' => ExtraData::DATA,
     ];
+
+    /**
+     * @inheritDoc
+     * @throws InvalidArgumentException
+     */
+    public static function getDataWithObjects(): array
+    {
+        $data = self::DATA;
+        $data['extra'] = ExtraData::getFilledInstance();
+
+        return $data;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Message::class;
+    }
 }

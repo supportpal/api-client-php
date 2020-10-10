@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Tests\Integration\Factory\Ticket;
 
 use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Factory\Ticket\CustomFieldFactory;
-use SupportPal\ApiClient\Model\Ticket\CustomField;
+use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\CustomFieldData;
 use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
 
@@ -15,7 +15,7 @@ class CustomFieldFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getRequiredFields(): array
     {
-        return CustomField::REQUIRED_FIELDS;
+        return TicketCustomField::REQUIRED_FIELDS;
     }
 
     /**
@@ -23,7 +23,7 @@ class CustomFieldFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return CustomFieldData::CUSTOM_FIELD_DATA;
+        return CustomFieldData::DATA;
     }
 
     /**
@@ -31,7 +31,7 @@ class CustomFieldFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModel(): string
     {
-        return CustomField::class;
+        return TicketCustomField::class;
     }
 
     /**

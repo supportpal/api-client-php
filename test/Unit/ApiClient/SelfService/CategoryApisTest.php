@@ -16,16 +16,6 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 class CategoryApisTest extends ApiClientTest
 {
     /**
-     * @var array<mixed>
-     */
-    private $getCategoriesTypeSuccessfulResponse = CategoryData::GET_CATEGORIES_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getCategoryTypeSuccessfulResponse = CategoryData::GET_CATEGORY_SUCCESSFUL_RESPONSE;
-
-    /**
      * @var int
      */
     private $testCategoryId = 1;
@@ -36,7 +26,7 @@ class CategoryApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_CATEGORY, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getCategoriesTypeSuccessfulResponse),
+            (string) json_encode(CategoryData::getAllResponse()),
             $request
         );
         $getCategoriesTypeSuccessfulResponse = $this->apiClient->getCategories($queryParams);
@@ -77,7 +67,7 @@ class CategoryApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getCategoryTypeSuccessfulResponse),
+            (string) json_encode(CategoryData::getResponse()),
             $request
         );
 

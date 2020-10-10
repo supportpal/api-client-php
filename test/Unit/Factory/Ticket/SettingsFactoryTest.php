@@ -21,7 +21,7 @@ class SettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new Settings)->fill(SettingsData::SETTINGS_DATA);
+        return SettingsData::getFilledInstance();
     }
 
     /**
@@ -37,7 +37,7 @@ class SettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return SettingsData::SETTINGS_DATA;
+        return SettingsData::DATA;
     }
 
     /**

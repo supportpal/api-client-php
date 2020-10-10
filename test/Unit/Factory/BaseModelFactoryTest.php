@@ -36,7 +36,7 @@ class BaseModelFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return CommentData::COMMENT_DATA;
+        return CommentData::DATA;
     }
 
     /**

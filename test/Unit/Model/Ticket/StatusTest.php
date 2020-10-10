@@ -19,7 +19,7 @@ class StatusTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return StatusData::STATUS_DATA;
+        return StatusData::getDataWithObjects();
     }
 
     /**

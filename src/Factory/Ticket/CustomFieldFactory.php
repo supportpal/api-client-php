@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Factory\Ticket;
 
 use SupportPal\ApiClient\Factory\BaseModelFactory;
-use SupportPal\ApiClient\Model\Ticket\CustomField;
+use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
 
 class CustomFieldFactory extends BaseModelFactory
 {
@@ -12,6 +12,6 @@ class CustomFieldFactory extends BaseModelFactory
      */
     public function getModel(): string
     {
-        return CustomField::class;
+        return TicketCustomField::class;
     }
 }

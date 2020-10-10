@@ -21,7 +21,7 @@ class AttachmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new Attachment)->fill(AttachmentData::ATTACHMENT_DATA);
+        return AttachmentData::getFilledInstance();
     }
 
     /**
@@ -37,7 +37,7 @@ class AttachmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return AttachmentData::ATTACHMENT_DATA;
+        return AttachmentData::DATA;
     }
 
     /**

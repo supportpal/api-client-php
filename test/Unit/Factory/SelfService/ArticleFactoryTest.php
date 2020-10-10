@@ -16,8 +16,6 @@ use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
  */
 class ArticleFactoryTest extends BaseModelFactoryTestCase
 {
-    const ARTICLE_DATA = ArticleData::ARTICLE_DATA;
-
     /**
      * @inheritDoc
      */
@@ -35,7 +33,7 @@ class ArticleFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return self::ARTICLE_DATA;
+        return ArticleData::DATA;
     }
 
     /**
@@ -51,7 +49,7 @@ class ArticleFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new Article)->fill(self::ARTICLE_DATA);
+        return ArticleData::getFilledInstance();
     }
 
     /**

@@ -12,17 +12,12 @@ use SupportPal\ApiClient\Tests\Integration\ApiTestCase;
 class CoreApisTest extends ApiTestCase
 {
     /**
-     * @var array<mixed>
-     */
-    private $getEndpoints = [
-        'getCoreSettings' => [CoreSettingsData::CORE_SETTINGS_SUCCESSFUL_RESPONSE, []],
-    ];
-
-    /**
      * @inheritDoc
      */
     protected function getGetEndpoints(): array
     {
-        return $this->getEndpoints;
+        return [
+            'getCoreSettings' => [CoreSettingsData::getResponse(), []],
+        ];
     }
 }

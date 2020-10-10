@@ -14,7 +14,7 @@ use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
  */
 class CoreSettingsFactoryTest extends BaseModelFactoryTestCase
 {
-    const CORE_SETTINGS_DATA = CoreSettingsData::CORE_SETTINGS_DATA;
+    const CORE_SETTINGS_DATA = CoreSettingsData::DATA;
 
     /**
      * @inheritDoc

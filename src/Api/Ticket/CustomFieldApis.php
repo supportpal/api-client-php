@@ -6,7 +6,7 @@ use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
-use SupportPal\ApiClient\Model\Ticket\CustomField;
+use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
 
 trait CustomFieldApis
 {
@@ -29,12 +29,12 @@ trait CustomFieldApis
 
     /**
      * @param array<mixed> $data
-     * @return CustomField
+     * @return TicketCustomField
      */
-    private function createCustomField(array $data): CustomField
+    private function createCustomField(array $data): TicketCustomField
     {
-        /** @var CustomField $model */
-        $model = $this->getModelCollectionFactory()->create(CustomField::class, $data);
+        /** @var TicketCustomField $model */
+        $model = $this->getModelCollectionFactory()->create(TicketCustomField::class, $data);
 
         return $model;
     }

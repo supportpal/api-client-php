@@ -20,31 +20,12 @@ class SelfServiceApisTest extends ApiClientTest
     /**
      * @var array<mixed>
      */
-    private $commentData = CommentData::COMMENT_DATA;
+    private $commentData = CommentData::DATA;
 
     /**
      * @var array<mixed>
      */
-    protected $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
-    /**
-     * @var array<mixed>
-     */
-    private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getEndpoints = [
-        'getComments' => [CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE, [[]]],
-        'getTypes' => [TypeData::GET_TYPES_SUCCESSFUL_RESPONSE, [[]]],
-        'getSelfServiceSettings' => [SettingsData::GET_SETTINGS_SUCCESSFUL_RESPONSE, [[]]],
-        'getArticle' => [ArticleData::GET_ARTICLE_SUCCESSFUL_RESPONSE, [1, []]],
-        'getArticlesByTerm' => [ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE, [[]]],
-        'getArticles' => [ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE, [[]]],
-        'getCategory' => [CategoryData::GET_CATEGORY_SUCCESSFUL_RESPONSE, [1]],
-        'getCategories' => [CategoryData::GET_CATEGORIES_SUCCESSFUL_RESPONSE, [[]]],
-        'getTag' => [TagData::GET_TAG_SUCCESSFUL_RESPONSE, [1]],
-    ];
+    private $postCommentSuccessfulResponse = CommentData::POST_RESPONSE;
 
     public function testPostComment(): void
     {
@@ -77,6 +58,16 @@ class SelfServiceApisTest extends ApiClientTest
      */
     protected function getGetEndpoints(): array
     {
-        return $this->getEndpoints;
+        return [
+            'getComments' => [CommentData::getAllResponse(), [[]]],
+            'getTypes' => [TypeData::getAllResponse(), [[]]],
+            'getSelfServiceSettings' => [SettingsData::getResponse(), [[]]],
+            'getArticle' => [ArticleData::getResponse(), [1, []]],
+            'getArticlesByTerm' => [ArticleData::getAllResponse(), [[]]],
+            'getArticles' => [ArticleData::getAllResponse(), [[]]],
+            'getCategory' => [CategoryData::getResponse(), [1]],
+            'getCategories' => [CategoryData::getAllResponse(), [[]]],
+            'getTag' => [TagData::getResponse(), [1]],
+        ];
     }
 }

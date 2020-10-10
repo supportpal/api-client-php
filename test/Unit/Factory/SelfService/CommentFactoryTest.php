@@ -16,8 +16,6 @@ use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
  */
 class CommentFactoryTest extends BaseModelFactoryTestCase
 {
-    const COMMENT_DATA = CommentData::COMMENT_DATA;
-
     /**
      * @inheritDoc
      */
@@ -35,7 +33,7 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return self::COMMENT_DATA;
+        return CommentData::DATA;
     }
 
     /**
@@ -51,7 +49,7 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new Comment)->fill(self::COMMENT_DATA);
+        return CommentData::getFilledInstance();
     }
 
     /**

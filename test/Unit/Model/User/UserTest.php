@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Model\User;
 
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\User\User;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
 /**
@@ -14,8 +14,6 @@ use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
  */
 class UserTest extends BaseModelTestCase
 {
-    const USER_DATA = UserData::USER_DATA;
-
     /**
      * @inheritDoc
      */
@@ -29,6 +27,6 @@ class UserTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return self::USER_DATA;
+        return UserData::getDataWithObjects();
     }
 }

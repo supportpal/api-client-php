@@ -2,9 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class EmailData
+use SupportPal\ApiClient\Model\Department\Email;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class EmailData extends BaseModelData
 {
-    public const EMAIL_DATA = [
+    public const DATA = [
         'id' => 1,
         'department_id' => '1',
         'brand_id' => 1,
@@ -21,4 +24,12 @@ class EmailData
         'created_at' => 0,
         'updated_at' => 0
     ];
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Email::class;
+    }
 }

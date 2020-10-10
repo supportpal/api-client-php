@@ -23,7 +23,7 @@ class CategoryFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return CategoryData::CATEGORY_DATA;
+        return CategoryData::DATA;
     }
 
     /**

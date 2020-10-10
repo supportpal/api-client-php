@@ -2,9 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\SelfService;
 
-class SettingsData
+use SupportPal\ApiClient\Model\SelfService\Settings;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class SettingsData extends BaseModelData
 {
-    public const SETTINGS_DATA = [
+    public const DATA = [
         'comment_captcha' => '1',
         'comment_moderation' => '1',
         'comment_ordering' => '2',
@@ -16,9 +19,11 @@ class SettingsData
         'ratings_enabled' => '1'
     ];
 
-    public const GET_SETTINGS_SUCCESSFUL_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'data' => self::SETTINGS_DATA,
-    ];
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Settings::class;
+    }
 }

@@ -16,19 +16,9 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 class AttachmentApisTest extends ApiClientTest
 {
     /**
-     * @var array<mixed>
-     */
-    private $getAttachmentsSuccessfulResponse = AttachmentData::GET_ATTACHMENTS_SUCCESSFUL_RESPONSE;
-
-    /**
      * @var int
      */
     private $testAttachmentId = 1;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getAttachmentSuccessfulResponse = AttachmentData::GET_ATTACHMENT_SUCCESSFUL_RESPONSE;
 
     public function testGetAttachments(): void
     {
@@ -36,7 +26,7 @@ class AttachmentApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_ATTACHMENT, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getAttachmentsSuccessfulResponse),
+            (string) json_encode(AttachmentData::getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTicketAttachments($queryParams);
@@ -77,7 +67,7 @@ class AttachmentApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getAttachmentSuccessfulResponse),
+            (string) json_encode(AttachmentData::getResponse()),
             $request
         );
 

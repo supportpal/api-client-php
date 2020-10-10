@@ -176,6 +176,25 @@ class User extends BaseModel
     private $avatarUrl;
 
     /**
+     * @var Organisation|null
+     * @SerializedName("organisation")
+
+     */
+    private $organisation;
+
+    /**
+     * @var UserCustomField[]|null
+     * @SerializedName("customfields")
+     */
+    private $customfields;
+
+    /**
+     * @var Group[]
+     * @SerializedName("groups")
+     */
+    private $groups;
+
+    /**
      * @return string|null
      */
     public function getTwofaToken(): ?string
@@ -703,6 +722,63 @@ class User extends BaseModel
     public function setAvatarUrl(string $avatarUrl): self
     {
         $this->avatarUrl = $avatarUrl;
+
+        return $this;
+    }
+
+    /**
+     * @return Organisation|null
+     */
+    public function getOrganisation(): ?Organisation
+    {
+        return $this->organisation;
+    }
+
+    /**
+     * @param Organisation|null $organisation
+     * @return User
+     */
+    public function setOrganisation(?Organisation $organisation): User
+    {
+        $this->organisation = $organisation;
+
+        return $this;
+    }
+
+    /**
+     * @return UserCustomField[]|null
+     */
+    public function getCustomfields(): ?array
+    {
+        return $this->customfields;
+    }
+
+    /**
+     * @param UserCustomField[]|null $customfields
+     * @return User
+     */
+    public function setCustomfields(?array $customfields): User
+    {
+        $this->customfields = $customfields;
+
+        return $this;
+    }
+
+    /**
+     * @return Group[]
+     */
+    public function getGroups(): array
+    {
+        return $this->groups;
+    }
+
+    /**
+     * @param Group[] $groups
+     * @return self
+     */
+    public function setGroups(array $groups): self
+    {
+        $this->groups = $groups;
 
         return $this;
     }

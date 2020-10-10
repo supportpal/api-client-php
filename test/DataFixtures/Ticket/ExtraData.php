@@ -2,13 +2,22 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class ExtraData
+use SupportPal\ApiClient\Model\Ticket\Extra;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class ExtraData extends BaseModelData
 {
-    public const EXTRA_DATA = [
-        'to_address' => [
-            'test@test.com'
-        ],
+    public const DATA = [
+        'to_address' => ['test@test.com'],
         'cc_address' => [],
         'bcc_address' => []
     ];
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Extra::class;
+    }
 }

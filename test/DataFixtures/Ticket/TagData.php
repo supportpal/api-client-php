@@ -2,9 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class TagData
+use SupportPal\ApiClient\Model\Ticket\Tag;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class TagData extends BaseModelData
 {
-    public const TAG_DATA = [
+    public const DATA = [
         'id' => 1,
         'name' => 'tags',
         'colour' => '#dddddd',
@@ -13,4 +16,12 @@ class TagData
         'colour_text' => '#2d3748',
         'original_name' => 'tags'
     ];
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Tag::class;
+    }
 }

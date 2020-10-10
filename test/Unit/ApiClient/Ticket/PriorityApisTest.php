@@ -16,19 +16,9 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 class PriorityApisTest extends ApiClientTest
 {
     /**
-     * @var array<mixed>
-     */
-    private $getPrioritiesSuccessfulResponse = PriorityData::GET_PRIORITIES_SUCCESSFUL_RESPONSE;
-
-    /**
      * @var int
      */
     private $testPriorityId = 1;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getPrioritySuccessfulResponse = PriorityData::GET_PRIORITY_SUCCESSFUL_RESPONSE;
 
     public function testGetPriorities(): void
     {
@@ -36,7 +26,7 @@ class PriorityApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_PRIORITY, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getPrioritiesSuccessfulResponse),
+            (string) json_encode(PriorityData::getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTicketPriorities($queryParams);
@@ -77,7 +67,7 @@ class PriorityApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getPrioritySuccessfulResponse),
+            (string) json_encode(PriorityData::getResponse()),
             $request
         );
 

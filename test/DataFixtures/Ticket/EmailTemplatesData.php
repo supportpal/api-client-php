@@ -2,9 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class EmailTemplatesData
+use SupportPal\ApiClient\Model\Department\EmailTemplates;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class EmailTemplatesData extends BaseModelData
 {
-    public const EMAIL_TEMPLATES_DATA = [
+    public const DATA = [
         'user_ticket_opened' => 3,
         'user_user_ticket_reply' => 29,
         'user_ticket_reply' => 2,
@@ -23,4 +26,12 @@ class EmailTemplatesData
         'operator_operator_ticket_reply' => 23,
         'operator_ticket_note' => 24
     ];
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return EmailTemplates::class;
+    }
 }

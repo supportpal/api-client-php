@@ -17,7 +17,7 @@ class CategoryApisTest extends ApiTest
     public function testGetCategory(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            CategoryData::GET_CATEGORY_SUCCESSFUL_RESPONSE,
+            CategoryData::getResponse(),
             Category::class
         );
 
@@ -34,7 +34,7 @@ class CategoryApisTest extends ApiTest
     public function testGetCategories(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            CategoryData::GET_CATEGORIES_SUCCESSFUL_RESPONSE,
+            CategoryData::getAllResponse(),
             Category::class
         );
 

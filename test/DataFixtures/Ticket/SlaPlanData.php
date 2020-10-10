@@ -2,9 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class SlaPlanData
+use SupportPal\ApiClient\Model\Ticket\SlaPlan;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class SlaPlanData extends BaseModelData
 {
-    public const SLA_PLAN_DATA = [
+    public const DATA = [
         'conditionGroupType' => 1,
         'description' => 'test str',
         'createdAt' => 12345,
@@ -13,4 +16,12 @@ class SlaPlanData
         'allHours' => 1,
         'name' => 'test'
     ];
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return SlaPlan::class;
+    }
 }

@@ -15,17 +15,12 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
  */
 class CoreApisTest extends ApiClientTest
 {
-    /**
-     * @var array<mixed>
-     */
-    private $coreSettingsSuccessfulResponse = CoreSettingsData::CORE_SETTINGS_SUCCESSFUL_RESPONSE;
-
     public function testSuccessfulGetCoreSettings(): void
     {
         $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->coreSettingsSuccessfulResponse),
+            (string) json_encode(CoreSettingsData::getResponse()),
             $request
         );
 

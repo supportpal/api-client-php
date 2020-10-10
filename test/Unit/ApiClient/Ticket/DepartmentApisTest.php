@@ -16,19 +16,9 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 class DepartmentApisTest extends ApiClientTest
 {
     /**
-     * @var array<mixed>
-     */
-    private $getDepartmentsSuccessfulResponse = DepartmentData::GET_DEPARTMENTS_SUCCESSFUL_RESPONSE;
-
-    /**
      * @var int
      */
-    private $testDepartmentId = 5;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getDepartmentSuccessfulResponse = DepartmentData::GET_DEPARTMENT_SUCCESSFUL_RESPONSE;
+    private $testDepartmentId = 1;
 
     public function testGetDepartments(): void
     {
@@ -36,7 +26,7 @@ class DepartmentApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_DEPARTMENT, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getDepartmentsSuccessfulResponse),
+            (string) json_encode(DepartmentData::getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getDepartments($queryParams);
@@ -77,7 +67,7 @@ class DepartmentApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getDepartmentSuccessfulResponse),
+            (string) json_encode(DepartmentData::getResponse()),
             $request
         );
 

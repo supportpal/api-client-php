@@ -17,7 +17,7 @@ class TypeApiTest extends ApiTest
     public function testGetArticleTypes(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            TypeData::GET_TYPES_SUCCESSFUL_RESPONSE,
+            TypeData::getAllResponse(),
             Type::class
         );
 

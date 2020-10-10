@@ -15,18 +15,13 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
  */
 class TypeApisTest extends ApiClientTest
 {
-    /**
-     * @var array<mixed>
-     */
-    private $getTypeSuccessfulResponse = TypeData::GET_TYPES_SUCCESSFUL_RESPONSE;
-
     public function testGetTypes(): void
     {
         $queryParams = ['test' => 'value'];
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getTypeSuccessfulResponse),
+            (string) json_encode(TypeData::getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTypes($queryParams);

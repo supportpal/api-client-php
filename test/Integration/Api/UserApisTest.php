@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\Api;
 
-use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 use SupportPal\ApiClient\Tests\Integration\ApiTestCase;
 
 /**
@@ -12,17 +12,12 @@ use SupportPal\ApiClient\Tests\Integration\ApiTestCase;
 class UserApisTest extends ApiTestCase
 {
     /**
-     * @var array<mixed>
-     */
-    private $getEndpoints = [
-        'getUsers' => [UserData::GET_USERS_SUCCESSFUL_RESPONSE, []],
-    ];
-
-    /**
      * @inheritDoc
      */
     protected function getGetEndpoints(): array
     {
-        return $this->getEndpoints;
+        return [
+            'getUsers' => [UserData::getAllResponse(), []],
+        ];
     }
 }

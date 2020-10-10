@@ -18,12 +18,7 @@ class CommentApisTest extends ApiClientTest
     /**
      * @var array<mixed>
      */
-    private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getCommentsSuccessfulResponse = CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE;
+    private $postCommentSuccessfulResponse = CommentData::POST_RESPONSE;
 
     public function testPostSelfServiceComment(): void
     {
@@ -64,7 +59,7 @@ class CommentApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_COMMENT, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getCommentsSuccessfulResponse),
+            (string) json_encode(CommentData::getAllResponse()),
             $request
         );
         $getCommentsResponse = $this->apiClient->getComments($queryParams);

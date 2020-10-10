@@ -1,0 +1,53 @@
+<?php declare(strict_types = 1);
+
+namespace SupportPal\ApiClient\Tests\DataFixtures\User;
+
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\User\UserCustomField;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
+use SupportPal\ApiClient\Tests\DataFixtures\Shared\OptionData;
+
+class UserCustomFieldData extends BaseModelData
+{
+    public const DATA = [
+        'id' => 1,
+        'name' => 'test',
+        'description' => 'custom',
+        'type' => 0,
+        'depends_on_field_id' => null,
+        'depends_on_option_id' => null,
+        'order' => 1,
+        'required' => 0,
+        'public' => 1,
+        'encrypted' => 0,
+        'locked' => 0,
+        'regex' => '',
+        'regex_error_message' => '',
+        'created_at' => 1602320456,
+        'updated_at' => 1602320456,
+        'options' => [OptionData::DATA,],
+        'brands' => [BrandData::DATA,]
+    ];
+
+    /**
+     * @inheritDoc
+     * @throws InvalidArgumentException
+     */
+    public static function getDataWithObjects(): array
+    {
+        $data = self::DATA;
+        $data['options'] = [OptionData::getFilledInstance(),];
+        $data['brands'] = [BrandData::getFilledInstance(),];
+
+        return $data;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return UserCustomField::class;
+    }
+}

@@ -2,18 +2,23 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class ChannelSettingsData
+use SupportPal\ApiClient\Model\Ticket\ChannelSettings;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class ChannelSettingsData extends BaseModelData
 {
-    public const CHANNEL_SETTINGS_DATA = [
+    public const DATA = [
         'unauthenticated_users' => '1',
         'show_captcha' => '1',
         'show_related_articles' => '1',
         'append_ip_address' => '1',
     ];
 
-    public const GET_SUCCESSFUL_RESPONSE_DATA = [
-        'status' => 'success',
-        'message' => null,
-        'data' => self::CHANNEL_SETTINGS_DATA,
-    ];
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return ChannelSettings::class;
+    }
 }

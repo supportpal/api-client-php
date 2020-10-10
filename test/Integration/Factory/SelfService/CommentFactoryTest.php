@@ -14,7 +14,7 @@ use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
  */
 class CommentFactoryTest extends BaseModelFactoryTestCase
 {
-    const COMMENT_DATA = CommentData::COMMENT_DATA;
+    const COMMENT_DATA = CommentData::DATA;
 
     /**
      * @inheritDoc

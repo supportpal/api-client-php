@@ -2,35 +2,20 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\SelfService;
 
-use SupportPal\ApiClient\Model\SelfService\Article;
-use SupportPal\ApiClient\Model\SelfService\Type;
-use SupportPal\ApiClient\Model\User\User;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\SelfService\Comment;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 
-final class CommentData
+class CommentData extends BaseModelData
 {
-    public const POST_COMMENT_SUCCESSFUL_RESPONSE = [
+    public const POST_RESPONSE = [
         'status' => 'success',
         'message' => 'Successfully created new comment!',
-        'data' => [
-            'id' => 1,
-            'article_id' => 1,
-            'type_id' => 1,
-            'author_id' => 23,
-            'text' => 'test',
-            'purified_text' => 'test',
-            'parent_id' => null,
-            'root_parent_id' => null,
-            'rating' => 0,
-            'status' => 0,
-            'notify_reply' => 0,
-            'created_at' => 1599475251,
-            'updated_at' => 1599475251,
-            'name' => 'test'
-        ]
+        'data' => self::DATA,
     ];
 
-    public const COMMENT_DATA = [
+    public const DATA = [
         'id' => 1,
         'article_id' => 1,
         'type_id' => 1,
@@ -45,44 +30,30 @@ final class CommentData
         'created_at' => 1599475251,
         'updated_at' => 1599475251,
         'name' => 'test',
-    ];
-
-    public const GET_COMMENTS_SUCCESSFUL_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'count' => 12,
-        'data' =>
-            [
-                0 =>
-                    [
-                        'id' => 1,
-                        'article_id' => 1,
-                        'type_id' => 1,
-                        'author_id' => 23,
-                        'text' => 'test',
-                        'purified_text' => 'test',
-                        'parent_id' => null,
-                        'status' => 0,
-                        'notify_reply' => 0,
-                        'author' => UserData::USER_DATA,
-                        'article' => ArticleData::ARTICLE_DATA,
-                        'type' => TypeData::ARTICLE_TYPE_DATA,
-                        'created_at' => 1,
-                        'updated_at' => 1,
-                    ],
-            ],
+        'author' => UserData::DATA,
+        'article' => ArticleData::DATA,
+        'type' => TypeData::DATA,
     ];
 
     /**
-     * @return array<mixed>
+     * @inheritDoc
+     * @throws InvalidArgumentException
      */
-    public static function getCommentData(): array
+    public static function getDataWithObjects(): array
     {
-        $data = CommentData::COMMENT_DATA;
-        $data['type'] = new Type;
-        $data['article'] = new Article;
-        $data['author'] = new User;
+        $data = self::DATA;
+        $data['type'] = TypeData::getFilledInstance();
+        $data['article'] = ArticleData::getFilledInstance();
+        $data['author'] = UserData::getFilledInstance();
 
         return $data;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Comment::class;
     }
 }

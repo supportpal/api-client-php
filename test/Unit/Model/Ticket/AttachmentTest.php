@@ -19,7 +19,7 @@ class AttachmentTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return AttachmentData::ATTACHMENT_DATA;
+        return AttachmentData::getDataWithObjects();
     }
 
     /**

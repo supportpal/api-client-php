@@ -16,19 +16,9 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 class StatusApisTest extends ApiClientTest
 {
     /**
-     * @var array<mixed>
-     */
-    private $getStatusesSuccessfulResponse = StatusData::GET_STATUSES_SUCCESSFUL_RESPONSE;
-
-    /**
      * @var int
      */
     private $testStatusId = 1;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getStatusSuccessfulResponse = StatusData::GET_STATUS_SUCCESSFUL_RESPONSE;
 
     public function testGetStatuses(): void
     {
@@ -36,7 +26,7 @@ class StatusApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_STATUS, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getStatusesSuccessfulResponse),
+            (string) json_encode(StatusData::getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTicketStatuses($queryParams);
@@ -77,7 +67,7 @@ class StatusApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getStatusSuccessfulResponse),
+            (string) json_encode(StatusData::getResponse()),
             $request
         );
 

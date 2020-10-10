@@ -15,17 +15,12 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
  */
 class TicketSettingsApisTest extends ApiClientTest
 {
-    /**
-     * @var array<mixed>
-     */
-    private $ticketSettingsSuccessfulResponse = SettingsData::SUCCESSFUL_GET_RESPONSE;
-
     public function testSuccessfulGetTicketSettings(): void
     {
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_SETTINGS, [], []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->ticketSettingsSuccessfulResponse),
+            (string) json_encode(SettingsData::getResponse()),
             $request
         );
 

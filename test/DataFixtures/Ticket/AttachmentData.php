@@ -2,9 +2,14 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class AttachmentData
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\Ticket\Attachment;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\UploadData;
+
+class AttachmentData extends BaseModelData
 {
-    public const ATTACHMENT_DATA = [
+    public const DATA = [
         'id' => 1,
         'upload_hash' => '36f4ac8d4a4a867f9f2b4525a5148dcc69649b00',
         'ticket_id' => 18,
@@ -16,18 +21,28 @@ class AttachmentData
         'direct_operator_url' => 'http =>//localhost =>8080/index.php/admin/ticket/attachment/36f4ac8d4a4a867f9f2b4525a5148dcc69649b00',
         'frontend_url' => 'localhost/en/tickets/view/0072997?download=36f4ac8d4a4a867f9f2b4525a5148dcc69649b00&token=92114d7e2d5616cfea9c67b41e6a80bbe4e2cc27',
         'operator_url' => 'localhost/en/admin/ticket/view/18?download=36f4ac8d4a4a867f9f2b4525a5148dcc69649b00',
+        'upload' => UploadData::DATA,
+        'ticket' => TicketData::DATA,
     ];
 
-    const GET_ATTACHMENTS_SUCCESSFUL_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'count' => 1,
-        'data' => [self::ATTACHMENT_DATA]
-    ];
+    /**
+     * @inheritDoc
+     * @throws InvalidArgumentException
+     */
+    public static function getDataWithObjects(): array
+    {
+        $data = self::DATA;
+        $data['upload'] = UploadData::getFilledInstance();
+        $data['ticket'] = TicketData::getFilledInstance();
 
-    const GET_ATTACHMENT_SUCCESSFUL_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'data' => self::ATTACHMENT_DATA
-    ];
+        return $data;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Attachment::class;
+    }
 }

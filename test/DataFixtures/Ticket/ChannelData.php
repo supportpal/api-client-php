@@ -2,9 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class ChannelData
+use SupportPal\ApiClient\Model\Ticket\Channel;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class ChannelData extends BaseModelData
 {
-    public const CHANNEL_DATA = [
+    public const DATA = [
         'id' => 1,
         'name' => 'Web',
         'enabled' => 1,
@@ -14,4 +17,12 @@ class ChannelData
         'updated_at' => 0,
         'formatted_name' => 'Web'
     ];
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Channel::class;
+    }
 }

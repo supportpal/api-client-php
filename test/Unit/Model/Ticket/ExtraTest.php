@@ -19,7 +19,7 @@ class ExtraTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return ExtraData::EXTRA_DATA;
+        return ExtraData::getDataWithObjects();
     }
 
     /**
