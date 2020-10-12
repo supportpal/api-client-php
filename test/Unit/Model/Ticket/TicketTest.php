@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\Ticket\Ticket;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
 /**
@@ -18,9 +19,7 @@ class TicketTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return [
-            'text' => 'test'
-        ];
+        return TicketData::getDataWithObjects();
     }
 
     /**

@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Integration\Factory\Core;
 use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Factory\User\UserFactory;
 use SupportPal\ApiClient\Model\User\User;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
 
 /**
@@ -27,7 +27,7 @@ class UserFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return UserData::USER_DATA;
+        return UserData::DATA;
     }
 
     /**

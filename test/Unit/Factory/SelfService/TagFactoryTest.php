@@ -16,8 +16,6 @@ use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
  */
 class TagFactoryTest extends BaseModelFactoryTestCase
 {
-    const TAG_DATA = TagData::TAG_DATA;
-
     /**
      * @inheritDoc
      */
@@ -35,7 +33,7 @@ class TagFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return self::TAG_DATA;
+        return TagData::DATA;
     }
 
     /**
@@ -51,7 +49,7 @@ class TagFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new Tag)->fill(self::TAG_DATA);
+        return TagData::getFilledInstance();
     }
 
     /**

@@ -12,14 +12,12 @@ use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
 class CoreApisTest extends ApiComponentTest
 {
     /**
-     * @var array<mixed>
+     * @inheritDoc
      */
-    private $getEndpoints = [
-        'getCoreSettings' => [CoreSettingsData::CORE_SETTINGS_SUCCESSFUL_RESPONSE, []],
-    ];
-
     protected function getGetEndpoints(): array
     {
-        return $this->getEndpoints;
+        return [
+            'getCoreSettings' => [CoreSettingsData::getResponse(), []],
+        ];
     }
 }

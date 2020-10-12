@@ -16,7 +16,7 @@ class UploadTest extends BaseModelTestCase
 {
     protected function getModelData(): array
     {
-        return UploadData::UPLOAD_DATA;
+        return UploadData::DATA;
     }
 
     protected function getModel(): Model

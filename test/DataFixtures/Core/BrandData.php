@@ -2,9 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Core;
 
-class BrandData
+use SupportPal\ApiClient\Model\Core\Brand;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class BrandData extends BaseModelData
 {
-    public const BRAND_DATA = [
+    public const DATA = [
         'id' => 1,
         'name' => 'test',
         'enabled' => 1,
@@ -39,4 +42,12 @@ class BrandData
         'created_at' => 1597245387,
         'updated_at' => 1597245396
     ];
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Brand::class;
+    }
 }

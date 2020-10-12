@@ -19,8 +19,15 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function assertArrayEqualsObjectFields(object $obj, array $array): void
     {
         foreach ($array as $key => $value) {
-            $attributeValue = $obj->{'get'.$this->snakeCaseToPascalCase($key)}();
+            $method = 'get'.$this->snakeCaseToPascalCase($key);
+            /**
+             * ignore extra fields passed in the arrays
+             */
+            if (! method_exists($obj, $method)) {
+                continue;
+            }
 
+            $attributeValue = $obj->{$method}();
             /**
              * assert against nested objects recursively
              * @example

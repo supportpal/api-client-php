@@ -21,7 +21,7 @@ class ChannelSettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new ChannelSettings)->fill(ChannelSettingsData::CHANNEL_SETTINGS_DATA);
+        return ChannelSettingsData::getFilledInstance();
     }
 
     /**
@@ -37,7 +37,7 @@ class ChannelSettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return ChannelSettingsData::CHANNEL_SETTINGS_DATA;
+        return ChannelSettingsData::DATA;
     }
 
     /**

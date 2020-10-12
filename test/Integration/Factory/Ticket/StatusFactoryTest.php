@@ -23,7 +23,7 @@ class StatusFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return StatusData::STATUS_DATA;
+        return StatusData::DATA;
     }
 
     /**

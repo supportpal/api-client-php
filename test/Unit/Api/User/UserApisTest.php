@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
 use SupportPal\ApiClient\Model\User\User;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
 /**
@@ -14,15 +14,10 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class UserApisTest extends ApiTest
 {
-    /**
-     * @var array<mixed>
-     */
-    protected $getUsersSuccessfulResponse = UserData::GET_USERS_SUCCESSFUL_RESPONSE;
-
     public function testGetUsers(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            UserData::GET_USERS_SUCCESSFUL_RESPONSE,
+            UserData::getAllResponse(),
             User::class
         );
 

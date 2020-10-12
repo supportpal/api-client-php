@@ -50,4 +50,8 @@ final class ApiDictionary
     public const TICKET_PRIORITY = 'ticket/priority';
 
     public const TICKET_STATUS = 'ticket/status';
+
+    public const TICKET_ATTACHMENT = 'ticket/attachment';
+
+    public const TICKET_TICKET = 'ticket/ticket';
 }

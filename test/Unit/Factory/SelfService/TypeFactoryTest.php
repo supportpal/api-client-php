@@ -16,8 +16,6 @@ use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
  */
 class TypeFactoryTest extends BaseModelFactoryTestCase
 {
-    const ARTICLE_TYPE_DATA = TypeData::ARTICLE_TYPE_DATA;
-
     /**
      * @inheritDoc
      */
@@ -35,7 +33,7 @@ class TypeFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return self::ARTICLE_TYPE_DATA;
+        return TypeData::DATA;
     }
 
     /**
@@ -51,7 +49,7 @@ class TypeFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new Type)->fill(self::ARTICLE_TYPE_DATA);
+        return TypeData::getFilledInstance();
     }
 
     /**

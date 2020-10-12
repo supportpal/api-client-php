@@ -17,7 +17,7 @@ class TagApisTest extends ApiTest
     public function testGetComments(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            TagData::GET_TAG_SUCCESSFUL_RESPONSE,
+            TagData::getResponse(),
             Tag::class
         );
 

@@ -23,7 +23,7 @@ class ArticleFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return ArticleData::ARTICLE_DATA;
+        return ArticleData::DATA;
     }
 
     /**

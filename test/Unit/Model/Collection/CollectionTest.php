@@ -100,7 +100,7 @@ class CollectionTest extends TestCase
     private function getModelsTestData(): array
     {
         return array_map(function () {
-            return (new Comment)->fill(CommentData::COMMENT_DATA);
+            return CommentData::getFilledInstance();
         }, range(0, 10));
     }
 }

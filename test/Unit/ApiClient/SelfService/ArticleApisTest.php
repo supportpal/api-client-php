@@ -16,16 +16,6 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 class ArticleApisTest extends ApiClientTest
 {
     /**
-     * @var array<mixed>
-     */
-    private $getArticlesSuccessfulResponse = ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE;
-
-    /**
-     * @var array<mixed>
-     */
-    private $getArticleTypeSuccessfulResponse = ArticleData::GET_ARTICLE_SUCCESSFUL_RESPONSE;
-
-    /**
      * @var int
      */
     private $testArticleId = 1;
@@ -36,7 +26,7 @@ class ArticleApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getArticlesSuccessfulResponse),
+            (string) json_encode(ArticleData::getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getArticlesByTerm($queryParams);
@@ -77,7 +67,7 @@ class ArticleApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getArticleTypeSuccessfulResponse),
+            (string) json_encode(ArticleData::getResponse()),
             $request
         );
 
@@ -122,7 +112,7 @@ class ArticleApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getArticlesSuccessfulResponse),
+            (string) json_encode(ArticleData::getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getArticles($queryParams);

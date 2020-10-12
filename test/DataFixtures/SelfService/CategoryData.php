@@ -2,11 +2,13 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\SelfService;
 
-use SupportPal\ApiClient\Model\SelfService\Type;
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\SelfService\Category;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 
-class CategoryData
+class CategoryData extends BaseModelData
 {
-    public const CATEGORY_DATA = [
+    public const DATA = [
         'id' => 1,
         'type_id' => 1,
         'parent_id' => null,
@@ -17,33 +19,30 @@ class CategoryData
         'created_at' => 1599475197,
         'updated_at' => 1599475197,
         'frontend_url' => 'http://localhost:8080/index.php/announcements/category/test',
+        'type' => TypeData::DATA,
         'pivot' => [
             'article_id' => 1,
             'category_id' => 1
         ],
     ];
 
-    public const GET_CATEGORIES_SUCCESSFUL_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'count' => 1,
-        'data' => [self::CATEGORY_DATA],
-    ];
-
-    public const GET_CATEGORY_SUCCESSFUL_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'data' => self::CATEGORY_DATA,
-    ];
-
     /**
-     * @return array<mixed>
+     * @inheritDoc
+     * @throws InvalidArgumentException
      */
-    public static function getCategoryData(): array
+    public static function getDataWithObjects(): array
     {
-        $data = self::CATEGORY_DATA;
-        $data['type'] = new Type;
+        $data = self::DATA;
+        $data['type'] = TypeData::getFilledInstance();
 
         return $data;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Category::class;
     }
 }

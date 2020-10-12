@@ -2,36 +2,37 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\CustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
 use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
 
 class TicketApisTest extends ApiComponentTest
 {
     /**
-     * @var array[]
-     */
-    private $getEndpoints = [
-        'getDepartments' => [DepartmentData::GET_DEPARTMENTS_SUCCESSFUL_RESPONSE, []],
-        'getDepartment' => [DepartmentData::GET_DEPARTMENT_SUCCESSFUL_RESPONSE, [1]],
-        'getTicketSettings' => [SettingsData::SUCCESSFUL_GET_RESPONSE, []],
-        'getChannelSettings' => [ChannelSettingsData::GET_SUCCESSFUL_RESPONSE_DATA, ['web']],
-        'getTicketCustomFields' => [CustomFieldData::GET_CUSTOMFIELDS_SUCCESSFUL_RESPONSE_DATA, []],
-        'getTicketPriorities' => [PriorityData::GET_PRIORITIES_SUCCESSFUL_RESPONSE, []],
-        'getTicketPriority' => [PriorityData::GET_PRIORITY_SUCCESSFUL_RESPONSE, [1]],
-        'getTicketStatuses' => [StatusData::GET_STATUSES_SUCCESSFUL_RESPONSE, []],
-        'getTicketStatus' => [StatusData::GET_STATUS_SUCCESSFUL_RESPONSE, [1]],
-    ];
-
-    /**
-     * @return array<mixed>
+     * @inheritDoc
      */
     protected function getGetEndpoints(): array
     {
-        return $this->getEndpoints;
+        return [
+            'getDepartments' => [DepartmentData::getAllResponse(), []],
+            'getDepartment' => [DepartmentData::getResponse(), [1]],
+            'getTicketSettings' => [SettingsData::getResponse(), []],
+            'getChannelSettings' => [ChannelSettingsData::getResponse(), ['web']],
+            'getTicketCustomFields' => [CustomFieldData::getAllResponse(), []],
+            'getTicketPriorities' => [PriorityData::getAllResponse(), []],
+            'getTicketPriority' => [PriorityData::getResponse(), [1]],
+            'getTicketStatuses' => [StatusData::getAllResponse(), []],
+            'getTicketStatus' => [StatusData::getResponse(), [1]],
+            'getTicketAttachments' => [AttachmentData::getAllResponse(), []],
+            'getTicketAttachment' => [AttachmentData::getResponse(), [1]],
+            'getTickets' => [TicketData::getAllResponse(), []],
+            'getTicket' => [TicketData::getResponse(), [1]],
+        ];
     }
 }

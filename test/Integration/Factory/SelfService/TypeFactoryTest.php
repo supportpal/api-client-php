@@ -14,7 +14,7 @@ use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
  */
 class TypeFactoryTest extends BaseModelFactoryTestCase
 {
-    const ARTICLE_TYPE_DATA = TypeData::ARTICLE_TYPE_DATA;
+    const ARTICLE_TYPE_DATA = TypeData::DATA;
 
     /**
      * @inheritDoc

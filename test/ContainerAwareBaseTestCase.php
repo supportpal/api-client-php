@@ -52,11 +52,10 @@ abstract class ContainerAwareBaseTestCase extends TestCase
      */
     public function provideUnsuccessfulTestCases(): iterable
     {
-        $this->setUp();
         $jsonSuccessfulBody = $this->genericErrorResponse;
         $jsonSuccessfulBody['status'] = 'success';
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($jsonSuccessfulBody, $this->getFormatType());
+        $jsonSuccessfulBody = json_encode($jsonSuccessfulBody);
 
         yield ['error 400 response' => new Response(400, [], $jsonSuccessfulBody)];
         yield ['error 401 response' => new Response(401, [], $jsonSuccessfulBody)];
@@ -64,7 +63,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         yield ['error 404 response' => new Response(404, [], $jsonSuccessfulBody)];
 
         /** @var string $jsonErrorBody */
-        $jsonErrorBody = $this->getEncoder()->encode($this->genericErrorResponse, $this->getFormatType());
+        $jsonErrorBody = json_encode($this->genericErrorResponse);
 
         yield [
             'error status response' => new Response(200, [], $jsonErrorBody)

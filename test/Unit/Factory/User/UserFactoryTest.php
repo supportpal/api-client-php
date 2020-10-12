@@ -6,7 +6,7 @@ use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Factory\User\UserFactory;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\User\User;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
 
 /**
@@ -16,8 +16,6 @@ use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
  */
 class UserFactoryTest extends BaseModelFactoryTestCase
 {
-    const USER_DATA = UserData::USER_DATA;
-
     /**
      * @inheritDoc
      */
@@ -35,7 +33,7 @@ class UserFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return self::USER_DATA;
+        return UserData::DATA;
     }
 
     /**
@@ -51,7 +49,7 @@ class UserFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new User)->fill(self::USER_DATA);
+        return UserData::getFilledInstance();
     }
 
     /**

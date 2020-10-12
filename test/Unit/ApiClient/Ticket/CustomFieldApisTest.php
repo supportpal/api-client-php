@@ -15,18 +15,13 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
  */
 class CustomFieldApisTest extends ApiClientTest
 {
-    /**
-     * @var array<mixed>
-     */
-    private $getTicketCustomFieldsSuccessfulResponse = CustomFieldData::GET_CUSTOMFIELDS_SUCCESSFUL_RESPONSE_DATA;
-
     public function testGetTicketCustomFields(): void
     {
         $queryParams = [];
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_CUSTOMFIELD, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getTicketCustomFieldsSuccessfulResponse),
+            (string) json_encode(CustomFieldData::getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTicketCustomFields($queryParams);

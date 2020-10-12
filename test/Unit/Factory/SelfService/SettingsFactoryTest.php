@@ -16,8 +16,6 @@ use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
  */
 class SettingsFactoryTest extends BaseModelFactoryTestCase
 {
-    const SETTINGS_DATA = SettingsData::SETTINGS_DATA;
-
     /**
      * @inheritDoc
      */
@@ -35,7 +33,7 @@ class SettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return self::SETTINGS_DATA;
+        return SettingsData::DATA;
     }
 
     /**
@@ -51,7 +49,7 @@ class SettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return (new Settings)->fill(self::SETTINGS_DATA);
+        return SettingsData::getFilledInstance();
     }
 
     /**

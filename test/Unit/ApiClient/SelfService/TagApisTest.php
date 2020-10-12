@@ -20,11 +20,6 @@ class TagApisTest extends ApiClientTest
      */
     private $testTagId = 1;
 
-    /**
-     * @var array<mixed>
-     */
-    private $getTagTypeSuccessfulResponse = TagData::GET_TAG_SUCCESSFUL_RESPONSE;
-
     public function testGetTag(): void
     {
         $request = $this->requestCommonExpectations(
@@ -36,7 +31,7 @@ class TagApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getTagTypeSuccessfulResponse),
+            (string) json_encode(TagData::getResponse()),
             $request
         );
 

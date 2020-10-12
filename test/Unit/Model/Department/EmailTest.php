@@ -19,7 +19,7 @@ class EmailTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return EmailData::EMAIL_DATA;
+        return EmailData::getDataWithObjects();
     }
 
     /**

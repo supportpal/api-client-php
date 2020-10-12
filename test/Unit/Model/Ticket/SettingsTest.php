@@ -19,7 +19,7 @@ class SettingsTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return SettingsData::SETTINGS_DATA;
+        return SettingsData::getDataWithObjects();
     }
 
     /**

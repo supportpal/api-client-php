@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Tests\Unit\ApiClient\User;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\UserData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 /**
@@ -15,18 +15,13 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
  */
 class UserApisTest extends ApiClientTest
 {
-    /**
-     * @var array<mixed>
-     */
-    private $getUsersSuccessfulResponse = UserData::GET_USERS_SUCCESSFUL_RESPONSE;
-
     public function testGetUsers(): void
     {
         $queryParams = ['test' => 'value'];
         $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USER, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->getUsersSuccessfulResponse),
+            (string) json_encode(UserData::getAllResponse()),
             $request
         );
         $getUsersResponse = $this->apiClient->getUsers($queryParams);

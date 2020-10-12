@@ -19,7 +19,7 @@ class BrandTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return BrandData::BRAND_DATA;
+        return BrandData::getDataWithObjects();
     }
 
     /**

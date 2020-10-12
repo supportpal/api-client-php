@@ -17,7 +17,7 @@ class StatusApisTest extends ApiTest
     public function testGetTicketsStatuses(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            StatusData::GET_STATUSES_SUCCESSFUL_RESPONSE,
+            StatusData::getAllResponse(),
             Status::class
         );
 
@@ -34,7 +34,7 @@ class StatusApisTest extends ApiTest
     public function testGetTicketsStatus(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            StatusData::GET_STATUS_SUCCESSFUL_RESPONSE,
+            StatusData::getResponse(),
             Status::class
         );
 

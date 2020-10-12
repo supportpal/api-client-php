@@ -19,7 +19,7 @@ class PriorityTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return PriorityData::PRIORITY_DATA;
+        return PriorityData::getDataWithObjects();
     }
 
     /**

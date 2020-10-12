@@ -23,7 +23,7 @@ class PriorityFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return PriorityData::PRIORITY_DATA;
+        return PriorityData::DATA;
     }
 
     /**

@@ -8,7 +8,7 @@ use SupportPal\ApiClient\Model\Ticket\Status;
 class StatusFactory extends BaseModelFactory
 {
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getModel(): string
     {

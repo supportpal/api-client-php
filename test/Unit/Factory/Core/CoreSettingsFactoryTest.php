@@ -16,14 +16,12 @@ use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
  */
 class CoreSettingsFactoryTest extends BaseModelFactoryTestCase
 {
-    const CORE_SETTINGS_DATA = CoreSettingsData::CORE_SETTINGS_DATA;
-
     /**
      * @inheritDoc
      */
     protected function getModelInstance(): Model
     {
-        return (new CoreSettings)->fill(self::CORE_SETTINGS_DATA);
+        return CoreSettingsData::getFilledInstance();
     }
 
     /**
@@ -39,7 +37,7 @@ class CoreSettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return self::CORE_SETTINGS_DATA;
+        return CoreSettingsData::DATA;
     }
 
     /**

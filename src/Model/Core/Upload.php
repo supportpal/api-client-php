@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Model\Core;
 
+use Doctrine\Common\Annotations\Annotation\Required;
 use SupportPal\ApiClient\Model\BaseModel;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
@@ -50,6 +51,7 @@ class Upload extends BaseModel
     private $token;
 
     /**
+     * @Required
      * @SerializedName("created_at")
      * @var int
      */

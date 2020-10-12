@@ -2,9 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-class StatusData
+use SupportPal\ApiClient\Model\Ticket\Status;
+use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+
+class StatusData extends BaseModelData
 {
-    public const STATUS_DATA = [
+    public const DATA = [
         'id' => 1,
         'name' => 'Open',
         'colour' => '#35a600',
@@ -16,16 +19,11 @@ class StatusData
         'icon_without_tooltip' => '<div class="sp-inline-block sp-h-5 sp-w-5 sp-rounded-full sp-text-xs sp-text-center sp-font-bold sp-align-middle" style="background-color: #35a600; color: #fff; line-height: 1.25rem;">O</div>'
     ];
 
-    const GET_STATUSES_SUCCESSFUL_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'count' => 1,
-        'data' => [self::STATUS_DATA]
-    ];
-
-    const GET_STATUS_SUCCESSFUL_RESPONSE = [
-        'status' => 'success',
-        'message' => null,
-        'data' => self::STATUS_DATA
-    ];
+    /**
+     * @inheritDoc
+     */
+    public static function getModel(): string
+    {
+        return Status::class;
+    }
 }

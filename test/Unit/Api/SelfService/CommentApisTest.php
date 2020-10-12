@@ -21,7 +21,7 @@ class CommentApisTest extends ApiTest
     /**
      * @var array<mixed>
      */
-    private $postCommentSuccessfulResponse = CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE;
+    private $postCommentSuccessfulResponse = CommentData::POST_RESPONSE;
 
     public function testPostComment(): void
     {
@@ -35,7 +35,7 @@ class CommentApisTest extends ApiTest
         $this
             ->modelToArrayConverter
             ->convertOne($commentMock)
-            ->willReturn(CommentData::COMMENT_DATA)
+            ->willReturn(CommentData::DATA)
             ->shouldBeCalled();
 
         $response = $this->prophesize(ResponseInterface::class);
@@ -50,7 +50,7 @@ class CommentApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->postSelfServiceComment(CommentData::COMMENT_DATA)
+            ->postSelfServiceComment(CommentData::DATA)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $this
@@ -83,7 +83,7 @@ class CommentApisTest extends ApiTest
     public function testGetComments(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE,
+            CommentData::getAllResponse(),
             Comment::class
         );
 

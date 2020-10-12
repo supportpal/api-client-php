@@ -19,30 +19,15 @@ use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
  */
 class SelfServiceApisTest extends ApiComponentTest
 {
-    /**
-     * @var array<mixed>
-     */
-    private $getEndpoints = [
-        'getTypes' => [TypeData::GET_TYPES_SUCCESSFUL_RESPONSE, []],
-        'getComments' => [CommentData::GET_COMMENTS_SUCCESSFUL_RESPONSE, []],
-        'getSelfServiceSettings' => [SettingsData::GET_SETTINGS_SUCCESSFUL_RESPONSE, []],
-        'getCategories' => [CategoryData::GET_CATEGORIES_SUCCESSFUL_RESPONSE, []],
-        'getCategory' => [CategoryData::GET_CATEGORY_SUCCESSFUL_RESPONSE, [1]],
-        'getArticle' => [ArticleData::GET_ARTICLE_SUCCESSFUL_RESPONSE, [1]],
-        'getArticlesByTerm' => [ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE, ['search term']],
-        'getArticles' => [ArticleData::GET_ARTICLES_SUCCESSFUL_RESPONSE, [[]]],
-        'getTag' => [TagData::GET_TAG_SUCCESSFUL_RESPONSE, [1]],
-    ];
-
     public function testPostComment(): void
     {
         $comment = new Comment;
-        $comment->fill(CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE['data']);
+        $comment->fill(CommentData::getDataWithObjects());
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode(CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE);
+        $jsonSuccessfulBody = json_encode(CommentData::POST_RESPONSE);
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         $postedComment = $this->getSupportPal()->getApi()->postComment($comment);
-        $this->assertArrayEqualsObjectFields($postedComment, CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE['data']);
+        $this->assertArrayEqualsObjectFields($postedComment, CommentData::POST_RESPONSE['data']);
     }
 
     /**
@@ -53,7 +38,7 @@ class SelfServiceApisTest extends ApiComponentTest
     public function testUnsuccessfulPostComment(Response $response): void
     {
         $comment = new Comment;
-        $comment->fill(CommentData::POST_COMMENT_SUCCESSFUL_RESPONSE['data']);
+        $comment->fill(CommentData::getDataWithObjects());
         $this->prepareUnsuccessfulApiRequest($response);
         $this->getSupportPal()->getApi()->postComment($comment);
     }
@@ -70,6 +55,16 @@ class SelfServiceApisTest extends ApiComponentTest
      */
     protected function getGetEndpoints(): array
     {
-        return $this->getEndpoints;
+        return [
+            'getTypes' => [TypeData::getAllResponse(), []],
+            'getComments' => [CommentData::getAllResponse(), []],
+            'getSelfServiceSettings' => [SettingsData::getResponse(), []],
+            'getCategories' => [CategoryData::getAllResponse(), []],
+            'getCategory' => [CategoryData::getResponse(), [1]],
+            'getArticle' => [ArticleData::getResponse(), [1]],
+            'getArticlesByTerm' => [ArticleData::getAllResponse(), ['search term']],
+            'getArticles' => [ArticleData::getAllResponse(), [[]]],
+            'getTag' => [TagData::getResponse(), [1]],
+        ];
     }
 }

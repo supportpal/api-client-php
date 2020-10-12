@@ -135,6 +135,11 @@ class Article extends BaseModel
     private $views;
 
     /**
+     * @var Tag[]
+     */
+    private $tags;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -491,6 +496,25 @@ class Article extends BaseModel
     public function setViews(?int $views): self
     {
         $this->views = $views;
+
+        return $this;
+    }
+
+    /**
+     * @return Tag[]
+     */
+    public function getTags(): array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param Tag[] $tags
+     * @return self
+     */
+    public function setTags(array $tags): self
+    {
+        $this->tags = $tags;
 
         return $this;
     }
