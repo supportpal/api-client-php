@@ -116,7 +116,7 @@ class Department extends BaseModel
     private $emails;
 
     /**
-     * @var array<mixed>
+     * @var array<mixed>|null
      * @SerializedName("groups")
      */
     private $groups;
@@ -476,18 +476,18 @@ class Department extends BaseModel
     }
 
     /**
-     * @return array<mixed>
+     * @return array<mixed>|null
      */
-    public function getGroups(): array
+    public function getGroups(): ?array
     {
         return $this->groups;
     }
 
     /**
-     * @param array<mixed> $groups
+     * @param array<mixed>|null $groups
      * @return self
      */
-    public function setGroups(array $groups): self
+    public function setGroups(?array $groups): self
     {
         $this->groups = $groups;
 

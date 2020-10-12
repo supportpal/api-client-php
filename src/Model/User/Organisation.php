@@ -68,19 +68,19 @@ class Organisation extends BaseModel
     private $ownerId;
 
     /**
-     * @var User[]
+     * @var User[]|null
      * @SerializedName("users")
      */
     private $users;
 
     /**
-     * @var UserCustomField[]
+     * @var UserCustomField[]|null
      * @SerializedName("customfields")
      */
     private $customfields;
 
     /**
-     * @var Domain[]
+     * @var Domain[]|null
      * @SerializedName("domains")
      */
     private $domains;
@@ -276,18 +276,18 @@ class Organisation extends BaseModel
     }
 
     /**
-     * @return User[]
+     * @return User[]|null
      */
-    public function getUsers(): array
+    public function getUsers(): ?array
     {
         return $this->users;
     }
 
     /**
-     * @param User[] $users
+     * @param User[]|null $users
      * @return Organisation
      */
-    public function setUsers(array $users): Organisation
+    public function setUsers(?array $users): Organisation
     {
         $this->users = $users;
 
@@ -295,18 +295,18 @@ class Organisation extends BaseModel
     }
 
     /**
-     * @return UserCustomField[]
+     * @return UserCustomField[]|null
      */
-    public function getCustomfields(): array
+    public function getCustomfields(): ?array
     {
         return $this->customfields;
     }
 
     /**
-     * @param UserCustomField[] $customfields
+     * @param UserCustomField[]|null $customfields
      * @return Organisation
      */
-    public function setCustomfields(array $customfields): Organisation
+    public function setCustomfields(?array $customfields): Organisation
     {
         $this->customfields = $customfields;
 
@@ -314,18 +314,18 @@ class Organisation extends BaseModel
     }
 
     /**
-     * @return Domain[]
+     * @return Domain[]|null
      */
-    public function getDomains(): array
+    public function getDomains(): ?array
     {
         return $this->domains;
     }
 
     /**
-     * @param Domain[] $domains
+     * @param Domain[]|null $domains
      * @return Organisation
      */
-    public function setDomains(array $domains): Organisation
+    public function setDomains(?array $domains): Organisation
     {
         $this->domains = $domains;
 

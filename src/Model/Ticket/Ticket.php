@@ -220,25 +220,25 @@ class Ticket extends BaseModel
     private $channelId;
 
     /**
-     * @var Channel
+     * @var Channel|null
      * @SerializedName("channel")
      */
     private $channel;
 
     /**
-     * @var Department
+     * @var Department|null
      * @SerializedName("department")
      */
     private $department;
 
     /**
-     * @var Tag[]
+     * @var Tag[]|null
      * @SerializedName("tags")
      */
     private $tags;
 
     /**
-     * @var User
+     * @var User|null
      * @SerializedName("user")
      */
     private $user;
@@ -250,19 +250,19 @@ class Ticket extends BaseModel
     private $token;
 
     /**
-     * @var Operator[]
+     * @var Operator[]|null
      * @SerializedName("watching")
      */
     private $watching;
 
     /**
-     * @var Operator[]
+     * @var Operator[]|null
      * @SerializedName("assigned")
      */
     private $assigned;
 
     /**
-     * @var Brand
+     * @var Brand|null
      * @SerializedName("brand")
      */
     private $brand;
@@ -280,19 +280,19 @@ class Ticket extends BaseModel
     private $slaplan;
 
     /**
-     * @var TicketCustomField[]
+     * @var TicketCustomField[]|null
      * @SerializedName("customfields")
      */
     private $customfields;
 
     /**
-     * @var Status
+     * @var Status|null
      * @SerializedName("status")
      */
     private $status;
 
     /**
-     * @var Priority
+     * @var Priority|null
      * @SerializedName("priority")
      */
     private $priority;
@@ -944,18 +944,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return Channel
+     * @return Channel|null
      */
-    public function getChannel(): Channel
+    public function getChannel(): ?Channel
     {
         return $this->channel;
     }
 
     /**
-     * @param Channel $channel
+     * @param Channel|null $channel
      * @return self
      */
-    public function setChannel(Channel $channel): self
+    public function setChannel(?Channel $channel): self
     {
         $this->channel = $channel;
 
@@ -963,18 +963,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return Department
+     * @return Department|null
      */
-    public function getDepartment(): Department
+    public function getDepartment(): ?Department
     {
         return $this->department;
     }
 
     /**
-     * @param Department $department
+     * @param Department|null $department
      * @return self
      */
-    public function setDepartment(Department $department): self
+    public function setDepartment(?Department $department): self
     {
         $this->department = $department;
 
@@ -982,18 +982,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return Tag[]
+     * @return Tag[]|null
      */
-    public function getTags(): array
+    public function getTags(): ?array
     {
         return $this->tags;
     }
 
     /**
-     * @param Tag[] $tags
+     * @param Tag[]|null $tags
      * @return self
      */
-    public function setTags(array $tags): self
+    public function setTags(?array $tags): self
     {
         $this->tags = $tags;
 
@@ -1001,18 +1001,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return User
+     * @return User|null
      */
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
     /**
-     * @param User $user
+     * @param User|null $user
      * @return self
      */
-    public function setUser(User $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
@@ -1039,18 +1039,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return Operator[]
+     * @return Operator[]|null
      */
-    public function getWatching(): array
+    public function getWatching(): ?array
     {
         return $this->watching;
     }
 
     /**
-     * @param Operator[] $watching
+     * @param Operator[]|null $watching
      * @return self
      */
-    public function setWatching(array $watching): self
+    public function setWatching(?array $watching): self
     {
         $this->watching = $watching;
 
@@ -1058,18 +1058,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return Operator[]
+     * @return Operator[]|null
      */
-    public function getAssigned(): array
+    public function getAssigned(): ?array
     {
         return $this->assigned;
     }
 
     /**
-     * @param Operator[] $assigned
+     * @param Operator[]|null $assigned
      * @return self
      */
-    public function setAssigned(array $assigned): self
+    public function setAssigned(?array $assigned): self
     {
         $this->assigned = $assigned;
 
@@ -1077,18 +1077,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return Brand
+     * @return Brand|null
      */
-    public function getBrand(): Brand
+    public function getBrand(): ?Brand
     {
         return $this->brand;
     }
 
     /**
-     * @param Brand $brand
+     * @param Brand|null $brand
      * @return self
      */
-    public function setBrand(Brand $brand): self
+    public function setBrand(?Brand $brand): self
     {
         $this->brand = $brand;
 
@@ -1134,18 +1134,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return TicketCustomField[]
+     * @return TicketCustomField[]|null
      */
-    public function getCustomfields(): array
+    public function getCustomfields(): ?array
     {
         return $this->customfields;
     }
 
     /**
-     * @param TicketCustomField[] $customfields
+     * @param TicketCustomField[]|null $customfields
      * @return self
      */
-    public function setCustomfields(array $customfields): self
+    public function setCustomfields(?array $customfields): self
     {
         $this->customfields = $customfields;
 
@@ -1153,18 +1153,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return Status
+     * @return Status|null
      */
-    public function getStatus(): Status
+    public function getStatus(): ?Status
     {
         return $this->status;
     }
 
     /**
-     * @param Status $status
+     * @param Status|null $status
      * @return self
      */
-    public function setStatus(Status $status): self
+    public function setStatus(?Status $status): self
     {
         $this->status = $status;
 
@@ -1172,18 +1172,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return Priority
+     * @return Priority|null
      */
-    public function getPriority(): Priority
+    public function getPriority(): ?Priority
     {
         return $this->priority;
     }
 
     /**
-     * @param Priority $priority
+     * @param Priority|null $priority
      * @return self
      */
-    public function setPriority(Priority $priority): self
+    public function setPriority(?Priority $priority): self
     {
         $this->priority = $priority;
 
