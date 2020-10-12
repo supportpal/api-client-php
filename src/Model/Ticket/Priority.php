@@ -57,7 +57,7 @@ class Priority extends BaseModel
     private $iconWithoutTooltip;
 
     /**
-     * @var Department[]
+     * @var Department[]|null
      */
     private $departments;
 
@@ -214,18 +214,18 @@ class Priority extends BaseModel
     }
 
     /**
-     * @return Department[]
+     * @return Department[]|null
      */
-    public function getDepartments(): array
+    public function getDepartments(): ?array
     {
         return $this->departments;
     }
 
     /**
-     * @param Department[] $departments
+     * @param Department[]|null $departments
      * @return self
      */
-    public function setDepartments(array $departments): self
+    public function setDepartments(?array $departments): self
     {
         $this->departments = $departments;
 

@@ -135,7 +135,7 @@ class Article extends BaseModel
     private $views;
 
     /**
-     * @var Tag[]
+     * @var Tag[]|null
      */
     private $tags;
 
@@ -501,18 +501,18 @@ class Article extends BaseModel
     }
 
     /**
-     * @return Tag[]
-     */
-    public function getTags(): array
+     * @return Tag[]|null
+1     */
+    public function getTags(): ?array
     {
         return $this->tags;
     }
 
     /**
-     * @param Tag[] $tags
+     * @param Tag[]|null $tags
      * @return self
      */
-    public function setTags(array $tags): self
+    public function setTags(?array $tags): self
     {
         $this->tags = $tags;
 

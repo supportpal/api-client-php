@@ -8,36 +8,36 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class Extra extends BaseModel
 {
     /**
-     * @var array<mixed>
+     * @var string[]|null
      * @SerializedName("bcc_address")
      */
     private $bccAddress;
 
     /**
-     * @var array<mixed>
+     * @var string[]|null
      * @SerializedName("to_address")
      */
     private $toAddress;
 
     /**
-     * @var array<mixed>
+     * @var string[]|null
      * @SerializedName("cc_address")
      */
     private $ccAddress;
 
     /**
-     * @return array<mixed>
+     * @return string[]|null
      */
-    public function getBccAddress(): array
+    public function getBccAddress(): ?array
     {
         return $this->bccAddress;
     }
 
     /**
-     * @param array<mixed> $bccAddress
+     * @param string[]|null $bccAddress
      * @return self
      */
-    public function setBccAddress(array $bccAddress): self
+    public function setBccAddress(?array $bccAddress): self
     {
         $this->bccAddress = $bccAddress;
 
@@ -45,18 +45,18 @@ class Extra extends BaseModel
     }
 
     /**
-     * @return array<mixed>
+     * @return string[]|null
      */
-    public function getToAddress(): array
+    public function getToAddress(): ?array
     {
         return $this->toAddress;
     }
 
     /**
-     * @param array<mixed> $toAddress
+     * @param string[]|null $toAddress
      * @return self
      */
-    public function setToAddress(array $toAddress): self
+    public function setToAddress(?array $toAddress): self
     {
         $this->toAddress = $toAddress;
 
@@ -64,18 +64,18 @@ class Extra extends BaseModel
     }
 
     /**
-     * @return array<mixed>
+     * @return string[]|null
      */
-    public function getCcAddress(): array
+    public function getCcAddress(): ?array
     {
         return $this->ccAddress;
     }
 
     /**
-     * @param array<mixed> $ccAddress
+     * @param string[]|null $ccAddress
      * @return self
      */
-    public function setCcAddress(array $ccAddress): self
+    public function setCcAddress(?array $ccAddress): self
     {
         $this->ccAddress = $ccAddress;
 

@@ -26,7 +26,7 @@ class User extends BaseModel
     private $avatar;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("twofa_enabled")
      */
     private $twofaEnabled;
@@ -189,7 +189,7 @@ class User extends BaseModel
     private $customfields;
 
     /**
-     * @var Group[]
+     * @var Group[]|null
      * @SerializedName("groups")
      */
     private $groups;
@@ -632,18 +632,18 @@ class User extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTwofaEnabled(): int
+    public function getTwofaEnabled(): ?int
     {
         return $this->twofaEnabled;
     }
 
     /**
-     * @param int $twofaEnabled
+     * @param int|null $twofaEnabled
      * @return self
      */
-    public function setTwofaEnabled(int $twofaEnabled): self
+    public function setTwofaEnabled(?int $twofaEnabled): self
     {
         $this->twofaEnabled = $twofaEnabled;
 
@@ -765,18 +765,18 @@ class User extends BaseModel
     }
 
     /**
-     * @return Group[]
+     * @return Group[]|null
      */
-    public function getGroups(): array
+    public function getGroups(): ?array
     {
         return $this->groups;
     }
 
     /**
-     * @param Group[] $groups
+     * @param Group[]|null $groups
      * @return self
      */
-    public function setGroups(array $groups): self
+    public function setGroups(?array $groups): self
     {
         $this->groups = $groups;
 
