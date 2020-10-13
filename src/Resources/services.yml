@@ -18,3 +18,11 @@ services:
         arguments:
             $httpClient: '@GuzzleHttp\Client'
             $formatType: '%contentType%'
+
+    SupportPal\ApiClient\Normalizer\ModelNormalizer:
+        arguments:
+            $objectNormalizer: '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer'
+            $transformers: !tagged transformer.field_transformer
+
+    SupportPal\ApiClient\Transformer\StringTrimTransformer:
+        tags: [ 'transformer.field_transformer' ]

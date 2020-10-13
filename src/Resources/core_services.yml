@@ -15,5 +15,6 @@ services:
             $factories: !tagged factory.model_factory
 
     SupportPal\ApiClient\Converter\ModelToArrayConverter:
+        public: true
         arguments:
             $format: '%contentType%'

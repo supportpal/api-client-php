@@ -29,9 +29,8 @@ services:
     Symfony\Component\Serializer\SerializerInterface: '@Symfony\Component\Serializer\Serializer'
 
     Symfony\Component\Serializer\Serializer:
-        public: true
         arguments:
-            - [ '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer', '@Symfony\Component\Serializer\Normalizer\ArrayDenormalizer' ]
+            - [ '@SupportPal\ApiClient\Normalizer\ModelNormalizer', '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer',  '@Symfony\Component\Serializer\Normalizer\ArrayDenormalizer' ]
             - [ '@Symfony\Component\Serializer\Encoder\JsonEncoder' ]
 
     Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor: ~
@@ -41,5 +40,4 @@ services:
     Doctrine\Common\Annotations\AnnotationReader: ~
 
     Symfony\Component\Serializer\Encoder\JsonEncoder: ~
-
 
