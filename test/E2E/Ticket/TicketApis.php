@@ -35,4 +35,9 @@ class TicketApis extends BaseTestCase
             ApiDictionary::TICKET_TICKET => 'getTicket',
         ];
     }
+
+    public function testTicketSettings(): void
+    {
+        $this->testSettings(ApiDictionary::TICKET_SETTINGS, 'getTicketSettings');
+    }
 }

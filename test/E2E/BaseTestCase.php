@@ -4,12 +4,14 @@ namespace SupportPal\ApiClient\Tests\E2E;
 
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\Model;
+use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\SupportPal;
 use SupportPal\ApiClient\Tests\TestCase;
 
 abstract class BaseTestCase extends TestCase
 {
     const BATCH_SIZE = 50;
+
     /**
      * @var SupportPal
      */
@@ -59,6 +61,19 @@ abstract class BaseTestCase extends TestCase
 
             $start += $parameters['limit'];
         } while ($batch->getModelsCount() > 0);
+    }
+
+    protected function testSettings(string $endpoint, string $apiCall): void
+    {
+        $model = $this->getSupportPal()->getApi()->{$apiCall}();
+        $request = $this
+            ->getSupportPal()
+            ->getRequestFactory()
+            ->create('GET', $endpoint);
+        $response = $this->getSupportPal()->sendRequest($request);
+        $responseArray = json_decode((string) $response->getBody(), true)['data'];
+        $this->assertInstanceOf(Settings::class, $model);
+        $this->assertSame($responseArray, $model->getSettings());
     }
 
     /**
