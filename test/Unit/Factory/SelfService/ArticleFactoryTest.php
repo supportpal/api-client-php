@@ -39,14 +39,6 @@ class ArticleFactoryTest extends BaseModelFactoryTestCase
     /**
      * @inheritDoc
      */
-    protected function getRequiredFields(): array
-    {
-        return Article::REQUIRED_FIELDS;
-    }
-
-    /**
-     * @inheritDoc
-     */
     protected function getModelInstance(): Model
     {
         return ArticleData::getFilledInstance();

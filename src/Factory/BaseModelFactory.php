@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Factory;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Helper\FieldsValidationHelper;
 use SupportPal\ApiClient\Model\Model;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -15,8 +14,6 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 abstract class BaseModelFactory implements ModelFactory
 {
-    use FieldsValidationHelper;
-
     /**
      * @var SerializerInterface
      */
@@ -49,7 +46,6 @@ abstract class BaseModelFactory implements ModelFactory
      */
     public function create(array $data): Model
     {
-        $this->assertRequiredFieldsExists($data);
         try {
             /** @var Model $model */
             $model = $this->serializer->deserialize(
@@ -66,13 +62,5 @@ abstract class BaseModelFactory implements ModelFactory
         }
 
         return $model;
-    }
-
-    /**
-     * @return string[]
-     */
-    protected function getRequiredFields(): array
-    {
-        return $this->getModel()::REQUIRED_FIELDS;
     }
 }

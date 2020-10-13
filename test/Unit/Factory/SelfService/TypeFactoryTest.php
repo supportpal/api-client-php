@@ -39,14 +39,6 @@ class TypeFactoryTest extends BaseModelFactoryTestCase
     /**
      * @inheritDoc
      */
-    protected function getRequiredFields(): array
-    {
-        return Type::REQUIRED_FIELDS;
-    }
-
-    /**
-     * @inheritDoc
-     */
     protected function getModelInstance(): Model
     {
         return TypeData::getFilledInstance();

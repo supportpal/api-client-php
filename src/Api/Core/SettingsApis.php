@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Api\Core;
 
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Model\Core\CoreSettings;
+use SupportPal\ApiClient\Model\Shared\Settings;
 
 /**
  * Trait SettingsApis, includes all ApiCalls pre and post processing related to core settings
@@ -16,14 +16,14 @@ trait SettingsApis
 
     /**
      * This method fetches all core settings
-     * @return CoreSettings
+     * @return Settings
      * @throws HttpResponseException
      */
-    public function getCoreSettings(): CoreSettings
+    public function getCoreSettings(): Settings
     {
         $response = $this->getApiClient()->getCoreSettings();
-        /** @var CoreSettings $model */
-        $model = $this->getModelCollectionFactory()->create(CoreSettings::class, $this->decodeBody($response)['data']);
+        /** @var Settings $model */
+        $model = $this->getModelCollectionFactory()->create(Settings::class, $this->decodeBody($response)['data']);
 
         return $model;
     }

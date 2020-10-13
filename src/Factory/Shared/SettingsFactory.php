@@ -1,14 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Factory\Ticket;
+namespace SupportPal\ApiClient\Factory\Shared;
 
 use SupportPal\ApiClient\Factory\BaseModelFactory;
-use SupportPal\ApiClient\Model\Ticket\Settings;
+use SupportPal\ApiClient\Model\Shared\Settings;
 
-/**
- * Class SettingsFactory
- * @package SupportPal\ApiClient\Factory\Ticket
- */
 class SettingsFactory extends BaseModelFactory
 {
     /**

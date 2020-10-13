@@ -6,7 +6,6 @@ use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
@@ -44,7 +43,6 @@ class ModelToArrayConverterTest extends ContainerAwareBaseTestCase
     public function provideModelCases(): iterable
     {
         yield [CommentData::getFilledInstance()];
-        yield [CoreSettingsData::getFilledInstance()];
         yield [UserData::getFilledInstance()];
         yield [DepartmentData::getFilledInstance()];
     }

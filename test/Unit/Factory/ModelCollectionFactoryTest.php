@@ -7,13 +7,13 @@ use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\NotSupportedException;
-use SupportPal\ApiClient\Factory\Core\CoreSettingsFactory;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Factory\SelfService\CommentFactory;
+use SupportPal\ApiClient\Factory\Shared\SettingsFactory;
 use SupportPal\ApiClient\Model\BaseModel;
-use SupportPal\ApiClient\Model\Core\CoreSettings;
 use SupportPal\ApiClient\Model\SelfService\Comment;
+use SupportPal\ApiClient\Model\Shared\Settings;
 
 /**
  * Class ModelCollectionFactoryTest
@@ -34,7 +34,7 @@ class ModelCollectionFactoryTest extends TestCase
     /**
      * @var \Prophecy\Prophecy\ObjectProphecy
      */
-    private $coreSettingsFactory;
+    private $settingsFactory;
 
     /**
      * @var array<string, ObjectProphecy>
@@ -46,11 +46,11 @@ class ModelCollectionFactoryTest extends TestCase
         parent::setUp();
         $this->commentFactory = $this->prophesize(CommentFactory::class);
         $this->commentFactory->getModel()->willReturn(Comment::class);
-        $this->coreSettingsFactory = $this->prophesize(CoreSettingsFactory::class);
-        $this->coreSettingsFactory->getModel()->willReturn(CoreSettings::class);
+        $this->settingsFactory = $this->prophesize(SettingsFactory::class);
+        $this->settingsFactory->getModel()->willReturn(Settings::class);
         $this->factories = [
             Comment::class => $this->commentFactory,
-            CoreSettings::class => $this->coreSettingsFactory,
+            Settings::class => $this->settingsFactory,
         ];
 
         $this->modelCollectionFactory = new ModelCollectionFactory(
@@ -93,7 +93,7 @@ class ModelCollectionFactoryTest extends TestCase
     public function provideValidModelsData(): iterable
     {
         yield [Comment::class];
-        yield [CoreSettings::class];
+        yield [Settings::class];
     }
 
     /**

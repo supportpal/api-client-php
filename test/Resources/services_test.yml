@@ -51,11 +51,6 @@ services:
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
-    SupportPal\ApiClient\Factory\SelfService\SettingsFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-
     SupportPal\ApiClient\Factory\SelfService\CategoryFactory:
         public: true
         tags: [ 'factory.model_factory' ]
@@ -71,12 +66,7 @@ services:
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
 
-    SupportPal\ApiClient\Factory\Core\CoreSettingsFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-
-    SupportPal\ApiClient\Factory\Ticket\SettingsFactory:
+    SupportPal\ApiClient\Factory\Shared\SettingsFactory:
         public: true
         tags: [ 'factory.model_factory' ]
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'

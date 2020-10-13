@@ -3,6 +3,9 @@
 namespace SupportPal\ApiClient\Tests;
 
 use SupportPal\ApiClient\Helper\StringHelper;
+use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\Model;
+use SupportPal\ApiClient\Model\SettingsModel;
 
 /**
  * Class TestCase
@@ -68,6 +71,24 @@ class TestCase extends \PHPUnit\Framework\TestCase
              * finally compare against nested object recursively
              */
             $this->assertArrayEqualsObjectFields($attributeValue, $value);
+        }
+    }
+
+    /**
+     * @param Collection|Model $models
+     * @param array<mixed> $data
+     */
+    protected function assertApiDataMatchesModels($models, array $data): void
+    {
+        if ($models instanceof Collection) {
+            self::assertSame($data['count'], $models->getCount());
+            foreach ($models->getModels() as $offset => $object) {
+                $this->assertArrayEqualsObjectFields($object, $data['data'][$offset]);
+            }
+        } elseif ($models instanceof SettingsModel) {
+            $this->assertSame($models->getSettings(), $data['data']);
+        } else {
+            $this->assertArrayEqualsObjectFields($models, $data['data']);
         }
     }
 }

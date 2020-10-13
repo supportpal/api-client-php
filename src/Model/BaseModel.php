@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Model;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Helper\FieldsValidationHelper;
+use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Helper\StringHelper;
 
 /**
@@ -14,7 +14,6 @@ abstract class BaseModel implements Model
 {
     public const REQUIRED_FIELDS = [];
 
-    use FieldsValidationHelper;
     use StringHelper;
 
     /**
@@ -55,5 +54,26 @@ abstract class BaseModel implements Model
     protected function getRequiredFields(): array
     {
         return static::REQUIRED_FIELDS;
+    }
+
+    /**
+     * This functions asserts that all the required values for the API are passed correctly
+     * @param array<mixed> $data
+     * @return void
+     */
+    protected function assertRequiredFieldsExists(array $data): void
+    {
+        $missingFields = [];
+        foreach ($this->getRequiredFields() as $required) {
+            if (! isset($data[$required])) {
+                array_push($missingFields, $required);
+            }
+        }
+
+        if (count($missingFields) > 0) {
+            throw new MissingRequiredFieldsException(
+                'incomplete required fields, the following are missing: ' .  implode(',', $missingFields)
+            );
+        }
     }
 }

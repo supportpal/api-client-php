@@ -24,14 +24,6 @@ class BaseModelFactoryTest extends BaseModelFactoryTestCase
     }
 
     /**
-     * @inheritDoc
-     */
-    protected function getRequiredFields(): array
-    {
-        return Comment::REQUIRED_FIELDS;
-    }
-
-    /**
      * @return array<mixed>
      */
     protected function getModelData(): array

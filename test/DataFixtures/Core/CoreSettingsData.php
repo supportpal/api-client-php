@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Core;
 
-use SupportPal\ApiClient\Model\Core\CoreSettings;
+use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 
 class CoreSettingsData extends BaseModelData
@@ -53,6 +53,6 @@ class CoreSettingsData extends BaseModelData
      */
     public static function getModel(): string
     {
-        return CoreSettings::class;
+        return Settings::class;
     }
 }

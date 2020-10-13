@@ -3,10 +3,8 @@
 namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\FactoryTestCase;
@@ -57,21 +55,6 @@ abstract class BaseModelFactoryTestCase extends TestCase
 
         $model = $this->getModelFactory()->create($this->getModelData());
         self::assertInstanceOf($this->getModel(), $model);
-    }
-
-    /**
-     * @dataProvider provideDataWithMissingFields
-     * @param array<mixed> $data
-     * @param string $missingKey
-     */
-    public function testCreateWithMissingFields(array $data, string $missingKey): void
-    {
-        self::expectException(MissingRequiredFieldsException::class);
-        self::expectExceptionMessage($missingKey);
-        $this->serializer
-            ->deserialize(Argument::any(), Argument::any(), Argument::any())
-            ->shouldNotBeCalled();
-        $this->getModelFactory()->create($data);
     }
 
     public function testCreateWithFailedDeserialize(): void

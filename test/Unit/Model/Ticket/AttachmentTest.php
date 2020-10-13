@@ -11,6 +11,7 @@ use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
  * Class AttachmentTest
  * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
  * @covers \SupportPal\ApiClient\Model\Ticket\Attachment
+ *
  */
 class AttachmentTest extends BaseModelTestCase
 {
