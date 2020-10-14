@@ -123,7 +123,7 @@ class Department extends BaseModel
 
     /**
      * @var Operator[]|null
-     * @SerializedName("operator")
+     * @SerializedName("operators")
      */
     private $operators;
 
