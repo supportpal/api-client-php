@@ -39,14 +39,6 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
     /**
      * @inheritDoc
      */
-    protected function getRequiredFields(): array
-    {
-        return Comment::REQUIRED_FIELDS;
-    }
-
-    /**
-     * @inheritDoc
-     */
     protected function getModelInstance(): Model
     {
         return CommentData::getFilledInstance();

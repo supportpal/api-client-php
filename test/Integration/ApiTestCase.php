@@ -4,7 +4,6 @@ namespace SupportPal\ApiClient\Tests\Integration;
 
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Api;
-use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Tests\ApiDataProviders;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 
@@ -49,14 +48,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
         /** @var callable $callable */
         $callable = [$this->api, $functionName];
         $models = call_user_func_array($callable, $parameters);
-        if ($models instanceof Collection) {
-            self::assertSame($data['count'], $models->getCount());
-            foreach ($models->getModels() as $offset => $object) {
-                $this->assertArrayEqualsObjectFields($object, $data['data'][$offset]);
-            }
-        } else {
-            $this->assertArrayEqualsObjectFields($models, $data['data']);
-        }
+        $this->assertApiDataMatchesModels($models, $data);
     }
 
     /**

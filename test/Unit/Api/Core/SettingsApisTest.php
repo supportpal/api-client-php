@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
 
-use SupportPal\ApiClient\Model\Core\CoreSettings;
+use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
@@ -18,7 +18,7 @@ class SettingsApisTest extends ApiTest
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
             CoreSettingsData::getResponse(),
-            CoreSettings::class
+            Settings::class
         );
 
         $this

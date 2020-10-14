@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\SelfService;
 
-use SupportPal\ApiClient\Model\SelfService\Settings;
+use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 
 class SettingsData extends BaseModelData

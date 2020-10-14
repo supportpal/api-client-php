@@ -18,7 +18,7 @@ services:
         arguments:
             $formatType: '%contentType%'
 
-    SupportPal\ApiClient\Factory\Core\CoreSettingsFactory:
+    SupportPal\ApiClient\Factory\Shared\SettingsFactory:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 
@@ -42,19 +42,11 @@ services:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 
-    SupportPal\ApiClient\Factory\SelfService\SettingsFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-        tags: [ 'factory.model_factory' ]
-
     SupportPal\ApiClient\Factory\SelfService\TagFactory:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Ticket\DepartmentFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Ticket\SettingsFactory:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 

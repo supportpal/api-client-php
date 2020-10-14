@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Tests\Integration\Factory;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\FactoryTestCase;
@@ -42,18 +41,6 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
             self::expectExceptionMessage($this->snakeCaseToCamelCase($invalidKey));
         }
 
-        $this->getModelFactory()->create($data);
-    }
-
-    /**
-     * @dataProvider provideDataWithMissingFields
-     * @param array<mixed> $data
-     * @param string $missingKey
-     */
-    public function testCreateWithMissingFields(array $data, string $missingKey): void
-    {
-        self::expectException(MissingRequiredFieldsException::class);
-        self::expectExceptionMessage($missingKey);
         $this->getModelFactory()->create($data);
     }
 

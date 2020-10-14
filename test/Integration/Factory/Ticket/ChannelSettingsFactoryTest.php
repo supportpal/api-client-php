@@ -13,14 +13,6 @@ class ChannelSettingsFactoryTest extends BaseModelFactoryTestCase
     /**
      * @inheritDoc
      */
-    protected function getRequiredFields(): array
-    {
-        return ChannelSettings::REQUIRED_FIELDS;
-    }
-
-    /**
-     * @inheritDoc
-     */
     protected function getModelData(): array
     {
         return ChannelSettingsData::DATA;

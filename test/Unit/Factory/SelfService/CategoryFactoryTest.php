@@ -39,14 +39,6 @@ class CategoryFactoryTest extends BaseModelFactoryTestCase
     /**
      * @inheritDoc
      */
-    protected function getRequiredFields(): array
-    {
-        return Category::REQUIRED_FIELDS;
-    }
-
-    /**
-     * @inheritDoc
-     */
     protected function getModelInstance(): Model
     {
         return CategoryData::getFilledInstance();

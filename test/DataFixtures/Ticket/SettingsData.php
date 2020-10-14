@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-use SupportPal\ApiClient\Model\Ticket\Settings;
+use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 
 class SettingsData extends BaseModelData

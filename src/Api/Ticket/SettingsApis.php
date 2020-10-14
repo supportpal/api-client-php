@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Api\Ticket;
 
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Model\Ticket\Settings;
+use SupportPal\ApiClient\Model\Shared\Settings;
 
 /**
  * Trait SettingsApis, includes all related ApiCalls pre and post processing to ticket settings

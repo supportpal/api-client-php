@@ -3,16 +3,13 @@
 namespace SupportPal\ApiClient\Tests\Integration\Factory;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
-use SupportPal\ApiClient\Model\Core\CoreSettings;
 use SupportPal\ApiClient\Model\Department\Department;
 use SupportPal\ApiClient\Model\SelfService\Article;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Model\Ticket\Ticket;
 use SupportPal\ApiClient\Model\User\User;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
@@ -27,7 +24,6 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
 {
     private const MODELS_MAP = [
         Comment::class => CommentData::DATA,
-        CoreSettings::class => CoreSettingsData::DATA,
         Article::class => ArticleData::DATA,
         User::class => UserData::DATA,
         Ticket::class => TicketData::DATA,
@@ -72,18 +68,6 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @dataProvider provideDataWithMissingFields
-     * @param array<mixed> $data
-     * @param string $missingKey
-     */
-    public function testCreateWithMissingFields(array $data, string $model, string $missingKey): void
-    {
-        self::expectException(MissingRequiredFieldsException::class);
-        self::expectExceptionMessage($missingKey);
-        $this->modelCollectionFactory->create($model, $data);
-    }
-
-    /**
      * @return iterable<mixed>
      */
     public function provideValidModelData(): iterable
@@ -114,21 +98,6 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
                 $dataCopy[$key] = new \stdClass;
 
                 yield [$dataCopy, $model, $key];
-            }
-        }
-    }
-
-    /**
-     * @return iterable<mixed>
-     */
-    public function provideDataWithMissingFields(): iterable
-    {
-        foreach (self::MODELS_MAP as $model => $data) {
-            foreach ($model::REQUIRED_FIELDS as $required) {
-                $dataCopy = self::MODELS_MAP[$model];
-                unset($dataCopy[$required]);
-
-                yield [$dataCopy, $model, $required];
             }
         }
     }

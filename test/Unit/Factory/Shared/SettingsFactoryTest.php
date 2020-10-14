@@ -1,18 +1,18 @@
 <?php declare(strict_types = 1);
 
-namespace SupportPal\ApiClient\Tests\Unit\Factory\Ticket;
+namespace SupportPal\ApiClient\Tests\Unit\Factory\Shared;
 
 use SupportPal\ApiClient\Factory\ModelFactory;
-use SupportPal\ApiClient\Factory\Ticket\SettingsFactory;
+use SupportPal\ApiClient\Factory\Shared\SettingsFactory;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Model\Ticket\Settings;
-use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
+use SupportPal\ApiClient\Model\Shared\Settings;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\Unit\Factory\BaseModelFactoryTestCase;
 
 /**
- * Class SettingsFactoryTest
- * @package SupportPal\ApiClient\Tests\Unit\Factory\Ticket
- * @covers \SupportPal\ApiClient\Factory\Ticket\SettingsFactory
+ * Class CoreSettingsFactoryTest
+ * @package SupportPal\ApiClient\Tests\Unit\Factory
+ * @covers \SupportPal\ApiClient\Factory\Shared\SettingsFactory
  */
 class SettingsFactoryTest extends BaseModelFactoryTestCase
 {
@@ -21,15 +21,7 @@ class SettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return SettingsData::getFilledInstance();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getRequiredFields(): array
-    {
-        return Settings::REQUIRED_FIELDS;
+        return CoreSettingsData::getFilledInstance();
     }
 
     /**
@@ -37,7 +29,7 @@ class SettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return SettingsData::DATA;
+        return CoreSettingsData::DATA;
     }
 
     /**
