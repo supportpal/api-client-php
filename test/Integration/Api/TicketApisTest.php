@@ -6,6 +6,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\CustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
@@ -33,6 +34,8 @@ class TicketApisTest extends ApiTestCase
             'getTicketAttachment' => [AttachmentData::getResponse(), [1]],
             'getTickets' => [TicketData::getAllResponse(), []],
             'getTicket' => [TicketData::getResponse(), [1]],
+            'getTicketMessage' => [MessageData::getResponse(), [1]],
+            'getTicketMessages' => [MessageData::getAllResponse(), [1]],
         ];
     }
 }

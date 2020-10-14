@@ -54,4 +54,6 @@ final class ApiDictionary
     public const TICKET_ATTACHMENT = 'ticket/attachment';
 
     public const TICKET_TICKET = 'ticket/ticket';
+
+    public const TICKET_MESSAGE = 'ticket/message';
 }

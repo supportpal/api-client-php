@@ -7,6 +7,7 @@ use SupportPal\ApiClient\ApiClient\Ticket\AttachmentApis;
 use SupportPal\ApiClient\ApiClient\Ticket\ChannelSettingsApis;
 use SupportPal\ApiClient\ApiClient\Ticket\CustomFieldApis;
 use SupportPal\ApiClient\ApiClient\Ticket\DepartmentApis;
+use SupportPal\ApiClient\ApiClient\Ticket\MessageApis;
 use SupportPal\ApiClient\ApiClient\Ticket\PriorityApis;
 use SupportPal\ApiClient\ApiClient\Ticket\SettingsApis;
 use SupportPal\ApiClient\ApiClient\Ticket\StatusApis;
@@ -25,6 +26,7 @@ trait TicketApis
     use CustomFieldApis;
     use DepartmentApis;
     use PriorityApis;
+    use MessageApis;
     use SettingsApis;
     use StatusApis;
 
