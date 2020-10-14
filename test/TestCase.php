@@ -24,19 +24,15 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @param object $obj
      * @param array<mixed> $array
-     * @param bool $throwErrorOnExtraFields
      */
-    protected function assertArrayEqualsObjectFields(
-        object $obj,
-        array $array,
-        bool $throwErrorOnExtraFields = false
-    ): void {
+    protected function assertArrayEqualsObjectFields(object $obj, array $array): void
+    {
         foreach ($array as $key => $value) {
             $method = 'get'.$this->snakeCaseToPascalCase($key);
             /**
              * ignore extra fields passed in the arrays
              */
-            if (! $throwErrorOnExtraFields && ! method_exists($obj, $method)) {
+            if (! method_exists($obj, $method)) {
                 continue;
             }
 

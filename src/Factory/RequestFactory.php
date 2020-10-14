@@ -4,12 +4,12 @@ namespace SupportPal\ApiClient\Factory;
 
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
 
 use function array_merge;
 use function base64_encode;
-use function GuzzleHttp\Psr7\stream_for;
 use function http_build_query;
 
 /**
@@ -94,7 +94,7 @@ class RequestFactory
         $headers['Authorization'] = 'Basic ' . base64_encode($this->apiToken . ':X');
         $bodyArray = array_merge($body, $this->defaultBodyContent);
 
-        $body = ! empty($bodyArray) ? stream_for($this->encoder->encode($bodyArray, $this->formatType)) : null;
+        $body = ! empty($bodyArray) ? Utils::streamFor($this->encoder->encode($bodyArray, $this->formatType)) : null;
 
         $uri = new Uri($this->apiUrl . $endpoint);
 

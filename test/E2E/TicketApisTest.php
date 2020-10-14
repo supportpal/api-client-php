@@ -1,11 +1,10 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Tests\E2E\Ticket;
+namespace SupportPal\ApiClient\Tests\E2E;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
-use SupportPal\ApiClient\Tests\E2E\BaseTestCase;
 
-class TicketApis extends BaseTestCase
+class TicketApisTest extends BaseTestCase
 {
     /**
      * @inheritDoc
@@ -38,6 +37,6 @@ class TicketApis extends BaseTestCase
 
     public function testTicketSettings(): void
     {
-        $this->testSettings(ApiDictionary::TICKET_SETTINGS, 'getTicketSettings');
+        $this->settingsTestCase(ApiDictionary::TICKET_SETTINGS, 'getTicketSettings');
     }
 }
