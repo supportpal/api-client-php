@@ -227,10 +227,10 @@ class Brand extends BaseModel
     private $updatedAt;
 
     /**
-     * @var array<mixed>|null
-     * @SerializedName("pivot")
+     * @var BrandTranslation[]|null
+     * @SerializedName("translations")
      */
-    private $pivot;
+    private $translations;
 
     /**
      * @return string|null
@@ -860,20 +860,20 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return array<mixed>|null
+     * @return BrandTranslation[]|null
      */
-    public function getPivot(): ?array
+    public function getTranslations(): ?array
     {
-        return $this->pivot;
+        return $this->translations;
     }
 
     /**
-     * @param array<mixed>|null $pivot
+     * @param BrandTranslation[]|null $translations
      * @return self
      */
-    public function setPivot(?array $pivot): self
+    public function setTranslations(?array $translations): self
     {
-        $this->pivot = $pivot;
+        $this->translations = $translations;
 
         return $this;
     }

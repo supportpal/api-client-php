@@ -49,8 +49,11 @@ class Tag extends BaseModel
      */
     private $originalName;
 
-    /** @var array<mixed>|null */
-    private $pivot;
+    /**
+     * @var TagTranslation[]|null
+     * @SerializedName("translations")
+     */
+    private $translations;
 
     /**
      * @return int
@@ -186,20 +189,20 @@ class Tag extends BaseModel
     }
 
     /**
-     * @return array<mixed>|null
+     * @return TagTranslation[]|null
      */
-    public function getPivot(): ?array
+    public function getTranslations(): ?array
     {
-        return $this->pivot;
+        return $this->translations;
     }
 
     /**
-     * @param array<mixed>|null $pivot
-     * @return Tag
+     * @param TagTranslation[]|null $translations
+     * @return self
      */
-    public function setPivot(?array $pivot): Tag
+    public function setTranslations(?array $translations): self
     {
-        $this->pivot = $pivot;
+        $this->translations = $translations;
 
         return $this;
     }

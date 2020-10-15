@@ -8,7 +8,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\DataFixtures\Shared\OptionData;
 
-class CustomFieldData extends BaseModelData
+class TicketCustomFieldData extends BaseModelData
 {
     public const DATA = [
         'id' => 1,
@@ -30,6 +30,7 @@ class CustomFieldData extends BaseModelData
         'options' => [OptionData::DATA,],
         'brands' => [BrandData::DATA,],
         'departments' => [DepartmentData::DATA,],
+        'translations' => [TicketCustomFieldTranslationData::DATA,],
     ];
 
     /**
@@ -42,6 +43,7 @@ class CustomFieldData extends BaseModelData
         $data['options'] = [OptionData::getFilledInstance(),];
         $data['brands'] = [BrandData::getFilledInstance(),];
         $data['departments'] = [DepartmentData::getFilledInstance(),];
+        $data['translations'] = [TicketCustomFieldTranslationData::getFilledInstance(),];
 
         return $data;
     }

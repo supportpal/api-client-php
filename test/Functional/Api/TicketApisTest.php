@@ -4,12 +4,12 @@ namespace SupportPal\ApiClient\Tests\Functional\Api;
 
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
-use SupportPal\ApiClient\Tests\DataFixtures\Ticket\CustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
 use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
 
@@ -25,7 +25,7 @@ class TicketApisTest extends ApiComponentTest
             'getDepartment' => [DepartmentData::getResponse(), [1]],
             'getTicketSettings' => [SettingsData::getResponse(), []],
             'getChannelSettings' => [ChannelSettingsData::getResponse(), ['web']],
-            'getTicketCustomFields' => [CustomFieldData::getAllResponse(), []],
+            'getTicketCustomFields' => [TicketCustomFieldData::getAllResponse(), []],
             'getTicketPriorities' => [PriorityData::getAllResponse(), []],
             'getTicketPriority' => [PriorityData::getResponse(), [1]],
             'getTicketStatuses' => [StatusData::getAllResponse(), []],

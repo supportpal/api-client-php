@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Core;
 
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Core\Brand;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 
@@ -40,8 +41,22 @@ class BrandData extends BaseModelData
         'default_language' => 'default',
         'language_toggle' => 2,
         'created_at' => 1597245387,
-        'updated_at' => 1597245396
+        'updated_at' => 1597245396,
+        'translations' => [BrandTranslationData::DATA]
     ];
+
+    /**
+     * @inheritDoc
+     * @throws InvalidArgumentException
+     */
+    public static function getDataWithObjects(): array
+    {
+        $data = self::DATA;
+
+        $data['translations'] = [BrandTranslationData::getFilledInstance()];
+
+        return $data;
+    }
 
     /**
      * @inheritDoc

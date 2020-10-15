@@ -29,7 +29,8 @@ class DepartmentData extends BaseModelData
         'email_templates' => EmailTemplatesData::DATA,
         'emails' => [EmailData::DATA,],
         'groups' => [GroupData::DATA,],
-        'operators' => [OperatorData::DATA,]
+        'operators' => [OperatorData::DATA,],
+        'translations' => [DepartmentTranslationData::DATA,],
     ];
 
     /**
@@ -45,6 +46,7 @@ class DepartmentData extends BaseModelData
         $departmentData['operators'] = [OperatorData::getFilledInstance(),];
         $departmentData['groups'] = [GroupData::getFilledInstance(),];
         $departmentData['default_assignedto'] = [OperatorData::getFilledInstance(),];
+        $departmentData['translations'] = [DepartmentTranslationData::getFilledInstance(),];
 
         return $departmentData;
     }

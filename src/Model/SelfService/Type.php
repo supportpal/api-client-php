@@ -129,10 +129,10 @@ class Type extends BaseModel
     private $brand;
 
     /**
-     * @var array<mixed>|null
-     * @SerializedName("pivot")
+     * @var TypeTranslation[]|null
+     * @SerializedName("translations")
      */
-    private $pivot;
+    private $translations;
 
     /**
      * @return string|null
@@ -477,20 +477,20 @@ class Type extends BaseModel
     }
 
     /**
-     * @return array<mixed>|null
+     * @return TypeTranslation[]|null
      */
-    public function getPivot(): ?array
+    public function getTranslations(): ?array
     {
-        return $this->pivot;
+        return $this->translations;
     }
 
     /**
-     * @param array<mixed>|null $pivot
-     * @return self
+     * @param TypeTranslation[]|null $translations
+     * @return Type
      */
-    public function setPivot(?array $pivot): self
+    public function setTranslations(?array $translations): self
     {
-        $this->pivot = $pivot;
+        $this->translations = $translations;
 
         return $this;
     }

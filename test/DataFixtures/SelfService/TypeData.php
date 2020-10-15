@@ -28,6 +28,7 @@ class TypeData extends BaseModelData
         'created_at' => 1597245387,
         'updated_at' => 1597245387,
         'brand' => BrandData::DATA,
+        'translations' => [TypeTranslationData::DATA],
     ];
 
     /**
@@ -38,6 +39,7 @@ class TypeData extends BaseModelData
     {
         $data = self::DATA;
         $data['brand'] = BrandData::getFilledInstance();
+        $data['translations'] = [TypeTranslationData::getFilledInstance()];
 
         return $data;
     }

@@ -27,7 +27,8 @@ class UserCustomFieldData extends BaseModelData
         'created_at' => 1602320456,
         'updated_at' => 1602320456,
         'options' => [OptionData::DATA,],
-        'brands' => [BrandData::DATA,]
+        'brands' => [BrandData::DATA,],
+        'translations' => [UserCustomFieldTranslationData::DATA,],
     ];
 
     /**
@@ -39,6 +40,7 @@ class UserCustomFieldData extends BaseModelData
         $data = self::DATA;
         $data['options'] = [OptionData::getFilledInstance(),];
         $data['brands'] = [BrandData::getFilledInstance(),];
+        $data['translations'] = [UserCustomFieldTranslationData::getFilledInstance(),];
 
         return $data;
     }

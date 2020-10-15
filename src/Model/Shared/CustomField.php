@@ -105,6 +105,18 @@ abstract class CustomField extends BaseModel
     private $brands;
 
     /**
+     * @var int|null
+     * @SerializedName("field_id")
+     */
+    private $fieldId;
+
+    /**
+     * @var string|null
+     * @SerializedName("value")
+     */
+    private $value;
+
+    /**
      * @return string|null
      */
     public function getRegexErrorMessage(): ?string
@@ -423,6 +435,44 @@ abstract class CustomField extends BaseModel
     public function setBrands(array $brands): self
     {
         $this->brands = $brands;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getFieldId(): ?int
+    {
+        return $this->fieldId;
+    }
+
+    /**
+     * @param int|null $fieldId
+     * @return self
+     */
+    public function setFieldId(?int $fieldId): self
+    {
+        $this->fieldId = $fieldId;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param string|null $value
+     * @return self
+     */
+    public function setValue(?string $value): self
+    {
+        $this->value = $value;
 
         return $this;
     }

@@ -52,7 +52,7 @@ class TicketData extends BaseModelData
         'status' => StatusData::DATA,
         'priority' => PriorityData::DATA,
         'slaplan' => SlaPlanData::DATA,
-        'customfields' => [CustomFieldData::DATA,],
+        'customfields' => [TicketCustomFieldData::DATA,],
         'last_reply' => MessageData::DATA,
         'tags' => [TagData::DATA,],
         'assigned' => [OperatorData::DATA,],
@@ -72,7 +72,7 @@ class TicketData extends BaseModelData
         $data['status'] = StatusData::getFilledInstance();
         $data['priority'] = PriorityData::getFilledInstance();
         $data['slaplan'] = SlaPlanData::getFilledInstance();
-        $data['customfields'] = [CustomFieldData::getFilledInstance(),];
+        $data['customfields'] = [TicketCustomFieldData::getFilledInstance(),];
         $data['last_reply'] = MessageData::getFilledInstance();
         $data['tags'] = [TagData::getFilledInstance(),];
         $data['assigned'] = [OperatorData::getFilledInstance(),];

@@ -50,6 +50,12 @@ class Group extends BaseModel
     private $colour;
 
     /**
+     * @var GroupTranslation[]|null
+     * @SerializedName("translations")
+     */
+    private $translations;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -178,6 +184,25 @@ class Group extends BaseModel
     public function setColour(string $colour): self
     {
         $this->colour = $colour;
+
+        return $this;
+    }
+
+    /**
+     * @return GroupTranslation[]|null
+     */
+    public function getTranslations(): ?array
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param GroupTranslation[]|null $translations
+     * @return Group
+     */
+    public function setTranslations(?array $translations): Group
+    {
+        $this->translations = $translations;
 
         return $this;
     }

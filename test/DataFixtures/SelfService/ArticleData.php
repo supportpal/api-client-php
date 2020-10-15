@@ -27,7 +27,8 @@ class ArticleData extends BaseModelData
         'attachments' => [ArticleAttachmentData::DATA,],
         'categories' => [CategoryData::DATA,],
         'types' => [TypeData::DATA,],
-        'tags' => [TagData::DATA,]
+        'tags' => [TagData::DATA,],
+        'translations' => [ArticleTranslationData::DATA,],
     ];
 
     /**
@@ -41,6 +42,7 @@ class ArticleData extends BaseModelData
         $data['categories'] = [CategoryData::getFilledInstance(),];
         $data['types'] = [TypeData::getFilledInstance(),];
         $data['tags'] = [TagData::getFilledInstance(),];
+        $data['translations'] = [ArticleTranslationData::getFilledInstance(),];
 
         return $data;
     }

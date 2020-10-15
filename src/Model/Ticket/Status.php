@@ -62,6 +62,12 @@ class Status extends BaseModel
     private $autoClose;
 
     /**
+     * @var StatusTranslation[]|null
+     * @SerializedName("translations")
+     */
+    private $translations;
+
+    /**
      * @return string
      */
     public function getColour(): string
@@ -228,6 +234,25 @@ class Status extends BaseModel
     public function setAutoClose(int $autoClose): self
     {
         $this->autoClose = $autoClose;
+
+        return $this;
+    }
+
+    /**
+     * @return StatusTranslation[]|null
+     */
+    public function getTranslations(): ?array
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param StatusTranslation[]|null $translations
+     * @return self
+     */
+    public function setTranslations(?array $translations): self
+    {
+        $this->translations = $translations;
 
         return $this;
     }

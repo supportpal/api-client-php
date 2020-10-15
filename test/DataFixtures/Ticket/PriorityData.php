@@ -17,7 +17,8 @@ class PriorityData extends BaseModelData
         'updated_at' => 1597245387,
         'icon' => '<div class="sp-inline-block sp-h-5 sp-w-5 sp-text-xs sp-text-center sp-font-bold sp-align-middle sp-whitespace-no-wrap" style="background-color => #3498db; color => #fff; line-height => 1.25rem;" title="Low">1</div>',
         'icon_without_tooltip' => '<div class="sp-inline-block sp-h-5 sp-w-5 sp-text-xs sp-text-center sp-font-bold sp-align-middle sp-whitespace-no-wrap" style="background-color => #3498db; color => #fff; line-height => 1.25rem;">1</div>',
-        'departments' => [DepartmentData::DATA,]
+        'departments' => [DepartmentData::DATA,],
+        'translations' => [PriorityTranslationData::DATA,],
     ];
 
     /**
@@ -28,6 +29,7 @@ class PriorityData extends BaseModelData
     {
         $data = self::DATA;
         $data['departments'] = [DepartmentData::getFilledInstance(),];
+        $data['translations'] = [PriorityTranslationData::getFilledInstance(),];
 
         return $data;
     }

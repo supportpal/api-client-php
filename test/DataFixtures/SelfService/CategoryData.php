@@ -24,6 +24,7 @@ class CategoryData extends BaseModelData
             'article_id' => 1,
             'category_id' => 1
         ],
+        'translations' => [CategoryTranslationData::DATA,]
     ];
 
     /**
@@ -34,6 +35,7 @@ class CategoryData extends BaseModelData
     {
         $data = self::DATA;
         $data['type'] = TypeData::getFilledInstance();
+        $data['translations'] = [CategoryTranslationData::getFilledInstance(),];
 
         return $data;
     }

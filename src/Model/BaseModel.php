@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Model;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Helper\StringHelper;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 use TypeError;
 
 use function array_push;
@@ -23,6 +24,12 @@ abstract class BaseModel implements Model
     public const REQUIRED_FIELDS = [];
 
     use StringHelper;
+
+    /**
+     * @var array<mixed>|null
+     * @SerializedName("pivot")
+     */
+    private $pivot;
 
     /**
      * @inheritDoc
@@ -88,5 +95,24 @@ abstract class BaseModel implements Model
                 'incomplete required fields, the following are missing: ' .  implode(',', $missingFields)
             );
         }
+    }
+
+    /**
+     * @return array<mixed>|null
+     */
+    public function getPivot(): ?array
+    {
+        return $this->pivot;
+    }
+
+    /**
+     * @param array<mixed>|null $pivot
+     * @return BaseModel
+     */
+    public function setPivot(?array $pivot): self
+    {
+        $this->pivot = $pivot;
+
+        return $this;
     }
 }

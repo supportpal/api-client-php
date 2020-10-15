@@ -14,8 +14,23 @@ class TicketCustomField extends CustomField
      */
     private $purge;
 
-    /** @var Department[] */
+    /**
+     * @var Department[]
+     * @SerializedName("departments")
+     */
     private $departments;
+
+    /**
+     * @var int|null
+     * @SerializedName("ticket_id")
+     */
+    private $ticketId;
+
+    /**
+     * @var TicketCustomFieldTranslation[]|null
+     * @SerializedName("translations")
+     */
+    private $translations;
 
     /**
      * @return int
@@ -51,6 +66,44 @@ class TicketCustomField extends CustomField
     public function setDepartments(array $departments): self
     {
         $this->departments = $departments;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTicketId(): ?int
+    {
+        return $this->ticketId;
+    }
+
+    /**
+     * @param int|null $ticketId
+     * @return TicketCustomField
+     */
+    public function setTicketId(?int $ticketId): self
+    {
+        $this->ticketId = $ticketId;
+
+        return $this;
+    }
+
+    /**
+     * @return TicketCustomFieldTranslation[]|null
+     */
+    public function getTranslations(): ?array
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param TicketCustomFieldTranslation[]|null $translations
+     * @return self
+     */
+    public function setTranslations(?array $translations): self
+    {
+        $this->translations = $translations;
 
         return $this;
     }

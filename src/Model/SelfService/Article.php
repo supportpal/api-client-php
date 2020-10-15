@@ -134,8 +134,17 @@ class Article extends BaseModel
      */
     private $views;
 
-    /** @var Tag[]|null */
+    /**
+     * @var Tag[]|null
+     * @SerializedName("tags")
+     */
     private $tags;
+
+    /**
+     * @var ArticleTranslation[]|null
+     * @SerializedName("translations")
+     */
+    private $translations;
 
     /**
      * @return int|null
@@ -513,6 +522,25 @@ class Article extends BaseModel
     public function setTags(?array $tags): self
     {
         $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * @return ArticleTranslation[]|null
+     */
+    public function getTranslations(): ?array
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param ArticleTranslation[]|null $translations
+     * @return self
+     */
+    public function setTranslations(?array $translations): self
+    {
+        $this->translations = $translations;
 
         return $this;
     }
