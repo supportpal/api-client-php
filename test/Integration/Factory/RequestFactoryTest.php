@@ -1,10 +1,16 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Integration\Factory;
 
+use Exception;
 use GuzzleHttp\Psr7\Request;
+use ReflectionException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
+
+use function array_merge;
+use function base64_encode;
+use function http_build_query;
 
 /**
  * Class RequestFactoryTest
@@ -12,34 +18,22 @@ use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
  */
 class RequestFactoryTest extends ContainerAwareBaseTestCase
 {
-    /**
-     * @var RequestFactory
-     */
+    /** @var RequestFactory */
     private $requestFactory;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $apiUrl;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $apiToken;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $apiContentType;
 
-    /**
-     * @var array<mixed>
-     */
+    /** @var array<mixed> */
     private $defaultBodyContent;
 
-    /**
-     * @var array<mixed>
-     */
+    /** @var array<mixed> */
     private $defaultParameters;
 
     public function setUp(): void
@@ -58,7 +52,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
     /**
      * @param array<mixed> $data
      * @dataProvider provideRequestTestCases
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCreateRequest(array $data): void
     {
@@ -95,7 +89,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
 
     /**
      * @return iterable<mixed>
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function provideRequestTestCases(): iterable
     {

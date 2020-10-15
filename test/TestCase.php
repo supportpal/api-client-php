@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests;
 
@@ -6,6 +6,12 @@ use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\SettingsModel;
+
+use function count;
+use function current;
+use function is_array;
+use function is_object;
+use function method_exists;
 
 /**
  * Class TestCase
@@ -51,7 +57,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 }
 
                 continue;
-            } elseif (is_array($attributeValue) && is_array($value)) {
+            }
+
+            if (is_array($attributeValue) && is_array($value)) {
                 /**
                  * both are native arrays, just compare equality
                  */

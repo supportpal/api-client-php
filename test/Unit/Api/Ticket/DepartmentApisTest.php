@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
@@ -14,9 +14,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class DepartmentApisTest extends ApiTest
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $testDepartmentId = 1;
 
     public function testGetDepartments(): void

@@ -1,9 +1,17 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Model\Collection;
 
+use Closure;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Model;
+
+use function array_filter;
+use function array_map;
+use function count;
+use function current;
+use function get_class;
+use function is_object;
 
 /**
  * Wrap collection of Model values
@@ -18,9 +26,7 @@ class Collection
      */
     private $count;
 
-    /**
-     * @var Model[]
-     */
+    /** @var Model[] */
     private $models;
 
     /**
@@ -70,11 +76,11 @@ class Collection
     }
 
     /**
-     * @param \Closure $closure
+     * @param Closure $closure
      * @return Collection
      * @throws InvalidArgumentException
      */
-    public function map(\Closure $closure): Collection
+    public function map(Closure $closure): Collection
     {
         $value = array_map($closure, $this->getModels());
 
@@ -82,11 +88,11 @@ class Collection
     }
 
     /**
-     * @param \Closure $closure
+     * @param Closure $closure
      * @return Collection
      * @throws InvalidArgumentException
      */
-    public function filter(\Closure $closure): Collection
+    public function filter(Closure $closure): Collection
     {
         $value = array_filter($this->getModels(), $closure);
 

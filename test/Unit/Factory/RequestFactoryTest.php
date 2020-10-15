@@ -1,12 +1,18 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
 use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
+
+use function array_merge;
+use function base64_encode;
+use function http_build_query;
+use function json_encode;
 
 /**
  * Class RequestFactoryTest
@@ -15,14 +21,10 @@ use Symfony\Component\Serializer\Encoder\EncoderInterface;
  */
 class RequestFactoryTest extends TestCase
 {
-    /**
-     * @var RequestFactory
-     */
+    /** @var RequestFactory */
     private $requestFactory;
 
-    /**
-     * @var \Prophecy\Prophecy\ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     private $encoder;
 
     protected function setUp(): void

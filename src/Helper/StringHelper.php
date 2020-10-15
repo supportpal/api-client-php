@@ -1,6 +1,10 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Helper;
+
+use function lcfirst;
+use function str_replace;
+use function ucwords;
 
 /**
  * Includes various helper functions that processes strings

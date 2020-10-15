@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
@@ -6,6 +6,9 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
+
+use function json_encode;
+use function sprintf;
 
 /**
  * Class ChannelSettingsApisTest

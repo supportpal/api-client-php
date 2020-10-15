@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit;
 
@@ -13,6 +13,11 @@ use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Tests\TestCase;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
+use function array_push;
+use function current;
+use function is_array;
+use function json_encode;
+
 /**
  * Class ApiTest
  * @package SupportPal\ApiClient\Tests\Unit
@@ -20,39 +25,25 @@ use Symfony\Component\Serializer\Encoder\DecoderInterface;
  */
 abstract class ApiTest extends TestCase
 {
-    /**
-     * @var ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     protected $modelToArrayConverter;
 
-    /**
-     * @var ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     protected $apiClient;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $serializationType;
 
-    /**
-     * @var ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     protected $modelCollectionFactory;
 
-    /**
-     * @var Api
-     */
+    /** @var Api */
     protected $api;
 
-    /**
-     * @var ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     protected $decoder;
 
-    /**
-     * @var ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     private $collectionFactory;
 
     protected function setUp(): void

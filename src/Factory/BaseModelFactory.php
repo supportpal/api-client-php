@@ -1,7 +1,8 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Factory;
 
+use Exception;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Model;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
@@ -14,18 +15,13 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 abstract class BaseModelFactory implements ModelFactory
 {
-    /**
-     * @var SerializerInterface
-     */
+    /** @var SerializerInterface */
     private $serializer;
-    /**
-     * @var string
-     */
+
+    /** @var string */
     private $formatType;
 
-    /**
-     * @var EncoderInterface
-     */
+    /** @var EncoderInterface */
     private $encoder;
 
     /**
@@ -53,7 +49,7 @@ abstract class BaseModelFactory implements ModelFactory
                 $this->getModel(),
                 $this->formatType
             );
-        } catch (\Exception $invalidArgumentException) {
+        } catch (Exception $invalidArgumentException) {
             throw new InvalidArgumentException(
                 $invalidArgumentException->getMessage(),
                 $invalidArgumentException->getCode(),

@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
@@ -6,6 +6,8 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
+
+use function json_encode;
 
 /**
  * Class DepartmentApis
@@ -15,9 +17,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
  */
 class DepartmentApisTest extends ApiClientTest
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $testDepartmentId = 1;
 
     public function testGetDepartments(): void

@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
@@ -8,6 +8,8 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
+use function json_encode;
+
 /**
  * Class MessageApisTest
  * @package SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket
@@ -16,14 +18,10 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
  */
 class MessageApisTest extends ApiClientTest
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $testMessageId = 1;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $testTicketId = 1;
 
     public function testGetTicketMessages(): void

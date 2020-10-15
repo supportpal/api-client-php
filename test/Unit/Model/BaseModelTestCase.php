@@ -1,7 +1,8 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\Model;
 
+use stdClass;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
@@ -66,7 +67,7 @@ abstract class BaseModelTestCase extends TestCase
     {
         $data = [];
         foreach ($this->getModelData() as $key => $value) {
-            $data[$key] = new \stdClass;
+            $data[$key] = new stdClass;
         }
 
         return $data;

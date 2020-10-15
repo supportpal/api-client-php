@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\Cache;
 
@@ -15,9 +15,7 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
  */
 class CacheableRequestMatcherTest extends TestCase
 {
-    /**
-     * @var CacheableRequestMatcher
-     */
+    /** @var CacheableRequestMatcher */
     private $cacheableRequestMatcher;
 
     protected function setUp(): void

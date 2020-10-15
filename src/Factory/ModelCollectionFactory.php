@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Factory;
 
@@ -13,9 +13,7 @@ use SupportPal\ApiClient\Model\Model;
  */
 class ModelCollectionFactory
 {
-    /**
-     * @var ModelFactory[]
-     */
+    /** @var ModelFactory[] */
     private $factories;
 
     /**

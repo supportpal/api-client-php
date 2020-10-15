@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Model\Ticket;
 
@@ -49,9 +49,7 @@ class Tag extends BaseModel
      */
     private $originalName;
 
-    /**
-     * @var array<mixed>|null
-     */
+    /** @var array<mixed>|null */
     private $pivot;
 
     /**

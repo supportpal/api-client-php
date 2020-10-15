@@ -1,7 +1,8 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\Converter;
 
+use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\TestCase;
@@ -15,19 +16,13 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class ModelToArrayConverterTest extends TestCase
 {
-    /**
-     * @var \Prophecy\Prophecy\ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     private $serializer;
 
-    /**
-     * @var \Prophecy\Prophecy\ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     private $decoder;
 
-    /**
-     * @var ModelToArrayConverter
-     */
+    /** @var ModelToArrayConverter */
     private $modelToArrayConverter;
 
     protected function setUp(): void

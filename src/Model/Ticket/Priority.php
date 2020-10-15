@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Model\Ticket;
 
@@ -56,9 +56,7 @@ class Priority extends BaseModel
      */
     private $iconWithoutTooltip;
 
-    /**
-     * @var Department[]|null
-     */
+    /** @var Department[]|null */
     private $departments;
 
     /**

@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Model\Ticket;
 
@@ -14,9 +14,7 @@ class TicketCustomField extends CustomField
      */
     private $purge;
 
-    /**
-     * @var Department[]
-     */
+    /** @var Department[] */
     private $departments;
 
     /**

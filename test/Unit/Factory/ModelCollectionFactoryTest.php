@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
@@ -22,23 +22,15 @@ use SupportPal\ApiClient\Model\Shared\Settings;
  */
 class ModelCollectionFactoryTest extends TestCase
 {
-    /**
-     * @var ModelCollectionFactory
-     */
+    /** @var ModelCollectionFactory */
     private $modelCollectionFactory;
 
-    /**
-     * @var \Prophecy\Prophecy\ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     private $commentFactory;
-    /**
-     * @var \Prophecy\Prophecy\ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     private $settingsFactory;
 
-    /**
-     * @var array<string, ObjectProphecy>
-     */
+    /** @var array<string, ObjectProphecy> */
     private $factories;
 
     protected function setUp(): void

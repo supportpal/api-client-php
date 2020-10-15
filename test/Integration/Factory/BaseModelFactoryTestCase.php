@@ -1,11 +1,15 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Integration\Factory;
 
+use stdClass;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\FactoryTestCase;
+
+use function gettype;
+use function is_array;
 
 /**
  * Class BaseModelFactoryTestCase
@@ -35,7 +39,7 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
     public function testCreateWithInvalidTypes(array $data, string $invalidKey): void
     {
         self::expectException(InvalidArgumentException::class);
-        if (! $data[$invalidKey] instanceof \stdClass) {
+        if (! $data[$invalidKey] instanceof stdClass) {
             self::expectExceptionMessage(gettype(self::ATOMIC_VALUE));
         } else {
             self::expectExceptionMessage($this->snakeCaseToCamelCase($invalidKey));
@@ -62,7 +66,7 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
                 continue;
             }
 
-            $commentDataCopy[$key] = new \stdClass;
+            $commentDataCopy[$key] = new stdClass;
 
             yield [$commentDataCopy, $key];
         }

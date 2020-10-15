@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
@@ -6,6 +6,8 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
+
+use function json_encode;
 
 /**
  * Class CategoryApisTest
@@ -15,9 +17,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
  */
 class CategoryApisTest extends ApiClientTest
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $testCategoryId = 1;
 
     public function testGetCategories(): void

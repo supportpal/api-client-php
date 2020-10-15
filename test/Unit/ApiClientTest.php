@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit;
 
@@ -15,6 +15,9 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
+use function json_decode;
+use function json_encode;
+
 /**
  * Class ApiClientTest
  * @package SupportPal\ApiClient\Tests\Unit
@@ -22,36 +25,24 @@ use Symfony\Component\Serializer\Encoder\DecoderInterface;
  */
 class ApiClientTest extends TestCase
 {
-    /**
-     * @var array<mixed>
-     */
+    /** @var array<mixed> */
     protected $genericErrorResponse = [
         'status' => 'error',
         'message' => null,
         'data' => []
     ];
 
-    /**
-     * @var \Prophecy\Prophecy\ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     protected $httpClient;
-    /**
-     * @var \Prophecy\Prophecy\ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     protected $requestFactory;
-    /**
-     * @var ApiClient
-     */
+    /** @var ApiClient */
     protected $apiClient;
 
-    /**
-     * @var \Prophecy\Prophecy\ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     protected $decoder;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $formatType = 'json';
 
     protected function setUp(): void

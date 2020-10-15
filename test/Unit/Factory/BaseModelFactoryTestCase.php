@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
@@ -12,6 +12,8 @@ use Symfony\Component\Serializer\Encoder\EncoderInterface;
 use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 use Symfony\Component\Serializer\SerializerInterface;
 
+use function json_encode;
+
 /**
  * Class BaseModelFactoryTestCase
  * @package SupportPal\ApiClient\Tests\Unit\Factory
@@ -23,19 +25,13 @@ abstract class BaseModelFactoryTestCase extends TestCase
 
     use StringHelper;
 
-    /**
-     * @var ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     protected $serializer;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $format = 'json';
 
-    /**
-     * @var ObjectProphecy
-     */
+    /** @var ObjectProphecy */
     private $encoder;
 
     protected function setUp(): void

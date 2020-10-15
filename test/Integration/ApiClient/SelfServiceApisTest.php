@@ -1,7 +1,8 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
+use Exception;
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
@@ -17,14 +18,10 @@ use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
  */
 class SelfServiceApisTest extends ApiClientTest
 {
-    /**
-     * @var array<mixed>
-     */
+    /** @var array<mixed> */
     private $commentData = CommentData::DATA;
 
-    /**
-     * @var array<mixed>
-     */
+    /** @var array<mixed> */
     private $postCommentSuccessfulResponse = CommentData::POST_RESPONSE;
 
     public function testPostComment(): void
@@ -45,7 +42,7 @@ class SelfServiceApisTest extends ApiClientTest
     /**
      * @param Response $response
      * @dataProvider provideUnsuccessfulTestCases
-     * @throws \Exception
+     * @throws Exception
      */
     public function testUnsuccessfulPostComment(Response $response): void
     {
