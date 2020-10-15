@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient;
 
@@ -14,6 +14,8 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
+use function is_array;
+
 /**
  * This class includes all the API calls
  * Class ApiClient
@@ -26,24 +28,16 @@ class ApiClient
     use TicketApis;
     use UserApis;
 
-    /**
-     * @var ClientInterface
-     */
+    /** @var ClientInterface */
     private $httpClient;
 
-    /**
-     * @var RequestFactory
-     */
+    /** @var RequestFactory */
     private $requestFactory;
 
-    /**
-     * @var DecoderInterface
-     */
+    /** @var DecoderInterface */
     private $decoder;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $formatType;
 
     /**

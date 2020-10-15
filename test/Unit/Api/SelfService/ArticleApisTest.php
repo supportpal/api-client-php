@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
@@ -14,9 +14,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class ArticleApisTest extends ApiTest
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $testArticleId = 1;
 
     public function testGetArticlesByTerm(): void

@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
@@ -14,14 +14,10 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class MessageApisTest extends ApiTest
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $testTicketId = 1;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $testMessageId = 1;
 
     public function testGetTicketMessages(): void

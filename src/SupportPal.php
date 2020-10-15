@@ -1,10 +1,11 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient;
 
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\ChainCache;
 use Doctrine\Common\Cache\FilesystemCache;
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
@@ -18,10 +19,13 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Cache\ApiCacheMap;
 use SupportPal\ApiClient\Cache\CacheableRequestMatcher;
+use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
+use function sys_get_temp_dir;
 
 /**
  * Class SupportPal
@@ -29,9 +33,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  */
 class SupportPal
 {
-    /**
-     * @var ContainerBuilder
-     */
+    /** @var ContainerBuilder */
     private $containerBuilder;
 
     /**
@@ -41,7 +43,7 @@ class SupportPal
      * @param array<mixed> $defaultParameters Parameters that will always be passed
      * @param array<mixed> $defaultBodyContent Body content that will always be passed
      * @param string|null $cacheDir
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(
         string $apiUrl,
@@ -68,7 +70,7 @@ class SupportPal
     /**
      * This method returns the api for SupportPal system
      * @return Api
-     * @throws \Exception
+     * @throws Exception
      */
     public function getApi(): Api
     {
@@ -80,7 +82,7 @@ class SupportPal
 
     /**
      * @return RequestFactory
-     * @throws \Exception
+     * @throws Exception
      */
     public function getRequestFactory(): RequestFactory
     {
@@ -93,7 +95,7 @@ class SupportPal
     /**
      * @param RequestInterface $request
      * @return ResponseInterface
-     * @throws Exception\HttpResponseException
+     * @throws HttpResponseException
      */
     public function sendRequest(RequestInterface $request): ResponseInterface
     {

@@ -1,7 +1,8 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Functional\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\SelfService\Comment;
@@ -12,6 +13,8 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
+
+use function json_encode;
 
 /**
  * Class SelfServiceApisTest
@@ -33,7 +36,7 @@ class SelfServiceApisTest extends ApiComponentTest
     /**
      * @param Response $response
      * @dataProvider provideUnsuccessfulTestCases
-     * @throws \Exception
+     * @throws Exception
      */
     public function testUnsuccessfulPostComment(Response $response): void
     {

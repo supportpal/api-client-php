@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Model\Shared;
 
@@ -7,9 +7,7 @@ use SupportPal\ApiClient\Model\SettingsModel;
 
 class Settings implements SettingsModel
 {
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private $settings;
 
     /**

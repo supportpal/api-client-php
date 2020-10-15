@@ -1,7 +1,8 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Integration\Api;
 
+use Exception;
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\SelfService\Comment;
@@ -19,9 +20,7 @@ use SupportPal\ApiClient\Tests\Integration\ApiTestCase;
  */
 class SelfServiceApisTest extends ApiTestCase
 {
-    /**
-     * @var array<mixed>
-     */
+    /** @var array<mixed> */
     private $postCommentSuccessfulResponse = CommentData::POST_RESPONSE;
 
     public function testPostComment(): void
@@ -48,7 +47,7 @@ class SelfServiceApisTest extends ApiTestCase
     /**
      * @param Response $response
      * @dataProvider provideUnsuccessfulTestCases
-     * @throws \Exception
+     * @throws Exception
      */
     public function testUnsuccessfulPostComment(Response $response): void
     {

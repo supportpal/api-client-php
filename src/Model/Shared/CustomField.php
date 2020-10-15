@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Model\Shared;
 
@@ -98,14 +98,10 @@ abstract class CustomField extends BaseModel
      */
     private $encrypted;
 
-    /**
-     * @var Option[]
-     */
+    /** @var Option[] */
     private $options;
 
-    /**
-     * @var Brand[]
-     */
+    /** @var Brand[] */
     private $brands;
 
     /**

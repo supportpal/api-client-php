@@ -1,10 +1,17 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Model;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Helper\StringHelper;
+use TypeError;
+
+use function array_push;
+use function count;
+use function implode;
+use function is_string;
+use function method_exists;
 
 /**
  * Class BaseModel
@@ -32,16 +39,18 @@ abstract class BaseModel implements Model
         $this->assertRequiredFieldsExists($data);
         foreach ($data as $key => $value) {
             $attributeSetter = 'set' . $this->snakeCaseToPascalCase($key);
-            if (method_exists($this, $attributeSetter)) {
-                try {
-                    $this->{$attributeSetter}($value);
-                } catch (\TypeError $exception) {
-                    throw new InvalidArgumentException(
-                        $exception->getMessage(),
-                        $exception->getCode(),
-                        $exception->getPrevious()
-                    );
-                }
+            if (! method_exists($this, $attributeSetter)) {
+                continue;
+            }
+
+            try {
+                $this->{$attributeSetter}($value);
+            } catch (TypeError $exception) {
+                throw new InvalidArgumentException(
+                    $exception->getMessage(),
+                    $exception->getCode(),
+                    $exception->getPrevious()
+                );
             }
         }
 
@@ -65,9 +74,11 @@ abstract class BaseModel implements Model
     {
         $missingFields = [];
         foreach ($this->getRequiredFields() as $required) {
-            if (! isset($data[$required])) {
-                array_push($missingFields, $required);
+            if (isset($data[$required])) {
+                continue;
             }
+
+            array_push($missingFields, $required);
         }
 
         if (count($missingFields) > 0) {

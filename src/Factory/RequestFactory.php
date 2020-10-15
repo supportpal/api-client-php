@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Factory;
 
@@ -6,7 +6,11 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
+
+use function array_merge;
+use function base64_encode;
 use function GuzzleHttp\Psr7\stream_for;
+use function http_build_query;
 
 /**
  * Class RequestFactory
@@ -31,25 +35,16 @@ class RequestFactory
      */
     private $contentType;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $formatType;
 
-    /**
-     * @var EncoderInterface
-     */
+    /** @var EncoderInterface */
     private $encoder;
 
-    /**
-     * @var array<mixed>
-     */
+    /** @var array<mixed> */
     private $defaultParameters;
 
-    /**
-     *
-     * @var array<mixed>
-     */
+    /** @var array<mixed> */
     private $defaultBodyContent;
 
     /**

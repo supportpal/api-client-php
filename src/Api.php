@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient;
 
@@ -19,34 +19,22 @@ class Api
     use TicketApis;
     use UserApis;
 
-    /**
-     * @var ModelToArrayConverter
-     */
+    /** @var ModelToArrayConverter */
     private $modelToArrayConverter;
 
-    /**
-     * @var ApiClient
-     */
+    /** @var ApiClient */
     private $apiClient;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $formatType;
 
-    /**
-     * @var ModelCollectionFactory
-     */
+    /** @var ModelCollectionFactory */
     private $modelCollectionFactory;
 
-    /**
-     * @var DecoderInterface
-     */
+    /** @var DecoderInterface */
     private $decoder;
 
-    /**
-     * @var CollectionFactory
-     */
+    /** @var CollectionFactory */
     private $collectionFactory;
 
     public function __construct(

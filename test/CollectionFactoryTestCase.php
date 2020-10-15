@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests;
 
@@ -7,11 +7,11 @@ use SupportPal\ApiClient\Factory\Collection\CollectionFactory;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Model\SelfService\Tag;
 
+use function count;
+
 abstract class CollectionFactoryTestCase extends ContainerAwareBaseTestCase
 {
-    /**
-     * @var CollectionFactory
-     */
+    /** @var CollectionFactory */
     protected $collectionFactory;
 
     /**

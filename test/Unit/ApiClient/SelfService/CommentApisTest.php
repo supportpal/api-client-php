@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
@@ -6,6 +6,8 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
+
+use function json_encode;
 
 /**
  * Class CommentApisTest
@@ -15,9 +17,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
  */
 class CommentApisTest extends ApiClientTest
 {
-    /**
-     * @var array<mixed>
-     */
+    /** @var array<mixed> */
     private $postCommentSuccessfulResponse = CommentData::POST_RESPONSE;
 
     public function testPostSelfServiceComment(): void

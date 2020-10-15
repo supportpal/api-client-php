@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Cache;
 
@@ -7,9 +7,7 @@ use Psr\Http\Message\RequestInterface;
 
 class CacheableRequestMatcher implements RequestMatcherInterface
 {
-    /**
-     * @var array<string, string>
-     */
+    /** @var array<string, string> */
     private $cachableApis;
 
     /**

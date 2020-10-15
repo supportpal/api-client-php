@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
@@ -10,6 +10,8 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
+use function json_encode;
+
 /**
  * Class CommentApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
@@ -18,9 +20,7 @@ use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
  */
 class CommentApisTest extends ApiTest
 {
-    /**
-     * @var array<mixed>
-     */
+    /** @var array<mixed> */
     private $postCommentSuccessfulResponse = CommentData::POST_RESPONSE;
 
     public function testPostComment(): void

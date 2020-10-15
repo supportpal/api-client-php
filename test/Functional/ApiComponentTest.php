@@ -1,10 +1,13 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Functional;
 
+use Exception;
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Tests\ApiDataProviders;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
+
+use function call_user_func_array;
 
 /**
  * Class ApiComponentTest
@@ -25,7 +28,7 @@ abstract class ApiComponentTest extends ContainerAwareBaseTestCase
      * @param array<mixed> $data
      * @param string $functionName
      * @param array<mixed> $parameters
-     * @throws \Exception
+     * @throws Exception
      */
     public function testGetEndpoint(array $data, string $functionName, array $parameters): void
     {
@@ -47,7 +50,7 @@ abstract class ApiComponentTest extends ContainerAwareBaseTestCase
      * @param Response $response
      * @param string $endpoint
      * @param array<mixed> $parameters
-     * @throws \Exception
+     * @throws Exception
      * @dataProvider provideGetEndpointsUnsuccessfulTestCases
      */
     public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void

@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Integration\Converter;
 
@@ -12,9 +12,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 
 class ModelToArrayConverterTest extends ContainerAwareBaseTestCase
 {
-    /**
-     * @var ModelToArrayConverter
-     */
+    /** @var ModelToArrayConverter */
     private $modelToArrayConverter;
 
     protected function setUp(): void

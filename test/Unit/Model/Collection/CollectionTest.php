@@ -1,7 +1,8 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Unit\Model\Collection;
 
+use stdClass;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Model;
@@ -9,6 +10,11 @@ use SupportPal\ApiClient\Model\SelfService\Article;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\TestCase;
+
+use function array_map;
+use function count;
+use function current;
+use function range;
 
 /**
  * Class CollectionTest
@@ -70,7 +76,7 @@ class CollectionTest extends TestCase
         $name = current($models)->getName() . 'test';
 
         $mappedCollection = $collection->filter(function (Comment $comment) use ($name) {
-            return $comment->getName() == $name;
+            return $comment->getName() === $name;
         });
 
         $this->assertNotSame($collection, $mappedCollection);
@@ -89,7 +95,7 @@ class CollectionTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         /** @var Model[] $models */
-        $models = [new \stdClass, new \stdClass];
+        $models = [new stdClass, new stdClass];
         new Collection(2, $models);
     }
 

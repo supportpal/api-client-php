@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Converter;
 
@@ -14,19 +14,13 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class ModelToArrayConverter
 {
-    /**
-     * @var SerializerInterface
-     */
+    /** @var SerializerInterface */
     private $serializer;
 
-    /**
-     * @var DecoderInterface
-     */
+    /** @var DecoderInterface */
     private $decoder;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $format;
 
     public function __construct(SerializerInterface $serializer, DecoderInterface $decoder, string $format)

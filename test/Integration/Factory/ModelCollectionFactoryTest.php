@@ -1,7 +1,8 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests\Integration\Factory;
 
+use stdClass;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Model\Department\Department;
@@ -15,6 +16,8 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
+
+use function is_array;
 
 /**
  * Class ModelCollectionFactoryTest
@@ -30,9 +33,7 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
         Department::class => DepartmentData::DATA,
     ];
 
-    /**
-     * @var ModelCollectionFactory
-     */
+    /** @var ModelCollectionFactory */
     private $modelCollectionFactory;
 
     protected function setUp(): void
@@ -95,7 +96,7 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
                 }
 
                 $dataCopy = self::MODELS_MAP[$model];
-                $dataCopy[$key] = new \stdClass;
+                $dataCopy[$key] = new stdClass;
 
                 yield [$dataCopy, $model, $key];
             }

@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Model\SelfService;
 
@@ -134,9 +134,7 @@ class Article extends BaseModel
      */
     private $views;
 
-    /**
-     * @var Tag[]|null
-     */
+    /** @var Tag[]|null */
     private $tags;
 
     /**

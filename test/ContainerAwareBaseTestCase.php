@@ -1,12 +1,15 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Tests;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Client\RequestExceptionInterface;
+use ReflectionException;
+use ReflectionObject;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\SupportPal;
 use Symfony\Component\Config\FileLocator;
@@ -16,6 +19,8 @@ use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
+use function json_encode;
+
 /**
  * Class ContainerAwareBaseTestCase
  * @package SupportPal\ApiClient\Tests
@@ -23,28 +28,20 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
  */
 abstract class ContainerAwareBaseTestCase extends TestCase
 {
-    /**
-     * @var array<mixed>
-     */
+    /** @var array<mixed> */
     protected $genericErrorResponse = [
         'status' => 'error',
         'message' => 'unsuccessful error',
         'data' => []
     ];
 
-    /**
-     * @var SupportPal
-     */
+    /** @var SupportPal */
     protected $supportPal;
 
-    /**
-     * @var ContainerBuilder
-     */
+    /** @var ContainerBuilder */
     private $container;
 
-    /**
-     * @var MockHandler
-     */
+    /** @var MockHandler */
     private $mockRequestHandler;
 
     /**
@@ -72,7 +69,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
 
     /**
      * @inheritDoc
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     protected function setUp(): void
     {
@@ -101,7 +98,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         /**
          * replace container with test container
          */
-        $reflectionClass = new \ReflectionObject($this->supportPal);
+        $reflectionClass = new ReflectionObject($this->supportPal);
         $property = $reflectionClass->getProperty('containerBuilder');
         $property->setAccessible(true);
         $property->setValue($this->supportPal, $containerBuilder);
@@ -128,7 +125,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
 
     /**
      * @return EncoderInterface
-     * @throws \Exception
+     * @throws Exception
      */
     protected function getEncoder(): EncoderInterface
     {
@@ -140,7 +137,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
 
     /**
      * @return DecoderInterface
-     * @throws \Exception
+     * @throws Exception
      */
     protected function getDecoder(): DecoderInterface
     {
@@ -178,7 +175,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
 
     /**
      * @param Response $response
-     * @throws \Exception
+     * @throws Exception
      */
     protected function prepareUnsuccessfulApiRequest(Response $response): void
     {
