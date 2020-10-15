@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\Api;
 
+use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\Integration\ApiTestCase;
 
@@ -18,6 +19,8 @@ class CoreApisTest extends ApiTestCase
     {
         return [
             'getCoreSettings' => [CoreSettingsData::getResponse(), []],
+            'getBrands' => [BrandData::getAllResponse(), []],
+            'getBrand' => [BrandData::getResponse(), [1]],
         ];
     }
 }

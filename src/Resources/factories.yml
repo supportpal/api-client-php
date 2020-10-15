@@ -78,4 +78,8 @@ services:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 
+    SupportPal\ApiClient\Factory\Core\BrandFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        tags: [ 'factory.model_factory' ]
+
     SupportPal\ApiClient\Factory\Collection\CollectionFactory: ~

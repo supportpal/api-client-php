@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Api;
 
+use SupportPal\ApiClient\Api\Core\BrandApis;
 use SupportPal\ApiClient\Api\Core\SettingsApis;
 
 /**
@@ -11,5 +12,6 @@ use SupportPal\ApiClient\Api\Core\SettingsApis;
  */
 trait CoreApis
 {
+    use BrandApis;
     use SettingsApis;
 }
