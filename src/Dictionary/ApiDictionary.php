@@ -14,6 +14,8 @@ final class ApiDictionary
      */
     public const CORE_SETTINGS = 'core/settings';
 
+    public const CORE_BRAND = 'core/brand';
+
     /**
      * Self Service APIs
      */
