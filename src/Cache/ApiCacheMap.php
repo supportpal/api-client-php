@@ -21,6 +21,12 @@ final class ApiCacheMap
         self::DEFAULT_CACHE_TTL => [
             ApiDictionary::CORE_SETTINGS => 'GET',
             ApiDictionary::SELF_SERVICE_SETTINGS => 'GET',
+            ApiDictionary::SELF_SERVICE_ARTICLE => 'GET',
+            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE => 'GET',
+            ApiDictionary::SELF_SERVICE_CATEGORY => 'GET',
+            ApiDictionary::SELF_SERVICE_TAG => 'GET',
+            ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH => 'GET',
+            ApiDictionary::SELF_SERVICE_COMMENT => 'GET',
         ],
     ];
 }
