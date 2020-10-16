@@ -1,17 +1,17 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Transformer;
 
-interface FieldTransformer
+interface Transformer
 {
     /**
-     * @param $value
+     * @param mixed $value
      * @return bool
      */
     public function canTransform($value): bool;
 
     /**
-     * @param $value
+     * @param mixed $value
      * @return mixed
      */
     public function transform($value);

@@ -139,3 +139,12 @@ services:
     SupportPal\ApiClient\Transformer\StringTrimTransformer:
         public: true
         tags: [ 'transformer.field_transformer' ]
+
+    SupportPal\ApiClient\Transformer\EmptyModelToNullTransformer:
+        public: true
+        tags: [ 'transformer.field_transformer' ]
+
+    SupportPal\ApiClient\Factory\ModelCollectionFactory:
+        public: true
+        arguments:
+            $factories: !tagged factory.model_factory

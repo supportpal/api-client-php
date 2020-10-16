@@ -1,8 +1,11 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Transformer;
 
-class StringTrimTransformer implements FieldTransformer
+use function is_string;
+use function trim;
+
+class StringTrimTransformer implements Transformer
 {
     /**
      * @inheritDoc
