@@ -68,7 +68,7 @@ class ApiClient
             $response = $this->getHttpClient()->sendRequest($request);
             $this->assertRequestSuccessful($response);
         } catch (ClientExceptionInterface $exception) {
-            throw new HttpResponseException;
+            throw new HttpResponseException($exception->getMessage(), 0, $exception);
         }
 
         return $response;
