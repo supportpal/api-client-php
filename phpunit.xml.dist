@@ -19,6 +19,9 @@
         <testsuite name="integration">
             <directory>test/Integration</directory>
         </testsuite>
+        <testsuite name="e2e">
+            <directory>test/E2E</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
