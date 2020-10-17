@@ -9,7 +9,7 @@ The main goals of these tests are:
 - The SDK is stable when stress tested against real data
 - Part of the release process to check support against updates done to either the SDK itself, or the helpdesk
 
-## how to run
+## How to run
 
 In order to run those tests, you will need an instance of the helpdesk software running on a server.
 To setup the SDK, follow this link: https://docs.supportpal.com/current/New+Installation
@@ -24,5 +24,4 @@ Finally, to run the tests:
 ```
 BASE_URL=server:port/api/ TOKEN={token} LIMIT={max number of models to test against} ./vendor/bin/phpunit --testsuite=e2e
 ```
-
 
