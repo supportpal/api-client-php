@@ -8,3 +8,5 @@ parameters:
             - '#Call to an undefined method Prophecy\\Prophecy\\ObjectProphecy#'
     excludes_analyse:
         - src/Normalizer/ModelNormalizer.php
+    parallel:
+        processTimeout: 600.0
