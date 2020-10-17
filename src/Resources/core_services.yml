@@ -10,7 +10,6 @@ services:
             $formatType: '%contentType%'
 
     SupportPal\ApiClient\Factory\ModelCollectionFactory:
-        public: true
         arguments:
             $factories: !tagged factory.model_factory
 

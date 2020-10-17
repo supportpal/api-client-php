@@ -12,6 +12,7 @@ use function count;
 use function implode;
 use function is_string;
 use function method_exists;
+use function trim;
 
 /**
  * Class BaseModel
@@ -43,6 +44,7 @@ abstract class BaseModel implements Model
                 continue;
             }
 
+            $value = is_string($value) ? trim($value) : $value;
             try {
                 $this->{$attributeSetter}($value);
             } catch (TypeError $exception) {
