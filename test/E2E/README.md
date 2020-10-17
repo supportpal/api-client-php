@@ -19,9 +19,11 @@ You also need to install the dependencies of the SDK using composer:
 composer install
 ```
 
-Finally, to run the tests:
+Finally, to run the tests, copy & paste below replacing variables (words wrapped in curly braces):
 
 ```
-BASE_URL=server:port/api/ TOKEN={token} LIMIT={max number of models to test against} ./vendor/bin/phpunit --testsuite=e2e
+BASE_URL={server}:{port}/api/ TOKEN={token} LIMIT={max number of models to test against} ./vendor/bin/phpunit --testsuite=e2e
+
+#by default, the value of LIMIT is 100. 
 ```
 
