@@ -7,10 +7,14 @@ use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\Ticket\Ticket;
 use SupportPal\ApiClient\Normalizer\ModelNormalizer;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
-use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
-use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 use SupportPal\ApiClient\Transformer\Transformer;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Serializer;
@@ -115,9 +119,22 @@ class ModelNormalizerTest extends ContainerAwareBaseTestCase
      */
     public function provideObjects(): iterable
     {
-        yield [CommentData::getFilledInstance(), CommentData::DATA];
-        yield [TicketData::getFilledInstance(), TicketData::DATA];
-        yield [UserData::getFilledInstance(), UserData::DATA];
-        yield [DepartmentData::getFilledInstance(), DepartmentData::DATA];
+        $departmentData = new DepartmentData;
+        $channelSettingsData = new ChannelSettingsData;
+        $ticketCustomFieldData = new TicketCustomFieldData;
+        $priorityData = new PriorityData;
+        $statusData = new StatusData;
+        $attachmentData = new AttachmentData;
+        $ticketData = new TicketData;
+        $messageData = new MessageData;
+
+        yield [$departmentData->getFilledInstance(), $departmentData->getArrayData()];
+        yield [$channelSettingsData->getFilledInstance(), $channelSettingsData->getArrayData()];
+        yield [$ticketCustomFieldData->getFilledInstance(), $ticketCustomFieldData->getArrayData()];
+        yield [$priorityData->getFilledInstance(), $priorityData->getArrayData()];
+        yield [$statusData->getFilledInstance(), $statusData->getArrayData()];
+        yield [$attachmentData->getFilledInstance(), $attachmentData->getArrayData()];
+        yield [$ticketData->getFilledInstance(), $ticketData->getArrayData()];
+        yield [$messageData->getFilledInstance(), $messageData->getArrayData()];
     }
 }

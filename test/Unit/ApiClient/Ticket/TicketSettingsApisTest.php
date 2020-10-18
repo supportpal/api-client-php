@@ -22,7 +22,7 @@ class TicketSettingsApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_SETTINGS, [], []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(SettingsData::getResponse()),
+            (string) json_encode((new SettingsData)->getResponse()),
             $request
         );
 

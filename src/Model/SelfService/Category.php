@@ -74,10 +74,16 @@ class Category extends BaseModel
     private $type;
 
     /**
-     * @var array<mixed>|null
-     * @SerializedName("pivot")
+     * @var CategoryTranslation[]|null
+     * @SerializedName("translations")
      */
-    private $pivot;
+    private $translations;
+
+    /**
+     * @var int|null
+     * @SerializedName("pinned")
+     */
+    private $pinned;
 
     /**
      * @return int
@@ -289,20 +295,39 @@ class Category extends BaseModel
     }
 
     /**
-     * @return array<mixed>|null
+     * @return CategoryTranslation[]|null
      */
-    public function getPivot(): ?array
+    public function getTranslations(): ?array
     {
-        return $this->pivot;
+        return $this->translations;
     }
 
     /**
-     * @param array<mixed>|null $pivot
+     * @param CategoryTranslation[]|null $translations
      * @return self
      */
-    public function setPivot(?array $pivot): self
+    public function setTranslations(?array $translations): Category
     {
-        $this->pivot = $pivot;
+        $this->translations = $translations;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPinned(): ?int
+    {
+        return $this->pinned;
+    }
+
+    /**
+     * @param int|null $pinned
+     * @return self
+     */
+    public function setPinned(?int $pinned): self
+    {
+        $this->pinned = $pinned;
 
         return $this;
     }

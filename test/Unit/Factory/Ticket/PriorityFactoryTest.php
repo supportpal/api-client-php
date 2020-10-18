@@ -21,7 +21,7 @@ class PriorityFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return PriorityData::getFilledInstance();
+        return (new PriorityData)->getFilledInstance();
     }
 
     /**
@@ -29,7 +29,7 @@ class PriorityFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return PriorityData::DATA;
+        return (new PriorityData)->getArrayData();
     }
 
     /**

@@ -21,7 +21,7 @@ class MessageFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return MessageData::getFilledInstance();
+        return (new MessageData)->getFilledInstance();
     }
 
     /**
@@ -29,7 +29,7 @@ class MessageFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return MessageData::DATA;
+        return (new MessageData)->getArrayData();
     }
 
     /**

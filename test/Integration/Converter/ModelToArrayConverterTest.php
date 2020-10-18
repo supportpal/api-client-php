@@ -40,8 +40,8 @@ class ModelToArrayConverterTest extends ContainerAwareBaseTestCase
      */
     public function provideModelCases(): iterable
     {
-        yield [CommentData::getFilledInstance()];
-        yield [UserData::getFilledInstance()];
-        yield [DepartmentData::getFilledInstance()];
+        yield [(new CommentData)->getFilledInstance()];
+        yield [(new UserData)->getFilledInstance()];
+        yield [(new DepartmentData)->getFilledInstance()];
     }
 }

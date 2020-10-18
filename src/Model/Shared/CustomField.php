@@ -27,19 +27,19 @@ abstract class CustomField extends BaseModel
     private $regex;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("locked")
      */
     private $locked;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("updated_at")
      */
     private $updatedAt;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("created_at")
      */
     private $createdAt;
@@ -57,25 +57,25 @@ abstract class CustomField extends BaseModel
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      * @SerializedName("name")
      */
     private $name;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("required")
      */
     private $required;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("public")
      */
     private $public;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("order")
      */
     private $order;
@@ -87,22 +87,34 @@ abstract class CustomField extends BaseModel
     private $description;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("type")
      */
     private $type;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("encrypted")
      */
     private $encrypted;
 
-    /** @var Option[] */
+    /** @var Option[]|null */
     private $options;
 
-    /** @var Brand[] */
+    /** @var Brand[]|null */
     private $brands;
+
+    /**
+     * @var int|null
+     * @SerializedName("field_id")
+     */
+    private $fieldId;
+
+    /**
+     * @var string|null
+     * @SerializedName("value")
+     */
+    private $value;
 
     /**
      * @return string|null
@@ -162,18 +174,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getLocked(): int
+    public function getLocked(): ?int
     {
         return $this->locked;
     }
 
     /**
-     * @param int $locked
+     * @param int|null $locked
      * @return self
      */
-    public function setLocked(int $locked): self
+    public function setLocked(?int $locked): self
     {
         $this->locked = $locked;
 
@@ -181,18 +193,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getUpdatedAt(): int
+    public function getUpdatedAt(): ?int
     {
         return $this->updatedAt;
     }
 
     /**
-     * @param int $updatedAt
+     * @param int|null $updatedAt
      * @return self
      */
-    public function setUpdatedAt(int $updatedAt): self
+    public function setUpdatedAt(?int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -200,18 +212,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCreatedAt(): int
+    public function getCreatedAt(): ?int
     {
         return $this->createdAt;
     }
 
     /**
-     * @param int $createdAt
+     * @param int|null $createdAt
      * @return self
      */
-    public function setCreatedAt(int $createdAt): self
+    public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -257,18 +269,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      * @return self
      */
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -276,18 +288,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getRequired(): int
+    public function getRequired(): ?int
     {
         return $this->required;
     }
 
     /**
-     * @param int $required
+     * @param int|null $required
      * @return self
      */
-    public function setRequired(int $required): self
+    public function setRequired(?int $required): self
     {
         $this->required = $required;
 
@@ -295,18 +307,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPublic(): int
+    public function getPublic(): ?int
     {
         return $this->public;
     }
 
     /**
-     * @param int $public
+     * @param int|null $public
      * @return self
      */
-    public function setPublic(int $public): self
+    public function setPublic(?int $public): self
     {
         $this->public = $public;
 
@@ -314,18 +326,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOrder(): int
+    public function getOrder(): ?int
     {
         return $this->order;
     }
 
     /**
-     * @param int $order
+     * @param int|null $order
      * @return self
      */
-    public function setOrder(int $order): self
+    public function setOrder(?int $order): self
     {
         $this->order = $order;
 
@@ -352,18 +364,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getType(): int
+    public function getType(): ?int
     {
         return $this->type;
     }
 
     /**
-     * @param int $type
+     * @param int|null $type
      * @return self
      */
-    public function setType(int $type): self
+    public function setType(?int $type): self
     {
         $this->type = $type;
 
@@ -371,18 +383,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEncrypted(): int
+    public function getEncrypted(): ?int
     {
         return $this->encrypted;
     }
 
     /**
-     * @param int $encrypted
+     * @param int|null $encrypted
      * @return self
      */
-    public function setEncrypted(int $encrypted): self
+    public function setEncrypted(?int $encrypted): self
     {
         $this->encrypted = $encrypted;
 
@@ -390,18 +402,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return Option[]
+     * @return Option[]|null
      */
-    public function getOptions(): array
+    public function getOptions(): ?array
     {
         return $this->options;
     }
 
     /**
-     * @param Option[] $options
+     * @param Option[]|null $options
      * @return self
      */
-    public function setOptions(array $options): self
+    public function setOptions(?array $options): self
     {
         $this->options = $options;
 
@@ -409,20 +421,58 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return Brand[]
+     * @return Brand[]|null
      */
-    public function getBrands(): array
+    public function getBrands(): ?array
     {
         return $this->brands;
     }
 
     /**
-     * @param Brand[] $brands
+     * @param Brand[]|null $brands
      * @return self
      */
-    public function setBrands(array $brands): self
+    public function setBrands(?array $brands): self
     {
         $this->brands = $brands;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getFieldId(): ?int
+    {
+        return $this->fieldId;
+    }
+
+    /**
+     * @param int|null $fieldId
+     * @return self
+     */
+    public function setFieldId(?int $fieldId): self
+    {
+        $this->fieldId = $fieldId;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param string|null $value
+     * @return self
+     */
+    public function setValue(?string $value): self
+    {
+        $this->value = $value;
 
         return $this;
     }

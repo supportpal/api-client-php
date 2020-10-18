@@ -33,7 +33,7 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return CommentData::DATA;
+        return (new CommentData)->getArrayData();
     }
 
     /**
@@ -41,7 +41,7 @@ class CommentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return CommentData::getFilledInstance();
+        return (new CommentData)->getFilledInstance();
     }
 
     /**

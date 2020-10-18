@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Tests\DataFixtures\Ticket\CustomFieldData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 use function json_encode;
@@ -23,7 +23,7 @@ class CustomFieldApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_CUSTOMFIELD, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(CustomFieldData::getAllResponse()),
+            (string) json_encode((new TicketCustomFieldData)->getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTicketCustomFields($queryParams);

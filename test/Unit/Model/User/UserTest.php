@@ -27,6 +27,6 @@ class UserTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return UserData::getDataWithObjects();
+        return (new UserData)->getDataWithObjects();
     }
 }

@@ -28,16 +28,18 @@ class TypeData extends BaseModelData
         'created_at' => 1597245387,
         'updated_at' => 1597245387,
         'brand' => BrandData::DATA,
+        'translations' => [TypeTranslationData::DATA],
     ];
 
     /**
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['brand'] = BrandData::getFilledInstance();
+        $data['brand'] = (new BrandData)->getFilledInstance();
+        $data['translations'] = [(new TypeTranslationData)->getFilledInstance()];
 
         return $data;
     }
@@ -45,7 +47,7 @@ class TypeData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Type::class;
     }

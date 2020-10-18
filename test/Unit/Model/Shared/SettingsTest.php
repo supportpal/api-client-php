@@ -22,7 +22,7 @@ class SettingsTest extends TestCase
      */
     protected function getModelData(): array
     {
-        return CoreSettingsData::getDataWithObjects();
+        return (new CoreSettingsData)->getDataWithObjects();
     }
 
     /**

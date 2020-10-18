@@ -23,7 +23,7 @@ class TypeApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(TypeData::getAllResponse()),
+            (string) json_encode((new TypeData)->getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTypes($queryParams);

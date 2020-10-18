@@ -26,7 +26,7 @@ class TicketApis extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_TICKET, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(TicketData::getAllResponse()),
+            (string) json_encode((new TicketData)->getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTickets($queryParams);
@@ -67,7 +67,7 @@ class TicketApis extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(TicketData::getResponse()),
+            (string) json_encode((new TicketData)->getResponse()),
             $request
         );
 

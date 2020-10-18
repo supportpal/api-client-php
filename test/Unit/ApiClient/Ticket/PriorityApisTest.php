@@ -26,7 +26,7 @@ class PriorityApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_PRIORITY, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(PriorityData::getAllResponse()),
+            (string) json_encode((new PriorityData)->getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTicketPriorities($queryParams);
@@ -67,7 +67,7 @@ class PriorityApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(PriorityData::getResponse()),
+            (string) json_encode((new PriorityData)->getResponse()),
             $request
         );
 

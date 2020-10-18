@@ -128,10 +128,13 @@ class Department extends BaseModel
     private $operators;
 
     /**
-     * @var array<mixed>|null
-     * @SerializedName("pivot")
+     * @var DepartmentTranslation[]|null
+     * @SerializedName("translations")
      */
-    private $pivot;
+    private $translations;
+
+    /** @var Department|null */
+    private $parent;
 
     /**
      * @return int
@@ -514,20 +517,39 @@ class Department extends BaseModel
     }
 
     /**
-     * @return array<mixed>|null
+     * @return DepartmentTranslation[]|null
      */
-    public function getPivot(): ?array
+    public function getTranslations(): ?array
     {
-        return $this->pivot;
+        return $this->translations;
     }
 
     /**
-     * @param array<mixed>|null $pivot
+     * @param DepartmentTranslation[]|null $translations
      * @return self
      */
-    public function setPivot(?array $pivot): self
+    public function setTranslations(?array $translations): self
     {
-        $this->pivot = $pivot;
+        $this->translations = $translations;
+
+        return $this;
+    }
+
+    /**
+     * @return Department|null
+     */
+    public function getParent(): ?Department
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param Department|null $parent
+     * @return self
+     */
+    public function setParent(?Department $parent): self
+    {
+        $this->parent = $parent;
 
         return $this;
     }

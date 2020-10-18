@@ -9,12 +9,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 
 class CommentData extends BaseModelData
 {
-    public const POST_RESPONSE = [
-        'status' => 'success',
-        'message' => 'Successfully created new comment!',
-        'data' => self::DATA,
-    ];
-
     public const DATA = [
         'id' => 1,
         'article_id' => 1,
@@ -39,12 +33,12 @@ class CommentData extends BaseModelData
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['type'] = TypeData::getFilledInstance();
-        $data['article'] = ArticleData::getFilledInstance();
-        $data['author'] = UserData::getFilledInstance();
+        $data['type'] = (new TypeData)->getFilledInstance();
+        $data['article'] = (new ArticleData)->getFilledInstance();
+        $data['author'] = (new UserData)->getFilledInstance();
 
         return $data;
     }
@@ -52,7 +46,7 @@ class CommentData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Comment::class;
     }

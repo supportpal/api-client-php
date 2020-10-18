@@ -30,7 +30,7 @@ class MessageApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_MESSAGE, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(MessageData::getAllResponse()),
+            (string) json_encode((new MessageData)->getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTicketMessages($queryParams);
@@ -71,7 +71,7 @@ class MessageApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(DepartmentData::getResponse()),
+            (string) json_encode((new DepartmentData)->getResponse()),
             $request
         );
 

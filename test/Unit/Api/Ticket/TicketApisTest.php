@@ -17,7 +17,7 @@ class TicketApisTest extends ApiTest
     public function testGetTickets(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            TicketData::getAllResponse(),
+            (new TicketData)->getAllResponse(),
             Ticket::class
         );
 
@@ -34,7 +34,7 @@ class TicketApisTest extends ApiTest
     public function testGetTicket(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            TicketData::getResponse(),
+            (new TicketData)->getResponse(),
             Ticket::class
         );
 

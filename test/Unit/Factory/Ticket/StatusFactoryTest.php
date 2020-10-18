@@ -21,7 +21,7 @@ class StatusFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return StatusData::getFilledInstance();
+        return (new StatusData)->getFilledInstance();
     }
 
     /**
@@ -29,7 +29,7 @@ class StatusFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return StatusData::DATA;
+        return (new StatusData)->getArrayData();
     }
 
     /**

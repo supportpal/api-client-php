@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
-use SupportPal\ApiClient\Tests\DataFixtures\Ticket\CustomFieldData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
 /**
@@ -20,7 +20,7 @@ class TicketCustomFieldTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return CustomFieldData::getDataWithObjects();
+        return (new TicketCustomFieldData)->getDataWithObjects();
     }
 
     /**

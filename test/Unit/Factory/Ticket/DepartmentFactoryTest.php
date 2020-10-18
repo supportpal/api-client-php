@@ -21,7 +21,7 @@ class DepartmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return DepartmentData::getFilledInstance();
+        return (new DepartmentData)->getFilledInstance();
     }
 
     /**
@@ -29,7 +29,7 @@ class DepartmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return DepartmentData::DATA;
+        return (new DepartmentData)->getArrayData();
     }
 
     /**

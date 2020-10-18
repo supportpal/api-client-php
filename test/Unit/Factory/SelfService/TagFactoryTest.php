@@ -33,7 +33,7 @@ class TagFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return TagData::DATA;
+        return (new TagData)->getArrayData();
     }
 
     /**
@@ -41,7 +41,7 @@ class TagFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return TagData::getFilledInstance();
+        return (new TagData)->getFilledInstance();
     }
 
     /**

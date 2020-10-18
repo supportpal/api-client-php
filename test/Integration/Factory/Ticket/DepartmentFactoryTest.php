@@ -15,7 +15,7 @@ class DepartmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return DepartmentData::DATA;
+        return (new DepartmentData)->getArrayData();
     }
 
     /**

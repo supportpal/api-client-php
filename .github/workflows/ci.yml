@@ -30,11 +30,11 @@ jobs:
             - name: Code Standard and Static Analysis
               run: ci/analyse.sh
 
+            - name: Execute Unit tests
+              run: TESTSUITE=unit MINCOVERAGE=95 ci/test.sh
+
             - name: Execute Functional tests
               run: TESTSUITE=functional MINCOVERAGE=85 ci/test.sh
 
             - name: Execute Integration tests
               run: TESTSUITE=integration MINCOVERAGE=85 ci/test.sh
-
-            - name: Execute Unit tests
-              run: TESTSUITE=unit MINCOVERAGE=95 ci/test.sh

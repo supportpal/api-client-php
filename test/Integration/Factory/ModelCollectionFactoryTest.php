@@ -26,11 +26,11 @@ use function is_array;
 class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
 {
     private const MODELS_MAP = [
-        Comment::class => CommentData::DATA,
-        Article::class => ArticleData::DATA,
-        User::class => UserData::DATA,
-        Ticket::class => TicketData::DATA,
-        Department::class => DepartmentData::DATA,
+        Comment::class => CommentData::class,
+        Article::class => ArticleData::class,
+        User::class => UserData::class,
+        Ticket::class => TicketData::class,
+        Department::class => DepartmentData::class,
     ];
 
     /** @var ModelCollectionFactory */
@@ -73,8 +73,10 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
      */
     public function provideValidModelData(): iterable
     {
-        foreach (self::MODELS_MAP as $model => $data) {
-            yield [$data, $model];
+        foreach (self::MODELS_MAP as $model => $dataModel) {
+            $modelData = (new $dataModel)->getArrayData();
+
+            yield [$modelData, $model];
         }
     }
 
@@ -84,7 +86,8 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
     public function provideDataWithInvalidTypes(): iterable
     {
         foreach (self::MODELS_MAP as $model => $data) {
-            foreach ($data as $key => $value) {
+            $modelData = (new $data)->getArrayData();
+            foreach ($modelData as $key => $value) {
                 /**
                  * test only support atomic values.
                  * Serializer dependency returns empty objects in case of not matching data attributes
@@ -95,7 +98,7 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
                     continue;
                 }
 
-                $dataCopy = self::MODELS_MAP[$model];
+                $dataCopy = $modelData;
                 $dataCopy[$key] = new stdClass;
 
                 yield [$dataCopy, $model, $key];

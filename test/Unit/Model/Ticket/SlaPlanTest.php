@@ -19,7 +19,7 @@ class SlaPlanTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return SlaPlanData::getDataWithObjects();
+        return (new SlaPlanData)->getDataWithObjects();
     }
 
     /**

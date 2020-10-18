@@ -17,10 +17,12 @@ class CoreApisTest extends ApiClientTest
      */
     protected function getGetEndpoints(): array
     {
+        $brandData = new BrandData;
+
         return [
-            'getCoreSettings' => [CoreSettingsData::getResponse(), []],
-            'getBrands' => [BrandData::getAllResponse(), [[]]],
-            'getBrand' => [BrandData::getResponse(), [1]],
+            'getCoreSettings' => [(new CoreSettingsData)->getResponse(), []],
+            'getBrands' => [$brandData->getAllResponse(), [[]]],
+            'getBrand' => [$brandData->getResponse(), [1]],
         ];
     }
 }

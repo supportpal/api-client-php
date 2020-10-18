@@ -24,16 +24,18 @@ class CategoryData extends BaseModelData
             'article_id' => 1,
             'category_id' => 1
         ],
+        'translations' => [CategoryTranslationData::DATA,]
     ];
 
     /**
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['type'] = TypeData::getFilledInstance();
+        $data['type'] = (new TypeData)->getFilledInstance();
+        $data['translations'] = [(new CategoryTranslationData)->getFilledInstance(),];
 
         return $data;
     }
@@ -41,7 +43,7 @@ class CategoryData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Category::class;
     }

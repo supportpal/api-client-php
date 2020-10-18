@@ -60,6 +60,12 @@ class Priority extends BaseModel
     private $departments;
 
     /**
+     * @var PriorityTranslation[]|null
+     * @SerializedName("translations")
+     */
+    private $translations;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -226,6 +232,25 @@ class Priority extends BaseModel
     public function setDepartments(?array $departments): self
     {
         $this->departments = $departments;
+
+        return $this;
+    }
+
+    /**
+     * @return PriorityTranslation[]|null
+     */
+    public function getTranslations(): ?array
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param PriorityTranslation[]|null $translations
+     * @return self
+     */
+    public function setTranslations(?array $translations): self
+    {
+        $this->translations = $translations;
 
         return $this;
     }

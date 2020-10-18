@@ -14,13 +14,23 @@ class GroupData extends BaseModelData
         'colour' => '#777777',
         'administrator' => 1,
         'created_at' => 1597245387,
-        'updated_at' => 1597245387
+        'updated_at' => 1597245387,
+        'translations' => [GroupTranslationData::DATA,]
     ];
+
+    public function getDataWithObjects(): array
+    {
+        $data = self::DATA;
+
+        $data['translations'] = [(new GroupTranslationData)->getFilledInstance(),];
+
+        return $data;
+    }
 
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Group::class;
     }

@@ -29,22 +29,24 @@ class DepartmentData extends BaseModelData
         'email_templates' => EmailTemplatesData::DATA,
         'emails' => [EmailData::DATA,],
         'groups' => [GroupData::DATA,],
-        'operators' => [OperatorData::DATA,]
+        'operators' => [OperatorData::DATA,],
+        'translations' => [DepartmentTranslationData::DATA,],
     ];
 
     /**
      * @return array<mixed>
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $departmentData = self::DATA;
 
-        $departmentData['email_templates'] = EmailTemplatesData::getFilledInstance();
-        $departmentData['emails'] = [EmailData::getFilledInstance(),];
-        $departmentData['operators'] = [OperatorData::getFilledInstance(),];
-        $departmentData['groups'] = [GroupData::getFilledInstance(),];
-        $departmentData['default_assignedto'] = [OperatorData::getFilledInstance(),];
+        $departmentData['email_templates'] = (new EmailTemplatesData)->getFilledInstance();
+        $departmentData['emails'] = [(new EmailData)->getFilledInstance(),];
+        $departmentData['operators'] = [(new OperatorData)->getFilledInstance(),];
+        $departmentData['groups'] = [(new GroupData)->getFilledInstance(),];
+        $departmentData['default_assignedto'] = [(new OperatorData)->getFilledInstance(),];
+        $departmentData['translations'] = [(new DepartmentTranslationData)->getFilledInstance(),];
 
         return $departmentData;
     }
@@ -52,7 +54,7 @@ class DepartmentData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Department::class;
     }

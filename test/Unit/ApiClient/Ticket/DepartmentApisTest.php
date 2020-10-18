@@ -26,7 +26,7 @@ class DepartmentApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_DEPARTMENT, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(DepartmentData::getAllResponse()),
+            (string) json_encode((new DepartmentData)->getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getDepartments($queryParams);
@@ -67,7 +67,7 @@ class DepartmentApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(DepartmentData::getResponse()),
+            (string) json_encode((new DepartmentData)->getResponse()),
             $request
         );
 

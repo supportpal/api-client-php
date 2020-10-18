@@ -31,7 +31,7 @@ class ChannelSettingsApisTest extends ApiClientTest
             );
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(ChannelSettingsData::getResponse()),
+            (string) json_encode((new ChannelSettingsData)->getResponse()),
             $request
         );
 

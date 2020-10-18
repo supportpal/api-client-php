@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Integration\Factory\Ticket;
 use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Factory\Ticket\CustomFieldFactory;
 use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
-use SupportPal\ApiClient\Tests\DataFixtures\Ticket\CustomFieldData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
 
 class CustomFieldFactoryTest extends BaseModelFactoryTestCase
@@ -15,7 +15,7 @@ class CustomFieldFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return CustomFieldData::DATA;
+        return (new TicketCustomFieldData)->getArrayData();
     }
 
     /**

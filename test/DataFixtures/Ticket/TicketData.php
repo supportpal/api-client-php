@@ -52,7 +52,7 @@ class TicketData extends BaseModelData
         'status' => StatusData::DATA,
         'priority' => PriorityData::DATA,
         'slaplan' => SlaPlanData::DATA,
-        'customfields' => [CustomFieldData::DATA,],
+        'customfields' => [TicketCustomFieldData::DATA,],
         'last_reply' => MessageData::DATA,
         'tags' => [TagData::DATA,],
         'assigned' => [OperatorData::DATA,],
@@ -62,26 +62,26 @@ class TicketData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['department'] = DepartmentData::getFilledInstance();
-        $data['brand'] = BrandData::getFilledInstance();
-        $data['channel'] = ChannelData::getFilledInstance();
-        $data['user'] = UserData::getFilledInstance();
-        $data['status'] = StatusData::getFilledInstance();
-        $data['priority'] = PriorityData::getFilledInstance();
-        $data['slaplan'] = SlaPlanData::getFilledInstance();
-        $data['customfields'] = [CustomFieldData::getFilledInstance(),];
-        $data['last_reply'] = MessageData::getFilledInstance();
-        $data['tags'] = [TagData::getFilledInstance(),];
-        $data['assigned'] = [OperatorData::getFilledInstance(),];
-        $data['watching'] = [OperatorData::getFilledInstance(),];
+        $data['department'] = (new DepartmentData)->getFilledInstance();
+        $data['brand'] = (new BrandData)->getFilledInstance();
+        $data['channel'] = (new ChannelData)->getFilledInstance();
+        $data['user'] = (new UserData)->getFilledInstance();
+        $data['status'] = (new StatusData)->getFilledInstance();
+        $data['priority'] = (new PriorityData)->getFilledInstance();
+        $data['slaplan'] = (new SlaPlanData)->getFilledInstance();
+        $data['customfields'] = [(new TicketCustomFieldData)->getFilledInstance(),];
+        $data['last_reply'] = (new MessageData)->getFilledInstance();
+        $data['tags'] = [(new TagData)->getFilledInstance(),];
+        $data['assigned'] = [(new OperatorData)->getFilledInstance(),];
+        $data['watching'] = [(new OperatorData)->getFilledInstance(),];
 
         return $data;
     }
 
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Ticket::class;
     }

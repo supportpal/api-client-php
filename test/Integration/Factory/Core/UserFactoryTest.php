@@ -19,7 +19,7 @@ class UserFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return UserData::DATA;
+        return (new UserData)->getArrayData();
     }
 
     /**

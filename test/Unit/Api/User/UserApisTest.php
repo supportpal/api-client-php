@@ -17,7 +17,7 @@ class UserApisTest extends ApiTest
     public function testGetUsers(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            UserData::getAllResponse(),
+            (new UserData)->getAllResponse(),
             User::class
         );
 

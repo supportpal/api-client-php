@@ -15,7 +15,7 @@ class CategoryFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return CategoryData::DATA;
+        return (new CategoryData)->getArrayData();
     }
 
     /**

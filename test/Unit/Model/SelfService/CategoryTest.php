@@ -19,7 +19,7 @@ class CategoryTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return CategoryData::getDataWithObjects();
+        return (new CategoryData)->getDataWithObjects();
     }
 
     /**

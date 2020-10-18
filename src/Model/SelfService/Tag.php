@@ -38,6 +38,12 @@ class Tag extends BaseModel
     private $updatedAt;
 
     /**
+     * @var TagTranslation[]|null
+     * @SerializedName("translations")
+     */
+    private $translations;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -128,6 +134,25 @@ class Tag extends BaseModel
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return TagTranslation[]|null
+     */
+    public function getTranslations(): ?array
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param TagTranslation[]|null $translations
+     * @return self
+     */
+    public function setTranslations(?array $translations): self
+    {
+        $this->translations = $translations;
 
         return $this;
     }

@@ -12,13 +12,22 @@ class TagData extends BaseModelData
         'name' => 'test',
         'slug' => 'test',
         'created_at' => 1600880073,
-        'updated_at' => 1600880073
+        'updated_at' => 1600880073,
+        'translations' => [TagTranslationData::DATA,]
     ];
+
+    public function getDataWithObjects(): array
+    {
+        $data = self::DATA;
+        $data['translations'] = [(new TagTranslationData)->getFilledInstance(),];
+
+        return $data;
+    }
 
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Tag::class;
     }

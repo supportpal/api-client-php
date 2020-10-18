@@ -8,7 +8,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\DataFixtures\Shared\OptionData;
 
-class CustomFieldData extends BaseModelData
+class TicketCustomFieldData extends BaseModelData
 {
     public const DATA = [
         'id' => 1,
@@ -30,18 +30,20 @@ class CustomFieldData extends BaseModelData
         'options' => [OptionData::DATA,],
         'brands' => [BrandData::DATA,],
         'departments' => [DepartmentData::DATA,],
+        'translations' => [TicketCustomFieldTranslationData::DATA,],
     ];
 
     /**
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['options'] = [OptionData::getFilledInstance(),];
-        $data['brands'] = [BrandData::getFilledInstance(),];
-        $data['departments'] = [DepartmentData::getFilledInstance(),];
+        $data['options'] = [(new OptionData)->getFilledInstance(),];
+        $data['brands'] = [(new BrandData)->getFilledInstance(),];
+        $data['departments'] = [(new DepartmentData)->getFilledInstance(),];
+        $data['translations'] = [(new TicketCustomFieldTranslationData)->getFilledInstance(),];
 
         return $data;
     }
@@ -49,7 +51,7 @@ class CustomFieldData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return TicketCustomField::class;
     }

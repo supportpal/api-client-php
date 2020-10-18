@@ -98,6 +98,18 @@ class Email extends BaseModel
     private $createdAt;
 
     /**
+     * @var int|null
+     * @SerializedName("oauth")
+     */
+    private $oauth;
+
+    /**
+     * @var string|null
+     * @SerializedName("auth_mech")
+     */
+    private $authMech;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -378,6 +390,44 @@ class Email extends BaseModel
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getOauth(): ?int
+    {
+        return $this->oauth;
+    }
+
+    /**
+     * @param int|null $oauth
+     * @return self
+     */
+    public function setOauth(?int $oauth): self
+    {
+        $this->oauth = $oauth;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAuthMech(): ?string
+    {
+        return $this->authMech;
+    }
+
+    /**
+     * @param string|null $authMech
+     * @return self
+     */
+    public function setAuthMech(?string $authMech): self
+    {
+        $this->authMech = $authMech;
 
         return $this;
     }

@@ -23,7 +23,7 @@ class UserApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USER, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(UserData::getAllResponse()),
+            (string) json_encode((new UserData)->getAllResponse()),
             $request
         );
         $getUsersResponse = $this->apiClient->getUsers($queryParams);

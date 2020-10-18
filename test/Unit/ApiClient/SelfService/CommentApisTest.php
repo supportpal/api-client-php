@@ -17,15 +17,13 @@ use function json_encode;
  */
 class CommentApisTest extends ApiClientTest
 {
-    /** @var array<mixed> */
-    private $postCommentSuccessfulResponse = CommentData::POST_RESPONSE;
-
     public function testPostSelfServiceComment(): void
     {
+        $commentData = new CommentData;
         $request = $this->requestCommonExpectations('POST', ApiDictionary::SELF_SERVICE_COMMENT, [], []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode($this->postCommentSuccessfulResponse),
+            (string) json_encode($commentData->getResponse()),
             $request
         );
         $postCommentResponse = $this->apiClient->postSelfServiceComment([]);
@@ -59,7 +57,7 @@ class CommentApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_COMMENT, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(CommentData::getAllResponse()),
+            (string) json_encode((new CommentData)->getAllResponse()),
             $request
         );
         $getCommentsResponse = $this->apiClient->getComments($queryParams);

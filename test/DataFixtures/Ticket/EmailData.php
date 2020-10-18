@@ -22,13 +22,15 @@ class EmailData extends BaseModelData
         'consume_all' => null,
         'delete_downloaded' => null,
         'created_at' => 0,
-        'updated_at' => 0
+        'updated_at' => 0,
+        'oauth' => 1,
+        'auth_mech' => 'test',
     ];
 
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Email::class;
     }

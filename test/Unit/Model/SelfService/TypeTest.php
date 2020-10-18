@@ -19,7 +19,7 @@ class TypeTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return TypeData::getDataWithObjects();
+        return (new TypeData)->getDataWithObjects();
     }
 
     /**

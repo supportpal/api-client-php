@@ -17,7 +17,7 @@ class AttachmentApisTest extends ApiTest
     public function testGetTicketsAttachments(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            AttachmentData::getAllResponse(),
+            (new AttachmentData)->getAllResponse(),
             Attachment::class
         );
 
@@ -34,7 +34,7 @@ class AttachmentApisTest extends ApiTest
     public function testGetTicketsAttachment(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            AttachmentData::getResponse(),
+            (new AttachmentData)->getResponse(),
             Attachment::class
         );
 

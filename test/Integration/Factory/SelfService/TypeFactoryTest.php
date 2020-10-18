@@ -14,14 +14,12 @@ use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
  */
 class TypeFactoryTest extends BaseModelFactoryTestCase
 {
-    const ARTICLE_TYPE_DATA = TypeData::DATA;
-
     /**
      * @inheritDoc
      */
     protected function getModelData(): array
     {
-        return self::ARTICLE_TYPE_DATA;
+        return (new TypeData)->getArrayData();
     }
 
     /**

@@ -2,12 +2,17 @@
 
 namespace SupportPal\ApiClient\Tests\E2E;
 
+use GuzzleHttp\Client;
 use PHPUnit\Framework\ExpectationFailedException;
+use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\SupportPal;
 use SupportPal\ApiClient\Tests\TestCase;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 use function current;
 use function get_class;
@@ -34,6 +39,9 @@ abstract class BaseTestCase extends TestCase
     /** @var SupportPal */
     private $supportPal;
 
+    /** @var ModelToArrayConverter */
+    private $modelToArrayConverter;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -44,6 +52,16 @@ abstract class BaseTestCase extends TestCase
 
         $limit = intval(getenv('LIMIT'));
         $this->modelsTestLimit = $limit === 0 ? self::DEFAULT_LIMIT : $limit;
+
+        $containerBuilder = new ContainerBuilder;
+        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
+        $loader->load('../Resources/services_test.yml');
+        $containerBuilder->set(Client::class, new Client);
+        $containerBuilder->compile();
+
+        /** @var ModelToArrayConverter $modelConverter */
+        $modelConverter = $containerBuilder->get(ModelToArrayConverter::class);
+        $this->modelToArrayConverter = $modelConverter;
 
         $this->supportPal = new SupportPal($apiUrl, $token);
     }
@@ -85,6 +103,7 @@ abstract class BaseTestCase extends TestCase
                     $this->assertEmpty($missingMethods, var_export($missingMethods, true));
                     $this->callAllGetters($value);
                     $this->assertArrayEqualsObjectFields($value, $modelsArray[$offset]);
+                    $this->modelToArrayConverter->convertOne($value);
                 } catch (ExpectationFailedException $exception) {
                     throw new ExpectationFailedException(
                         sprintf('test failed in range start: %d, end: %d', $start, $start + self::BATCH_SIZE),
@@ -109,6 +128,7 @@ abstract class BaseTestCase extends TestCase
         $responseArray = json_decode((string) $response->getBody(), true)['data'];
         $this->assertInstanceOf(Settings::class, $model);
         $this->assertSame($responseArray, $model->getSettings());
+        $this->modelToArrayConverter->convertOne($model);
     }
 
     /**
@@ -138,6 +158,7 @@ abstract class BaseTestCase extends TestCase
                 $this->assertEmpty($missingMethods, var_export($missingMethods, true));
                 $this->assertArrayEqualsObjectFields($model, $responseArray);
                 $this->callAllGetters($model);
+                $this->modelToArrayConverter->convertOne($model);
                 ++$iteration;
             } catch (HttpResponseException $exception) {
                 $this->assertStringContainsString('given ID was not found', $exception->getMessage());

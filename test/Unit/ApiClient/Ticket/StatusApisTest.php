@@ -26,7 +26,7 @@ class StatusApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_STATUS, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(StatusData::getAllResponse()),
+            (string) json_encode((new StatusData)->getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTicketStatuses($queryParams);
@@ -67,7 +67,7 @@ class StatusApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(StatusData::getResponse()),
+            (string) json_encode((new StatusData)->getResponse()),
             $request
         );
 

@@ -27,18 +27,20 @@ class UserCustomFieldData extends BaseModelData
         'created_at' => 1602320456,
         'updated_at' => 1602320456,
         'options' => [OptionData::DATA,],
-        'brands' => [BrandData::DATA,]
+        'brands' => [BrandData::DATA,],
+        'translations' => [UserCustomFieldTranslationData::DATA,],
     ];
 
     /**
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['options'] = [OptionData::getFilledInstance(),];
-        $data['brands'] = [BrandData::getFilledInstance(),];
+        $data['options'] = [(new OptionData)->getFilledInstance(),];
+        $data['brands'] = [(new BrandData)->getFilledInstance(),];
+        $data['translations'] = [(new UserCustomFieldTranslationData)->getFilledInstance(),];
 
         return $data;
     }
@@ -46,7 +48,7 @@ class UserCustomFieldData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return UserCustomField::class;
     }
