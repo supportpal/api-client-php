@@ -14,6 +14,7 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
+use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use function is_array;
 
 /**
@@ -92,7 +93,16 @@ class ApiClient
      */
     protected function assertRequestSuccessful(ResponseInterface $response): void
     {
-        $body = $this->decoder->decode((string) $response->getBody(), $this->formatType);
+        try {
+            $body = $this->decoder->decode((string) $response->getBody(), $this->formatType);
+        } catch (NotEncodableValueException $notEncodableValueException) {
+            throw new HttpResponseException(
+                $notEncodableValueException->getMessage(),
+                $notEncodableValueException->getCode(),
+                $notEncodableValueException
+            );
+        }
+
         if ($response->getStatusCode() !== 200
             || ! is_array($body)
             || ! isset($body['status'])
