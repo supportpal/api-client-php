@@ -16,7 +16,7 @@ class BrandFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return BrandData::getFilledInstance();
+        return (new BrandData)->getFilledInstance();
     }
 
     /**
@@ -24,7 +24,7 @@ class BrandFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return BrandData::DATA;
+        return (new BrandData)->getArrayData();
     }
 
     /**

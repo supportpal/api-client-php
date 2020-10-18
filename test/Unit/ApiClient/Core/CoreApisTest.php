@@ -22,7 +22,7 @@ class CoreApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(CoreSettingsData::getResponse()),
+            (string) json_encode((new CoreSettingsData)->getResponse()),
             $request
         );
 

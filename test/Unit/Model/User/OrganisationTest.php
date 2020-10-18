@@ -27,6 +27,6 @@ class OrganisationTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return OrganisationData::getDataWithObjects();
+        return (new OrganisationData)->getDataWithObjects();
     }
 }

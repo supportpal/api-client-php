@@ -27,6 +27,6 @@ class GroupTranslationTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return GroupTranslationData::getDataWithObjects();
+        return (new GroupTranslationData)->getDataWithObjects();
     }
 }

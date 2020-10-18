@@ -17,7 +17,7 @@ class ChannelSettingsData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return ChannelSettings::class;
     }

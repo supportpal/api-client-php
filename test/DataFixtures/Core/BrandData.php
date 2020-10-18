@@ -49,11 +49,11 @@ class BrandData extends BaseModelData
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
 
-        $data['translations'] = [BrandTranslationData::getFilledInstance()];
+        $data['translations'] = [(new BrandTranslationData)->getFilledInstance()];
 
         return $data;
     }
@@ -61,7 +61,7 @@ class BrandData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Brand::class;
     }

@@ -17,7 +17,7 @@ class ChannelApisTest extends ApiTest
     public function testGetChannelSettings(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            ChannelSettingsData::getResponse(),
+            (new ChannelSettingsData)->getResponse(),
             ChannelSettings::class
         );
 

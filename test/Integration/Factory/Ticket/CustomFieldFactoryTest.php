@@ -15,7 +15,7 @@ class CustomFieldFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return TicketCustomFieldData::DATA;
+        return (new TicketCustomFieldData)->getArrayData();
     }
 
     /**

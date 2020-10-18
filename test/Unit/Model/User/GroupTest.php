@@ -27,6 +27,6 @@ class GroupTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return GroupData::getDataWithObjects();
+        return (new GroupData)->getDataWithObjects();
     }
 }

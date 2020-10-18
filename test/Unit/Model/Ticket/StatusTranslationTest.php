@@ -19,7 +19,7 @@ class StatusTranslationTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return StatusTranslationData::getDataWithObjects();
+        return (new StatusTranslationData)->getDataWithObjects();
     }
 
     /**

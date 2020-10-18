@@ -16,7 +16,7 @@ class OptionData extends BaseModelData
         'updated_at' => 1602321106
     ];
 
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Option::class;
     }

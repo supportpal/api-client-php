@@ -27,6 +27,6 @@ class ArticleTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return ArticleData::getDataWithObjects();
+        return (new ArticleData)->getDataWithObjects();
     }
 }

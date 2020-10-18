@@ -15,7 +15,7 @@ class ChannelSettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return ChannelSettingsData::DATA;
+        return (new ChannelSettingsData)->getArrayData();
     }
 
     /**

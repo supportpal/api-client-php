@@ -26,7 +26,7 @@ class AttachmentApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_ATTACHMENT, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(AttachmentData::getAllResponse()),
+            (string) json_encode((new AttachmentData)->getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getTicketAttachments($queryParams);
@@ -67,7 +67,7 @@ class AttachmentApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(AttachmentData::getResponse()),
+            (string) json_encode((new AttachmentData)->getResponse()),
             $request
         );
 

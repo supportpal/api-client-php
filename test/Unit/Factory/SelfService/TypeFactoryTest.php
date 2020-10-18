@@ -33,7 +33,7 @@ class TypeFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return TypeData::DATA;
+        return (new TypeData)->getArrayData();
     }
 
     /**
@@ -41,7 +41,7 @@ class TypeFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return TypeData::getFilledInstance();
+        return (new TypeData)->getFilledInstance();
     }
 
     /**

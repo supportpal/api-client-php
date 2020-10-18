@@ -19,7 +19,7 @@ class ArticleTranslationTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return ArticleTranslationData::getDataWithObjects();
+        return (new ArticleTranslationData)->getDataWithObjects();
     }
 
     /**

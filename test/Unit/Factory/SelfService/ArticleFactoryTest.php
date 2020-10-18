@@ -33,7 +33,7 @@ class ArticleFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return ArticleData::DATA;
+        return (new ArticleData)->getArrayData();
     }
 
     /**
@@ -41,7 +41,7 @@ class ArticleFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return ArticleData::getFilledInstance();
+        return (new ArticleData)->getFilledInstance();
     }
 
     /**

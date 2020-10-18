@@ -27,6 +27,6 @@ class UserCustomFieldTranslationTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return UserCustomFieldTranslationData::getDataWithObjects();
+        return (new UserCustomFieldTranslationData)->getDataWithObjects();
     }
 }

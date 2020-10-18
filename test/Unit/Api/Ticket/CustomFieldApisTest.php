@@ -17,7 +17,7 @@ class CustomFieldApisTest extends ApiTest
     public function testGetCustomField(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            TicketCustomFieldData::getAllResponse(),
+            (new TicketCustomFieldData)->getAllResponse(),
             TicketCustomField::class
         );
 

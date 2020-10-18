@@ -25,11 +25,11 @@ class PriorityData extends BaseModelData
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['departments'] = [DepartmentData::getFilledInstance(),];
-        $data['translations'] = [PriorityTranslationData::getFilledInstance(),];
+        $data['departments'] = [(new DepartmentData)->getFilledInstance(),];
+        $data['translations'] = [(new PriorityTranslationData)->getFilledInstance(),];
 
         return $data;
     }
@@ -37,7 +37,7 @@ class PriorityData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Priority::class;
     }

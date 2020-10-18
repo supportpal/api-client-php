@@ -19,7 +19,7 @@ class TicketTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return TicketData::getDataWithObjects();
+        return (new TicketData)->getDataWithObjects();
     }
 
     /**

@@ -21,7 +21,7 @@ class TicketFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return TicketData::getFilledInstance();
+        return (new TicketData)->getFilledInstance();
     }
 
     /**
@@ -29,7 +29,7 @@ class TicketFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return TicketData::DATA;
+        return (new TicketData)->getArrayData();
     }
 
     /**

@@ -26,7 +26,7 @@ class ArticleApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(ArticleData::getAllResponse()),
+            (string) json_encode((new ArticleData)->getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getArticlesByTerm($queryParams);
@@ -67,7 +67,7 @@ class ArticleApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(ArticleData::getResponse()),
+            (string) json_encode((new ArticleData)->getResponse()),
             $request
         );
 
@@ -112,7 +112,7 @@ class ArticleApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(ArticleData::getAllResponse()),
+            (string) json_encode((new ArticleData)->getAllResponse()),
             $request
         );
         $getTypeSuccessfulResponse = $this->apiClient->getArticles($queryParams);

@@ -20,7 +20,7 @@ class BrandApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_BRAND, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(BrandData::getAllResponse()),
+            (string) json_encode((new BrandData)->getAllResponse()),
             $request
         );
         $getBrandsTypeSuccessfulResponse = $this->apiClient->getBrands($queryParams);
@@ -61,7 +61,7 @@ class BrandApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(BrandData::getResponse()),
+            (string) json_encode((new BrandData)->getResponse()),
             $request
         );
 

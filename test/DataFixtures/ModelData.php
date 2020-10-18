@@ -9,15 +9,20 @@ interface ModelData
     /**
      * @return array<mixed>
      */
-    public static function getDataWithObjects(): array;
+    public function getArrayData(): array;
+
+    /**
+     * @return array<mixed>
+     */
+    public function getDataWithObjects(): array;
 
     /**
      * @return Model
      */
-    public static function getFilledInstance(): Model;
+    public function getFilledInstance(): Model;
 
     /**
      * @return string
      */
-    public static function getModel(): string;
+    public function getModel(): string;
 }

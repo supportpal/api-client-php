@@ -17,7 +17,7 @@ class TicketSettingsApisTest extends ApiTest
     public function testGetTicketsSettings(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            SettingsData::getResponse(),
+            (new SettingsData)->getResponse(),
             Settings::class
         );
 

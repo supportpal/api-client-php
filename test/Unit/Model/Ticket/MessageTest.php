@@ -19,7 +19,7 @@ class MessageTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return MessageData::getDataWithObjects();
+        return (new MessageData)->getDataWithObjects();
     }
 
     /**

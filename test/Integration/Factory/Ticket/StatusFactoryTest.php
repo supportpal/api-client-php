@@ -15,7 +15,7 @@ class StatusFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return StatusData::DATA;
+        return (new StatusData)->getArrayData();
     }
 
     /**
