@@ -13,6 +13,7 @@ use SupportPal\ApiClient\Tests\TestCase;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use TypeError;
 
 use function current;
 use function get_class;
@@ -101,7 +102,9 @@ abstract class BaseTestCase extends TestCase
                 $this->getMissingFields($value, $modelsArray[$offset], $missingMethods);
                 try {
                     $this->assertEmpty($missingMethods, var_export($missingMethods, true));
-                    $this->callAllGetters($value);
+                    $callExceptions = [];
+                    $this->callAllGetters($value, $callExceptions);
+                    $this->assertEmpty($callExceptions, var_export($callExceptions, true));
                     $this->assertArrayEqualsObjectFields($value, $modelsArray[$offset]);
                     $this->modelToArrayConverter->convertOne($value);
                 } catch (ExpectationFailedException $exception) {
@@ -157,7 +160,9 @@ abstract class BaseTestCase extends TestCase
                 $this->getMissingFields($model, $responseArray, $missingMethods);
                 $this->assertEmpty($missingMethods, var_export($missingMethods, true));
                 $this->assertArrayEqualsObjectFields($model, $responseArray);
-                $this->callAllGetters($model);
+                $callExceptions = [];
+                $this->callAllGetters($model, $callExceptions);
+                $this->assertEmpty($callExceptions, var_export($callExceptions, true));
                 $this->modelToArrayConverter->convertOne($model);
                 ++$iteration;
             } catch (HttpResponseException $exception) {
@@ -216,20 +221,35 @@ abstract class BaseTestCase extends TestCase
 
     /**
      * @param Model $model
+     * @param string[] $exceptions
      */
-    private function callAllGetters(Model $model): void
+    private function callAllGetters(Model $model, array &$exceptions): void
     {
         foreach (get_class_methods(get_class($model)) as $method) {
             if (substr($method, 0, 3) !== 'get') {
                 continue;
             }
 
-            $value = $model->{$method}();
+            try {
+                $value = $model->{$method}();
+            } catch (TypeError $exception) {
+                $exceptions[] = $exception->getMessage();
+                continue;
+            }
+
+            if (is_array($value) && current($value) instanceof Model) {
+                foreach ($value as $subModel) {
+                    $this->callAllGetters($subModel, $exceptions);
+                }
+
+                continue;
+            }
+
             if (! ($value instanceof Model)) {
                 continue;
             }
 
-            $this->callAllGetters($value);
+            $this->callAllGetters($value, $exceptions);
         }
     }
 
