@@ -9,13 +9,13 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class TicketCustomField extends CustomField
 {
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("purge")
      */
     private $purge;
 
     /**
-     * @var Department[]
+     * @var Department[]|null
      * @SerializedName("departments")
      */
     private $departments;
@@ -33,18 +33,18 @@ class TicketCustomField extends CustomField
     private $translations;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPurge(): int
+    public function getPurge(): ?int
     {
         return $this->purge;
     }
 
     /**
-     * @param int $purge
+     * @param int|null $purge
      * @return self
      */
-    public function setPurge(int $purge): self
+    public function setPurge(?int $purge): self
     {
         $this->purge = $purge;
 
@@ -52,18 +52,18 @@ class TicketCustomField extends CustomField
     }
 
     /**
-     * @return Department[]
+     * @return Department[]|null
      */
-    public function getDepartments(): array
+    public function getDepartments(): ?array
     {
         return $this->departments;
     }
 
     /**
-     * @param Department[] $departments
+     * @param Department[]|null $departments
      * @return self
      */
-    public function setDepartments(array $departments): self
+    public function setDepartments(?array $departments): self
     {
         $this->departments = $departments;
 
