@@ -14,7 +14,7 @@ class GroupTranslationData extends BaseModelData
         'locale' => 'ar',
     ];
 
-    public static function getModel(): string
+    public function getModel(): string
     {
         return GroupTranslation::class;
     }

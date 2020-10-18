@@ -19,7 +19,7 @@ class TagTranslationTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return TagTranslationData::getDataWithObjects();
+        return (new TagTranslationData)->getDataWithObjects();
     }
 
     /**

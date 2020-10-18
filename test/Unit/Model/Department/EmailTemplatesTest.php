@@ -19,7 +19,7 @@ class EmailTemplatesTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return EmailTemplatesData::getDataWithObjects();
+        return (new EmailTemplatesData)->getDataWithObjects();
     }
 
     /**

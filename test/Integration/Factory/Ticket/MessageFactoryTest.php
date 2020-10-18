@@ -15,7 +15,7 @@ class MessageFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return MessageData::DATA;
+        return (new MessageData)->getArrayData();
     }
 
     /**

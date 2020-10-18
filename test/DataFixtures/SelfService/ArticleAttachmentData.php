@@ -24,10 +24,10 @@ class ArticleAttachmentData extends BaseModelData
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['upload'] = UploadData::getFilledInstance();
+        $data['upload'] = (new UploadData)->getFilledInstance();
 
         return $data;
     }
@@ -35,7 +35,7 @@ class ArticleAttachmentData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return ArticleAttachment::class;
     }

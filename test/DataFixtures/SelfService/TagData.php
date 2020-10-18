@@ -16,10 +16,10 @@ class TagData extends BaseModelData
         'translations' => [TagTranslationData::DATA,]
     ];
 
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['translations'] = [TagTranslationData::getFilledInstance(),];
+        $data['translations'] = [(new TagTranslationData)->getFilledInstance(),];
 
         return $data;
     }
@@ -27,7 +27,7 @@ class TagData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Tag::class;
     }

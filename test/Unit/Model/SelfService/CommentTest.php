@@ -30,7 +30,7 @@ class CommentTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return CommentData::getDataWithObjects();
+        return (new CommentData)->getDataWithObjects();
     }
 
     /**

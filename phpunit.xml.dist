@@ -8,7 +8,9 @@
 
     <testsuites>
         <testsuite name="test">
-            <directory>test</directory>
+            <directory>test/Unit</directory>
+            <directory>test/Functional</directory>
+            <directory>test/Integration</directory>
         </testsuite>
         <testsuite name="unit">
             <directory>test/Unit</directory>

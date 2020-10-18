@@ -19,7 +19,7 @@ class ChannelTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return ChannelData::getDataWithObjects();
+        return (new ChannelData)->getDataWithObjects();
     }
 
     /**

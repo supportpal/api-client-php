@@ -18,23 +18,18 @@ use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
  */
 class SelfServiceApisTest extends ApiClientTest
 {
-    /** @var array<mixed> */
-    private $commentData = CommentData::DATA;
-
-    /** @var array<mixed> */
-    private $postCommentSuccessfulResponse = CommentData::POST_RESPONSE;
-
     public function testPostComment(): void
     {
+        $commentData = new CommentData;
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($this->postCommentSuccessfulResponse, $this->getFormatType());
+        $jsonSuccessfulBody = $this->getEncoder()->encode($commentData->getResponse(), $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         $response = $this
             ->apiClient
-            ->postSelfServiceComment($this->commentData);
+            ->postSelfServiceComment($commentData->getArrayData());
 
         self::assertSame(
-            $this->postCommentSuccessfulResponse,
+            $commentData->getResponse(),
             $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
         );
     }
@@ -46,8 +41,9 @@ class SelfServiceApisTest extends ApiClientTest
      */
     public function testUnsuccessfulPostComment(Response $response): void
     {
+        $commentData = new CommentData;
         $this->prepareUnsuccessfulApiRequest($response);
-        $this->apiClient->postSelfServiceComment($this->commentData);
+        $this->apiClient->postSelfServiceComment($commentData->getArrayData());
     }
 
     /**
@@ -55,16 +51,23 @@ class SelfServiceApisTest extends ApiClientTest
      */
     protected function getGetEndpoints(): array
     {
+        $typeData = new TypeData;
+        $commentData = new CommentData;
+        $settingsData = new SettingsData;
+        $categoryData = new CategoryData;
+        $articleData = new ArticleData;
+        $tagData = new TagData;
+
         return [
-            'getComments' => [CommentData::getAllResponse(), [[]]],
-            'getTypes' => [TypeData::getAllResponse(), [[]]],
-            'getSelfServiceSettings' => [SettingsData::getResponse(), [[]]],
-            'getArticle' => [ArticleData::getResponse(), [1, []]],
-            'getArticlesByTerm' => [ArticleData::getAllResponse(), [[]]],
-            'getArticles' => [ArticleData::getAllResponse(), [[]]],
-            'getCategory' => [CategoryData::getResponse(), [1]],
-            'getCategories' => [CategoryData::getAllResponse(), [[]]],
-            'getTag' => [TagData::getResponse(), [1]],
+            'getComments' => [$commentData->getAllResponse(), [[]]],
+            'getTypes' => [$typeData->getAllResponse(), [[]]],
+            'getSelfServiceSettings' => [$settingsData->getResponse(), [[]]],
+            'getArticle' => [$articleData->getResponse(), [1, []]],
+            'getArticlesByTerm' => [$articleData->getAllResponse(), [[]]],
+            'getArticles' => [$articleData->getAllResponse(), [[]]],
+            'getCategory' => [$categoryData->getResponse(), [1]],
+            'getCategories' => [$categoryData->getAllResponse(), [[]]],
+            'getTag' => [$tagData->getResponse(), [1]],
         ];
     }
 }

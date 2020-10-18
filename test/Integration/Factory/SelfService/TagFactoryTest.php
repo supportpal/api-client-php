@@ -15,7 +15,7 @@ class TagFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return TagData::DATA;
+        return (new TagData)->getArrayData();
     }
 
     /**

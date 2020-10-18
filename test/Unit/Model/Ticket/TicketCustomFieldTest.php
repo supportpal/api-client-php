@@ -20,7 +20,7 @@ class TicketCustomFieldTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return TicketCustomFieldData::getDataWithObjects();
+        return (new TicketCustomFieldData)->getDataWithObjects();
     }
 
     /**

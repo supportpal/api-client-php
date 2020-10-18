@@ -19,7 +19,7 @@ class TicketCustomFieldTranslationTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return TicketCustomFieldTranslationData::getDataWithObjects();
+        return (new TicketCustomFieldTranslationData)->getDataWithObjects();
     }
 
     /**

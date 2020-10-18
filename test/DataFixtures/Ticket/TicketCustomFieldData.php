@@ -37,13 +37,13 @@ class TicketCustomFieldData extends BaseModelData
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['options'] = [OptionData::getFilledInstance(),];
-        $data['brands'] = [BrandData::getFilledInstance(),];
-        $data['departments'] = [DepartmentData::getFilledInstance(),];
-        $data['translations'] = [TicketCustomFieldTranslationData::getFilledInstance(),];
+        $data['options'] = [(new OptionData)->getFilledInstance(),];
+        $data['brands'] = [(new BrandData)->getFilledInstance(),];
+        $data['departments'] = [(new DepartmentData)->getFilledInstance(),];
+        $data['translations'] = [(new TicketCustomFieldTranslationData)->getFilledInstance(),];
 
         return $data;
     }
@@ -51,7 +51,7 @@ class TicketCustomFieldData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return TicketCustomField::class;
     }

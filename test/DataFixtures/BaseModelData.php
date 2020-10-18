@@ -9,7 +9,15 @@ abstract class BaseModelData implements ModelData
 {
     public const DATA = [];
 
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
+    {
+        return static::DATA;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getArrayData(): array
     {
         return static::DATA;
     }
@@ -18,7 +26,7 @@ abstract class BaseModelData implements ModelData
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getFilledInstance(): Model
+    public function getFilledInstance(): Model
     {
         $class = static::getModel();
 
@@ -28,7 +36,7 @@ abstract class BaseModelData implements ModelData
     /**
      * @return array<mixed>
      */
-    public static function getAllResponse(): array
+    public function getAllResponse(): array
     {
         return [
             'status' => 'success',
@@ -41,7 +49,7 @@ abstract class BaseModelData implements ModelData
     /**
      * @return array<mixed>
      */
-    public static function getResponse(): array
+    public function getResponse(): array
     {
         return [
             'status' => 'success',

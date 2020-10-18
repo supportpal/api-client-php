@@ -21,7 +21,7 @@ class CustomFieldFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelInstance(): Model
     {
-        return TicketCustomFieldData::getFilledInstance();
+        return (new TicketCustomFieldData)->getFilledInstance();
     }
 
     /**
@@ -29,7 +29,7 @@ class CustomFieldFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return TicketCustomFieldData::DATA;
+        return (new TicketCustomFieldData)->getArrayData();
     }
 
     /**

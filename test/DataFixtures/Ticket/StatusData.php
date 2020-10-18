@@ -20,10 +20,10 @@ class StatusData extends BaseModelData
         'translations' => [StatusTranslationData::DATA,]
     ];
 
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['translations'] = [StatusTranslationData::getFilledInstance(),];
+        $data['translations'] = [(new StatusTranslationData)->getFilledInstance(),];
 
         return $data;
     }
@@ -31,7 +31,7 @@ class StatusData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Status::class;
     }

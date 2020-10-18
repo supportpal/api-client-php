@@ -20,7 +20,7 @@ class DepartmentApisTest extends ApiTest
     public function testGetDepartments(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            DepartmentData::getAllResponse(),
+            (new DepartmentData)->getAllResponse(),
             Department::class
         );
 
@@ -37,7 +37,7 @@ class DepartmentApisTest extends ApiTest
     public function testGetDepartment(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            DepartmentData::getResponse(),
+            (new DepartmentData)->getResponse(),
             Department::class
         );
 

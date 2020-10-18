@@ -31,10 +31,10 @@ class MessageData extends BaseModelData
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['extra'] = ExtraData::getFilledInstance();
+        $data['extra'] = (new ExtraData)->getFilledInstance();
 
         return $data;
     }
@@ -42,7 +42,7 @@ class MessageData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Message::class;
     }

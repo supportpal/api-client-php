@@ -16,8 +16,10 @@ class UserApisTest extends ApiClientTest
      */
     protected function getGetEndpoints(): array
     {
+        $userData = new UserData;
+
         return [
-            'getUsers' => [UserData::getResponse(), [[]]],
+            'getUsers' => [$userData->getAllResponse(), [[]]],
         ];
     }
 }

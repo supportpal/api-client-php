@@ -49,10 +49,10 @@ class OperatorData extends BaseModelData
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['groups'] = [GroupData::getFilledInstance()];
+        $data['groups'] = [(new GroupData)->getFilledInstance()];
 
         return $data;
     }
@@ -60,7 +60,7 @@ class OperatorData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Operator::class;
     }

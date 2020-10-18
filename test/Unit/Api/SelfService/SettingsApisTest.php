@@ -17,7 +17,7 @@ class SettingsApisTest extends ApiTest
     public function testGetSettings(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            SettingsData::getResponse(),
+            (new SettingsData)->getResponse(),
             Settings::class
         );
 

@@ -20,7 +20,7 @@ class TypeTranslationData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return TypeTranslation::class;
     }

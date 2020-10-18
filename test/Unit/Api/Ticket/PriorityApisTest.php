@@ -17,7 +17,7 @@ class PriorityApisTest extends ApiTest
     public function testGetTicketsPriorities(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            PriorityData::getAllResponse(),
+            (new PriorityData)->getAllResponse(),
             Priority::class
         );
 
@@ -34,7 +34,7 @@ class PriorityApisTest extends ApiTest
     public function testGetTicketsPriority(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            PriorityData::getResponse(),
+            (new PriorityData)->getResponse(),
             Priority::class
         );
 

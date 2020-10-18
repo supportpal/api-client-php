@@ -28,11 +28,11 @@ class OrganisationData extends BaseModelData
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['domains'] = [DomainData::getFilledInstance(),];
-        $data['customfields'] = [UserCustomFieldData::getFilledInstance(),];
+        $data['domains'] = [(new DomainData)->getFilledInstance(),];
+        $data['customfields'] = [(new UserCustomFieldData)->getFilledInstance(),];
         $data['users'] = [];
 
         return $data;
@@ -41,7 +41,7 @@ class OrganisationData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Organisation::class;
     }

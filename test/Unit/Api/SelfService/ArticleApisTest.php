@@ -20,7 +20,7 @@ class ArticleApisTest extends ApiTest
     public function testGetArticlesByTerm(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            ArticleData::getAllResponse(),
+            (new ArticleData)->getAllResponse(),
             Article::class
         );
 
@@ -37,7 +37,7 @@ class ArticleApisTest extends ApiTest
     public function testGetArticle(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            ArticleData::getResponse(),
+            (new ArticleData)->getResponse(),
             Article::class
         );
 
@@ -54,7 +54,7 @@ class ArticleApisTest extends ApiTest
     public function testGetArticles(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            ArticleData::getAllResponse(),
+            (new ArticleData)->getAllResponse(),
             Article::class
         );
 

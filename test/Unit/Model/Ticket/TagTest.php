@@ -19,7 +19,7 @@ class TagTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return TagData::getDataWithObjects();
+        return (new TagData)->getDataWithObjects();
     }
 
     /**

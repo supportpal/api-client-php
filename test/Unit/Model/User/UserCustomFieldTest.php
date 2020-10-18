@@ -28,6 +28,6 @@ class UserCustomFieldTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return UserCustomFieldData::getDataWithObjects();
+        return (new UserCustomFieldData)->getDataWithObjects();
     }
 }

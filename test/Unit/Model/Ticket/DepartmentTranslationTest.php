@@ -19,7 +19,7 @@ class DepartmentTranslationTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return DepartmentTranslationData::getDataWithObjects();
+        return (new DepartmentTranslationData)->getDataWithObjects();
     }
 
     /**

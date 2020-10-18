@@ -17,7 +17,7 @@ class BrandApisTest extends ApiTest
     public function testGetBrand(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            BrandData::getResponse(),
+            (new BrandData)->getResponse(),
             Brand::class
         );
 
@@ -34,7 +34,7 @@ class BrandApisTest extends ApiTest
     public function testGetBrands(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            BrandData::getAllResponse(),
+            (new BrandData)->getAllResponse(),
             Brand::class
         );
 

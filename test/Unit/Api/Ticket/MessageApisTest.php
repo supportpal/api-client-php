@@ -23,7 +23,7 @@ class MessageApisTest extends ApiTest
     public function testGetTicketMessages(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            MessageData::getAllResponse(),
+            (new MessageData)->getAllResponse(),
             Message::class
         );
 
@@ -40,7 +40,7 @@ class MessageApisTest extends ApiTest
     public function testGetTicketMessage(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            MessageData::getResponse(),
+            (new MessageData)->getResponse(),
             Message::class
         );
 

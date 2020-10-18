@@ -20,11 +20,9 @@ use function json_encode;
  */
 class CommentApisTest extends ApiTest
 {
-    /** @var array<mixed> */
-    private $postCommentSuccessfulResponse = CommentData::POST_RESPONSE;
-
     public function testPostComment(): void
     {
+        $commentData = new CommentData;
         /** @var ObjectProphecy $commentInput */
         $commentInput = $this->prophesize(Comment::class);
         $commentOutput = $this->prophesize(Comment::class);
@@ -35,27 +33,27 @@ class CommentApisTest extends ApiTest
         $this
             ->modelToArrayConverter
             ->convertOne($commentMock)
-            ->willReturn(CommentData::DATA)
+            ->willReturn((new CommentData)->getArrayData())
             ->shouldBeCalled();
 
         $response = $this->prophesize(ResponseInterface::class);
         $response
             ->getBody()
-            ->willReturn(json_encode($this->postCommentSuccessfulResponse));
+            ->willReturn(json_encode($commentData->getResponse()));
 
         $this->decoder
-            ->decode(json_encode($this->postCommentSuccessfulResponse), $formatType)
+            ->decode(json_encode($commentData->getResponse()), $formatType)
             ->shouldBeCalled()
-            ->willReturn($this->postCommentSuccessfulResponse);
+            ->willReturn($commentData->getResponse());
 
         $this
             ->apiClient
-            ->postSelfServiceComment(CommentData::DATA)
+            ->postSelfServiceComment($commentData->getArrayData())
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $this
             ->modelCollectionFactory
-            ->create(Comment::class, $this->postCommentSuccessfulResponse['data'])
+            ->create(Comment::class, $commentData->getResponse()['data'])
             ->willReturn($commentOutput->reveal());
 
         $comment = $this->api->postComment($commentMock);
@@ -83,7 +81,7 @@ class CommentApisTest extends ApiTest
     public function testGetComments(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
-            CommentData::getAllResponse(),
+            (new CommentData)->getAllResponse(),
             Comment::class
         );
 

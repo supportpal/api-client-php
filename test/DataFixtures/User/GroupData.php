@@ -18,11 +18,11 @@ class GroupData extends BaseModelData
         'translations' => [GroupTranslationData::DATA,]
     ];
 
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
 
-        $data['translations'] = [GroupTranslationData::getFilledInstance(),];
+        $data['translations'] = [(new GroupTranslationData)->getFilledInstance(),];
 
         return $data;
     }
@@ -30,7 +30,7 @@ class GroupData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Group::class;
     }

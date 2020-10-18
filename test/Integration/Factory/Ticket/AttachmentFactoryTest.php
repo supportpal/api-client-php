@@ -15,7 +15,7 @@ class AttachmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelData(): array
     {
-        return AttachmentData::DATA;
+        return (new AttachmentData)->getArrayData();
     }
 
     /**

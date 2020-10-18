@@ -46,12 +46,12 @@ class UserData extends BaseModelData
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['organisation'] = OrganisationData::getFilledInstance();
-        $data['customfields'] = [UserCustomFieldData::getFilledInstance(),];
-        $data['groups'] = [GroupData::getFilledInstance(),];
+        $data['organisation'] = (new OrganisationData)->getFilledInstance();
+        $data['customfields'] = [(new UserCustomFieldData)->getFilledInstance(),];
+        $data['groups'] = [(new GroupData)->getFilledInstance(),];
 
         return $data;
     }
@@ -59,7 +59,7 @@ class UserData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return User::class;
     }

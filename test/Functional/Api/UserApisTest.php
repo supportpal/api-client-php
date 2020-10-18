@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Functional\Api;
 
-use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
+use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\UserApisData;
 use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
 
 /**
@@ -16,8 +16,6 @@ class UserApisTest extends ApiComponentTest
      */
     protected function getGetEndpoints(): array
     {
-        return [
-            'getUsers' => [UserData::getAllResponse(), []],
-        ];
+        return (new UserApisData)->getApiCalls();
     }
 }

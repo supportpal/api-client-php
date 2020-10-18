@@ -14,14 +14,12 @@ use SupportPal\ApiClient\Tests\Integration\Factory\BaseModelFactoryTestCase;
  */
 class CommentFactoryTest extends BaseModelFactoryTestCase
 {
-    const COMMENT_DATA = CommentData::DATA;
-
     /**
      * @inheritDoc
      */
     protected function getModelData(): array
     {
-        return self::COMMENT_DATA;
+        return (new CommentData)->getArrayData();
     }
 
     /**

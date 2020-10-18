@@ -31,7 +31,7 @@ class TagApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(TagData::getResponse()),
+            (string) json_encode((new TagData)->getResponse()),
             $request
         );
 

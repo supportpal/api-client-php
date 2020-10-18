@@ -26,7 +26,7 @@ class CategoryApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_CATEGORY, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(CategoryData::getAllResponse()),
+            (string) json_encode((new CategoryData)->getAllResponse()),
             $request
         );
         $getCategoriesTypeSuccessfulResponse = $this->apiClient->getCategories($queryParams);
@@ -67,7 +67,7 @@ class CategoryApisTest extends ApiClientTest
 
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode(CategoryData::getResponse()),
+            (string) json_encode((new CategoryData)->getResponse()),
             $request
         );
 

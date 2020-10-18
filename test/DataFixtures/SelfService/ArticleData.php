@@ -35,14 +35,14 @@ class ArticleData extends BaseModelData
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    public static function getDataWithObjects(): array
+    public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['attachments'] = [ArticleAttachmentData::getFilledInstance(),];
-        $data['categories'] = [CategoryData::getFilledInstance(),];
-        $data['types'] = [TypeData::getFilledInstance(),];
-        $data['tags'] = [TagData::getFilledInstance(),];
-        $data['translations'] = [ArticleTranslationData::getFilledInstance(),];
+        $data['attachments'] = [(new ArticleAttachmentData)->getFilledInstance(),];
+        $data['categories'] = [(new CategoryData)->getFilledInstance(),];
+        $data['types'] = [(new TypeData)->getFilledInstance(),];
+        $data['tags'] = [(new TagData)->getFilledInstance(),];
+        $data['translations'] = [(new ArticleTranslationData)->getFilledInstance(),];
 
         return $data;
     }
@@ -50,7 +50,7 @@ class ArticleData extends BaseModelData
     /**
      * @inheritDoc
      */
-    public static function getModel(): string
+    public function getModel(): string
     {
         return Article::class;
     }

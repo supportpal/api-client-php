@@ -19,7 +19,7 @@ class CategoryTranslationTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return CategoryTranslationData::getDataWithObjects();
+        return (new CategoryTranslationData)->getDataWithObjects();
     }
 
     /**

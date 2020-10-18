@@ -27,6 +27,6 @@ class DomainTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return DomainData::getDataWithObjects();
+        return (new DomainData)->getDataWithObjects();
     }
 }

@@ -80,7 +80,7 @@ class Category extends BaseModel
     private $translations;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("pinned")
      */
     private $pinned;
@@ -314,18 +314,18 @@ class Category extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPinned(): int
+    public function getPinned(): ?int
     {
         return $this->pinned;
     }
 
     /**
-     * @param int $pinned
+     * @param int|null $pinned
      * @return self
      */
-    public function setPinned(int $pinned): self
+    public function setPinned(?int $pinned): self
     {
         $this->pinned = $pinned;
 

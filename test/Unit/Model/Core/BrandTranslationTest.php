@@ -19,7 +19,7 @@ class BrandTranslationTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return BrandTranslationData::getDataWithObjects();
+        return (new BrandTranslationData)->getDataWithObjects();
     }
 
     /**

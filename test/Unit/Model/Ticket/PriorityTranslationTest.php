@@ -19,7 +19,7 @@ class PriorityTranslationTest extends BaseModelTestCase
      */
     protected function getModelData(): array
     {
-        return PriorityTranslationData::getDataWithObjects();
+        return (new PriorityTranslationData)->getDataWithObjects();
     }
 
     /**
