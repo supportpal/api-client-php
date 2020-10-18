@@ -44,6 +44,12 @@ class Option extends BaseModel
     private $value;
 
     /**
+     * @var OptionTranslation[]|null
+     * @SerializedName("translations")
+     */
+    private $translations;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -153,6 +159,25 @@ class Option extends BaseModel
     public function setValue(string $value): self
     {
         $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return OptionTranslation[]|null
+     */
+    public function getTranslations(): ?array
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param OptionTranslation[]|null $translations
+     * @return Option
+     */
+    public function setTranslations(?array $translations): self
+    {
+        $this->translations = $translations;
 
         return $this;
     }

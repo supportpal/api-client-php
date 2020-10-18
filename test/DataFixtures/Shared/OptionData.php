@@ -13,9 +13,24 @@ class OptionData extends BaseModelData
         'order' => 0,
         'value' => 'test',
         'created_at' => 1602321106,
-        'updated_at' => 1602321106
+        'updated_at' => 1602321106,
+        'translations' => [OptionTranslationData::DATA,]
     ];
 
+    /**
+     * @inheritDoc
+     */
+    public function getDataWithObjects(): array
+    {
+        $data = self::DATA;
+        $data['translations'] = [(new OptionTranslationData)->getFilledInstance(),];
+
+        return $data;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getModel(): string
     {
         return Option::class;

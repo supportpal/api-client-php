@@ -76,6 +76,16 @@ class TestCase extends \PHPUnit\Framework\TestCase
             }
 
             /**
+             * for some objects, api returns: [] even if it holds an object not an array
+             * We take the Model parameter as the point of truth.
+             */
+            if ($value === []) {
+                $this->assertNull($attributeValue);
+
+                continue;
+            }
+
+            /**
              * finally compare against nested object recursively
              */
             $this->assertArrayEqualsObjectFields($attributeValue, $value);
