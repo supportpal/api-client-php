@@ -4,12 +4,14 @@ namespace SupportPal\ApiClient\Cache;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 
+use function ltrim;
+
 /**
  * This class includes the list of cachable apis related to their behaviour
  * Class ApiCacheMap
  * @package SupportPal\ApiClient\Cache
  */
-final class ApiCacheMap
+class ApiCacheMap
 {
     private const DEFAULT_CACHE_TTL = 600;
 
@@ -17,16 +19,34 @@ final class ApiCacheMap
      * Should not add duplicate entries in sub-arrays.
      * Duplicate entry will use the first occurring cache_ttl
      */
-    public const CACHE_MAP = [
+    private const CACHE_MAP = [
         self::DEFAULT_CACHE_TTL => [
-            ApiDictionary::CORE_SETTINGS => 'GET',
-            ApiDictionary::SELF_SERVICE_SETTINGS => 'GET',
-            ApiDictionary::SELF_SERVICE_ARTICLE => 'GET',
-            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE => 'GET',
-            ApiDictionary::SELF_SERVICE_CATEGORY => 'GET',
-            ApiDictionary::SELF_SERVICE_TAG => 'GET',
-            ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH => 'GET',
-            ApiDictionary::SELF_SERVICE_COMMENT => 'GET',
+            ApiDictionary::CORE_SETTINGS,
+            ApiDictionary::SELF_SERVICE_SETTINGS,
+            ApiDictionary::SELF_SERVICE_ARTICLE,
+            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE,
+            ApiDictionary::SELF_SERVICE_CATEGORY,
+            ApiDictionary::SELF_SERVICE_TAG,
+            ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH,
+            ApiDictionary::SELF_SERVICE_COMMENT,
         ],
     ];
+
+    /**
+     * @param string $baseUrl
+     * @return array<int, array<int, string>>
+     */
+    public function getCacheableApis(string $baseUrl): array
+    {
+        $cacheableApis = [];
+        foreach (self::CACHE_MAP as $ttl => $apis) {
+            $cacheableApis[$ttl] = [];
+            foreach ($apis as $key => $api) {
+                $apiUri = $baseUrl . ltrim($api, '/');
+                $cacheableApis[$ttl][] = $apiUri;
+            }
+        }
+
+        return $cacheableApis;
+    }
 }

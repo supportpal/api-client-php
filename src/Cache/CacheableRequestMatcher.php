@@ -7,12 +7,12 @@ use Psr\Http\Message\RequestInterface;
 
 class CacheableRequestMatcher implements RequestMatcherInterface
 {
-    /** @var array<string, string> */
+    /** @var array<int, string> */
     private $cachableApis;
 
     /**
      * CacheableRequestMatcher constructor.
-     * @param array<string, string> $cachableApis
+     * @param array<int, string> $cachableApis
      */
     public function __construct(array $cachableApis)
     {
@@ -24,8 +24,8 @@ class CacheableRequestMatcher implements RequestMatcherInterface
      */
     public function matches(RequestInterface $request)
     {
-        foreach ($this->cachableApis as $path => $method) {
-            if ($request->getUri()->getPath() === $path && $request->getMethod() === $method) {
+        foreach ($this->cachableApis as $path) {
+            if ($request->getUri()->getPath() === $path && $request->getMethod() === 'GET') {
                 return true;
             }
         }

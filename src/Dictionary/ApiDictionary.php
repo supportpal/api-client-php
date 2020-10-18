@@ -3,7 +3,8 @@
 namespace SupportPal\ApiClient\Dictionary;
 
 /**
- * This class includes the names of all the supported endpoints
+ * This class includes the names of all the supported endpoints.
+ * The defined APIs should only include the resource path without the API `/` prefix and postfix.
  * Class APIDictionary
  * @package SupportPal\ApiClient\Dictionary
  */

@@ -25,6 +25,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
+use function rtrim;
 use function sys_get_temp_dir;
 
 /**
@@ -33,12 +34,14 @@ use function sys_get_temp_dir;
  */
 class SupportPal
 {
+    private const BASE_API_PATH = '/api/';
+
     /** @var ContainerBuilder */
     private $containerBuilder;
 
     /**
      * SupportPal constructor.
-     * @param string $apiUrl
+     * @param string $baseUrl
      * @param string $apiToken
      * @param array<mixed> $defaultParameters Parameters that will always be passed
      * @param array<mixed> $defaultBodyContent Body content that will always be passed
@@ -46,12 +49,13 @@ class SupportPal
      * @throws Exception
      */
     public function __construct(
-        string $apiUrl,
+        string $baseUrl,
         string $apiToken,
         array $defaultParameters = [],
         array $defaultBodyContent = [],
         ?string $cacheDir = null
     ) {
+        $apiUrl = $this->buildApiUrl($baseUrl);
         $cacheDir = $cacheDir ?? sys_get_temp_dir();
         $containerBuilder = new ContainerBuilder;
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
@@ -106,6 +110,18 @@ class SupportPal
     }
 
     /**
+     * @param string $cacheDir
+     * @return ClientInterface
+     */
+    private function getGuzzleClient(string $cacheDir): ClientInterface
+    {
+        $stack = HandlerStack::create();
+        $stack->push(new CacheMiddleware($this->buildCacheStrategy($cacheDir)));
+
+        return new Client(['handler' => $stack]);
+    }
+
+    /**
      * This function sets the cache strategy used in the application.
      * By default, endpoints will not be cached unless specified per path, per method.
      * We also use two types of cache, ArrayCache, and FileSystem cache sorted from faster to slower.
@@ -119,10 +135,11 @@ class SupportPal
     {
         $delegatingCacheStrategy = new DelegatingCacheStrategy(new NullCacheStrategy);
 
+        $apiCacheMap = new ApiCacheMap;
         /**
          * For every set of Apis, clustered by a default TTL, we create a cache storage.
          */
-        foreach (ApiCacheMap::CACHE_MAP as $ttl => $apis) {
+        foreach ($apiCacheMap->getCacheableApis(self::BASE_API_PATH) as $ttl => $apis) {
             $cacheStorage = new DoctrineCacheStorage(new ChainCache([new ArrayCache, new FilesystemCache($cacheDir)]));
             $cacheStrategy = new GreedyCacheStrategy($cacheStorage, $ttl);
             /**
@@ -135,14 +152,11 @@ class SupportPal
     }
 
     /**
-     * @param string $cacheDir
-     * @return ClientInterface
+     * @param string $baseUrl
+     * @return string
      */
-    private function getGuzzleClient(string $cacheDir): ClientInterface
+    private function buildApiUrl(string $baseUrl): string
     {
-        $stack = HandlerStack::create();
-        $stack->push(new CacheMiddleware($this->buildCacheStrategy($cacheDir)));
-
-        return new Client(['handler' => $stack]);
+        return rtrim($baseUrl, '/') . self::BASE_API_PATH;
     }
 }
