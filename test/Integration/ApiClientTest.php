@@ -44,6 +44,16 @@ class ApiClientTest extends ContainerAwareBaseTestCase
         $this->apiClient->sendRequest($request);
     }
 
+    public function testResponseNonEncodeableException(): void
+    {
+        $request = new Request('GET', 'test');
+        $this->appendRequestResponse(new Response(200, [], ''));
+
+        $this->expectException(HttpResponseException::class);
+        $this->expectExceptionMessage('Syntax error');
+        $this->apiClient->sendRequest($request);
+    }
+
     /**
      * @dataProvider provideGetEndpointsTestCases
      * @param array<mixed> $data
