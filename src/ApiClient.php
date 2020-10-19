@@ -13,8 +13,8 @@ use SupportPal\ApiClient\ApiClient\UserApis;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
-
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
+
 use function is_array;
 
 /**

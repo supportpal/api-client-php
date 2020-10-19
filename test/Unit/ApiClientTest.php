@@ -14,6 +14,7 @@ use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
+use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 
 use function json_decode;
 use function json_encode;
@@ -75,6 +76,30 @@ class ApiClientTest extends TestCase
             ->sendRequest($request->reveal())
             ->willThrow(ClientException::class)
             ->shouldBeCalled();
+
+        /** @var RequestInterface $requestMock */
+        $requestMock = $request->reveal();
+        $this->apiClient->sendRequest($requestMock);
+    }
+
+    public function testResponseNonEncodeableException(): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->prophesize(RequestInterface::class);
+        $response = $this->prophesize(ResponseInterface::class);
+
+        $this
+            ->httpClient
+            ->sendRequest($request->reveal())
+            ->willReturn($response->reveal())
+            ->shouldBeCalled();
+
+        $response->getBody()->willReturn('');
+
+        $this->decoder
+            ->decode('', $this->formatType)
+            ->shouldBeCalled()
+            ->willThrow(NotEncodableValueException::class);
 
         /** @var RequestInterface $requestMock */
         $requestMock = $request->reveal();
