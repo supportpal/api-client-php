@@ -12,6 +12,23 @@ trait MessageApis
     use ApiClientAware;
 
     /**
+     * @param array<mixed> $body
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function postTicketMessage(array $body): ResponseInterface
+    {
+        $request = $this->getRequestFactory()->create(
+            'POST',
+            ApiDictionary::TICKET_MESSAGE,
+            [],
+            $body
+        );
+
+        return $this->sendRequest($request);
+    }
+
+    /**
      * @param array<mixed> $queryParameters
      * @return ResponseInterface
      * @throws HttpResponseException

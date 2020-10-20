@@ -7,12 +7,36 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Ticket\Message;
+use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
 use function array_map;
 
 trait MessageApis
 {
     use ApiAware;
+
+    /**
+     * @param Message $message
+     * @return Message
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     */
+    public function postTicketMessage(Message $message): Message
+    {
+        try {
+            $messageArray = $this->getModelToArrayConverter()->convertOne($message);
+        } catch (UninitializedPropertyException $exception) {
+            throw new InvalidArgumentException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->getPrevious()
+            );
+        }
+
+        $response = $this->getApiClient()->postTicketMessage($messageArray);
+
+        return $this->createMessage($this->decodeBody($response)['data']);
+    }
 
     /**
      * @param int $ticketId

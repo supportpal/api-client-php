@@ -7,6 +7,12 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 class Message extends BaseModel
 {
+    public const REQUIRED_FIELDS = [
+        'ticket_id',
+        'user_id',
+        'text',
+    ];
+
     /**
      * @var int|null
      * @SerializedName("user_id")

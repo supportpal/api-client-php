@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Model\Model;
 
 use function array_filter;
 use function array_map;
+use function array_merge;
 use function count;
 use function current;
 use function get_class;
@@ -41,7 +42,7 @@ class Collection
      * @param Model[] $models
      * @throws InvalidArgumentException
      */
-    public function __construct(int $count, array $models)
+    public function __construct(int $count = 0, array $models = [])
     {
         $this->assertSameTypeModelInstances($models);
         $this->count = $count;
@@ -97,6 +98,33 @@ class Collection
         $value = array_filter($this->getModels(), $closure);
 
         return new self($this->getCount(), $value);
+    }
+
+    /**
+     * @return Model|null
+     */
+    public function first(): ?Model
+    {
+        return $this->models[0] ?? null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEmpty(): bool
+    {
+        return $this->getModelsCount() === 0;
+    }
+
+    /**
+     * Api return count is set to be the one from the merged endpoint
+     * @param Collection $collection
+     * @return Collection
+     * @throws InvalidArgumentException
+     */
+    public function merge(Collection $collection): Collection
+    {
+        return new self($this->getCount(), array_merge($this->getModels(), $collection->getModels()));
     }
 
     /**
