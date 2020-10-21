@@ -67,4 +67,21 @@ trait TicketApis
 
         return $this->sendRequest($request);
     }
+
+    /**
+     * @param array $body
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function postTicket(array $body): ResponseInterface
+    {
+        $request = $this->getRequestFactory()->create(
+            'POST',
+            ApiDictionary::TICKET_TICKET,
+            [],
+            $body
+        );
+
+        return $this->sendRequest($request);
+    }
 }
