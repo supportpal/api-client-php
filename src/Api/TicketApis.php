@@ -15,6 +15,7 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Ticket\Ticket;
 
+use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 use function array_map;
 
 /**
@@ -55,6 +56,23 @@ trait TicketApis
     public function getTicket(int $ticketId): Ticket
     {
         $response = $this->getApiClient()->getTicket($ticketId);
+
+        return $this->createTicket($this->decodeBody($response)['data']);
+    }
+
+    /**
+     * @param Ticket $ticket
+     * @param array $data
+     * @return Ticket
+     * @throws InvalidArgumentException
+     */
+    public function updateTicket(Ticket $ticket, array $data): Ticket
+    {
+        if (null === $ticket->getId()) {
+            throw new InvalidArgumentException('missing ticket identifier');
+        }
+
+        $response = $this->getApiClient()->updateTicket($ticket->getId(), $data);
 
         return $this->createTicket($this->decodeBody($response)['data']);
     }
