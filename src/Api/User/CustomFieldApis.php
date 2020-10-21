@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Api\Ticket;
+namespace SupportPal\ApiClient\Api\User;
 
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
-use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
+use SupportPal\ApiClient\Model\User\UserCustomField;
 
 use function array_map;
 
@@ -20,23 +20,23 @@ trait CustomFieldApis
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function getTicketCustomFields(array $queryParameters = []): Collection
+    public function getUserCustomFields(array $queryParameters = []): Collection
     {
-        $response = $this->getApiClient()->getTicketCustomFields($queryParameters);
+        $response = $this->getApiClient()->getUserCustomFields($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([$this, 'createTicketCustomField'], $body['data']);
+        $models = array_map([$this, 'createUserCustomField'], $body['data']);
 
         return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**
      * @param array<mixed> $data
-     * @return TicketCustomField
+     * @return UserCustomField
      */
-    private function createTicketCustomField(array $data): TicketCustomField
+    private function createUserCustomField(array $data): UserCustomField
     {
-        /** @var TicketCustomField $model */
-        $model = $this->getModelCollectionFactory()->create(TicketCustomField::class, $data);
+        /** @var UserCustomField $model */
+        $model = $this->getModelCollectionFactory()->create(UserCustomField::class, $data);
 
         return $model;
     }

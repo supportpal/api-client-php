@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Api;
 
+use SupportPal\ApiClient\Api\User\CustomFieldApis;
 use SupportPal\ApiClient\Api\User\UserGroupApis;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
@@ -16,6 +17,7 @@ use function array_map;
  */
 trait UserApis
 {
+    use CustomFieldApis;
     use UserGroupApis;
 
     /**
