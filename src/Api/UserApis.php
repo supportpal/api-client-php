@@ -7,7 +7,9 @@ use SupportPal\ApiClient\Api\User\UserGroupApis;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Model\User\User;
+use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
 use function array_map;
 
@@ -33,6 +35,47 @@ trait UserApis
         $models = array_map([$this, 'createUser'], $body['data']);
 
         return $this->getCollectionFactory()->create($body['count'], $models);
+    }
+
+    /**
+     * @param User $user
+     * @param array $data
+     * @return User
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     */
+    public function updateUser(User $user, array $data): User
+    {
+        if ($user->getId() === null) {
+            throw new InvalidArgumentException('missing user identifier');
+        }
+
+        $response = $this->getApiClient()->updateUser($user->getId(), $data);
+
+        return $this->createUser($this->decodeBody($response)['data']);
+    }
+
+    /**
+     * @param CreateUser $createUser
+     * @return User
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     */
+    public function postUser(CreateUser $createUser): User
+    {
+        try {
+            $userArray = $this->getModelToArrayConverter()->convertOne($createUser);
+        } catch (UninitializedPropertyException $exception) {
+            throw new InvalidArgumentException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->getPrevious()
+            );
+        }
+
+        $response = $this->getApiClient()->postUser($userArray);
+
+        return $this->createUser($this->decodeBody($response)['data']);
     }
 
     /**

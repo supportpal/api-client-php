@@ -13,6 +13,7 @@ use function count;
 use function current;
 use function get_class;
 use function is_object;
+use function reset;
 
 /**
  * Wrap collection of Model values
@@ -105,7 +106,9 @@ class Collection
      */
     public function first(): ?Model
     {
-        return $this->models[0] ?? null;
+        $firstElement = reset($this->models);
+
+        return $firstElement instanceof Model ? $firstElement : null;
     }
 
     /**

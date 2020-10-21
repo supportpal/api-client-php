@@ -26,4 +26,39 @@ trait UserApis
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::USER_USER, $queryParameters);
     }
+
+    /**
+     * @param int $userId
+     * @param array $body
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function updateUser(int $userId, array $body): ResponseInterface
+    {
+        $request = $this->getRequestFactory()->create(
+            'PUT',
+            ApiDictionary::USER_USER . '/' . $userId,
+            [],
+            $body
+        );
+
+        return $this->sendRequest($request);
+    }
+
+    /**
+     * @param array $body
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function postUser(array $body): ResponseInterface
+    {
+        $request = $this->getRequestFactory()->create(
+            'POST',
+            ApiDictionary::USER_USER,
+            [],
+            $body
+        );
+
+        return $this->sendRequest($request);
+    }
 }

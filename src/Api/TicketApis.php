@@ -87,7 +87,7 @@ trait TicketApis
     public function postTicket(CreateTicket $createTicket): Ticket
     {
         try {
-            $messageArray = $this->getModelToArrayConverter()->convertOne($createTicket);
+            $ticketArray = $this->getModelToArrayConverter()->convertOne($createTicket);
         } catch (UninitializedPropertyException $exception) {
             throw new InvalidArgumentException(
                 $exception->getMessage(),
@@ -96,7 +96,7 @@ trait TicketApis
             );
         }
 
-        $response = $this->getApiClient()->postTicket($messageArray);
+        $response = $this->getApiClient()->postTicket($ticketArray);
 
         return $this->createTicket($this->decodeBody($response)['data']);
     }
