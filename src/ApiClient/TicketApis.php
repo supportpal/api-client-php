@@ -50,6 +50,12 @@ trait TicketApis
         return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_TICKET . '/' .  $ticketId, []);
     }
 
+    /**
+     * @param int $ticketId
+     * @param array $body
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
     public function updateTicket(int $ticketId, array $body): ResponseInterface
     {
         $request = $this->getRequestFactory()->create(

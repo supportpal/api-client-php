@@ -48,4 +48,14 @@ trait ArticleApis
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::SELF_SERVICE_ARTICLE, $queryParameters);
     }
+
+    /**
+     * @param array<mixed> $queryParameters
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function getRelatedArticles(array $queryParameters): ResponseInterface
+    {
+        return $this->prepareAndSendGetRequest(ApiDictionary::SELF_SERVICE_ARTICLE_RELATED, $queryParameters);
+    }
 }

@@ -27,6 +27,8 @@ final class ApiDictionary
 
     public const SELF_SERVICE_ARTICLE_SEARCH = self::SELF_SERVICE_ARTICLE . '/search';
 
+    public const SELF_SERVICE_ARTICLE_RELATED = self::SELF_SERVICE_ARTICLE . '/related';
+
     public const SELF_SERVICE_SETTINGS = 'selfservice/settings';
 
     public const SELF_SERVICE_CATEGORY = 'selfservice/category';

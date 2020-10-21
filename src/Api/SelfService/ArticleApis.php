@@ -61,6 +61,18 @@ trait ArticleApis
         return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
+    public function getRelatedArticles(int $typeId, string $term, array $queryParameters = [])
+    {
+        $queryParameters['term'] = $term;
+        $queryParameters['type_id'] = $typeId;
+
+        $response = $this->getApiClient()->getRelatedArticles($queryParameters);
+        $body = $this->decodeBody($response);
+        $models = array_map([$this, 'createArticle'], $body['data']);
+
+        return $this->getCollectionFactory()->create($body['count'], $models);
+    }
+
     /**
      * @param array<mixed> $data
      * @return Article
