@@ -40,6 +40,8 @@ final class ApiDictionary
      */
     public const USER_USER = 'user/user';
 
+    public const USER_USERGROUP = 'user/usergroup';
+
     /**
      * Ticket Apis
      */

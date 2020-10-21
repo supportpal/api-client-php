@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\ApiClient;
 
 use Psr\Http\Message\ResponseInterface;
+use SupportPal\ApiClient\ApiClient\User\UserGroupApis;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 
@@ -12,7 +13,7 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
  */
 trait UserApis
 {
-    use ApiClientAware;
+    use UserGroupApis;
 
     /**
      * @param array<mixed> $queryParameters

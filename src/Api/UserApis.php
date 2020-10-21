@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Api;
 
+use SupportPal\ApiClient\Api\User\UserGroupApis;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
@@ -15,7 +16,7 @@ use function array_map;
  */
 trait UserApis
 {
-    use ApiAware;
+    use UserGroupApis;
 
     /**
      * @param array<mixed> $queryParameters
