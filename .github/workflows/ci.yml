@@ -38,3 +38,6 @@ jobs:
 
             - name: Execute Integration tests
               run: TESTSUITE=integration MINCOVERAGE=85 ci/test.sh
+
+            - name: Execute Cache tests
+              run: ./vendor/bin/phpunit --testsuite=cache --stop-on-fail

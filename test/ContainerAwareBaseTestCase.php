@@ -42,7 +42,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     private $container;
 
     /** @var MockHandler */
-    private $mockRequestHandler;
+    protected $mockRequestHandler;
 
     /**
      * @return iterable<array<string, Response>>
@@ -85,13 +85,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         $containerBuilder = new ContainerBuilder;
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
         $loader->load('Resources/services_test.yml');
-
-        /**
-         * replace GuzzleClient with MockClient
-         */
-        $this->mockRequestHandler = new MockHandler;
-        $handlerStack = HandlerStack::create($this->mockRequestHandler);
-        $client = new Client(['handler' => $handlerStack]);
+        $client = $this->getGuzzleClient();
         $containerBuilder->set('GuzzleHttp\Client', $client);
         $containerBuilder->compile();
 
@@ -184,5 +178,19 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         self::expectExceptionMessage(
             $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['message']
         );
+    }
+
+    /**
+     * @return Client
+     */
+    protected function getGuzzleClient(): Client
+    {
+        /**
+         * replace GuzzleClient with MockClient
+         */
+        $this->mockRequestHandler = new MockHandler;
+        $handlerStack = HandlerStack::create($this->mockRequestHandler);
+
+        return new Client(['handler' => $handlerStack]);
     }
 }

@@ -19,7 +19,7 @@ class ApiCacheMap
      * Should not add duplicate entries in sub-arrays.
      * Duplicate entry will use the first occurring cache_ttl
      */
-    private const CACHE_MAP = [
+    protected const CACHE_MAP = [
         self::DEFAULT_CACHE_TTL => [
             ApiDictionary::CORE_SETTINGS,
             ApiDictionary::SELF_SERVICE_SETTINGS,
@@ -34,12 +34,12 @@ class ApiCacheMap
 
     /**
      * @param string $baseUrl
-     * @return array<int, array<int, string>>
+     * @return array<int|string, array<int, string>>
      */
     public function getCacheableApis(string $baseUrl): array
     {
         $cacheableApis = [];
-        foreach (self::CACHE_MAP as $ttl => $apis) {
+        foreach (static::CACHE_MAP as $ttl => $apis) {
             $cacheableApis[$ttl] = [];
             foreach ($apis as $key => $api) {
                 $apiUri = $baseUrl . ltrim($api, '/');

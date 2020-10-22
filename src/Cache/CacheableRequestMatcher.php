@@ -5,6 +5,8 @@ namespace SupportPal\ApiClient\Cache;
 use Kevinrob\GuzzleCache\Strategy\Delegate\RequestMatcherInterface;
 use Psr\Http\Message\RequestInterface;
 
+use function strpos;
+
 class CacheableRequestMatcher implements RequestMatcherInterface
 {
     /** @var array<int, string> */
@@ -25,7 +27,7 @@ class CacheableRequestMatcher implements RequestMatcherInterface
     public function matches(RequestInterface $request)
     {
         foreach ($this->cachableApis as $path) {
-            if ($request->getUri()->getPath() === $path && $request->getMethod() === 'GET') {
+            if (strpos($request->getUri()->getPath(), $path) !== false && $request->getMethod() === 'GET') {
                 return true;
             }
         }

@@ -2,23 +2,16 @@
 
 namespace SupportPal\ApiClient;
 
-use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Cache\ChainCache;
-use Doctrine\Common\Cache\FilesystemCache;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
 use Kevinrob\GuzzleCache\CacheMiddleware;
-use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
 use Kevinrob\GuzzleCache\Strategy\CacheStrategyInterface;
-use Kevinrob\GuzzleCache\Strategy\Delegate\DelegatingCacheStrategy;
-use Kevinrob\GuzzleCache\Strategy\GreedyCacheStrategy;
-use Kevinrob\GuzzleCache\Strategy\NullCacheStrategy;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Cache\ApiCacheMap;
-use SupportPal\ApiClient\Cache\CacheableRequestMatcher;
+use SupportPal\ApiClient\Cache\CacheStrategyConfigurator;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Config\FileLocator;
@@ -133,22 +126,8 @@ class SupportPal
      */
     private function buildCacheStrategy(string $cacheDir): CacheStrategyInterface
     {
-        $delegatingCacheStrategy = new DelegatingCacheStrategy(new NullCacheStrategy);
-
-        $apiCacheMap = new ApiCacheMap;
-        /**
-         * For every set of Apis, clustered by a default TTL, we create a cache storage.
-         */
-        foreach ($apiCacheMap->getCacheableApis(self::BASE_API_PATH) as $ttl => $apis) {
-            $cacheStorage = new DoctrineCacheStorage(new ChainCache([new ArrayCache, new FilesystemCache($cacheDir)]));
-            $cacheStrategy = new GreedyCacheStrategy($cacheStorage, $ttl);
-            /**
-             * request matcher handlers linking the caching strategy to every specific endpoint
-             */
-            $delegatingCacheStrategy->registerRequestMatcher(new CacheableRequestMatcher($apis), $cacheStrategy);
-        }
-
-        return $delegatingCacheStrategy;
+        return (new CacheStrategyConfigurator(new ApiCacheMap))
+            ->buildCacheStrategy($cacheDir, self::BASE_API_PATH);
     }
 
     /**
