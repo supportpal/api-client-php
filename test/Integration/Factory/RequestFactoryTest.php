@@ -22,9 +22,6 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
     private $requestFactory;
 
     /** @var string */
-    private $apiUrl;
-
-    /** @var string */
     private $apiToken;
 
     /** @var string */
@@ -43,7 +40,6 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
         $requestFactory = $this->getContainer()->get(RequestFactory::class);
         $this->requestFactory = $requestFactory;
         $this->apiToken = $this->getContainer()->getParameter('apiToken');
-        $this->apiUrl = $this->getContainer()->getParameter('apiUrl');
         $this->apiContentType = $this->getContainer()->getParameter('apiContentType');
         $this->defaultBodyContent = $this->getContainer()->getParameter('defaultBodyContent');
         $this->defaultParameters = $this->getContainer()->getParameter('defaultParameters');
@@ -71,6 +67,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
 
         $headersArray['Authorization'] = ['Basic ' . base64_encode($this->apiToken . ':X')];
         $headersArray['Content-Type'] = [$this->apiContentType];
+        $headersArray['Host'] = [$request->getUri()->getHost() . ':' . $request->getUri()->getPort()];
 
         $encodedBody = ! empty($data['body']) || ! empty($this->defaultBodyContent)
             ? $this->getEncoder()->encode(array_merge($data['body'], $this->defaultBodyContent), $this->getFormatType())
@@ -78,7 +75,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
 
         self::assertInstanceOf(Request::class, $request);
         self::assertSame($data['method'], $request->getMethod());
-        self::assertSame($this->apiUrl . $data['endpoint'], $request->getUri()->getPath());
+        self::assertStringContainsString($data['endpoint'], $request->getUri()->getPath());
         self::assertSame($encodedBody, $request->getBody()->getContents());
         self::assertEquals($headersArray, $request->getHeaders());
         self::assertSame(

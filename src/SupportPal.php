@@ -2,29 +2,23 @@
 
 namespace SupportPal\ApiClient;
 
-use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Cache\ChainCache;
-use Doctrine\Common\Cache\FilesystemCache;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
 use Kevinrob\GuzzleCache\CacheMiddleware;
-use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
 use Kevinrob\GuzzleCache\Strategy\CacheStrategyInterface;
-use Kevinrob\GuzzleCache\Strategy\Delegate\DelegatingCacheStrategy;
-use Kevinrob\GuzzleCache\Strategy\GreedyCacheStrategy;
-use Kevinrob\GuzzleCache\Strategy\NullCacheStrategy;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Cache\ApiCacheMap;
-use SupportPal\ApiClient\Cache\CacheableRequestMatcher;
+use SupportPal\ApiClient\Cache\CacheStrategyConfigurator;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
+use function rtrim;
 use function sys_get_temp_dir;
 
 /**
@@ -33,12 +27,14 @@ use function sys_get_temp_dir;
  */
 class SupportPal
 {
+    private const BASE_API_PATH = '/api/';
+
     /** @var ContainerBuilder */
     private $containerBuilder;
 
     /**
      * SupportPal constructor.
-     * @param string $apiUrl
+     * @param string $baseUrl
      * @param string $apiToken
      * @param array<mixed> $defaultParameters Parameters that will always be passed
      * @param array<mixed> $defaultBodyContent Body content that will always be passed
@@ -46,12 +42,13 @@ class SupportPal
      * @throws Exception
      */
     public function __construct(
-        string $apiUrl,
+        string $baseUrl,
         string $apiToken,
         array $defaultParameters = [],
         array $defaultBodyContent = [],
         ?string $cacheDir = null
     ) {
+        $apiUrl = $this->buildApiUrl($baseUrl);
         $cacheDir = $cacheDir ?? sys_get_temp_dir();
         $containerBuilder = new ContainerBuilder;
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
@@ -106,6 +103,18 @@ class SupportPal
     }
 
     /**
+     * @param string $cacheDir
+     * @return ClientInterface
+     */
+    private function getGuzzleClient(string $cacheDir): ClientInterface
+    {
+        $stack = HandlerStack::create();
+        $stack->push(new CacheMiddleware($this->buildCacheStrategy($cacheDir)));
+
+        return new Client(['handler' => $stack]);
+    }
+
+    /**
      * This function sets the cache strategy used in the application.
      * By default, endpoints will not be cached unless specified per path, per method.
      * We also use two types of cache, ArrayCache, and FileSystem cache sorted from faster to slower.
@@ -117,32 +126,16 @@ class SupportPal
      */
     private function buildCacheStrategy(string $cacheDir): CacheStrategyInterface
     {
-        $delegatingCacheStrategy = new DelegatingCacheStrategy(new NullCacheStrategy);
-
-        /**
-         * For every set of Apis, clustered by a default TTL, we create a cache storage.
-         */
-        foreach (ApiCacheMap::CACHE_MAP as $ttl => $apis) {
-            $cacheStorage = new DoctrineCacheStorage(new ChainCache([new ArrayCache, new FilesystemCache($cacheDir)]));
-            $cacheStrategy = new GreedyCacheStrategy($cacheStorage, $ttl);
-            /**
-             * request matcher handlers linking the caching strategy to every specific endpoint
-             */
-            $delegatingCacheStrategy->registerRequestMatcher(new CacheableRequestMatcher($apis), $cacheStrategy);
-        }
-
-        return $delegatingCacheStrategy;
+        return (new CacheStrategyConfigurator(new ApiCacheMap))
+            ->buildCacheStrategy($cacheDir, self::BASE_API_PATH);
     }
 
     /**
-     * @param string $cacheDir
-     * @return ClientInterface
+     * @param string $baseUrl
+     * @return string
      */
-    private function getGuzzleClient(string $cacheDir): ClientInterface
+    private function buildApiUrl(string $baseUrl): string
     {
-        $stack = HandlerStack::create();
-        $stack->push(new CacheMiddleware($this->buildCacheStrategy($cacheDir)));
-
-        return new Client(['handler' => $stack]);
+        return rtrim($baseUrl, '/') . self::BASE_API_PATH;
     }
 }
