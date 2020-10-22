@@ -5,10 +5,10 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/supportpal/api-client-php/actions"><img src="https://img.shields.io/github/workflow/status/supportpal/api-client-php/ci" alt="Build Status" /></a>
-<a href="https://packagist.org/packages/supportpal/api-client-php"><img src="https://img.shields.io/packagist/dt/supportpal/api-client-php" alt="Total Downloads" /></a>
-<a href="https://packagist.org/packages/supportpal/api-client-php"><img src="https://img.shields.io/packagist/v/supportpal/api-client-php" alt="Latest Stable Version" /></a>
-<a href="https://packagist.org/packages/supportpal/api-client-php"><img src="https://img.shields.io/packagist/l/supportpal/api-client-php" alt="License" /></a>
+<a href="https://github.com/supportpal/api-client-php/actions"><img src="https://img.shields.io/github/workflow/status/supportpal/api-client-php/ci" alt="Build Status"></a>
+<a href="https://packagist.org/packages/supportpal/api-client-php"><img src="https://img.shields.io/packagist/dt/supportpal/api-client-php" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/supportpal/api-client-php"><img src="https://img.shields.io/packagist/v/supportpal/api-client-php" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/supportpal/api-client-php"><img src="https://img.shields.io/packagist/l/supportpal/api-client-php" alt="License"></a>
 </p>
 
 ----
