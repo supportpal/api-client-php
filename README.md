@@ -62,7 +62,7 @@ For API end points unsupported by this library, you can construct a generic requ
 ```php
 $request = $supportPal
     ->getRequestFactory()
-    ->create('PUT', 'selfservice/comment/1', [], ['text' => 'foo']);
+    ->create('DELETE', 'selfservice/comment/1');
 
 $supportPal->sendRequest($request);
 ```
