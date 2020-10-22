@@ -1,31 +1,47 @@
-# SupportPal Client
+<p align="center">
+    <a href="https://laravel.com" target="_blank"><img src="https://www.supportpal.com/assets/img/logo_blue_small.png" /></a>
+    <br>
+    A client to interact with the <a href="https://api.supportpal.com/">SupportPal API</a> written in PHP.
+</p>
 
+<p align="center">
+<a href="https://github.com/supportpal/api-client-php/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/supportpal/api-client-php"><img src="https://img.shields.io/packagist/dt/supportpal/api-client-php" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/supportpal/api-client-php"><img src="https://img.shields.io/packagist/v/supportpal/api-client-php" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/supportpal/api-client-php"><img src="https://img.shields.io/packagist/l/supportpal/api-client-php" alt="License"></a>
+</p>
 
-A Client to interact with the SupportPal API written in PHP.
+----
 
-## Usage
+# Installation
 
-This client exposes two main components with a set of Models.
-
-### Initialize an instance
-```php
-use SupportPal\ApiClient\SupportPal;
-
-$baseApiUrl = 'www.example.com/api/';
-$apiToken = 'token_api'; #refer to documentation: https://docs.supportpal.com/current/API+Tokens
-$supportPal = new SupportPal($baseApiUrl, $apiToken);
+```
+composer require supportpal/api-client-php
 ```
 
-In order to access any supported resource, you need to use the Api component.
+# Usage
+
+All supported API end points can be accessed through the `getApi` function.
+
 ```php
+$baseApiUrl = 'www.example.com/api/';
+$apiToken = 'token_api';  // To Create an API token, see: https://docs.supportpal.com/current/API+Tokens
+
+$supportPal = new \SupportPal\ApiClient\SupportPal($baseApiUrl, $apiToken);
 $api = $supportPal->getApi();
+```
+
+## `GET` end points
+
+```php
 $coreSettings = $api->getCoreSettings();
 ``` 
+
+## `POST` end points
 
 To create a post request that requires sending data:
 
 ```php
-$api = $supportPal->getApi();
 $commentDataArray = [
     'text'         => 'text',
     'article_id'   => 3,
@@ -39,7 +55,8 @@ $commentObject->fill($commentDataArray);
 $savedComment = $api->postComment($commentObject);
 ```
 
-For unsupported APIs, you can send a generic request
+For API end points unsupported by this library, you can send a generic request:
+
 ```php
 $commentDataArray = [
     'text'         => 'text',
