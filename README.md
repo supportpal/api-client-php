@@ -21,11 +21,11 @@ composer require supportpal/api-client-php
 
 # Usage
 
-All supported API end points can be accessed through the `getApi` function.
+All supported [API end points](https://api.supportpal.com/) can be accessed through the `getApi` function.
 
 ```php
 $baseApiUrl = 'www.example.com/api/';
-$apiToken = 'token_api';  // To Create an API token, see: https://docs.supportpal.com/current/API+Tokens
+$apiToken = 'token_api';  // To create an API token, see: https://docs.supportpal.com/current/API+Tokens
 
 $supportPal = new \SupportPal\ApiClient\SupportPal($baseApiUrl, $apiToken);
 $api = $supportPal->getApi();
@@ -55,20 +55,14 @@ $commentObject->fill($commentDataArray);
 $savedComment = $api->postComment($commentObject);
 ```
 
-For API end points unsupported by this library, you can send a generic request:
+## Unsupported end points
+
+For API end points unsupported by this library, you can construct a generic request:
 
 ```php
-$commentDataArray = [
-    'text'         => 'text',
-    'article_id'   => 3,
-    'type_id'      => 1,
-    'parent_id'    => 1,
-    'status'       => 3,
-    'notify_reply' => 0
-];
 $request = $supportPal
     ->getRequestFactory()
-    ->create('POST', 'selfservice/comment', [], $commentDataArray);
+    ->create('PUT', 'selfservice/comment/1', [], ['text' => 'foo']);
 
 $supportPal->sendRequest($request);
 ```
