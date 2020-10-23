@@ -61,6 +61,14 @@ trait ArticleApis
         return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
+    /**
+     * @param int $typeId
+     * @param string $term
+     * @param array<mixed> $queryParameters
+     * @return Collection
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     */
     public function getRelatedArticles(int $typeId, string $term, array $queryParameters = [])
     {
         $queryParameters['term'] = $term;

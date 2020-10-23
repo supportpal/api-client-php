@@ -12,12 +12,25 @@ trait UserGroupApis
     use ApiClientAware;
 
     /**
-     * @param array $parameters
+     * @param array<mixed> $parameters
      * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getUserGroups(array $parameters): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::USER_USERGROUP, $parameters);
+    }
+
+    /**
+     * @param int $userGroupId
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function getUserGroup(int $userGroupId): ResponseInterface
+    {
+        return $this->prepareAndSendGetRequest(
+            ApiDictionary::USER_USERGROUP . '/' . $userGroupId,
+            []
+        );
     }
 }

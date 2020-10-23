@@ -6,6 +6,7 @@ use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\Shared\CustomField;
 use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
 
 use function array_map;
@@ -27,6 +28,18 @@ trait CustomFieldApis
         $models = array_map([$this, 'createTicketCustomField'], $body['data']);
 
         return $this->getCollectionFactory()->create($body['count'], $models);
+    }
+
+    /**
+     * @param int $customFieldId
+     * @return CustomField
+     * @throws HttpResponseException
+     */
+    public function getTicketCustomField(int $customFieldId): CustomField
+    {
+        $response = $this->getApiClient()->getTicketCustomField($customFieldId);
+
+        return $this->createTicketCustomField($this->decodeBody($response)['data']);
     }
 
     /**

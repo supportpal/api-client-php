@@ -52,7 +52,7 @@ trait TicketApis
 
     /**
      * @param int $ticketId
-     * @param array $body
+     * @param array<mixed> $body
      * @return ResponseInterface
      * @throws HttpResponseException
      */
@@ -69,7 +69,7 @@ trait TicketApis
     }
 
     /**
-     * @param array $body
+     * @param array<mixed> $body
      * @return ResponseInterface
      * @throws HttpResponseException
      */

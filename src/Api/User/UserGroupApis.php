@@ -30,6 +30,18 @@ trait UserGroupApis
     }
 
     /**
+     * @param int $userGroupId
+     * @return Group
+     * @throws HttpResponseException
+     */
+    public function getUserGroup(int $userGroupId): Group
+    {
+        $response = $this->getApiClient()->getUserGroup($userGroupId);
+
+        return $this->createGroup($this->decodeBody($response)['data']);
+    }
+
+    /**
      * @param array<mixed> $data
      * @return Group
      */

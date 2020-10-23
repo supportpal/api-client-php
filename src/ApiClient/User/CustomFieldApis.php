@@ -20,4 +20,17 @@ trait CustomFieldApis
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::USER_CUSTOMFIELD, $queryParameters);
     }
+
+    /**
+     * @param int $userCustomFieldId
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function getUserCustomField(int $userCustomFieldId): ResponseInterface
+    {
+        return $this->prepareAndSendGetRequest(
+            ApiDictionary::USER_CUSTOMFIELD . '/' . $userCustomFieldId,
+            []
+        );
+    }
 }

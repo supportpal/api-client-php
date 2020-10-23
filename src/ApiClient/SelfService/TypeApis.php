@@ -24,4 +24,17 @@ trait TypeApis
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParameters);
     }
+
+    /**
+     * @param int $typeId
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function getType(int $typeId): ResponseInterface
+    {
+        return $this->prepareAndSendGetRequest(
+            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE . '/' .  $typeId,
+            []
+        );
+    }
 }

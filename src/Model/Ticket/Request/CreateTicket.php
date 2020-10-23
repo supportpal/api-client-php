@@ -100,31 +100,31 @@ class CreateTicket extends BaseModel
     private $text;
 
     /**
-     * @var array|null
+     * @var int[]|null
      * @SerializedName("tag")
      */
     private $tag;
 
     /**
-     * @var array|null
+     * @var int[]|null
      * @SerializedName("assignedto")
      */
     private $assignedto;
 
     /**
-     * @var array|null
+     * @var int[]|null
      * @SerializedName("watching")
      */
     private $watching;
 
     /**
-     * @var array|null
+     * @var int[]|null
      * @SerializedName("customfield")
      */
     private $customfield;
 
     /**
-     * @var array|null
+     * @var string[]|null
      * @SerializedName("cc")
      */
     private $cc;
@@ -420,7 +420,7 @@ class CreateTicket extends BaseModel
     }
 
     /**
-     * @return array|null
+     * @return int[]|null
      */
     public function getTag(): ?array
     {
@@ -428,7 +428,7 @@ class CreateTicket extends BaseModel
     }
 
     /**
-     * @param array|null $tag
+     * @param int[]|null $tag
      * @return self
      */
     public function setTag(?array $tag): self
@@ -439,7 +439,7 @@ class CreateTicket extends BaseModel
     }
 
     /**
-     * @return array|null
+     * @return int[]|null
      */
     public function getAssignedto(): ?array
     {
@@ -447,7 +447,7 @@ class CreateTicket extends BaseModel
     }
 
     /**
-     * @param array|null $assignedto
+     * @param int[]|null $assignedto
      * @return self
      */
     public function setAssignedto(?array $assignedto): self
@@ -458,7 +458,7 @@ class CreateTicket extends BaseModel
     }
 
     /**
-     * @return array|null
+     * @return int[]|null
      */
     public function getWatching(): ?array
     {
@@ -466,7 +466,7 @@ class CreateTicket extends BaseModel
     }
 
     /**
-     * @param array|null $watching
+     * @param int[]|null $watching
      * @return self
      */
     public function setWatching(?array $watching): self
@@ -477,7 +477,7 @@ class CreateTicket extends BaseModel
     }
 
     /**
-     * @return array|null
+     * @return int[]|null
      */
     public function getCustomfield(): ?array
     {
@@ -485,7 +485,7 @@ class CreateTicket extends BaseModel
     }
 
     /**
-     * @param array|null $customfield
+     * @param int[]|null $customfield
      * @return self
      */
     public function setCustomfield(?array $customfield): self
@@ -496,7 +496,7 @@ class CreateTicket extends BaseModel
     }
 
     /**
-     * @return array|null
+     * @return string[]|null
      */
     public function getCc(): ?array
     {
@@ -504,7 +504,7 @@ class CreateTicket extends BaseModel
     }
 
     /**
-     * @param array|null $cc
+     * @param string[]|null $cc
      * @return self
      */
     public function setCc(?array $cc): self

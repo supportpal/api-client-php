@@ -34,6 +34,18 @@ trait TypeApis
     }
 
     /**
+     * @param int $typeId
+     * @return Type
+     * @throws HttpResponseException
+     */
+    public function getType(int $typeId): Type
+    {
+        $response = $this->getApiClient()->getType($typeId);
+
+        return $this->createType($this->decodeBody($response)['data']);
+    }
+
+    /**
      * @param array<mixed> $data
      * @return Type
      */

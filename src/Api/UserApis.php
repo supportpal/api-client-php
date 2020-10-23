@@ -6,6 +6,7 @@ use SupportPal\ApiClient\Api\User\CustomFieldApis;
 use SupportPal\ApiClient\Api\User\UserGroupApis;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Model\User\User;
@@ -38,8 +39,20 @@ trait UserApis
     }
 
     /**
+     * @param int $userId
+     * @return User
+     * @throws HttpResponseException
+     */
+    public function getUser(int $userId): User
+    {
+        $response = $this->getApiClient()->getUser($userId);
+
+        return $this->createUser($this->decodeBody($response)['data']);
+    }
+
+    /**
      * @param User $user
-     * @param array $data
+     * @param array<mixed> $data
      * @return User
      * @throws HttpResponseException
      * @throws InvalidArgumentException
@@ -47,7 +60,7 @@ trait UserApis
     public function updateUser(User $user, array $data): User
     {
         if ($user->getId() === null) {
-            throw new InvalidArgumentException('missing user identifier');
+            throw new MissingIdentifierException('missing user identifier');
         }
 
         $response = $this->getApiClient()->updateUser($user->getId(), $data);

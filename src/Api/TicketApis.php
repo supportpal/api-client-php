@@ -12,6 +12,7 @@ use SupportPal\ApiClient\Api\Ticket\SettingsApis;
 use SupportPal\ApiClient\Api\Ticket\StatusApis;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
 use SupportPal\ApiClient\Model\Ticket\Ticket;
@@ -63,14 +64,15 @@ trait TicketApis
 
     /**
      * @param Ticket $ticket
-     * @param array $data
+     * @param array<mixed> $data
      * @return Ticket
      * @throws InvalidArgumentException
+     * @throws HttpResponseException
      */
     public function updateTicket(Ticket $ticket, array $data): Ticket
     {
         if ($ticket->getId() === null) {
-            throw new InvalidArgumentException('missing ticket identifier');
+            throw new MissingIdentifierException('missing ticket identifier');
         }
 
         $response = $this->getApiClient()->updateTicket($ticket->getId(), $data);
@@ -79,7 +81,7 @@ trait TicketApis
     }
 
     /**
-     * @param CreateTicket $message
+     * @param CreateTicket $createTicket
      * @return Ticket
      * @throws HttpResponseException
      * @throws InvalidArgumentException

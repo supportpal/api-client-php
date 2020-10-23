@@ -29,7 +29,17 @@ trait UserApis
 
     /**
      * @param int $userId
-     * @param array $body
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function getUser(int $userId): ResponseInterface
+    {
+        return $this->prepareAndSendGetRequest(ApiDictionary::USER_USER . '/' .  $userId, []);
+    }
+
+    /**
+     * @param int $userId
+     * @param array<mixed> $body
      * @return ResponseInterface
      * @throws HttpResponseException
      */
@@ -46,7 +56,7 @@ trait UserApis
     }
 
     /**
-     * @param array $body
+     * @param array<mixed> $body
      * @return ResponseInterface
      * @throws HttpResponseException
      */

@@ -20,4 +20,17 @@ trait CustomFieldApis
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_CUSTOMFIELD, $queryParameters);
     }
+
+    /**
+     * @param int $customFieldId
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function getTicketCustomField(int $customFieldId): ResponseInterface
+    {
+        return $this->prepareAndSendGetRequest(
+            ApiDictionary::TICKET_CUSTOMFIELD . '/' .  $customFieldId,
+            []
+        );
+    }
 }

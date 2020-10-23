@@ -43,4 +43,17 @@ trait CommentApis
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::SELF_SERVICE_COMMENT, $queryParameters);
     }
+
+    /**
+     * @param int $commentId
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function getComment(int $commentId): ResponseInterface
+    {
+        return $this->prepareAndSendGetRequest(
+            ApiDictionary::SELF_SERVICE_COMMENT . '/' .  $commentId,
+            []
+        );
+    }
 }

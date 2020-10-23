@@ -30,6 +30,18 @@ trait CustomFieldApis
     }
 
     /**
+     * @param int $customFieldId
+     * @return UserCustomField
+     * @throws HttpResponseException
+     */
+    public function getUserCustomField(int $customFieldId): UserCustomField
+    {
+        $response = $this->getApiClient()->getUserCustomField($customFieldId);
+
+        return $this->createUserCustomField($this->decodeBody($response)['data']);
+    }
+
+    /**
      * @param array<mixed> $data
      * @return UserCustomField
      */

@@ -94,13 +94,13 @@ class CreateUser extends BaseModel
     private $organisationNotifications;
 
     /**
-     * @var array|null
+     * @var int[]|null
      * @SerializedName("customfield")
      */
     private $customfield;
 
     /**
-     * @var array|null
+     * @var int[]|null
      * @SerializedName("groups")
      */
     private $groups;
@@ -372,7 +372,7 @@ class CreateUser extends BaseModel
     }
 
     /**
-     * @return array|null
+     * @return int[]|null
      */
     public function getCustomfield(): ?array
     {
@@ -380,7 +380,7 @@ class CreateUser extends BaseModel
     }
 
     /**
-     * @param array|null $customfield
+     * @param int[]|null $customfield
      * @return CreateUser
      */
     public function setCustomfield(?array $customfield): CreateUser
@@ -391,7 +391,7 @@ class CreateUser extends BaseModel
     }
 
     /**
-     * @return array|null
+     * @return int[]|null
      */
     public function getGroups(): ?array
     {
@@ -399,7 +399,7 @@ class CreateUser extends BaseModel
     }
 
     /**
-     * @param array|null $groups
+     * @param int[]|null $groups
      * @return CreateUser
      */
     public function setGroups(?array $groups): CreateUser

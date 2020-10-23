@@ -58,6 +58,18 @@ trait CommentApis
     }
 
     /**
+     * @param int $commentId
+     * @return Comment
+     * @throws HttpResponseException
+     */
+    public function getComment(int $commentId): Comment
+    {
+        $response = $this->getApiClient()->getComment($commentId);
+
+        return $this->createComment($this->decodeBody($response)['data']);
+    }
+
+    /**
      * @param array<mixed> $data
      * @return Comment
      */
