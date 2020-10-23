@@ -2,6 +2,8 @@ imports:
     - { resource: factories.yml }
     - { resource: library_services.yml }
     - { resource: core_services.yml }
+    - { resource: api.yml }
+    - { resource: api_client.yml }
 
 parameters:
     apiContentType: 'application/json'
@@ -12,12 +14,6 @@ services:
         autowire: true
         autoconfigure: true
         public: false
-
-    SupportPal\ApiClient\ApiClient:
-        public: true
-        arguments:
-            $httpClient: '@GuzzleHttp\Client'
-            $formatType: '%contentType%'
 
     SupportPal\ApiClient\Normalizer\ModelNormalizer:
         arguments:

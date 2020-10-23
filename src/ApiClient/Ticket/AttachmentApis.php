@@ -16,7 +16,7 @@ trait AttachmentApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getTicketAttachments(array $queryParameters): ResponseInterface
+    public function getAttachments(array $queryParameters): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_ATTACHMENT, $queryParameters);
     }
@@ -26,7 +26,7 @@ trait AttachmentApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getTicketAttachment(int $attachmentId): ResponseInterface
+    public function getAttachment(int $attachmentId): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_ATTACHMENT . '/' .  $attachmentId, []);
     }

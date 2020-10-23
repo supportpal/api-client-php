@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\E2E;
 
+use SupportPal\ApiClient\Api\CoreApi;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 
 class CoreApisTest extends BaseTestCase
@@ -11,7 +12,9 @@ class CoreApisTest extends BaseTestCase
      */
     protected function getGetAllEndpoints(): array
     {
-        return [];
+        return [
+            ApiDictionary::CORE_BRAND => 'getBrands',
+        ];
     }
 
     /**
@@ -19,11 +22,18 @@ class CoreApisTest extends BaseTestCase
      */
     protected function getGetByIdEndpoints(): array
     {
-        return [];
+        return [
+            ApiDictionary::CORE_BRAND => 'getBrand',
+        ];
     }
 
     public function testCoreSettings(): void
     {
-        $this->settingsTestCase(ApiDictionary::CORE_SETTINGS, 'getCoreSettings');
+        $this->settingsTestCase(ApiDictionary::CORE_SETTINGS, 'getSettings');
+    }
+
+    protected function getApi(): CoreApi
+    {
+        return $this->getSupportPal()->getCoreApi();
     }
 }

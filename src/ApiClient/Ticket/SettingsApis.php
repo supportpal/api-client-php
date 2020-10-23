@@ -19,7 +19,7 @@ trait SettingsApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getTicketSettings(): ResponseInterface
+    public function getSettings(): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_SETTINGS, []);
     }

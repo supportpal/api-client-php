@@ -4,13 +4,11 @@ services:
         autoconfigure: true
         public: false
 
-    SupportPal\ApiClient\Factory\ModelCollectionFactory:
+    SupportPal\ApiClient\ApiClient:
+        public: true
         arguments:
-            $factories: !tagged factory.model_factory
-
-    SupportPal\ApiClient\Converter\ModelToArrayConverter:
-        arguments:
-            $format: '%contentType%'
+            $httpClient: '@GuzzleHttp\Client'
+            $formatType: '%contentType%'
 
     SupportPal\ApiClient\ApiClient\CoreApiClient:
         parent: 'SupportPal\ApiClient\ApiClient'

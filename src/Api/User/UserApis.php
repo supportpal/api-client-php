@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Api;
+namespace SupportPal\ApiClient\Api\User;
 
-use SupportPal\ApiClient\Api\User\CustomFieldApis;
-use SupportPal\ApiClient\Api\User\UserGroupApis;
+use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
@@ -14,14 +14,9 @@ use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
 use function array_map;
 
-/**
- * Trait UserApis, includes all related ApiCalls pre and post processing related to Users
- * @package SupportPal\ApiClient\Api\Core
- */
 trait UserApis
 {
-    use CustomFieldApis;
-    use UserGroupApis;
+    use ApiAware;
 
     /**
      * @param array<mixed> $queryParameters
@@ -102,4 +97,6 @@ trait UserApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): UserApiClient;
 }

@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
+use SupportPal\ApiClient\Api\TicketApi;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Ticket\Message;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
@@ -15,13 +17,13 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class MessageApisTest extends ApiTest
 {
-    /** @var int */
-    private $testTicketId = 1;
+    /** @var TicketApi */
+    protected $api;
 
     /** @var int */
     private $testMessageId = 1;
 
-    public function testGetTicketMessages(): void
+    public function testGetMessages(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
             (new MessageData)->getAllResponse(),
@@ -30,15 +32,15 @@ class MessageApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getTicketMessages(['ticket_id' => $this->testTicketId])
+            ->getMessages(['ticket_id' => $this->testMessageId])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $departments = $this->api->getTicketMessages($this->testTicketId);
+        $departments = $this->api->getMessages($this->testMessageId);
         self::assertSame($expectedOutput, $departments);
     }
 
-    public function testGetTicketMessage(): void
+    public function testGetMessage(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
             (new MessageData)->getResponse(),
@@ -47,15 +49,15 @@ class MessageApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getTicketMessage($this->testMessageId)
+            ->getMessage($this->testMessageId)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $returnedDepartment = $this->api->getTicketMessage($this->testMessageId);
+        $returnedDepartment = $this->api->getMessage($this->testMessageId);
         self::assertSame($expectedOutput, $returnedDepartment);
     }
 
-    public function testPostTicketMessage(): void
+    public function testPostMessage(): void
     {
         $messageData = new MessageData;
         $arrayData = $messageData->getArrayData();
@@ -68,11 +70,11 @@ class MessageApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->postTicketMessage($arrayData)
+            ->postMessage($arrayData)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $message = $this->api->postTicketMessage($messageMock);
+        $message = $this->api->postMessage($messageMock);
         $this->assertSame($messageOutput->reveal(), $message);
     }
 
@@ -81,6 +83,22 @@ class MessageApisTest extends ApiTest
         /** @var Message $messageMock */
         $messageMock = $this->postIncompleteDataCommonExpectations(Message::class);
         $this->expectException(InvalidArgumentException::class);
-        $this->api->postTicketMessage($messageMock);
+        $this->api->postMessage($messageMock);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return TicketApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api\Ticket;
 
 use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
@@ -20,9 +21,9 @@ trait PriorityApis
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function getTicketPriorities(array $queryParameters = []): Collection
+    public function getPriorities(array $queryParameters = []): Collection
     {
-        $response = $this->getApiClient()->getTicketPriorities($queryParameters);
+        $response = $this->getApiClient()->getPriorities($queryParameters);
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createPriority'], $body['data']);
 
@@ -34,9 +35,9 @@ trait PriorityApis
      * @return Priority
      * @throws HttpResponseException
      */
-    public function getTicketPriority(int $priorityId): Priority
+    public function getPriority(int $priorityId): Priority
     {
-        $response = $this->getApiClient()->getTicketPriority($priorityId);
+        $response = $this->getApiClient()->getPriority($priorityId);
 
         return $this->createPriority($this->decodeBody($response)['data']);
     }
@@ -52,4 +53,6 @@ trait PriorityApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): TicketApiClient;
 }

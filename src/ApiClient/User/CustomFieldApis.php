@@ -16,7 +16,7 @@ trait CustomFieldApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getUserCustomFields(array $queryParameters): ResponseInterface
+    public function getCustomFields(array $queryParameters): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::USER_CUSTOMFIELD, $queryParameters);
     }
@@ -26,7 +26,7 @@ trait CustomFieldApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getUserCustomField(int $userCustomFieldId): ResponseInterface
+    public function getCustomField(int $userCustomFieldId): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(
             ApiDictionary::USER_CUSTOMFIELD . '/' . $userCustomFieldId,

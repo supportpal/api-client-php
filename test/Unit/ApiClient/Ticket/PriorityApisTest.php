@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class PriorityApisTest extends ApiClientTest
 {
+    /** @var TicketApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testPriorityId = 1;
 
@@ -29,7 +33,7 @@ class PriorityApisTest extends ApiClientTest
             (string) json_encode((new PriorityData)->getAllResponse()),
             $request
         );
-        $getTypeSuccessfulResponse = $this->apiClient->getTicketPriorities($queryParams);
+        $getTypeSuccessfulResponse = $this->apiClient->getPriorities($queryParams);
         self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
     }
 
@@ -39,7 +43,7 @@ class PriorityApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_PRIORITY, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getTicketPriorities($queryParams);
+        $this->apiClient->getPriorities($queryParams);
     }
 
     /**
@@ -53,7 +57,7 @@ class PriorityApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_PRIORITY, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getTicketPriorities($queryParams);
+        $this->apiClient->getPriorities($queryParams);
     }
 
     public function testGetPriority(): void
@@ -71,7 +75,7 @@ class PriorityApisTest extends ApiClientTest
             $request
         );
 
-        $getPriorityTypeSuccessfulResponse = $this->apiClient->getTicketPriority($this->testPriorityId);
+        $getPriorityTypeSuccessfulResponse = $this->apiClient->getPriority($this->testPriorityId);
         self::assertSame($response->reveal(), $getPriorityTypeSuccessfulResponse);
     }
 
@@ -85,7 +89,7 @@ class PriorityApisTest extends ApiClientTest
             []
         );
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getTicketPriority($this->testPriorityId);
+        $this->apiClient->getPriority($this->testPriorityId);
     }
 
     /**
@@ -103,6 +107,14 @@ class PriorityApisTest extends ApiClientTest
             []
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getTicketPriority($this->testPriorityId);
+        $this->apiClient->getPriority($this->testPriorityId);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

@@ -10,6 +10,10 @@ use Kevinrob\GuzzleCache\CacheMiddleware;
 use Kevinrob\GuzzleCache\Strategy\CacheStrategyInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use SupportPal\ApiClient\Api\CoreApi;
+use SupportPal\ApiClient\Api\SelfServiceApi;
+use SupportPal\ApiClient\Api\TicketApi;
+use SupportPal\ApiClient\Api\UserApi;
 use SupportPal\ApiClient\Cache\ApiCacheMap;
 use SupportPal\ApiClient\Cache\CacheStrategyConfigurator;
 use SupportPal\ApiClient\Exception\HttpResponseException;
@@ -66,13 +70,52 @@ class SupportPal
 
     /**
      * This method returns the api for SupportPal system
-     * @return Api
+     * @return TicketApi
      * @throws Exception
      */
-    public function getApi(): Api
+    public function getTicketApi(): TicketApi
     {
-        /** @var Api $api */
-        $api = $this->containerBuilder->get(Api::class);
+        /** @var TicketApi $api */
+        $api = $this->containerBuilder->get(TicketApi::class);
+
+        return $api;
+    }
+
+    /**
+     * This method returns the api for SupportPal system
+     * @return CoreApi
+     * @throws Exception
+     */
+    public function getCoreApi(): CoreApi
+    {
+        /** @var CoreApi $api */
+        $api = $this->containerBuilder->get(CoreApi::class);
+
+        return $api;
+    }
+
+    /**
+     * This method returns the api for SupportPal system
+     * @return SelfServiceApi
+     * @throws Exception
+     */
+    public function getSelfServiceApi(): SelfServiceApi
+    {
+        /** @var SelfServiceApi $api */
+        $api = $this->containerBuilder->get(SelfServiceApi::class);
+
+        return $api;
+    }
+
+    /**
+     * This method returns the api for SupportPal system
+     * @return UserApi
+     * @throws Exception
+     */
+    public function getUserApi(): UserApi
+    {
+        /** @var UserApi $api */
+        $api = $this->containerBuilder->get(UserApi::class);
 
         return $api;
     }

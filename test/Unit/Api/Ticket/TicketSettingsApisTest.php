@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
+use SupportPal\ApiClient\Api\TicketApi;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -14,6 +16,9 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class TicketSettingsApisTest extends ApiTest
 {
+    /** @var TicketApi */
+    protected $api;
+
     public function testGetTicketsSettings(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
@@ -23,11 +28,27 @@ class TicketSettingsApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getTicketSettings()
+            ->getSettings()
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $ticketSettings = $this->api->getTicketSettings();
+        $ticketSettings = $this->api->getSettings();
         $this->assertSame($expectedOutput, $ticketSettings);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return TicketApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

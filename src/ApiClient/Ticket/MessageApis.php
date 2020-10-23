@@ -16,7 +16,7 @@ trait MessageApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function postTicketMessage(array $body): ResponseInterface
+    public function postMessage(array $body): ResponseInterface
     {
         $request = $this->getRequestFactory()->create(
             'POST',
@@ -33,7 +33,7 @@ trait MessageApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getTicketMessages(array $queryParameters): ResponseInterface
+    public function getMessages(array $queryParameters): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_MESSAGE, $queryParameters);
     }
@@ -43,7 +43,7 @@ trait MessageApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getTicketMessage(int $messageId): ResponseInterface
+    public function getMessage(int $messageId): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_MESSAGE . '/' .  $messageId, []);
     }

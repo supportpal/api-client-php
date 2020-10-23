@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\Api;
 
+use SupportPal\ApiClient\Api\TicketApi;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\TicketApisData;
 use SupportPal\ApiClient\Tests\Integration\ApiTestCase;
@@ -32,5 +33,13 @@ class TicketApisTest extends ApiTestCase
     protected function getPutEndpoints(): array
     {
         return (new TicketApisData)->putApiCalls();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClass(): string
+    {
+        return TicketApi::class;
     }
 }

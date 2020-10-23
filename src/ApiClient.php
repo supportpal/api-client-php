@@ -6,10 +6,6 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\ApiClient\CoreApis;
-use SupportPal\ApiClient\ApiClient\SelfServiceApis;
-use SupportPal\ApiClient\ApiClient\TicketApis;
-use SupportPal\ApiClient\ApiClient\UserApis;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
@@ -24,11 +20,6 @@ use function is_array;
  */
 class ApiClient
 {
-    use CoreApis;
-    use SelfServiceApis;
-    use TicketApis;
-    use UserApis;
-
     /** @var ClientInterface */
     private $httpClient;
 

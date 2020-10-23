@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Tests\Functional;
 
 use GuzzleHttp\Psr7\Response;
-use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
@@ -43,10 +42,5 @@ class SupportPalTest extends ContainerAwareBaseTestCase
         $this->appendRequestResponse($response);
         $request = $this->getSupportPal()->getRequestFactory()->create('GET', 'test_endpoint');
         $this->getSupportPal()->sendRequest($request);
-    }
-
-    public function testGetApi(): void
-    {
-        self::assertInstanceOf(Api::class, $this->supportPal->getApi());
     }
 }

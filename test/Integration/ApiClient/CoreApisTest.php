@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
+use SupportPal\ApiClient\ApiClient\CoreApiClient;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
@@ -20,7 +21,7 @@ class CoreApisTest extends ApiClientTest
         $brandData = new BrandData;
 
         return [
-            'getCoreSettings' => [(new CoreSettingsData)->getResponse(), []],
+            'getSettings' => [(new CoreSettingsData)->getResponse(), []],
             'getBrands' => [$brandData->getAllResponse(), [[]]],
             'getBrand' => [$brandData->getResponse(), [1]],
         ];
@@ -40,5 +41,13 @@ class CoreApisTest extends ApiClientTest
     protected function getPutEndpoints(): array
     {
         return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientClass()
+    {
+        return CoreApiClient::class;
     }
 }

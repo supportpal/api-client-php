@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class CustomFieldApisTest extends ApiClientTest
 {
+    /** @var TicketApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testCustomFieldId = 1;
 
@@ -29,7 +33,7 @@ class CustomFieldApisTest extends ApiClientTest
             (string) json_encode((new TicketCustomFieldData)->getAllResponse()),
             $request
         );
-        $getTypeSuccessfulResponse = $this->apiClient->getTicketCustomFields($queryParams);
+        $getTypeSuccessfulResponse = $this->apiClient->getCustomFields($queryParams);
         self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
     }
 
@@ -39,7 +43,7 @@ class CustomFieldApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_CUSTOMFIELD, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getTicketCustomFields($queryParams);
+        $this->apiClient->getCustomFields($queryParams);
     }
 
     /**
@@ -53,7 +57,7 @@ class CustomFieldApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_CUSTOMFIELD, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getTicketCustomFields($queryParams);
+        $this->apiClient->getCustomFields($queryParams);
     }
 
     public function testGetCustomField(): void
@@ -71,7 +75,7 @@ class CustomFieldApisTest extends ApiClientTest
             $request
         );
 
-        $getCustomFieldTypeSuccessfulResponse = $this->apiClient->getTicketCustomField($this->testCustomFieldId);
+        $getCustomFieldTypeSuccessfulResponse = $this->apiClient->getCustomField($this->testCustomFieldId);
         self::assertSame($response->reveal(), $getCustomFieldTypeSuccessfulResponse);
     }
 
@@ -85,7 +89,7 @@ class CustomFieldApisTest extends ApiClientTest
             []
         );
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getTicketCustomField($this->testCustomFieldId);
+        $this->apiClient->getCustomField($this->testCustomFieldId);
     }
 
     /**
@@ -103,6 +107,14 @@ class CustomFieldApisTest extends ApiClientTest
             []
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getTicketCustomField($this->testCustomFieldId);
+        $this->apiClient->getCustomField($this->testCustomFieldId);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class CommentApisTest extends ApiClientTest
 {
+    /** @var SelfServiceApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testCommentId = 1;
 
@@ -29,7 +33,7 @@ class CommentApisTest extends ApiClientTest
             (string) json_encode($commentData->getResponse()),
             $request
         );
-        $postCommentResponse = $this->apiClient->postSelfServiceComment([]);
+        $postCommentResponse = $this->apiClient->postComment([]);
         self::assertSame($response->reveal(), $postCommentResponse);
     }
 
@@ -43,7 +47,7 @@ class CommentApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('POST', ApiDictionary::SELF_SERVICE_COMMENT, [], []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->postSelfServiceComment([]);
+        $this->apiClient->postComment([]);
     }
 
     public function testHttpExceptionPostSelfServiceComment(): void
@@ -51,7 +55,7 @@ class CommentApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('POST', ApiDictionary::SELF_SERVICE_COMMENT, [], []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->postSelfServiceComment([]);
+        $this->apiClient->postComment([]);
     }
 
     public function testGetComments(): void
@@ -138,5 +142,13 @@ class CommentApisTest extends ApiClientTest
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getComment($this->testCommentId);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return SelfServiceApiClient::class;
     }
 }

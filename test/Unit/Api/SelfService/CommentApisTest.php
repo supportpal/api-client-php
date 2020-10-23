@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
+use SupportPal\ApiClient\Api\SelfServiceApi;
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
@@ -15,6 +17,9 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class CommentApisTest extends ApiTest
 {
+    /** @var SelfServiceApi */
+    protected $api;
+
     /** @var int */
     private $testCommentId = 1;
 
@@ -30,7 +35,7 @@ class CommentApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->postSelfServiceComment($arrayData)
+            ->postComment($arrayData)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
@@ -77,5 +82,21 @@ class CommentApisTest extends ApiTest
 
         $returnedComment = $this->api->getComment($this->testCommentId);
         self::assertSame($expectedOutput, $returnedComment);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return SelfServiceApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return SelfServiceApiClient::class;
     }
 }

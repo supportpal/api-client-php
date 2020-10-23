@@ -1,15 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Api;
+namespace SupportPal\ApiClient\Api\Ticket;
 
-use SupportPal\ApiClient\Api\Ticket\AttachmentApis;
-use SupportPal\ApiClient\Api\Ticket\ChannelSettingsApis;
-use SupportPal\ApiClient\Api\Ticket\CustomFieldApis;
-use SupportPal\ApiClient\Api\Ticket\DepartmentApis;
-use SupportPal\ApiClient\Api\Ticket\MessageApis;
-use SupportPal\ApiClient\Api\Ticket\PriorityApis;
-use SupportPal\ApiClient\Api\Ticket\SettingsApis;
-use SupportPal\ApiClient\Api\Ticket\StatusApis;
+use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
@@ -20,20 +14,9 @@ use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
 use function array_map;
 
-/**
- * Contains all ApiCalls pre and post processing that falls under Tickets Module
- * @package SupportPal\ApiClient\Api
- */
 trait TicketApis
 {
-    use AttachmentApis;
-    use ChannelSettingsApis;
-    use CustomFieldApis;
-    use DepartmentApis;
-    use PriorityApis;
-    use MessageApis;
-    use SettingsApis;
-    use StatusApis;
+    use ApiAware;
 
     /**
      * @param array<mixed> $queryParameters
@@ -114,4 +97,6 @@ trait TicketApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): TicketApiClient;
 }

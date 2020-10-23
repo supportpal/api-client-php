@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api\User;
 
 use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
@@ -20,9 +21,9 @@ trait UserGroupApis
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function getUserGroups(array $queryParameters = []): Collection
+    public function getGroups(array $queryParameters = []): Collection
     {
-        $response = $this->getApiClient()->getUserGroups($queryParameters);
+        $response = $this->getApiClient()->getGroups($queryParameters);
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createGroup'], $body['data']);
 
@@ -34,9 +35,9 @@ trait UserGroupApis
      * @return Group
      * @throws HttpResponseException
      */
-    public function getUserGroup(int $userGroupId): Group
+    public function getGroup(int $userGroupId): Group
     {
-        $response = $this->getApiClient()->getUserGroup($userGroupId);
+        $response = $this->getApiClient()->getGroup($userGroupId);
 
         return $this->createGroup($this->decodeBody($response)['data']);
     }
@@ -52,4 +53,6 @@ trait UserGroupApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): UserApiClient;
 }

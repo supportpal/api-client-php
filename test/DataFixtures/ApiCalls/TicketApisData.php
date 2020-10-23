@@ -35,20 +35,20 @@ class TicketApisData
         return [
             'getDepartments' => [$departmentData->getAllResponse(), []],
             'getDepartment' => [$departmentData->getResponse(), [1]],
-            'getTicketSettings' => [$settingsData->getResponse(), []],
+            'getSettings' => [$settingsData->getResponse(), []],
             'getChannelSettings' => [$channelSettingsData->getResponse(), ['web']],
-            'getTicketCustomFields' => [$ticketCustomFieldData->getAllResponse(), []],
-            'getTicketCustomField' => [$ticketCustomFieldData->getResponse(), [1]],
-            'getTicketPriorities' => [$priorityData->getAllResponse(), []],
-            'getTicketPriority' => [$priorityData->getResponse(), [1]],
-            'getTicketStatuses' => [$priorityData->getAllResponse(), []],
-            'getTicketStatus' => [$statusData->getResponse(), [1]],
-            'getTicketAttachments' => [$attachmentData->getAllResponse(), []],
-            'getTicketAttachment' => [$attachmentData->getResponse(), [1]],
+            'getCustomFields' => [$ticketCustomFieldData->getAllResponse(), []],
+            'getCustomField' => [$ticketCustomFieldData->getResponse(), [1]],
+            'getPriorities' => [$priorityData->getAllResponse(), []],
+            'getPriority' => [$priorityData->getResponse(), [1]],
+            'getStatuses' => [$priorityData->getAllResponse(), []],
+            'getStatus' => [$statusData->getResponse(), [1]],
+            'getAttachments' => [$attachmentData->getAllResponse(), []],
+            'getAttachment' => [$attachmentData->getResponse(), [1]],
             'getTickets' => [$ticketData->getAllResponse(), []],
             'getTicket' => [$ticketData->getResponse(), [1]],
-            'getTicketMessage' => [$messageData->getResponse(), [1]],
-            'getTicketMessages' => [$messageData->getAllResponse(), [1]],
+            'getMessage' => [$messageData->getResponse(), [1]],
+            'getMessages' => [$messageData->getAllResponse(), [1]],
         ];
     }
 
@@ -64,7 +64,7 @@ class TicketApisData
 
         return [
             'postTicket' => [$createTicket, $ticketData],
-            'postTicketMessage' => [$messageData->getFilledInstance(), $messageData->getResponse()],
+            'postMessage' => [$messageData->getFilledInstance(), $messageData->getResponse()],
         ];
     }
 

@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\Functional;
 
 use Exception;
 use GuzzleHttp\Psr7\Response;
+use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Model;
@@ -45,7 +46,7 @@ abstract class ApiComponentTest extends ContainerAwareBaseTestCase
         );
 
         /** @var callable $callable */
-        $callable = [$this->supportPal->getApi(), $functionName];
+        $callable = [$this->getApi(), $functionName];
         $models = call_user_func_array($callable, $parameters);
         $this->assertApiDataMatchesModels($models, $data);
     }
@@ -63,7 +64,7 @@ abstract class ApiComponentTest extends ContainerAwareBaseTestCase
         $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
-        $callable = [$this->supportPal->getApi(), $functionName];
+        $callable = [$this->getApi(), $functionName];
         $postedModel = call_user_func_array($callable, [$model]);
         $this->assertArrayEqualsObjectFields($postedModel, $responseData['data']);
     }
@@ -86,7 +87,7 @@ abstract class ApiComponentTest extends ContainerAwareBaseTestCase
         $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
-        $callable = [$this->supportPal->getApi(), $functionName];
+        $callable = [$this->getApi(), $functionName];
         $postedModel = call_user_func_array($callable, [$model, $modelData]);
         $this->assertArrayEqualsObjectFields($postedModel, $responseData['data']);
     }
@@ -102,7 +103,7 @@ abstract class ApiComponentTest extends ContainerAwareBaseTestCase
     {
         $this->prepareUnsuccessfulApiRequest($response);
         /** @var callable $callable */
-        $callable = [$this->supportPal->getApi(), $endpoint];
+        $callable = [$this->getApi(), $endpoint];
         call_user_func_array($callable, $parameters);
     }
 
@@ -117,7 +118,7 @@ abstract class ApiComponentTest extends ContainerAwareBaseTestCase
     {
         $this->prepareUnsuccessfulApiRequest($response);
         /** @var callable $callable */
-        $callable = [$this->supportPal->getApi(), $endpoint];
+        $callable = [$this->getApi(), $endpoint];
         call_user_func_array($callable, $parameters);
     }
 
@@ -132,7 +133,7 @@ abstract class ApiComponentTest extends ContainerAwareBaseTestCase
     {
         $this->prepareUnsuccessfulApiRequest($response);
         /** @var callable $callable */
-        $callable = [$this->supportPal->getApi(), $endpoint];
+        $callable = [$this->getApi(), $endpoint];
         call_user_func_array($callable, $parameters);
     }
 
@@ -146,7 +147,7 @@ abstract class ApiComponentTest extends ContainerAwareBaseTestCase
     {
         $model = new $modelClass;
         /** @var callable $callable */
-        $callable = [$this->supportPal->getApi(), $endpoint];
+        $callable = [$this->getApi(), $endpoint];
         $this->expectException(InvalidArgumentException::class);
         call_user_func_array($callable, [$model]);
     }
@@ -173,9 +174,11 @@ abstract class ApiComponentTest extends ContainerAwareBaseTestCase
         $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
-        $callable = [$this->supportPal->getApi(), $functionName];
+        $callable = [$this->getApi(), $functionName];
         call_user_func_array($callable, [$model, $modelData]);
     }
+
+    abstract protected function getApi(): Api;
 
     /**
      * @return array<mixed>

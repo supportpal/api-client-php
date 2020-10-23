@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
+use SupportPal\ApiClient\Api\SelfServiceApi;
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Model\SelfService\Tag;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -14,6 +16,9 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class TagApisTest extends ApiTest
 {
+    /** @var SelfServiceApi */
+    protected $api;
+
     public function testGetTag(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
@@ -45,5 +50,21 @@ class TagApisTest extends ApiTest
             ->willReturn($response->reveal());
         $tags = $this->api->getTags([]);
         self::assertSame($expectedOutput, $tags);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return SelfServiceApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return SelfServiceApiClient::class;
     }
 }

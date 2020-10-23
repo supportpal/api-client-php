@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Core;
 
+use SupportPal\ApiClient\ApiClient\CoreApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class CoreApisTest extends ApiClientTest
 {
+    /** @var CoreApiClient */
+    protected $apiClient;
+
     public function testSuccessfulGetCoreSettings(): void
     {
         $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
@@ -26,7 +30,7 @@ class CoreApisTest extends ApiClientTest
             $request
         );
 
-        $coreSettingsResponse = $this->apiClient->getCoreSettings();
+        $coreSettingsResponse = $this->apiClient->getSettings();
         self::assertSame($response->reveal(), $coreSettingsResponse);
     }
 
@@ -40,7 +44,7 @@ class CoreApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getCoreSettings();
+        $this->apiClient->getSettings();
     }
 
     public function testHttpExceptionGetCoreSettings(): void
@@ -48,6 +52,14 @@ class CoreApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getCoreSettings();
+        $this->apiClient->getSettings();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return CoreApiClient::class;
     }
 }

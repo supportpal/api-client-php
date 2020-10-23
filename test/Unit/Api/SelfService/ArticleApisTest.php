@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
+use SupportPal\ApiClient\Api\SelfServiceApi;
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Model\SelfService\Article;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -14,6 +16,9 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class ArticleApisTest extends ApiTest
 {
+    /** @var SelfServiceApi */
+    protected $api;
+
     /** @var int */
     protected $testArticleId = 1;
 
@@ -85,5 +90,21 @@ class ArticleApisTest extends ApiTest
 
         $articles = $this->api->getRelatedArticles(1, 'test', []);
         self::assertSame($expectedOutput, $articles);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return SelfServiceApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return SelfServiceApiClient::class;
     }
 }

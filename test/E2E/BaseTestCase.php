@@ -4,6 +4,10 @@ namespace SupportPal\ApiClient\Tests\E2E;
 
 use GuzzleHttp\Client;
 use PHPUnit\Framework\ExpectationFailedException;
+use SupportPal\ApiClient\Api\CoreApi;
+use SupportPal\ApiClient\Api\SelfServiceApi;
+use SupportPal\ApiClient\Api\TicketApi;
+use SupportPal\ApiClient\Api\UserApi;
 use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\Model;
@@ -88,7 +92,7 @@ abstract class BaseTestCase extends TestCase
             }
 
             $parameters['start'] = $start;
-            $batch = $this->getSupportPal()->getApi()->{$apiCall}($parameters);
+            $batch = $this->getApi()->{$apiCall}($parameters);
             $request = $this
                 ->getSupportPal()
                 ->getRequestFactory()
@@ -122,7 +126,7 @@ abstract class BaseTestCase extends TestCase
 
     protected function settingsTestCase(string $endpoint, string $apiCall): void
     {
-        $model = $this->getSupportPal()->getApi()->{$apiCall}();
+        $model = $this->getApi()->{$apiCall}();
         $request = $this
             ->getSupportPal()
             ->getRequestFactory()
@@ -148,7 +152,7 @@ abstract class BaseTestCase extends TestCase
                     break;
                 }
 
-                $model = $this->getSupportPal()->getApi()->{$apiCall}($iteration);
+                $model = $this->getApi()->{$apiCall}($iteration);
                 $request = $this
                     ->getSupportPal()
                     ->getRequestFactory()
@@ -282,4 +286,9 @@ abstract class BaseTestCase extends TestCase
      * @return string[]
      */
     abstract protected function getGetByIdEndpoints(): array;
+
+    /**
+     * @return UserApi|SelfServiceApi|TicketApi|CoreApi
+     */
+    abstract protected function getApi();
 }

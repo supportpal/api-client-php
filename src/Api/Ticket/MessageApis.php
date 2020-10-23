@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api\Ticket;
 
 use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
@@ -21,7 +22,7 @@ trait MessageApis
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function postTicketMessage(Message $message): Message
+    public function postMessage(Message $message): Message
     {
         try {
             $messageArray = $this->getModelToArrayConverter()->convertOne($message);
@@ -33,7 +34,7 @@ trait MessageApis
             );
         }
 
-        $response = $this->getApiClient()->postTicketMessage($messageArray);
+        $response = $this->getApiClient()->postMessage($messageArray);
 
         return $this->createMessage($this->decodeBody($response)['data']);
     }
@@ -45,10 +46,10 @@ trait MessageApis
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function getTicketMessages(int $ticketId, array $queryParameters = []): Collection
+    public function getMessages(int $ticketId, array $queryParameters = []): Collection
     {
         $queryParameters['ticket_id'] = $ticketId;
-        $response = $this->getApiClient()->getTicketMessages($queryParameters);
+        $response = $this->getApiClient()->getMessages($queryParameters);
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createMessage'], $body['data']);
 
@@ -60,9 +61,9 @@ trait MessageApis
      * @return Message
      * @throws HttpResponseException
      */
-    public function getTicketMessage(int $messageId): Message
+    public function getMessage(int $messageId): Message
     {
-        $response = $this->getApiClient()->getTicketMessage($messageId);
+        $response = $this->getApiClient()->getMessage($messageId);
 
         return $this->createMessage($this->decodeBody($response)['data']);
     }
@@ -78,4 +79,6 @@ trait MessageApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): TicketApiClient;
 }

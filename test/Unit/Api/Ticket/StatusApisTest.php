@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
+use SupportPal\ApiClient\Api\TicketApi;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Model\Ticket\Status;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -14,7 +16,10 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class StatusApisTest extends ApiTest
 {
-    public function testGetTicketsStatuses(): void
+    /** @var TicketApi */
+    protected $api;
+
+    public function testGetStatuses(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
             (new StatusData)->getAllResponse(),
@@ -23,15 +28,15 @@ class StatusApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getTicketStatuses([])
+            ->getStatuses([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $ticketsStatus = $this->api->getTicketStatuses();
+        $ticketsStatus = $this->api->getStatuses();
         $this->assertSame($expectedOutput, $ticketsStatus);
     }
 
-    public function testGetTicketsStatus(): void
+    public function testGetStatus(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
             (new StatusData)->getResponse(),
@@ -40,11 +45,27 @@ class StatusApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getTicketStatus(1)
+            ->getStatus(1)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $ticketsStatus = $this->api->getTicketStatus(1);
+        $ticketsStatus = $this->api->getStatus(1);
         $this->assertSame($expectedOutput, $ticketsStatus);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return TicketApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

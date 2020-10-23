@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
+use SupportPal\ApiClient\Api\SelfServiceApi;
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Model\SelfService\Category;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -14,6 +16,9 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class CategoryApisTest extends ApiTest
 {
+    /** @var SelfServiceApi */
+    protected $api;
+
     public function testGetCategory(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
@@ -46,5 +51,21 @@ class CategoryApisTest extends ApiTest
 
         $returnedCategories = $this->api->getCategories([]);
         self::assertSame($expectedOutput, $returnedCategories);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return SelfServiceApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return SelfServiceApiClient::class;
     }
 }

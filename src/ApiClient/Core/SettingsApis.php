@@ -20,7 +20,7 @@ trait SettingsApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getCoreSettings(): ResponseInterface
+    public function getSettings(): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::CORE_SETTINGS, []);
     }

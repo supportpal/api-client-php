@@ -25,7 +25,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     {
         parent::setUp();
         /** @var Api $api */
-        $api = $this->getContainer()->get(Api::class);
+        $api = $this->getContainer()->get($this->getApiClass());
         $this->api = $api;
     }
 
@@ -71,4 +71,9 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
      * @return array<mixed>
      */
     abstract protected function getGetEndpoints(): array;
+
+    /**
+     * @return string
+     */
+    abstract protected function getApiClass(): string;
 }

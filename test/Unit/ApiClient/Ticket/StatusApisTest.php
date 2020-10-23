@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class StatusApisTest extends ApiClientTest
 {
+    /** @var TicketApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testStatusId = 1;
 
@@ -29,7 +33,7 @@ class StatusApisTest extends ApiClientTest
             (string) json_encode((new StatusData)->getAllResponse()),
             $request
         );
-        $getTypeSuccessfulResponse = $this->apiClient->getTicketStatuses($queryParams);
+        $getTypeSuccessfulResponse = $this->apiClient->getStatuses($queryParams);
         self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
     }
 
@@ -39,7 +43,7 @@ class StatusApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_STATUS, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getTicketStatuses($queryParams);
+        $this->apiClient->getStatuses($queryParams);
     }
 
     /**
@@ -53,7 +57,7 @@ class StatusApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_STATUS, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getTicketStatuses($queryParams);
+        $this->apiClient->getStatuses($queryParams);
     }
 
     public function testGetStatus(): void
@@ -71,7 +75,7 @@ class StatusApisTest extends ApiClientTest
             $request
         );
 
-        $getStatusTypeSuccessfulResponse = $this->apiClient->getTicketStatus($this->testStatusId);
+        $getStatusTypeSuccessfulResponse = $this->apiClient->getStatus($this->testStatusId);
         self::assertSame($response->reveal(), $getStatusTypeSuccessfulResponse);
     }
 
@@ -85,7 +89,7 @@ class StatusApisTest extends ApiClientTest
             []
         );
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getTicketStatus($this->testStatusId);
+        $this->apiClient->getStatus($this->testStatusId);
     }
 
     /**
@@ -103,6 +107,14 @@ class StatusApisTest extends ApiClientTest
             []
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getTicketStatus($this->testStatusId);
+        $this->apiClient->getStatus($this->testStatusId);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

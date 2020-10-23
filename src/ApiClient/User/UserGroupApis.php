@@ -16,7 +16,7 @@ trait UserGroupApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getUserGroups(array $parameters): ResponseInterface
+    public function getGroups(array $parameters): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::USER_USERGROUP, $parameters);
     }
@@ -26,7 +26,7 @@ trait UserGroupApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getUserGroup(int $userGroupId): ResponseInterface
+    public function getGroup(int $userGroupId): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(
             ApiDictionary::USER_USERGROUP . '/' . $userGroupId,

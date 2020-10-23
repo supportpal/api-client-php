@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api\SelfService;
 
 use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
@@ -37,7 +38,7 @@ trait CommentApis
             );
         }
 
-        $response = $this->getApiClient()->postSelfServiceComment($commentArray);
+        $response = $this->getApiClient()->postComment($commentArray);
 
         return $this->createComment($this->decodeBody($response)['data']);
     }
@@ -80,4 +81,6 @@ trait CommentApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): SelfServiceApiClient;
 }

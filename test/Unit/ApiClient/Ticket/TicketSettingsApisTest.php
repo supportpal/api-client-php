@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class TicketSettingsApisTest extends ApiClientTest
 {
+    /** @var TicketApiClient */
+    protected $apiClient;
+
     public function testSuccessfulGetTicketSettings(): void
     {
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_SETTINGS, [], []);
@@ -26,7 +30,7 @@ class TicketSettingsApisTest extends ApiClientTest
             $request
         );
 
-        $ticketSettingsResponse = $this->apiClient->getTicketSettings();
+        $ticketSettingsResponse = $this->apiClient->getSettings();
         self::assertSame($response->reveal(), $ticketSettingsResponse);
     }
 
@@ -40,7 +44,7 @@ class TicketSettingsApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_SETTINGS, [], []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getTicketSettings();
+        $this->apiClient->getSettings();
     }
 
     public function testHttpExceptionGetTicketSettings(): void
@@ -48,6 +52,14 @@ class TicketSettingsApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_SETTINGS, [], []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getTicketSettings();
+        $this->apiClient->getSettings();
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }
