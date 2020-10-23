@@ -60,7 +60,9 @@ class SelfServiceApisTest extends ApiClientTest
 
         return [
             'getComments' => [$commentData->getAllResponse(), [[]]],
+            'getComment' => [$commentData->getResponse(), [1]],
             'getTypes' => [$typeData->getAllResponse(), [[]]],
+            'getType' => [$typeData->getResponse(), [1]],
             'getSelfServiceSettings' => [$settingsData->getResponse(), [[]]],
             'getArticle' => [$articleData->getResponse(), [1, []]],
             'getArticlesByTerm' => [$articleData->getAllResponse(), [[]]],
@@ -68,6 +70,28 @@ class SelfServiceApisTest extends ApiClientTest
             'getCategory' => [$categoryData->getResponse(), [1]],
             'getCategories' => [$categoryData->getAllResponse(), [[]]],
             'getTag' => [$tagData->getResponse(), [1]],
+            'getTags' => [$tagData->getAllResponse(), [[]]],
+            'getRelatedArticles' => [$tagData->getResponse(), [[]]],
         ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getPostEndpoints(): array
+    {
+        $commentData = new CommentData;
+
+        return [
+            'postSelfServiceComment' => [$commentData->getArrayData(), $commentData->getResponse()],
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPutEndpoints(): array
+    {
+        return [];
     }
 }

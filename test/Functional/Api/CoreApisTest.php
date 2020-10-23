@@ -18,4 +18,20 @@ class CoreApisTest extends ApiComponentTest
     {
         return (new CoreApisData)->getApiCalls();
     }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getPostEndpoints(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getPutEndpoints(): array
+    {
+        return [];
+    }
 }

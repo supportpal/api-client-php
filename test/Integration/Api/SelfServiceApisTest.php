@@ -59,4 +59,20 @@ class SelfServiceApisTest extends ApiTestCase
     {
         return (new SelfServiceApisData)->getApiCalls();
     }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getPostEndpoints(): array
+    {
+        return (new SelfServiceApisData)->postApiCalls();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getPutEndpoints(): array
+    {
+        return [];
+    }
 }

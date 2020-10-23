@@ -25,4 +25,20 @@ class CoreApisTest extends ApiClientTest
             'getBrand' => [$brandData->getResponse(), [1]],
         ];
     }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getPostEndpoints(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getPutEndpoints(): array
+    {
+        return [];
+    }
 }
