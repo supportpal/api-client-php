@@ -109,4 +109,39 @@ class MessageApisTest extends ApiClientTest
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getTicketMessage($this->testMessageId);
     }
+
+    public function testTicketMessage(): void
+    {
+        $commentData = new MessageData;
+        $request = $this->requestCommonExpectations('POST', ApiDictionary::TICKET_MESSAGE, [], []);
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode($commentData->getResponse()),
+            $request
+        );
+
+        $postTicketMessageResponse = $this->apiClient->postTicketMessage([]);
+        self::assertSame($response->reveal(), $postTicketMessageResponse);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulTicketMessage(int $statusCode, string $responseBody): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('POST', ApiDictionary::TICKET_MESSAGE, [], []);
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->postTicketMessage([]);
+    }
+
+    public function testHttpExceptionTicketMessage(): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('POST', ApiDictionary::TICKET_MESSAGE, [], []);
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->postTicketMessage([]);
+    }
 }

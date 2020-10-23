@@ -12,6 +12,11 @@ use SupportPal\ApiClient\Tests\TestCase;
 use SupportPal\ApiClient\Transformer\Transformer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
+/**
+ * Class ModelNormalizerTest
+ * @package SupportPal\ApiClient\Tests\Unit\ModelNormalizer
+ * @covers \SupportPal\ApiClient\Normalizer\ModelNormalizer
+ */
 class ModelNormalizerTest extends TestCase
 {
     /** @var ObjectProphecy */

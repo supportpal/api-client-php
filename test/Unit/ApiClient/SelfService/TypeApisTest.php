@@ -17,6 +17,9 @@ use function json_encode;
  */
 class TypeApisTest extends ApiClientTest
 {
+    /** @var int */
+    private $testTypeId = 1;
+
     public function testGetTypes(): void
     {
         $queryParams = ['test' => 'value'];
@@ -51,5 +54,55 @@ class TypeApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getTypes($queryParams);
+    }
+
+    public function testGetType(): void
+    {
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE . '/' . $this->testTypeId,
+            [],
+            []
+        );
+
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode((new TypeData)->getResponse()),
+            $request
+        );
+
+        $geTypeSuccessfulResponse = $this->apiClient->getType($this->testTypeId);
+        self::assertSame($response->reveal(), $geTypeSuccessfulResponse);
+    }
+
+    public function testHttpExceptionGetType(): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE . '/' . $this->testTypeId,
+            [],
+            []
+        );
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->getType($this->testTypeId);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetType(int $statusCode, string $responseBody): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE . '/' . $this->testTypeId,
+            [],
+            []
+        );
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->getType($this->testTypeId);
     }
 }

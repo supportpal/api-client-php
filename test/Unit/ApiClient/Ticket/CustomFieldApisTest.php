@@ -17,6 +17,9 @@ use function json_encode;
  */
 class CustomFieldApisTest extends ApiClientTest
 {
+    /** @var int */
+    private $testCustomFieldId = 1;
+
     public function testGetTicketCustomFields(): void
     {
         $queryParams = [];
@@ -51,5 +54,55 @@ class CustomFieldApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_CUSTOMFIELD, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getTicketCustomFields($queryParams);
+    }
+
+    public function testGetCustomField(): void
+    {
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::TICKET_CUSTOMFIELD . '/' . $this->testCustomFieldId,
+            [],
+            []
+        );
+
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode((new TicketCustomFieldData)->getResponse()),
+            $request
+        );
+
+        $getCustomFieldTypeSuccessfulResponse = $this->apiClient->getTicketCustomField($this->testCustomFieldId);
+        self::assertSame($response->reveal(), $getCustomFieldTypeSuccessfulResponse);
+    }
+
+    public function testHttpExceptionGetCustomField(): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::TICKET_CUSTOMFIELD . '/' . $this->testCustomFieldId,
+            [],
+            []
+        );
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->getTicketCustomField($this->testCustomFieldId);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetCustomField(int $statusCode, string $responseBody): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::TICKET_CUSTOMFIELD . '/' . $this->testCustomFieldId,
+            [],
+            []
+        );
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->getTicketCustomField($this->testCustomFieldId);
     }
 }

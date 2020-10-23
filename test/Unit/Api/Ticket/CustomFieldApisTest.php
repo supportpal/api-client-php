@@ -14,7 +14,10 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class CustomFieldApisTest extends ApiTest
 {
-    public function testGetCustomField(): void
+    /** @var int */
+    private $testId = 1;
+
+    public function testGetCustomFields(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
             (new TicketCustomFieldData)->getAllResponse(),
@@ -29,5 +32,22 @@ class CustomFieldApisTest extends ApiTest
 
         $customFields = $this->api->getTicketCustomFields([]);
         self::assertSame($expectedOutput, $customFields);
+    }
+
+    public function testGetTicketCustomField(): void
+    {
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            (new TicketCustomFieldData)->getResponse(),
+            TicketCustomField::class
+        );
+
+        $this
+            ->apiClient
+            ->getTicketCustomField($this->testId)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $ticketCustomFields = $this->api->getTicketCustomField($this->testId);
+        self::assertSame($expectedOutput, $ticketCustomFields);
     }
 }

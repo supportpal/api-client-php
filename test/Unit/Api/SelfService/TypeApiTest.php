@@ -29,4 +29,20 @@ class TypeApiTest extends ApiTest
         $articleTypes = $this->api->getTypes();
         self::assertSame($expectedOutput, $articleTypes);
     }
+
+    public function testGetType(): void
+    {
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            (new TypeData)->getResponse(),
+            Type::class
+        );
+
+        $this
+            ->apiClient
+            ->getType(1)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+        $types = $this->api->getType(1);
+        self::assertSame($expectedOutput, $types);
+    }
 }

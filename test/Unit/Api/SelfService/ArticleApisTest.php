@@ -66,4 +66,24 @@ class ArticleApisTest extends ApiTest
         $articles = $this->api->getArticles([]);
         self::assertSame($expectedOutput, $articles);
     }
+
+    public function testGetRelatedArticles(): void
+    {
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            (new ArticleData)->getAllResponse(),
+            Article::class
+        );
+
+        $this
+            ->apiClient
+            ->getRelatedArticles([
+                'term' => 'test',
+                'type_id' => 1,
+            ])
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $articles = $this->api->getRelatedArticles(1, 'test', []);
+        self::assertSame($expectedOutput, $articles);
+    }
 }

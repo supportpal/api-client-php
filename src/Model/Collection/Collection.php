@@ -127,7 +127,7 @@ class Collection
      */
     public function merge(Collection $collection): Collection
     {
-        return new self($this->getCount(), array_merge($this->getModels(), $collection->getModels()));
+        return new self($collection->getCount(), array_merge($this->getModels(), $collection->getModels()));
     }
 
     /**

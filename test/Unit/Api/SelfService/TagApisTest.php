@@ -14,7 +14,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  */
 class TagApisTest extends ApiTest
 {
-    public function testGetComments(): void
+    public function testGetTag(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
             (new TagData)->getResponse(),
@@ -27,7 +27,23 @@ class TagApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $comments = $this->api->getTag(1);
-        self::assertSame($expectedOutput, $comments);
+        $tag = $this->api->getTag(1);
+        self::assertSame($expectedOutput, $tag);
+    }
+
+    public function testGetTags(): void
+    {
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            (new TagData)->getAllResponse(),
+            Tag::class
+        );
+
+        $this
+            ->apiClient
+            ->getTags([])
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+        $tags = $this->api->getTags([]);
+        self::assertSame($expectedOutput, $tags);
     }
 }

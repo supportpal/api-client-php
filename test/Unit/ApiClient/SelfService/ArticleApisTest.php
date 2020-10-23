@@ -141,4 +141,55 @@ class ArticleApisTest extends ApiClientTest
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getArticles($queryParams);
     }
+
+    public function testGetRelatedArticles(): void
+    {
+        $queryParams = [];
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::SELF_SERVICE_ARTICLE_RELATED,
+            $queryParams,
+            []
+        );
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode((new ArticleData)->getAllResponse()),
+            $request
+        );
+        $getTypeSuccessfulResponse = $this->apiClient->getRelatedArticles($queryParams);
+        self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
+    }
+
+    public function testHttpExceptionGetRelatedArticles(): void
+    {
+        $queryParams = [];
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::SELF_SERVICE_ARTICLE_RELATED,
+            $queryParams,
+            []
+        );
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->getRelatedArticles($queryParams);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetRelatedArticles(int $statusCode, string $responseBody): void
+    {
+        $queryParams = [];
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::SELF_SERVICE_ARTICLE_RELATED,
+            $queryParams,
+            []
+        );
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->getRelatedArticles($queryParams);
+    }
 }

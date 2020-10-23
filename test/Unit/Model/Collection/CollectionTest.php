@@ -12,6 +12,8 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\TestCase;
 
 use function array_map;
+use function array_merge;
+use function array_pop;
 use function count;
 use function current;
 use function range;
@@ -85,6 +87,28 @@ class CollectionTest extends TestCase
         $this->assertSame(0, $mappedCollection->getModelsCount());
     }
 
+    public function testCollectionFirst(): void
+    {
+        $models = $this->getModelsTestData();
+        $count = count($models);
+        $collection = new Collection($count, $models);
+
+        $this->assertSame($models[0], $collection->first());
+        for ($i = 1; $i < $count; ++$i) {
+            $this->assertNotSame($models[$i], $collection->first());
+        }
+    }
+
+    /**
+     * @param Collection $collection
+     * @param bool $actualIsEmpty
+     * @dataProvider provideIsEmptyCases
+     */
+    public function testCollectionIsEmpty(Collection $collection, bool $actualIsEmpty): void
+    {
+        $this->assertSame($collection->isEmpty(), $actualIsEmpty);
+    }
+
     public function testCreateWithDifferentModels(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -97,6 +121,36 @@ class CollectionTest extends TestCase
         /** @var Model[] $models */
         $models = [new stdClass, new stdClass];
         new Collection(2, $models);
+    }
+
+    public function testMerge(): void
+    {
+        $models1 = $this->getModelsTestData();
+        $models2 = $this->getModelsTestData();
+        array_pop($models2);
+
+        $collection1 = new Collection(count($models1), $models1);
+        $collection2 = new Collection(count($models2), $models2);
+
+        $merged = $collection1->merge($collection2);
+        $arraysMerge = array_merge($models1, $models2);
+        $this->assertSame($arraysMerge, $merged->getModels());
+        $this->assertSame(count($models2), $merged->getCount());
+        $this->assertSame(count($arraysMerge), $merged->getModelsCount());
+    }
+
+    /**
+     * @return iterable<mixed>
+     * @throws InvalidArgumentException
+     */
+    public function provideIsEmptyCases(): iterable
+    {
+        $models = $this->getModelsTestData();
+
+        yield [new Collection(0, []), true];
+        yield [new Collection(15, []), true];
+        yield [new Collection(0, $models), false];
+        yield [new Collection(0, $models), false];
     }
 
     /**
