@@ -2,7 +2,7 @@ imports:
     - { resource: ../../src/Resources/services.yml }
 
 parameters:
-    apiUrl: 'test1'
+    apiUrl: 'localhost:8080/api/'
     apiToken: 'test2'
     apiContentType: 'test3'
     contentType: 'json'

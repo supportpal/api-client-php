@@ -22,7 +22,7 @@ class CacheableRequestMatcherTest extends TestCase
     {
         parent::setUp();
         $this->cacheableRequestMatcher = new CacheableRequestMatcher([
-            ApiDictionary::CORE_SETTINGS => 'GET'
+            ApiDictionary::CORE_SETTINGS
         ]);
     }
 
