@@ -17,6 +17,9 @@ use function json_encode;
  */
 class CommentApisTest extends ApiClientTest
 {
+    /** @var int */
+    private $testCommentId = 1;
+
     public function testPostSelfServiceComment(): void
     {
         $commentData = new CommentData;
@@ -85,5 +88,55 @@ class CommentApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_COMMENT, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getComments($queryParams);
+    }
+
+    public function testGetComment(): void
+    {
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::SELF_SERVICE_COMMENT . '/' . $this->testCommentId,
+            [],
+            []
+        );
+
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode((new CommentData)->getResponse()),
+            $request
+        );
+
+        $getCommentTypeSuccessfulResponse = $this->apiClient->getComment($this->testCommentId);
+        self::assertSame($response->reveal(), $getCommentTypeSuccessfulResponse);
+    }
+
+    public function testHttpExceptionGetComment(): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::SELF_SERVICE_COMMENT . '/' . $this->testCommentId,
+            [],
+            []
+        );
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->getComment($this->testCommentId);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetComment(int $statusCode, string $responseBody): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::SELF_SERVICE_COMMENT . '/' . $this->testCommentId,
+            [],
+            []
+        );
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->getComment($this->testCommentId);
     }
 }

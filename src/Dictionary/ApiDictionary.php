@@ -28,6 +28,8 @@ final class ApiDictionary
 
     public const SELF_SERVICE_ARTICLE_SEARCH = self::SELF_SERVICE_ARTICLE . '/search';
 
+    public const SELF_SERVICE_ARTICLE_RELATED = self::SELF_SERVICE_ARTICLE . '/related';
+
     public const SELF_SERVICE_SETTINGS = 'selfservice/settings';
 
     public const SELF_SERVICE_CATEGORY = 'selfservice/category';
@@ -38,6 +40,10 @@ final class ApiDictionary
      * User Apis
      */
     public const USER_USER = 'user/user';
+
+    public const USER_USERGROUP = 'user/usergroup';
+
+    public const USER_CUSTOMFIELD = 'user/customfield';
 
     /**
      * Ticket Apis

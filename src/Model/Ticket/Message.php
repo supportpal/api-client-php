@@ -7,6 +7,12 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 class Message extends BaseModel
 {
+    public const REQUIRED_FIELDS = [
+        'ticket_id',
+        'user_id',
+        'text',
+    ];
+
     /**
      * @var int|null
      * @SerializedName("user_id")
@@ -20,13 +26,13 @@ class Message extends BaseModel
     private $id;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("created_at")
      */
     private $createdAt;
 
     /**
-     * @var string
+     * @var string|null
      * @SerializedName("purified_text")
      */
     private $purifiedText;
@@ -44,7 +50,7 @@ class Message extends BaseModel
     private $ticketId;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("channel_id")
      */
     private $channelId;
@@ -56,19 +62,19 @@ class Message extends BaseModel
     private $userIpAddress;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("by")
      */
     private $by;
 
     /**
-     * @var string
+     * @var string|null
      * @SerializedName("excerpt")
      */
     private $excerpt;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("type")
      */
     private $type;
@@ -80,19 +86,19 @@ class Message extends BaseModel
     private $extra;
 
     /**
-     * @var string
+     * @var string|null
      * @SerializedName("user_name")
      */
     private $userName;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("updated_at")
      */
     private $updatedAt;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("is_draft")
      */
     private $isDraft;
@@ -142,18 +148,18 @@ class Message extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCreatedAt(): int
+    public function getCreatedAt(): ?int
     {
         return $this->createdAt;
     }
 
     /**
-     * @param int $createdAt
+     * @param int|null $createdAt
      * @return self
      */
-    public function setCreatedAt(int $createdAt): self
+    public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -161,18 +167,18 @@ class Message extends BaseModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPurifiedText(): string
+    public function getPurifiedText(): ?string
     {
         return $this->purifiedText;
     }
 
     /**
-     * @param string $purifiedText
+     * @param string|null $purifiedText
      * @return self
      */
-    public function setPurifiedText(string $purifiedText): self
+    public function setPurifiedText(?string $purifiedText): self
     {
         $this->purifiedText = $purifiedText;
 
@@ -218,18 +224,18 @@ class Message extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getChannelId(): int
+    public function getChannelId(): ?int
     {
         return $this->channelId;
     }
 
     /**
-     * @param int $channelId
+     * @param int|null $channelId
      * @return self
      */
-    public function setChannelId(int $channelId): self
+    public function setChannelId(?int $channelId): self
     {
         $this->channelId = $channelId;
 
@@ -256,18 +262,18 @@ class Message extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getBy(): int
+    public function getBy(): ?int
     {
         return $this->by;
     }
 
     /**
-     * @param int $by
+     * @param int|null $by
      * @return self
      */
-    public function setBy(int $by): self
+    public function setBy(?int $by): self
     {
         $this->by = $by;
 
@@ -275,18 +281,18 @@ class Message extends BaseModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getExcerpt(): string
+    public function getExcerpt(): ?string
     {
         return $this->excerpt;
     }
 
     /**
-     * @param string $excerpt
+     * @param string|null $excerpt
      * @return self
      */
-    public function setExcerpt(string $excerpt): self
+    public function setExcerpt(?string $excerpt): self
     {
         $this->excerpt = $excerpt;
 
@@ -294,18 +300,18 @@ class Message extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getType(): int
+    public function getType(): ?int
     {
         return $this->type;
     }
 
     /**
-     * @param int $type
+     * @param int|null $type
      * @return self
      */
-    public function setType(int $type): self
+    public function setType(?int $type): self
     {
         $this->type = $type;
 
@@ -332,18 +338,18 @@ class Message extends BaseModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUserName(): string
+    public function getUserName(): ?string
     {
         return $this->userName;
     }
 
     /**
-     * @param string $userName
+     * @param string|null $userName
      * @return self
      */
-    public function setUserName(string $userName): self
+    public function setUserName(?string $userName): self
     {
         $this->userName = $userName;
 
@@ -351,18 +357,18 @@ class Message extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getUpdatedAt(): int
+    public function getUpdatedAt(): ?int
     {
         return $this->updatedAt;
     }
 
     /**
-     * @param int $updatedAt
+     * @param int|null $updatedAt
      * @return self
      */
-    public function setUpdatedAt(int $updatedAt): self
+    public function setUpdatedAt(?int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -370,18 +376,18 @@ class Message extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getIsDraft(): int
+    public function getIsDraft(): ?int
     {
         return $this->isDraft;
     }
 
     /**
-     * @param int $isDraft
+     * @param int|null $isDraft
      * @return self
      */
-    public function setIsDraft(int $isDraft): self
+    public function setIsDraft(?int $isDraft): self
     {
         $this->isDraft = $isDraft;
 

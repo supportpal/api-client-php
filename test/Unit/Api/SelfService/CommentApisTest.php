@@ -2,15 +2,10 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
-use Prophecy\Prophecy\ObjectProphecy;
-use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
-use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
-
-use function json_encode;
 
 /**
  * Class CommentApisTest
@@ -20,41 +15,24 @@ use function json_encode;
  */
 class CommentApisTest extends ApiTest
 {
+    /** @var int */
+    private $testCommentId = 1;
+
     public function testPostComment(): void
     {
         $commentData = new CommentData;
-        /** @var ObjectProphecy $commentInput */
-        $commentInput = $this->prophesize(Comment::class);
-        $commentOutput = $this->prophesize(Comment::class);
-        $formatType = 'json';
-
-        /** @var Comment $commentMock */
-        $commentMock = $commentInput->reveal();
-        $this
-            ->modelToArrayConverter
-            ->convertOne($commentMock)
-            ->willReturn((new CommentData)->getArrayData())
-            ->shouldBeCalled();
-
-        $response = $this->prophesize(ResponseInterface::class);
-        $response
-            ->getBody()
-            ->willReturn(json_encode($commentData->getResponse()));
-
-        $this->decoder
-            ->decode(json_encode($commentData->getResponse()), $formatType)
-            ->shouldBeCalled()
-            ->willReturn($commentData->getResponse());
+        $arrayData = $commentData->getArrayData();
+        [$response, $commentMock, $commentOutput] = $this->postCommonExpectations(
+            $commentData->getResponse(),
+            $arrayData,
+            Comment::class
+        );
 
         $this
             ->apiClient
-            ->postSelfServiceComment($commentData->getArrayData())
+            ->postSelfServiceComment($arrayData)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
-        $this
-            ->modelCollectionFactory
-            ->create(Comment::class, $commentData->getResponse()['data'])
-            ->willReturn($commentOutput->reveal());
 
         $comment = $this->api->postComment($commentMock);
         $this->assertSame($commentOutput->reveal(), $comment);
@@ -62,18 +40,8 @@ class CommentApisTest extends ApiTest
 
     public function testPostCommentWithIncompleteData(): void
     {
-        /** @var ObjectProphecy $commentInput */
-        $commentInput = $this->prophesize(Comment::class);
         /** @var Comment $commentMock */
-        $commentMock = $commentInput->reveal();
-        $this
-            ->modelToArrayConverter
-            ->convertOne($commentMock)
-            ->willThrow(UninitializedPropertyException::class)
-            ->shouldBeCalled();
-
-        /** @var Comment $commentMock */
-        $commentMock = $commentInput->reveal();
+        $commentMock = $this->postIncompleteDataCommonExpectations(Comment::class);
         $this->expectException(InvalidArgumentException::class);
         $this->api->postComment($commentMock);
     }
@@ -92,5 +60,22 @@ class CommentApisTest extends ApiTest
             ->willReturn($response->reveal());
         $comments = $this->api->getComments([]);
         self::assertSame($expectedOutput, $comments);
+    }
+
+    public function testGetComment(): void
+    {
+        [$expectedOutput, $response] = $this->makeCommonExpectations(
+            (new CommentData)->getResponse(),
+            Comment::class
+        );
+
+        $this
+            ->apiClient
+            ->getComment($this->testCommentId)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $returnedComment = $this->api->getComment($this->testCommentId);
+        self::assertSame($expectedOutput, $returnedComment);
     }
 }

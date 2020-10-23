@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\ApiCalls;
 
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
@@ -25,7 +26,9 @@ class SelfServiceApisData
 
         return [
             'getTypes' => [$typeData->getAllResponse(), []],
+            'getType' => [$typeData->getResponse(), [1]],
             'getComments' => [$commentData->getAllResponse(), []],
+            'getComment' => [$commentData->getResponse(), [1]],
             'getSelfServiceSettings' => [$settingsData->getResponse(), []],
             'getCategories' => [$categoryData->getAllResponse(), []],
             'getCategory' => [$categoryData->getResponse(), [1]],
@@ -33,6 +36,21 @@ class SelfServiceApisData
             'getArticlesByTerm' => [$articleData->getAllResponse(), ['search term']],
             'getArticles' => [$articleData->getAllResponse(), [[]]],
             'getTag' => [$tagData->getResponse(), [1]],
+            'getTags' => [$tagData->getAllResponse(), [[]]],
+            'getRelatedArticles' => [$articleData->getAllResponse(), [1, 'test', []]],
+        ];
+    }
+
+    /**
+     * @return array[]
+     * @throws InvalidArgumentException
+     */
+    public function postApiCalls(): array
+    {
+        $commentData = new CommentData;
+
+        return [
+            'postComment' => [$commentData->getFilledInstance(), $commentData->getResponse()],
         ];
     }
 }

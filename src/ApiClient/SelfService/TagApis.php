@@ -24,4 +24,14 @@ trait TagApis
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::SELF_SERVICE_TAG . '/' . $tagId, []);
     }
+
+    /**
+     * @param array<mixed> $queryParameters
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function getTags(array $queryParameters): ResponseInterface
+    {
+        return $this->prepareAndSendGetRequest(ApiDictionary::SELF_SERVICE_TAG, $queryParameters);
+    }
 }

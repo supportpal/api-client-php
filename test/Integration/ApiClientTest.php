@@ -6,6 +6,7 @@ use Exception;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\ApiDataProviders;
@@ -23,6 +24,11 @@ class ApiClientTest extends ContainerAwareBaseTestCase
 
     /** @var ApiClient */
     protected $apiClient;
+
+    /**
+     * used in put endpoints, any int (id) works
+     */
+    private const TEST_ID = 1;
 
     protected function setUp(): void
     {
@@ -71,9 +77,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
             )
         );
 
-        /** @var callable $callable */
-        $callable = [$this->apiClient, $functionName];
-        $response = call_user_func_array($callable, $parameters);
+        $response = $this->makeClientCall($functionName, $parameters);
         self::assertInstanceOf(Response::class, $response);
         self::assertSame($data, $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType()));
     }
@@ -88,9 +92,71 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
-        /** @var callable $callable */
-        $callable = [$this->apiClient, $endpoint];
-        call_user_func_array($callable, $parameters);
+        $this->makeClientCall($endpoint, $parameters);
+    }
+
+    /**
+     * @dataProvider providePostEndpointsTestCases
+     * @param array<mixed> $modelData
+     * @param array<mixed> $responseData
+     * @param string $endpoint
+     * @throws Exception
+     */
+    public function testPostModel(array $modelData, array $responseData, string $endpoint): void
+    {
+        /** @var string $jsonSuccessfulBody */
+        $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
+        $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
+        $response = $this->makeClientCall($endpoint, [$modelData]);
+        self::assertSame(
+            $responseData,
+            $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
+        );
+    }
+
+    /**
+     * @param Response $response
+     * @param string $endpoint
+     * @param array<mixed> $data
+     * @throws Exception
+     * @dataProvider providePostEndpointsUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulPostModel(Response $response, string $endpoint, array $data): void
+    {
+        $this->prepareUnsuccessfulApiRequest($response);
+        $this->makeClientCall($endpoint, [$data]);
+    }
+
+    /**
+     * @dataProvider provideApiClientPutEndpointsTestCases
+     * @param array<mixed> $modelData
+     * @param array<mixed> $responseData
+     * @param string $endpoint
+     * @throws Exception
+     */
+    public function testPutModel(array $modelData, array $responseData, string $endpoint): void
+    {
+        /** @var string $jsonSuccessfulBody */
+        $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
+        $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
+        $response = $this->makeClientCall($endpoint, [self::TEST_ID, $modelData]);
+        self::assertSame(
+            $responseData,
+            $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
+        );
+    }
+
+    /**
+     * @param Response $response
+     * @param string $endpoint
+     * @param array<mixed> $data
+     * @throws Exception
+     * @dataProvider providePutEndpointsUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulPutModel(Response $response, string $endpoint, array $data): void
+    {
+        $this->prepareUnsuccessfulApiRequest($response);
+        $this->makeClientCall($endpoint, [self::TEST_ID, $data]);
     }
 
     /**
@@ -99,5 +165,34 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     protected function getGetEndpoints(): array
     {
         return [];
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    protected function getPostEndpoints(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    protected function getPutEndpoints(): array
+    {
+        return [];
+    }
+
+    /**
+     * @param string $endpoint
+     * @param array<mixed> $parameters
+     * @return ResponseInterface
+     */
+    protected function makeClientCall(string $endpoint, array $parameters): ResponseInterface
+    {
+        /** @var callable $callable */
+        $callable = [$this->apiClient, $endpoint];
+
+        return call_user_func_array($callable, $parameters);
     }
 }

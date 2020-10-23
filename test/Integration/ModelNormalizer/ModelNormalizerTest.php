@@ -84,7 +84,14 @@ class ModelNormalizerTest extends ContainerAwareBaseTestCase
             if (is_array($value)) {
                 $this->assertArraysEqual($value, $arr2[$key]);
             } else {
-                $this->assertSame($value, $arr2[$key]);
+                /**
+                 * normalizer skips null values
+                 */
+                if (isset($arr2[$key])) {
+                    $this->assertSame($value, $arr2[$key]);
+                } else {
+                    self::assertNull($value);
+                }
             }
         }
     }

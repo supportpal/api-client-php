@@ -49,4 +49,39 @@ trait TicketApis
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_TICKET . '/' .  $ticketId, []);
     }
+
+    /**
+     * @param int $ticketId
+     * @param array<mixed> $body
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function updateTicket(int $ticketId, array $body): ResponseInterface
+    {
+        $request = $this->getRequestFactory()->create(
+            'PUT',
+            ApiDictionary::TICKET_TICKET . '/' . $ticketId,
+            [],
+            $body
+        );
+
+        return $this->sendRequest($request);
+    }
+
+    /**
+     * @param array<mixed> $body
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function postTicket(array $body): ResponseInterface
+    {
+        $request = $this->getRequestFactory()->create(
+            'POST',
+            ApiDictionary::TICKET_TICKET,
+            [],
+            $body
+        );
+
+        return $this->sendRequest($request);
+    }
 }

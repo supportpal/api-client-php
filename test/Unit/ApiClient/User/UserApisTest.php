@@ -17,6 +17,9 @@ use function json_encode;
  */
 class UserApisTest extends ApiClientTest
 {
+    /** @var int */
+    private $testUserId = 1;
+
     public function testGetUsers(): void
     {
         $queryParams = ['test' => 'value'];
@@ -51,5 +54,143 @@ class UserApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USER, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getUsers($queryParams);
+    }
+
+    public function testGetUser(): void
+    {
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::USER_USER . '/' . $this->testUserId,
+            [],
+            []
+        );
+
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode((new UserData)->getResponse()),
+            $request
+        );
+
+        $getUserTypeSuccessfulResponse = $this->apiClient->getUser($this->testUserId);
+        self::assertSame($response->reveal(), $getUserTypeSuccessfulResponse);
+    }
+
+    public function testHttpExceptionGetUser(): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::USER_USER . '/' . $this->testUserId,
+            [],
+            []
+        );
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->getUser($this->testUserId);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetUser(int $statusCode, string $responseBody): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'GET',
+            ApiDictionary::USER_USER . '/' . $this->testUserId,
+            [],
+            []
+        );
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->getUser($this->testUserId);
+    }
+
+    public function testPostUser(): void
+    {
+        $ticketData = new UserData;
+        $request = $this->requestCommonExpectations('POST', ApiDictionary::USER_USER, [], []);
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode($ticketData->getResponse()),
+            $request
+        );
+
+        $postUserResponse = $this->apiClient->postUser([]);
+        self::assertSame($response->reveal(), $postUserResponse);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testPostUnsuccessfulUser(int $statusCode, string $responseBody): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('POST', ApiDictionary::USER_USER, [], []);
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->postUser([]);
+    }
+
+    public function testHttpExceptionPostUser(): void
+    {
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('POST', ApiDictionary::USER_USER, [], []);
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->postUser([]);
+    }
+
+    public function testUpdateUser(): void
+    {
+        $userData = new UserData;
+        $request = $this->requestCommonExpectations(
+            'PUT',
+            ApiDictionary::USER_USER . '/' . $this->testUserId,
+            [],
+            $userData->getArrayData()
+        );
+
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode($userData->getResponse()),
+            $request
+        );
+
+        $updateUserTypeSuccessfulResponse = $this->apiClient->updateUser($this->testUserId, $userData->getArrayData());
+        self::assertSame($response->reveal(), $updateUserTypeSuccessfulResponse);
+    }
+
+    public function testHttpExceptionUpdateUser(): void
+    {
+        $userData = new UserData;
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'PUT',
+            ApiDictionary::USER_USER . '/' . $this->testUserId,
+            [],
+            $userData->getArrayData()
+        );
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->updateUser($this->testUserId, $userData->getArrayData());
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulUpdateUser(int $statusCode, string $responseBody): void
+    {
+        $userData = new UserData;
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations(
+            'PUT',
+            ApiDictionary::USER_USER . '/' . $this->testUserId,
+            [],
+            $userData->getArrayData()
+        );
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->updateUser($this->testUserId, $userData->getArrayData());
     }
 }

@@ -4,7 +4,11 @@ namespace SupportPal\ApiClient\Api\SelfService;
 
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Tag as SelfServiceTagAlias;
+
+use function array_map;
 
 /**
  * Trait TagApis, includes all related ApiCalls pre and post processing to Tags
@@ -24,6 +28,20 @@ trait TagApis
         $response = $this->getApiClient()->getTag($tagId);
 
         return $this->createTag($this->decodeBody($response)['data']);
+    }
+
+    /**
+     * @param array<mixed> $queryParameters
+     * @return Collection
+     * @throws HttpResponseException|InvalidArgumentException
+     */
+    public function getTags(array $queryParameters = []): Collection
+    {
+        $response = $this->getApiClient()->getTags($queryParameters);
+        $body = $this->decodeBody($response);
+        $models = array_map([$this, 'createTag'], $body['data']);
+
+        return $this->getCollectionFactory()->create($body['count'], $models);
     }
 
     /**

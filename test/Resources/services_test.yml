@@ -116,6 +116,16 @@ services:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 
+    SupportPal\ApiClient\Factory\User\GroupFactory:
+        public: true
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        tags: [ 'factory.model_factory' ]
+
+    SupportPal\ApiClient\Factory\User\UserCustomFieldFactory:
+        public: true
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        tags: [ 'factory.model_factory' ]
+
     SupportPal\ApiClient\Factory\Collection\CollectionFactory:
         public: true
 

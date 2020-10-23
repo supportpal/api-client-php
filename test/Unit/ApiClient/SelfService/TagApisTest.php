@@ -69,4 +69,40 @@ class TagApisTest extends ApiClientTest
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getTag($this->testTagId);
     }
+
+    public function testGetTags(): void
+    {
+        $queryParams = [];
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_TAG, $queryParams, []);
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode((new TagData)->getAllResponse()),
+            $request
+        );
+        $getTypeSuccessfulResponse = $this->apiClient->getTags($queryParams);
+        self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
+    }
+
+    public function testHttpExceptionGetTags(): void
+    {
+        $queryParams = [];
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_TAG, $queryParams, []);
+        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->apiClient->getTags($queryParams);
+    }
+
+    /**
+     * @param int $statusCode
+     * @param string $responseBody
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetTags(int $statusCode, string $responseBody): void
+    {
+        $queryParams = [];
+        $this->expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_TAG, $queryParams, []);
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->getTags($queryParams);
+    }
 }

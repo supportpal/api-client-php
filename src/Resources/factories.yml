@@ -82,4 +82,12 @@ services:
         parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
         tags: [ 'factory.model_factory' ]
 
+    SupportPal\ApiClient\Factory\User\GroupFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        tags: [ 'factory.model_factory' ]
+
+    SupportPal\ApiClient\Factory\User\UserCustomFieldFactory:
+        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        tags: [ 'factory.model_factory' ]
+
     SupportPal\ApiClient\Factory\Collection\CollectionFactory: ~
