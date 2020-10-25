@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Api;
 
-use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Api\User\CustomFieldApis;
 use SupportPal\ApiClient\Api\User\UserApis;
 use SupportPal\ApiClient\Api\User\UserGroupApis;

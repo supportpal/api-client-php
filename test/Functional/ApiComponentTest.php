@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Tests\Functional;
 
 use Exception;
 use GuzzleHttp\Psr7\Response;
-use SupportPal\ApiClient\Api;
+use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Model;

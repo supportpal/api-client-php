@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Functional\Api;
 
 use Exception;
-use SupportPal\ApiClient\Api;
+use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\CoreApisData;
 use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
 

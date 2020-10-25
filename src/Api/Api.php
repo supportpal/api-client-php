@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient;
+namespace SupportPal\ApiClient\Api;
 
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\ApiClient\CoreApiClient;
 use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\ApiClient\TicketApiClient;

@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Api;
 
-use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Api\SelfService\ArticleApis;
 use SupportPal\ApiClient\Api\SelfService\CategoryApis;
 use SupportPal\ApiClient\Api\SelfService\CommentApis;

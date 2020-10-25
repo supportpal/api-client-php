@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Api;
 
-use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Api\Ticket\AttachmentApis;
 use SupportPal\ApiClient\Api\Ticket\ChannelSettingsApis;
 use SupportPal\ApiClient\Api\Ticket\CustomFieldApis;

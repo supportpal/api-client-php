@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Tests\Unit;
 
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\Api;
+use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;

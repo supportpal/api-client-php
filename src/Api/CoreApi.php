@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Api;
 
-use SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Api\Core\BrandApis;
 use SupportPal\ApiClient\Api\Core\SettingsApis;
 use SupportPal\ApiClient\ApiClient\CoreApiClient;
