@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api\Ticket;
 
 use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
@@ -21,9 +22,9 @@ trait CustomFieldApis
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function getTicketCustomFields(array $queryParameters = []): Collection
+    public function getCustomFields(array $queryParameters = []): Collection
     {
-        $response = $this->getApiClient()->getTicketCustomFields($queryParameters);
+        $response = $this->getApiClient()->getCustomFields($queryParameters);
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createTicketCustomField'], $body['data']);
 
@@ -35,9 +36,9 @@ trait CustomFieldApis
      * @return CustomField
      * @throws HttpResponseException
      */
-    public function getTicketCustomField(int $customFieldId): CustomField
+    public function getCustomField(int $customFieldId): CustomField
     {
-        $response = $this->getApiClient()->getTicketCustomField($customFieldId);
+        $response = $this->getApiClient()->getCustomField($customFieldId);
 
         return $this->createTicketCustomField($this->decodeBody($response)['data']);
     }
@@ -53,4 +54,6 @@ trait CustomFieldApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): TicketApiClient;
 }

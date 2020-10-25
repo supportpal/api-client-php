@@ -37,6 +37,7 @@ class ApiClientTest extends TestCase
     protected $httpClient;
     /** @var ObjectProphecy */
     protected $requestFactory;
+
     /** @var ApiClient */
     protected $apiClient;
 
@@ -59,7 +60,10 @@ class ApiClientTest extends TestCase
         $requestFactory = $this->requestFactory->reveal();
         /** @var DecoderInterface $decoder */
         $decoder = $this->decoder->reveal();
-        $this->apiClient = new ApiClient(
+
+        $apiClassName = $this->getApiClientName();
+
+        $this->apiClient = new $apiClassName(
             $httpClient,
             $requestFactory,
             $decoder,
@@ -176,5 +180,13 @@ class ApiClientTest extends TestCase
             ->willReturn(json_decode($responseBody, true));
 
         return $response;
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return ApiClient::class;
     }
 }

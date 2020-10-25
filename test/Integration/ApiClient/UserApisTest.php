@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
+use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
@@ -26,10 +27,10 @@ class UserApisTest extends ApiClientTest
         return [
             'getUsers' => [$userData->getAllResponse(), [[]]],
             'getUser' => [$userData->getResponse(), [1]],
-            'getUserCustomFields' => [$customFieldsData->getAllResponse(), [[]]],
-            'getUserCustomField' => [$customFieldsData->getResponse(), [1]],
-            'getUserGroups' => [$userGroupData->getAllResponse(), [[]]],
-            'getUserGroup' => [$userGroupData->getResponse(), [1]]
+            'getCustomFields' => [$customFieldsData->getAllResponse(), [[]]],
+            'getCustomField' => [$customFieldsData->getResponse(), [1]],
+            'getGroups' => [$userGroupData->getAllResponse(), [[]]],
+            'getGroup' => [$userGroupData->getResponse(), [1]]
         ];
     }
 
@@ -55,5 +56,13 @@ class UserApisTest extends ApiClientTest
         return [
             'updateUser' => [$userData->getArrayData(), $userData->getResponse()],
         ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientClass()
+    {
+        return UserApiClient::class;
     }
 }

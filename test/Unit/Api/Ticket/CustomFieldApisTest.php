@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
+use SupportPal\ApiClient\Api\TicketApi;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -10,10 +12,13 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class CustomFieldApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
  * @covers \SupportPal\ApiClient\Api\Ticket\CustomFieldApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class CustomFieldApisTest extends ApiTest
 {
+    /** @var TicketApi */
+    protected $api;
+
     /** @var int */
     private $testId = 1;
 
@@ -26,11 +31,11 @@ class CustomFieldApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getTicketCustomFields([])
+            ->getCustomFields([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $customFields = $this->api->getTicketCustomFields([]);
+        $customFields = $this->api->getCustomFields([]);
         self::assertSame($expectedOutput, $customFields);
     }
 
@@ -43,11 +48,27 @@ class CustomFieldApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getTicketCustomField($this->testId)
+            ->getCustomField($this->testId)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $ticketCustomFields = $this->api->getTicketCustomField($this->testId);
+        $ticketCustomFields = $this->api->getCustomField($this->testId);
         self::assertSame($expectedOutput, $ticketCustomFields);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return TicketApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

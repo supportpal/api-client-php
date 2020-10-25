@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
@@ -34,20 +35,20 @@ class TicketApisTest extends ApiClientTest
         return [
             'getDepartments' => [$departmentData->getAllResponse(), [[]]],
             'getDepartment' => [$departmentData->getResponse(), [1]],
-            'getTicketSettings' => [$settingsData->getResponse(), []],
+            'getSettings' => [$settingsData->getResponse(), []],
             'getChannelSettings' => [$channelSettingsData->getResponse(), ['web']],
-            'getTicketCustomFields' => [$ticketCustomFieldData->getAllResponse(), [[]]],
-            'getTicketCustomField' => [$ticketCustomFieldData->getResponse(), [1]],
-            'getTicketPriorities' => [$priorityData->getAllResponse(), [[]]],
-            'getTicketPriority' => [$statusData->getResponse(), [1]],
-            'getTicketStatuses' => [$statusData->getAllResponse(), [[]]],
-            'getTicketStatus' => [$statusData->getResponse(), [1]],
-            'getTicketAttachments' => [$attachmentData->getAllResponse(), [[]]],
-            'getTicketAttachment' => [$attachmentData->getResponse(), [1]],
+            'getCustomFields' => [$ticketCustomFieldData->getAllResponse(), [[]]],
+            'getCustomField' => [$ticketCustomFieldData->getResponse(), [1]],
+            'getPriorities' => [$priorityData->getAllResponse(), [[]]],
+            'getPriority' => [$statusData->getResponse(), [1]],
+            'getStatuses' => [$statusData->getAllResponse(), [[]]],
+            'getStatus' => [$statusData->getResponse(), [1]],
+            'getAttachments' => [$attachmentData->getAllResponse(), [[]]],
+            'getAttachment' => [$attachmentData->getResponse(), [1]],
             'getTickets' => [$ticketData->getAllResponse(), [[]]],
             'getTicket' => [$ticketData->getResponse(), [1]],
-            'getTicketMessage' => [$messageData->getResponse(), [1]],
-            'getTicketMessages' => [$messageData->getAllResponse(), [[]]],
+            'getMessage' => [$messageData->getResponse(), [1]],
+            'getMessages' => [$messageData->getAllResponse(), [[]]],
         ];
     }
 
@@ -61,7 +62,7 @@ class TicketApisTest extends ApiClientTest
 
         return [
             'postTicket' => [CreateTicketData::DATA, $ticketData],
-            'postTicketMessage' => [$messageData->getArrayData(), $messageData->getResponse()],
+            'postMessage' => [$messageData->getArrayData(), $messageData->getResponse()],
         ];
     }
 
@@ -78,5 +79,13 @@ class TicketApisTest extends ApiClientTest
                 $ticketData->getResponse()
             ],
         ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientClass()
+    {
+        return TicketApiClient::class;
     }
 }

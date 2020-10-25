@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\Api;
 
+use SupportPal\ApiClient\Api\UserApi;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\UserApisData;
 use SupportPal\ApiClient\Tests\Integration\ApiTestCase;
@@ -36,5 +37,13 @@ class UserApisTest extends ApiTestCase
     protected function getPutEndpoints(): array
     {
         return (new UserApisData)->putApiCalls();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClass(): string
+    {
+        return UserApi::class;
     }
 }

@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Tests\Unit;
 
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\Api;
+use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
@@ -24,7 +24,7 @@ use function json_encode;
 /**
  * Class ApiTest
  * @package SupportPal\ApiClient\Tests\Unit
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 abstract class ApiTest extends TestCase
 {
@@ -58,7 +58,7 @@ abstract class ApiTest extends TestCase
     {
         parent::setUp();
         $this->modelToArrayConverter = $this->prophesize(ModelToArrayConverter::class);
-        $this->apiClient = $this->prophesize(ApiClient::class);
+        $this->apiClient = $this->prophesize($this->getApiClientName());
         $this->serializationType = 'json';
         $this->modelCollectionFactory = $this->prophesize(ModelCollectionFactory::class);
         $this->decoder = $this->prophesize(DecoderInterface::class);
@@ -75,13 +75,14 @@ abstract class ApiTest extends TestCase
         /** @var CollectionFactory $collectionFactory */
         $collectionFactory = $this->collectionFactory->reveal();
 
-        $this->api = new Api(
+        $apiName = $this->getApiName();
+        $this->api = new $apiName(
             $modelToArrayConverter,
-            $apiClient,
             $modelCollectionFactory,
             $this->serializationType,
             $decoder,
-            $collectionFactory
+            $collectionFactory,
+            $apiClient
         );
     }
 
@@ -230,4 +231,14 @@ abstract class ApiTest extends TestCase
 
         return [$response, $inputMock, $output];
     }
+
+    /**
+     * @return class-string
+     */
+    abstract protected function getApiName(): string;
+
+    /**
+     * @return class-string
+     */
+    abstract protected function getApiClientName(): string;
 }

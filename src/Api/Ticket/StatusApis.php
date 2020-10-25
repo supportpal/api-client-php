@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api\Ticket;
 
 use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
@@ -20,9 +21,9 @@ trait StatusApis
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function getTicketStatuses(array $queryParameters = []): Collection
+    public function getStatuses(array $queryParameters = []): Collection
     {
-        $response = $this->getApiClient()->getTicketStatuses($queryParameters);
+        $response = $this->getApiClient()->getStatuses($queryParameters);
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createStatus'], $body['data']);
 
@@ -34,9 +35,9 @@ trait StatusApis
      * @return Status
      * @throws HttpResponseException
      */
-    public function getTicketStatus(int $statusId): Status
+    public function getStatus(int $statusId): Status
     {
-        $response = $this->getApiClient()->getTicketStatus($statusId);
+        $response = $this->getApiClient()->getStatus($statusId);
 
         return $this->createStatus($this->decodeBody($response)['data']);
     }
@@ -52,4 +53,6 @@ trait StatusApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): TicketApiClient;
 }

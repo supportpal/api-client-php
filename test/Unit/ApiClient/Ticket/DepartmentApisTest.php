@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class DepartmentApisTest extends ApiClientTest
 {
+    /** @var TicketApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testDepartmentId = 1;
 
@@ -104,5 +108,13 @@ class DepartmentApisTest extends ApiClientTest
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getDepartment($this->testDepartmentId);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

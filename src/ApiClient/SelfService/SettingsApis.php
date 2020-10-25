@@ -19,7 +19,7 @@ trait SettingsApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getSelfServiceSettings(): ResponseInterface
+    public function getSettings(): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::SELF_SERVICE_SETTINGS, []);
     }

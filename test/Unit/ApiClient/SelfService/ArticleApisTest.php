@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class ArticleApisTest extends ApiClientTest
 {
+    /** @var SelfServiceApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testArticleId = 1;
 
@@ -191,5 +195,13 @@ class ArticleApisTest extends ApiClientTest
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getRelatedArticles($queryParams);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return SelfServiceApiClient::class;
     }
 }

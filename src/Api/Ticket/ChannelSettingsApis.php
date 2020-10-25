@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api\Ticket;
 
 use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\Ticket\ChannelSettings;
 
@@ -29,4 +30,6 @@ trait ChannelSettingsApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): TicketApiClient;
 }

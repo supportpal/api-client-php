@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\E2E;
 
+use SupportPal\ApiClient\Api\UserApi;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 
 class UserApisTest extends BaseTestCase
@@ -13,6 +14,8 @@ class UserApisTest extends BaseTestCase
     {
         return [
             ApiDictionary::USER_USER => 'getUsers',
+            ApiDictionary::USER_USERGROUP => 'getGroups',
+            ApiDictionary::USER_CUSTOMFIELD => 'getCustomFields',
         ];
     }
 
@@ -21,6 +24,15 @@ class UserApisTest extends BaseTestCase
      */
     protected function getGetByIdEndpoints(): array
     {
-        return [];
+        return [
+            ApiDictionary::USER_USER => 'getUser',
+            ApiDictionary::USER_USERGROUP => 'getGroup',
+            ApiDictionary::USER_CUSTOMFIELD => 'getCustomField',
+        ];
+    }
+
+    protected function getApi(): UserApi
+    {
+        return $this->getSupportPal()->getUserApi();
     }
 }

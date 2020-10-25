@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class SettingsApisTest extends ApiClientTest
 {
+    /** @var SelfServiceApiClient */
+    protected $apiClient;
+
     public function testGetSettings(): void
     {
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_SETTINGS, [], []);
@@ -26,7 +30,7 @@ class SettingsApisTest extends ApiClientTest
             $request
         );
 
-        $getSettingsTypeSuccessfulResponse = $this->apiClient->getSelfServiceSettings();
+        $getSettingsTypeSuccessfulResponse = $this->apiClient->getSettings();
         self::assertSame($response->reveal(), $getSettingsTypeSuccessfulResponse);
     }
 
@@ -35,7 +39,7 @@ class SettingsApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_SETTINGS, [], []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getSelfServiceSettings();
+        $this->apiClient->getSettings();
     }
 
     /**
@@ -48,6 +52,14 @@ class SettingsApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_SETTINGS, [], []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getSelfServiceSettings();
+        $this->apiClient->getSettings();
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return SelfServiceApiClient::class;
     }
 }

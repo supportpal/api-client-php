@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class AttachmentApisTest extends ApiClientTest
 {
+    /** @var TicketApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testAttachmentId = 1;
 
@@ -29,7 +33,7 @@ class AttachmentApisTest extends ApiClientTest
             (string) json_encode((new AttachmentData)->getAllResponse()),
             $request
         );
-        $getTypeSuccessfulResponse = $this->apiClient->getTicketAttachments($queryParams);
+        $getTypeSuccessfulResponse = $this->apiClient->getAttachments($queryParams);
         self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
     }
 
@@ -39,7 +43,7 @@ class AttachmentApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_ATTACHMENT, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getTicketAttachments($queryParams);
+        $this->apiClient->getAttachments($queryParams);
     }
 
     /**
@@ -53,7 +57,7 @@ class AttachmentApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_ATTACHMENT, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getTicketAttachments($queryParams);
+        $this->apiClient->getAttachments($queryParams);
     }
 
     public function testGetAttachment(): void
@@ -71,7 +75,7 @@ class AttachmentApisTest extends ApiClientTest
             $request
         );
 
-        $getAttachmentTypeSuccessfulResponse = $this->apiClient->getTicketAttachment($this->testAttachmentId);
+        $getAttachmentTypeSuccessfulResponse = $this->apiClient->getAttachment($this->testAttachmentId);
         self::assertSame($response->reveal(), $getAttachmentTypeSuccessfulResponse);
     }
 
@@ -85,7 +89,7 @@ class AttachmentApisTest extends ApiClientTest
             []
         );
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getTicketAttachment($this->testAttachmentId);
+        $this->apiClient->getAttachment($this->testAttachmentId);
     }
 
     /**
@@ -103,6 +107,14 @@ class AttachmentApisTest extends ApiClientTest
             []
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getTicketAttachment($this->testAttachmentId);
+        $this->apiClient->getAttachment($this->testAttachmentId);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
@@ -12,11 +13,14 @@ use function json_encode;
 /**
  * Class PriorityApisTest
  * @package SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket
- * @covers \SupportPal\ApiClient\ApiClient\TicketApis
+ * @covers \SupportPal\ApiClient\ApiClient\TicketApiClient
  * @covers \SupportPal\ApiClient\ApiClient
  */
 class TicketApisTest extends ApiClientTest
 {
+    /** @var TicketApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testTicketId = 1;
 
@@ -194,5 +198,13 @@ class TicketApisTest extends ApiClientTest
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->updateTicket($this->testTicketId, $ticketData->getArrayData());
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

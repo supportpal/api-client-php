@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\User;
 
+use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class UserGroupApisTest extends ApiClientTest
 {
+    /** @var UserApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testUserGroupId = 1;
 
@@ -29,7 +33,7 @@ class UserGroupApisTest extends ApiClientTest
             (string) json_encode((new GroupData)->getAllResponse()),
             $request
         );
-        $getTypeSuccessfulResponse = $this->apiClient->getUserGroups($queryParams);
+        $getTypeSuccessfulResponse = $this->apiClient->getGroups($queryParams);
         self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
     }
 
@@ -39,7 +43,7 @@ class UserGroupApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USERGROUP, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getUserGroups($queryParams);
+        $this->apiClient->getGroups($queryParams);
     }
 
     /**
@@ -53,7 +57,7 @@ class UserGroupApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USERGROUP, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getUserGroups($queryParams);
+        $this->apiClient->getGroups($queryParams);
     }
 
     public function testGetUserGroup(): void
@@ -71,8 +75,8 @@ class UserGroupApisTest extends ApiClientTest
             $request
         );
 
-        $getUserGroupTypeSuccessfulResponse = $this->apiClient->getUserGroup($this->testUserGroupId);
-        self::assertSame($response->reveal(), $getUserGroupTypeSuccessfulResponse);
+        $getGroupTypeSuccessfulResponse = $this->apiClient->getGroup($this->testUserGroupId);
+        self::assertSame($response->reveal(), $getGroupTypeSuccessfulResponse);
     }
 
     public function testHttpExceptionGetUserGroup(): void
@@ -85,7 +89,7 @@ class UserGroupApisTest extends ApiClientTest
             []
         );
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getUserGroup($this->testUserGroupId);
+        $this->apiClient->getGroup($this->testUserGroupId);
     }
 
     /**
@@ -103,6 +107,14 @@ class UserGroupApisTest extends ApiClientTest
             []
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getUserGroup($this->testUserGroupId);
+        $this->apiClient->getGroup($this->testUserGroupId);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return UserApiClient::class;
     }
 }

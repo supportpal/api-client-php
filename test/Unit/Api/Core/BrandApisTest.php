@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
 
+use SupportPal\ApiClient\Api\CoreApi;
+use SupportPal\ApiClient\ApiClient\CoreApiClient;
 use SupportPal\ApiClient\Model\Core\Brand;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -10,10 +12,13 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class BrandApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Core
  * @covers \SupportPal\ApiClient\Api\Core\BrandApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class BrandApisTest extends ApiTest
 {
+    /** @var CoreApi */
+    protected $api;
+
     public function testGetBrand(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
@@ -46,5 +51,21 @@ class BrandApisTest extends ApiTest
 
         $returnedBrands = $this->api->getBrands([]);
         self::assertSame($expectedOutput, $returnedBrands);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return CoreApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return CoreApiClient::class;
     }
 }

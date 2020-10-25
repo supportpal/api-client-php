@@ -2,8 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
-use Exception;
-use GuzzleHttp\Psr7\Response;
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
@@ -18,34 +17,6 @@ use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
  */
 class SelfServiceApisTest extends ApiClientTest
 {
-    public function testPostComment(): void
-    {
-        $commentData = new CommentData;
-        /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($commentData->getResponse(), $this->getFormatType());
-        $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
-        $response = $this
-            ->apiClient
-            ->postSelfServiceComment($commentData->getArrayData());
-
-        self::assertSame(
-            $commentData->getResponse(),
-            $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
-        );
-    }
-
-    /**
-     * @param Response $response
-     * @dataProvider provideUnsuccessfulTestCases
-     * @throws Exception
-     */
-    public function testUnsuccessfulPostComment(Response $response): void
-    {
-        $commentData = new CommentData;
-        $this->prepareUnsuccessfulApiRequest($response);
-        $this->apiClient->postSelfServiceComment($commentData->getArrayData());
-    }
-
     /**
      * @inheritDoc
      */
@@ -63,7 +34,7 @@ class SelfServiceApisTest extends ApiClientTest
             'getComment' => [$commentData->getResponse(), [1]],
             'getTypes' => [$typeData->getAllResponse(), [[]]],
             'getType' => [$typeData->getResponse(), [1]],
-            'getSelfServiceSettings' => [$settingsData->getResponse(), [[]]],
+            'getSettings' => [$settingsData->getResponse(), [[]]],
             'getArticle' => [$articleData->getResponse(), [1, []]],
             'getArticlesByTerm' => [$articleData->getAllResponse(), [[]]],
             'getArticles' => [$articleData->getAllResponse(), [[]]],
@@ -83,7 +54,7 @@ class SelfServiceApisTest extends ApiClientTest
         $commentData = new CommentData;
 
         return [
-            'postSelfServiceComment' => [$commentData->getArrayData(), $commentData->getResponse()],
+            'postComment' => [$commentData->getArrayData(), $commentData->getResponse()],
         ];
     }
 
@@ -93,5 +64,13 @@ class SelfServiceApisTest extends ApiClientTest
     public function getPutEndpoints(): array
     {
         return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientClass()
+    {
+        return SelfServiceApiClient::class;
     }
 }

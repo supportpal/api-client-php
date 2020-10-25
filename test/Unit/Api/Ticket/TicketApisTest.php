@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
+use SupportPal\ApiClient\Api\TicketApi;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
@@ -13,11 +15,14 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class ApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\TicketApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\TicketApi
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class TicketApisTest extends ApiTest
 {
+    /** @var TicketApi */
+    protected $api;
+
     public function testGetTickets(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
@@ -110,5 +115,21 @@ class TicketApisTest extends ApiTest
         /** @var Ticket $ticket */
         $ticket = $input->reveal();
         $this->api->updateTicket($ticket, $ticketData->getArrayData());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return TicketApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

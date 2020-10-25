@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\User;
 
+use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
@@ -12,11 +13,14 @@ use function json_encode;
 /**
  * Class UserApisTest
  * @package SupportPal\ApiClient\Tests\Unit\ApiClient
- * @covers \SupportPal\ApiClient\ApiClient\UserApis
+ * @covers \SupportPal\ApiClient\ApiClient\UserApiClient
  * @covers \SupportPal\ApiClient\ApiClient
  */
 class UserApisTest extends ApiClientTest
 {
+    /** @var UserApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testUserId = 1;
 
@@ -192,5 +196,13 @@ class UserApisTest extends ApiClientTest
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->updateUser($this->testUserId, $userData->getArrayData());
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return UserApiClient::class;
     }
 }

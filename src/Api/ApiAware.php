@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Api;
 
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Factory\Collection\CollectionFactory;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
@@ -16,11 +15,6 @@ use Symfony\Component\Serializer\Encoder\DecoderInterface;
  */
 trait ApiAware
 {
-    /**
-     * @return ApiClient
-     */
-    abstract protected function getApiClient(): ApiClient;
-
     /**
      * @return ModelCollectionFactory
      */

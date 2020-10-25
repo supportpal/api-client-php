@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\ApiClient;
 
+use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\ApiClient\SelfService\ArticleApis;
 use SupportPal\ApiClient\ApiClient\SelfService\CategoryApis;
 use SupportPal\ApiClient\ApiClient\SelfService\CommentApis;
@@ -14,7 +15,7 @@ use SupportPal\ApiClient\ApiClient\SelfService\TypeApis;
  * Trait SelfServiceApis
  * @package SupportPal\ApiClient\ApiClient
  */
-trait SelfServiceApis
+class SelfServiceApiClient extends ApiClient
 {
     use ArticleApis;
     use CategoryApis;

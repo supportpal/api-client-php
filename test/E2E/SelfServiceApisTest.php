@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\E2E;
 
+use Exception;
+use SupportPal\ApiClient\Api\SelfServiceApi;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 
 class SelfServiceApisTest extends BaseTestCase
@@ -16,6 +18,7 @@ class SelfServiceApisTest extends BaseTestCase
             ApiDictionary::SELF_SERVICE_COMMENT => 'getComments',
             ApiDictionary::SELF_SERVICE_CATEGORY => 'getCategories',
             ApiDictionary::SELF_SERVICE_ARTICLE => 'getArticles',
+            ApiDictionary::SELF_SERVICE_TAG => 'getTags',
         ];
     }
 
@@ -28,11 +31,22 @@ class SelfServiceApisTest extends BaseTestCase
             ApiDictionary::SELF_SERVICE_CATEGORY => 'getCategory',
             ApiDictionary::SELF_SERVICE_ARTICLE => 'getArticle',
             ApiDictionary::SELF_SERVICE_TAG => 'getTag',
+            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE => 'getType',
+            ApiDictionary::SELF_SERVICE_COMMENT => 'getComment',
         ];
     }
 
     public function testGetSelfServiceSettings(): void
     {
-        $this->settingsTestCase(ApiDictionary::SELF_SERVICE_SETTINGS, 'getSelfServiceSettings');
+        $this->settingsTestCase(ApiDictionary::SELF_SERVICE_SETTINGS, 'getSettings');
+    }
+
+    /**
+     * @return SelfServiceApi
+     * @throws Exception
+     */
+    protected function getApi(): SelfServiceApi
+    {
+        return $this->getSupportPal()->getSelfServiceApi();
     }
 }

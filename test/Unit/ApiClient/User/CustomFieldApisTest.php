@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\User;
 
+use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class CustomFieldApisTest extends ApiClientTest
 {
+    /** @var UserApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testUserCustomFieldId = 1;
 
@@ -29,7 +33,7 @@ class CustomFieldApisTest extends ApiClientTest
             (string) json_encode((new UserCustomFieldData)->getAllResponse()),
             $request
         );
-        $getTypeSuccessfulResponse = $this->apiClient->getUserCustomFields($queryParams);
+        $getTypeSuccessfulResponse = $this->apiClient->getCustomFields($queryParams);
         self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
     }
 
@@ -39,7 +43,7 @@ class CustomFieldApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_CUSTOMFIELD, $queryParams, []);
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getUserCustomFields($queryParams);
+        $this->apiClient->getCustomFields($queryParams);
     }
 
     /**
@@ -53,7 +57,7 @@ class CustomFieldApisTest extends ApiClientTest
         $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_CUSTOMFIELD, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getUserCustomFields($queryParams);
+        $this->apiClient->getCustomFields($queryParams);
     }
 
     public function testGetUserCustomField(): void
@@ -71,8 +75,8 @@ class CustomFieldApisTest extends ApiClientTest
             $request
         );
 
-        $getUserCustomFieldTypeSuccessfulResponse = $this->apiClient->getUserCustomField($this->testUserCustomFieldId);
-        self::assertSame($response->reveal(), $getUserCustomFieldTypeSuccessfulResponse);
+        $getCustomFieldTypeSuccessfulResponse = $this->apiClient->getCustomField($this->testUserCustomFieldId);
+        self::assertSame($response->reveal(), $getCustomFieldTypeSuccessfulResponse);
     }
 
     public function testHttpExceptionGetUserCustomField(): void
@@ -85,7 +89,7 @@ class CustomFieldApisTest extends ApiClientTest
             []
         );
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
-        $this->apiClient->getUserCustomField($this->testUserCustomFieldId);
+        $this->apiClient->getCustomField($this->testUserCustomFieldId);
     }
 
     /**
@@ -103,6 +107,14 @@ class CustomFieldApisTest extends ApiClientTest
             []
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getUserCustomField($this->testUserCustomFieldId);
+        $this->apiClient->getCustomField($this->testUserCustomFieldId);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return UserApiClient::class;
     }
 }

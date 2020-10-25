@@ -1,0 +1,33 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    SupportPal\ApiClient\Api\Api:
+        arguments:
+            $formatType: '%contentType%'
+
+    SupportPal\ApiClient\Api\CoreApi:
+        public: true
+        parent: 'SupportPal\ApiClient\Api\Api'
+        arguments:
+            $apiClient: '@SupportPal\ApiClient\ApiClient\CoreApiClient'
+
+    SupportPal\ApiClient\Api\SelfServiceApi:
+        public: true
+        parent: 'SupportPal\ApiClient\Api\Api'
+        arguments:
+            $apiClient: '@SupportPal\ApiClient\ApiClient\SelfServiceApiClient'
+
+    SupportPal\ApiClient\Api\TicketApi:
+        public: true
+        parent: 'SupportPal\ApiClient\Api\Api'
+        arguments:
+            $apiClient: '@SupportPal\ApiClient\ApiClient\TicketApiClient'
+
+    SupportPal\ApiClient\Api\UserApi:
+        public: true
+        parent: 'SupportPal\ApiClient\Api\Api'
+        arguments:
+            $apiClient:  '@SupportPal\ApiClient\ApiClient\UserApiClient'

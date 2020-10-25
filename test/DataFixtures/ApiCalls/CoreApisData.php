@@ -15,7 +15,7 @@ class CoreApisData
         $brandData = new BrandData;
 
         return [
-            'getCoreSettings' => [(new CoreSettingsData)->getResponse(), []],
+            'getSettings' => [(new CoreSettingsData)->getResponse(), []],
             'getBrands' => [$brandData->getAllResponse(), []],
             'getBrand' => [$brandData->getResponse(), [1]],
         ];

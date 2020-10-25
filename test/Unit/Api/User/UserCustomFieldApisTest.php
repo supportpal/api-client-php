@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
+use SupportPal\ApiClient\Api\UserApi;
+use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Model\User\UserCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -10,10 +12,13 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class UserCustomFieldApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\User
  * @covers \SupportPal\ApiClient\Api\User\CustomFieldApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class UserCustomFieldApisTest extends ApiTest
 {
+    /** @var UserApi */
+    protected $api;
+
     public function testGetUserCustomFields(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
@@ -23,10 +28,10 @@ class UserCustomFieldApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getUserCustomFields([])
+            ->getCustomFields([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
-        $customFields = $this->api->getUserCustomFields([]);
+        $customFields = $this->api->getCustomFields([]);
         self::assertSame($expectedOutput, $customFields);
     }
 
@@ -39,11 +44,27 @@ class UserCustomFieldApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getUserCustomField(1)
+            ->getCustomField(1)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $customField = $this->api->getUserCustomField(1);
+        $customField = $this->api->getCustomField(1);
         self::assertSame($expectedOutput, $customField);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return UserApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return UserApiClient::class;
     }
 }

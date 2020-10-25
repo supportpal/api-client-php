@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\ApiClient;
 
 use Psr\Http\Message\ResponseInterface;
+use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\ApiClient\Ticket\AttachmentApis;
 use SupportPal\ApiClient\ApiClient\Ticket\ChannelSettingsApis;
 use SupportPal\ApiClient\ApiClient\Ticket\CustomFieldApis;
@@ -19,7 +20,7 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
  * Trait TicketApis
  * @package SupportPal\ApiClient\ApiClient
  */
-trait TicketApis
+class TicketApiClient extends ApiClient
 {
     use AttachmentApis;
     use ChannelSettingsApis;

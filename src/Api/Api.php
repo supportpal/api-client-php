@@ -1,29 +1,27 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient;
+namespace SupportPal\ApiClient\Api;
 
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\Api\CoreApis;
-use SupportPal\ApiClient\Api\SelfServiceApis;
-use SupportPal\ApiClient\Api\TicketApis;
-use SupportPal\ApiClient\Api\UserApis;
+use SupportPal\ApiClient\ApiClient;
+use SupportPal\ApiClient\ApiClient\CoreApiClient;
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
+use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Factory\Collection\CollectionFactory;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
-class Api
+abstract class Api
 {
-    use CoreApis;
-    use SelfServiceApis;
-    use TicketApis;
-    use UserApis;
+    use ApiAware;
+
+    /** @var UserApiClient|SelfServiceApiClient|TicketApiClient|CoreApiClient|ApiClient */
+    protected $apiClient;
 
     /** @var ModelToArrayConverter */
     private $modelToArrayConverter;
-
-    /** @var ApiClient */
-    private $apiClient;
 
     /** @var string */
     private $formatType;
@@ -39,18 +37,18 @@ class Api
 
     public function __construct(
         ModelToArrayConverter $modelToArrayConverter,
-        ApiClient $apiClient,
         ModelCollectionFactory $modelCollectionFactory,
         string $formatType,
         DecoderInterface $decoder,
-        CollectionFactory $collectionFactory
+        CollectionFactory $collectionFactory,
+        ApiClient $apiClient
     ) {
         $this->modelToArrayConverter = $modelToArrayConverter;
-        $this->apiClient = $apiClient;
         $this->formatType = $formatType;
         $this->modelCollectionFactory = $modelCollectionFactory;
         $this->decoder = $decoder;
         $this->collectionFactory = $collectionFactory;
+        $this->apiClient = $apiClient;
     }
 
     /**
@@ -59,14 +57,6 @@ class Api
     protected function getModelToArrayConverter(): ModelToArrayConverter
     {
         return $this->modelToArrayConverter;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiClient(): ApiClient
-    {
-        return $this->apiClient;
     }
 
     /**
@@ -105,6 +95,9 @@ class Api
         return $body;
     }
 
+    /**
+     * @return CollectionFactory
+     */
     protected function getCollectionFactory(): CollectionFactory
     {
         return $this->collectionFactory;

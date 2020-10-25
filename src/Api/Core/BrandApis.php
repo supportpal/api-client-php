@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api\Core;
 
 use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\CoreApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
@@ -52,4 +53,6 @@ trait BrandApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): CoreApiClient;
 }

@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
@@ -18,6 +19,9 @@ use function sprintf;
  */
 class ChannelSettingsApisTest extends ApiClientTest
 {
+    /** @var TicketApiClient */
+    protected $apiClient;
+
     private const TEST_CHANNEL = 'web';
 
     public function testSuccessfulGetChannelSettings(): void
@@ -70,5 +74,13 @@ class ChannelSettingsApisTest extends ApiClientTest
             );
         $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
         $this->apiClient->getChannelSettings(self::TEST_CHANNEL);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

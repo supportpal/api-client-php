@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class CategoryApisTest extends ApiClientTest
 {
+    /** @var SelfServiceApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testCategoryId = 1;
 
@@ -104,5 +108,13 @@ class CategoryApisTest extends ApiClientTest
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getCategory($this->testCategoryId);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return SelfServiceApiClient::class;
     }
 }

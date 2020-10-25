@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api\Ticket;
 
 use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
@@ -20,9 +21,9 @@ trait AttachmentApis
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function getTicketAttachments(array $queryParameters = []): Collection
+    public function getAttachments(array $queryParameters = []): Collection
     {
-        $response = $this->getApiClient()->getTicketAttachments($queryParameters);
+        $response = $this->getApiClient()->getAttachments($queryParameters);
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createAttachment'], $body['data']);
 
@@ -34,9 +35,9 @@ trait AttachmentApis
      * @return Attachment
      * @throws HttpResponseException
      */
-    public function getTicketAttachment(int $attachmentId): Attachment
+    public function getAttachment(int $attachmentId): Attachment
     {
-        $response = $this->getApiClient()->getTicketAttachment($attachmentId);
+        $response = $this->getApiClient()->getAttachment($attachmentId);
 
         return $this->createAttachment($this->decodeBody($response)['data']);
     }
@@ -52,4 +53,6 @@ trait AttachmentApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): TicketApiClient;
 }

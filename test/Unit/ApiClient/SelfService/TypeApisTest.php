@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
@@ -17,6 +18,9 @@ use function json_encode;
  */
 class TypeApisTest extends ApiClientTest
 {
+    /** @var SelfServiceApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testTypeId = 1;
 
@@ -104,5 +108,13 @@ class TypeApisTest extends ApiClientTest
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getType($this->testTypeId);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientName(): string
+    {
+        return SelfServiceApiClient::class;
     }
 }

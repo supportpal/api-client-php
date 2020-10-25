@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
+use SupportPal\ApiClient\Api\UserApi;
+use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Model\User\Group;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -10,10 +12,13 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class UserGroupApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\User
  * @covers \SupportPal\ApiClient\Api\User\UserGroupApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class UserGroupApisTest extends ApiTest
 {
+    /** @var UserApi */
+    protected $api;
+
     public function testGetUserGroups(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
@@ -23,10 +28,10 @@ class UserGroupApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getUserGroups([])
+            ->getGroups([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
-        $userGroups = $this->api->getUserGroups([]);
+        $userGroups = $this->api->getGroups([]);
         self::assertSame($expectedOutput, $userGroups);
     }
 
@@ -39,11 +44,27 @@ class UserGroupApisTest extends ApiTest
 
         $this
             ->apiClient
-            ->getUserGroup(1)
+            ->getGroup(1)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $userGroup = $this->api->getUserGroup(1);
+        $userGroup = $this->api->getGroup(1);
         self::assertSame($expectedOutput, $userGroup);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return UserApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return UserApiClient::class;
     }
 }

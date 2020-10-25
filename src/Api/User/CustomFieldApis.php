@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api\User;
 
 use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
@@ -20,9 +21,9 @@ trait CustomFieldApis
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function getUserCustomFields(array $queryParameters = []): Collection
+    public function getCustomFields(array $queryParameters = []): Collection
     {
-        $response = $this->getApiClient()->getUserCustomFields($queryParameters);
+        $response = $this->getApiClient()->getCustomFields($queryParameters);
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createUserCustomField'], $body['data']);
 
@@ -34,9 +35,9 @@ trait CustomFieldApis
      * @return UserCustomField
      * @throws HttpResponseException
      */
-    public function getUserCustomField(int $customFieldId): UserCustomField
+    public function getCustomField(int $customFieldId): UserCustomField
     {
-        $response = $this->getApiClient()->getUserCustomField($customFieldId);
+        $response = $this->getApiClient()->getCustomField($customFieldId);
 
         return $this->createUserCustomField($this->decodeBody($response)['data']);
     }
@@ -52,4 +53,6 @@ trait CustomFieldApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): UserApiClient;
 }

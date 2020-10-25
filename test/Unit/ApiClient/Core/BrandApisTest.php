@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Core;
 
+use SupportPal\ApiClient\ApiClient\CoreApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
@@ -11,6 +12,9 @@ use function json_encode;
 
 class BrandApisTest extends ApiClientTest
 {
+    /** @var CoreApiClient */
+    protected $apiClient;
+
     /** @var int */
     private $testBrandId = 1;
 
@@ -98,5 +102,13 @@ class BrandApisTest extends ApiClientTest
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getBrand($this->testBrandId);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return CoreApiClient::class;
     }
 }

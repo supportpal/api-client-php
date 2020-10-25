@@ -29,7 +29,7 @@ class SelfServiceApisData
             'getType' => [$typeData->getResponse(), [1]],
             'getComments' => [$commentData->getAllResponse(), []],
             'getComment' => [$commentData->getResponse(), [1]],
-            'getSelfServiceSettings' => [$settingsData->getResponse(), []],
+            'getSettings' => [$settingsData->getResponse(), []],
             'getCategories' => [$categoryData->getAllResponse(), []],
             'getCategory' => [$categoryData->getResponse(), [1]],
             'getArticle' => [$articleData->getResponse(), [1]],

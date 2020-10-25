@@ -25,7 +25,7 @@
             <directory>test/E2E</directory>
         </testsuite>
         <testsuite name="cache">
-            <directory>test/cache</directory>
+            <directory>test/Cache</directory>
         </testsuite>
     </testsuites>
 

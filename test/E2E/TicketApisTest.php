@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\E2E;
 
+use SupportPal\ApiClient\Api\TicketApi;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 
 class TicketApisTest extends BaseTestCase
@@ -13,10 +14,10 @@ class TicketApisTest extends BaseTestCase
     {
         return [
             ApiDictionary::TICKET_TICKET => 'getTickets',
-            ApiDictionary::TICKET_ATTACHMENT => 'getTicketAttachments',
-            ApiDictionary::TICKET_STATUS => 'getTicketStatuses',
-            ApiDictionary::TICKET_PRIORITY => 'getTicketPriorities',
-            ApiDictionary::TICKET_CUSTOMFIELD => 'getTicketCustomFields',
+            ApiDictionary::TICKET_ATTACHMENT => 'getAttachments',
+            ApiDictionary::TICKET_STATUS => 'getStatuses',
+            ApiDictionary::TICKET_PRIORITY => 'getPriorities',
+            ApiDictionary::TICKET_CUSTOMFIELD => 'getCustomFields',
             ApiDictionary::TICKET_DEPARTMENT => 'getDepartments',
         ];
     }
@@ -28,15 +29,21 @@ class TicketApisTest extends BaseTestCase
     {
         return [
             ApiDictionary::TICKET_DEPARTMENT => 'getDepartment' ,
-            ApiDictionary::TICKET_PRIORITY => 'getTicketPriority',
-            ApiDictionary::TICKET_STATUS => 'getTicketStatus',
-            ApiDictionary::TICKET_ATTACHMENT => 'getTicketAttachment',
+            ApiDictionary::TICKET_PRIORITY => 'getPriority',
+            ApiDictionary::TICKET_STATUS => 'getStatus',
+            ApiDictionary::TICKET_ATTACHMENT => 'getAttachment',
             ApiDictionary::TICKET_TICKET => 'getTicket',
+            ApiDictionary::TICKET_CUSTOMFIELD => 'getCustomField',
         ];
     }
 
     public function testTicketSettings(): void
     {
-        $this->settingsTestCase(ApiDictionary::TICKET_SETTINGS, 'getTicketSettings');
+        $this->settingsTestCase(ApiDictionary::TICKET_SETTINGS, 'getSettings');
+    }
+
+    protected function getApi(): TicketApi
+    {
+        return $this->getSupportPal()->getTicketApi();
     }
 }

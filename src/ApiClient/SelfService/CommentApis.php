@@ -22,7 +22,7 @@ trait CommentApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function postSelfServiceComment(array $body): ResponseInterface
+    public function postComment(array $body): ResponseInterface
     {
         $request = $this->getRequestFactory()->create(
             'POST',

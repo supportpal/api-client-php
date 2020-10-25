@@ -34,7 +34,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     {
         parent::setUp();
         /** @var ApiClient $apiClient */
-        $apiClient = $this->getContainer()->get(ApiClient::class);
+        $apiClient = $this->getContainer()->get($this->getApiClientClass());
         $this->apiClient = $apiClient;
     }
 
@@ -194,5 +194,13 @@ class ApiClientTest extends ContainerAwareBaseTestCase
         $callable = [$this->apiClient, $endpoint];
 
         return call_user_func_array($callable, $parameters);
+    }
+
+    /**
+     * @return class-string
+     */
+    protected function getApiClientClass()
+    {
+        return ApiClient::class;
     }
 }

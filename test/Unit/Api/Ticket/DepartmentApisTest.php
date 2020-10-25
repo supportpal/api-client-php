@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
+use SupportPal\ApiClient\Api\TicketApi;
+use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Model\Department\Department;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -10,10 +12,13 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class DepartmentApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
  * @covers \SupportPal\ApiClient\Api\Ticket\DepartmentApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class DepartmentApisTest extends ApiTest
 {
+    /** @var TicketApi */
+    protected $api;
+
     /** @var int */
     private $testDepartmentId = 1;
 
@@ -49,5 +54,21 @@ class DepartmentApisTest extends ApiTest
 
         $returnedDepartment = $this->api->getDepartment($this->testDepartmentId);
         self::assertSame($expectedOutput, $returnedDepartment);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return TicketApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return TicketApiClient::class;
     }
 }

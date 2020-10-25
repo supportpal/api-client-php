@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Api\SelfService;
 
 use SupportPal\ApiClient\Api\ApiAware;
+use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
@@ -56,4 +57,6 @@ trait TypeApis
 
         return $model;
     }
+
+    abstract protected function getApiClient(): SelfServiceApiClient;
 }

@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
+use SupportPal\ApiClient\Api\UserApi;
+use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
@@ -13,11 +15,14 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class UserApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api
- * @covers \SupportPal\ApiClient\Api\UserApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\UserApi
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class UserApisTest extends ApiTest
 {
+    /** @var UserApi */
+    protected $api;
+
     public function testGetUsers(): void
     {
         [$expectedOutput, $response] = $this->makeCommonExpectations(
@@ -109,5 +114,21 @@ class UserApisTest extends ApiTest
         /** @var User $user */
         $user = $input->reveal();
         $this->api->updateUser($user, $userData->getArrayData());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiName(): string
+    {
+        return UserApi::class;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getApiClientName(): string
+    {
+        return UserApiClient::class;
     }
 }

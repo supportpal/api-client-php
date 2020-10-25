@@ -22,7 +22,7 @@ composer install
 Finally, to run the tests, copy & paste the below replacing variables (words wrapped in curly braces):
 
 ```
-BASE_URL={supportpal_base_url}/api/ TOKEN={token} LIMIT={max number of models to test against} ./vendor/bin/phpunit --testsuite=e2e
+BASE_URL={supportpal_base_url} TOKEN={token} LIMIT={max number of models to test against} ./vendor/bin/phpunit --testsuite=e2e
 ```
 
 \* *`LIMIT` defaults to `100` models.*
