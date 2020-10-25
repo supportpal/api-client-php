@@ -16,7 +16,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class ApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
  * @covers \SupportPal\ApiClient\Api\TicketApi
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class TicketApisTest extends ApiTest
 {

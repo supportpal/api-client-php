@@ -13,7 +13,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class CommentApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
  * @covers \SupportPal\ApiClient\Api\SelfService\CommentApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class CommentApisTest extends ApiTest
 {

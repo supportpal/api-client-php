@@ -12,7 +12,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class ArticleApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
  * @covers \SupportPal\ApiClient\Api\SelfService\ArticleApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class ArticleApisTest extends ApiTest
 {

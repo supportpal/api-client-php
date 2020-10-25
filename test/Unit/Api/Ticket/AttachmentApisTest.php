@@ -12,7 +12,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class AttachmentApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
  * @covers \SupportPal\ApiClient\Api\Ticket\AttachmentApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class AttachmentApisTest extends ApiTest
 {

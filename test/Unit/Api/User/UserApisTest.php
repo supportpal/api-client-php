@@ -16,7 +16,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class UserApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api
  * @covers \SupportPal\ApiClient\Api\UserApi
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class UserApisTest extends ApiTest
 {

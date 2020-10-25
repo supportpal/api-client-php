@@ -13,7 +13,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class MessageApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
  * @covers \SupportPal\ApiClient\Api\Ticket\MessageApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class MessageApisTest extends ApiTest
 {

@@ -12,7 +12,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
  * Class CustomFieldApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
  * @covers \SupportPal\ApiClient\Api\Ticket\CustomFieldApis
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 class CustomFieldApisTest extends ApiTest
 {

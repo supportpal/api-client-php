@@ -24,7 +24,7 @@ use function json_encode;
 /**
  * Class ApiTest
  * @package SupportPal\ApiClient\Tests\Unit
- * @covers \SupportPal\ApiClient\Api
+ * @covers \SupportPal\ApiClient\Api\Api
  */
 abstract class ApiTest extends TestCase
 {
