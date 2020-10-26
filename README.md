@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://laravel.com" target="_blank"><img src="https://www.supportpal.com/assets/img/logo_blue_small.png" /></a>
+    <a href="https://www.supportpal.com" target="_blank"><img src="https://www.supportpal.com/assets/img/logo_blue_small.png" /></a>
     <br>
     A client to interact with the <a href="https://api.supportpal.com/">SupportPal API</a> written in PHP.
 </p>
