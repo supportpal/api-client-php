@@ -25,13 +25,13 @@ class RequestDefaults
      */
     public const TIMEOUT = 'timeout';
 
-    /** @var array */
+    /** @var array<mixed> */
     private $defaultParameters;
 
-    /** @var array */
+    /** @var array<mixed> */
     private $defaultBodyContent;
 
-    /** @var array */
+    /** @var array<mixed> */
     private $defaultRequestOptions;
 
     /**
@@ -51,7 +51,7 @@ class RequestDefaults
     }
 
     /**
-     * @return array<array>
+     * @return array<mixed>
      */
     public function getDefaultParameters(): array
     {
@@ -59,7 +59,7 @@ class RequestDefaults
     }
 
     /**
-     * @return array<array>
+     * @return array<mixed>
      */
     public function getDefaultBodyContent(): array
     {
@@ -67,7 +67,7 @@ class RequestDefaults
     }
 
     /**
-     * @return array<array>
+     * @return array<mixed>
      */
     public function getDefaultRequestOptions(): array
     {
