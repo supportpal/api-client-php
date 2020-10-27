@@ -50,7 +50,7 @@ class Email extends BaseModel
     private $encryption;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("delete_downloaded")
      */
     private $deleteDownloaded;
@@ -80,7 +80,7 @@ class Email extends BaseModel
     private $password;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("consume_all")
      */
     private $consumeAll;
@@ -243,18 +243,18 @@ class Email extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getDeleteDownloaded(): ?int
+    public function getDeleteDownloaded(): ?bool
     {
         return $this->deleteDownloaded;
     }
 
     /**
-     * @param int|null $deleteDownloaded
+     * @param bool|null $deleteDownloaded
      * @return self
      */
-    public function setDeleteDownloaded(?int $deleteDownloaded): self
+    public function setDeleteDownloaded(?bool $deleteDownloaded): self
     {
         $this->deleteDownloaded = $deleteDownloaded;
 
@@ -338,18 +338,18 @@ class Email extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getConsumeAll(): ?int
+    public function getConsumeAll(): ?bool
     {
         return $this->consumeAll;
     }
 
     /**
-     * @param int|null $consumeAll
+     * @param bool|null $consumeAll
      * @return self
      */
-    public function setConsumeAll(?int $consumeAll): self
+    public function setConsumeAll(?bool $consumeAll): self
     {
         $this->consumeAll = $consumeAll;
 

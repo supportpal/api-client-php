@@ -5,6 +5,9 @@ namespace SupportPal\ApiClient\Model;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Helper\StringHelper;
+use SupportPal\ApiClient\Transformer\IntToBooleanTransformer;
+use SupportPal\ApiClient\Transformer\StringTrimTransformer;
+use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 use TypeError;
 
@@ -44,6 +47,9 @@ abstract class BaseModel implements Model
             }
         }
 
+        $attributeAwareTransformers = [new IntToBooleanTransformer(new PhpDocExtractor()),];
+        $transformers =  [new StringTrimTransformer(),];
+
         $this->assertRequiredFieldsExists($data);
         foreach ($data as $key => $value) {
             $attributeSetter = 'set' . $this->snakeCaseToPascalCase($key);
@@ -51,7 +57,22 @@ abstract class BaseModel implements Model
                 continue;
             }
 
-            $value = is_string($value) ? trim($value) : $value;
+            foreach ($attributeAwareTransformers as $transformer) {
+                if (! $transformer->canTransform($this->snakeCaseToCamelCase($key), get_class($this), $value)) {
+                    continue;
+                }
+
+                $value = $transformer->transform($value);
+            }
+
+            foreach ($transformers as $transformer) {
+                if (! $transformer->canTransform($value)) {
+                    continue;
+                }
+
+                $value = $transformer->transform($value);
+            }
+
             try {
                 $this->{$attributeSetter}($value);
             } catch (TypeError $exception) {

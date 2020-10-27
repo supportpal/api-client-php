@@ -27,7 +27,7 @@ class Article extends BaseModel
     private $purifiedText;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("pinned")
      */
     private $pinned;
@@ -45,7 +45,7 @@ class Article extends BaseModel
     private $text;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("protected")
      */
     private $protected;
@@ -105,7 +105,7 @@ class Article extends BaseModel
     private $slug;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("published")
      */
     private $published;
@@ -185,18 +185,18 @@ class Article extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getPinned(): int
+    public function getPinned(): bool
     {
         return $this->pinned;
     }
 
     /**
-     * @param int $pinned
+     * @param bool $pinned
      * @return self
      */
-    public function setPinned(int $pinned): self
+    public function setPinned(bool $pinned): self
     {
         $this->pinned = $pinned;
 
@@ -223,18 +223,18 @@ class Article extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getProtected(): int
+    public function getProtected(): bool
     {
         return $this->protected;
     }
 
     /**
-     * @param int $protected
+     * @param bool $protected
      * @return self
      */
-    public function setProtected(int $protected): self
+    public function setProtected(bool $protected): self
     {
         $this->protected = $protected;
 
@@ -337,18 +337,18 @@ class Article extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getPublished(): int
+    public function getPublished(): bool
     {
         return $this->published;
     }
 
     /**
-     * @param int $published
+     * @param bool $published
      * @return self
      */
-    public function setPublished(int $published): self
+    public function setPublished(bool $published): self
     {
         $this->published = $published;
 

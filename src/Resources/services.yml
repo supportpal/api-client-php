@@ -19,10 +19,19 @@ services:
         arguments:
             $objectNormalizer: '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer'
             $transformers: !tagged transformer.field_transformer
+            $attributeAwareTransformers: !tagged attribute_aware_transformer.field_transformer
 
     SupportPal\ApiClient\Transformer\StringTrimTransformer:
         tags: [ 'transformer.field_transformer' ]
 
     SupportPal\ApiClient\Transformer\EmptyModelToNullTransformer:
         tags: [ 'transformer.field_transformer' ]
+
+    SupportPal\ApiClient\Transformer\BooleanToIntTransformer:
+        tags: [ 'transformer.field_transformer' ]
+
+    SupportPal\ApiClient\Transformer\IntToBooleanTransformer:
+        tags: [ 'attribute_aware_transformer.field_transformer' ]
+
+
 

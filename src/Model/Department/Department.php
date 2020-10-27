@@ -8,13 +8,13 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class Department extends BaseModel
 {
     /**
-     * @var int
+     * @var bool
      * @SerializedName("disable_user_email_replies")
      */
     private $disableUserEmailReplies;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("public")
      */
     private $public;
@@ -32,7 +32,7 @@ class Department extends BaseModel
     private $name;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("notify_frontend_ticket")
      */
     private $notifyFrontendTicket;
@@ -50,7 +50,7 @@ class Department extends BaseModel
     private $description;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("notify_email_ticket")
      */
     private $notifyEmailTicket;
@@ -92,7 +92,7 @@ class Department extends BaseModel
     private $updatedAt;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("notify_operators")
      */
     private $notifyOperators;
@@ -137,18 +137,18 @@ class Department extends BaseModel
     private $parent;
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getDisableUserEmailReplies(): int
+    public function getDisableUserEmailReplies(): bool
     {
         return $this->disableUserEmailReplies;
     }
 
     /**
-     * @param int $disableUserEmailReplies
+     * @param bool $disableUserEmailReplies
      * @return self
      */
-    public function setDisableUserEmailReplies(int $disableUserEmailReplies): self
+    public function setDisableUserEmailReplies(bool $disableUserEmailReplies): self
     {
         $this->disableUserEmailReplies = $disableUserEmailReplies;
 
@@ -156,18 +156,18 @@ class Department extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getPublic(): int
+    public function getPublic(): bool
     {
         return $this->public;
     }
 
     /**
-     * @param int $public
+     * @param bool $public
      * @return self
      */
-    public function setPublic(int $public): self
+    public function setPublic(bool $public): self
     {
         $this->public = $public;
 
@@ -213,18 +213,18 @@ class Department extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getNotifyFrontendTicket(): int
+    public function getNotifyFrontendTicket(): bool
     {
         return $this->notifyFrontendTicket;
     }
 
     /**
-     * @param int $notifyFrontendTicket
+     * @param bool $notifyFrontendTicket
      * @return self
      */
-    public function setNotifyFrontendTicket(int $notifyFrontendTicket): self
+    public function setNotifyFrontendTicket(bool $notifyFrontendTicket): self
     {
         $this->notifyFrontendTicket = $notifyFrontendTicket;
 
@@ -270,18 +270,18 @@ class Department extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getNotifyEmailTicket(): int
+    public function getNotifyEmailTicket(): bool
     {
         return $this->notifyEmailTicket;
     }
 
     /**
-     * @param int $notifyEmailTicket
+     * @param bool $notifyEmailTicket
      * @return self
      */
-    public function setNotifyEmailTicket(int $notifyEmailTicket): self
+    public function setNotifyEmailTicket(bool $notifyEmailTicket): self
     {
         $this->notifyEmailTicket = $notifyEmailTicket;
 
@@ -403,18 +403,18 @@ class Department extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getNotifyOperators(): int
+    public function getNotifyOperators(): bool
     {
         return $this->notifyOperators;
     }
 
     /**
-     * @param int $notifyOperators
+     * @param bool $notifyOperators
      * @return self
      */
-    public function setNotifyOperators(int $notifyOperators): self
+    public function setNotifyOperators(bool $notifyOperators): self
     {
         $this->notifyOperators = $notifyOperators;
 

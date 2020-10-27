@@ -56,7 +56,7 @@ class Status extends BaseModel
     private $icon;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("auto_close")
      */
     private $autoClose;
@@ -220,18 +220,18 @@ class Status extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getAutoClose(): int
+    public function getAutoClose(): bool
     {
         return $this->autoClose;
     }
 
     /**
-     * @param int $autoClose
+     * @param bool $autoClose
      * @return self
      */
-    public function setAutoClose(int $autoClose): self
+    public function setAutoClose(bool $autoClose): self
     {
         $this->autoClose = $autoClose;
 

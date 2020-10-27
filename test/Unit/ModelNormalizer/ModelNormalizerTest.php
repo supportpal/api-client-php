@@ -60,7 +60,7 @@ class ModelNormalizerTest extends TestCase
         /** @var Transformer $transformer */
         $transformer = $this->transformer->reveal();
 
-        $this->modelNormalizer = new ModelNormalizer($objectNormalizer, [$transformer]);
+        $this->modelNormalizer = new ModelNormalizer($objectNormalizer, [$transformer], []);
     }
 
     public function testNormalizeTransformAll(): void

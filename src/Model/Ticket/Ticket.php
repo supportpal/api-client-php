@@ -28,7 +28,7 @@ class Ticket extends BaseModel
     private $lastReplyId;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("response_email_sent")
      */
     private $responseEmailSent;
@@ -336,18 +336,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getResponseEmailSent(): int
+    public function getResponseEmailSent(): bool
     {
         return $this->responseEmailSent;
     }
 
     /**
-     * @param int $responseEmailSent
+     * @param bool $responseEmailSent
      * @return self
      */
-    public function setResponseEmailSent(int $responseEmailSent): self
+    public function setResponseEmailSent(bool $responseEmailSent): self
     {
         $this->responseEmailSent = $responseEmailSent;
 

@@ -38,13 +38,13 @@ class Category extends BaseModel
     private $slug;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("public")
      */
     private $public;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("parent_public")
      */
     private $parentPublic;
@@ -181,18 +181,18 @@ class Category extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getPublic(): int
+    public function getPublic(): bool
     {
         return $this->public;
     }
 
     /**
-     * @param int $public
+     * @param bool $public
      * @return self
      */
-    public function setPublic(int $public): self
+    public function setPublic(bool $public): self
     {
         $this->public = $public;
 
@@ -200,18 +200,18 @@ class Category extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getParentPublic(): int
+    public function getParentPublic(): bool
     {
         return $this->parentPublic;
     }
 
     /**
-     * @param int $parentPublic
+     * @param bool $parentPublic
      * @return self
      */
-    public function setParentPublic(int $parentPublic): self
+    public function setParentPublic(bool $parentPublic): self
     {
         $this->parentPublic = $parentPublic;
 

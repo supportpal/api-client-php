@@ -59,7 +59,7 @@ class Brand extends BaseModel
     private $defaultCountry;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("frontend_template_mode")
      */
     private $frontendTemplateMode;
@@ -71,7 +71,7 @@ class Brand extends BaseModel
     private $operatorIcon;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("enabled")
      */
     private $enabled;
@@ -107,13 +107,13 @@ class Brand extends BaseModel
     private $smtpPassword;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("smtp_requires_auth")
      */
     private $smtpRequiresAuth;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("enable_ssl")
      */
     private $enableSsl;
@@ -215,7 +215,7 @@ class Brand extends BaseModel
     private $languageToggle;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("operator_template_mode")
      */
     private $operatorTemplateMode;
@@ -328,18 +328,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getFrontendTemplateMode(): int
+    public function getFrontendTemplateMode(): bool
     {
         return $this->frontendTemplateMode;
     }
 
     /**
-     * @param int $frontendTemplateMode
+     * @param bool $frontendTemplateMode
      * @return self
      */
-    public function setFrontendTemplateMode(int $frontendTemplateMode): self
+    public function setFrontendTemplateMode(bool $frontendTemplateMode): self
     {
         $this->frontendTemplateMode = $frontendTemplateMode;
 
@@ -366,18 +366,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getEnabled(): int
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
     /**
-     * @param int $enabled
+     * @param bool $enabled
      * @return self
      */
-    public function setEnabled(int $enabled): self
+    public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
 
@@ -480,18 +480,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getSmtpRequiresAuth(): ?int
+    public function getSmtpRequiresAuth(): ?bool
     {
         return $this->smtpRequiresAuth;
     }
 
     /**
-     * @param int|null $smtpRequiresAuth
+     * @param bool|null $smtpRequiresAuth
      * @return self
      */
-    public function setSmtpRequiresAuth(?int $smtpRequiresAuth): self
+    public function setSmtpRequiresAuth(?bool $smtpRequiresAuth): self
     {
         $this->smtpRequiresAuth = $smtpRequiresAuth;
 
@@ -499,18 +499,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getEnableSsl(): ?int
+    public function getEnableSsl(): ?bool
     {
         return $this->enableSsl;
     }
 
     /**
-     * @param int|null $enableSsl
+     * @param bool|null $enableSsl
      * @return self
      */
-    public function setEnableSsl(?int $enableSsl): self
+    public function setEnableSsl(?bool $enableSsl): self
     {
         $this->enableSsl = $enableSsl;
 
@@ -803,18 +803,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getOperatorTemplateMode(): int
+    public function getOperatorTemplateMode(): bool
     {
         return $this->operatorTemplateMode;
     }
 
     /**
-     * @param int $operatorTemplateMode
+     * @param bool $operatorTemplateMode
      * @return self
      */
-    public function setOperatorTemplateMode(int $operatorTemplateMode): self
+    public function setOperatorTemplateMode(bool $operatorTemplateMode): self
     {
         $this->operatorTemplateMode = $operatorTemplateMode;
 
