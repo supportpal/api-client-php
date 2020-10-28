@@ -11,6 +11,7 @@ use Psr\Http\Client\RequestExceptionInterface;
 use ReflectionException;
 use ReflectionObject;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Model\ApiContext;
 use SupportPal\ApiClient\SupportPal;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -77,7 +78,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         /**
          * create new app instance for tests
          */
-        $this->supportPal = new SupportPal('', '');
+        $this->supportPal = new SupportPal(new ApiContext('', ''));
 
         /**
          * create container for test environment

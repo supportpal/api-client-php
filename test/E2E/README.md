@@ -22,7 +22,9 @@ composer install
 Finally, to run the tests, copy & paste the below replacing variables (words wrapped in curly braces):
 
 ```
-BASE_URL={supportpal_base_url} TOKEN={token} LIMIT={max number of models to test against} ./vendor/bin/phpunit --testsuite=e2e
+URL={supportpal_full_url} TOKEN={token} LIMIT={max number of models to test against} ./vendor/bin/phpunit --testsuite=e2e
 ```
+
+\* *`URL` should include the full helpdesk installation URI, including host, scheme, port, and path. i.e https://supportpal.com:443/*
 
 \* *`LIMIT` defaults to `100` models.*
