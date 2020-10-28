@@ -98,7 +98,7 @@ class Email extends BaseModel
     private $createdAt;
 
     /**
-     * @var int|null
+     * @var string|null
      * @SerializedName("oauth")
      */
     private $oauth;
@@ -395,18 +395,18 @@ class Email extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getOauth(): ?int
+    public function getOauth(): ?string
     {
         return $this->oauth;
     }
 
     /**
-     * @param int|null $oauth
+     * @param string|null $oauth
      * @return self
      */
-    public function setOauth(?int $oauth): self
+    public function setOauth(?string $oauth): self
     {
         $this->oauth = $oauth;
 

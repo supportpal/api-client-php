@@ -1,12 +1,12 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Transformer;
 
+use function intval;
+use function is_bool;
 
 class BooleanToIntTransformer implements Transformer
 {
-
     /**
      * @inheritDoc
      */

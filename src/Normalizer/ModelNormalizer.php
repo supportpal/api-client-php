@@ -6,11 +6,9 @@ use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Transformer\AttributeAwareTransformer;
 use SupportPal\ApiClient\Transformer\Transformer;
-use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\Serializer\Normalizer\ContextAwareDenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-
 
 class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDenormalizerInterface
 {
@@ -22,9 +20,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     /** @var iterable|Transformer[] */
     private $transformers;
 
-    /**
-     * @var iterable|AttributeAwareTransformer[]
-     */
+    /** @var iterable|AttributeAwareTransformer[] */
     private $attributeAwareTransformers;
 
     /**
@@ -59,7 +55,6 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
      */
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {
-
         $data = $this->applyAttributeAwareTransformations($data, $type);
         /** @var Model $model */
         $model = $this->objectNormalizer->denormalize($data, $type, $format, $context);
@@ -91,7 +86,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     protected function applyModelTransformations(Model $model)
     {
         foreach ($this->transformers as $transformer) {
-            if (!$transformer->canTransform($model)) {
+            if (! $transformer->canTransform($model)) {
                 continue;
             }
 
@@ -110,7 +105,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     {
         foreach ($data as $key => $value) {
             foreach ($this->attributeAwareTransformers as $transformer) {
-                if (!$transformer->canTransform($this->snakeCaseToCamelCase($key), $type, $value)) {
+                if (! $transformer->canTransform($this->snakeCaseToCamelCase($key), $type, $value)) {
                     continue;
                 }
 
@@ -129,7 +124,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     {
         foreach ($data as $key => $value) {
             foreach ($this->transformers as $transformer) {
-                if (!$transformer->canTransform($value)) {
+                if (! $transformer->canTransform($value)) {
                     continue;
                 }
 

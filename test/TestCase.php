@@ -10,8 +10,8 @@ use SupportPal\ApiClient\Model\SettingsModel;
 use function count;
 use function current;
 use function is_array;
+use function is_bool;
 use function is_object;
-use function method_exists;
 
 /**
  * Class TestCase

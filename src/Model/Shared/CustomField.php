@@ -63,13 +63,13 @@ abstract class CustomField extends BaseModel
     private $name;
 
     /**
-     * @var bool
+     * @var bool|null
      * @SerializedName("required")
      */
     private $required;
 
     /**
-     * @var bool
+     * @var bool|null
      * @SerializedName("public")
      */
     private $public;

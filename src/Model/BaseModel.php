@@ -13,10 +13,10 @@ use TypeError;
 
 use function array_push;
 use function count;
+use function get_class;
 use function implode;
 use function is_string;
 use function method_exists;
-use function trim;
 
 /**
  * Class BaseModel
@@ -47,8 +47,8 @@ abstract class BaseModel implements Model
             }
         }
 
-        $attributeAwareTransformers = [new IntToBooleanTransformer(new PhpDocExtractor()),];
-        $transformers =  [new StringTrimTransformer(),];
+        $attributeAwareTransformers = [new IntToBooleanTransformer(new PhpDocExtractor),];
+        $transformers = [new StringTrimTransformer,];
 
         $this->assertRequiredFieldsExists($data);
         foreach ($data as $key => $value) {

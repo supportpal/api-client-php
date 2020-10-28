@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Transformer;
 
-use SupportPal\ApiClient\Helper\StringHelper;
 use Symfony\Component\PropertyInfo\PropertyTypeExtractorInterface;
 use Symfony\Component\PropertyInfo\Type;
 
@@ -13,8 +12,6 @@ use function is_int;
 
 class IntToBooleanTransformer implements AttributeAwareTransformer
 {
-    private const TYPE_BOOL = 'bool';
-
     /** @var PropertyTypeExtractorInterface */
     private $propertyTypeExtractor;
 
@@ -48,10 +45,12 @@ class IntToBooleanTransformer implements AttributeAwareTransformer
      */
     protected function isBoolAttribute(string $class, string $attribute)
     {
+        /** @var Type[] $types */
+        $types = $this->propertyTypeExtractor->getTypes($class, $attribute);
         $boolFilteredType = array_filter(
-            $this->propertyTypeExtractor->getTypes($class, $attribute),
+            $types,
             function (Type $type) {
-                return $type->getBuiltinType() === self::TYPE_BOOL;
+                return $type->getBuiltinType() === Type::BUILTIN_TYPE_BOOL;
             }
         );
 

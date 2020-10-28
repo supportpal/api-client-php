@@ -59,7 +59,7 @@ class Comment extends BaseModel
      * @var bool
      * @SerializedName("notify_reply")
      */
-    private $notifyReply = 0;
+    private $notifyReply = false;
 
     /**
      * @var int|null

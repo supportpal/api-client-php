@@ -23,7 +23,7 @@ class EmailData extends BaseModelData
         'delete_downloaded' => null,
         'created_at' => 0,
         'updated_at' => 0,
-        'oauth' => 1,
+        'oauth' => '1',
         'auth_mech' => 'test',
     ];
 
