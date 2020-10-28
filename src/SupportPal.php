@@ -18,11 +18,13 @@ use SupportPal\ApiClient\Cache\ApiCacheMap;
 use SupportPal\ApiClient\Cache\CacheStrategyConfigurator;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
+use SupportPal\ApiClient\Model\ApiContext;
+use SupportPal\ApiClient\Model\RequestDefaults;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-use function rtrim;
+use function array_merge;
 use function sys_get_temp_dir;
 
 /**
@@ -31,38 +33,37 @@ use function sys_get_temp_dir;
  */
 class SupportPal
 {
-    private const BASE_API_PATH = '/api/';
-
     /** @var ContainerBuilder */
     private $containerBuilder;
 
     /**
      * SupportPal constructor.
-     * @param string $baseUrl
-     * @param string $apiToken
-     * @param array<mixed> $defaultParameters Parameters that will always be passed
-     * @param array<mixed> $defaultBodyContent Body content that will always be passed
+     * @param ApiContext $apiContext
+     * @param RequestDefaults|null $requestDefaults
      * @param string|null $cacheDir
      * @throws Exception
      */
     public function __construct(
-        string $baseUrl,
-        string $apiToken,
-        array $defaultParameters = [],
-        array $defaultBodyContent = [],
+        ApiContext $apiContext,
+        RequestDefaults $requestDefaults = null,
         ?string $cacheDir = null
     ) {
-        $apiUrl = $this->buildApiUrl($baseUrl);
         $cacheDir = $cacheDir ?? sys_get_temp_dir();
+        $requestDefaults = $requestDefaults ?? new RequestDefaults;
+
         $containerBuilder = new ContainerBuilder;
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
         $loader->load('Resources/services.yml');
-        $containerBuilder->setParameter('apiUrl', $apiUrl);
-        $containerBuilder->setParameter('apiToken', $apiToken);
-        $containerBuilder->setParameter('defaultParameters', $defaultParameters);
-        $containerBuilder->setParameter('defaultBodyContent', $defaultBodyContent);
+        $containerBuilder->setParameter('apiUrl', $apiContext->getApiUrl());
+        $containerBuilder->setParameter('apiToken', $apiContext->getApiToken());
+        $containerBuilder->setParameter('defaultParameters', $requestDefaults->getDefaultParameters());
+        $containerBuilder->setParameter('defaultBodyContent', $requestDefaults->getDefaultBodyContent());
 
-        $containerBuilder->set(Client::class, $this->getGuzzleClient($cacheDir));
+        $containerBuilder->set(
+            Client::class,
+            $this->getGuzzleClient($apiContext, $requestDefaults->getDefaultRequestOptions(), $cacheDir)
+        );
+
         $containerBuilder->compile();
 
         $this->containerBuilder = $containerBuilder;
@@ -146,15 +147,17 @@ class SupportPal
     }
 
     /**
+     * @param ApiContext $apiContext
+     * @param array<mixed> $requestDefaults
      * @param string $cacheDir
      * @return ClientInterface
      */
-    private function getGuzzleClient(string $cacheDir): ClientInterface
+    private function getGuzzleClient(ApiContext $apiContext, array $requestDefaults, string $cacheDir): ClientInterface
     {
         $stack = HandlerStack::create();
-        $stack->push(new CacheMiddleware($this->buildCacheStrategy($cacheDir)));
+        $stack->push(new CacheMiddleware($this->buildCacheStrategy($apiContext, $cacheDir)));
 
-        return new Client(['handler' => $stack]);
+        return new Client(array_merge(['handler' => $stack,], $requestDefaults));
     }
 
     /**
@@ -164,21 +167,13 @@ class SupportPal
      * We always use a greedy strategy (ignore headers returned by the server)
      *
      * read more @https://github.com/Kevinrob/guzzle-cache-middleware
+     * @param ApiContext $apiContext
      * @param string $cacheDir
      * @return CacheStrategyInterface
      */
-    private function buildCacheStrategy(string $cacheDir): CacheStrategyInterface
+    private function buildCacheStrategy(ApiContext $apiContext, string $cacheDir): CacheStrategyInterface
     {
         return (new CacheStrategyConfigurator(new ApiCacheMap))
-            ->buildCacheStrategy($cacheDir, self::BASE_API_PATH);
-    }
-
-    /**
-     * @param string $baseUrl
-     * @return string
-     */
-    private function buildApiUrl(string $baseUrl): string
-    {
-        return rtrim($baseUrl, '/') . self::BASE_API_PATH;
+            ->buildCacheStrategy($cacheDir, $apiContext->getApiPath());
     }
 }

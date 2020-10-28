@@ -10,6 +10,7 @@ use SupportPal\ApiClient\Api\TicketApi;
 use SupportPal\ApiClient\Api\UserApi;
 use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Model\ApiContext;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\SupportPal;
@@ -28,6 +29,7 @@ use function intval;
 use function is_array;
 use function json_decode;
 use function method_exists;
+use function parse_url;
 use function sprintf;
 use function substr;
 use function var_export;
@@ -51,7 +53,7 @@ abstract class BaseTestCase extends TestCase
     {
         parent::setUp();
         /** @var string $apiUrl */
-        $apiUrl = getenv('BASE_URL');
+        $apiUrl = getenv('URL');
         /** @var string $token */
         $token = getenv('TOKEN');
 
@@ -68,7 +70,14 @@ abstract class BaseTestCase extends TestCase
         $modelConverter = $containerBuilder->get(ModelToArrayConverter::class);
         $this->modelToArrayConverter = $modelConverter;
 
-        $this->supportPal = new SupportPal($apiUrl, $token);
+        /** @var string[] $uri */
+        $uri = parse_url($apiUrl);
+        $apiContext = (new ApiContext($uri['host'], $token))
+            ->setScheme($uri['scheme'])
+            ->setPath($uri['path'])
+            ->setPort((int) $uri['port']);
+
+        $this->supportPal = new SupportPal($apiContext);
     }
 
     protected function getSupportPal(): SupportPal
