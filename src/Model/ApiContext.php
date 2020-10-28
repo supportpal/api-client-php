@@ -13,29 +13,39 @@ class ApiContext
     private $host;
 
     /** @var string */
-    private $scheme;
-
-    /** @var int */
-    private $port;
+    private $apiToken;
 
     /** @var string */
-    private $path;
+    private $scheme = 'https';
+
+    /** @var int */
+    private $port = 443;
+
+    /** @var string */
+    private $path = '';
 
     /**
      * ApiContext constructor.
      * @param string $host
-     * @param string $scheme
-     * @param int $port
-     * @param string $path
+     * @param string $apiToken
      */
-    public function __construct(string $host, string $path = '', string $scheme = 'https', int $port = 443)
+    public function __construct(string $host, string $apiToken)
     {
         $this->host = $host;
-        $this->scheme = $scheme;
-        $this->port = $port;
-        $this->path = $path;
+        $this->apiToken = $apiToken;
     }
 
+    /**
+     * @return string
+     */
+    public function getApiToken(): string
+    {
+        return $this->apiToken;
+    }
+
+    /**
+     * @return string
+     */
     public function getApiUrl(): string
     {
         return sprintf(
@@ -47,11 +57,51 @@ class ApiContext
         );
     }
 
+    /**
+     * @return string
+     */
     public function getApiPath(): string
     {
         return sprintf('/%s/%s', $this->trim($this->path), self::BASE_API_PATH);
     }
 
+    /**
+     * @param string $scheme
+     * @return self
+     */
+    public function setScheme(string $scheme): self
+    {
+        $this->scheme = $scheme;
+
+        return $this;
+    }
+
+    /**
+     * @param int $port
+     * @return self
+     */
+    public function setPort(int $port): self
+    {
+        $this->port = $port;
+
+        return $this;
+    }
+
+    /**
+     * @param string $path
+     * @return self
+     */
+    public function setPath(string $path): self
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * @param string $str
+     * @return string
+     */
     private function trim(string $str): string
     {
         return trim($str, '/');

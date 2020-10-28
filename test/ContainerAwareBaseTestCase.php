@@ -78,7 +78,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         /**
          * create new app instance for tests
          */
-        $this->supportPal = new SupportPal(new ApiContext(''), '');
+        $this->supportPal = new SupportPal(new ApiContext('', ''));
 
         /**
          * create container for test environment

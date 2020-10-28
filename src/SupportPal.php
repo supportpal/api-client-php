@@ -39,14 +39,12 @@ class SupportPal
     /**
      * SupportPal constructor.
      * @param ApiContext $apiContext
-     * @param string $apiToken
      * @param RequestDefaults|null $requestDefaults
      * @param string|null $cacheDir
      * @throws Exception
      */
     public function __construct(
         ApiContext $apiContext,
-        string $apiToken,
         RequestDefaults $requestDefaults = null,
         ?string $cacheDir = null
     ) {
@@ -57,7 +55,7 @@ class SupportPal
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
         $loader->load('Resources/services.yml');
         $containerBuilder->setParameter('apiUrl', $apiContext->getApiUrl());
-        $containerBuilder->setParameter('apiToken', $apiToken);
+        $containerBuilder->setParameter('apiToken', $apiContext->getApiToken());
         $containerBuilder->setParameter('defaultParameters', $requestDefaults->getDefaultParameters());
         $containerBuilder->setParameter('defaultBodyContent', $requestDefaults->getDefaultBodyContent());
 

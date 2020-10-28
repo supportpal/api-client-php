@@ -72,9 +72,12 @@ abstract class BaseTestCase extends TestCase
 
         /** @var string[] $uri */
         $uri = parse_url($apiUrl);
-        $apiContext = new ApiContext($uri['host'], $uri['path'], $uri['scheme'], (int) $uri['port']);
+        $apiContext = (new ApiContext($uri['host'], $token))
+            ->setScheme($uri['scheme'])
+            ->setPath($uri['path'])
+            ->setPort((int) $uri['port']);
 
-        $this->supportPal = new SupportPal($apiContext, $token);
+        $this->supportPal = new SupportPal($apiContext);
     }
 
     protected function getSupportPal(): SupportPal
