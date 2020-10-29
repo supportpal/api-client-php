@@ -8,6 +8,28 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 abstract class CustomField extends BaseModel
 {
+    public const TYPE_BOOLEAN = 0;
+
+    public const TYPE_CHECKBOX = 1;
+
+    public const TYPE_CHECKLIST = 2;
+
+    public const TYPE_DATE = 3;
+
+    public const TYPE_MULTIPLE = 4;
+
+    public const TYPE_OPTIONS = 5;
+
+    public const TYPE_PASSWORD = 6;
+
+    public const TYPE_RADIO = 7;
+
+    public const TYPE_TEXT = 8;
+
+    public const TYPE_TEXTAREA = 9;
+
+    public const TYPE_RATING = 10;
+
     /**
      * @var string|null
      * @SerializedName("regex_error_message")
@@ -27,7 +49,7 @@ abstract class CustomField extends BaseModel
     private $regex;
 
     /**
-     * @var bool
+     * @var int|null
      * @SerializedName("locked")
      */
     private $locked;
@@ -63,13 +85,13 @@ abstract class CustomField extends BaseModel
     private $name;
 
     /**
-     * @var bool|null
+     * @var int|null
      * @SerializedName("required")
      */
     private $required;
 
     /**
-     * @var bool|null
+     * @var int|null
      * @SerializedName("public")
      */
     private $public;
@@ -174,18 +196,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return bool
+     * @return int|null
      */
-    public function getLocked(): ?bool
+    public function getLocked(): ?int
     {
         return $this->locked;
     }
 
     /**
-     * @param bool $locked
+     * @param int|null $locked
      * @return self
      */
-    public function setLocked(bool $locked): self
+    public function setLocked(?int $locked): self
     {
         $this->locked = $locked;
 
@@ -288,18 +310,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return bool|null
+     * @return int|null
      */
-    public function getRequired(): ?bool
+    public function getRequired(): ?int
     {
         return $this->required;
     }
 
     /**
-     * @param bool|null $required
+     * @param int|null $required
      * @return self
      */
-    public function setRequired(?bool $required): self
+    public function setRequired(?int $required): self
     {
         $this->required = $required;
 
@@ -307,18 +329,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return bool|null
+     * @return int|null
      */
-    public function getPublic(): ?bool
+    public function getPublic(): ?int
     {
         return $this->public;
     }
 
     /**
-     * @param bool|null $public
+     * @param int|null $public
      * @return self
      */
-    public function setPublic(?bool $public): self
+    public function setPublic(?int $public): self
     {
         $this->public = $public;
 
