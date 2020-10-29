@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\BaseModel;
+use SupportPal\ApiClient\Model\User\User;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 class Message extends BaseModel
@@ -108,6 +109,15 @@ class Message extends BaseModel
      * @SerializedName("text")
      */
     private $text;
+
+    /**
+     * @var Attachment[]|null
+     * @SerializedName("attachments")
+     */
+    private $attachments;
+
+    /** @var User|null */
+    private $user;
 
     /**
      * @return int|null
@@ -409,6 +419,44 @@ class Message extends BaseModel
     public function setText(string $text): self
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * @return Attachment[]|null
+     */
+    public function getAttachments(): ?array
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * @param Attachment[]|null $attachments
+     * @return self
+     */
+    public function setAttachments(?array $attachments): self
+    {
+        $this->attachments = $attachments;
+
+        return $this;
+    }
+
+    /**
+     * @return User|null
+     */
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User|null $user
+     * @return self
+     */
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

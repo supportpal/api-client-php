@@ -63,7 +63,7 @@ class TicketApisTest extends ApiClientTest
 
         return [
             'postTicket' => [(new CreateTicketData)->getArrayData(), $ticketData],
-            'postMessage' => [(new CreateMessageData())->getArrayData(), $messageData->getResponse()],
+            'postMessage' => [(new CreateMessageData)->getArrayData(), $messageData->getResponse()],
         ];
     }
 

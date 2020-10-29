@@ -51,7 +51,7 @@ class SelfServiceApisData
         $commentData = new CommentData;
 
         return [
-            'postComment' => [(new CreateCommentData())->getFilledInstance(), $commentData->getResponse()],
+            'postComment' => [(new CreateCommentData)->getFilledInstance(), $commentData->getResponse()],
         ];
     }
 }

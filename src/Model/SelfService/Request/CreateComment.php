@@ -1,8 +1,6 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Model\SelfService\Request;
-
 
 use SupportPal\ApiClient\Model\BaseModel;
 use Symfony\Component\Serializer\Annotation\SerializedName;
@@ -78,6 +76,7 @@ class CreateComment extends BaseModel
     public function setArticleId(int $articleId): self
     {
         $this->articleId = $articleId;
+
         return $this;
     }
 
@@ -96,6 +95,7 @@ class CreateComment extends BaseModel
     public function setTypeId(int $typeId): self
     {
         $this->typeId = $typeId;
+
         return $this;
     }
 
@@ -114,6 +114,7 @@ class CreateComment extends BaseModel
     public function setParentId(?int $parentId): self
     {
         $this->parentId = $parentId;
+
         return $this;
     }
 
@@ -132,6 +133,7 @@ class CreateComment extends BaseModel
     public function setAuthorId(?int $authorId): self
     {
         $this->authorId = $authorId;
+
         return $this;
     }
 
@@ -150,6 +152,7 @@ class CreateComment extends BaseModel
     public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -168,6 +171,7 @@ class CreateComment extends BaseModel
     public function setText(string $text): self
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -186,6 +190,7 @@ class CreateComment extends BaseModel
     public function setStatus(?int $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -204,6 +209,7 @@ class CreateComment extends BaseModel
     public function setNotifyReply(?bool $notifyReply): self
     {
         $this->notifyReply = $notifyReply;
+
         return $this;
     }
 }

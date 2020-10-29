@@ -53,7 +53,7 @@ class SelfServiceApisTest extends ApiClientTest
     protected function getPostEndpoints(): array
     {
         $commentData = new CommentData;
-        $createCommentData = new CreateCommentData();
+        $createCommentData = new CreateCommentData;
 
         return [
             'postComment' => [$createCommentData->getArrayData(), $commentData->getResponse()],

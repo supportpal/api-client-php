@@ -3,8 +3,6 @@
 namespace SupportPal\ApiClient\Tests\DataFixtures\ApiCalls;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Model\Ticket\Request\CreateMessage;
-use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
@@ -61,7 +59,7 @@ class TicketApisData
     public function postApiCalls(): array
     {
         $createTicket = (new CreateTicketData)->getFilledInstance();
-        $createMessage = (new CreateMessageData())->getFilledInstance();
+        $createMessage = (new CreateMessageData)->getFilledInstance();
         $ticketData = (new TicketData)->getResponse();
         $messageData = new MessageData;
 

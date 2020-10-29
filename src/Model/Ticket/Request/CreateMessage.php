@@ -1,8 +1,6 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace SupportPal\ApiClient\Model\Ticket\Request;
-
 
 use SupportPal\ApiClient\Model\BaseModel;
 use Symfony\Component\Serializer\Annotation\SerializedName;
@@ -22,7 +20,7 @@ class CreateMessage extends BaseModel
     private $ticketId;
 
     /**
-     * @var string
+     * @var int
      * @SerializedName("user_id")
      */
     private $userId;
@@ -46,7 +44,7 @@ class CreateMessage extends BaseModel
     private $text;
 
     /**
-     * @var array|null
+     * @var string[]|null
      * @SerializedName("cc")
      */
     private $cc;
@@ -85,29 +83,31 @@ class CreateMessage extends BaseModel
 
     /**
      * @param int $ticketId
-     * @return CreateMessage
+     * @return self
      */
-    public function setTicketId(int $ticketId): CreateMessage
+    public function setTicketId(int $ticketId): self
     {
         $this->ticketId = $ticketId;
+
         return $this;
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getUserId(): string
+    public function getUserId(): int
     {
         return $this->userId;
     }
 
     /**
-     * @param string $userId
-     * @return CreateMessage
+     * @param int $userId
+     * @return self
      */
-    public function setUserId(string $userId): CreateMessage
+    public function setUserId(int $userId): self
     {
         $this->userId = $userId;
+
         return $this;
     }
 
@@ -121,11 +121,12 @@ class CreateMessage extends BaseModel
 
     /**
      * @param string|null $userIpAddress
-     * @return CreateMessage
+     * @return self
      */
-    public function setUserIpAddress(?string $userIpAddress): CreateMessage
+    public function setUserIpAddress(?string $userIpAddress): self
     {
         $this->userIpAddress = $userIpAddress;
+
         return $this;
     }
 
@@ -139,11 +140,12 @@ class CreateMessage extends BaseModel
 
     /**
      * @param int|null $messageType
-     * @return CreateMessage
+     * @return self
      */
-    public function setMessageType(?int $messageType): CreateMessage
+    public function setMessageType(?int $messageType): self
     {
         $this->messageType = $messageType;
+
         return $this;
     }
 
@@ -157,16 +159,17 @@ class CreateMessage extends BaseModel
 
     /**
      * @param string $text
-     * @return CreateMessage
+     * @return self
      */
-    public function setText(string $text): CreateMessage
+    public function setText(string $text): self
     {
         $this->text = $text;
+
         return $this;
     }
 
     /**
-     * @return array|null
+     * @return string[]|null
      */
     public function getCc(): ?array
     {
@@ -174,12 +177,13 @@ class CreateMessage extends BaseModel
     }
 
     /**
-     * @param array|null $cc
-     * @return CreateMessage
+     * @param string[]|null $cc
+     * @return self
      */
-    public function setCc(?array $cc): CreateMessage
+    public function setCc(?array $cc): self
     {
         $this->cc = $cc;
+
         return $this;
     }
 
@@ -193,11 +197,12 @@ class CreateMessage extends BaseModel
 
     /**
      * @param bool|null $isDraft
-     * @return CreateMessage
+     * @return self
      */
-    public function setIsDraft(?bool $isDraft): CreateMessage
+    public function setIsDraft(?bool $isDraft): self
     {
         $this->isDraft = $isDraft;
+
         return $this;
     }
 
@@ -211,11 +216,12 @@ class CreateMessage extends BaseModel
 
     /**
      * @param bool|null $sendUserEmail
-     * @return CreateMessage
+     * @return self
      */
-    public function setSendUserEmail(?bool $sendUserEmail): CreateMessage
+    public function setSendUserEmail(?bool $sendUserEmail): self
     {
         $this->sendUserEmail = $sendUserEmail;
+
         return $this;
     }
 
@@ -229,11 +235,12 @@ class CreateMessage extends BaseModel
 
     /**
      * @param bool|null $sendOperatorsEmail
-     * @return CreateMessage
+     * @return self
      */
-    public function setSendOperatorsEmail(?bool $sendOperatorsEmail): CreateMessage
+    public function setSendOperatorsEmail(?bool $sendOperatorsEmail): self
     {
         $this->sendOperatorsEmail = $sendOperatorsEmail;
+
         return $this;
     }
 
@@ -247,11 +254,12 @@ class CreateMessage extends BaseModel
 
     /**
      * @param string[]|null $attachment
-     * @return CreateMessage
+     * @return self
      */
-    public function setAttachment(?array $attachment): CreateMessage
+    public function setAttachment(?array $attachment): self
     {
         $this->attachment = $attachment;
+
         return $this;
     }
 }
