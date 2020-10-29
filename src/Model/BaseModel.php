@@ -5,8 +5,10 @@ namespace SupportPal\ApiClient\Model;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingRequiredFieldsException;
 use SupportPal\ApiClient\Helper\StringHelper;
+use SupportPal\ApiClient\Transformer\AttributeAwareTransformer;
 use SupportPal\ApiClient\Transformer\IntToBooleanTransformer;
 use SupportPal\ApiClient\Transformer\StringTrimTransformer;
+use SupportPal\ApiClient\Transformer\Transformer;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 use TypeError;
@@ -57,31 +59,9 @@ abstract class BaseModel implements Model
                 continue;
             }
 
-            foreach ($attributeAwareTransformers as $transformer) {
-                if (! $transformer->canTransform($this->snakeCaseToCamelCase($key), get_class($this), $value)) {
-                    continue;
-                }
-
-                $value = $transformer->transform($value);
-            }
-
-            foreach ($transformers as $transformer) {
-                if (! $transformer->canTransform($value)) {
-                    continue;
-                }
-
-                $value = $transformer->transform($value);
-            }
-
-            try {
-                $this->{$attributeSetter}($value);
-            } catch (TypeError $exception) {
-                throw new InvalidArgumentException(
-                    $exception->getMessage(),
-                    $exception->getCode(),
-                    $exception->getPrevious()
-                );
-            }
+            $value = $this->applyAttributeAwareTransformers($attributeAwareTransformers, $key, $value);
+            $value = $this->applyValueTransformers($transformers, $value);
+            $this->setAttributeValue($attributeSetter, $value);
         }
 
         return $this;
@@ -135,5 +115,60 @@ abstract class BaseModel implements Model
         $this->pivot = $pivot;
 
         return $this;
+    }
+
+    /**
+     * @param AttributeAwareTransformer[] $attributeAwareTransformers
+     * @param string $key
+     * @param mixed $value
+     * @return mixed
+     */
+    private function applyAttributeAwareTransformers(array $attributeAwareTransformers, string $key, $value)
+    {
+        foreach ($attributeAwareTransformers as $transformer) {
+            if (! $transformer->canTransform($this->snakeCaseToCamelCase($key), get_class($this), $value)) {
+                continue;
+            }
+
+            $value = $transformer->transform($value);
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param string $attributeSetter
+     * @param mixed $value
+     * @throws InvalidArgumentException
+     */
+    private function setAttributeValue(string $attributeSetter, $value): void
+    {
+        try {
+            $this->{$attributeSetter}($value);
+        } catch (TypeError $exception) {
+            throw new InvalidArgumentException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->getPrevious()
+            );
+        }
+    }
+
+    /**
+     * @param Transformer[] $transformers
+     * @param mixed $value
+     * @return mixed
+     */
+    private function applyValueTransformers(array $transformers, $value)
+    {
+        foreach ($transformers as $transformer) {
+            if (! $transformer->canTransform($value)) {
+                continue;
+            }
+
+            $value = $transformer->transform($value);
+        }
+
+        return $value;
     }
 }

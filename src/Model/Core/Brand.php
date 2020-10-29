@@ -59,7 +59,7 @@ class Brand extends BaseModel
     private $defaultCountry;
 
     /**
-     * @var bool
+     * @var int
      * @SerializedName("frontend_template_mode")
      */
     private $frontendTemplateMode;
@@ -113,7 +113,7 @@ class Brand extends BaseModel
     private $smtpRequiresAuth;
 
     /**
-     * @var bool|null
+     * @var int|null
      * @SerializedName("enable_ssl")
      */
     private $enableSsl;
@@ -215,7 +215,7 @@ class Brand extends BaseModel
     private $languageToggle;
 
     /**
-     * @var bool
+     * @var int
      * @SerializedName("operator_template_mode")
      */
     private $operatorTemplateMode;
@@ -328,18 +328,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function getFrontendTemplateMode(): bool
+    public function getFrontendTemplateMode(): int
     {
         return $this->frontendTemplateMode;
     }
 
     /**
-     * @param bool $frontendTemplateMode
+     * @param int $frontendTemplateMode
      * @return self
      */
-    public function setFrontendTemplateMode(bool $frontendTemplateMode): self
+    public function setFrontendTemplateMode(int $frontendTemplateMode): self
     {
         $this->frontendTemplateMode = $frontendTemplateMode;
 
@@ -499,18 +499,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return bool|null
+     * @return int|null
      */
-    public function getEnableSsl(): ?bool
+    public function getEnableSsl(): ?int
     {
         return $this->enableSsl;
     }
 
     /**
-     * @param bool|null $enableSsl
+     * @param int|null $enableSsl
      * @return self
      */
-    public function setEnableSsl(?bool $enableSsl): self
+    public function setEnableSsl(?int $enableSsl): self
     {
         $this->enableSsl = $enableSsl;
 
@@ -803,18 +803,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function getOperatorTemplateMode(): bool
+    public function getOperatorTemplateMode(): int
     {
         return $this->operatorTemplateMode;
     }
 
     /**
-     * @param bool $operatorTemplateMode
+     * @param int $operatorTemplateMode
      * @return self
      */
-    public function setOperatorTemplateMode(bool $operatorTemplateMode): self
+    public function setOperatorTemplateMode(int $operatorTemplateMode): self
     {
         $this->operatorTemplateMode = $operatorTemplateMode;
 
