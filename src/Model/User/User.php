@@ -110,7 +110,7 @@ class User extends BaseModel
     private $notes;
 
     /**
-     * @var bool|null
+     * @var int|null
      * @SerializedName("organisation_access_level")
      */
     private $organisationAccessLevel;
@@ -499,18 +499,18 @@ class User extends BaseModel
     }
 
     /**
-     * @return bool|null
+     * @return int|null
      */
-    public function getOrganisationAccessLevel(): ?bool
+    public function getOrganisationAccessLevel(): ?int
     {
         return $this->organisationAccessLevel;
     }
 
     /**
-     * @param bool|null $organisationAccessLevel
+     * @param int|null $organisationAccessLevel
      * @return self
      */
-    public function setOrganisationAccessLevel(?bool $organisationAccessLevel): self
+    public function setOrganisationAccessLevel(?int $organisationAccessLevel): self
     {
         $this->organisationAccessLevel = $organisationAccessLevel;
 
