@@ -6,6 +6,7 @@ use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\CreateCommentData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
@@ -52,9 +53,10 @@ class SelfServiceApisTest extends ApiClientTest
     protected function getPostEndpoints(): array
     {
         $commentData = new CommentData;
+        $createCommentData = new CreateCommentData();
 
         return [
-            'postComment' => [$commentData->getArrayData(), $commentData->getResponse()],
+            'postComment' => [$createCommentData->getArrayData(), $commentData->getResponse()],
         ];
     }
 

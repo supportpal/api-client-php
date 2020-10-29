@@ -6,6 +6,7 @@ use SupportPal\ApiClient\Api\TicketApi;
 use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Ticket\Message;
+use SupportPal\ApiClient\Model\Ticket\Request\CreateMessage;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
@@ -65,6 +66,7 @@ class MessageApisTest extends ApiTest
         [$response, $messageMock, $messageOutput] = $this->postCommonExpectations(
             $messageData->getResponse(),
             $arrayData,
+            CreateMessage::class,
             Message::class
         );
 
@@ -80,8 +82,8 @@ class MessageApisTest extends ApiTest
 
     public function testPostWithIncompleteData(): void
     {
-        /** @var Message $messageMock */
-        $messageMock = $this->postIncompleteDataCommonExpectations(Message::class);
+        /** @var CreateMessage $messageMock */
+        $messageMock = $this->postIncompleteDataCommonExpectations(CreateMessage::class);
         $this->expectException(InvalidArgumentException::class);
         $this->api->postMessage($messageMock);
     }
