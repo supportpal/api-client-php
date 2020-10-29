@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Model;
+namespace SupportPal\ApiClient\Config;
 
 use function sprintf;
 use function trim;
