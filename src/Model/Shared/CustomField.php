@@ -49,7 +49,7 @@ abstract class CustomField extends BaseModel
     private $regex;
 
     /**
-     * @var int|null
+     * @var bool
      * @SerializedName("locked")
      */
     private $locked;
@@ -85,13 +85,13 @@ abstract class CustomField extends BaseModel
     private $name;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("required")
      */
     private $required;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("public")
      */
     private $public;
@@ -196,18 +196,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool
      */
-    public function getLocked(): ?int
+    public function getLocked(): ?bool
     {
         return $this->locked;
     }
 
     /**
-     * @param int|null $locked
+     * @param bool $locked
      * @return self
      */
-    public function setLocked(?int $locked): self
+    public function setLocked(bool $locked): self
     {
         $this->locked = $locked;
 
@@ -310,18 +310,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getRequired(): ?int
+    public function getRequired(): ?bool
     {
         return $this->required;
     }
 
     /**
-     * @param int|null $required
+     * @param bool|null $required
      * @return self
      */
-    public function setRequired(?int $required): self
+    public function setRequired(?bool $required): self
     {
         $this->required = $required;
 
@@ -329,18 +329,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getPublic(): ?int
+    public function getPublic(): ?bool
     {
         return $this->public;
     }
 
     /**
-     * @param int|null $public
+     * @param bool|null $public
      * @return self
      */
-    public function setPublic(?int $public): self
+    public function setPublic(?bool $public): self
     {
         $this->public = $public;
 
