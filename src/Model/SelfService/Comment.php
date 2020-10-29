@@ -56,10 +56,10 @@ class Comment extends BaseModel
     private $status = 0;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("notify_reply")
      */
-    private $notifyReply = 0;
+    private $notifyReply = false;
 
     /**
      * @var int|null
@@ -236,18 +236,18 @@ class Comment extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getNotifyReply(): int
+    public function getNotifyReply(): bool
     {
         return $this->notifyReply;
     }
 
     /**
-     * @param int $notifyReply
+     * @param bool $notifyReply
      * @return self
      */
-    public function setNotifyReply(int $notifyReply): self
+    public function setNotifyReply(bool $notifyReply): self
     {
         $this->notifyReply = $notifyReply;
 

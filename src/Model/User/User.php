@@ -26,13 +26,13 @@ class User extends BaseModel
     private $avatar;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("twofa_enabled")
      */
     private $twofaEnabled;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("confirmed")
      */
     private $confirmed;
@@ -56,7 +56,7 @@ class User extends BaseModel
     private $timezone;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("organisation_notifications")
      */
     private $organisationNotifications;
@@ -80,7 +80,7 @@ class User extends BaseModel
     private $brandId;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("active")
      */
     private $active;
@@ -252,18 +252,18 @@ class User extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getActive(): int
+    public function getActive(): bool
     {
         return $this->active;
     }
 
     /**
-     * @param int $active
+     * @param bool $active
      * @return self
      */
-    public function setActive(int $active): self
+    public function setActive(bool $active): self
     {
         $this->active = $active;
 
@@ -594,18 +594,18 @@ class User extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getConfirmed(): int
+    public function getConfirmed(): bool
     {
         return $this->confirmed;
     }
 
     /**
-     * @param int $confirmed
+     * @param bool $confirmed
      * @return self
      */
-    public function setConfirmed(int $confirmed): self
+    public function setConfirmed(bool $confirmed): self
     {
         $this->confirmed = $confirmed;
 
@@ -613,18 +613,18 @@ class User extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getOrganisationNotifications(): ?int
+    public function getOrganisationNotifications(): ?bool
     {
         return $this->organisationNotifications;
     }
 
     /**
-     * @param int|null $organisationNotifications
+     * @param bool|null $organisationNotifications
      * @return self
      */
-    public function setOrganisationNotifications(?int $organisationNotifications): self
+    public function setOrganisationNotifications(?bool $organisationNotifications): self
     {
         $this->organisationNotifications = $organisationNotifications;
 
@@ -632,18 +632,18 @@ class User extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getTwofaEnabled(): ?int
+    public function getTwofaEnabled(): ?bool
     {
         return $this->twofaEnabled;
     }
 
     /**
-     * @param int|null $twofaEnabled
+     * @param bool|null $twofaEnabled
      * @return self
      */
-    public function setTwofaEnabled(?int $twofaEnabled): self
+    public function setTwofaEnabled(?bool $twofaEnabled): self
     {
         $this->twofaEnabled = $twofaEnabled;
 

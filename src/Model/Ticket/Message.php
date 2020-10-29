@@ -98,7 +98,7 @@ class Message extends BaseModel
     private $updatedAt;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("is_draft")
      */
     private $isDraft;
@@ -376,18 +376,18 @@ class Message extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getIsDraft(): ?int
+    public function getIsDraft(): ?bool
     {
         return $this->isDraft;
     }
 
     /**
-     * @param int|null $isDraft
+     * @param bool|null $isDraft
      * @return self
      */
-    public function setIsDraft(?int $isDraft): self
+    public function setIsDraft(?bool $isDraft): self
     {
         $this->isDraft = $isDraft;
 

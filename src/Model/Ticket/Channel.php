@@ -32,13 +32,13 @@ class Channel extends BaseModel
     private $version;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("enabled")
      */
     private $enabled;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("upgrade_available")
      */
     private $upgradeAvailable;
@@ -132,18 +132,18 @@ class Channel extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getEnabled(): int
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
     /**
-     * @param int $enabled
+     * @param bool $enabled
      * @return self
      */
-    public function setEnabled(int $enabled): self
+    public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
 
@@ -151,18 +151,18 @@ class Channel extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getUpgradeAvailable(): int
+    public function getUpgradeAvailable(): bool
     {
         return $this->upgradeAvailable;
     }
 
     /**
-     * @param int $upgradeAvailable
+     * @param bool $upgradeAvailable
      * @return self
      */
-    public function setUpgradeAvailable(int $upgradeAvailable): self
+    public function setUpgradeAvailable(bool $upgradeAvailable): self
     {
         $this->upgradeAvailable = $upgradeAvailable;
 

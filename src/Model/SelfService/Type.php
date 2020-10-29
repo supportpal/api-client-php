@@ -69,7 +69,7 @@ class Type extends BaseModel
     private $updatedAt;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("internal")
      */
     private $internal;
@@ -93,7 +93,7 @@ class Type extends BaseModel
     private $view;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("protected")
      */
     private $protected;
@@ -111,7 +111,7 @@ class Type extends BaseModel
     private $externalLink;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("enabled")
      */
     private $enabled;
@@ -287,18 +287,18 @@ class Type extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getInternal(): int
+    public function getInternal(): bool
     {
         return $this->internal;
     }
 
     /**
-     * @param int $internal
+     * @param bool $internal
      * @return self
      */
-    public function setInternal(int $internal): self
+    public function setInternal(bool $internal): self
     {
         $this->internal = $internal;
 
@@ -363,18 +363,18 @@ class Type extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getProtected(): int
+    public function getProtected(): bool
     {
         return $this->protected;
     }
 
     /**
-     * @param int $protected
+     * @param bool $protected
      * @return self
      */
-    public function setProtected(int $protected): self
+    public function setProtected(bool $protected): self
     {
         $this->protected = $protected;
 
@@ -420,18 +420,18 @@ class Type extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getEnabled(): int
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
     /**
-     * @param int $enabled
+     * @param bool $enabled
      * @return self
      */
-    public function setEnabled(int $enabled): self
+    public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
 

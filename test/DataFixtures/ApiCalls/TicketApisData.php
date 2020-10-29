@@ -41,7 +41,7 @@ class TicketApisData
             'getCustomField' => [$ticketCustomFieldData->getResponse(), [1]],
             'getPriorities' => [$priorityData->getAllResponse(), []],
             'getPriority' => [$priorityData->getResponse(), [1]],
-            'getStatuses' => [$priorityData->getAllResponse(), []],
+            'getStatuses' => [$statusData->getAllResponse(), []],
             'getStatus' => [$statusData->getResponse(), [1]],
             'getAttachments' => [$attachmentData->getAllResponse(), []],
             'getAttachment' => [$attachmentData->getResponse(), [1]],

@@ -10,8 +10,8 @@ use SupportPal\ApiClient\Model\SettingsModel;
 use function count;
 use function current;
 use function is_array;
+use function is_bool;
 use function is_object;
-use function method_exists;
 
 /**
  * Class TestCase
@@ -29,13 +29,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
     {
         foreach ($array as $key => $value) {
             $method = 'get'.$this->snakeCaseToPascalCase($key);
-            /**
-             * ignore extra fields passed in the arrays
-             */
-            if (! method_exists($obj, $method)) {
-                continue;
-            }
-
             $attributeValue = $obj->{$method}();
             /**
              * assert against nested objects recursively
@@ -71,7 +64,15 @@ class TestCase extends \PHPUnit\Framework\TestCase
              * compare atomic values directly
              */
             if (! is_array($value)) {
-                self::assertSame($value, $attributeValue);
+                if (is_bool($attributeValue) || is_bool($value)) {
+                    /**
+                     * Int values (for bool type) from Apis are transformed to bool
+                     */
+                    self::assertSame((int) $value, (int) $attributeValue);
+                } else {
+                    self::assertSame($value, $attributeValue);
+                }
+
                 continue;
             }
 

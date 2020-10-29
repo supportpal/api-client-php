@@ -2,13 +2,16 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ModelNormalizer;
 
+use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use Prophecy\Prophecy\ProphecySubjectInterface;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Normalizer\ModelNormalizer;
 use SupportPal\ApiClient\Tests\TestCase;
+use SupportPal\ApiClient\Transformer\AttributeAwareTransformer;
 use SupportPal\ApiClient\Transformer\Transformer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
@@ -19,6 +22,8 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
  */
 class ModelNormalizerTest extends TestCase
 {
+    use StringHelper;
+
     /** @var ObjectProphecy */
     private $transformer;
 
@@ -43,11 +48,15 @@ class ModelNormalizerTest extends TestCase
     /** @var string[] */
     private $transformedOutput;
 
+    /** @var ObjectProphecy */
+    private $attributeAwareTransformer;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->objectNormalizer = $this->prophesize(ObjectNormalizer::class);
         $this->transformer = $this->prophesize(Transformer::class);
+        $this->attributeAwareTransformer = $this->prophesize(AttributeAwareTransformer::class);
 
         $this->object = $this->prophesize(Model::class)->reveal();
         $this->format = 'json';
@@ -59,8 +68,14 @@ class ModelNormalizerTest extends TestCase
         $objectNormalizer = $this->objectNormalizer->reveal();
         /** @var Transformer $transformer */
         $transformer = $this->transformer->reveal();
+        /** @var AttributeAwareTransformer $transformer */
+        $attributeAwareTransformer = $this->attributeAwareTransformer->reveal();
 
-        $this->modelNormalizer = new ModelNormalizer($objectNormalizer, [$transformer]);
+        /** @var Transformer[] $transformers */
+        $transformers = [$transformer];
+        /** @var AttributeAwareTransformer[] $attributeAwareTransformers */
+        $attributeAwareTransformers = [$attributeAwareTransformer];
+        $this->modelNormalizer = new ModelNormalizer($objectNormalizer, $transformers, $attributeAwareTransformers);
     }
 
     public function testNormalizeTransformAll(): void
@@ -165,6 +180,15 @@ class ModelNormalizerTest extends TestCase
             ->shouldBeCalled()
             ->willReturn($this->object);
 
+        foreach ($this->inputData as $key => $value) {
+            $this
+                ->attributeAwareTransformer
+                ->canTransform($this->snakeCaseToCamelCase($key), Model::class, $value)
+                ->shouldBeCalled()
+                ->willReturn(false);
+        }
+
+        $this->attributeAwareTransformer->transform(Argument::any())->shouldNotBeCalled();
         $this->transformer->canTransform($this->object)->shouldBeCalled()->willReturn(true);
         $this->transformer->transform($this->object)->shouldBeCalled()->willReturn(null);
         $output = $this->modelNormalizer->denormalize($this->inputData, Model::class, $this->format, $this->context);

@@ -58,7 +58,7 @@ class CreateUser extends BaseModel
     private $timezone;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("confirmed")
      */
     private $confirmed;
@@ -115,9 +115,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param int|null $brandId
-     * @return CreateUser
+     * @return self
      */
-    public function setBrandId(?int $brandId): CreateUser
+    public function setBrandId(?int $brandId): self
     {
         $this->brandId = $brandId;
 
@@ -134,9 +134,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param string|null $firstname
-     * @return CreateUser
+     * @return self
      */
-    public function setFirstname(?string $firstname): CreateUser
+    public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
 
@@ -153,9 +153,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param string|null $lastname
-     * @return CreateUser
+     * @return self
      */
-    public function setLastname(?string $lastname): CreateUser
+    public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
 
@@ -172,9 +172,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param string $email
-     * @return CreateUser
+     * @return self
      */
-    public function setEmail(string $email): CreateUser
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
@@ -191,9 +191,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param string|null $password
-     * @return CreateUser
+     * @return self
      */
-    public function setPassword(?string $password): CreateUser
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
@@ -210,9 +210,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param string|null $country
-     * @return CreateUser
+     * @return self
      */
-    public function setCountry(?string $country): CreateUser
+    public function setCountry(?string $country): self
     {
         $this->country = $country;
 
@@ -229,9 +229,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param string|null $languageCode
-     * @return CreateUser
+     * @return self
      */
-    public function setLanguageCode(?string $languageCode): CreateUser
+    public function setLanguageCode(?string $languageCode): self
     {
         $this->languageCode = $languageCode;
 
@@ -248,9 +248,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param string|null $timezone
-     * @return CreateUser
+     * @return self
      */
-    public function setTimezone(?string $timezone): CreateUser
+    public function setTimezone(?string $timezone): self
     {
         $this->timezone = $timezone;
 
@@ -258,18 +258,18 @@ class CreateUser extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getConfirmed(): ?int
+    public function getConfirmed(): ?bool
     {
         return $this->confirmed;
     }
 
     /**
-     * @param int|null $confirmed
-     * @return CreateUser
+     * @param bool|null $confirmed
+     * @return self
      */
-    public function setConfirmed(?int $confirmed): CreateUser
+    public function setConfirmed(?bool $confirmed): self
     {
         $this->confirmed = $confirmed;
 
@@ -286,9 +286,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param int|null $active
-     * @return CreateUser
+     * @return self
      */
-    public function setActive(?int $active): CreateUser
+    public function setActive(?int $active): self
     {
         $this->active = $active;
 
@@ -305,9 +305,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param string|null $organisation
-     * @return CreateUser
+     * @return self
      */
-    public function setOrganisation(?string $organisation): CreateUser
+    public function setOrganisation(?string $organisation): self
     {
         $this->organisation = $organisation;
 
@@ -324,9 +324,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param int|null $organisationId
-     * @return CreateUser
+     * @return self
      */
-    public function setOrganisationId(?int $organisationId): CreateUser
+    public function setOrganisationId(?int $organisationId): self
     {
         $this->organisationId = $organisationId;
 
@@ -343,9 +343,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param int|null $organisationAccessLevel
-     * @return CreateUser
+     * @return self
      */
-    public function setOrganisationAccessLevel(?int $organisationAccessLevel): CreateUser
+    public function setOrganisationAccessLevel(?int $organisationAccessLevel): self
     {
         $this->organisationAccessLevel = $organisationAccessLevel;
 
@@ -362,9 +362,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param int|null $organisationNotifications
-     * @return CreateUser
+     * @return self
      */
-    public function setOrganisationNotifications(?int $organisationNotifications): CreateUser
+    public function setOrganisationNotifications(?int $organisationNotifications): self
     {
         $this->organisationNotifications = $organisationNotifications;
 
@@ -381,9 +381,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param int[]|null $customfield
-     * @return CreateUser
+     * @return self
      */
-    public function setCustomfield(?array $customfield): CreateUser
+    public function setCustomfield(?array $customfield): self
     {
         $this->customfield = $customfield;
 
@@ -400,9 +400,9 @@ class CreateUser extends BaseModel
 
     /**
      * @param int[]|null $groups
-     * @return CreateUser
+     * @return self
      */
-    public function setGroups(?array $groups): CreateUser
+    public function setGroups(?array $groups): self
     {
         $this->groups = $groups;
 

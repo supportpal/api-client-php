@@ -71,7 +71,7 @@ class Brand extends BaseModel
     private $operatorIcon;
 
     /**
-     * @var int
+     * @var bool
      * @SerializedName("enabled")
      */
     private $enabled;
@@ -107,7 +107,7 @@ class Brand extends BaseModel
     private $smtpPassword;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("smtp_requires_auth")
      */
     private $smtpRequiresAuth;
@@ -366,18 +366,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return int
+     * @return bool
      */
-    public function getEnabled(): int
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
     /**
-     * @param int $enabled
+     * @param bool $enabled
      * @return self
      */
-    public function setEnabled(int $enabled): self
+    public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
 
@@ -480,18 +480,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getSmtpRequiresAuth(): ?int
+    public function getSmtpRequiresAuth(): ?bool
     {
         return $this->smtpRequiresAuth;
     }
 
     /**
-     * @param int|null $smtpRequiresAuth
+     * @param bool|null $smtpRequiresAuth
      * @return self
      */
-    public function setSmtpRequiresAuth(?int $smtpRequiresAuth): self
+    public function setSmtpRequiresAuth(?bool $smtpRequiresAuth): self
     {
         $this->smtpRequiresAuth = $smtpRequiresAuth;
 

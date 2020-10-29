@@ -41,3 +41,5 @@ services:
 
     Symfony\Component\Serializer\Encoder\JsonEncoder: ~
 
+    Symfony\Component\PropertyInfo\PropertyTypeExtractorInterface: '@Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor'
+

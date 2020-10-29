@@ -82,7 +82,7 @@ class CreateTicket extends BaseModel
     private $priority;
 
     /**
-     * @var int|null
+     * @var bool|null
      * @SerializedName("internal")
      */
     private $internal;
@@ -363,18 +363,18 @@ class CreateTicket extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return bool|null
      */
-    public function getInternal(): ?int
+    public function getInternal(): ?bool
     {
         return $this->internal;
     }
 
     /**
-     * @param int|null $internal
+     * @param bool|null $internal
      * @return self
      */
-    public function setInternal(?int $internal): self
+    public function setInternal(?bool $internal): self
     {
         $this->internal = $internal;
 
