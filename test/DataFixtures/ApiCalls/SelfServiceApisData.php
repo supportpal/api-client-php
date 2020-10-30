@@ -6,6 +6,7 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\CreateCommentData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
@@ -50,7 +51,7 @@ class SelfServiceApisData
         $commentData = new CommentData;
 
         return [
-            'postComment' => [$commentData->getFilledInstance(), $commentData->getResponse()],
+            'postComment' => [(new CreateCommentData)->getFilledInstance(), $commentData->getResponse()],
         ];
     }
 }

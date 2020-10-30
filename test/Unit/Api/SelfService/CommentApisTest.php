@@ -6,6 +6,7 @@ use SupportPal\ApiClient\Api\SelfServiceApi;
 use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\SelfService\Comment;
+use SupportPal\ApiClient\Model\SelfService\Request\CreateComment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
@@ -30,6 +31,7 @@ class CommentApisTest extends ApiTest
         [$response, $commentMock, $commentOutput] = $this->postCommonExpectations(
             $commentData->getResponse(),
             $arrayData,
+            CreateComment::class,
             Comment::class
         );
 
@@ -45,8 +47,8 @@ class CommentApisTest extends ApiTest
 
     public function testPostCommentWithIncompleteData(): void
     {
-        /** @var Comment $commentMock */
-        $commentMock = $this->postIncompleteDataCommonExpectations(Comment::class);
+        /** @var CreateComment $commentMock */
+        $commentMock = $this->postIncompleteDataCommonExpectations(CreateComment::class);
         $this->expectException(InvalidArgumentException::class);
         $this->api->postComment($commentMock);
     }

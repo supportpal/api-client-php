@@ -8,6 +8,28 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 
 abstract class CustomField extends BaseModel
 {
+    public const TYPE_BOOLEAN = 0;
+
+    public const TYPE_CHECKBOX = 1;
+
+    public const TYPE_CHECKLIST = 2;
+
+    public const TYPE_DATE = 3;
+
+    public const TYPE_MULTIPLE = 4;
+
+    public const TYPE_OPTIONS = 5;
+
+    public const TYPE_PASSWORD = 6;
+
+    public const TYPE_RADIO = 7;
+
+    public const TYPE_TEXT = 8;
+
+    public const TYPE_TEXTAREA = 9;
+
+    public const TYPE_RATING = 10;
+
     /**
      * @var string|null
      * @SerializedName("regex_error_message")

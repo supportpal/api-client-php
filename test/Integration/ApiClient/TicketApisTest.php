@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateMessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateTicketData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
@@ -61,8 +62,8 @@ class TicketApisTest extends ApiClientTest
         $messageData = new MessageData;
 
         return [
-            'postTicket' => [CreateTicketData::DATA, $ticketData],
-            'postMessage' => [$messageData->getArrayData(), $messageData->getResponse()],
+            'postTicket' => [(new CreateTicketData)->getArrayData(), $ticketData],
+            'postMessage' => [(new CreateMessageData)->getArrayData(), $messageData->getResponse()],
         ];
     }
 
