@@ -2,6 +2,10 @@
 
 namespace SupportPal\ApiClient\Config;
 
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
+
+use function array_key_exists;
+use function parse_url;
 use function sprintf;
 use function trim;
 
@@ -105,5 +109,40 @@ class ApiContext
     private function trim(string $str): string
     {
         return trim($str, '/');
+    }
+
+    /**
+     * Create an API context from a url.
+     *
+     * @param string $url
+     * @param string $token
+     * @return static
+     * @throws InvalidArgumentException
+     */
+    public static function createFromUrl(string $url, string $token): self
+    {
+        $components = parse_url($url);
+        if (! isset($components['host'])) {
+            throw new InvalidArgumentException('URL is missing a hostname component.');
+        }
+
+        $scheme = $components['scheme'] ?? null;
+        $port   = $components['port'] ?? ($scheme === 'http' ? 80 : null);
+
+        $apiContext = new ApiContext($components['host'], $token);
+
+        if ($port !== null) {
+            $apiContext->setPort($port);
+        }
+
+        if (array_key_exists('path', $components)) {
+            $apiContext->setPath($components['path']);
+        }
+
+        if ($scheme !== null) {
+            $apiContext->setScheme($components['scheme']);
+        }
+
+        return $apiContext;
     }
 }
