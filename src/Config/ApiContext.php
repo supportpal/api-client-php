@@ -66,6 +66,32 @@ class ApiContext
     }
 
     /**
+     * Use a secure connection over SSL/TLS.
+     *
+     * @return $this
+     */
+    public function enableSsl(): self
+    {
+        $this->scheme = 'https';
+        $this->port = 443;
+
+        return $this;
+    }
+
+    /**
+     * Use an in-secure connection to the API.
+     *
+     * @return $this
+     */
+    public function disableSsl(): self
+    {
+        $this->scheme = 'http';
+        $this->port = 80;
+
+        return $this;
+    }
+
+    /**
      * @param string $scheme
      * @return self
      */
