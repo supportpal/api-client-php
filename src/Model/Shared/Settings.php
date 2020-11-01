@@ -32,7 +32,7 @@ class Settings implements SettingsModel
     /**
      * @inheritDoc
      */
-    public function getSettings(): array
+    public function all(): array
     {
         return $this->settings;
     }

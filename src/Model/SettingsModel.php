@@ -14,5 +14,5 @@ interface SettingsModel extends Model
     /**
      * @return string[]
      */
-    public function getSettings(): array;
+    public function all(): array;
 }
