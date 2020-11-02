@@ -2,6 +2,9 @@
 
 namespace SupportPal\ApiClient\Config;
 
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
+
+use function parse_url;
 use function sprintf;
 use function trim;
 
@@ -62,7 +65,33 @@ class ApiContext
      */
     public function getApiPath(): string
     {
-        return sprintf('/%s/%s', $this->trim($this->path), self::BASE_API_PATH);
+        return '/' . $this->trim(sprintf('/%s/%s', $this->trim($this->path), self::BASE_API_PATH)) . '/';
+    }
+
+    /**
+     * Use a secure connection over SSL/TLS.
+     *
+     * @return $this
+     */
+    public function enableSsl(): self
+    {
+        $this->setScheme('https');
+        $this->setPort(443);
+
+        return $this;
+    }
+
+    /**
+     * Use an in-secure connection to the API.
+     *
+     * @return $this
+     */
+    public function disableSsl(): self
+    {
+        $this->setScheme('http');
+        $this->setPort(80);
+
+        return $this;
     }
 
     /**
@@ -105,5 +134,41 @@ class ApiContext
     private function trim(string $str): string
     {
         return trim($str, '/');
+    }
+
+    /**
+     * Create an API context from a url.
+     *
+     * @param string $url
+     * @param string $token
+     * @return self
+     * @throws InvalidArgumentException
+     */
+    public static function createFromUrl(string $url, string $token): self
+    {
+        $components = (array) parse_url($url);
+        if (! isset($components['host'])) {
+            throw new InvalidArgumentException('URL is missing a hostname component.');
+        }
+
+        $scheme = $components['scheme'] ?? null;
+        $port   = $components['port'] ?? ($scheme === 'http' ? 80 : null) ?? ($scheme === 'https' ? 443 : null);
+        $path   = $components['path'] ?? null;
+
+        $apiContext = new ApiContext($components['host'], $token);
+
+        if ($port !== null) {
+            $apiContext->setPort($port);
+        }
+
+        if ($path !== null) {
+            $apiContext->setPath($path);
+        }
+
+        if ($scheme !== null) {
+            $apiContext->setScheme($scheme);
+        }
+
+        return $apiContext;
     }
 }
