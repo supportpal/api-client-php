@@ -20,7 +20,7 @@ class Option extends BaseModel
     private $createdAt;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("order")
      */
     private $order;
@@ -88,18 +88,18 @@ class Option extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOrder(): int
+    public function getOrder(): ?int
     {
         return $this->order;
     }
 
     /**
-     * @param int $order
+     * @param int|null $order
      * @return self
      */
-    public function setOrder(int $order): self
+    public function setOrder(?int $order): self
     {
         $this->order = $order;
 
