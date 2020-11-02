@@ -8,6 +8,12 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class SlaPlan extends BaseModel
 {
     /**
+     * @var int|null
+     * @SerializedName("id")
+     */
+    private $id;
+
+    /**
      * @var int
      * @SerializedName("condition_group_type")
      */
@@ -48,6 +54,25 @@ class SlaPlan extends BaseModel
      * @SerializedName("name")
      */
     private $name;
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int|null $id
+     * @return self
+     */
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * @return int
