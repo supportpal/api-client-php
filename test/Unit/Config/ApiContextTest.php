@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Config;
 
 use PHPUnit\Framework\TestCase;
 use SupportPal\ApiClient\Config\ApiContext;
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 
 class ApiContextTest extends TestCase
 {
@@ -62,6 +63,18 @@ class ApiContextTest extends TestCase
     }
 
     /**
+     * @param string $url
+     * @param string $expected
+     * @throws InvalidArgumentException
+     * @dataProvider provideCreateFromUrlCases
+     */
+    public function testCreateFromUrl(string $url, string $expected): void
+    {
+        $apiContext = ApiContext::createFromUrl($url, self::TOKEN);
+        $this->assertSame($expected, $apiContext->getApiUrl());
+    }
+
+    /**
      * @return iterable<array<int, string|ApiContext>>
      */
     public function provideGetApiUrlCases(): iterable
@@ -107,5 +120,21 @@ class ApiContextTest extends TestCase
         $apiContext = (new ApiContext(self::HOST, self::TOKEN));
 
         yield [$apiContext, '/api/'];
+    }
+
+    /**
+     * @return iterable<array<int, string>>
+     */
+    public function provideCreateFromUrlCases(): iterable
+    {
+        yield ['http://localhost/test/test/', 'http://localhost:80/test/test/api/'];
+        yield ['http://localhost/test/test/api/', 'http://localhost:80/test/test/api/api/'];
+        yield ['https://localhost:443/test/test/api/', 'https://localhost:443/test/test/api/api/'];
+        yield ['https://localhost:443/test/test/api//', 'https://localhost:443/test/test/api/api/'];
+        yield ['https://localhost', 'https://localhost:443/api/'];
+        yield ['https://localhost', 'https://localhost:443/api/'];
+        yield ['ftp://localhost', 'ftp://localhost:443/api/'];
+        yield ['http://localhost', 'http://localhost:80/api/'];
+        yield ['http://localhost:5550', 'http://localhost:5550/api/'];
     }
 }
