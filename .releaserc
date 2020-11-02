@@ -5,8 +5,7 @@
       "linkCompare": false,
       "linkReferences": false
     }],
-    "@semantic-release/changelog",
-    "@semantic-release/git"
+    "@semantic-release/github"
   ],
   "preset": "conventionalcommits",
   "presetConfig": {
