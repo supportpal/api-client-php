@@ -62,7 +62,33 @@ class ApiContext
      */
     public function getApiPath(): string
     {
-        return sprintf('/%s/%s', $this->trim($this->path), self::BASE_API_PATH);
+        return '/' . $this->trim(sprintf('/%s/%s', $this->trim($this->path), self::BASE_API_PATH)) . '/';
+    }
+
+    /**
+     * Use a secure connection over SSL/TLS.
+     *
+     * @return $this
+     */
+    public function enableSsl(): self
+    {
+        $this->setScheme('https');
+        $this->setPort(443);
+
+        return $this;
+    }
+
+    /**
+     * Use an in-secure connection to the API.
+     *
+     * @return $this
+     */
+    public function disableSsl(): self
+    {
+        $this->setScheme('http');
+        $this->setPort(80);
+
+        return $this;
     }
 
     /**

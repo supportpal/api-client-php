@@ -78,12 +78,23 @@ class RequestDefaults
     }
 
     /**
-     * Set to true enable SSL certificate verification
+     * Disable SSL certification verification.
+     *
      * @return self
      */
-    public function disableSsl(): self
+    public function disableSslVerification(): self
     {
         return $this->addRequestOption(self::VERIFY, false);
+    }
+
+    /**
+     * Enable SSL certificate verification.
+     *
+     * @return $this
+     */
+    public function enableSslVerification(): self
+    {
+        return $this->addRequestOption(self::VERIFY, true);
     }
 
     /**
