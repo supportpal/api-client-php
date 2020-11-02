@@ -29,7 +29,6 @@ use function intval;
 use function is_array;
 use function json_decode;
 use function method_exists;
-use function parse_url;
 use function sprintf;
 use function substr;
 use function var_export;
@@ -70,12 +69,7 @@ abstract class BaseTestCase extends TestCase
         $modelConverter = $containerBuilder->get(ModelToArrayConverter::class);
         $this->modelToArrayConverter = $modelConverter;
 
-        /** @var string[] $uri */
-        $uri = parse_url($apiUrl);
-        $apiContext = (new ApiContext($uri['host'], $token))
-            ->setScheme($uri['scheme'])
-            ->setPath($uri['path'])
-            ->setPort((int) $uri['port']);
+        $apiContext = ApiContext::createFromUrl($apiUrl, $token);
 
         $this->supportPal = new SupportPal($apiContext);
     }
@@ -143,7 +137,7 @@ abstract class BaseTestCase extends TestCase
         $response = $this->getSupportPal()->sendRequest($request);
         $responseArray = json_decode((string) $response->getBody(), true)['data'];
         $this->assertInstanceOf(Settings::class, $model);
-        $this->assertSame($responseArray, $model->getSettings());
+        $this->assertSame($responseArray, $model->all());
         $this->modelToArrayConverter->convertOne($model);
     }
 
