@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Transformer;
 
 use Prophecy\Prophecy\ObjectProphecy;
 use stdClass;
+use SupportPal\ApiClient\Exception\UndefinedPropertyException;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Tests\TestCase;
@@ -95,6 +96,16 @@ class IntToBooleanTransformerTest extends TestCase
     public function testTransform(int $data, bool $expected): void
     {
         $this->assertSame($expected, $this->intToBooleanTransformer->transform($data));
+    }
+
+    public function testCannotDetermineAttributeType(): void
+    {
+        $this->propertyTypeExtractor
+            ->getTypes(Model::class, $this->attribute)
+            ->shouldBeCalled()
+            ->willReturn(null);
+        $this->expectException(UndefinedPropertyException::class);
+        $this->intToBooleanTransformer->canTransform($this->attribute, Model::class, 1);
     }
 
     /**
