@@ -62,7 +62,7 @@ class ApiContext
      */
     public function getApiPath(): string
     {
-        return sprintf('/%s/%s', $this->trim($this->path), self::BASE_API_PATH);
+        return '/' . $this->trim(sprintf('/%s/%s', $this->trim($this->path), self::BASE_API_PATH)) . '/';
     }
 
     /**
@@ -72,8 +72,8 @@ class ApiContext
      */
     public function enableSsl(): self
     {
-        $this->scheme = 'https';
-        $this->port = 443;
+        $this->setScheme('https');
+        $this->setPort(443);
 
         return $this;
     }
@@ -85,8 +85,8 @@ class ApiContext
      */
     public function disableSsl(): self
     {
-        $this->scheme = 'http';
-        $this->port = 80;
+        $this->setScheme('http');
+        $this->setPort(80);
 
         return $this;
     }
