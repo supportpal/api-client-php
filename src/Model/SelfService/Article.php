@@ -147,6 +147,24 @@ class Article extends BaseModel
     private $translations;
 
     /**
+     * @var int|null
+     * @SerializedName("article_id")
+     */
+    private $articleId;
+
+    /**
+     * @var float|null
+     * @SerializedName("article_id")
+     */
+    private $titleWeight;
+
+    /**
+     * @var float|null
+     * @SerializedName("article_id")
+     */
+    private $textWeight;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -541,6 +559,63 @@ class Article extends BaseModel
     public function setTranslations(?array $translations): self
     {
         $this->translations = $translations;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getArticleId(): ?int
+    {
+        return $this->articleId;
+    }
+
+    /**
+     * @param int|null $articleId
+     * @return self
+     */
+    public function setArticleId(?int $articleId): self
+    {
+        $this->articleId = $articleId;
+
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getTitleWeight(): ?float
+    {
+        return $this->titleWeight;
+    }
+
+    /**
+     * @param float|null $titleWeight
+     * @return self
+     */
+    public function setTitleWeight(?float $titleWeight): self
+    {
+        $this->titleWeight = $titleWeight;
+
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getTextWeight(): ?float
+    {
+        return $this->textWeight;
+    }
+
+    /**
+     * @param float|null $textWeight
+     * @return self
+     */
+    public function setTextWeight(?float $textWeight): self
+    {
+        $this->textWeight = $textWeight;
 
         return $this;
     }
