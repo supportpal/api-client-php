@@ -105,7 +105,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 $this->assertArrayEqualsObjectFields($object, $data['data'][$offset]);
             }
         } elseif ($models instanceof SettingsModel) {
-            $this->assertSame($models->getSettings(), $data['data']);
+            $this->assertSame($models->all(), $data['data']);
         } else {
             $this->assertArrayEqualsObjectFields($models, $data['data']);
         }

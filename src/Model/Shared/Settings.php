@@ -21,18 +21,17 @@ class Settings implements SettingsModel
     }
 
     /**
-     * @param string $name
-     * @return string|null
+     * @inheritDoc
      */
-    public function getSetting(string $name): ?string
+    public function get(string $name, $default = null): ?string
     {
-        return $this->settings[$name] ?? null;
+        return $this->settings[$name] ?? $default;
     }
 
     /**
      * @inheritDoc
      */
-    public function getSettings(): array
+    public function all(): array
     {
         return $this->settings;
     }

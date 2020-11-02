@@ -14,7 +14,7 @@ class SettingsTest extends TestCase
         $model = $this->getModel();
         $modelData = $this->getModelData();
         $model->fill($modelData);
-        $this->assertSame($model->getSettings(), $modelData);
+        $this->assertSame($model->all(), $modelData);
     }
 
     /**

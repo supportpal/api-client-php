@@ -14,5 +14,12 @@ interface SettingsModel extends Model
     /**
      * @return string[]
      */
-    public function getSettings(): array;
+    public function all(): array;
+
+    /**
+     * @param string $name
+     * @param null $default
+     * @return string|null
+     */
+    public function get(string $name, $default = null): ?string;
 }
