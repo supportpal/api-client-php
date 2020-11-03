@@ -4,7 +4,6 @@ namespace SupportPal\ApiClient\Tests\Unit\Transformer;
 
 use Prophecy\Prophecy\ObjectProphecy;
 use stdClass;
-use SupportPal\ApiClient\Exception\UndefinedPropertyException;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Tests\TestCase;
