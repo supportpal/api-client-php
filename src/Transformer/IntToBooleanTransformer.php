@@ -46,13 +46,11 @@ class IntToBooleanTransformer implements AttributeAwareTransformer
     protected function isBoolAttribute(string $class, string $attribute)
     {
         /** @var Type[] $types */
-        $types = $this->propertyTypeExtractor->getTypes($class, $attribute);
-        $boolFilteredType = array_filter(
-            $types,
-            function (Type $type) {
-                return $type->getBuiltinType() === Type::BUILTIN_TYPE_BOOL;
-            }
-        );
+        $types = $this->propertyTypeExtractor->getTypes($class, $attribute) ?? [];
+
+        $boolFilteredType = array_filter($types, function (Type $type) {
+            return $type->getBuiltinType() === Type::BUILTIN_TYPE_BOOL;
+        });
 
         return ! empty($boolFilteredType);
     }

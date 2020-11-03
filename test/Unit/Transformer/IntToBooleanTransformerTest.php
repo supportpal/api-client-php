@@ -97,6 +97,17 @@ class IntToBooleanTransformerTest extends TestCase
         $this->assertSame($expected, $this->intToBooleanTransformer->transform($data));
     }
 
+    public function testCannotDetermineAttributeType(): void
+    {
+        $this->propertyTypeExtractor
+            ->getTypes(Model::class, $this->attribute)
+            ->shouldBeCalled()
+            ->willReturn(null);
+
+        $value = $this->intToBooleanTransformer->canTransform($this->attribute, Model::class, 1);
+        $this->assertSame(false, $value);
+    }
+
     /**
      * @return iterable<int, array<int, int|bool>>
      */
