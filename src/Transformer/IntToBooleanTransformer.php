@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Transformer;
 
-use SupportPal\ApiClient\Exception\UndefinedPropertyException;
 use Symfony\Component\PropertyInfo\PropertyTypeExtractorInterface;
 use Symfony\Component\PropertyInfo\Type;
 
@@ -10,7 +9,6 @@ use function array_filter;
 use function boolval;
 use function in_array;
 use function is_int;
-use function sprintf;
 
 class IntToBooleanTransformer implements AttributeAwareTransformer
 {
@@ -44,18 +42,11 @@ class IntToBooleanTransformer implements AttributeAwareTransformer
      * @param string $class
      * @param string $attribute
      * @return bool
-     * @throws UndefinedPropertyException
      */
     protected function isBoolAttribute(string $class, string $attribute)
     {
-        /** @var Type[]|null $types */
-        $types = $this->propertyTypeExtractor->getTypes($class, $attribute);
-
-        if ($types === null) {
-            throw new UndefinedPropertyException(
-                sprintf('Unable to determine type of attribute %s of class %s', $class, $attribute)
-            );
-        }
+        /** @var Type[] $types */
+        $types = $this->propertyTypeExtractor->getTypes($class, $attribute) ?? [];
 
         $boolFilteredType = array_filter($types, function (Type $type) {
             return $type->getBuiltinType() === Type::BUILTIN_TYPE_BOOL;

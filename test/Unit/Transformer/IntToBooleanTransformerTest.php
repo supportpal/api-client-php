@@ -104,8 +104,9 @@ class IntToBooleanTransformerTest extends TestCase
             ->getTypes(Model::class, $this->attribute)
             ->shouldBeCalled()
             ->willReturn(null);
-        $this->expectException(UndefinedPropertyException::class);
-        $this->intToBooleanTransformer->canTransform($this->attribute, Model::class, 1);
+
+        $value = $this->intToBooleanTransformer->canTransform($this->attribute, Model::class, 1);
+        $this->assertSame(false, $value);
     }
 
     /**
