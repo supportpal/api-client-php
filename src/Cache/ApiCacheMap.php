@@ -28,7 +28,6 @@ class ApiCacheMap
             ApiDictionary::SELF_SERVICE_CATEGORY,
             ApiDictionary::SELF_SERVICE_TAG,
             ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH,
-            ApiDictionary::SELF_SERVICE_COMMENT,
         ],
     ];
 
