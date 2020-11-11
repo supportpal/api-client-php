@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Cache;
 use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Cache\ChainCache;
 use Doctrine\Common\Cache\FilesystemCache;
+use Kevinrob\GuzzleCache\KeyValueHttpHeader;
 use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
 use Kevinrob\GuzzleCache\Strategy\CacheStrategyInterface;
 use Kevinrob\GuzzleCache\Strategy\Delegate\DelegatingCacheStrategy;
@@ -40,7 +41,7 @@ class CacheStrategyConfigurator
          */
         foreach ($this->apiCacheMap->getCacheableApis($baseApiPath) as $ttl => $apis) {
             $cacheStorage = new DoctrineCacheStorage(new ChainCache([new ArrayCache, new FilesystemCache($cacheDir)]));
-            $cacheStrategy = new GreedyCacheStrategy($cacheStorage, $ttl);
+            $cacheStrategy = new GreedyCacheStrategy($cacheStorage, $ttl, new KeyValueHttpHeader(['Authorization']));
             /**
              * request matcher handlers linking the caching strategy to every specific endpoint
              */
