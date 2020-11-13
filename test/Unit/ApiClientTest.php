@@ -91,6 +91,7 @@ class ApiClientTest extends TestCase
         $this->expectException(HttpResponseException::class);
         $request = $this->prophesize(RequestInterface::class);
         $response = $this->prophesize(ResponseInterface::class);
+        $response->getReasonPhrase()->shouldBeCalled()->willReturn('');
 
         $this
             ->httpClient

@@ -88,7 +88,7 @@ class ApiClient
             $body = $this->decoder->decode((string) $response->getBody(), $this->formatType);
         } catch (NotEncodableValueException $notEncodableValueException) {
             throw new HttpResponseException(
-                $notEncodableValueException->getMessage(),
+                $response->getReasonPhrase(),
                 $notEncodableValueException->getCode(),
                 $notEncodableValueException
             );
