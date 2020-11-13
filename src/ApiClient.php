@@ -58,9 +58,9 @@ class ApiClient
     {
         try {
             $response = $this->getHttpClient()->sendRequest($request);
-            $this->assertRequestSuccessful($response);
+            $this->assertRequestSuccessful($request, $response);
         } catch (ClientExceptionInterface $exception) {
-            throw new HttpResponseException($exception->getMessage(), 0, $exception);
+            throw new HttpResponseException($request, null, $exception->getMessage(), 0, $exception);
         }
 
         return $response;
@@ -82,12 +82,14 @@ class ApiClient
     /**
      * @inheritDoc
      */
-    protected function assertRequestSuccessful(ResponseInterface $response): void
+    protected function assertRequestSuccessful(RequestInterface $request, ResponseInterface $response): void
     {
         try {
             $body = $this->decoder->decode((string) $response->getBody(), $this->formatType);
         } catch (NotEncodableValueException $notEncodableValueException) {
             throw new HttpResponseException(
+                $request,
+                $response,
                 $response->getReasonPhrase(),
                 $notEncodableValueException->getCode(),
                 $notEncodableValueException
@@ -99,7 +101,11 @@ class ApiClient
             || ! isset($body['status'])
             || $body['status'] === 'error'
         ) {
-            throw new HttpResponseException($body['message'] ?? '');
+            throw new HttpResponseException(
+                $request,
+                $response,
+                $body['message'] ?? ''
+            );
         }
     }
 
