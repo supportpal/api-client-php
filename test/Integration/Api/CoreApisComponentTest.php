@@ -2,22 +2,22 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\Api;
 
-use SupportPal\ApiClient\Api\SelfServiceApi;
-use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\SelfServiceApisData;
-use SupportPal\ApiClient\Tests\Integration\ApiTestCase;
+use SupportPal\ApiClient\Api\CoreApi;
+use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\CoreApisData;
+use SupportPal\ApiClient\Tests\Integration\ApiComponentTest;
 
 /**
- * Class SelfServiceApisTest
+ * Class CoreApisTest
  * @package SupportPal\ApiClient\Tests\Integration\Api
  */
-class SelfServiceApisTest extends ApiTestCase
+class CoreApisComponentTest extends ApiComponentTest
 {
     /**
      * @inheritDoc
      */
     protected function getGetEndpoints(): array
     {
-        return (new SelfServiceApisData)->getApiCalls();
+        return (new CoreApisData)->getApiCalls();
     }
 
     /**
@@ -25,7 +25,7 @@ class SelfServiceApisTest extends ApiTestCase
      */
     protected function getPostEndpoints(): array
     {
-        return (new SelfServiceApisData)->postApiCalls();
+        return [];
     }
 
     /**
@@ -39,8 +39,16 @@ class SelfServiceApisTest extends ApiTestCase
     /**
      * @inheritDoc
      */
+    protected function getDownloadsEndpoints(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
     protected function getApiClass(): string
     {
-        return SelfServiceApi::class;
+        return CoreApi::class;
     }
 }

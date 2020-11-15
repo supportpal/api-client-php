@@ -41,8 +41,8 @@ class CommentTest extends BaseModelTestCase
      */
     public function testCreateWithMissingData(array $data, string $missingField): void
     {
-        $this->expectException(MissingRequiredFieldsException::class);
-        $this->expectExceptionMessage($missingField);
+        self::expectException(MissingRequiredFieldsException::class);
+        self::expectExceptionMessage($missingField);
         $model = new Comment;
         $model->fill($data);
     }

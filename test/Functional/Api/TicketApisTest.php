@@ -38,6 +38,15 @@ class TicketApisTest extends ApiComponentTest
 
     /**
      * @inheritDoc
+     * @throws InvalidArgumentException
+     */
+    protected function getDownloadsEndpoints(): array
+    {
+        return (new TicketApisData)->downloadApiCalls();
+    }
+
+    /**
+     * @inheritDoc
      * @throws Exception
      */
     protected function getApi(): Api

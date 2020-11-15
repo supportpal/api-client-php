@@ -34,9 +34,9 @@ class BrandApisTest extends ApiClientTest
     public function testHttpExceptionGetBrands(): void
     {
         $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_BRAND, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getBrands($queryParams);
     }
 
@@ -48,7 +48,7 @@ class BrandApisTest extends ApiClientTest
     public function testUnsuccessfulGetBrands(int $statusCode, string $responseBody): void
     {
         $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_BRAND, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getBrands($queryParams);
@@ -75,14 +75,14 @@ class BrandApisTest extends ApiClientTest
 
     public function testHttpExceptionGetBrand(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::CORE_BRAND . '/' . $this->testBrandId,
             [],
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getBrand($this->testBrandId);
     }
 
@@ -93,7 +93,7 @@ class BrandApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetBrand(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::CORE_BRAND . '/' . $this->testBrandId,

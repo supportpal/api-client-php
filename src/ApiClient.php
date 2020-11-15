@@ -6,6 +6,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use SupportPal\ApiClient\ApiClient\ApiClientAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
@@ -20,6 +21,8 @@ use function is_array;
  */
 class ApiClient
 {
+    use ApiClientAware;
+
     /** @var ClientInterface */
     private $httpClient;
 
@@ -67,10 +70,29 @@ class ApiClient
     }
 
     /**
-     * @param string $endpoint
+     * @inheritDoc
+     */
+    protected function sendDownloadRequest(RequestInterface $request): ResponseInterface
+    {
+        try {
+            $response = $this->getHttpClient()->sendRequest($request);
+        } catch (ClientExceptionInterface $exception) {
+            throw new HttpResponseException($request, null, $exception->getMessage(), 0, $exception);
+        }
+
+        /**
+         * response is not a file, assert a valid response to get the actual API error
+         */
+        if (empty($response->getHeader('Content-Disposition'))) {
+            $this->assertRequestSuccessful($request, $response);
+        }
+
+        return $response;
+    }
+
+    /**
+     * @inheritDoc
      * @param array<mixed> $queryParameters
-     * @return ResponseInterface
-     * @throws HttpResponseException
      */
     protected function prepareAndSendGetRequest(string $endpoint, array $queryParameters): ResponseInterface
     {

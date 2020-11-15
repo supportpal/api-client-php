@@ -41,7 +41,7 @@ class EmptyModelToNullTransformerTest extends TestCase
     {
         $modelArray = (array) $model;
         $model = $this->transformer->transform($model);
-        $this->assertEquals($modelArray, (array) $model);
+        self::assertEquals($modelArray, (array) $model);
     }
 
     /**
@@ -50,7 +50,7 @@ class EmptyModelToNullTransformerTest extends TestCase
      */
     public function testTransformToNull(Model $model): void
     {
-        $this->assertNull($this->transformer->transform($model));
+        self::assertNull($this->transformer->transform($model));
     }
 
     /**
@@ -59,7 +59,7 @@ class EmptyModelToNullTransformerTest extends TestCase
      */
     public function testCanTransform(Model $model): void
     {
-        $this->assertTrue($this->transformer->canTransform($model));
+        self::assertTrue($this->transformer->canTransform($model));
     }
 
     /**
@@ -68,7 +68,7 @@ class EmptyModelToNullTransformerTest extends TestCase
      */
     public function testCannotTransform($data): void
     {
-        $this->assertFalse($this->transformer->canTransform($data));
+        self::assertFalse($this->transformer->canTransform($data));
     }
 
     /**

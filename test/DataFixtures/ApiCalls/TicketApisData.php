@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Tests\DataFixtures\ApiCalls;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
@@ -83,6 +84,19 @@ class TicketApisData
                 $ticketData->getArrayData(),
                 $ticketData->getResponse()
             ],
+        ];
+    }
+
+    /**
+     * @return array<string, Model>
+     * @throws InvalidArgumentException
+     */
+    public function downloadApiCalls(): array
+    {
+        $attachmentData = new AttachmentData;
+
+        return [
+            'downloadAttachment' => $attachmentData->getFilledInstance(),
         ];
     }
 }

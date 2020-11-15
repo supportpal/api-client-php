@@ -16,7 +16,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
 {
     public function testGetRequestFactory(): void
     {
-        $this->assertInstanceOf(RequestFactory::class, $this->getSupportPal()->getRequestFactory());
+        self::assertInstanceOf(RequestFactory::class, $this->getSupportPal()->getRequestFactory());
     }
 
     public function testSendRequestSuccessful(): void
@@ -28,12 +28,12 @@ class SupportPalTest extends ContainerAwareBaseTestCase
         );
         $this->appendRequestResponse($response);
         $request = $this->getSupportPal()->getRequestFactory()->create('GET', 'test_endpoint');
-        $this->assertSame($response, $this->getSupportPal()->sendRequest($request));
+        self::assertSame($response, $this->getSupportPal()->sendRequest($request));
     }
 
     public function testSendRequestUnSuccessful(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $response = new Response(
             200,
             [],

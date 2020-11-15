@@ -33,7 +33,7 @@ class ChannelApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $channelSettings = $this->api->getChannelSettings('web');
-        $this->assertSame($expectedOutput, $channelSettings);
+        self::assertSame($expectedOutput, $channelSettings);
     }
 
     /**

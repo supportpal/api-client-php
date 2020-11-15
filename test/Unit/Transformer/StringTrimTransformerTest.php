@@ -26,7 +26,7 @@ class StringTrimTransformerTest extends TestCase
 
     public function testCanTransform(): void
     {
-        $this->assertTrue($this->transformer->canTransform(''));
+        self::assertTrue($this->transformer->canTransform(''));
     }
 
     /**
@@ -35,7 +35,7 @@ class StringTrimTransformerTest extends TestCase
      */
     public function testCannotTransform($data): void
     {
-        $this->assertFalse($this->transformer->canTransform($data));
+        self::assertFalse($this->transformer->canTransform($data));
     }
 
     /**
@@ -56,7 +56,7 @@ class StringTrimTransformerTest extends TestCase
      */
     public function testTransformTrim(string $input, string $expected): void
     {
-        $this->assertSame($expected, $this->transformer->transform($input));
+        self::assertSame($expected, $this->transformer->transform($input));
     }
 
     /**

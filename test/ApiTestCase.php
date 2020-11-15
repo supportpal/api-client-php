@@ -1,38 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Tests\Integration;
+namespace SupportPal\ApiClient\Tests;
 
 use Exception;
 use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Tests\ApiDataProviders;
-use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 
 use function call_user_func_array;
 use function get_class;
 
-/**
- * Class ApiTestCase
- * @package SupportPal\ApiClient\Tests
- */
 abstract class ApiTestCase extends ContainerAwareBaseTestCase
 {
-    use ApiDataProviders;
-
-    /** @var Api */
-    protected $api;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        /** @var Api $api */
-        $api = $this->getContainer()->get($this->getApiClass());
-        $this->api = $api;
-    }
-
     /**
      * @dataProvider provideGetEndpointsTestCases
      * @param array<mixed> $data
@@ -51,24 +33,9 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
         );
 
         /** @var callable $callable */
-        $callable = [$this->api, $functionName];
+        $callable = [$this->getApi(), $functionName];
         $models = call_user_func_array($callable, $parameters);
         $this->assertApiDataMatchesModels($models, $data);
-    }
-
-    /**
-     * @param Response $response
-     * @param string $endpoint
-     * @param array<mixed> $parameters
-     * @throws Exception
-     * @dataProvider provideGetEndpointsUnsuccessfulTestCases
-     */
-    public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
-    {
-        $this->prepareUnsuccessfulApiRequest($response);
-        /** @var callable $callable */
-        $callable = [$this->api, $endpoint];
-        call_user_func_array($callable, $parameters);
     }
 
     /**
@@ -84,7 +51,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
         $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
-        $callable = [$this->api, $functionName];
+        $callable = [$this->getApi(), $functionName];
         $postedModel = call_user_func_array($callable, [$model]);
         $this->assertArrayEqualsObjectFields($postedModel, $responseData['data']);
     }
@@ -107,9 +74,24 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
         $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
-        $callable = [$this->api, $functionName];
+        $callable = [$this->getApi(), $functionName];
         $postedModel = call_user_func_array($callable, [$model, $modelData]);
         $this->assertArrayEqualsObjectFields($postedModel, $responseData['data']);
+    }
+
+    /**
+     * @param Response $response
+     * @param string $endpoint
+     * @param array<mixed> $parameters
+     * @throws Exception
+     * @dataProvider provideGetEndpointsUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
+    {
+        $this->prepareUnsuccessfulApiRequest($response);
+        /** @var callable $callable */
+        $callable = [$this->getApi(), $endpoint];
+        call_user_func_array($callable, $parameters);
     }
 
     /**
@@ -123,7 +105,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     {
         $this->prepareUnsuccessfulApiRequest($response);
         /** @var callable $callable */
-        $callable = [$this->api, $endpoint];
+        $callable = [$this->getApi(), $endpoint];
         call_user_func_array($callable, $parameters);
     }
 
@@ -138,7 +120,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     {
         $this->prepareUnsuccessfulApiRequest($response);
         /** @var callable $callable */
-        $callable = [$this->api, $endpoint];
+        $callable = [$this->getApi(), $endpoint];
         call_user_func_array($callable, $parameters);
     }
 
@@ -152,8 +134,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     {
         $model = new $modelClass;
         /** @var callable $callable */
-        $callable = [$this->api, $endpoint];
-        $this->expectException(InvalidArgumentException::class);
+        $callable = [$this->getApi(), $endpoint];
+        self::expectException(InvalidArgumentException::class);
         call_user_func_array($callable, [$model]);
     }
 
@@ -173,23 +155,44 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     ): void {
         $modelClassName = get_class($model);
         $model = new $modelClassName;
-        $this->expectException(MissingIdentifierException::class);
+        self::expectException(MissingIdentifierException::class);
 
         /** @var string $jsonSuccessfulBody */
         $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
-        $callable = [$this->api, $functionName];
+        $callable = [$this->getApi(), $functionName];
         call_user_func_array($callable, [$model, $modelData]);
     }
 
     /**
-     * @return array<mixed>
+     * @param Model $model
+     * @param string $functionName
+     * @dataProvider provideDownloadEndpointsTestCases
      */
-    abstract protected function getGetEndpoints(): array;
+    public function testDownloadEndpoint(Model $model, string $functionName): void
+    {
+        $this->appendRequestResponse(new Response(200, ['Content-Disposition' => 'test'], ''));
+        /** @var callable $callable */
+        $callable = [$this->getApi(), $functionName];
+        $stream = call_user_func_array($callable, [$model]);
+        self::assertInstanceOf(StreamInterface::class, $stream);
+    }
 
     /**
-     * @return string
+     * @param Response $response
+     * @param string $endpoint
+     * @param array<mixed> $parameters
+     * @dataProvider provideDownloadUnsuccessfulTestCases
+     * @throws Exception
      */
-    abstract protected function getApiClass(): string;
+    public function testUnsuccessfulDownloadEndpoint(Response $response, string $endpoint, array $parameters): void
+    {
+        $this->prepareUnsuccessfulApiRequest($response);
+        /** @var callable $callable */
+        $callable = [$this->getApi(), $endpoint];
+        call_user_func_array($callable, $parameters);
+    }
+
+    abstract protected function getApi(): Api;
 }

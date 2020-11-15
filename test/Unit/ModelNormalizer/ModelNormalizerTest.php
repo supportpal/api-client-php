@@ -90,7 +90,7 @@ class ModelNormalizerTest extends TestCase
         }
 
         $data = $this->modelNormalizer->normalize($this->object, $this->format, $this->context);
-        $this->assertSame($this->transformedOutput, $data);
+        self::assertSame($this->transformedOutput, $data);
     }
 
     /**
@@ -115,7 +115,7 @@ class ModelNormalizerTest extends TestCase
             ->supportsNormalization($data, $this->format)
             ->willReturn($objectNormalizerSupports);
 
-        $this->assertSame($expectation, $this->modelNormalizer->supportsNormalization($data, $this->format, []));
+        self::assertSame($expectation, $this->modelNormalizer->supportsNormalization($data, $this->format, []));
     }
 
     /**
@@ -141,7 +141,7 @@ class ModelNormalizerTest extends TestCase
         }
 
         $data = $this->modelNormalizer->normalize($this->object, $this->format, $this->context);
-        $this->assertSame($this->inputData, $data);
+        self::assertSame($this->inputData, $data);
     }
 
     /**
@@ -156,7 +156,7 @@ class ModelNormalizerTest extends TestCase
             ->willReturn($objectNormalizerSupports)
             ->shouldBeCalled();
 
-        $this->assertSame(
+        self::assertSame(
             $objectNormalizerSupports,
             $this->modelNormalizer->supportsDenormalization($data, Model::class, $this->format)
         );
@@ -192,6 +192,6 @@ class ModelNormalizerTest extends TestCase
         $this->transformer->canTransform($this->object)->shouldBeCalled()->willReturn(true);
         $this->transformer->transform($this->object)->shouldBeCalled()->willReturn(null);
         $output = $this->modelNormalizer->denormalize($this->inputData, Model::class, $this->format, $this->context);
-        $this->assertNull($output);
+        self::assertNull($output);
     }
 }

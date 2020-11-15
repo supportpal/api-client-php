@@ -37,7 +37,7 @@ class TicketApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $tickets = $this->api->getTickets();
-        $this->assertSame($expectedOutput, $tickets);
+        self::assertSame($expectedOutput, $tickets);
     }
 
     public function testGetTicket(): void
@@ -54,7 +54,7 @@ class TicketApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $tickets = $this->api->getTicket(1);
-        $this->assertSame($expectedOutput, $tickets);
+        self::assertSame($expectedOutput, $tickets);
     }
 
     public function testPostTicket(): void
@@ -76,14 +76,14 @@ class TicketApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticket = $this->api->postTicket($ticketMock);
-        $this->assertSame($ticketOutput->reveal(), $ticket);
+        self::assertSame($ticketOutput->reveal(), $ticket);
     }
 
     public function testPostWithIncompleteData(): void
     {
         /** @var CreateTicket $ticket */
         $ticket = $this->postIncompleteDataCommonExpectations(CreateTicket::class);
-        $this->expectException(InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
         $this->api->postTicket($ticket);
     }
 
@@ -103,7 +103,7 @@ class TicketApisTest extends ApiTest
             ->shouldBeCalled();
 
         $ticket = $this->api->updateTicket($inputMock, $ticketData->getArrayData());
-        $this->assertSame($output->reveal(), $ticket);
+        self::assertSame($output->reveal(), $ticket);
     }
 
     public function testPutTicketWithoutIdentifier(): void
@@ -111,7 +111,7 @@ class TicketApisTest extends ApiTest
         $ticketData = new TicketData;
         $input = $this->prophesize(Ticket::class);
         $input->getId()->willReturn(null)->shouldBeCalled();
-        $this->expectException(MissingIdentifierException::class);
+        self::expectException(MissingIdentifierException::class);
         /** @var Ticket $ticket */
         $ticket = $input->reveal();
         $this->api->updateTicket($ticket, $ticketData->getArrayData());

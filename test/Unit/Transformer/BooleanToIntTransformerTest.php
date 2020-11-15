@@ -24,7 +24,7 @@ class BooleanToIntTransformerTest extends TestCase
      */
     public function testCanTransform(bool $data): void
     {
-        $this->assertTrue($this->booleanToIntTransformer->canTransform($data));
+        self::assertTrue($this->booleanToIntTransformer->canTransform($data));
     }
 
     /**
@@ -33,7 +33,7 @@ class BooleanToIntTransformerTest extends TestCase
      */
     public function testCannotTransform($data): void
     {
-        $this->assertFalse($this->booleanToIntTransformer->canTransform($data));
+        self::assertFalse($this->booleanToIntTransformer->canTransform($data));
     }
 
     /**
@@ -43,7 +43,7 @@ class BooleanToIntTransformerTest extends TestCase
      */
     public function testTransform(bool $data, int $expected): void
     {
-        $this->assertSame($expected, $this->booleanToIntTransformer->transform($data));
+        self::assertSame($expected, $this->booleanToIntTransformer->transform($data));
     }
 
     /**

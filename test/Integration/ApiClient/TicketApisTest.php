@@ -83,6 +83,16 @@ class TicketApisTest extends ApiClientTest
     }
 
     /**
+     * @return array<mixed>
+     */
+    protected function getDownloadsEndpoints(): array
+    {
+        return [
+            'downloadAttachment' => 1,
+        ];
+    }
+
+    /**
      * @inheritDoc
      */
     protected function getApiClientClass()

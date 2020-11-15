@@ -64,14 +64,14 @@ class ModelNormalizerTest extends ContainerAwareBaseTestCase
     {
         /** @var Model $denormalizedObject */
         $denormalizedObject = $this->normalizer->denormalize(TicketData::DATA, Ticket::class, $this->getFormatType());
-        $this->assertInstanceOf(Ticket::class, $denormalizedObject);
+        self::assertInstanceOf(Ticket::class, $denormalizedObject);
         $this->assertArrayEqualsObjectFields($denormalizedObject, TicketData::DATA);
     }
 
     public function testDenormalizeReturnsNull(): void
     {
         $denormalized = $this->normalizer->denormalize([], Ticket::class, $this->getFormatType());
-        $this->assertNull($denormalized);
+        self::assertNull($denormalized);
     }
 
     /**
@@ -88,7 +88,7 @@ class ModelNormalizerTest extends ContainerAwareBaseTestCase
                  * normalizer skips null values
                  */
                 if (isset($arr2[$key])) {
-                    $this->assertSame($value, $arr2[$key]);
+                    self::assertSame($value, $arr2[$key]);
                 } else {
                     self::assertNull($value);
                 }

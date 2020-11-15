@@ -76,7 +76,7 @@ class ModelCollectionFactoryTest extends TestCase
             ->shouldBeCalled()
             ->willReturn($this->prophesize($factoryModel)->reveal());
         $model = $this->modelCollectionFactory->create($factoryModel, ['test' => 'test']);
-        $this->assertInstanceOf($factoryModel, $model);
+        self::assertInstanceOf($factoryModel, $model);
     }
 
     /**
