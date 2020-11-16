@@ -49,6 +49,6 @@ class ModelToArrayConverterTest extends TestCase
         /** @var Model $model */
         $model = $modelProphecy->reveal();
         $actual = $this->modelToArrayConverter->convertOne($model);
-        $this->assertSame($expectation, $actual);
+        self::assertSame($expectation, $actual);
     }
 }

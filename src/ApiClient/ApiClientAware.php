@@ -47,4 +47,11 @@ trait ApiClientAware
      * @throws HttpResponseException
      */
     abstract protected function prepareAndSendGetRequest(string $endpoint, array $queryParameters): ResponseInterface;
+
+    /**
+     * @param RequestInterface $request
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    abstract protected function sendDownloadRequest(RequestInterface $request): ResponseInterface;
 }

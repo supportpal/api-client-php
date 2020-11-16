@@ -23,7 +23,7 @@ class ApiContextTest extends TestCase
 
     public function testToken(): void
     {
-        $this->assertSame(self::TOKEN, $this->apiContext->getApiToken());
+        self::assertSame(self::TOKEN, $this->apiContext->getApiToken());
     }
 
     /**
@@ -33,7 +33,7 @@ class ApiContextTest extends TestCase
      */
     public function testGetApiUrl(ApiContext $apiContext, string $expected): void
     {
-        $this->assertSame($expected, $apiContext->getApiUrl());
+        self::assertSame($expected, $apiContext->getApiUrl());
     }
 
     /**
@@ -43,23 +43,23 @@ class ApiContextTest extends TestCase
      */
     public function testGetApiPath(ApiContext $apiContext, string $expected): void
     {
-        $this->assertSame($expected, $apiContext->getApiPath());
+        self::assertSame($expected, $apiContext->getApiPath());
     }
 
     public function testDisableSsl(): void
     {
         $apiContext = (new ApiContext(self::HOST, self::TOKEN))->setPort(443)->setScheme('https');
-        $this->assertSame('https://localhost:443/api/', $apiContext->getApiUrl());
+        self::assertSame('https://localhost:443/api/', $apiContext->getApiUrl());
         $apiContext->disableSsl();
-        $this->assertSame('http://localhost:80/api/', $apiContext->getApiUrl());
+        self::assertSame('http://localhost:80/api/', $apiContext->getApiUrl());
     }
 
     public function testEnableSsl(): void
     {
         $apiContext = (new ApiContext(self::HOST, self::TOKEN))->setPort(80)->setScheme('http');
-        $this->assertSame('http://localhost:80/api/', $apiContext->getApiUrl());
+        self::assertSame('http://localhost:80/api/', $apiContext->getApiUrl());
         $apiContext->enableSsl();
-        $this->assertSame('https://localhost:443/api/', $apiContext->getApiUrl());
+        self::assertSame('https://localhost:443/api/', $apiContext->getApiUrl());
     }
 
     /**
@@ -71,7 +71,7 @@ class ApiContextTest extends TestCase
     public function testCreateFromUrl(string $url, string $expected): void
     {
         $apiContext = ApiContext::createFromUrl($url, self::TOKEN);
-        $this->assertSame($expected, $apiContext->getApiUrl());
+        self::assertSame($expected, $apiContext->getApiUrl());
     }
 
     /**

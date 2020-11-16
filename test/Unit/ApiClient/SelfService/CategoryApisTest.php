@@ -40,9 +40,9 @@ class CategoryApisTest extends ApiClientTest
     public function testHttpExceptionGetCategories(): void
     {
         $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_CATEGORY, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getCategories($queryParams);
     }
 
@@ -54,7 +54,7 @@ class CategoryApisTest extends ApiClientTest
     public function testUnsuccessfulGetCategories(int $statusCode, string $responseBody): void
     {
         $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_CATEGORY, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getCategories($queryParams);
@@ -81,14 +81,14 @@ class CategoryApisTest extends ApiClientTest
 
     public function testHttpExceptionGetCategory(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::SELF_SERVICE_CATEGORY . '/' . $this->testCategoryId,
             [],
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getCategory($this->testCategoryId);
     }
 
@@ -99,7 +99,7 @@ class CategoryApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetCategory(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::SELF_SERVICE_CATEGORY . '/' . $this->testCategoryId,

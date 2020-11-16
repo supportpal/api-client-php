@@ -41,7 +41,7 @@ class TicketSettingsApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetTicketSettings(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_SETTINGS, [], []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getSettings();
@@ -49,9 +49,9 @@ class TicketSettingsApisTest extends ApiClientTest
 
     public function testHttpExceptionGetTicketSettings(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_SETTINGS, [], []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getSettings();
     }
 

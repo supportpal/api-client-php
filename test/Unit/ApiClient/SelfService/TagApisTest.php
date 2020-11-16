@@ -45,14 +45,14 @@ class TagApisTest extends ApiClientTest
 
     public function testHttpExceptionGetTag(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::SELF_SERVICE_TAG . '/' . $this->testTagId,
             [],
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getTag($this->testTagId);
     }
 
@@ -63,7 +63,7 @@ class TagApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetTag(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::SELF_SERVICE_TAG . '/' . $this->testTagId,
@@ -90,9 +90,9 @@ class TagApisTest extends ApiClientTest
     public function testHttpExceptionGetTags(): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_TAG, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getTags($queryParams);
     }
 
@@ -104,7 +104,7 @@ class TagApisTest extends ApiClientTest
     public function testUnsuccessfulGetTags(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_TAG, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getTags($queryParams);

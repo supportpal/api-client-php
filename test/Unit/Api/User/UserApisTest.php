@@ -75,14 +75,14 @@ class UserApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $user = $this->api->postUser($userMock);
-        $this->assertSame($userOutput->reveal(), $user);
+        self::assertSame($userOutput->reveal(), $user);
     }
 
     public function testPostWithIncompleteData(): void
     {
         /** @var CreateUser $user */
         $user = $this->postIncompleteDataCommonExpectations(CreateUser::class);
-        $this->expectException(InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
         $this->api->postUser($user);
     }
 
@@ -102,7 +102,7 @@ class UserApisTest extends ApiTest
             ->shouldBeCalled();
 
         $user = $this->api->updateUser($inputMock, $userData->getArrayData());
-        $this->assertSame($output->reveal(), $user);
+        self::assertSame($output->reveal(), $user);
     }
 
     public function testPutUserWithoutIdentifier(): void
@@ -110,7 +110,7 @@ class UserApisTest extends ApiTest
         $userData = new UserData;
         $input = $this->prophesize(User::class);
         $input->getId()->willReturn(null)->shouldBeCalled();
-        $this->expectException(MissingIdentifierException::class);
+        self::expectException(MissingIdentifierException::class);
         /** @var User $user */
         $user = $input->reveal();
         $this->api->updateUser($user, $userData->getArrayData());

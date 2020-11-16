@@ -33,7 +33,7 @@ class StatusApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketsStatus = $this->api->getStatuses();
-        $this->assertSame($expectedOutput, $ticketsStatus);
+        self::assertSame($expectedOutput, $ticketsStatus);
     }
 
     public function testGetStatus(): void
@@ -50,7 +50,7 @@ class StatusApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketsStatus = $this->api->getStatus(1);
-        $this->assertSame($expectedOutput, $ticketsStatus);
+        self::assertSame($expectedOutput, $ticketsStatus);
     }
 
     /**

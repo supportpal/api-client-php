@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -35,6 +36,7 @@ class ApiClientTest extends TestCase
 
     /** @var ObjectProphecy */
     protected $httpClient;
+
     /** @var ObjectProphecy */
     protected $requestFactory;
 
@@ -73,7 +75,7 @@ class ApiClientTest extends TestCase
 
     public function testClientExceptionThrown(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->prophesize(RequestInterface::class);
         $this
             ->httpClient
@@ -88,7 +90,7 @@ class ApiClientTest extends TestCase
 
     public function testResponseNonEncodeableException(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->prophesize(RequestInterface::class);
         $response = $this->prophesize(ResponseInterface::class);
         $response->getReasonPhrase()->shouldBeCalled()->willReturn('');
@@ -181,6 +183,18 @@ class ApiClientTest extends TestCase
             ->willReturn(json_decode($responseBody, true));
 
         return $response;
+    }
+
+    /**
+     * @param ObjectProphecy $request
+     */
+    protected function throwClientExceptionCommonExpectations(ObjectProphecy $request): void
+    {
+        $clientExceptionInterface = $this->prophesize(ClientExceptionInterface::class);
+        $this->httpClient
+            ->sendRequest($request->reveal())
+            ->willThrow($clientExceptionInterface->reveal())
+            ->shouldBeCalled();
     }
 
     /**

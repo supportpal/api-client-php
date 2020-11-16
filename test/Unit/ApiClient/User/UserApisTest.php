@@ -40,9 +40,9 @@ class UserApisTest extends ApiClientTest
     public function testHttpExceptionGetUsers(): void
     {
         $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USER, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getUsers($queryParams);
     }
 
@@ -54,7 +54,7 @@ class UserApisTest extends ApiClientTest
     public function testUnsuccessfulGetUsers(int $statusCode, string $responseBody): void
     {
         $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USER, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getUsers($queryParams);
@@ -81,14 +81,14 @@ class UserApisTest extends ApiClientTest
 
     public function testHttpExceptionGetUser(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::USER_USER . '/' . $this->testUserId,
             [],
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getUser($this->testUserId);
     }
 
@@ -99,7 +99,7 @@ class UserApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetUser(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::USER_USER . '/' . $this->testUserId,
@@ -131,7 +131,7 @@ class UserApisTest extends ApiClientTest
      */
     public function testPostUnsuccessfulUser(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('POST', ApiDictionary::USER_USER, [], []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->postUser([]);
@@ -139,9 +139,9 @@ class UserApisTest extends ApiClientTest
 
     public function testHttpExceptionPostUser(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('POST', ApiDictionary::USER_USER, [], []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->postUser([]);
     }
 
@@ -168,14 +168,14 @@ class UserApisTest extends ApiClientTest
     public function testHttpExceptionUpdateUser(): void
     {
         $userData = new UserData;
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'PUT',
             ApiDictionary::USER_USER . '/' . $this->testUserId,
             [],
             $userData->getArrayData()
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->updateUser($this->testUserId, $userData->getArrayData());
     }
 
@@ -187,7 +187,7 @@ class UserApisTest extends ApiClientTest
     public function testUnsuccessfulUpdateUser(int $statusCode, string $responseBody): void
     {
         $userData = new UserData;
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'PUT',
             ApiDictionary::USER_USER . '/' . $this->testUserId,

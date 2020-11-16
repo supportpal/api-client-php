@@ -81,7 +81,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
              * We take the Model parameter as the point of truth.
              */
             if ($value === []) {
-                $this->assertNull($attributeValue);
+                self::assertNull($attributeValue);
 
                 continue;
             }
@@ -105,7 +105,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
                 $this->assertArrayEqualsObjectFields($object, $data['data'][$offset]);
             }
         } elseif ($models instanceof SettingsModel) {
-            $this->assertSame($models->all(), $data['data']);
+            self::assertSame($models->all(), $data['data']);
         } else {
             $this->assertArrayEqualsObjectFields($models, $data['data']);
         }
