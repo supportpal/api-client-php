@@ -32,12 +32,12 @@ class ApiCacheMap
             ApiDictionary::SELF_SERVICE_SETTINGS,
             ApiDictionary::SELF_SERVICE_TAG,
 
+            ApiDictionary::TICKET_CHANNEL_SETTINGS,
             ApiDictionary::TICKET_CUSTOMFIELD,
             ApiDictionary::TICKET_DEPARTMENT,
             ApiDictionary::TICKET_PRIORITY,
             ApiDictionary::TICKET_SETTINGS,
             ApiDictionary::TICKET_STATUS,
-            ApiDictionary::TICKET_CHANNEL_SETTINGS,
 
             ApiDictionary::USER_CUSTOMFIELD,
             ApiDictionary::USER_USERGROUP,
