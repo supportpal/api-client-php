@@ -8,3 +8,6 @@
 /ci export-ignore
 /test export-ignore
 /ModelParser export-ignore
+.releaserc export-ignore
+package.json export-ignore
+package-lock.json
