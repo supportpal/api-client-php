@@ -90,8 +90,8 @@ class RequestFactory
         array $body = [],
         array $queryParameters = []
     ): RequestInterface {
-        $headers['Content-Type'] = $this->contentType;
-        $headers['Authorization'] = 'Basic ' . base64_encode($this->apiToken . ':X');
+        $headers['Content-Type'] = $headers['Content-Type'] ?? $this->contentType;
+        $headers['Authorization'] = $headers['Authorization'] ?? 'Basic ' . base64_encode($this->apiToken . ':X');
         $bodyArray = array_merge($body, $this->defaultBodyContent);
 
         $body = ! empty($bodyArray) ? Utils::streamFor($this->encoder->encode($bodyArray, $this->formatType)) : null;

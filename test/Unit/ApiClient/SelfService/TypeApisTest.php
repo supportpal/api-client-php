@@ -40,9 +40,9 @@ class TypeApisTest extends ApiClientTest
     public function testHttpExceptionGetTypes(): void
     {
         $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getTypes($queryParams);
     }
 
@@ -54,7 +54,7 @@ class TypeApisTest extends ApiClientTest
     public function testUnsuccessfulGetTypes(int $statusCode, string $responseBody): void
     {
         $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_TYPE, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getTypes($queryParams);
@@ -81,14 +81,14 @@ class TypeApisTest extends ApiClientTest
 
     public function testHttpExceptionGetType(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::SELF_SERVICE_ARTICLE_TYPE . '/' . $this->testTypeId,
             [],
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getType($this->testTypeId);
     }
 
@@ -99,7 +99,7 @@ class TypeApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetType(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::SELF_SERVICE_ARTICLE_TYPE . '/' . $this->testTypeId,

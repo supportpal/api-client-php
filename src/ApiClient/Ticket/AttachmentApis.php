@@ -7,6 +7,8 @@ use SupportPal\ApiClient\ApiClient\ApiClientAware;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 
+use function sprintf;
+
 trait AttachmentApis
 {
     use ApiClientAware;
@@ -29,5 +31,20 @@ trait AttachmentApis
     public function getAttachment(int $attachmentId): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_ATTACHMENT . '/' .  $attachmentId, []);
+    }
+
+    /**
+     * @param int $attachmentId
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    public function downloadAttachment(int $attachmentId): ResponseInterface
+    {
+        $request = $this->getRequestFactory()->create(
+            'GET',
+            sprintf(ApiDictionary::TICKET_ATTACHMENT_DOWNLOAD, $attachmentId)
+        );
+
+        return $this->sendDownloadRequest($request);
     }
 }

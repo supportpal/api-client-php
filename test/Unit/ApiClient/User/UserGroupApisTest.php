@@ -40,9 +40,9 @@ class UserGroupApisTest extends ApiClientTest
     public function testHttpExceptionGetUserGroups(): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USERGROUP, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getGroups($queryParams);
     }
 
@@ -54,7 +54,7 @@ class UserGroupApisTest extends ApiClientTest
     public function testUnsuccessfulGetUserGroups(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USERGROUP, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getGroups($queryParams);
@@ -81,14 +81,14 @@ class UserGroupApisTest extends ApiClientTest
 
     public function testHttpExceptionGetUserGroup(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::USER_USERGROUP . '/' . $this->testUserGroupId,
             [],
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getGroup($this->testUserGroupId);
     }
 
@@ -99,7 +99,7 @@ class UserGroupApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetUserGroup(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::USER_USERGROUP . '/' . $this->testUserGroupId,

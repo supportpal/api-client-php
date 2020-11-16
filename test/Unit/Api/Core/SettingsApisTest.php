@@ -33,7 +33,7 @@ class SettingsApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $coreSettings = $this->api->getSettings();
-        $this->assertSame($expectedOutput, $coreSettings);
+        self::assertSame($expectedOutput, $coreSettings);
     }
 
     /**

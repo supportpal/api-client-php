@@ -32,7 +32,7 @@ class CacheableRequestMatcherTest extends TestCase
     public function testCachableRequest(string $path, string $method): void
     {
         $matches = $this->cacheableRequestMatcher->matches(new Request($method, new Uri($path)));
-        $this->assertTrue($matches);
+        self::assertTrue($matches);
     }
 
     /**
@@ -41,7 +41,7 @@ class CacheableRequestMatcherTest extends TestCase
     public function testNotCachableRequest(string $path, string $method): void
     {
         $matches = $this->cacheableRequestMatcher->matches(new Request($method, new Uri($path)));
-        $this->assertFalse($matches);
+        self::assertFalse($matches);
     }
 
     /**

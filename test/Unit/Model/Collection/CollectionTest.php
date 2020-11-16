@@ -31,9 +31,9 @@ class CollectionTest extends TestCase
         $count = count($models);
         $collection = new Collection($count, $models);
 
-        $this->assertSame($models, $collection->getModels());
-        $this->assertSame($count, $collection->getCount());
-        $this->assertSame($count, $collection->getModelsCount());
+        self::assertSame($models, $collection->getModels());
+        self::assertSame($count, $collection->getCount());
+        self::assertSame($count, $collection->getModelsCount());
     }
 
     public function testTotalModelsNotMatchingModelsCount(): void
@@ -42,9 +42,9 @@ class CollectionTest extends TestCase
         $count = count($models);
         $collection = new Collection($count + 10, $models);
 
-        $this->assertSame($models, $collection->getModels());
-        $this->assertSame($count, $collection->getModelsCount());
-        $this->assertSame($count + 10, $collection->getCount());
+        self::assertSame($models, $collection->getModels());
+        self::assertSame($count, $collection->getModelsCount());
+        self::assertSame($count + 10, $collection->getCount());
     }
 
     public function testCollectionMap(): void
@@ -53,19 +53,21 @@ class CollectionTest extends TestCase
         $count = count($models);
         $collection = new Collection($count, $models);
 
-        $name = current($models)->getName() . 'test';
+        /** @var Comment $firstModel */
+        $firstModel = current($models);
+        $name = $firstModel->getName() . 'test';
         $mappedCollection = $collection->map(function (Comment $comment) use ($name) {
             return $comment->setName($name);
         });
 
-        $this->assertNotSame($collection, $mappedCollection);
-        $this->assertSame($models, $mappedCollection->getModels());
-        $this->assertSame($count, $mappedCollection->getCount());
-        $this->assertSame($count, $mappedCollection->getModelsCount());
+        self::assertNotSame($collection, $mappedCollection);
+        self::assertSame($models, $mappedCollection->getModels());
+        self::assertSame($count, $mappedCollection->getCount());
+        self::assertSame($count, $mappedCollection->getModelsCount());
 
         /** @var Comment $model */
         foreach ($mappedCollection->getModels() as $model) {
-            $this->assertSame($name, $model->getName());
+            self::assertSame($name, $model->getName());
         }
     }
 
@@ -75,16 +77,18 @@ class CollectionTest extends TestCase
         $count = count($models);
         $collection = new Collection($count, $models);
 
-        $name = current($models)->getName() . 'test';
+        /** @var Comment $firstModel */
+        $firstModel = current($models);
+        $name = $firstModel->getName() . 'test';
 
         $mappedCollection = $collection->filter(function (Comment $comment) use ($name) {
             return $comment->getName() === $name;
         });
 
-        $this->assertNotSame($collection, $mappedCollection);
-        $this->assertNotSame($models, $mappedCollection->getModels());
-        $this->assertSame($count, $mappedCollection->getCount());
-        $this->assertSame(0, $mappedCollection->getModelsCount());
+        self::assertNotSame($collection, $mappedCollection);
+        self::assertNotSame($models, $mappedCollection->getModels());
+        self::assertSame($count, $mappedCollection->getCount());
+        self::assertSame(0, $mappedCollection->getModelsCount());
     }
 
     public function testCollectionFirst(): void
@@ -93,9 +97,9 @@ class CollectionTest extends TestCase
         $count = count($models);
         $collection = new Collection($count, $models);
 
-        $this->assertSame($models[0], $collection->first());
+        self::assertSame($models[0], $collection->first());
         for ($i = 1; $i < $count; ++$i) {
-            $this->assertNotSame($models[$i], $collection->first());
+            self::assertNotSame($models[$i], $collection->first());
         }
     }
 
@@ -106,18 +110,18 @@ class CollectionTest extends TestCase
      */
     public function testCollectionIsEmpty(Collection $collection, bool $actualIsEmpty): void
     {
-        $this->assertSame($collection->isEmpty(), $actualIsEmpty);
+        self::assertSame($collection->isEmpty(), $actualIsEmpty);
     }
 
     public function testCreateWithDifferentModels(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
         new Collection(2, [new Comment, new Article]);
     }
 
     public function testCreateWithInvalidTypes(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
         /** @var Model[] $models */
         $models = [new stdClass, new stdClass];
         new Collection(2, $models);
@@ -134,9 +138,9 @@ class CollectionTest extends TestCase
 
         $merged = $collection1->merge($collection2);
         $arraysMerge = array_merge($models1, $models2);
-        $this->assertSame($arraysMerge, $merged->getModels());
-        $this->assertSame(count($models2), $merged->getCount());
-        $this->assertSame(count($arraysMerge), $merged->getModelsCount());
+        self::assertSame($arraysMerge, $merged->getModels());
+        self::assertSame(count($models2), $merged->getCount());
+        self::assertSame(count($arraysMerge), $merged->getModelsCount());
     }
 
     /**

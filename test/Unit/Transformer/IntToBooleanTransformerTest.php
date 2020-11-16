@@ -44,7 +44,7 @@ class IntToBooleanTransformerTest extends TestCase
     public function testCannotTransformNonIntValue($value): void
     {
         $this->propertyTypeExtractor->getTypes(Model::class, $this->attribute)->shouldNotBeCalled();
-        $this->assertFalse($this->intToBooleanTransformer->canTransform($this->attribute, Model::class, $value));
+        self::assertFalse($this->intToBooleanTransformer->canTransform($this->attribute, Model::class, $value));
     }
 
     /**
@@ -54,7 +54,7 @@ class IntToBooleanTransformerTest extends TestCase
     public function testCannotTransformIntNotBooleanValue(int $value): void
     {
         $this->propertyTypeExtractor->getTypes(Model::class, $this->attribute)->shouldNotBeCalled();
-        $this->assertFalse($this->intToBooleanTransformer->canTransform($this->attribute, Model::class, $value));
+        self::assertFalse($this->intToBooleanTransformer->canTransform($this->attribute, Model::class, $value));
     }
 
     /**
@@ -69,7 +69,7 @@ class IntToBooleanTransformerTest extends TestCase
             ->shouldBeCalled()
             ->willReturn([$this->type->reveal()]);
 
-        $this->assertFalse($this->intToBooleanTransformer->canTransform($this->attribute, Model::class, $value));
+        self::assertFalse($this->intToBooleanTransformer->canTransform($this->attribute, Model::class, $value));
     }
 
     /**
@@ -84,7 +84,7 @@ class IntToBooleanTransformerTest extends TestCase
             ->shouldBeCalled()
             ->willReturn([$this->type->reveal()]);
 
-        $this->assertTrue($this->intToBooleanTransformer->canTransform($this->attribute, Model::class, $value));
+        self::assertTrue($this->intToBooleanTransformer->canTransform($this->attribute, Model::class, $value));
     }
 
     /**
@@ -94,7 +94,7 @@ class IntToBooleanTransformerTest extends TestCase
      */
     public function testTransform(int $data, bool $expected): void
     {
-        $this->assertSame($expected, $this->intToBooleanTransformer->transform($data));
+        self::assertSame($expected, $this->intToBooleanTransformer->transform($data));
     }
 
     public function testCannotDetermineAttributeType(): void
@@ -105,7 +105,7 @@ class IntToBooleanTransformerTest extends TestCase
             ->willReturn(null);
 
         $value = $this->intToBooleanTransformer->canTransform($this->attribute, Model::class, 1);
-        $this->assertSame(false, $value);
+        self::assertSame(false, $value);
     }
 
     /**

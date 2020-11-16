@@ -108,10 +108,10 @@ abstract class BaseTestCase extends TestCase
                 $missingMethods = [];
                 $this->getMissingFields($value, $modelsArray[$offset], $missingMethods);
                 try {
-                    $this->assertEmpty($missingMethods, var_export($missingMethods, true));
+                    self::assertEmpty($missingMethods, var_export($missingMethods, true));
                     $callExceptions = [];
                     $this->callAllGetters($value, $callExceptions);
-                    $this->assertEmpty($callExceptions, var_export($callExceptions, true));
+                    self::assertEmpty($callExceptions, var_export($callExceptions, true));
                     $this->assertArrayEqualsObjectFields($value, $modelsArray[$offset]);
                     $this->modelToArrayConverter->convertOne($value);
                 } catch (ExpectationFailedException $exception) {
@@ -136,8 +136,8 @@ abstract class BaseTestCase extends TestCase
             ->create('GET', $endpoint);
         $response = $this->getSupportPal()->sendRequest($request);
         $responseArray = json_decode((string) $response->getBody(), true)['data'];
-        $this->assertInstanceOf(Settings::class, $model);
-        $this->assertSame($responseArray, $model->all());
+        self::assertInstanceOf(Settings::class, $model);
+        self::assertSame($responseArray, $model->all());
         $this->modelToArrayConverter->convertOne($model);
     }
 
@@ -165,15 +165,15 @@ abstract class BaseTestCase extends TestCase
                 $responseArray = json_decode((string) $response->getBody(), true)['data'];
                 $missingMethods = [];
                 $this->getMissingFields($model, $responseArray, $missingMethods);
-                $this->assertEmpty($missingMethods, var_export($missingMethods, true));
+                self::assertEmpty($missingMethods, var_export($missingMethods, true));
                 $this->assertArrayEqualsObjectFields($model, $responseArray);
                 $callExceptions = [];
                 $this->callAllGetters($model, $callExceptions);
-                $this->assertEmpty($callExceptions, var_export($callExceptions, true));
+                self::assertEmpty($callExceptions, var_export($callExceptions, true));
                 $this->modelToArrayConverter->convertOne($model);
                 ++$iteration;
             } catch (HttpResponseException $exception) {
-                $this->assertStringContainsString('given ID was not found', $exception->getMessage());
+                self::assertStringContainsString('given ID was not found', $exception->getMessage());
                 break;
             } catch (ExpectationFailedException $exception) {
                 throw new ExpectationFailedException(

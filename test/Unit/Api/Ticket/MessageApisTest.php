@@ -77,14 +77,14 @@ class MessageApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $message = $this->api->postMessage($messageMock);
-        $this->assertSame($messageOutput->reveal(), $message);
+        self::assertSame($messageOutput->reveal(), $message);
     }
 
     public function testPostWithIncompleteData(): void
     {
         /** @var CreateMessage $messageMock */
         $messageMock = $this->postIncompleteDataCommonExpectations(CreateMessage::class);
-        $this->expectException(InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
         $this->api->postMessage($messageMock);
     }
 

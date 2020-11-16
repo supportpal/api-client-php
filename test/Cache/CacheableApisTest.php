@@ -72,12 +72,12 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         $response2 = call_user_func_array($callable, $parameters);
 
 
-        $this->assertEquals(
+        self::assertEquals(
             CacheMiddleware::HEADER_CACHE_MISS,
             $response1->getHeaderLine(CacheMiddleware::HEADER_CACHE_INFO)
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             CacheMiddleware::HEADER_CACHE_HIT,
             $response2->getHeaderLine(CacheMiddleware::HEADER_CACHE_INFO)
         );
@@ -113,12 +113,12 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         $response2 = call_user_func_array($callable, $parameters);
 
 
-        $this->assertEquals(
+        self::assertEquals(
             CacheMiddleware::HEADER_CACHE_MISS,
             $response1->getHeaderLine(CacheMiddleware::HEADER_CACHE_INFO)
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             CacheMiddleware::HEADER_CACHE_HIT,
             $response2->getHeaderLine(CacheMiddleware::HEADER_CACHE_INFO)
         );
@@ -153,12 +153,12 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         $response2 = call_user_func_array($callable, $parameters);
 
 
-        $this->assertEquals(
+        self::assertEquals(
             CacheMiddleware::HEADER_CACHE_MISS,
             $response1->getHeaderLine(CacheMiddleware::HEADER_CACHE_INFO)
         );
 
-        $this->assertEquals(
+        self::assertEquals(
             CacheMiddleware::HEADER_CACHE_MISS,
             $response2->getHeaderLine(CacheMiddleware::HEADER_CACHE_INFO)
         );

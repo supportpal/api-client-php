@@ -40,9 +40,9 @@ class StatusApisTest extends ApiClientTest
     public function testHttpExceptionGetStatuses(): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_STATUS, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getStatuses($queryParams);
     }
 
@@ -54,7 +54,7 @@ class StatusApisTest extends ApiClientTest
     public function testUnsuccessfulGetStatuses(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_STATUS, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getStatuses($queryParams);
@@ -81,14 +81,14 @@ class StatusApisTest extends ApiClientTest
 
     public function testHttpExceptionGetStatus(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::TICKET_STATUS . '/' . $this->testStatusId,
             [],
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getStatus($this->testStatusId);
     }
 
@@ -99,7 +99,7 @@ class StatusApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetStatus(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::TICKET_STATUS . '/' . $this->testStatusId,

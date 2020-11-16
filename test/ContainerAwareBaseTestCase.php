@@ -48,7 +48,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     /**
      * @return iterable<array<string, Response>>
      */
-    public function provideUnsuccessfulTestCases(): iterable
+    public function provideUnsuccessfulResponses(): iterable
     {
         $jsonSuccessfulBody = $this->genericErrorResponse;
         $jsonSuccessfulBody['status'] = 'success';

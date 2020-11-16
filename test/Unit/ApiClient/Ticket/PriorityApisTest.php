@@ -40,9 +40,9 @@ class PriorityApisTest extends ApiClientTest
     public function testHttpExceptionGetPriorities(): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_PRIORITY, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getPriorities($queryParams);
     }
 
@@ -54,7 +54,7 @@ class PriorityApisTest extends ApiClientTest
     public function testUnsuccessfulGetPriorities(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_PRIORITY, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getPriorities($queryParams);
@@ -81,14 +81,14 @@ class PriorityApisTest extends ApiClientTest
 
     public function testHttpExceptionGetPriority(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::TICKET_PRIORITY . '/' . $this->testPriorityId,
             [],
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getPriority($this->testPriorityId);
     }
 
@@ -99,7 +99,7 @@ class PriorityApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetPriority(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::TICKET_PRIORITY . '/' . $this->testPriorityId,

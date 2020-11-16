@@ -40,9 +40,9 @@ class ArticleApisTest extends ApiClientTest
     public function testHttpExceptionGetArticlesByTerm(): void
     {
         $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getArticlesByTerm($queryParams);
     }
 
@@ -54,7 +54,7 @@ class ArticleApisTest extends ApiClientTest
     public function testUnsuccessfulGetArticlesByTerm(int $statusCode, string $responseBody): void
     {
         $queryParams = ['test' => 'value'];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE_SEARCH, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getArticlesByTerm($queryParams);
@@ -81,14 +81,14 @@ class ArticleApisTest extends ApiClientTest
 
     public function testHttpExceptionGetArticle(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::SELF_SERVICE_ARTICLE . '/' . $this->testArticleId,
             [],
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getArticle($this->testArticleId, []);
     }
 
@@ -99,7 +99,7 @@ class ArticleApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetArticle(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::SELF_SERVICE_ARTICLE . '/' . $this->testArticleId,
@@ -126,9 +126,9 @@ class ArticleApisTest extends ApiClientTest
     public function testHttpExceptionGetArticles(): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getArticles($queryParams);
     }
 
@@ -140,7 +140,7 @@ class ArticleApisTest extends ApiClientTest
     public function testUnsuccessfulGetArticles(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::SELF_SERVICE_ARTICLE, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getArticles($queryParams);
@@ -167,14 +167,14 @@ class ArticleApisTest extends ApiClientTest
     public function testHttpExceptionGetRelatedArticles(): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::SELF_SERVICE_ARTICLE_RELATED,
             $queryParams,
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getRelatedArticles($queryParams);
     }
 
@@ -186,7 +186,7 @@ class ArticleApisTest extends ApiClientTest
     public function testUnsuccessfulGetRelatedArticles(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::SELF_SERVICE_ARTICLE_RELATED,

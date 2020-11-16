@@ -20,9 +20,9 @@ class ApiCacheMapTest extends TestCase
     {
         $cacheableApis = $this->apiCacheMap->getCacheableApis('/api/');
         foreach ($cacheableApis as $ttl => $apis) {
-            $this->assertIsInt($ttl);
+            self::assertIsInt($ttl);
             foreach ($apis as $api) {
-                $this->assertStringNotContainsString('//', $api);
+                self::assertStringNotContainsString('//', $api);
             }
         }
     }

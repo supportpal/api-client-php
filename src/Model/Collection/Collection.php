@@ -45,7 +45,7 @@ class Collection
      */
     public function __construct(int $count = 0, array $models = [])
     {
-        $this->assertSameTypeModelInstances($models);
+        self::assertSameTypeModelInstances($models);
         $this->count = $count;
         $this->models = $models;
         $this->modelsCount = count($models);

@@ -27,7 +27,7 @@ abstract class BaseModelTestCase extends TestCase
 
     public function testFillModelWithIncorrectData(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
         $model = $this->getModel();
         /** @var array<string, mixed> $testArray */
         $testArray = ['article_id','type_id','text'];
