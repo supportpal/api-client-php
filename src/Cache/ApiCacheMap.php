@@ -13,7 +13,7 @@ use function ltrim;
  */
 class ApiCacheMap
 {
-    private const DEFAULT_CACHE_TTL = 600;
+    protected const DEFAULT_CACHE_TTL = 600;
 
     /**
      * Should not add duplicate entries in sub-arrays.
