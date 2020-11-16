@@ -46,17 +46,17 @@ class ApiClientTest extends ContainerAwareBaseTestCase
             new RequestException('Error Communicating with Server', new Request('GET', 'test'))
         );
 
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $this->apiClient->sendRequest($request);
     }
 
     public function testResponseNonEncodeableException(): void
     {
         $request = new Request('GET', 'test');
-        $this->appendRequestResponse(new Response(200, [], ''));
+        $this->appendRequestResponse(new Response(404, [], ''));
 
-        $this->expectException(HttpResponseException::class);
-        $this->expectExceptionMessage('Syntax error');
+        self::expectException(HttpResponseException::class);
+        self::expectExceptionMessage('Not Found');
         $this->apiClient->sendRequest($request);
     }
 
@@ -69,16 +69,14 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      */
     public function testGetEndpoints(array $data, string $functionName, array $parameters): void
     {
-        $this->appendRequestResponse(
-            new Response(
-                200,
-                [],
-                (string) $this->getEncoder()->encode($data, $this->getFormatType())
-            )
+        $expectedResponse = new Response(
+            200,
+            [],
+            (string) $this->getEncoder()->encode($data, $this->getFormatType())
         );
-
+        $this->appendRequestResponse($expectedResponse);
         $response = $this->makeClientCall($functionName, $parameters);
-        self::assertInstanceOf(Response::class, $response);
+        self::assertSame($expectedResponse, $response);
         self::assertSame($data, $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType()));
     }
 
@@ -106,8 +104,10 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     {
         /** @var string $jsonSuccessfulBody */
         $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
-        $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
+        $expectedResponse = new Response(200, [], $jsonSuccessfulBody);
+        $this->appendRequestResponse($expectedResponse);
         $response = $this->makeClientCall($endpoint, [$modelData]);
+        self::assertSame($expectedResponse, $response);
         self::assertSame(
             $responseData,
             $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
@@ -138,8 +138,10 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     {
         /** @var string $jsonSuccessfulBody */
         $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
-        $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
+        $expectedResponse = new Response(200, [], $jsonSuccessfulBody);
+        $this->appendRequestResponse($expectedResponse);
         $response = $this->makeClientCall($endpoint, [self::TEST_ID, $modelData]);
+        self::assertSame($expectedResponse, $response);
         self::assertSame(
             $responseData,
             $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
@@ -157,6 +159,19 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     {
         $this->prepareUnsuccessfulApiRequest($response);
         $this->makeClientCall($endpoint, [self::TEST_ID, $data]);
+    }
+
+    /**
+     * @param int $modelId
+     * @param string $endpoint
+     * @dataProvider provideDownloadEndpointsTestCases
+     */
+    public function testDownloadEndpoint(int $modelId, string $endpoint): void
+    {
+        $expectedResponse = new Response(200, ['Content-Disposition' => 'test'], '');
+        $this->appendRequestResponse($expectedResponse);
+        $response = $this->makeClientCall($endpoint, [$modelId]);
+        self::assertSame($expectedResponse, $response);
     }
 
     /**
@@ -179,6 +194,14 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      * @return array<mixed>
      */
     protected function getPutEndpoints(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    protected function getDownloadsEndpoints(): array
     {
         return [];
     }

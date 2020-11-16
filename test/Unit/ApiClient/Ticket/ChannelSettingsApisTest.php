@@ -50,7 +50,7 @@ class ChannelSettingsApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetChannelSettings(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this
             ->requestCommonExpectations(
                 'GET',
@@ -64,7 +64,7 @@ class ChannelSettingsApisTest extends ApiClientTest
 
     public function testHttpExceptionGetChannelSettings(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this
             ->requestCommonExpectations(
                 'GET',
@@ -72,7 +72,8 @@ class ChannelSettingsApisTest extends ApiClientTest
                 [],
                 []
             );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getChannelSettings(self::TEST_CHANNEL);
     }
 

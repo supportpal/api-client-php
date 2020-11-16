@@ -2,6 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
+use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
@@ -9,6 +11,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 use function json_encode;
+use function sprintf;
 
 /**
  * Class AttachmentApisTest
@@ -39,10 +42,10 @@ class AttachmentApisTest extends ApiClientTest
 
     public function testHttpExceptionGetAttachments(): void
     {
+        self::expectException(HttpResponseException::class);
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_ATTACHMENT, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getAttachments($queryParams);
     }
 
@@ -54,7 +57,7 @@ class AttachmentApisTest extends ApiClientTest
     public function testUnsuccessfulGetAttachments(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_ATTACHMENT, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getAttachments($queryParams);
@@ -81,14 +84,14 @@ class AttachmentApisTest extends ApiClientTest
 
     public function testHttpExceptionGetAttachment(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::TICKET_ATTACHMENT . '/' . $this->testAttachmentId,
             [],
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getAttachment($this->testAttachmentId);
     }
 
@@ -99,7 +102,7 @@ class AttachmentApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetAttachment(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::TICKET_ATTACHMENT . '/' . $this->testAttachmentId,
@@ -108,6 +111,32 @@ class AttachmentApisTest extends ApiClientTest
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getAttachment($this->testAttachmentId);
+    }
+
+    public function testSuccessfulDownloadAttachment(): void
+    {
+        $request = $this->prophesize(Request::class);
+         $this->requestFactory
+             ->create('GET', sprintf(ApiDictionary::TICKET_ATTACHMENT_DOWNLOAD, 1))
+             ->shouldBeCalled()
+             ->willReturn($request->reveal());
+        $response = $this->prophesize(ResponseInterface::class);
+        $response->getHeader('Content-Disposition')->shouldBeCalled()->willReturn(['test']);
+        $this->httpClient->sendRequest($request->reveal())->shouldBeCalled()->willReturn($response->reveal());
+        self::assertSame($response->reveal(), $this->apiClient->downloadAttachment(1));
+    }
+
+    public function testSuccessfulDownloadAttachmentClientException(): void
+    {
+        $request = $this->prophesize(Request::class);
+        $this->requestFactory
+            ->create('GET', sprintf(ApiDictionary::TICKET_ATTACHMENT_DOWNLOAD, 1))
+            ->shouldBeCalled()
+            ->willReturn($request->reveal());
+
+        $this->throwClientExceptionCommonExpectations($request);
+        self::expectException(HttpResponseException::class);
+        $this->apiClient->downloadAttachment(1);
     }
 
     /**

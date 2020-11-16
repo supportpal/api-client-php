@@ -40,9 +40,9 @@ class DepartmentApisTest extends ApiClientTest
     public function testHttpExceptionGetDepartments(): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_DEPARTMENT, $queryParams, []);
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getDepartments($queryParams);
     }
 
@@ -54,7 +54,7 @@ class DepartmentApisTest extends ApiClientTest
     public function testUnsuccessfulGetDepartments(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_DEPARTMENT, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getDepartments($queryParams);
@@ -81,14 +81,14 @@ class DepartmentApisTest extends ApiClientTest
 
     public function testHttpExceptionGetDepartment(): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::TICKET_DEPARTMENT . '/' . $this->testDepartmentId,
             [],
             []
         );
-        $this->httpClient->sendRequest($request)->willThrow(HttpResponseException::class)->shouldBeCalled();
+        $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getDepartment($this->testDepartmentId);
     }
 
@@ -99,7 +99,7 @@ class DepartmentApisTest extends ApiClientTest
      */
     public function testUnsuccessfulGetDepartment(int $statusCode, string $responseBody): void
     {
-        $this->expectException(HttpResponseException::class);
+        self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
             ApiDictionary::TICKET_DEPARTMENT . '/' . $this->testDepartmentId,

@@ -33,7 +33,7 @@ class PriorityApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketsPriority = $this->api->getPriorities();
-        $this->assertSame($expectedOutput, $ticketsPriority);
+        self::assertSame($expectedOutput, $ticketsPriority);
     }
 
     public function testGetsPriority(): void
@@ -50,7 +50,7 @@ class PriorityApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketsPriority = $this->api->getPriority(1);
-        $this->assertSame($expectedOutput, $ticketsPriority);
+        self::assertSame($expectedOutput, $ticketsPriority);
     }
 
     /**

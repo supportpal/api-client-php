@@ -26,7 +26,7 @@ trait ApiDataProviders
     {
         foreach ($this->getGetEndpoints() as $endpoint => $value) {
             [$_, $parameters] = $value;
-            foreach ($this->provideUnsuccessfulTestCases() as $testCase) {
+            foreach ($this->provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, $parameters];
             }
         }
@@ -63,7 +63,7 @@ trait ApiDataProviders
     {
         foreach ($this->getPostEndpoints() as $endpoint => $value) {
             [$model, $_] = $value;
-            foreach ($this->provideUnsuccessfulTestCases() as $testCase) {
+            foreach ($this->provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, [$model]];
             }
         }
@@ -76,7 +76,7 @@ trait ApiDataProviders
     {
         foreach ($this->getPutEndpoints() as $endpoint => $value) {
             [$model, $data] = $value;
-            foreach ($this->provideUnsuccessfulTestCases() as $testCase) {
+            foreach ($this->provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, [$model, $data]];
             }
         }
@@ -107,6 +107,28 @@ trait ApiDataProviders
     }
 
     /**
+     * @return iterable<mixed>
+     */
+    public function provideDownloadEndpointsTestCases(): iterable
+    {
+        foreach ($this->getDownloadsEndpoints() as $endpoint => $model) {
+            yield [$model, $endpoint];
+        }
+    }
+
+    /**
+     * @return iterable<mixed>
+     */
+    public function provideDownloadUnsuccessfulTestCases(): iterable
+    {
+        foreach ($this->getDownloadsEndpoints() as $endpoint => $model) {
+            foreach ($this->provideUnsuccessfulResponses() as $testCase) {
+                yield [current($testCase), $endpoint, [$model]];
+            }
+        }
+    }
+
+    /**
      * @return array<mixed>
      */
     abstract protected function getGetEndpoints(): array;
@@ -122,7 +144,12 @@ trait ApiDataProviders
     abstract protected function getPutEndpoints(): array;
 
     /**
+     * @return array<mixed>
+     */
+    abstract protected function getDownloadsEndpoints(): array;
+
+    /**
      * @return iterable<mixed>
      */
-    abstract protected function provideUnsuccessfulTestCases(): iterable;
+    abstract protected function provideUnsuccessfulResponses(): iterable;
 }

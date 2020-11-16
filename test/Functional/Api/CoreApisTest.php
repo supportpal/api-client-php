@@ -39,6 +39,14 @@ class CoreApisTest extends ApiComponentTest
 
     /**
      * @inheritDoc
+     */
+    protected function getDownloadsEndpoints(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
      * @throws Exception
      */
     protected function getApi(): Api

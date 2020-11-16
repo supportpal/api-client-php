@@ -187,8 +187,13 @@ class RequestFactoryTest extends TestCase
             $headersArray[$header] = [$value];
         }
 
-        $headersArray['Authorization'] = ['Basic ' . base64_encode('test' . ':X')];
-        $headersArray['Content-Type'] = ['test'];
+        if (! isset($headersArray['Authorization'])) {
+            $headersArray['Authorization'] = ['Basic ' . base64_encode('test' . ':X')];
+        }
+
+        if (! isset($headersArray['Content-Type'])) {
+            $headersArray['Content-Type'] = ['test'];
+        }
 
         return $headersArray;
     }

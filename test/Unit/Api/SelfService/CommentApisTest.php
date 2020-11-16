@@ -42,14 +42,14 @@ class CommentApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $comment = $this->api->postComment($commentMock);
-        $this->assertSame($commentOutput->reveal(), $comment);
+        self::assertSame($commentOutput->reveal(), $comment);
     }
 
     public function testPostCommentWithIncompleteData(): void
     {
         /** @var CreateComment $commentMock */
         $commentMock = $this->postIncompleteDataCommonExpectations(CreateComment::class);
-        $this->expectException(InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
         $this->api->postComment($commentMock);
     }
 

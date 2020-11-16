@@ -2,10 +2,12 @@
 
 namespace SupportPal\ApiClient\Api\Ticket;
 
+use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Ticket\Attachment;
 
@@ -40,6 +42,21 @@ trait AttachmentApis
         $response = $this->getApiClient()->getAttachment($attachmentId);
 
         return $this->createAttachment($this->decodeBody($response)['data']);
+    }
+
+    /**
+     * @param Attachment $attachment
+     * @return StreamInterface
+     * @throws HttpResponseException
+     * @throws MissingIdentifierException
+     */
+    public function downloadAttachment(Attachment $attachment): StreamInterface
+    {
+        if ($attachment->getId() === null) {
+            throw new MissingIdentifierException('missing attachment identifier');
+        }
+
+        return $this->getApiClient()->downloadAttachment($attachment->getId())->getBody();
     }
 
     /**

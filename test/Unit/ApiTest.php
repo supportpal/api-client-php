@@ -193,7 +193,7 @@ abstract class ApiTest extends TestCase
             ->willThrow(UninitializedPropertyException::class)
             ->shouldBeCalled();
 
-        $this->expectException(InvalidArgumentException::class);
+        self::expectException(InvalidArgumentException::class);
 
         return $inputMock;
     }

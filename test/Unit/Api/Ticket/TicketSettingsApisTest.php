@@ -33,7 +33,7 @@ class TicketSettingsApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketSettings = $this->api->getSettings();
-        $this->assertSame($expectedOutput, $ticketSettings);
+        self::assertSame($expectedOutput, $ticketSettings);
     }
 
     /**

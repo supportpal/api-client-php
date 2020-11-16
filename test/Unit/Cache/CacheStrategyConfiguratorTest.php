@@ -38,6 +38,6 @@ class CacheStrategyConfiguratorTest extends TestCase
     {
         $this->apiCacheMap->getCacheableApis('/api/')->shouldBeCalled();
         $strategy = $this->cacheConfigurator->buildCacheStrategy(sys_get_temp_dir(), '/api/');
-        $this->assertInstanceOf(CacheStrategyInterface::class, $strategy);
+        self::assertInstanceOf(CacheStrategyInterface::class, $strategy);
     }
 }

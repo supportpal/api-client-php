@@ -34,10 +34,11 @@ trait ApiClientAware
 
     /**
      * This method asserts that the request returned a successful response
+     * @param RequestInterface $request
      * @param ResponseInterface $response
      * @throws HttpResponseException
      */
-    abstract protected function assertRequestSuccessful(ResponseInterface $response): void;
+    abstract protected function assertRequestSuccessful(RequestInterface $request, ResponseInterface $response): void;
 
     /**
      * @param string $endpoint
@@ -46,4 +47,11 @@ trait ApiClientAware
      * @throws HttpResponseException
      */
     abstract protected function prepareAndSendGetRequest(string $endpoint, array $queryParameters): ResponseInterface;
+
+    /**
+     * @param RequestInterface $request
+     * @return ResponseInterface
+     * @throws HttpResponseException
+     */
+    abstract protected function sendDownloadRequest(RequestInterface $request): ResponseInterface;
 }

@@ -65,8 +65,14 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
             $headersArray[$header] = [$value];
         }
 
-        $headersArray['Authorization'] = ['Basic ' . base64_encode($this->apiToken . ':X')];
-        $headersArray['Content-Type'] = [$this->apiContentType];
+        if (! isset($headersArray['Authorization'])) {
+            $headersArray['Authorization'] = ['Basic ' . base64_encode($this->apiToken . ':X')];
+        }
+
+        if (! isset($headersArray['Content-Type'])) {
+            $headersArray['Content-Type'] = [$this->apiContentType];
+        }
+
         $headersArray['Host'] = [$request->getUri()->getHost() . ':' . $request->getUri()->getPort()];
 
         $encodedBody = ! empty($data['body']) || ! empty($this->defaultBodyContent)

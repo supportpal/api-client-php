@@ -18,7 +18,7 @@ interface SettingsModel extends Model
 
     /**
      * @param string $name
-     * @param null $default
+     * @param mixed|null $default
      * @return string|null
      */
     public function get(string $name, $default = null): ?string;

@@ -66,6 +66,39 @@ class RequestDefaults
     }
 
     /**
+     * @param array<mixed> $defaultParameters
+     * @return self
+     */
+    public function setDefaultParameters(array $defaultParameters): self
+    {
+        $this->defaultParameters = $defaultParameters;
+
+        return $this;
+    }
+
+    /**
+     * @param array<mixed> $defaultBodyContent
+     * @return self
+     */
+    public function setDefaultBodyContent(array $defaultBodyContent): self
+    {
+        $this->defaultBodyContent = $defaultBodyContent;
+
+        return $this;
+    }
+
+    /**
+     * @param array<mixed> $defaultRequestOptions
+     * @return self
+     */
+    public function setDefaultRequestOptions(array $defaultRequestOptions): self
+    {
+        $this->defaultRequestOptions = $defaultRequestOptions;
+
+        return $this;
+    }
+
+    /**
      * @param string $key
      * @param mixed $value
      * @return $this
