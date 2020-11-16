@@ -189,9 +189,9 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
     public function provideCacheableApiCalls(): iterable
     {
         /** core Apis */
-        yield ['getSettings' ,(new CoreSettingsData)->getResponse(), [], CoreApiClient::class];
-        yield ['getBrand' ,(new BrandData)->getResponse(), [1], CoreApiClient::class];
-        yield ['getBrands' ,(new BrandData)->getAllResponse(), [[]], CoreApiClient::class];
+        yield ['getSettings', (new CoreSettingsData)->getResponse(), [], CoreApiClient::class];
+        yield ['getBrand', (new BrandData)->getResponse(), [1], CoreApiClient::class];
+        yield ['getBrands', (new BrandData)->getAllResponse(), [[]], CoreApiClient::class];
 
         /** SelfService Apis */
         $typeData = new TypeData;
@@ -200,17 +200,17 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         $articleData = new ArticleData;
         $tagData = new TagData;
 
-        yield ['getCategory' ,$categoryData->getResponse(), [1], SelfServiceApiClient::class];
-        yield ['getCategories' ,$categoryData->getAllResponse(), [[]], SelfServiceApiClient::class];
-        yield ['getArticle' ,$articleData->getResponse(), [1, []], SelfServiceApiClient::class];
+        yield ['getCategory', $categoryData->getResponse(), [1], SelfServiceApiClient::class];
+        yield ['getCategories', $categoryData->getAllResponse(), [[]], SelfServiceApiClient::class];
+        yield ['getArticle', $articleData->getResponse(), [1, []], SelfServiceApiClient::class];
         yield ['getArticlesByTerm', $articleData->getAllResponse(), [['test']], SelfServiceApiClient::class];
-        yield ['getArticles' ,$articleData->getAllResponse(), [[]], SelfServiceApiClient::class];
+        yield ['getArticles', $articleData->getAllResponse(), [[]], SelfServiceApiClient::class];
         yield ['getRelatedArticles', $articleData->getAllResponse(), [[1, 'test', []]], SelfServiceApiClient::class];
-        yield ['getTag' ,$tagData->getResponse(), [1], SelfServiceApiClient::class];
-        yield ['getTags' ,$tagData->getAllResponse(), [[]], SelfServiceApiClient::class];
-        yield ['getSettings' ,$selfServiceSettingsData->getResponse(), [], SelfServiceApiClient::class];
-        yield ['getType' ,$typeData->getResponse(), [1], SelfServiceApiClient::class];
-        yield ['getTypes' ,$typeData->getAllResponse(), [[]], SelfServiceApiClient::class];
+        yield ['getTag', $tagData->getResponse(), [1], SelfServiceApiClient::class];
+        yield ['getTags', $tagData->getAllResponse(), [[]], SelfServiceApiClient::class];
+        yield ['getSettings', $selfServiceSettingsData->getResponse(), [], SelfServiceApiClient::class];
+        yield ['getType', $typeData->getResponse(), [1], SelfServiceApiClient::class];
+        yield ['getTypes', $typeData->getAllResponse(), [[]], SelfServiceApiClient::class];
 
         $departmentData = new DepartmentData;
         $ticketCustomFieldData = new TicketCustomFieldData;
