@@ -56,6 +56,12 @@ class SlaPlan extends BaseModel
     private $name;
 
     /**
+     * @var SlaPlanTranslation[]|null
+     * @SerializedName("translations")
+     */
+    private $translations;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -203,6 +209,25 @@ class SlaPlan extends BaseModel
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return SlaPlanTranslation[]|null
+     */
+    public function getTranslations(): ?array
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @param SlaPlanTranslation[]|null $translations
+     * @return self
+     */
+    public function setTranslations(?array $translations): self
+    {
+        $this->translations = $translations;
 
         return $this;
     }
