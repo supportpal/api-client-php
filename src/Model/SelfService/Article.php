@@ -147,6 +147,18 @@ class Article extends BaseModel
     private $translations;
 
     /**
+     * @var int|null
+     * @SerializedName("positive_rating")
+     */
+    private $positiveRating;
+
+    /**
+     * @var int|null
+     * @SerializedName("total_rating")
+     */
+    private $totalRating;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -541,6 +553,44 @@ class Article extends BaseModel
     public function setTranslations(?array $translations): self
     {
         $this->translations = $translations;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPositiveRating(): ?int
+    {
+        return $this->positiveRating;
+    }
+
+    /**
+     * @param int|null $positiveRating
+     * @return self
+     */
+    public function setPositiveRating(?int $positiveRating): self
+    {
+        $this->positiveRating = $positiveRating;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTotalRating(): ?int
+    {
+        return $this->totalRating;
+    }
+
+    /**
+     * @param int|null $totalRating
+     * @return self
+     */
+    public function setTotalRating(?int $totalRating): self
+    {
+        $this->totalRating = $totalRating;
 
         return $this;
     }

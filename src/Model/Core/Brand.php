@@ -233,6 +233,18 @@ class Brand extends BaseModel
     private $translations;
 
     /**
+     * @var string|null
+     * @SerializedName("smtp_auth_mech")
+     */
+    private $smtpAuthMech;
+
+    /**
+     * @var string|null
+     * @SerializedName("smtp_oauth")
+     */
+    private $smtpOauth;
+
+    /**
      * @return string|null
      */
     public function getOperatorTemplate(): ?string
@@ -874,6 +886,44 @@ class Brand extends BaseModel
     public function setTranslations(?array $translations): self
     {
         $this->translations = $translations;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSmtpAuthMech(): ?string
+    {
+        return $this->smtpAuthMech;
+    }
+
+    /**
+     * @param string|null $smtpAuthMech
+     * @return self
+     */
+    public function setSmtpAuthMech(?string $smtpAuthMech): self
+    {
+        $this->smtpAuthMech = $smtpAuthMech;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSmtpOauth(): ?string
+    {
+        return $this->smtpOauth;
+    }
+
+    /**
+     * @param string|null $smtpOauth
+     * @return self
+     */
+    public function setSmtpOauth(?string $smtpOauth): self
+    {
+        $this->smtpOauth = $smtpOauth;
 
         return $this;
     }

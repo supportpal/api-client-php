@@ -26,7 +26,7 @@ class Group extends BaseModel
     private $updatedAt;
 
     /**
-     * @var string
+     * @var string|null
      * @SerializedName("description")
      */
     private $description;
@@ -113,18 +113,18 @@ class Group extends BaseModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
-     * @param string $description
+     * @param string|null $description
      * @return self
      */
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 

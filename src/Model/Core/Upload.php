@@ -64,6 +64,12 @@ class Upload extends BaseModel
     private $updatedAt;
 
     /**
+     * @var string|null
+     * @SerializedName("session_id")
+     */
+    private $sessionId;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -230,6 +236,25 @@ class Upload extends BaseModel
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSessionId(): ?string
+    {
+        return $this->sessionId;
+    }
+
+    /**
+     * @param string|null $sessionId
+     * @return self
+     */
+    public function setSessionId(?string $sessionId): self
+    {
+        $this->sessionId = $sessionId;
 
         return $this;
     }
