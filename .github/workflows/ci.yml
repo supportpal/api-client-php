@@ -24,6 +24,9 @@ jobs:
                   php-version: ${{ matrix.php }}
                   tools: composer:v2
 
+            - name: PHP Copy Paste Detector
+              uses: StephaneBour/actions-php-cpd@1.0
+
             - name: Install dependencies
               run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
 
