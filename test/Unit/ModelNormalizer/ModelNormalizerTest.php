@@ -107,7 +107,9 @@ class ModelNormalizerTest extends TestCase
 
         if ($data instanceof Model) {
             $objectNormalizerExpectation->shouldNotBeCalled();
-        } else {
+        }
+
+        if (! $data instanceof Model) {
             $objectNormalizerExpectation->shouldBeCalled();
         }
 
@@ -135,7 +137,8 @@ class ModelNormalizerTest extends TestCase
             ->normalize($this->object, $this->format, $this->context)
             ->shouldBeCalled()
             ->willReturn($this->inputData);
-        foreach ($this->inputData as $key => $value) {
+
+        foreach ($this->inputData as $value) {
             $this->transformer->canTransform($value)->shouldBeCalled()->willReturn(false);
             $this->transformer->transform($value)->shouldNotBeCalled();
         }

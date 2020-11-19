@@ -29,6 +29,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData as TicketSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
@@ -216,7 +217,7 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         $ticketCustomFieldData = new TicketCustomFieldData;
         $priorityData = new PriorityData;
         $statusData = new StatusData;
-        $ticketSettingsData = new \SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
+        $ticketSettingsData = new TicketSettingsData;
 
         /** Ticket Apis */
         yield ['getDepartments', $departmentData->getAllResponse(), [[]], TicketApiClient::class];

@@ -53,7 +53,7 @@ class ApiCacheMap
         $cacheableApis = [];
         foreach (static::CACHE_MAP as $ttl => $apis) {
             $cacheableApis[$ttl] = [];
-            foreach ($apis as $key => $api) {
+            foreach ($apis as $api) {
                 $apiUri = $baseUrl . ltrim($api, '/');
                 $cacheableApis[$ttl][] = $apiUri;
             }
