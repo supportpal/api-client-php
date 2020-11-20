@@ -41,7 +41,9 @@ abstract class BaseModelFactoryTestCase extends ContainerAwareBaseTestCase
         self::expectException(InvalidArgumentException::class);
         if (! $data[$invalidKey] instanceof stdClass) {
             self::expectExceptionMessage(gettype(self::ATOMIC_VALUE));
-        } else {
+        }
+
+        if ($data[$invalidKey] instanceof stdClass) {
             self::expectExceptionMessage($this->snakeCaseToCamelCase($invalidKey));
         }
 

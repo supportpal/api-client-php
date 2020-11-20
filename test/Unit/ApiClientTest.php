@@ -152,11 +152,13 @@ class ApiClientTest extends TestCase
         $request = $this->prophesize(Request::class);
         if ($method === 'GET') {
             $create = $this->requestFactory->create($method, $endpoint, [], [], $parameters);
-        } else {
-            $create = $this->requestFactory->create($method, $endpoint, [], $body);
+            $create->shouldBeCalled()->willReturn($request->reveal());
         }
 
-        $create->shouldBeCalled()->willReturn($request->reveal());
+        if ($method !== 'GET') {
+            $create = $this->requestFactory->create($method, $endpoint, [], $body);
+            $create->shouldBeCalled()->willReturn($request->reveal());
+        }
 
         return $request;
     }

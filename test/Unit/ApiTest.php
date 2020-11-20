@@ -106,7 +106,7 @@ abstract class ApiTest extends TestCase
 
         if (is_array(current($responseData['data']))) {
             $models = [];
-            foreach ($responseData['data'] as $key => $value) {
+            foreach ($responseData['data'] as $value) {
                 $model = $this->prophesize($expectedClass);
                 $this->modelCollectionFactory
                     ->create($expectedClass, $value)
@@ -221,7 +221,7 @@ abstract class ApiTest extends TestCase
 
         $this
             ->modelCollectionFactory
-            ->create($outputClassName ?? $className, $responseData['data'])
+            ->create($className, $responseData['data'])
             ->willReturn($output);
 
         $response = $this->prophesize(ResponseInterface::class);

@@ -70,6 +70,7 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
 
     /**
      * @return iterable<mixed>
+     * @SuppressWarnings(PHPMD.MissingImport)
      */
     public function provideValidModelData(): iterable
     {
@@ -82,6 +83,7 @@ class ModelCollectionFactoryTest extends ContainerAwareBaseTestCase
 
     /**
      * @return iterable<mixed>
+     * @SuppressWarnings(PHPMD.MissingImport)
      */
     public function provideDataWithInvalidTypes(): iterable
     {
