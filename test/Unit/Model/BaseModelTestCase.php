@@ -8,6 +8,8 @@ use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\TestCase;
 
+use function array_keys;
+
 /**
  * Class BaseModelTestCase
  * @package SupportPal\ApiClient\Tests\Unit\Model
@@ -66,7 +68,7 @@ abstract class BaseModelTestCase extends TestCase
     protected function getInvalidTypesData(): array
     {
         $data = [];
-        foreach ($this->getModelData() as $key => $value) {
+        foreach (array_keys($this->getModelData()) as $key) {
             $data[$key] = new stdClass;
         }
 

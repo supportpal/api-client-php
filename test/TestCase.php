@@ -38,25 +38,19 @@ class TestCase extends \PHPUnit\Framework\TestCase
              *
              */
             if (is_array($attributeValue) && ! empty($attributeValue) && is_object(current($attributeValue))) {
-                for ($i = 0; $i < count($attributeValue); ++$i) {
-                    /**
-                     * handle array of objects vs nested arrays
-                     */
-                    if (! is_object($value[$i])) {
-                        self::assertArrayEqualsObjectFields($attributeValue[$i], $value[$i]);
-                    } else {
-                        self::assertSame($attributeValue[$i], $value[$i]);
-                    }
-                }
-
+                /**
+                 * handle array of objects vs nested arrays
+                 */
+                $this->handleNestedArrays($attributeValue, $value);
                 continue;
             }
 
+            /**
+             * both are native arrays, just compare equality
+             */
             if (is_array($attributeValue) && is_array($value)) {
-                /**
-                 * both are native arrays, just compare equality
-                 */
                 self::assertSame($value, $attributeValue);
+
                 continue;
             }
 
@@ -64,14 +58,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
              * compare atomic values directly
              */
             if (! is_array($value)) {
-                if (is_bool($attributeValue) || is_bool($value)) {
-                    /**
-                     * Int values (for bool type) from Apis are transformed to bool
-                     */
-                    self::assertSame((int) $value, (int) $attributeValue);
-                } else {
-                    self::assertSame($value, $attributeValue);
-                }
+                $this->handleAtomicValues($attributeValue, $value);
 
                 continue;
             }
@@ -104,10 +91,55 @@ class TestCase extends \PHPUnit\Framework\TestCase
             foreach ($models->getModels() as $offset => $object) {
                 $this->assertArrayEqualsObjectFields($object, $data['data'][$offset]);
             }
-        } elseif ($models instanceof SettingsModel) {
-            self::assertSame($models->all(), $data['data']);
-        } else {
-            $this->assertArrayEqualsObjectFields($models, $data['data']);
+
+            return;
         }
+
+        if ($models instanceof SettingsModel) {
+            self::assertSame($models->all(), $data['data']);
+
+            return;
+        }
+
+        if ($models instanceof Model) {
+            $this->assertArrayEqualsObjectFields($models, $data['data']);
+
+            return;
+        }
+    }
+
+    /**
+     * @param array<mixed> $attributeValue
+     * @param mixed $value
+     */
+    protected function handleNestedArrays(array $attributeValue, $value): void
+    {
+        for ($i = 0; $i < count($attributeValue); ++$i) {
+            if (! is_object($value[$i])) {
+                self::assertArrayEqualsObjectFields($attributeValue[$i], $value[$i]);
+
+                continue;
+            }
+
+            self::assertSame($attributeValue[$i], $value[$i]);
+        }
+    }
+
+    /**
+     * @param mixed $attributeValue
+     * @param mixed $value
+     */
+    protected function handleAtomicValues($attributeValue, $value): void
+    {
+        if (is_bool($attributeValue) || is_bool($value)) {
+            /**
+             * Int values (for bool type) from Apis are transformed to bool
+             */
+            self::assertSame((int) $value, (int) $attributeValue);
+
+            return;
+        }
+
+        self::assertSame($value, $attributeValue);
     }
 }

@@ -19,6 +19,7 @@ use SupportPal\ApiClient\Transformer\Transformer;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Serializer;
 
+use function array_keys;
 use function is_array;
 
 class ModelNormalizerTest extends ContainerAwareBaseTestCase
@@ -37,7 +38,7 @@ class ModelNormalizerTest extends ContainerAwareBaseTestCase
         $normalizer = $this->getContainer()->get(ModelNormalizer::class);
 
         $filters = $this->getContainer()->findTaggedServiceIds('transformer.field_transformer');
-        foreach ($filters as $serviceName => $_) {
+        foreach (array_keys($filters) as $serviceName) {
             /** @var Transformer $transformer */
             $transformer = $this->getContainer()->get($serviceName);
             $this->transformers[] = $transformer;
@@ -83,16 +84,20 @@ class ModelNormalizerTest extends ContainerAwareBaseTestCase
         foreach ($arr1 as $key => $value) {
             if (is_array($value)) {
                 $this->assertArraysEqual($value, $arr2[$key]);
-            } else {
-                /**
-                 * normalizer skips null values
-                 */
-                if (isset($arr2[$key])) {
-                    self::assertSame($value, $arr2[$key]);
-                } else {
-                    self::assertNull($value);
-                }
+
+                continue;
             }
+
+            /**
+             * normalizer skips null values
+             */
+            if (isset($arr2[$key])) {
+                self::assertSame($value, $arr2[$key]);
+
+                continue;
+            }
+
+            self::assertNull($value);
         }
     }
 
