@@ -30,7 +30,8 @@
     "rregeer/phpunit-coverage-check": "^0.3.1",
     "slevomat/coding-standard": "^6.4",
     "squizlabs/php_codesniffer": "^3.5",
-    "supportpal/coding-standard": "^0.3"
+    "supportpal/coding-standard": "^0.3",
+    "phpmd/phpmd": "^2.9"
   },
   "autoload": {
     "psr-4": {

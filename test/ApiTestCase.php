@@ -129,6 +129,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
      * @param string $endpoint
      * @throws Exception
      * @dataProvider providePostEndpointsUninitializedTestCases
+     * @SuppressWarnings(PHPMD.MissingImport)
      */
     public function testUninitializedPostEndpoint(string $modelClass, string $endpoint): void
     {
@@ -146,6 +147,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
      * @param string $functionName
      * @throws Exception
      * @dataProvider providePutEndpointsTestCases
+     * @SuppressWarnings(PHPMD.MissingImport)
      */
     public function testMissingIdentifierPostModel(
         Model $model,

@@ -25,6 +25,7 @@ abstract class BaseModelData implements ModelData
     /**
      * @inheritDoc
      * @throws InvalidArgumentException
+     * @SuppressWarnings(PHPMD.MissingImport)
      */
     public function getFilledInstance(): Model
     {
