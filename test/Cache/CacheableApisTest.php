@@ -62,16 +62,8 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         /** @var ApiClient $apiClient */
         $apiClient = $this->getContainer()->get($apiClientClass);
 
-        $response = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
-        $response2 = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
-
-        $this->mockRequestHandler->append($response);
-        $this->mockRequestHandler->append($response2);
-
-        /** @var callable $callable */
-        $callable = [$apiClient, $endpoint];
-        $response1 = call_user_func_array($callable, $parameters);
-        $response2 = call_user_func_array($callable, $parameters);
+        $this->mockResponses($data);
+        [$response1, $response2] = $this->sendRequests($apiClient, $endpoint, $parameters);
 
 
         self::assertEquals(
@@ -117,7 +109,6 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         sleep(2);
         $response3 = call_user_func_array($callable, $parameters);
 
-
         self::assertEquals(
             CacheMiddleware::HEADER_CACHE_MISS,
             $response1->getHeaderLine(CacheMiddleware::HEADER_CACHE_INFO)
@@ -150,18 +141,8 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
     ): void {
         /** @var ApiClient $apiClient */
         $apiClient = $this->getContainer()->get($apiClientClass);
-
-        $response = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
-        $response2 = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
-
-        $this->mockRequestHandler->append($response);
-        $this->mockRequestHandler->append($response2);
-
-        /** @var callable $callable */
-        $callable = [$apiClient, $endpoint];
-        $response1 = call_user_func_array($callable, $parameters);
-        $response2 = call_user_func_array($callable, $parameters);
-
+        $this->mockResponses($data);
+        [$response1, $response2] = $this->sendRequests($apiClient, $endpoint, $parameters);
 
         self::assertEquals(
             CacheMiddleware::HEADER_CACHE_MISS,
@@ -298,5 +279,34 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
 
         return (new CacheStrategyConfigurator($apiCacheMap))
             ->buildCacheStrategy($cacheDir, self::BASE_API_PATH);
+    }
+
+    /**
+     * @param array<mixed> $data
+     * @throws Exception
+     */
+    protected function mockResponses(array $data): void
+    {
+        $response = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
+        $response2 = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
+
+        $this->mockRequestHandler->append($response);
+        $this->mockRequestHandler->append($response2);
+    }
+
+    /**
+     * @param ApiClient $apiClient
+     * @param string $endpoint
+     * @param array<mixed> $parameters
+     * @return Response[]
+     */
+    protected function sendRequests(ApiClient $apiClient, string $endpoint, array $parameters): array
+    {
+        /** @var callable $callable */
+        $callable = [$apiClient, $endpoint];
+        $response1 = call_user_func_array($callable, $parameters);
+        $response2 = call_user_func_array($callable, $parameters);
+
+        return [$response1, $response2];
     }
 }
