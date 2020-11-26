@@ -1,6 +1,6 @@
 {
   "name": "supportpal/api-client-php",
-  "description": "",
+  "description": "A client to interact with the SupportPal API written in PHP.",
   "type": "library",
   "license": "MIT",
   "authors": [
