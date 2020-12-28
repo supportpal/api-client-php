@@ -4,6 +4,12 @@ namespace SupportPal\ApiClient\Model\Department;
 
 use SupportPal\ApiClient\Model\BaseModel;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use TypeError;
+
+use function filter_var;
+use function is_int;
+
+use const FILTER_VALIDATE_INT;
 
 class Email extends BaseModel
 {
@@ -20,7 +26,7 @@ class Email extends BaseModel
     private $port;
 
     /**
-     * @var string
+     * @var int
      * @SerializedName("department_id")
      */
     private $departmentId;
@@ -148,19 +154,25 @@ class Email extends BaseModel
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getDepartmentId(): string
+    public function getDepartmentId(): int
     {
         return $this->departmentId;
     }
 
     /**
-     * @param string $departmentId
+     * @param string|int $departmentId
      * @return self
      */
-    public function setDepartmentId(string $departmentId): self
+    public function setDepartmentId($departmentId): self
     {
+        $departmentId = filter_var($departmentId, FILTER_VALIDATE_INT);
+
+        if (! is_int($departmentId)) {
+            throw new TypeError('Passed DepartmentId value must be an int');
+        }
+
         $this->departmentId = $departmentId;
 
         return $this;
