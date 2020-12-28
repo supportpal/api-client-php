@@ -9,7 +9,7 @@ class EmailData extends BaseModelData
 {
     public const DATA = [
         'id' => 1,
-        'department_id' => '1',
+        'department_id' => 1,
         'brand_id' => 1,
         'address' => 'test@example.com',
         'type' => 0,
