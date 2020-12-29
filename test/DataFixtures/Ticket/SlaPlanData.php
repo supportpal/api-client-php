@@ -9,6 +9,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 class SlaPlanData extends BaseModelData
 {
     public const DATA = [
+        'id' => 1,
         'condition_group_type' => 1,
         'description' => 'test str',
         'created_at' => 12345,
