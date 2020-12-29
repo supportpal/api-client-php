@@ -10,6 +10,7 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Ticket\Attachment;
+use TypeError;
 
 use function array_map;
 
@@ -52,11 +53,13 @@ trait AttachmentApis
      */
     public function downloadAttachment(Attachment $attachment): StreamInterface
     {
-        if ($attachment->getId() === null) {
+        try {
+            $attachmentId = $attachment->getId();
+        } catch (TypeError $typeError) {
             throw new MissingIdentifierException('missing attachment identifier');
         }
 
-        return $this->getApiClient()->downloadAttachment($attachment->getId())->getBody();
+        return $this->getApiClient()->downloadAttachment($attachmentId)->getBody();
     }
 
     /**

@@ -20,7 +20,7 @@ class Comment extends BaseModel
     ];
 
     /**
-     * @var int|null
+     * @var int
      * @SerializedName("id")
      */
     private $id;
@@ -122,9 +122,9 @@ class Comment extends BaseModel
     private $rating;
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }

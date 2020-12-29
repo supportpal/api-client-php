@@ -11,6 +11,7 @@ use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
 use SupportPal\ApiClient\Model\Ticket\Ticket;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
+use TypeError;
 
 use function array_map;
 
@@ -54,11 +55,13 @@ trait TicketApis
      */
     public function updateTicket(Ticket $ticket, array $data): Ticket
     {
-        if ($ticket->getId() === null) {
+        try {
+            $ticketId = $ticket->getId();
+        } catch (TypeError $typeError) {
             throw new MissingIdentifierException('missing ticket identifier');
         }
 
-        $response = $this->getApiClient()->updateTicket($ticket->getId(), $data);
+        $response = $this->getApiClient()->updateTicket($ticketId, $data);
 
         return $this->createTicket($this->decodeBody($response)['data']);
     }

@@ -73,7 +73,7 @@ abstract class CustomField extends BaseModel
     private $dependsOnOptionId;
 
     /**
-     * @var int|null
+     * @var int
      * @SerializedName("id")
      */
     private $id;
@@ -272,18 +272,18 @@ abstract class CustomField extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int|null $id
+     * @param int $id
      * @return self
      */
-    public function setId(?int $id): self
+    public function setId(int $id): self
     {
         $this->id = $id;
 

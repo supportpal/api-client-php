@@ -172,7 +172,7 @@ class Ticket extends BaseModel
     private $resolvedTime;
 
     /**
-     * @var string|null
+     * @var string
      * @SerializedName("number")
      */
     private $number;
@@ -208,7 +208,7 @@ class Ticket extends BaseModel
     private $hasAttachments;
 
     /**
-     * @var int|null
+     * @var int
      * @SerializedName("id")
      */
     private $id;
@@ -792,18 +792,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getNumber(): ?string
+    public function getNumber(): string
     {
         return $this->number;
     }
 
     /**
-     * @param string|null $number
+     * @param string $number
      * @return self
      */
-    public function setNumber(?string $number): self
+    public function setNumber(string $number): self
     {
         $this->number = $number;
 
@@ -906,18 +906,18 @@ class Ticket extends BaseModel
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int|null $id
+     * @param int $id
      * @return self
      */
-    public function setId(?int $id): self
+    public function setId(int $id): self
     {
         $this->id = $id;
 

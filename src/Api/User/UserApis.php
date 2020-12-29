@@ -11,6 +11,7 @@ use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Model\User\User;
 use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
+use TypeError;
 
 use function array_map;
 
@@ -54,11 +55,13 @@ trait UserApis
      */
     public function updateUser(User $user, array $data): User
     {
-        if ($user->getId() === null) {
+        try {
+            $userId = $user->getId();
+        } catch (TypeError $typeError) {
             throw new MissingIdentifierException('missing user identifier');
         }
 
-        $response = $this->getApiClient()->updateUser($user->getId(), $data);
+        $response = $this->getApiClient()->updateUser($userId, $data);
 
         return $this->createUser($this->decodeBody($response)['data']);
     }

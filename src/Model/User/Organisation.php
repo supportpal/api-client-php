@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class Organisation extends BaseModel
 {
     /**
-     * @var int|null
+     * @var int
      * @SerializedName("id")
      */
     private $id;
@@ -86,18 +86,18 @@ class Organisation extends BaseModel
     private $domains;
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int|null $id
+     * @param int $id
      * @return Organisation
      */
-    public function setId(?int $id): Organisation
+    public function setId(int $id): Organisation
     {
         $this->id = $id;
 
