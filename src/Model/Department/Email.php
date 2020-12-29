@@ -26,7 +26,7 @@ class Email extends BaseModel
     private $port;
 
     /**
-     * @var int
+     * @var int|string
      * @SerializedName("department_id")
      */
     private $departmentId;
@@ -158,7 +158,7 @@ class Email extends BaseModel
      */
     public function getDepartmentId(): int
     {
-        return $this->departmentId;
+        return (int) $this->departmentId;
     }
 
     /**
