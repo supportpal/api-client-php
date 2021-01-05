@@ -98,7 +98,7 @@ class Department extends BaseModel
     private $notifyOperators;
 
     /**
-     * @var Operator[]
+     * @var string[]
      * @SerializedName("default_assignedto")
      */
     private $defaultAssignedto;
@@ -422,7 +422,7 @@ class Department extends BaseModel
     }
 
     /**
-     * @return Operator[]
+     * @return string[]
      */
     public function getDefaultAssignedto(): array
     {
@@ -430,7 +430,7 @@ class Department extends BaseModel
     }
 
     /**
-     * @param Operator[] $defaultAssignedto
+     * @param string[] $defaultAssignedto
      * @return self
      */
     public function setDefaultAssignedto(array $defaultAssignedto): self
