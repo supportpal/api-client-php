@@ -94,34 +94,12 @@ class RequestFactoryTest extends TestCase
      */
     public function testDefaultValues(array $data): void
     {
-        $defaultParameters = ['testparams' => 'value'];
-        $defaultBody = ['testbody' => 'value'];
+        $defaultParameters = ['testparams' => 'value', 'test_data2' => 'not_overwriten'];
+        $defaultBody = ['testbody' => 'value', 'test_data2' => 'not_overwriten'];
 
         $expectedBody = array_merge($data['body'], $defaultBody);
-        $encodedBody = json_encode($expectedBody);
-        $encoder = $this->prophesize(EncoderInterface::class);
-        $encoder->encode($expectedBody, 'json')->shouldBeCalled()->willReturn($encodedBody);
-
-        /** @var EncoderInterface $encoder */
-        $encoder = $encoder->reveal();
-        $requestFactory = new RequestFactory(
-            'test',
-            'test',
-            'test',
-            'json',
-            $encoder,
-            $defaultBody,
-            $defaultParameters
-        );
-
-        $headersArray = $this->createExpectedHeadersArray($data['headers']);
-        $request = $requestFactory->create(
-            $data['method'],
-            $data['endpoint'],
-            $data['headers'],
-            $data['body'],
-            $data['parameters']
-        );
+        [$encodedBody, $headersArray, $request] = $this
+            ->commonCreateRequest($expectedBody, $defaultBody, $defaultParameters, $data);
 
         self::assertInstanceOf(Request::class, $request);
         self::assertSame($data['method'], $request->getMethod());
@@ -129,7 +107,36 @@ class RequestFactoryTest extends TestCase
         self::assertEquals($headersArray, $request->getHeaders());
         self::assertSame($encodedBody, $request->getBody()->getContents());
         self::assertSame(
-            http_build_query(array_merge($data['parameters'], $defaultParameters)),
+            http_build_query(array_merge($defaultParameters, $data['parameters'])),
+            $request->getUri()->getQuery()
+        );
+    }
+
+    public function testProvidedDataOverwritesDefaults(): void
+    {
+        $defaultParameters = ['testparams' => 'value'];
+        $defaultBody = ['testbody' => 'value'];
+
+
+        $data = [
+            'method' => 'DELETE',
+            'endpoint' => 'test/api/core',
+            'headers' => ['Authorization' => 'header'],
+            'body' => ['testbody' => 'overwrite_value'],
+            'parameters' => ['testparams' => 'overwrite_value']
+        ];
+
+        $expectedBody = array_merge($defaultBody, $data['body']);
+        [$encodedBody, $headersArray, $request] = $this
+            ->commonCreateRequest($expectedBody, $defaultBody, $defaultParameters, $data);
+
+        self::assertInstanceOf(Request::class, $request);
+        self::assertSame($data['method'], $request->getMethod());
+        self::assertSame('test' . $data['endpoint'], $request->getUri()->getPath());
+        self::assertEquals($headersArray, $request->getHeaders());
+        self::assertSame($encodedBody, $request->getBody()->getContents());
+        self::assertSame(
+            http_build_query(array_merge($defaultParameters, $data['parameters'])),
             $request->getUri()->getQuery()
         );
     }
@@ -196,5 +203,46 @@ class RequestFactoryTest extends TestCase
         }
 
         return $headersArray;
+    }
+
+    /**
+     * @param array<mixed> $expectedBody
+     * @param array<mixed> $defaultBody
+     * @param array<mixed> $defaultParameters
+     * @param array<mixed> $data
+     * @return array<mixed>
+     */
+    private function commonCreateRequest(
+        array $expectedBody,
+        array $defaultBody,
+        array $defaultParameters,
+        array $data
+    ): array {
+        $encodedBody = json_encode($expectedBody);
+        $encoder = $this->prophesize(EncoderInterface::class);
+        $encoder->encode($expectedBody, 'json')->shouldBeCalled()->willReturn($encodedBody);
+
+        /** @var EncoderInterface $encoder */
+        $encoder = $encoder->reveal();
+        $requestFactory = new RequestFactory(
+            'test',
+            'test',
+            'test',
+            'json',
+            $encoder,
+            $defaultBody,
+            $defaultParameters
+        );
+
+        $headersArray = $this->createExpectedHeadersArray($data['headers']);
+        $request = $requestFactory->create(
+            $data['method'],
+            $data['endpoint'],
+            $data['headers'],
+            $data['body'],
+            $data['parameters']
+        );
+
+        return [$encodedBody, $headersArray, $request];
     }
 }
