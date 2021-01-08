@@ -92,7 +92,7 @@ class RequestFactory
     ): RequestInterface {
         $headers['Content-Type'] = $headers['Content-Type'] ?? $this->contentType;
         $headers['Authorization'] = $headers['Authorization'] ?? 'Basic ' . base64_encode($this->apiToken . ':X');
-        $bodyArray = array_merge($body, $this->defaultBodyContent);
+        $bodyArray = array_merge($this->defaultBodyContent, $body);
 
         $body = ! empty($bodyArray) ? Utils::streamFor($this->encoder->encode($bodyArray, $this->formatType)) : null;
 
@@ -100,7 +100,7 @@ class RequestFactory
 
         return new Request(
             $method,
-            $uri->withQuery(http_build_query(array_merge($queryParameters, $this->defaultParameters))),
+            $uri->withQuery(http_build_query(array_merge($this->defaultParameters, $queryParameters))),
             $headers,
             $body
         );
