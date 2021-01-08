@@ -19,18 +19,19 @@ use function http_build_query;
 class RequestFactory
 {
     /**
-     * base api url
+     * Base API URL.
      * @var string
      */
     private $apiUrl;
+
     /**
-     * token used to authenticate with SupportPal
+     * Token used to authenticate with SupportPal
      * @var string
      */
     private $apiToken;
 
     /**
-     * Api supported content type
+     * API supported content type.
      * @var string
      */
     private $contentType;
@@ -44,9 +45,6 @@ class RequestFactory
     /** @var array<mixed> */
     private $defaultParameters;
 
-    /** @var array<mixed> */
-    private $defaultBodyContent;
-
     /**
      * RequestFactory constructor.
      * @param string $apiUrl
@@ -54,7 +52,6 @@ class RequestFactory
      * @param string $contentType
      * @param string $formatType
      * @param EncoderInterface $encoder
-     * @param array<mixed> $defaultBodyContent Body content that are always passed in the body of the result request
      * @param array<mixed> $defaultParameters Parameters that are always appended to the result request
      */
     public function __construct(
@@ -63,7 +60,6 @@ class RequestFactory
         string $contentType,
         string $formatType,
         EncoderInterface $encoder,
-        array $defaultBodyContent = [],
         array $defaultParameters = []
     ) {
         $this->apiUrl = $apiUrl;
@@ -71,7 +67,6 @@ class RequestFactory
         $this->contentType = $contentType;
         $this->formatType = $formatType;
         $this->encoder = $encoder;
-        $this->defaultBodyContent = $defaultBodyContent;
         $this->defaultParameters = $defaultParameters;
     }
 
@@ -92,15 +87,17 @@ class RequestFactory
     ): RequestInterface {
         $headers['Content-Type'] = $headers['Content-Type'] ?? $this->contentType;
         $headers['Authorization'] = $headers['Authorization'] ?? 'Basic ' . base64_encode($this->apiToken . ':X');
-        $bodyArray = array_merge($this->defaultBodyContent, $body);
 
-        $body = ! empty($bodyArray) ? Utils::streamFor($this->encoder->encode($bodyArray, $this->formatType)) : null;
+        // Merge query and body data together.
+        $data = array_merge($this->defaultParameters, $queryParameters, $body);
+
+        $body = ! empty($data) ? Utils::streamFor($this->encoder->encode($data, $this->formatType)) : null;
 
         $uri = new Uri($this->apiUrl . $endpoint);
 
         return new Request(
             $method,
-            $uri->withQuery(http_build_query(array_merge($this->defaultParameters, $queryParameters))),
+            $uri->withQuery(http_build_query($data)),
             $headers,
             $body
         );

@@ -10,7 +10,6 @@ services:
             $apiUrl: '%apiUrl%'
             $apiToken: '%apiToken%'
             $contentType: '%apiContentType%'
-            $defaultBodyContent: '%defaultBodyContent%'
             $defaultParameters: '%defaultParameters%'
             $formatType: '%contentType%'
 

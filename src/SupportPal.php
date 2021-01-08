@@ -57,7 +57,6 @@ class SupportPal
         $containerBuilder->setParameter('apiUrl', $apiContext->getApiUrl());
         $containerBuilder->setParameter('apiToken', $apiContext->getApiToken());
         $containerBuilder->setParameter('defaultParameters', $requestDefaults->getDefaultParameters());
-        $containerBuilder->setParameter('defaultBodyContent', $requestDefaults->getDefaultBodyContent());
 
         $containerBuilder->set(
             Client::class,

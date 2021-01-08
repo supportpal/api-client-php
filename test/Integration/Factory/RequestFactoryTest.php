@@ -28,9 +28,6 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
     private $apiContentType;
 
     /** @var array<mixed> */
-    private $defaultBodyContent;
-
-    /** @var array<mixed> */
     private $defaultParameters;
 
     public function setUp(): void
@@ -41,7 +38,6 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
         $this->requestFactory = $requestFactory;
         $this->apiToken = $this->getContainer()->getParameter('apiToken');
         $this->apiContentType = $this->getContainer()->getParameter('apiContentType');
-        $this->defaultBodyContent = $this->getContainer()->getParameter('defaultBodyContent');
         $this->defaultParameters = $this->getContainer()->getParameter('defaultParameters');
     }
 
@@ -75,8 +71,8 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
 
         $headersArray['Host'] = [$request->getUri()->getHost() . ':' . $request->getUri()->getPort()];
 
-        $encodedBody = ! empty($data['body']) || ! empty($this->defaultBodyContent)
-            ? $this->getEncoder()->encode(array_merge($data['body'], $this->defaultBodyContent), $this->getFormatType())
+        $encodedBody = ! empty($data['body']) || ! empty($this->defaultParameters)
+            ? $this->getEncoder()->encode(array_merge($data['body'], $this->defaultParameters), $this->getFormatType())
             : '';
 
         self::assertInstanceOf(Request::class, $request);

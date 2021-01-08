@@ -20,24 +20,18 @@ class RequestDefaults
     private $defaultParameters;
 
     /** @var array<mixed> */
-    private $defaultBodyContent;
-
-    /** @var array<mixed> */
     private $defaultRequestOptions;
 
     /**
      * RequestDefaults constructor.
      * @param array<mixed> $defaultParameters
-     * @param array<mixed> $defaultBodyContent
      * @param array<mixed> $defaultRequestOptions
      */
     public function __construct(
         array $defaultParameters = [],
-        array $defaultBodyContent = [],
         array $defaultRequestOptions = self::DEFAULT_OPTIONS
     ) {
         $this->defaultParameters = $defaultParameters;
-        $this->defaultBodyContent = $defaultBodyContent;
         $this->defaultRequestOptions = $defaultRequestOptions;
     }
 
@@ -50,11 +44,13 @@ class RequestDefaults
     }
 
     /**
+     * @deprecated Use getDefaultParameters instead, to be removed in 2.0.0.
+     *
      * @return array<mixed>
      */
     public function getDefaultBodyContent(): array
     {
-        return $this->defaultBodyContent;
+        return $this->defaultParameters;
     }
 
     /**
@@ -77,12 +73,14 @@ class RequestDefaults
     }
 
     /**
+     * @deprecated Use setDefaultParameters instead, to be removed in 2.0.0.
+     *
      * @param array<mixed> $defaultBodyContent
      * @return self
      */
     public function setDefaultBodyContent(array $defaultBodyContent): self
     {
-        $this->defaultBodyContent = $defaultBodyContent;
+        $this->defaultParameters = $defaultBodyContent;
 
         return $this;
     }
