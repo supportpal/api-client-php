@@ -42,7 +42,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     /**
      * @inheritDoc
      */
-    public function normalize($object, string $format = null, array $context = [])
+    public function normalize($object, ?string $format = null, array $context = [])
     {
         $data = $this->objectNormalizer->normalize($object, $format, $context);
         $data = $this->applyArrayTransformations($data);
@@ -53,7 +53,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     /**
      * @inheritDoc
      */
-    public function denormalize($data, string $type, string $format = null, array $context = [])
+    public function denormalize($data, string $type, ?string $format = null, array $context = [])
     {
         $data = $this->applyAttributeAwareTransformations($data, $type);
         /** @var Model $model */
@@ -66,7 +66,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     /**
      * @inheritDoc
      */
-    public function supportsNormalization($data, string $format = null, array $context = [])
+    public function supportsNormalization($data, ?string $format = null, array $context = [])
     {
         return $data instanceof Model || $this->objectNormalizer->supportsNormalization($data, $format);
     }
@@ -74,7 +74,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     /**
      * @inheritDoc
      */
-    public function supportsDenormalization($data, string $type, string $format = null, array $context = [])
+    public function supportsDenormalization($data, string $type, ?string $format = null, array $context = [])
     {
         return $this->objectNormalizer->supportsDenormalization($data, $type, $format);
     }
