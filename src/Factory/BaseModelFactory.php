@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Factory;
 
 use Exception;
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Exception\InvalidDataException;
 use SupportPal\ApiClient\Model\Model;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -50,10 +50,11 @@ abstract class BaseModelFactory implements ModelFactory
                 $this->formatType
             );
         } catch (Exception $invalidArgumentException) {
-            throw new InvalidArgumentException(
+            throw new InvalidDataException(
+                $data,
                 $invalidArgumentException->getMessage(),
                 $invalidArgumentException->getCode(),
-                $invalidArgumentException->getPrevious()
+                $invalidArgumentException
             );
         }
 
