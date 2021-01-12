@@ -45,7 +45,7 @@ class SupportPal
      */
     public function __construct(
         ApiContext $apiContext,
-        RequestDefaults $requestDefaults = null,
+        ?RequestDefaults $requestDefaults = null,
         ?string $cacheDir = null
     ) {
         $cacheDir = $cacheDir ?? sys_get_temp_dir();

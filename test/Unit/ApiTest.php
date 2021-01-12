@@ -145,7 +145,7 @@ abstract class ApiTest extends TestCase
         array $responseData,
         array $modelArrayData,
         string $className,
-        string $outputClassName = null
+        ?string $outputClassName = null
     ): array {
         $input = $this->prophesize($className);
         $output = $this->prophesize($outputClassName ?? $className);
