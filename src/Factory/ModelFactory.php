@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Factory;
 
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Exception\InvalidDataException;
 use SupportPal\ApiClient\Model\Model;
 
 /**
@@ -14,7 +14,7 @@ interface ModelFactory
     /**
      * This method creates an instance of a SupportPalModel
      * @param array<mixed> $data
-     * @throws InvalidArgumentException
+     * @throws InvalidDataException
      * @return Model
      */
     public function create(array $data): Model;
