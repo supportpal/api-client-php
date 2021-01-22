@@ -15,9 +15,9 @@ class CategoryTranslation extends BaseTranslation
 
     /**
      * @var int
-     * @SerializedName("type_id")
+     * @SerializedName("category_id")
      */
-    private $typeId;
+    private $categoryId;
 
     /**
      * @var string
@@ -51,20 +51,22 @@ class CategoryTranslation extends BaseTranslation
     }
 
     /**
+     * @deprecated
      * @return int
      */
     public function getTypeId(): int
     {
-        return $this->typeId;
+        return $this->categoryId;
     }
 
     /**
-     * @param int $typeId
+     * @deprecated
+     * @param int $categoryId
      * @return self
      */
-    public function setTypeId(int $typeId): self
+    public function setTypeId(int $categoryId): self
     {
-        $this->typeId = $typeId;
+        $this->categoryId = $categoryId;
 
         return $this;
     }
@@ -103,6 +105,25 @@ class CategoryTranslation extends BaseTranslation
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCategoryId(): int
+    {
+        return $this->categoryId;
+    }
+
+    /**
+     * @param int $categoryId
+     * @return CategoryTranslation
+     */
+    public function setCategoryId(int $categoryId): self
+    {
+        $this->categoryId = $categoryId;
 
         return $this;
     }
