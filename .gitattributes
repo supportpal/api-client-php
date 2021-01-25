@@ -4,6 +4,7 @@
 /.releaserc export-ignore
 /ci export-ignore
 /composer.json export-ignore
+/composer.lock export-ignore
 /ModelParser export-ignore
 /package.json export-ignore
 /package-lock.json export-ignore
