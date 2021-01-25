@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Helper\StringHelper;
@@ -24,6 +25,8 @@ abstract class BaseModelFactoryTestCase extends TestCase
     use FactoryTestCase;
 
     use StringHelper;
+
+    use ProphecyTrait;
 
     /** @var ObjectProphecy */
     protected $serializer;

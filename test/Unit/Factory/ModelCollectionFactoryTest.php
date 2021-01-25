@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
@@ -22,11 +23,14 @@ use SupportPal\ApiClient\Model\Shared\Settings;
  */
 class ModelCollectionFactoryTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @var ModelCollectionFactory */
     private $modelCollectionFactory;
 
     /** @var ObjectProphecy */
     private $commentFactory;
+
     /** @var ObjectProphecy */
     private $settingsFactory;
 
