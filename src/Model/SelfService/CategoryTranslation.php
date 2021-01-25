@@ -15,21 +15,15 @@ class CategoryTranslation extends BaseTranslation
 
     /**
      * @var int
-     * @SerializedName("type_id")
+     * @SerializedName("category_id")
      */
-    private $typeId;
+    private $categoryId;
 
     /**
      * @var string
      * @SerializedName("slug")
      */
     private $slug;
-
-    /**
-     * @var string
-     * @SerializedName("description")
-     */
-    private $description;
 
     /**
      * @return string
@@ -51,20 +45,22 @@ class CategoryTranslation extends BaseTranslation
     }
 
     /**
+     * @deprecated
      * @return int
      */
     public function getTypeId(): int
     {
-        return $this->typeId;
+        return $this->categoryId;
     }
 
     /**
-     * @param int $typeId
+     * @deprecated
+     * @param int $categoryId
      * @return self
      */
-    public function setTypeId(int $typeId): self
+    public function setTypeId(int $categoryId): self
     {
-        $this->typeId = $typeId;
+        $this->categoryId = $categoryId;
 
         return $this;
     }
@@ -89,20 +85,40 @@ class CategoryTranslation extends BaseTranslation
     }
 
     /**
+     * Invalid property in the model, this getter will be removed in the next major release
+     * @deprecated
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
-        return $this->description;
+        return null;
     }
 
     /**
-     * @param string $description
+     * Invalid property in the model, this setter will be removed in the next major release
      * @return self
+     * @deprecated
      */
-    public function setDescription(string $description): self
+    public function setDescription(): self
     {
-        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCategoryId(): int
+    {
+        return $this->categoryId;
+    }
+
+    /**
+     * @param int $categoryId
+     * @return CategoryTranslation
+     */
+    public function setCategoryId(int $categoryId): self
+    {
+        $this->categoryId = $categoryId;
 
         return $this;
     }
