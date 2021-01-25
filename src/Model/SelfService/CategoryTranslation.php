@@ -26,12 +26,6 @@ class CategoryTranslation extends BaseTranslation
     private $slug;
 
     /**
-     * @var string
-     * @SerializedName("description")
-     */
-    private $description;
-
-    /**
      * @return string
      */
     public function getName(): string
@@ -91,21 +85,22 @@ class CategoryTranslation extends BaseTranslation
     }
 
     /**
+     * Invalid property in the model, this getter will be removed in the next major release
+     * @deprecated
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
-        return $this->description;
+        return null;
     }
 
     /**
-     * @param string $description
+     * Invalid property in the model, this setter will be removed in the next major release
      * @return self
+     * @deprecated
      */
-    public function setDescription(string $description): self
+    public function setDescription(): self
     {
-        $this->description = $description;
-
         return $this;
     }
 

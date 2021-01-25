@@ -11,8 +11,7 @@ class CategoryTranslationData extends BaseModelData
         'category_id' => 2,
         'name' => 'test',
         'slug' => 'test',
-        'description' => 'test',
-        'locale' => 'ar'
+        'locale' => 'ar',
     ];
 
     /**
