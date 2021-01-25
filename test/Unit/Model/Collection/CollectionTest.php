@@ -158,7 +158,7 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @return Comment[]
+     * @return Model[]
      * @throws InvalidArgumentException
      */
     private function getModelsTestData(): array
