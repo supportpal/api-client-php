@@ -39,10 +39,10 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
         /** @var RequestFactory $requestFactory */
         $requestFactory = $this->getContainer()->get(RequestFactory::class);
         $this->requestFactory = $requestFactory;
-        $this->apiToken = $this->getContainer()->getParameter('apiToken');
-        $this->apiContentType = $this->getContainer()->getParameter('apiContentType');
-        $this->defaultBodyContent = $this->getContainer()->getParameter('defaultBodyContent');
-        $this->defaultParameters = $this->getContainer()->getParameter('defaultParameters');
+        $this->apiToken = (string) $this->getContainer()->getParameter('apiToken');
+        $this->apiContentType = (string) $this->getContainer()->getParameter('apiContentType');
+        $this->defaultBodyContent = (array) $this->getContainer()->getParameter('defaultBodyContent');
+        $this->defaultParameters = (array) $this->getContainer()->getParameter('defaultParameters');
     }
 
     /**
