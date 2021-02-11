@@ -10,9 +10,8 @@ jobs:
             fail-fast: true
             matrix:
                 php: [7.2, 7.3, 7.4, 8.0]
-                stability: [prefer-stable]
 
-        name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
+        name: PHP ${{ matrix.php }}
 
         steps:
             - name: Checkout code
@@ -29,7 +28,7 @@ jobs:
               uses: StephaneBour/actions-php-cpd@7.4
 
             - name: Install dependencies
-              run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
+              run: composer install --prefer-dist --no-interaction --no-progress
 
             - name: Code Standard and Static Analysis
               run: ci/analyse.sh
