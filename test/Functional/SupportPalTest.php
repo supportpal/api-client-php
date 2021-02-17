@@ -2,11 +2,17 @@
 
 namespace SupportPal\ApiClient\Tests\Functional;
 
+use Exception;
 use GuzzleHttp\Psr7\Response;
+use SupportPal\ApiClient\Config\ApiContext;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
+use SupportPal\ApiClient\SupportPal;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
+
+use function base64_encode;
+use function current;
 
 /**
  * Class SupportPalTest
@@ -42,5 +48,28 @@ class SupportPalTest extends ContainerAwareBaseTestCase
         $this->appendRequestResponse($response);
         $request = $this->getSupportPal()->getRequestFactory()->create('GET', 'test_endpoint');
         $this->getSupportPal()->sendRequest($request);
+    }
+
+    /**
+     * @dataProvider provideApiTokens
+     * @param string $apiToken
+     * @throws Exception
+     */
+    public function testEscapePercentApiToken(string $apiToken): void
+    {
+        $request = (new SupportPal(new ApiContext('localhost', $apiToken)))->getRequestFactory()->create('GET', 'test');
+        self::assertSame('Basic ' . base64_encode($apiToken . ':X'), current($request->getHeader('Authorization')));
+    }
+
+    /**
+     * @return iterable<array<int, string>>
+     */
+    public function provideApiTokens(): iterable
+    {
+        yield ['api_token_without_percent'];
+        yield ['api_token%'];
+        yield ['%api_token%'];
+        yield ['%api%_tok%en%'];
+        yield ['%%%%'];
     }
 }
