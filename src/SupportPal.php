@@ -25,6 +25,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 use function array_merge;
+use function str_replace;
 use function sys_get_temp_dir;
 
 /**
@@ -54,8 +55,8 @@ class SupportPal
         $containerBuilder = new ContainerBuilder;
         $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
         $loader->load('Resources/services.yml');
-        $containerBuilder->setParameter('apiUrl', $apiContext->getApiUrl());
-        $containerBuilder->setParameter('apiToken', $apiContext->getApiToken());
+        $containerBuilder->setParameter('apiUrl', $this->escapeSpecialCharacters($apiContext->getApiUrl()));
+        $containerBuilder->setParameter('apiToken', $this->escapeSpecialCharacters($apiContext->getApiToken()));
         $containerBuilder->setParameter('defaultParameters', $requestDefaults->getDefaultParameters());
         $containerBuilder->setParameter('defaultBodyContent', $requestDefaults->getDefaultBodyContent());
 
@@ -175,5 +176,16 @@ class SupportPal
     {
         return (new CacheStrategyConfigurator(new ApiCacheMap))
             ->buildCacheStrategy($cacheDir, $apiContext->getApiPath());
+    }
+
+    /**
+     * This function escapes '%' because Symfony dependency injection uses it to detect the value of the set parameter
+     * using the following regex: `%%|%([^%\s]+)%` in the yaml file
+     * @param string $value
+     * @return string
+     */
+    private function escapeSpecialCharacters(string $value): string
+    {
+        return str_replace('%', '%%', $value);
     }
 }
