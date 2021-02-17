@@ -181,8 +181,6 @@ class SupportPal
     /**
      * This function escapes '%' because Symfony dependency injection uses it to detect the value of the set parameter
      * using the following regex: `%%|%([^%\s]+)%` in the yaml file
-     * @param string $value
-     * @return string
      */
     private function escapeSpecialCharacters(string $value): string
     {
