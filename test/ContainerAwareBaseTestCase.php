@@ -147,7 +147,10 @@ abstract class ContainerAwareBaseTestCase extends TestCase
      */
     protected function getFormatType(): string
     {
-        return $this->container->getParameter('contentType');
+        /** @var string $contentType */
+        $contentType = $this->container->getParameter('contentType');
+
+        return $contentType;
     }
 
     /**
