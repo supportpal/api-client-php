@@ -32,18 +32,18 @@ class ChannelSettings extends BaseModel
     private $showRelatedArticles;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUnauthenticatedUsers(): string
+    public function getUnauthenticatedUsers(): ?string
     {
         return $this->unauthenticatedUsers;
     }
 
     /**
-     * @param string $unauthenticatedUsers
+     * @param string|null $unauthenticatedUsers
      * @return self
      */
-    public function setUnauthenticatedUsers(string $unauthenticatedUsers): self
+    public function setUnauthenticatedUsers(?string $unauthenticatedUsers): self
     {
         $this->unauthenticatedUsers = $unauthenticatedUsers;
 
@@ -51,18 +51,18 @@ class ChannelSettings extends BaseModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getShowCaptcha(): string
+    public function getShowCaptcha(): ?string
     {
         return $this->showCaptcha;
     }
 
     /**
-     * @param string $showCaptcha
+     * @param string|null $showCaptcha
      * @return self
      */
-    public function setShowCaptcha(string $showCaptcha): self
+    public function setShowCaptcha(?string $showCaptcha): self
     {
         $this->showCaptcha = $showCaptcha;
 
@@ -70,18 +70,18 @@ class ChannelSettings extends BaseModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAppendIpAddress(): string
+    public function getAppendIpAddress(): ?string
     {
         return $this->appendIpAddress;
     }
 
     /**
-     * @param string $appendIpAddress
+     * @param string|null $appendIpAddress
      * @return self
      */
-    public function setAppendIpAddress(string $appendIpAddress): self
+    public function setAppendIpAddress(?string $appendIpAddress): self
     {
         $this->appendIpAddress = $appendIpAddress;
 
@@ -89,18 +89,18 @@ class ChannelSettings extends BaseModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getShowRelatedArticles(): string
+    public function getShowRelatedArticles(): ?string
     {
         return $this->showRelatedArticles;
     }
 
     /**
-     * @param string $showRelatedArticles
+     * @param string|null $showRelatedArticles
      * @return self
      */
-    public function setShowRelatedArticles(string $showRelatedArticles): self
+    public function setShowRelatedArticles(?string $showRelatedArticles): self
     {
         $this->showRelatedArticles = $showRelatedArticles;
 
