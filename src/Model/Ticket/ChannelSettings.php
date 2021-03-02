@@ -8,25 +8,25 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class ChannelSettings extends BaseModel
 {
     /**
-     * @var string
+     * @var string|null
      * @SerializedName("unauthenticated_users")
      */
     private $unauthenticatedUsers;
 
     /**
-     * @var string
+     * @var string|null
      * @SerializedName("show_captcha")
      */
     private $showCaptcha;
 
     /**
-     * @var string
+     * @var string|null
      * @SerializedName("append_ip_address")
      */
     private $appendIpAddress;
 
     /**
-     * @var string
+     * @var string|null
      * @SerializedName("show_related_articles")
      */
     private $showRelatedArticles;
