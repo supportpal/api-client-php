@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model\Ticket\Request;
 
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateMessage;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateMessageData;
@@ -29,14 +28,5 @@ class CreateMessageTest extends BaseModelTestCase
     protected function getModel(): Model
     {
         return new CreateMessage;
-    }
-
-    public function testAddAttachmentWithIncorrectData(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $modelData = $this->getModelData();
-        $modelData['attachment'] = ['test_invalid_data'];
-
-        $this->getModel()->fill($modelData);
     }
 }

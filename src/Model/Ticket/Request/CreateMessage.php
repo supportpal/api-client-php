@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Model\Ticket\Request;
 
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\BaseModel;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
@@ -256,21 +255,13 @@ class CreateMessage extends BaseModel
     /**
      * This method expects an array of attachments in the following format.
      * ['filename' => 'test', 'contents' => 'some-base-64-string'].
+     * If the array is supplied using an incorrect format the attachment will be ignored.
      * This method overwrites any attachments you previously set.
      * @param array<string[]>|null $attachments
      * @return self
-     * @throws InvalidArgumentException
      */
     public function setAttachment(?array $attachments): self
     {
-        if ($attachments !== null) {
-            foreach ($attachments as $attachment) {
-                if (! isset($attachment['filename']) || ! isset($attachment['contents'])) {
-                    throw new InvalidArgumentException('Each Attachment value must include a file name, and contents.');
-                }
-            }
-        }
-
         $this->attachment = $attachments;
 
         return $this;
