@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Model\Ticket\Request;
 
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\BaseModel;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
@@ -68,7 +69,7 @@ class CreateMessage extends BaseModel
     private $sendOperatorsEmail;
 
     /**
-     * @var string[]|null
+     * @var array<string[]>|null
      * @SerializedName("attachment")
      */
     private $attachment;
@@ -245,7 +246,7 @@ class CreateMessage extends BaseModel
     }
 
     /**
-     * @return string[]|null
+     * @return array<string[]>|null
      */
     public function getAttachment(): ?array
     {
@@ -253,12 +254,31 @@ class CreateMessage extends BaseModel
     }
 
     /**
-     * @param string[]|null $attachment
+     * This method expects an array of attachments in the following format.
+     * ['filename' => 'test', 'contents' => 'some-base-64-string'].
+     * This method overwrites any attachments you previously set.
+     * @param array<string[]>|null $attachments
      * @return self
+     * @throws InvalidArgumentException
      */
-    public function setAttachment(?array $attachment): self
+    public function setAttachment(?array $attachments): self
     {
-        $this->attachment = $attachment;
+        if ($attachments !== null) {
+            foreach ($attachments as $attachment) {
+                if (! isset($attachment['filename']) || ! isset($attachment['contents'])) {
+                    throw new InvalidArgumentException('Each Attachment value must include a file name, and contents.');
+                }
+            }
+        }
+
+        $this->attachment = $attachments;
+
+        return $this;
+    }
+
+    public function addAttachment(string $fileName, string $contents): self
+    {
+        $this->attachment[] = ['filename' => $fileName, 'contents' => $contents];
 
         return $this;
     }
