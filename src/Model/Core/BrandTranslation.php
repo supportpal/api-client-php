@@ -2,10 +2,10 @@
 
 namespace SupportPal\ApiClient\Model\Core;
 
-use SupportPal\ApiClient\Model\BaseTranslation;
+use SupportPal\ApiClient\Model\BaseModel;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
-class BrandTranslation extends BaseTranslation
+class BrandTranslation extends BaseModel
 {
     /**
      * @var string
@@ -18,6 +18,12 @@ class BrandTranslation extends BaseTranslation
      * @SerializedName("brand_id")
      */
     private $brandId;
+
+    /**
+     * @var string
+     * @SerializedName("locale")
+     */
+    private $locale;
 
     /**
      * @return string
@@ -53,6 +59,25 @@ class BrandTranslation extends BaseTranslation
     public function setBrandId(int $brandId): self
     {
         $this->brandId = $brandId;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale(): string
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param string $locale
+     * @return self
+     */
+    public function setLocale(string $locale): self
+    {
+        $this->locale = $locale;
 
         return $this;
     }
