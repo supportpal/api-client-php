@@ -8,7 +8,8 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class OptionTranslation extends BaseTranslation
 {
     /**
-     * @var int
+     * @deprecated This value is not set in all options and will be removed in later versions.
+     * @var int|null
      * @SerializedName("ticket_custom_field_option_id")
      */
     private $ticketCustomFieldOptionId;
@@ -20,18 +21,20 @@ class OptionTranslation extends BaseTranslation
     private $value;
 
     /**
-     * @return int
+     * @deprecated
+     * @return int|null
      */
-    public function getTicketCustomFieldOptionId(): int
+    public function getTicketCustomFieldOptionId(): ?int
     {
         return $this->ticketCustomFieldOptionId;
     }
 
     /**
-     * @param int $ticketCustomFieldOptionId
+     * @deprecated
+     * @param int|null $ticketCustomFieldOptionId
      * @return self
      */
-    public function setTicketCustomFieldOptionId(int $ticketCustomFieldOptionId): self
+    public function setTicketCustomFieldOptionId(?int $ticketCustomFieldOptionId): self
     {
         $this->ticketCustomFieldOptionId = $ticketCustomFieldOptionId;
 

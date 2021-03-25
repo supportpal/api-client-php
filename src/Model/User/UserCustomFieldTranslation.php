@@ -20,7 +20,7 @@ class UserCustomFieldTranslation extends BaseTranslation
     private $userCustomFieldId;
 
     /**
-     * @var string
+     * @var string|null
      * @SerializedName("description")
      */
     private $description;
@@ -70,18 +70,18 @@ class UserCustomFieldTranslation extends BaseTranslation
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
-     * @param string $description
+     * @param string|null $description
      * @return self
      */
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
