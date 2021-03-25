@@ -2,9 +2,7 @@
 
 namespace SupportPal\ApiClient\Model\Core;
 
-use SupportPal\ApiClient\Model\BaseModel;
 use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Annotation\SerializedName;
 
 class BrandTranslation extends BaseTranslation
 {
