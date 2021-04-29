@@ -2,8 +2,6 @@
 
 namespace SupportPal\ApiClient\Exception;
 
-use RuntimeException;
-
 /**
  * Class MissingRequiredFieldsException
  * @package SupportPal\ApiClient\Exception
