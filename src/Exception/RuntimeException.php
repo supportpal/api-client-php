@@ -2,10 +2,12 @@
 
 namespace SupportPal\ApiClient\Exception;
 
+use RuntimeException as PhpRuntimeException;
+
 /**
- * Class InvalidArgumentException
+ * Class BaseRuntimeException
  * @package SupportPal\ApiClient\Exception
  */
-class InvalidArgumentException extends Exception
+class RuntimeException extends PhpRuntimeException
 {
 }
