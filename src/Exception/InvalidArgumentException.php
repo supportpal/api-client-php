@@ -6,6 +6,6 @@ namespace SupportPal\ApiClient\Exception;
  * Class InvalidArgumentException
  * @package SupportPal\ApiClient\Exception
  */
-class InvalidArgumentException extends BaseException
+class InvalidArgumentException extends Exception
 {
 }

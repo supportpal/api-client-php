@@ -2,12 +2,12 @@
 
 namespace SupportPal\ApiClient\Exception;
 
-use RuntimeException;
+use RuntimeException as PhpRuntimeException;
 
 /**
  * Class BaseRuntimeException
  * @package SupportPal\ApiClient\Exception
  */
-class BaseRuntimeException extends RuntimeException
+class RuntimeException extends PhpRuntimeException
 {
 }

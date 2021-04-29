@@ -10,7 +10,7 @@ use Throwable;
  * Class HttpResponseException
  * @package SupportPal\ApiClient\Exception
  */
-class HttpResponseException extends BaseException
+class HttpResponseException extends Exception
 {
     /** @var RequestInterface */
     private $request;

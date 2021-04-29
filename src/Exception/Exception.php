@@ -2,12 +2,12 @@
 
 namespace SupportPal\ApiClient\Exception;
 
-use Exception;
+use Exception as PhpException;
 
 /**
  * Class BaseException
  * @package SupportPal\ApiClient\Exception
  */
-class BaseException extends Exception
+class Exception extends PhpException
 {
 }
