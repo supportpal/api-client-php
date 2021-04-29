@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Exception;
 
-use Exception;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
@@ -11,7 +10,7 @@ use Throwable;
  * Class HttpResponseException
  * @package SupportPal\ApiClient\Exception
  */
-class HttpResponseException extends Exception
+class HttpResponseException extends BaseException
 {
     /** @var RequestInterface */
     private $request;

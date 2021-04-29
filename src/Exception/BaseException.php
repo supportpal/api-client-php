@@ -2,10 +2,12 @@
 
 namespace SupportPal\ApiClient\Exception;
 
+use Exception;
+
 /**
- * Class NotSupportedException
+ * Class BaseException
  * @package SupportPal\ApiClient\Exception
  */
-class NotSupportedException extends BaseRuntimeException
+class BaseException extends Exception
 {
 }
