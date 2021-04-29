@@ -26,7 +26,7 @@ class TypeTranslation extends BaseTranslation
     private $description;
 
     /**
-     * @var string
+     * @var string|null
      * @SerializedName("slug")
      */
     private $slug;
@@ -89,18 +89,18 @@ class TypeTranslation extends BaseTranslation
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
     /**
-     * @param string $slug
+     * @param string|null $slug
      * @return self
      */
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
 
