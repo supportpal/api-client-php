@@ -9,15 +9,6 @@ updates:
       prefix: "chore"
       include: "scope"
 
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "fix"
-      prefix-development: "chore"
-      include: "scope"
-
   - package-ecosystem: "composer"
     directory: "/"
     schedule:
