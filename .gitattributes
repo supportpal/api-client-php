@@ -1,13 +1,10 @@
 /.gitattributes export-ignore
 /.gitignore export-ignore
 /.github export-ignore
-/.releaserc export-ignore
 /ci export-ignore
 /composer.json export-ignore
 /composer.lock export-ignore
 /ModelParser export-ignore
-/package.json export-ignore
-/package-lock.json export-ignore
 /phpcs.xml export-ignore
 /phpmd.xml export-ignore
 /phpstan.neon export-ignore
