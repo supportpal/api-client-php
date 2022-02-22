@@ -200,7 +200,7 @@ class ApiClientTest extends TestCase
     }
 
     /**
-     * @return class-string
+     * @return class-string<ApiClient>
      */
     protected function getApiClientName(): string
     {

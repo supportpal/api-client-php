@@ -23,7 +23,7 @@ class SelfServiceApisTest extends ApiComponentTest
     }
 
     /**
-     * @return array[]
+     * @return mixed[]
      * @throws InvalidArgumentException
      */
     protected function getPostEndpoints(): array
