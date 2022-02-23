@@ -6,5 +6,6 @@ use Prophecy\PhpUnit\ProphecyTrait;
 
 trait TestCompatibilityTrait
 {
+    // @phpstan-ignore-next-line
     use ProphecyTrait;
 }
