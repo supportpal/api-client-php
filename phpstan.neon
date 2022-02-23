@@ -9,5 +9,6 @@ parameters:
     excludes_analyse:
         - src/Normalizer/ModelNormalizer.php
         - test/DataFixtures
+        - test/PhpUnit
     parallel:
         processTimeout: 300.0
