@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Factory;
 use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
@@ -21,6 +22,8 @@ use function json_encode;
  */
 class RequestFactoryTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @var RequestFactory */
     private $requestFactory;
 

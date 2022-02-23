@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -27,6 +28,8 @@ use function json_encode;
  */
 class ApiClientTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @var array<mixed> */
     protected $genericErrorResponse = [
         'status' => 'error',

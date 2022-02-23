@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Functional;
 
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use SupportPal\ApiClient\Helper\StringHelper;
 
 /**
@@ -12,6 +13,7 @@ use SupportPal\ApiClient\Helper\StringHelper;
 class StringHelperTest extends TestCase
 {
     use StringHelper;
+    use ProphecyTrait;
 
     /**
      * @param string $string

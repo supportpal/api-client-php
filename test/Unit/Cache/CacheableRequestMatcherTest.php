@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Cache;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use SupportPal\ApiClient\Cache\CacheableRequestMatcher;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 
@@ -15,6 +16,8 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
  */
 class CacheableRequestMatcherTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @var CacheableRequestMatcher */
     private $cacheableRequestMatcher;
 

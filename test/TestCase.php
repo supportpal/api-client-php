@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests;
 
+use Prophecy\PhpUnit\ProphecyTrait;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Model;
@@ -20,6 +21,7 @@ use function is_object;
 class TestCase extends \PHPUnit\Framework\TestCase
 {
     use StringHelper;
+    use ProphecyTrait;
 
     /**
      * @param object $obj
