@@ -4,6 +4,8 @@ namespace SupportPal\ApiClient\Tests\PhpUnit;
 
 use PHPUnit\Runner\Version;
 
+use function explode;
+
 final class RunnerVersion
 {
     public static function getMajor(): int
