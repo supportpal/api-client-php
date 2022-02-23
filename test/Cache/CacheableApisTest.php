@@ -273,7 +273,7 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
     {
         $apiCacheMap = new class extends ApiCacheMap {
             protected const CACHE_MAP = [
-                1 => ApiCacheMap::CACHE_MAP[self::DEFAULT_CACHE_TTL],
+                1 => ApiCacheMap::CACHE_MAP[ApiCacheMap::DEFAULT_CACHE_TTL],
             ];
         };
 
