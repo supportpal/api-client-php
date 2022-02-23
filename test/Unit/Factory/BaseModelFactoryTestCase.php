@@ -3,12 +3,12 @@
 namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\FactoryTestCase;
+use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
 use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -23,7 +23,7 @@ use function json_encode;
 abstract class BaseModelFactoryTestCase extends TestCase
 {
     use FactoryTestCase;
-    use ProphecyTrait;
+    use PhpUnitCompatibilityTrait;
     use StringHelper;
 
     /** @var ObjectProphecy */

@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
@@ -15,6 +14,7 @@ use SupportPal\ApiClient\Factory\Shared\SettingsFactory;
 use SupportPal\ApiClient\Model\BaseModel;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Model\Shared\Settings;
+use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 /**
  * Class ModelCollectionFactoryTest
@@ -23,7 +23,7 @@ use SupportPal\ApiClient\Model\Shared\Settings;
  */
 class ModelCollectionFactoryTest extends TestCase
 {
-    use ProphecyTrait;
+    use PhpUnitCompatibilityTrait;
 
     /** @var ModelCollectionFactory */
     private $modelCollectionFactory;

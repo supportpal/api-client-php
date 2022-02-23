@@ -3,13 +3,13 @@
 namespace SupportPal\ApiClient\Tests\Unit\Config;
 
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 use SupportPal\ApiClient\Config\ApiContext;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 class ApiContextTest extends TestCase
 {
-    use ProphecyTrait;
+    use PhpUnitCompatibilityTrait;
 
     private const HOST = 'localhost';
 
