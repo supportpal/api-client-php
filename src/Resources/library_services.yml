@@ -9,6 +9,7 @@ services:
             $objectClassResolver: ~
             $defaultContext:
                 skip_null_values: true
+                skip_uninitialized_values: false
 
     Symfony\Component\Serializer\Encoder\DecoderInterface: '@Symfony\Component\Serializer\Encoder\JsonEncoder'
 

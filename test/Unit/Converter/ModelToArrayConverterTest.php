@@ -43,7 +43,7 @@ class ModelToArrayConverterTest extends TestCase
     {
         $modelProphecy = $this->prophesize(Model::class);
         $expectation = ['test' => 'test'];
-        $this->serializer->serialize($modelProphecy->reveal(), 'json', ['skip_uninitialized_values' => false])->shouldBeCalled()->willReturn('{test}');
+        $this->serializer->serialize($modelProphecy->reveal(), 'json')->shouldBeCalled()->willReturn('{test}');
         $this->decoder->decode('{test}', 'json')->willReturn($expectation)->shouldBeCalled();
 
         /** @var Model $model */
