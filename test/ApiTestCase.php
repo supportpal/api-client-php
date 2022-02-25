@@ -10,7 +10,6 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Model;
 
-use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 use function call_user_func_array;
 use function get_class;
 
