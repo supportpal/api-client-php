@@ -37,6 +37,9 @@ class ModelToArrayConverter
      */
     public function convertOne(Model $model): array
     {
-        return $this->decoder->decode($this->serializer->serialize($model, $this->format), $this->format);
+        return $this->decoder->decode(
+            $this->serializer->serialize($model, $this->format, ['skip_uninitialized_values' => false]),
+            $this->format
+        );
     }
 }

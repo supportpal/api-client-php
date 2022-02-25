@@ -10,6 +10,7 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Model;
 
+use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 use function call_user_func_array;
 use function get_class;
 
@@ -125,6 +126,10 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     }
 
     /**
+     * Tries to send an API request with an empty data object. We expect symfony/serializer
+     * to throw a TypeError / UninitializedPropertyException due to null property values during
+     * object serialization.
+     *
      * @param string $modelClass
      * @param string $endpoint
      * @throws Exception
