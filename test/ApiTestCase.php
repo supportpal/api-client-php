@@ -125,6 +125,10 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     }
 
     /**
+     * Tries to send an API request with an empty data object. We expect symfony/serializer
+     * to throw a TypeError / UninitializedPropertyException due to null property values during
+     * object serialization.
+     *
      * @param string $modelClass
      * @param string $endpoint
      * @throws Exception

@@ -233,12 +233,12 @@ abstract class ApiTest extends TestCase
     }
 
     /**
-     * @return class-string
+     * @return class-string<Api>
      */
     abstract protected function getApiName(): string;
 
     /**
-     * @return class-string
+     * @return class-string<ApiClient>
      */
     abstract protected function getApiClientName(): string;
 }
