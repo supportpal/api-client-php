@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\Factory\RequestFactory;
+use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
 
 use function array_merge;
@@ -21,6 +22,8 @@ use function json_encode;
  */
 class RequestFactoryTest extends TestCase
 {
+    use PhpUnitCompatibilityTrait;
+
     /** @var RequestFactory */
     private $requestFactory;
 

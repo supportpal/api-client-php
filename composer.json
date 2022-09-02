@@ -28,7 +28,7 @@
     "jangregor/phpstan-prophecy": "^1.0",
     "larapack/dd": "^1.1",
     "phpmd/phpmd": "^2.9",
-    "phpspec/prophecy-phpunit": "^2.0",
+    "phpspec/prophecy-phpunit": "^1.1|^2.0",
     "phpstan/phpstan": "^1.0",
     "phpunit/phpunit": "^8.0|^9.0",
     "rregeer/phpunit-coverage-check": "^0.3.1",

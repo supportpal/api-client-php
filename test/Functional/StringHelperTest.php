@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\Functional;
 
 use PHPUnit\Framework\TestCase;
 use SupportPal\ApiClient\Helper\StringHelper;
+use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 /**
  * Class StringHelperTest
@@ -12,6 +13,7 @@ use SupportPal\ApiClient\Helper\StringHelper;
 class StringHelperTest extends TestCase
 {
     use StringHelper;
+    use PhpUnitCompatibilityTrait;
 
     /**
      * @param string $string

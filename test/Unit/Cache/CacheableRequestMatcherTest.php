@@ -7,6 +7,7 @@ use GuzzleHttp\Psr7\Uri;
 use PHPUnit\Framework\TestCase;
 use SupportPal\ApiClient\Cache\CacheableRequestMatcher;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
+use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 /**
  * Class CacheableRequestMatcherTest
@@ -15,6 +16,8 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
  */
 class CacheableRequestMatcherTest extends TestCase
 {
+    use PhpUnitCompatibilityTrait;
+
     /** @var CacheableRequestMatcher */
     private $cacheableRequestMatcher;
 

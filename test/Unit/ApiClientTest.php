@@ -15,6 +15,7 @@ use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
+use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 
@@ -28,6 +29,8 @@ use function json_encode;
  */
 class ApiClientTest extends TestCase
 {
+    use PhpUnitCompatibilityTrait;
+
     /** @var array<mixed> */
     protected $genericErrorResponse = [
         'status' => 'error',
