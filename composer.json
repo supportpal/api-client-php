@@ -25,6 +25,7 @@
   },
   "require-dev": {
     "brianium/paratest": "^4.0|^5.0|^6.0",
+    "jangregor/phpstan-prophecy": "^1.0",
     "larapack/dd": "^1.1",
     "phpmd/phpmd": "^2.9",
     "phpstan/phpstan": "^1.0",
@@ -48,7 +49,10 @@
     "preferred-install": "dist",
     "secure-http": false,
     "optimize-autoloader": true,
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": false
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true
