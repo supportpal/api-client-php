@@ -24,7 +24,7 @@ class RequestFactoryTest extends TestCase
     /** @var RequestFactory */
     private $requestFactory;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|EncoderInterface */
     private $encoder;
 
     protected function setUp(): void

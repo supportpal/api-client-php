@@ -24,10 +24,10 @@ class ModelNormalizerTest extends TestCase
 {
     use StringHelper;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|Transformer */
     private $transformer;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|ObjectNormalizer */
     private $objectNormalizer;
 
     /** @var ModelNormalizer */
@@ -48,7 +48,7 @@ class ModelNormalizerTest extends TestCase
     /** @var string[] */
     private $transformedOutput;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|AttributeAwareTransformer */
     private $attributeAwareTransformer;
 
     protected function setUp(): void

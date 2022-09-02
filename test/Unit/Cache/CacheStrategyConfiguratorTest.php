@@ -17,7 +17,7 @@ use function sys_get_temp_dir;
  */
 class CacheStrategyConfiguratorTest extends TestCase
 {
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|ApiCacheMap */
     private $apiCacheMap;
 
     /** @var CacheStrategyConfigurator */

@@ -7,6 +7,7 @@ use Prophecy\Prophecy\ObjectProphecy;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\NotSupportedException;
+use SupportPal\ApiClient\Factory\BaseModelFactory;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Factory\SelfService\CommentFactory;
@@ -25,12 +26,12 @@ class ModelCollectionFactoryTest extends TestCase
     /** @var ModelCollectionFactory */
     private $modelCollectionFactory;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|CommentFactory */
     private $commentFactory;
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|SettingsFactory */
     private $settingsFactory;
 
-    /** @var array<string, ObjectProphecy> */
+    /** @var array<class-string, (ObjectProphecy|CommentFactory)|(ObjectProphecy|SettingsFactory)> */
     private $factories;
 
     protected function setUp(): void
@@ -94,7 +95,6 @@ class ModelCollectionFactoryTest extends TestCase
     private function getFactories(): iterable
     {
         foreach ($this->factories as $factoryProphecy) {
-            /** @var ModelFactory $factory */
             $factory = $factoryProphecy->reveal();
 
             yield $factory;

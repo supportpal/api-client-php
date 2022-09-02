@@ -7,8 +7,6 @@ parameters:
         - src
         - test
     inferPrivatePropertyTypeFromConstructor: true
-    ignoreErrors:
-        - '#Call to an undefined method Prophecy\\Prophecy\\ObjectProphecy#'
     excludePaths:
         - src/Normalizer/ModelNormalizer.php
         - test/DataFixtures

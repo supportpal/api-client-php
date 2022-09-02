@@ -25,13 +25,13 @@ abstract class BaseModelFactoryTestCase extends TestCase
 
     use StringHelper;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|SerializerInterface */
     protected $serializer;
 
     /** @var string */
     protected $format = 'json';
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|EncoderInterface */
     private $encoder;
 
     protected function setUp(): void
