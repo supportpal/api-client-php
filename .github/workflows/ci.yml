@@ -26,7 +26,7 @@ jobs:
                   coverage: xdebug
 
             - name: PHP Copy Paste Detector
-              uses: StephaneBour/actions-php-cpd@8.0
+              uses: StephaneBour/actions-php-cpd@8.1
 
             - name: Install dependencies
               run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
