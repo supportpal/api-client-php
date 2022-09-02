@@ -9,7 +9,7 @@ use function trait_exists;
 // dynamically load a compatibility trait dependent on the PHPUnit runner
 // version.
 if (! trait_exists(PhpUnitVersionDependentTestCompatibilityTrait::class, false)) {
-    class_alias('SupportPal\ApiClient\Tests\PhpUnit\v' . RunnerVersion::getMajor() . '\TestCompatibilityTrait', PhpUnitVersionDependentTestCompatibilityTrait::class);
+    class_alias(RunnerVersion::getCompatibilityTrait(), PhpUnitVersionDependentTestCompatibilityTrait::class);
 }
 
 trait PhpUnitCompatibilityTrait
