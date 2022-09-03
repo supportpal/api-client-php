@@ -30,25 +30,25 @@ abstract class ApiTest extends TestCase
 {
     protected const TEST_ID = 1;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|ModelToArrayConverter */
     protected $modelToArrayConverter;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|ApiClient */
     protected $apiClient;
 
     /** @var string */
     protected $serializationType;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|ModelCollectionFactory */
     protected $modelCollectionFactory;
 
     /** @var Api */
     protected $api;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|DecoderInterface */
     protected $decoder;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|CollectionFactory */
     private $collectionFactory;
 
     /** @var string */

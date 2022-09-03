@@ -1,13 +1,15 @@
+includes:
+    - vendor/jangregor/phpstan-prophecy/extension.neon
+
 parameters:
     level: 8
     paths:
         - src
         - test
     inferPrivatePropertyTypeFromConstructor: true
-    ignoreErrors:
-        - '#Call to an undefined method Prophecy\\Prophecy\\ObjectProphecy#'
     excludePaths:
         - src/Normalizer/ModelNormalizer.php
         - test/DataFixtures
+        - test/PhpUnit
     parallel:
         processTimeout: 300.0

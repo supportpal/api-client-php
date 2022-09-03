@@ -16,10 +16,10 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class ModelToArrayConverterTest extends TestCase
 {
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|SerializerInterface */
     private $serializer;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|DecoderInterface */
     private $decoder;
 
     /** @var ModelToArrayConverter */

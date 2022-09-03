@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
@@ -14,6 +15,7 @@ use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
+use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 
@@ -27,6 +29,8 @@ use function json_encode;
  */
 class ApiClientTest extends TestCase
 {
+    use PhpUnitCompatibilityTrait;
+
     /** @var array<mixed> */
     protected $genericErrorResponse = [
         'status' => 'error',
@@ -34,16 +38,16 @@ class ApiClientTest extends TestCase
         'data' => []
     ];
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|ClientInterface */
     protected $httpClient;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|RequestFactory */
     protected $requestFactory;
 
     /** @var ApiClient */
     protected $apiClient;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|DecoderInterface */
     protected $decoder;
 
     /** @var string */
@@ -141,7 +145,7 @@ class ApiClientTest extends TestCase
      * @param string $endpoint
      * @param array<mixed> $parameters
      * @param array<mixed> $body
-     * @return ObjectProphecy
+     * @return ObjectProphecy|Request
      */
     protected function requestCommonExpectations(
         string $method,
@@ -166,8 +170,8 @@ class ApiClientTest extends TestCase
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @param ObjectProphecy $request
-     * @return ObjectProphecy
+     * @param ObjectProphecy|Request $request
+     * @return ObjectProphecy|ResponseInterface
      */
     protected function sendRequestCommonExpectations(
         int $statusCode,
@@ -188,10 +192,11 @@ class ApiClientTest extends TestCase
     }
 
     /**
-     * @param ObjectProphecy $request
+     * @param ObjectProphecy|Request $request
      */
     protected function throwClientExceptionCommonExpectations(ObjectProphecy $request): void
     {
+        /** @var ObjectProphecy|Exception $clientExceptionInterface */
         $clientExceptionInterface = $this->prophesize(ClientExceptionInterface::class);
         $this->httpClient
             ->sendRequest($request->reveal())

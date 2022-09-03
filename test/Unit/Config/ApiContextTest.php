@@ -5,9 +5,12 @@ namespace SupportPal\ApiClient\Tests\Unit\Config;
 use PHPUnit\Framework\TestCase;
 use SupportPal\ApiClient\Config\ApiContext;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 class ApiContextTest extends TestCase
 {
+    use PhpUnitCompatibilityTrait;
+
     private const HOST = 'localhost';
 
     private const TOKEN = 'testtoken';
