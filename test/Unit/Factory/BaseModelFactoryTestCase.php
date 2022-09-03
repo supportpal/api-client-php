@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\FactoryTestCase;
+use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 use Symfony\Component\Serializer\Encoder\EncoderInterface;
 use Symfony\Component\Serializer\Exception\UnexpectedValueException;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -22,16 +23,16 @@ use function json_encode;
 abstract class BaseModelFactoryTestCase extends TestCase
 {
     use FactoryTestCase;
-
+    use PhpUnitCompatibilityTrait;
     use StringHelper;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|SerializerInterface */
     protected $serializer;
 
     /** @var string */
     protected $format = 'json';
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|EncoderInterface */
     private $encoder;
 
     protected function setUp(): void

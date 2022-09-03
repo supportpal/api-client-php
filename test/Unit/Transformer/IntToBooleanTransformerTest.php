@@ -16,13 +16,13 @@ class IntToBooleanTransformerTest extends TestCase
     /** @var IntToBooleanTransformer */
     private $intToBooleanTransformer;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|PropertyTypeExtractorInterface */
     private $propertyTypeExtractor;
 
     /** @var string */
     private $attribute = 'test';
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|Type */
     private $type;
 
     protected function setUp(): void

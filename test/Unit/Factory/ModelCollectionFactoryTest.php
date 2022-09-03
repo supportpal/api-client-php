@@ -14,6 +14,7 @@ use SupportPal\ApiClient\Factory\Shared\SettingsFactory;
 use SupportPal\ApiClient\Model\BaseModel;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Model\Shared\Settings;
+use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 /**
  * Class ModelCollectionFactoryTest
@@ -22,15 +23,17 @@ use SupportPal\ApiClient\Model\Shared\Settings;
  */
 class ModelCollectionFactoryTest extends TestCase
 {
+    use PhpUnitCompatibilityTrait;
+
     /** @var ModelCollectionFactory */
     private $modelCollectionFactory;
 
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|CommentFactory */
     private $commentFactory;
-    /** @var ObjectProphecy */
+    /** @var ObjectProphecy|SettingsFactory */
     private $settingsFactory;
 
-    /** @var array<string, ObjectProphecy> */
+    /** @var array<class-string, (ObjectProphecy|CommentFactory)|(ObjectProphecy|SettingsFactory)> */
     private $factories;
 
     protected function setUp(): void
@@ -94,7 +97,6 @@ class ModelCollectionFactoryTest extends TestCase
     private function getFactories(): iterable
     {
         foreach ($this->factories as $factoryProphecy) {
-            /** @var ModelFactory $factory */
             $factory = $factoryProphecy->reveal();
 
             yield $factory;
