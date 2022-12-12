@@ -42,10 +42,15 @@ class RequestDefaultsTest extends TestCase
         self::assertSame(['test' => 'test'], $requestDefaults->getDefaultBodyContent());
     }
 
-    public function testAddRequestOption(): void
+    public function testGetDefaultRequestOptions(): void
     {
         $requestDefaults = new RequestDefaults;
         self::assertSame(RequestDefaults::DEFAULT_OPTIONS, $requestDefaults->getDefaultRequestOptions());
+    }
+
+    public function testAddRequestOption(): void
+    {
+        $requestDefaults = new RequestDefaults;
         $requestDefaults->addRequestOption('test_key', 'test_value');
         self::assertSame('test_value', $requestDefaults->getDefaultRequestOptions()['test_key']);
     }
