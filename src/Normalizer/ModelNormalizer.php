@@ -8,9 +8,11 @@ use SupportPal\ApiClient\Transformer\AttributeAwareTransformer;
 use SupportPal\ApiClient\Transformer\Transformer;
 use Symfony\Component\Serializer\Normalizer\ContextAwareDenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDenormalizerInterface
+class ModelNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     use StringHelper;
 
@@ -66,7 +68,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     /**
      * @inheritDoc
      */
-    public function supportsNormalization($data, ?string $format = null, array $context = [])
+    public function supportsNormalization($data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof Model || $this->objectNormalizer->supportsNormalization($data, $format);
     }
@@ -74,7 +76,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     /**
      * @inheritDoc
      */
-    public function supportsDenormalization($data, string $type, ?string $format = null, array $context = [])
+    public function supportsDenormalization($data, string $type, ?string $format = null, array $context = []): bool
     {
         return $this->objectNormalizer->supportsDenormalization($data, $type, $format);
     }
