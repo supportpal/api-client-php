@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-class ModelNormalizer implements NormalizerInterface, DenormalizerInterface
+class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDenormalizerInterface
 {
     use StringHelper;
 
