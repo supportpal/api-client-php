@@ -66,7 +66,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     /**
      * @inheritDoc
      */
-    public function supportsNormalization($data, ?string $format = null, array $context = [])
+    public function supportsNormalization($data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof Model || $this->objectNormalizer->supportsNormalization($data, $format);
     }
@@ -74,7 +74,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     /**
      * @inheritDoc
      */
-    public function supportsDenormalization($data, string $type, ?string $format = null, array $context = [])
+    public function supportsDenormalization($data, string $type, ?string $format = null, array $context = []): bool
     {
         return $this->objectNormalizer->supportsDenormalization($data, $type, $format);
     }
