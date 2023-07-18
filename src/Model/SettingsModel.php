@@ -7,7 +7,7 @@ interface SettingsModel extends Model
     /**
      * @param mixed $property
      * @param mixed $value
-     * @return self
+     * @return void
      */
     public function __set($property, $value);
 

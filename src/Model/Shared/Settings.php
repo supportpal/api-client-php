@@ -16,8 +16,6 @@ class Settings implements SettingsModel
     public function __set($property, $value)
     {
         $this->settings[$property] = $value;
-
-        return $this;
     }
 
     /**
