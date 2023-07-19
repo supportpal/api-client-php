@@ -48,6 +48,12 @@ class Brand extends BaseModel
 
     /**
      * @var string|null
+     * @SerializedName("favicon_dark_mode")
+     */
+    private $faviconDarkMode;
+
+    /**
+     * @var string|null
      * @SerializedName("smtp_username")
      */
     private $smtpUsername;
@@ -295,6 +301,25 @@ class Brand extends BaseModel
      * @return self
      */
     public function setFavicon(?string $favicon): self
+    {
+        $this->favicon = $favicon;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFaviconDarkMode(): ?string
+    {
+        return $this->favicon;
+    }
+
+    /**
+     * @param string|null $favicon
+     * @return self
+     */
+    public function setFaviconDarkMode(?string $favicon): self
     {
         $this->favicon = $favicon;
 
