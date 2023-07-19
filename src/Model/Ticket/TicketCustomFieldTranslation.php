@@ -8,6 +8,12 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class TicketCustomFieldTranslation extends BaseTranslation
 {
     /**
+     * @var int
+     * @SerializedName("id")
+     */
+    private $id;
+
+    /**
      * @var string
      * @SerializedName("name")
      */
@@ -30,6 +36,25 @@ class TicketCustomFieldTranslation extends BaseTranslation
      * @SerializedName("regex_error_message")
      */
     private $regexErrorMessage;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return $this
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * @return string

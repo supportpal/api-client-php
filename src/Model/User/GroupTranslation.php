@@ -8,6 +8,12 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class GroupTranslation extends BaseTranslation
 {
     /**
+     * @var int
+     * @SerializedName("id")
+     */
+    private $id;
+
+    /**
      * @var string|null
      * @SerializedName("description")
      */
@@ -24,6 +30,25 @@ class GroupTranslation extends BaseTranslation
      * @SerializedName("name")
      */
     private $name;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return $this
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * @return string|null

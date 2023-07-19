@@ -8,6 +8,12 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class DepartmentTranslation extends BaseTranslation
 {
     /**
+     * @var int
+     * @SerializedName("id")
+     */
+    private $id;
+
+    /**
      * @var string
      * @SerializedName("name")
      */
@@ -24,6 +30,25 @@ class DepartmentTranslation extends BaseTranslation
      * @SerializedName("department_id")
      */
     private $departmentId;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return $this
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * @return string

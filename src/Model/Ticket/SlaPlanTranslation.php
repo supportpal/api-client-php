@@ -9,6 +9,12 @@ class SlaPlanTranslation extends BaseTranslation
 {
     /**
      * @var int
+     * @SerializedName("id")
+     */
+    private $id;
+
+    /**
+     * @var int
      * @SerializedName("sla_plan_id")
      */
     private $slaPlanId;
@@ -24,6 +30,25 @@ class SlaPlanTranslation extends BaseTranslation
      * @SerializedName("description")
      */
     private $description;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return $this
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * @return int
