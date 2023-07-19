@@ -32,10 +32,17 @@ class User extends BaseModel
     private $twofaEnabled;
 
     /**
-     * @var bool
+     * @deprecated Use email_verified
+     * @var bool|null
      * @SerializedName("confirmed")
      */
     private $confirmed;
+
+    /**
+     * @var bool|null
+     * @SerializedName("email_verified")
+     */
+    private $emailVerified;
 
     /**
      * @var string|null
@@ -594,20 +601,41 @@ class User extends BaseModel
     }
 
     /**
-     * @return bool
+     * @deprecated Use getEmailVerified
+     * @return bool|null
      */
-    public function getConfirmed(): bool
+    public function getConfirmed(): ?bool
     {
         return $this->confirmed;
     }
 
     /**
+     * @deprecated Use getEmailVerified
      * @param bool $confirmed
      * @return self
      */
     public function setConfirmed(bool $confirmed): self
     {
         $this->confirmed = $confirmed;
+
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getEmailVerified(): ?bool
+    {
+        return $this->emailVerified;
+    }
+
+    /**
+     * @param bool $verified
+     * @return self
+     */
+    public function setEmailVerified(bool $verified): self
+    {
+        $this->emailVerified = $verified;
 
         return $this;
     }
