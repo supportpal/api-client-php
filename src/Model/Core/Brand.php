@@ -65,7 +65,7 @@ class Brand extends BaseModel
     private $defaultCountry;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("frontend_template_mode")
      */
     private $frontendTemplateMode;
@@ -221,7 +221,7 @@ class Brand extends BaseModel
     private $languageToggle;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("operator_template_mode")
      */
     private $operatorTemplateMode;
@@ -312,7 +312,7 @@ class Brand extends BaseModel
      */
     public function getFaviconDarkMode(): ?string
     {
-        return $this->favicon;
+        return $this->faviconDarkMode;
     }
 
     /**
@@ -321,7 +321,7 @@ class Brand extends BaseModel
      */
     public function setFaviconDarkMode(?string $favicon): self
     {
-        $this->favicon = $favicon;
+        $this->faviconDarkMode = $favicon;
 
         return $this;
     }
@@ -365,18 +365,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getFrontendTemplateMode(): int
+    public function getFrontendTemplateMode(): ?int
     {
         return $this->frontendTemplateMode;
     }
 
     /**
-     * @param int $frontendTemplateMode
+     * @param int|null $frontendTemplateMode
      * @return self
      */
-    public function setFrontendTemplateMode(int $frontendTemplateMode): self
+    public function setFrontendTemplateMode(?int $frontendTemplateMode): self
     {
         $this->frontendTemplateMode = $frontendTemplateMode;
 
@@ -840,18 +840,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOperatorTemplateMode(): int
+    public function getOperatorTemplateMode(): ?int
     {
         return $this->operatorTemplateMode;
     }
 
     /**
-     * @param int $operatorTemplateMode
+     * @param int|null $operatorTemplateMode
      * @return self
      */
-    public function setOperatorTemplateMode(int $operatorTemplateMode): self
+    public function setOperatorTemplateMode(?int $operatorTemplateMode): self
     {
         $this->operatorTemplateMode = $operatorTemplateMode;
 
