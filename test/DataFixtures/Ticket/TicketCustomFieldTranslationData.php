@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 class TicketCustomFieldTranslationData extends BaseModelData
 {
     public const DATA = [
+        'id' => 1,
         'ticket_custom_field_id' => 1,
         'name' => 'test',
         'description' => '',

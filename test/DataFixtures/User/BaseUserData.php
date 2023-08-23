@@ -11,7 +11,7 @@ abstract class BaseUserData
         'firstname' => 'test',
         'lastname' => 'test',
         'email' => 'test@test.com',
-        'confirmed' => 1,
+        'email_verified' => 1,
         'active' => 1,
         'organisation_id' => null,
         'organisation_access_level' => null,

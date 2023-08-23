@@ -45,6 +45,8 @@ class TicketData extends BaseModelData
         'updated_at' => 1598534607,
         'deleted_at' => null,
         'token' => 'e0f5cc66dfdbccb13f6930b8085ee65a26265a11',
+        'frontend_url' => 'http://localhost/ticket/123456',
+        'operator_url' => 'http://localhost/admin/ticket/view/123456',
         'department' => DepartmentData::DATA,
         'brand' => BrandData::DATA,
         'channel' => ChannelData::DATA,

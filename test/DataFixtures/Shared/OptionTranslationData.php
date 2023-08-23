@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 class OptionTranslationData extends BaseModelData
 {
     public const DATA = [
+        'id' => 1,
         'ticket_custom_field_option_id' => 4,
         'value' => 'test',
         'locale' => 'ar'
