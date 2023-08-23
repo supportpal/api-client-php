@@ -298,6 +298,18 @@ class Ticket extends BaseModel
     private $priority;
 
     /**
+     * @var string|null
+     * @SerializedName("frontend_url")
+     */
+    private $frontendUrl;
+
+    /**
+     * @var string|null
+     * @SerializedName("operator_url")
+     */
+    private $operatorUrl;
+
+    /**
      * @return int|null
      */
     public function getDepartmentEmailId(): ?int
@@ -1186,6 +1198,44 @@ class Ticket extends BaseModel
     public function setPriority(?Priority $priority): self
     {
         $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFrontendUrl(): ?string
+    {
+        return $this->frontendUrl;
+    }
+
+    /**
+     * @param string $url
+     * @return $this
+     */
+    public function setFrontendUrl(string $url): self
+    {
+        $this->frontendUrl = $url;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOperatorUrl(): ?string
+    {
+        return $this->operatorUrl;
+    }
+
+    /**
+     * @param string $url
+     * @return $this
+     */
+    public function setOperatorUrl(string $url): self
+    {
+        $this->operatorUrl = $url;
 
         return $this;
     }

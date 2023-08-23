@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 class DepartmentTranslationData extends BaseModelData
 {
     public const DATA = [
+        'id' => 1,
         'department_id' => 2,
         'name' => 'test',
         'description' => null,

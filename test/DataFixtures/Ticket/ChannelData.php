@@ -15,7 +15,8 @@ class ChannelData extends BaseModelData
         'version' => null,
         'created_at' => 0,
         'updated_at' => 0,
-        'formatted_name' => 'Web'
+        'formatted_name' => 'Web',
+        'show_on_frontend' => 1,
     ];
 
     /**

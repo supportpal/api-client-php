@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 class GroupTranslationData extends BaseModelData
 {
     public const DATA = [
+        'id' => 1,
         'user_group_id' => 2,
         'name' => 'test2',
         'description' => null,

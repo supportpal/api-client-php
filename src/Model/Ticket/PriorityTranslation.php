@@ -8,6 +8,12 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class PriorityTranslation extends BaseTranslation
 {
     /**
+     * @var int
+     * @SerializedName("id")
+     */
+    private $id;
+
+    /**
      * @var string
      * @SerializedName("name")
      */
@@ -18,6 +24,25 @@ class PriorityTranslation extends BaseTranslation
      * @SerializedName("priority_id")
      */
     private $priorityId;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return $this
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * @return string

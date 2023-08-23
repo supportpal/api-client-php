@@ -48,6 +48,12 @@ class Brand extends BaseModel
 
     /**
      * @var string|null
+     * @SerializedName("favicon_dark_mode")
+     */
+    private $faviconDarkMode;
+
+    /**
+     * @var string|null
      * @SerializedName("smtp_username")
      */
     private $smtpUsername;
@@ -59,7 +65,7 @@ class Brand extends BaseModel
     private $defaultCountry;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("frontend_template_mode")
      */
     private $frontendTemplateMode;
@@ -215,7 +221,7 @@ class Brand extends BaseModel
     private $languageToggle;
 
     /**
-     * @var int
+     * @var int|null
      * @SerializedName("operator_template_mode")
      */
     private $operatorTemplateMode;
@@ -304,6 +310,25 @@ class Brand extends BaseModel
     /**
      * @return string|null
      */
+    public function getFaviconDarkMode(): ?string
+    {
+        return $this->faviconDarkMode;
+    }
+
+    /**
+     * @param string|null $favicon
+     * @return self
+     */
+    public function setFaviconDarkMode(?string $favicon): self
+    {
+        $this->faviconDarkMode = $favicon;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getSmtpUsername(): ?string
     {
         return $this->smtpUsername;
@@ -340,18 +365,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getFrontendTemplateMode(): int
+    public function getFrontendTemplateMode(): ?int
     {
         return $this->frontendTemplateMode;
     }
 
     /**
-     * @param int $frontendTemplateMode
+     * @param int|null $frontendTemplateMode
      * @return self
      */
-    public function setFrontendTemplateMode(int $frontendTemplateMode): self
+    public function setFrontendTemplateMode(?int $frontendTemplateMode): self
     {
         $this->frontendTemplateMode = $frontendTemplateMode;
 
@@ -815,18 +840,18 @@ class Brand extends BaseModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOperatorTemplateMode(): int
+    public function getOperatorTemplateMode(): ?int
     {
         return $this->operatorTemplateMode;
     }
 
     /**
-     * @param int $operatorTemplateMode
+     * @param int|null $operatorTemplateMode
      * @return self
      */
-    public function setOperatorTemplateMode(int $operatorTemplateMode): self
+    public function setOperatorTemplateMode(?int $operatorTemplateMode): self
     {
         $this->operatorTemplateMode = $operatorTemplateMode;
 

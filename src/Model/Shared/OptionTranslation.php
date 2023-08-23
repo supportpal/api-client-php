@@ -8,6 +8,12 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 class OptionTranslation extends BaseTranslation
 {
     /**
+     * @var int
+     * @SerializedName("id")
+     */
+    private $id;
+
+    /**
      * @deprecated This value is not set in all options and will be removed in later versions.
      * @var int|null
      * @SerializedName("ticket_custom_field_option_id")
@@ -19,6 +25,25 @@ class OptionTranslation extends BaseTranslation
      * @SerializedName("value")
      */
     private $value;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return $this
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * @deprecated

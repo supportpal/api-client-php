@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 class TagTranslationData extends BaseModelData
 {
     public const DATA = [
+        'id' => 1,
         'tag_id' => 2,
         'name' => 'test',
         'slug' => 'test-2',

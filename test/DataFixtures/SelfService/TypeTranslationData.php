@@ -8,13 +8,12 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 class TypeTranslationData extends BaseModelData
 {
     public const DATA = [
-
+        'id' => 1,
         'type_id' => 2,
         'name' => 'test',
         'slug' => 'test',
         'description' => 'test',
         'locale' => 'ar',
-
     ];
 
     /**

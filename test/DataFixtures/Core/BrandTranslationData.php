@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 class BrandTranslationData extends BaseModelData
 {
     public const DATA = [
+        'id' => 1,
         'brand_id' => 1,
         'name' => 'test',
         'locale' => 'ar',

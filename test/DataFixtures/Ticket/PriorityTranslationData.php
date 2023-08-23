@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 class PriorityTranslationData extends BaseModelData
 {
     public const DATA = [
+        'id' => 1,
         'priority_id' => 1,
         'name' => 'test',
         'locale' => 'ar',

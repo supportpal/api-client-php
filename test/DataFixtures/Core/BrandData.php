@@ -19,6 +19,7 @@ class BrandData extends BaseModelData
         'frontend_logo_dark_mode' => null,
         'website_url' => null,
         'favicon' => null,
+        'favicon_dark_mode' => null,
         'frontend_template' => 'default',
         'frontend_template_mode' => 0,
         'operator_icon' => null,

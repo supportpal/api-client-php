@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 class SlaPlanTranslationData extends BaseModelData
 {
     public const DATA = [
+        'id' => 1,
         'sla_plan_id' => 1,
         'name' => 'test',
         'description' => 'test',

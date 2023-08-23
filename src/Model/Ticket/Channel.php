@@ -56,6 +56,12 @@ class Channel extends BaseModel
     private $formattedName;
 
     /**
+     * @var bool|null
+     * @SerializedName("show_on_frontend")
+     */
+    private $showOnFrontend;
+
+    /**
      * @return int
      */
     public function getUpdatedAt(): int
@@ -203,6 +209,25 @@ class Channel extends BaseModel
     public function setFormattedName(string $formattedName): self
     {
         $this->formattedName = $formattedName;
+
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getShowOnFrontend(): ?bool
+    {
+        return $this->showOnFrontend;
+    }
+
+    /**
+     * @param bool $value
+     * @return self
+     */
+    public function setShowOnFrontend(bool $value): self
+    {
+        $this->showOnFrontend = $value;
 
         return $this;
     }
