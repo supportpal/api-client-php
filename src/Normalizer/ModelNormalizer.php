@@ -134,4 +134,12 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
 
         return $data;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return $this->objectNormalizer->getSupportedTypes($format);
+    }
 }
