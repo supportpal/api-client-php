@@ -27,6 +27,7 @@
     "brianium/paratest": "^4.0|^5.0|^6.0",
     "jangregor/phpstan-prophecy": "^1.0",
     "larapack/dd": "^1.1",
+    "nikic/php-parser": "^4.18",
     "phpmd/phpmd": "^2.9",
     "phpspec/prophecy-phpunit": "^1.1|^2.0",
     "phpstan/phpstan": "1.10.25",
