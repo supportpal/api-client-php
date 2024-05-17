@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d320eb12aa8d323040e0aecb065e8925",
+    "content-hash": "b055e84c8b517f54d80c0a6ade827fbe",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -633,16 +633,16 @@
         },
         {
             "name": "kevinrob/guzzle-cache-middleware",
-            "version": "v4.1.2",
+            "version": "v5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kevinrob/guzzle-cache-middleware.git",
-                "reference": "2546d1035e844da378b03e1fb42d3d1cf53187e2"
+                "reference": "6bd64dbbe5155107d84a0f67140a8822a709c6d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kevinrob/guzzle-cache-middleware/zipball/2546d1035e844da378b03e1fb42d3d1cf53187e2",
-                "reference": "2546d1035e844da378b03e1fb42d3d1cf53187e2",
+                "url": "https://api.github.com/repos/Kevinrob/guzzle-cache-middleware/zipball/6bd64dbbe5155107d84a0f67140a8822a709c6d0",
+                "reference": "6bd64dbbe5155107d84a0f67140a8822a709c6d0",
                 "shasum": ""
             },
             "require": {
@@ -656,7 +656,7 @@
                 "cache/simple-cache-bridge": "^0.1 || ^1.0",
                 "doctrine/cache": "^1.10",
                 "illuminate/cache": "^5.0",
-                "league/flysystem": "^1.0",
+                "league/flysystem": "^2.5",
                 "phpunit/phpunit": "^8.5.15 || ^9.5",
                 "psr/cache": "^1.0",
                 "symfony/cache": "^4.4 || ^5.0",
@@ -712,9 +712,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Kevinrob/guzzle-cache-middleware/issues",
-                "source": "https://github.com/Kevinrob/guzzle-cache-middleware/tree/v4.1.2"
+                "source": "https://github.com/Kevinrob/guzzle-cache-middleware/tree/v5.1.0"
             },
-            "time": "2023-06-14T11:19:21+00:00"
+            "time": "2023-11-09T06:53:45+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
