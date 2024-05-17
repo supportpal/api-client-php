@@ -1,41 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!-- https://phpunit.de/manual/current/en/appendixes.configuration.html -->
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.0/phpunit.xsd"
-         colors="true"
-         bootstrap="vendor/autoload.php">
-
-    <testsuites>
-        <testsuite name="test">
-            <directory>test/Unit</directory>
-            <directory>test/Functional</directory>
-            <directory>test/Integration</directory>
-        </testsuite>
-        <testsuite name="unit">
-            <directory>test/Unit</directory>
-        </testsuite>
-        <testsuite name="functional">
-            <directory>test/Functional</directory>
-        </testsuite>
-        <testsuite name="integration">
-            <directory>test/Integration</directory>
-        </testsuite>
-        <testsuite name="e2e">
-            <directory>test/E2E</directory>
-        </testsuite>
-        <testsuite name="cache">
-            <directory>test/Cache</directory>
-        </testsuite>
-    </testsuites>
-
-    <filter>
-        <whitelist>
-            <directory>src</directory>
-            <exclude>
-                <directory>src/Dictionary/*</directory>
-                <directory>src/Exception/*</directory>
-            </exclude>
-        </whitelist>
-    </filter>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" colors="true" bootstrap="vendor/autoload.php">
+  <coverage>
+    <include>
+      <directory>src</directory>
+    </include>
+    <exclude>
+      <directory>src/Dictionary/*</directory>
+      <directory>src/Exception/*</directory>
+    </exclude>
+  </coverage>
+  <testsuites>
+    <testsuite name="test">
+      <directory>test/Unit</directory>
+      <directory>test/Functional</directory>
+      <directory>test/Integration</directory>
+    </testsuite>
+    <testsuite name="unit">
+      <directory>test/Unit</directory>
+    </testsuite>
+    <testsuite name="functional">
+      <directory>test/Functional</directory>
+    </testsuite>
+    <testsuite name="integration">
+      <directory>test/Integration</directory>
+    </testsuite>
+    <testsuite name="e2e">
+      <directory>test/E2E</directory>
+    </testsuite>
+    <testsuite name="cache">
+      <directory>test/Cache</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>
