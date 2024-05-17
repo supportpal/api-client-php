@@ -123,7 +123,7 @@ abstract class BaseModel implements Model
      * @param mixed $value
      * @return mixed
      */
-    private function applyAttributeAwareTransformers(array $attributeAwareTransformers, string $key, $value)
+    private function applyAttributeAwareTransformers(array $attributeAwareTransformers, string $key, mixed $value)
     {
         foreach ($attributeAwareTransformers as $transformer) {
             if (! $transformer->canTransform($this->snakeCaseToCamelCase($key), get_class($this), $value)) {
@@ -141,7 +141,7 @@ abstract class BaseModel implements Model
      * @param mixed $value
      * @throws InvalidArgumentException
      */
-    private function setAttributeValue(string $attributeSetter, $value): void
+    private function setAttributeValue(string $attributeSetter, mixed $value): void
     {
         try {
             $this->{$attributeSetter}($value);
@@ -159,7 +159,7 @@ abstract class BaseModel implements Model
      * @param mixed $value
      * @return mixed
      */
-    private function applyValueTransformers(array $transformers, $value)
+    private function applyValueTransformers(array $transformers, mixed $value)
     {
         foreach ($transformers as $transformer) {
             if (! $transformer->canTransform($value)) {

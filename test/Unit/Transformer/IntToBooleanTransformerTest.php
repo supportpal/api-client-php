@@ -41,7 +41,7 @@ class IntToBooleanTransformerTest extends TestCase
      * @param mixed $value
      * @dataProvider provideCannotTransformNonIntValueCases
      */
-    public function testCannotTransformNonIntValue($value): void
+    public function testCannotTransformNonIntValue(mixed $value): void
     {
         $this->propertyTypeExtractor->getTypes(Model::class, $this->attribute)->shouldNotBeCalled();
         self::assertFalse($this->intToBooleanTransformer->canTransform($this->attribute, Model::class, $value));

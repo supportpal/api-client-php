@@ -99,7 +99,7 @@ class ModelNormalizerTest extends TestCase
      * @param bool $objectNormalizerSupports
      * @param bool $expectation
      */
-    public function testSupportsNormalization($data, bool $objectNormalizerSupports, bool $expectation): void
+    public function testSupportsNormalization(mixed $data, bool $objectNormalizerSupports, bool $expectation): void
     {
         $objectNormalizerExpectation = $this->objectNormalizer
             ->supportsNormalization($data, $this->format)
@@ -152,7 +152,7 @@ class ModelNormalizerTest extends TestCase
      * @param bool $objectNormalizerSupports
      * @dataProvider provideSupportNormalizationCases
      */
-    public function testSupportsDenormalization($data, bool $objectNormalizerSupports): void
+    public function testSupportsDenormalization(mixed $data, bool $objectNormalizerSupports): void
     {
         $this->objectNormalizer
             ->supportsDenormalization($data, Model::class, $this->format)

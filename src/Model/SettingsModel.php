@@ -9,7 +9,7 @@ interface SettingsModel extends Model
      * @param mixed $value
      * @return void
      */
-    public function __set($property, $value);
+    public function __set(mixed $property, mixed $value);
 
     /**
      * @return string[]
@@ -21,5 +21,5 @@ interface SettingsModel extends Model
      * @param mixed|null $default
      * @return string|null
      */
-    public function get(string $name, $default = null): ?string;
+    public function get(string $name, mixed $default = null): ?string;
 }

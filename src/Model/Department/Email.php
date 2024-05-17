@@ -165,7 +165,7 @@ class Email extends BaseModel
      * @param string|int $departmentId
      * @return self
      */
-    public function setDepartmentId($departmentId): self
+    public function setDepartmentId(string|int $departmentId): self
     {
         $departmentId = filter_var($departmentId, FILTER_VALIDATE_INT);
 

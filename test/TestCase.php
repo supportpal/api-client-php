@@ -86,7 +86,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @param Collection|Model $models
      * @param array<mixed> $data
      */
-    protected function assertApiDataMatchesModels($models, array $data): void
+    protected function assertApiDataMatchesModels(Model|Collection $models, array $data): void
     {
         if ($models instanceof Collection) {
             self::assertSame($data['count'], $models->getCount());
@@ -114,7 +114,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @param array<mixed> $attributeValue
      * @param mixed $value
      */
-    protected function handleNestedArrays(array $attributeValue, $value): void
+    protected function handleNestedArrays(array $attributeValue, mixed $value): void
     {
         for ($i = 0; $i < count($attributeValue); ++$i) {
             if (! is_object($value[$i])) {
@@ -131,7 +131,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @param mixed $attributeValue
      * @param mixed $value
      */
-    protected function handleAtomicValues($attributeValue, $value): void
+    protected function handleAtomicValues(mixed $attributeValue, mixed $value): void
     {
         if (is_bool($attributeValue) || is_bool($value)) {
             /**
