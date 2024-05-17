@@ -27,7 +27,7 @@ class ModelNormalizerTest extends TestCase
     /** @var ObjectProphecy|Transformer */
     private $transformer;
 
-    /** @var ObjectProphecy|AbstractObjectNormalizer */
+    /** @var ObjectProphecy|ObjectNormalizer */
     private $objectNormalizer;
 
     /** @var ModelNormalizer */
