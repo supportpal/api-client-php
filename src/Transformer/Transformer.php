@@ -8,11 +8,11 @@ interface Transformer
      * @param mixed $value
      * @return bool
      */
-    public function canTransform($value): bool;
+    public function canTransform(mixed $value): bool;
 
     /**
      * @param mixed $value
      * @return mixed
      */
-    public function transform($value);
+    public function transform(mixed $value);
 }

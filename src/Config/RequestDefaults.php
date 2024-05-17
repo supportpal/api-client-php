@@ -103,7 +103,7 @@ class RequestDefaults
      * @param mixed $value
      * @return $this
      */
-    public function addRequestOption(string $key, $value): self
+    public function addRequestOption(string $key, mixed $value): self
     {
         $this->defaultRequestOptions[$key] = $value;
 

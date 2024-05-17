@@ -66,7 +66,7 @@ class EmptyModelToNullTransformerTest extends TestCase
      * @param mixed $data
      * @dataProvider provideCannotTransformCases
      */
-    public function testCannotTransform($data): void
+    public function testCannotTransform(mixed $data): void
     {
         self::assertFalse($this->transformer->canTransform($data));
     }

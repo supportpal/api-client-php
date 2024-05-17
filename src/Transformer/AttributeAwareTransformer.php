@@ -10,11 +10,11 @@ interface AttributeAwareTransformer
      * @param mixed $value
      * @return bool
      */
-    public function canTransform(string $attribute, string $type, $value): bool;
+    public function canTransform(string $attribute, string $type, mixed $value): bool;
 
     /**
      * @param mixed $value
      * @return mixed
      */
-    public function transform($value);
+    public function transform(mixed $value);
 }
