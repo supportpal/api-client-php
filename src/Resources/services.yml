@@ -17,7 +17,7 @@ services:
 
     SupportPal\ApiClient\Normalizer\ModelNormalizer:
         arguments:
-            $objectNormalizer: '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer'
+            $normalizer: '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer'
             $transformers: !tagged transformer.field_transformer
             $attributeAwareTransformers: !tagged attribute_aware_transformer.field_transformer
 

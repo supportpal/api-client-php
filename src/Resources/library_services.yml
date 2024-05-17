@@ -21,9 +21,9 @@ services:
 
     Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory:
         arguments:
-            - '@Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader'
+            - '@Symfony\Component\Serializer\Mapping\Loader\AttributeLoader'
 
-    Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader:
+    Symfony\Component\Serializer\Mapping\Loader\AttributeLoader:
         arguments:
             - '@Doctrine\Common\Annotations\AnnotationReader'
 
