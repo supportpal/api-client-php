@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Transformer\AttributeAwareTransformer;
 use SupportPal\ApiClient\Transformer\IntToBooleanTransformer;
 use SupportPal\ApiClient\Transformer\StringTrimTransformer;
 use SupportPal\ApiClient\Transformer\Transformer;
-use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
+use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 use TypeError;
 
@@ -47,7 +47,7 @@ abstract class BaseModel implements Model
             }
         }
 
-        $attributeAwareTransformers = [new IntToBooleanTransformer(new PhpDocExtractor),];
+        $attributeAwareTransformers = [new IntToBooleanTransformer(new ReflectionExtractor),];
         $transformers = [new StringTrimTransformer,];
 
         $this->assertRequiredFieldsExists($data);
