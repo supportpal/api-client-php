@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Article extends BaseModel
 {
@@ -20,156 +20,85 @@ class Article extends BaseModel
         'slug',
     ];
 
-    /**
-     * @var string
-     * @SerializedName("purified_text")
-     */
-    private $purifiedText;
+    #[SerializedName('purified_text')]
+    private string $purifiedText;
 
-    /**
-     * @var bool
-     * @SerializedName("pinned")
-     */
-    private $pinned;
+    #[SerializedName('pinned')]
+    private bool $pinned;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var string
-     * @SerializedName("text")
-     */
-    private $text;
+    #[SerializedName('text')]
+    private string $text;
 
-    /**
-     * @var bool
-     * @SerializedName("protected")
-     */
-    private $protected;
+    #[SerializedName('protected')]
+    private bool $protected;
 
-    /**
-     * @var string
-     * @SerializedName("title")
-     */
-    private $title;
+    #[SerializedName('title')]
+    private string $title;
 
-    /**
-     * @var int|null
-     * @SerializedName("author_id")
-     */
-    private $authorId;
+    #[SerializedName('author_id')]
+    private int|null $authorId;
 
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string|null
-     * @SerializedName("excerpt")
-     */
-    private $excerpt;
+    #[SerializedName('excerpt')]
+    private string|null $excerpt;
 
-    /**
-     * @var string
-     * @SerializedName("plain_text")
-     */
-    private $plainText;
+    #[SerializedName('plain_text')]
+    private string $plainText;
 
-    /**
-     * @var int|null
-     * @SerializedName("published_at")
-     */
-    private $publishedAt;
+    #[SerializedName('published_at')]
+    private int|null $publishedAt;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var string|null
-     * @SerializedName("keywords")
-     */
-    private $keywords;
+    #[SerializedName('keywords')]
+    private string|null $keywords;
 
-    /**
-     * @var string
-     * @SerializedName("slug")
-     */
-    private $slug;
+    #[SerializedName('slug')]
+    private string $slug;
 
-    /**
-     * @var bool
-     * @SerializedName("published")
-     */
-    private $published;
+    #[SerializedName('published')]
+    private bool $published;
 
-    /**
-     * @var Category[]|null
-     * @SerializedName("categories")
-     */
-    private $categories;
+    /** @var Category[]|null */
+    #[SerializedName('categories')]
+    private array|null $categories;
 
-    /**
-     * @var Type[]|null
-     * @SerializedName("types")
-     */
-    private $types;
+    /** @var Type[]|null */
+    #[SerializedName('types')]
+    private array|null $types;
 
-    /**
-     * @var ArticleAttachment[]|null
-     * @SerializedName("attachments")
-     */
-    private $attachments;
+    /** @var ArticleAttachment[]|null */
+    #[SerializedName('attachments')]
+    private array|null $attachments;
 
-    /**
-     * @var int|null
-     * @SerializedName("views")
-     */
-    private $views;
+    #[SerializedName('views')]
+    private int|null $views;
 
-    /**
-     * @var Tag[]|null
-     * @SerializedName("tags")
-     */
-    private $tags;
+    /** @var Tag[]|null */
+    #[SerializedName('tags')]
+    private array|null $tags;
 
-    /**
-     * @var ArticleTranslation[]|null
-     * @SerializedName("translations")
-     */
-    private $translations;
+    /** @var ArticleTranslation[]|null */
+    #[SerializedName('translations')]
+    private array|null $translations;
 
-    /**
-     * @var int|null
-     * @SerializedName("positive_rating")
-     */
-    private $positiveRating;
+    #[SerializedName('positive_rating')]
+    private int|null $positiveRating;
 
-    /**
-     * @var int|null
-     * @SerializedName("total_rating")
-     */
-    private $totalRating;
+    #[SerializedName('total_rating')]
+    private int|null $totalRating;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -177,18 +106,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getAuthorId(): ?int
     {
         return $this->authorId;
     }
 
-    /**
-     * @param int|null $authorId
-     * @return self
-     */
     public function setAuthorId(?int $authorId): self
     {
         $this->authorId = $authorId;
@@ -196,18 +118,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getPinned(): bool
     {
         return $this->pinned;
     }
 
-    /**
-     * @param bool $pinned
-     * @return self
-     */
     public function setPinned(bool $pinned): self
     {
         $this->pinned = $pinned;
@@ -215,18 +130,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getText(): string
     {
         return $this->text;
     }
 
-    /**
-     * @param string $text
-     * @return self
-     */
     public function setText(string $text): self
     {
         $this->text = $text;
@@ -234,18 +142,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getProtected(): bool
     {
         return $this->protected;
     }
 
-    /**
-     * @param bool $protected
-     * @return self
-     */
     public function setProtected(bool $protected): self
     {
         $this->protected = $protected;
@@ -253,18 +154,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getPublishedAt(): ?int
     {
         return $this->publishedAt;
     }
 
-    /**
-     * @param int|null $publishedAt
-     * @return self
-     */
     public function setPublishedAt(?int $publishedAt): self
     {
         $this->publishedAt = $publishedAt;
@@ -272,18 +166,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return self
-     */
     public function setTitle(string $title): self
     {
         $this->title = $title;
@@ -291,18 +178,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -310,18 +190,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPlainText(): string
     {
         return $this->plainText;
     }
 
-    /**
-     * @param string $plainText
-     * @return self
-     */
     public function setPlainText(string $plainText): self
     {
         $this->plainText = $plainText;
@@ -329,18 +202,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getKeywords(): ?string
     {
         return $this->keywords;
     }
 
-    /**
-     * @param string|null $keywords
-     * @return self
-     */
     public function setKeywords(?string $keywords): self
     {
         $this->keywords = $keywords;
@@ -348,18 +214,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getPublished(): bool
     {
         return $this->published;
     }
 
-    /**
-     * @param bool $published
-     * @return self
-     */
     public function setPublished(bool $published): self
     {
         $this->published = $published;
@@ -367,18 +226,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getExcerpt(): ?string
     {
         return $this->excerpt;
     }
 
-    /**
-     * @param string|null $excerpt
-     * @return self
-     */
     public function setExcerpt(?string $excerpt): self
     {
         $this->excerpt = $excerpt;
@@ -386,18 +238,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPurifiedText(): string
     {
         return $this->purifiedText;
     }
 
-    /**
-     * @param string $purifiedText
-     * @return self
-     */
     public function setPurifiedText(string $purifiedText): self
     {
         $this->purifiedText = $purifiedText;
@@ -405,18 +250,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -424,18 +262,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSlug(): string
     {
         return $this->slug;
     }
 
-    /**
-     * @param string $slug
-     * @return self
-     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
@@ -453,7 +284,6 @@ class Article extends BaseModel
 
     /**
      * @param Category[]|null $categories
-     * @return self
      */
     public function setCategories(?array $categories): self
     {
@@ -472,7 +302,6 @@ class Article extends BaseModel
 
     /**
      * @param Type[]|null $types
-     * @return Article
      */
     public function setTypes(?array $types): Article
     {
@@ -491,7 +320,6 @@ class Article extends BaseModel
 
     /**
      * @param ArticleAttachment[]|null $attachments
-     * @return self
      */
     public function setAttachments(?array $attachments): self
     {
@@ -500,18 +328,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getViews(): ?int
     {
         return $this->views;
     }
 
-    /**
-     * @param int|null $views
-     * @return self
-     */
     public function setViews(?int $views): self
     {
         $this->views = $views;
@@ -529,7 +350,6 @@ class Article extends BaseModel
 
     /**
      * @param Tag[]|null $tags
-     * @return self
      */
     public function setTags(?array $tags): self
     {
@@ -548,7 +368,6 @@ class Article extends BaseModel
 
     /**
      * @param ArticleTranslation[]|null $translations
-     * @return self
      */
     public function setTranslations(?array $translations): self
     {
@@ -557,18 +376,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getPositiveRating(): ?int
     {
         return $this->positiveRating;
     }
 
-    /**
-     * @param int|null $positiveRating
-     * @return self
-     */
     public function setPositiveRating(?int $positiveRating): self
     {
         $this->positiveRating = $positiveRating;
@@ -576,18 +388,11 @@ class Article extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTotalRating(): ?int
     {
         return $this->totalRating;
     }
 
-    /**
-     * @param int|null $totalRating
-     * @return self
-     */
     public function setTotalRating(?int $totalRating): self
     {
         $this->totalRating = $totalRating;

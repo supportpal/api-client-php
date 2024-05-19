@@ -3,38 +3,25 @@
 namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class TagTranslation extends BaseTranslation
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var int
-     * @SerializedName("tag_id")
-     */
-    private $tagId;
+    #[SerializedName('tag_id')]
+    private int $tagId;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
      * @return $this
      */
     public function setId(int $id): self
@@ -44,18 +31,11 @@ class TagTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -63,18 +43,11 @@ class TagTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getTagId(): int
     {
         return $this->tagId;
     }
 
-    /**
-     * @param int $tagId
-     * @return self
-     */
     public function setTagId(int $tagId): self
     {
         $this->tagId = $tagId;

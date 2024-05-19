@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Model\Core;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Brand extends BaseModel
 {
@@ -28,240 +28,123 @@ class Brand extends BaseModel
         'updated_at'
     ];
 
-    /**
-     * @var string|null
-     * @SerializedName("operator_template")
-     */
-    private $operatorTemplate;
+    #[SerializedName('operator_template')]
+    private ?string $operatorTemplate;
 
-    /**
-     * @var string
-     * @SerializedName("default_language")
-     */
-    private $defaultLanguage;
+    #[SerializedName('default_language')]
+    private string $defaultLanguage;
 
-    /**
-     * @var string|null
-     * @SerializedName("favicon")
-     */
-    private $favicon;
+    #[SerializedName('favicon')]
+    private ?string $favicon;
 
-    /**
-     * @var string|null
-     * @SerializedName("favicon_dark_mode")
-     */
-    private $faviconDarkMode;
+    #[SerializedName('favicon_dark_mode')]
+    private ?string $faviconDarkMode;
 
-    /**
-     * @var string|null
-     * @SerializedName("smtp_username")
-     */
-    private $smtpUsername;
+    #[SerializedName('smtp_username')]
+    private ?string $smtpUsername;
 
-    /**
-     * @var string
-     * @SerializedName("default_country")
-     */
-    private $defaultCountry;
+    #[SerializedName('default_country')]
+    private string $defaultCountry;
 
-    /**
-     * @var int|null
-     * @SerializedName("frontend_template_mode")
-     */
-    private $frontendTemplateMode;
+    #[SerializedName('frontend_template_mode')]
+    private ?int $frontendTemplateMode;
 
-    /**
-     * @var string|null
-     * @SerializedName("operator_icon")
-     */
-    private $operatorIcon;
+    #[SerializedName('operator_icon')]
+    private ?string $operatorIcon;
 
-    /**
-     * @var bool
-     * @SerializedName("enabled")
-     */
-    private $enabled;
+    #[SerializedName('enabled')]
+    private bool $enabled;
 
-    /**
-     * @var string
-     * @SerializedName("email_method")
-     */
-    private $emailMethod;
+    #[SerializedName('email_method')]
+    private string $emailMethod;
 
-    /**
-     * @var string
-     * @SerializedName("system_url")
-     */
-    private $systemUrl;
+    #[SerializedName('system_url')]
+    private string $systemUrl;
 
-    /**
-     * @var int|null
-     * @SerializedName("smtp_port")
-     */
-    private $smtpPort;
+    #[SerializedName('smtp_port')]
+    private ?int $smtpPort;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var string|null
-     * @SerializedName("smtp_password")
-     */
-    private $smtpPassword;
+    #[SerializedName('smtp_password')]
+    private ?string $smtpPassword;
 
-    /**
-     * @var bool|null
-     * @SerializedName("smtp_requires_auth")
-     */
-    private $smtpRequiresAuth;
+    #[SerializedName('smtp_requires_auth')]
+    private ?bool $smtpRequiresAuth;
 
-    /**
-     * @var int|null
-     * @SerializedName("enable_ssl")
-     */
-    private $enableSsl;
+    #[SerializedName('enable_ssl')]
+    private ?int $enableSsl;
 
-    /**
-     * @var string|null
-     * @SerializedName("frontend_logo_dark_mode")
-     */
-    private $frontendLogoDarkMode;
+    #[SerializedName('frontend_logo_dark_mode')]
+    private ?string $frontendLogoDarkMode;
 
-    /**
-     * @var string
-     * @SerializedName("default_email")
-     */
-    private $defaultEmail;
+    #[SerializedName('default_email')]
+    private string $defaultEmail;
 
-    /**
-     * @var string|null
-     * @SerializedName("brand_colour")
-     */
-    private $brandColour;
+    #[SerializedName('brand_colour')]
+    private ?string $brandColour;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var string
-     * @SerializedName("frontend_template")
-     */
-    private $frontendTemplate;
+    #[SerializedName('frontend_template')]
+    private string $frontendTemplate;
 
-    /**
-     * @var string|null
-     * @SerializedName("website_url")
-     */
-    private $websiteUrl;
+    #[SerializedName('website_url')]
+    private ?string $websiteUrl;
 
-    /**
-     * @var string|null
-     * @SerializedName("smtp_host")
-     */
-    private $smtpHost;
+    #[SerializedName('smtp_host')]
+    private ?string $smtpHost;
 
-    /**
-     * @var string
-     * @SerializedName("date_format")
-     */
-    private $dateFormat;
+    #[SerializedName('date_format')]
+    private string $dateFormat;
 
-    /**
-     * @var string
-     * @SerializedName("time_format")
-     */
-    private $timeFormat;
+    #[SerializedName('time_format')]
+    private string $timeFormat;
 
-    /**
-     * @var string|null
-     * @SerializedName("frontend_logo")
-     */
-    private $frontendLogo;
+    #[SerializedName('frontend_logo')]
+    private ?string $frontendLogo;
 
-    /**
-     * @var string
-     * @SerializedName("global_email_header")
-     */
-    private $globalEmailHeader;
+    #[SerializedName('global_email_header')]
+    private string $globalEmailHeader;
 
-    /**
-     * @var string
-     * @SerializedName("global_email_footer")
-     */
-    private $globalEmailFooter;
+    #[SerializedName('global_email_footer')]
+    private string $globalEmailFooter;
 
-    /**
-     * @var string|null
-     * @SerializedName("smtp_encryption")
-     */
-    private $smtpEncryption;
+    #[SerializedName('smtp_encryption')]
+    private ?string $smtpEncryption;
 
-    /**
-     * @var string
-     * @SerializedName("default_timezone")
-     */
-    private $defaultTimezone;
+    #[SerializedName('default_timezone')]
+    private string $defaultTimezone;
 
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var int
-     * @SerializedName("language_toggle")
-     */
-    private $languageToggle;
+    #[SerializedName('language_toggle')]
+    private int $languageToggle;
 
-    /**
-     * @var int|null
-     * @SerializedName("operator_template_mode")
-     */
-    private $operatorTemplateMode;
+    #[SerializedName('operator_template_mode')]
+    private ?int $operatorTemplateMode;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var BrandTranslation[]|null
-     * @SerializedName("translations")
-     */
-    private $translations;
+    /** @var BrandTranslation[]|null */
+    #[SerializedName('translations')]
+    private ?array $translations;
 
-    /**
-     * @var string|null
-     * @SerializedName("smtp_auth_mech")
-     */
-    private $smtpAuthMech;
+    #[SerializedName('smtp_auth_mech')]
+    private ?string $smtpAuthMech;
 
-    /**
-     * @var string|null
-     * @SerializedName("smtp_oauth")
-     */
-    private $smtpOauth;
+    #[SerializedName('smtp_oauth')]
+    private ?string $smtpOauth;
 
-    /**
-     * @return string|null
-     */
     public function getOperatorTemplate(): ?string
     {
         return $this->operatorTemplate;
     }
 
-    /**
-     * @param string|null $operatorTemplate
-     * @return self
-     */
     public function setOperatorTemplate(?string $operatorTemplate): self
     {
         $this->operatorTemplate = $operatorTemplate;
@@ -269,18 +152,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDefaultLanguage(): string
     {
         return $this->defaultLanguage;
     }
 
-    /**
-     * @param string $defaultLanguage
-     * @return self
-     */
     public function setDefaultLanguage(string $defaultLanguage): self
     {
         $this->defaultLanguage = $defaultLanguage;
@@ -288,18 +164,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFavicon(): ?string
     {
         return $this->favicon;
     }
 
-    /**
-     * @param string|null $favicon
-     * @return self
-     */
     public function setFavicon(?string $favicon): self
     {
         $this->favicon = $favicon;
@@ -307,18 +176,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFaviconDarkMode(): ?string
     {
         return $this->faviconDarkMode;
     }
 
-    /**
-     * @param string|null $favicon
-     * @return self
-     */
     public function setFaviconDarkMode(?string $favicon): self
     {
         $this->faviconDarkMode = $favicon;
@@ -326,18 +188,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSmtpUsername(): ?string
     {
         return $this->smtpUsername;
     }
 
-    /**
-     * @param string|null $smtpUsername
-     * @return self
-     */
     public function setSmtpUsername(?string $smtpUsername): self
     {
         $this->smtpUsername = $smtpUsername;
@@ -345,18 +200,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDefaultCountry(): string
     {
         return $this->defaultCountry;
     }
 
-    /**
-     * @param string $defaultCountry
-     * @return self
-     */
     public function setDefaultCountry(string $defaultCountry): self
     {
         $this->defaultCountry = $defaultCountry;
@@ -364,18 +212,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getFrontendTemplateMode(): ?int
     {
         return $this->frontendTemplateMode;
     }
 
-    /**
-     * @param int|null $frontendTemplateMode
-     * @return self
-     */
     public function setFrontendTemplateMode(?int $frontendTemplateMode): self
     {
         $this->frontendTemplateMode = $frontendTemplateMode;
@@ -383,18 +224,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getOperatorIcon(): ?string
     {
         return $this->operatorIcon;
     }
 
-    /**
-     * @param string|null $operatorIcon
-     * @return self
-     */
     public function setOperatorIcon(?string $operatorIcon): self
     {
         $this->operatorIcon = $operatorIcon;
@@ -402,18 +236,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @param bool $enabled
-     * @return self
-     */
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
@@ -421,18 +248,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getEmailMethod(): string
     {
         return $this->emailMethod;
     }
 
-    /**
-     * @param string $emailMethod
-     * @return self
-     */
     public function setEmailMethod(string $emailMethod): self
     {
         $this->emailMethod = $emailMethod;
@@ -440,18 +260,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSystemUrl(): string
     {
         return $this->systemUrl;
     }
 
-    /**
-     * @param string $systemUrl
-     * @return self
-     */
     public function setSystemUrl(string $systemUrl): self
     {
         $this->systemUrl = $systemUrl;
@@ -459,18 +272,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getSmtpPort(): ?int
     {
         return $this->smtpPort;
     }
 
-    /**
-     * @param int|null $smtpPort
-     * @return self
-     */
     public function setSmtpPort(?int $smtpPort): self
     {
         $this->smtpPort = $smtpPort;
@@ -478,18 +284,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -497,18 +296,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSmtpPassword(): ?string
     {
         return $this->smtpPassword;
     }
 
-    /**
-     * @param string|null $smtpPassword
-     * @return self
-     */
     public function setSmtpPassword(?string $smtpPassword): self
     {
         $this->smtpPassword = $smtpPassword;
@@ -516,18 +308,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getSmtpRequiresAuth(): ?bool
     {
         return $this->smtpRequiresAuth;
     }
 
-    /**
-     * @param bool|null $smtpRequiresAuth
-     * @return self
-     */
     public function setSmtpRequiresAuth(?bool $smtpRequiresAuth): self
     {
         $this->smtpRequiresAuth = $smtpRequiresAuth;
@@ -535,18 +320,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getEnableSsl(): ?int
     {
         return $this->enableSsl;
     }
 
-    /**
-     * @param int|null $enableSsl
-     * @return self
-     */
     public function setEnableSsl(?int $enableSsl): self
     {
         $this->enableSsl = $enableSsl;
@@ -554,18 +332,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFrontendLogoDarkMode(): ?string
     {
         return $this->frontendLogoDarkMode;
     }
 
-    /**
-     * @param string|null $frontendLogoDarkMode
-     * @return self
-     */
     public function setFrontendLogoDarkMode(?string $frontendLogoDarkMode): self
     {
         $this->frontendLogoDarkMode = $frontendLogoDarkMode;
@@ -573,18 +344,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDefaultEmail(): string
     {
         return $this->defaultEmail;
     }
 
-    /**
-     * @param string $defaultEmail
-     * @return self
-     */
     public function setDefaultEmail(string $defaultEmail): self
     {
         $this->defaultEmail = $defaultEmail;
@@ -592,18 +356,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -611,18 +368,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getFrontendTemplate(): string
     {
         return $this->frontendTemplate;
     }
 
-    /**
-     * @param string $frontendTemplate
-     * @return self
-     */
     public function setFrontendTemplate(string $frontendTemplate): self
     {
         $this->frontendTemplate = $frontendTemplate;
@@ -630,18 +380,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getWebsiteUrl(): ?string
     {
         return $this->websiteUrl;
     }
 
-    /**
-     * @param string|null $websiteUrl
-     * @return self
-     */
     public function setWebsiteUrl(?string $websiteUrl): self
     {
         $this->websiteUrl = $websiteUrl;
@@ -649,18 +392,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSmtpHost(): ?string
     {
         return $this->smtpHost;
     }
 
-    /**
-     * @param string|null $smtpHost
-     * @return self
-     */
     public function setSmtpHost(?string $smtpHost): self
     {
         $this->smtpHost = $smtpHost;
@@ -668,18 +404,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDateFormat(): string
     {
         return $this->dateFormat;
     }
 
-    /**
-     * @param string $dateFormat
-     * @return self
-     */
     public function setDateFormat(string $dateFormat): self
     {
         $this->dateFormat = $dateFormat;
@@ -687,18 +416,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getTimeFormat(): string
     {
         return $this->timeFormat;
     }
 
-    /**
-     * @param string $timeFormat
-     * @return self
-     */
     public function setTimeFormat(string $timeFormat): self
     {
         $this->timeFormat = $timeFormat;
@@ -706,18 +428,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFrontendLogo(): ?string
     {
         return $this->frontendLogo;
     }
 
-    /**
-     * @param string|null $frontendLogo
-     * @return self
-     */
     public function setFrontendLogo(?string $frontendLogo): self
     {
         $this->frontendLogo = $frontendLogo;
@@ -725,18 +440,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getGlobalEmailHeader(): string
     {
         return $this->globalEmailHeader;
     }
 
-    /**
-     * @param string $globalEmailHeader
-     * @return self
-     */
     public function setGlobalEmailHeader(string $globalEmailHeader): self
     {
         $this->globalEmailHeader = $globalEmailHeader;
@@ -744,18 +452,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getGlobalEmailFooter(): string
     {
         return $this->globalEmailFooter;
     }
 
-    /**
-     * @param string $globalEmailFooter
-     * @return self
-     */
     public function setGlobalEmailFooter(string $globalEmailFooter): self
     {
         $this->globalEmailFooter = $globalEmailFooter;
@@ -763,18 +464,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSmtpEncryption(): ?string
     {
         return $this->smtpEncryption;
     }
 
-    /**
-     * @param string|null $smtpEncryption
-     * @return self
-     */
     public function setSmtpEncryption(?string $smtpEncryption): self
     {
         $this->smtpEncryption = $smtpEncryption;
@@ -782,18 +476,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDefaultTimezone(): string
     {
         return $this->defaultTimezone;
     }
 
-    /**
-     * @param string $defaultTimezone
-     * @return self
-     */
     public function setDefaultTimezone(string $defaultTimezone): self
     {
         $this->defaultTimezone = $defaultTimezone;
@@ -801,18 +488,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -820,18 +500,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getLanguageToggle(): int
     {
         return $this->languageToggle;
     }
 
-    /**
-     * @param int $languageToggle
-     * @return self
-     */
     public function setLanguageToggle(int $languageToggle): self
     {
         $this->languageToggle = $languageToggle;
@@ -839,18 +512,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getOperatorTemplateMode(): ?int
     {
         return $this->operatorTemplateMode;
     }
 
-    /**
-     * @param int|null $operatorTemplateMode
-     * @return self
-     */
     public function setOperatorTemplateMode(?int $operatorTemplateMode): self
     {
         $this->operatorTemplateMode = $operatorTemplateMode;
@@ -858,18 +524,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -877,18 +536,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBrandColour(): ?string
     {
         return $this->brandColour;
     }
 
-    /**
-     * @param string|null $brandColour
-     * @return Brand
-     */
     public function setBrandColour(?string $brandColour): Brand
     {
         $this->brandColour = $brandColour;
@@ -906,7 +558,6 @@ class Brand extends BaseModel
 
     /**
      * @param BrandTranslation[]|null $translations
-     * @return self
      */
     public function setTranslations(?array $translations): self
     {
@@ -915,18 +566,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSmtpAuthMech(): ?string
     {
         return $this->smtpAuthMech;
     }
 
-    /**
-     * @param string|null $smtpAuthMech
-     * @return self
-     */
     public function setSmtpAuthMech(?string $smtpAuthMech): self
     {
         $this->smtpAuthMech = $smtpAuthMech;
@@ -934,18 +578,11 @@ class Brand extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSmtpOauth(): ?string
     {
         return $this->smtpOauth;
     }
 
-    /**
-     * @param string|null $smtpOauth
-     * @return self
-     */
     public function setSmtpOauth(?string $smtpOauth): self
     {
         $this->smtpOauth = $smtpOauth;

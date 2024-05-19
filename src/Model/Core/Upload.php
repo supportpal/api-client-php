@@ -2,85 +2,48 @@
 
 namespace SupportPal\ApiClient\Model\Core;
 
-use Doctrine\Common\Annotations\Annotation\Required;
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class Upload extends BaseModel
 {
-    /**
-     * @SerializedName("id")
-     * @var int
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @SerializedName("hash")
-     * @var string
-     */
-    private $hash;
+    #[SerializedName('hash')]
+    private string $hash;
 
-    /**
-     * @SerializedName("filename")
-     * @var string
-     */
-    private $filename;
+    #[SerializedName('filename')]
+    private string $filename;
 
-    /**
-     * @SerializedName("folder")
-     * @var string
-     */
-    private $folder;
+    #[SerializedName('folder')]
+    private string $folder;
 
-    /**
-     * @SerializedName("mime")
-     * @var string
-     */
-    private $mime;
+    #[SerializedName('mime')]
+    private string $mime;
 
-    /**
-     * @SerializedName("size")
-     * @var string
-     */
-    private $size;
+    #[SerializedName('size')]
+    private string $size;
 
-    /**
-     * @SerializedName("token")
-     * @var string|null
-     */
-    private $token;
+    #[SerializedName('token')]
+    private ?string $token;
 
-    /**
-     * @Required
-     * @SerializedName("created_at")
-     * @var int
-     */
-    private $createdAt;
+    #[Required]
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @SerializedName("updated_at")
-     * @var int
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var string|null
-     * @SerializedName("session_id")
-     */
-    private $sessionId;
+    #[SerializedName('session_id')]
+    private ?string $sessionId;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -88,18 +51,11 @@ class Upload extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getHash(): string
     {
         return $this->hash;
     }
 
-    /**
-     * @param string $hash
-     * @return self
-     */
     public function setHash(string $hash): self
     {
         $this->hash = $hash;
@@ -107,18 +63,11 @@ class Upload extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getFilename(): string
     {
         return $this->filename;
     }
 
-    /**
-     * @param string $filename
-     * @return self
-     */
     public function setFilename(string $filename): self
     {
         $this->filename = $filename;
@@ -126,18 +75,11 @@ class Upload extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getFolder(): string
     {
         return $this->folder;
     }
 
-    /**
-     * @param string $folder
-     * @return self
-     */
     public function setFolder(string $folder): self
     {
         $this->folder = $folder;
@@ -145,18 +87,11 @@ class Upload extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getMime(): string
     {
         return $this->mime;
     }
 
-    /**
-     * @param string $mime
-     * @return self
-     */
     public function setMime(string $mime): self
     {
         $this->mime = $mime;
@@ -164,18 +99,11 @@ class Upload extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSize(): string
     {
         return $this->size;
     }
 
-    /**
-     * @param string $size
-     * @return self
-     */
     public function setSize(string $size): self
     {
         $this->size = $size;
@@ -183,18 +111,11 @@ class Upload extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getToken(): ?string
     {
         return $this->token;
     }
 
-    /**
-     * @param string|null $token
-     * @return self
-     */
     public function setToken(?string $token): self
     {
         $this->token = $token;
@@ -202,18 +123,11 @@ class Upload extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -221,18 +135,11 @@ class Upload extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -240,18 +147,11 @@ class Upload extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSessionId(): ?string
     {
         return $this->sessionId;
     }
 
-    /**
-     * @param string|null $sessionId
-     * @return self
-     */
     public function setSessionId(?string $sessionId): self
     {
         $this->sessionId = $sessionId;

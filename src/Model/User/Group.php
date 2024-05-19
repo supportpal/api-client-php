@@ -3,70 +3,40 @@
 namespace SupportPal\ApiClient\Model\User;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Group extends BaseModel
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var string|null
-     * @SerializedName("description")
-     */
-    private $description;
+    #[SerializedName('description')]
+    private string|null $description;
 
-    /**
-     * @var int
-     * @SerializedName("administrator")
-     */
-    private $administrator;
+    #[SerializedName('administrator')]
+    private int $administrator;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var string
-     * @SerializedName("colour")
-     */
-    private $colour;
+    #[SerializedName('colour')]
+    private string $colour;
 
-    /**
-     * @var GroupTranslation[]|null
-     * @SerializedName("translations")
-     */
-    private $translations;
+    /** @var GroupTranslation[]|null */
+    #[SerializedName('translations')]
+    private array|null $translations;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -74,18 +44,11 @@ class Group extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -93,18 +56,11 @@ class Group extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -112,18 +68,11 @@ class Group extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string|null $description
-     * @return self
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -131,18 +80,11 @@ class Group extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getAdministrator(): int
     {
         return $this->administrator;
     }
 
-    /**
-     * @param int $administrator
-     * @return self
-     */
     public function setAdministrator(int $administrator): self
     {
         $this->administrator = $administrator;
@@ -150,18 +92,11 @@ class Group extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -169,18 +104,11 @@ class Group extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getColour(): string
     {
         return $this->colour;
     }
 
-    /**
-     * @param string $colour
-     * @return self
-     */
     public function setColour(string $colour): self
     {
         $this->colour = $colour;
@@ -198,7 +126,6 @@ class Group extends BaseModel
 
     /**
      * @param GroupTranslation[]|null $translations
-     * @return Group
      */
     public function setTranslations(?array $translations): Group
     {

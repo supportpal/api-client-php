@@ -3,124 +3,66 @@
 namespace SupportPal\ApiClient\Model\Department;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class EmailTemplates extends BaseModel
 {
-    /**
-     * @var int
-     * @SerializedName("operator_department_changed")
-     */
-    private $operatorDepartmentChanged;
+    #[SerializedName('operator_department_changed')]
+    private int $operatorDepartmentChanged;
 
-    /**
-     * @var int
-     * @SerializedName("operator_internal_opened")
-     */
-    private $operatorInternalOpened;
+    #[SerializedName('operator_internal_opened')]
+    private int $operatorInternalOpened;
 
-    /**
-     * @var int
-     * @SerializedName("user_ticket_locked")
-     */
-    private $userTicketLocked;
+    #[SerializedName('user_ticket_locked')]
+    private int $userTicketLocked;
 
-    /**
-     * @var int
-     * @SerializedName("user_ticket_reply")
-     */
-    private $userTicketReply;
+    #[SerializedName('user_ticket_reply')]
+    private int $userTicketReply;
 
-    /**
-     * @var int
-     * @SerializedName("operator_assigned")
-     */
-    private $operatorAssigned;
+    #[SerializedName('operator_assigned')]
+    private int $operatorAssigned;
 
-    /**
-     * @var int
-     * @SerializedName("operator_ticket_note")
-     */
-    private $operatorTicketNote;
+    #[SerializedName('operator_ticket_note')]
+    private int $operatorTicketNote;
 
-    /**
-     * @var int
-     * @SerializedName("user_ticket_opened")
-     */
-    private $userTicketOpened;
+    #[SerializedName('user_ticket_opened')]
+    private int $userTicketOpened;
 
-    /**
-     * @var int
-     * @SerializedName("user_ticket_operatorclose")
-     */
-    private $userTicketOperatorclose;
+    #[SerializedName('user_ticket_operatorclose')]
+    private int $userTicketOperatorclose;
 
-    /**
-     * @var int
-     * @SerializedName("operator_ticket_opened")
-     */
-    private $operatorTicketOpened;
+    #[SerializedName('operator_ticket_opened')]
+    private int $operatorTicketOpened;
 
-    /**
-     * @var int
-     * @SerializedName("user_ticket_registeredonly")
-     */
-    private $userTicketRegisteredonly;
+    #[SerializedName('user_ticket_registeredonly')]
+    private int $userTicketRegisteredonly;
 
-    /**
-     * @var int
-     * @SerializedName("user_ticket_autoclose")
-     */
-    private $userTicketAutoclose;
+    #[SerializedName('user_ticket_autoclose')]
+    private int $userTicketAutoclose;
 
-    /**
-     * @var int
-     * @SerializedName("user_email_attachmentrejected")
-     */
-    private $userEmailAttachmentrejected;
+    #[SerializedName('user_email_attachmentrejected')]
+    private int $userEmailAttachmentrejected;
 
-    /**
-     * @var int
-     * @SerializedName("operator_operator_ticket_reply")
-     */
-    private $operatorOperatorTicketReply;
+    #[SerializedName('operator_operator_ticket_reply')]
+    private int $operatorOperatorTicketReply;
 
-    /**
-     * @var int
-     * @SerializedName("user_ticket_waitingresponse")
-     */
-    private $userTicketWaitingresponse;
+    #[SerializedName('user_ticket_waitingresponse')]
+    private int $userTicketWaitingresponse;
 
-    /**
-     * @var int
-     * @SerializedName("user_user_ticket_reply")
-     */
-    private $userUserTicketReply;
+    #[SerializedName('user_user_ticket_reply')]
+    private int $userUserTicketReply;
 
-    /**
-     * @var int
-     * @SerializedName("user_ticket_disablereplies")
-     */
-    private $userTicketDisablereplies;
+    #[SerializedName('user_ticket_disablereplies')]
+    private int $userTicketDisablereplies;
 
-    /**
-     * @var int
-     * @SerializedName("operator_user_ticket_reply")
-     */
-    private $operatorUserTicketReply;
+    #[SerializedName('operator_user_ticket_reply')]
+    private int $operatorUserTicketReply;
 
-    /**
-     * @return int
-     */
     public function getOperatorDepartmentChanged(): int
     {
         return $this->operatorDepartmentChanged;
     }
 
-    /**
-     * @param int $operatorDepartmentChanged
-     * @return self
-     */
     public function setOperatorDepartmentChanged(int $operatorDepartmentChanged): self
     {
         $this->operatorDepartmentChanged = $operatorDepartmentChanged;
@@ -128,18 +70,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getOperatorInternalOpened(): int
     {
         return $this->operatorInternalOpened;
     }
 
-    /**
-     * @param int $operatorInternalOpened
-     * @return self
-     */
     public function setOperatorInternalOpened(int $operatorInternalOpened): self
     {
         $this->operatorInternalOpened = $operatorInternalOpened;
@@ -147,18 +82,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserTicketLocked(): int
     {
         return $this->userTicketLocked;
     }
 
-    /**
-     * @param int $userTicketLocked
-     * @return self
-     */
     public function setUserTicketLocked(int $userTicketLocked): self
     {
         $this->userTicketLocked = $userTicketLocked;
@@ -166,18 +94,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserTicketReply(): int
     {
         return $this->userTicketReply;
     }
 
-    /**
-     * @param int $userTicketReply
-     * @return self
-     */
     public function setUserTicketReply(int $userTicketReply): self
     {
         $this->userTicketReply = $userTicketReply;
@@ -185,18 +106,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getOperatorAssigned(): int
     {
         return $this->operatorAssigned;
     }
 
-    /**
-     * @param int $operatorAssigned
-     * @return self
-     */
     public function setOperatorAssigned(int $operatorAssigned): self
     {
         $this->operatorAssigned = $operatorAssigned;
@@ -204,18 +118,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getOperatorTicketNote(): int
     {
         return $this->operatorTicketNote;
     }
 
-    /**
-     * @param int $operatorTicketNote
-     * @return self
-     */
     public function setOperatorTicketNote(int $operatorTicketNote): self
     {
         $this->operatorTicketNote = $operatorTicketNote;
@@ -223,18 +130,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserTicketOpened(): int
     {
         return $this->userTicketOpened;
     }
 
-    /**
-     * @param int $userTicketOpened
-     * @return self
-     */
     public function setUserTicketOpened(int $userTicketOpened): self
     {
         $this->userTicketOpened = $userTicketOpened;
@@ -242,18 +142,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserTicketOperatorclose(): int
     {
         return $this->userTicketOperatorclose;
     }
 
-    /**
-     * @param int $userTicketOperatorclose
-     * @return self
-     */
     public function setUserTicketOperatorclose(int $userTicketOperatorclose): self
     {
         $this->userTicketOperatorclose = $userTicketOperatorclose;
@@ -261,18 +154,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getOperatorTicketOpened(): int
     {
         return $this->operatorTicketOpened;
     }
 
-    /**
-     * @param int $operatorTicketOpened
-     * @return self
-     */
     public function setOperatorTicketOpened(int $operatorTicketOpened): self
     {
         $this->operatorTicketOpened = $operatorTicketOpened;
@@ -280,18 +166,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserTicketRegisteredonly(): int
     {
         return $this->userTicketRegisteredonly;
     }
 
-    /**
-     * @param int $userTicketRegisteredonly
-     * @return self
-     */
     public function setUserTicketRegisteredonly(int $userTicketRegisteredonly): self
     {
         $this->userTicketRegisteredonly = $userTicketRegisteredonly;
@@ -299,18 +178,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserTicketAutoclose(): int
     {
         return $this->userTicketAutoclose;
     }
 
-    /**
-     * @param int $userTicketAutoclose
-     * @return self
-     */
     public function setUserTicketAutoclose(int $userTicketAutoclose): self
     {
         $this->userTicketAutoclose = $userTicketAutoclose;
@@ -318,18 +190,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserEmailAttachmentrejected(): int
     {
         return $this->userEmailAttachmentrejected;
     }
 
-    /**
-     * @param int $userEmailAttachmentrejected
-     * @return self
-     */
     public function setUserEmailAttachmentrejected(int $userEmailAttachmentrejected): self
     {
         $this->userEmailAttachmentrejected = $userEmailAttachmentrejected;
@@ -337,18 +202,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getOperatorOperatorTicketReply(): int
     {
         return $this->operatorOperatorTicketReply;
     }
 
-    /**
-     * @param int $operatorOperatorTicketReply
-     * @return self
-     */
     public function setOperatorOperatorTicketReply(int $operatorOperatorTicketReply): self
     {
         $this->operatorOperatorTicketReply = $operatorOperatorTicketReply;
@@ -356,18 +214,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserTicketWaitingresponse(): int
     {
         return $this->userTicketWaitingresponse;
     }
 
-    /**
-     * @param int $userTicketWaitingresponse
-     * @return self
-     */
     public function setUserTicketWaitingresponse(int $userTicketWaitingresponse): self
     {
         $this->userTicketWaitingresponse = $userTicketWaitingresponse;
@@ -375,18 +226,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserUserTicketReply(): int
     {
         return $this->userUserTicketReply;
     }
 
-    /**
-     * @param int $userUserTicketReply
-     * @return self
-     */
     public function setUserUserTicketReply(int $userUserTicketReply): self
     {
         $this->userUserTicketReply = $userUserTicketReply;
@@ -394,18 +238,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserTicketDisablereplies(): int
     {
         return $this->userTicketDisablereplies;
     }
 
-    /**
-     * @param int $userTicketDisablereplies
-     * @return self
-     */
     public function setUserTicketDisablereplies(int $userTicketDisablereplies): self
     {
         $this->userTicketDisablereplies = $userTicketDisablereplies;
@@ -413,18 +250,11 @@ class EmailTemplates extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getOperatorUserTicketReply(): int
     {
         return $this->operatorUserTicketReply;
     }
 
-    /**
-     * @param int $operatorUserTicketReply
-     * @return self
-     */
     public function setOperatorUserTicketReply(int $operatorUserTicketReply): self
     {
         $this->operatorUserTicketReply = $operatorUserTicketReply;

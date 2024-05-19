@@ -3,100 +3,57 @@
 namespace SupportPal\ApiClient\Model\User;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Organisation extends BaseModel
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var string|null
-     * @SerializedName("notes")
-     */
-    private $notes;
+    #[SerializedName('notes')]
+    private string|null $notes;
 
-    /**
-     * @var int
-     * @SerializedName("brand_id")
-     */
-    private $brandId;
+    #[SerializedName('brand_id')]
+    private int $brandId;
 
-    /**
-     * @var string|null
-     * @SerializedName("language_code")
-     */
-    private $languageCode;
+    #[SerializedName('language_code')]
+    private string|null $languageCode;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var string|null
-     * @SerializedName("timezone")
-     */
-    private $timezone;
+    #[SerializedName('timezone')]
+    private string|null $timezone;
 
-    /**
-     * @var string|null
-     * @SerializedName("country")
-     */
-    private $country;
+    #[SerializedName('country')]
+    private string|null $country;
 
-    /**
-     * @var int|null
-     * @SerializedName("owner_id")
-     */
-    private $ownerId;
+    #[SerializedName('owner_id')]
+    private int|null $ownerId;
 
-    /**
-     * @var User[]|null
-     * @SerializedName("users")
-     */
-    private $users;
+    /** @var User[]|null */
+    #[SerializedName('users')]
+    private array|null $users;
 
-    /**
-     * @var UserCustomField[]|null
-     * @SerializedName("customfields")
-     */
-    private $customfields;
+    /** @var UserCustomField[]|null */
+    #[SerializedName('customfields')]
+    private array|null $customfields;
 
-    /**
-     * @var Domain[]|null
-     * @SerializedName("domains")
-     */
-    private $domains;
+    /** @var Domain[]|null */
+    #[SerializedName('domains')]
+    private array|null $domains;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return Organisation
-     */
     public function setId(int $id): Organisation
     {
         $this->id = $id;
@@ -104,18 +61,11 @@ class Organisation extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return Organisation
-     */
     public function setName(string $name): Organisation
     {
         $this->name = $name;
@@ -123,18 +73,11 @@ class Organisation extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return Organisation
-     */
     public function setCreatedAt(int $createdAt): Organisation
     {
         $this->createdAt = $createdAt;
@@ -142,18 +85,11 @@ class Organisation extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getNotes(): ?string
     {
         return $this->notes;
     }
 
-    /**
-     * @param string|null $notes
-     * @return Organisation
-     */
     public function setNotes(?string $notes): Organisation
     {
         $this->notes = $notes;
@@ -161,18 +97,11 @@ class Organisation extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getBrandId(): int
     {
         return $this->brandId;
     }
 
-    /**
-     * @param int $brandId
-     * @return Organisation
-     */
     public function setBrandId(int $brandId): Organisation
     {
         $this->brandId = $brandId;
@@ -180,18 +109,11 @@ class Organisation extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLanguageCode(): ?string
     {
         return $this->languageCode;
     }
 
-    /**
-     * @param string|null $languageCode
-     * @return Organisation
-     */
     public function setLanguageCode(?string $languageCode): Organisation
     {
         $this->languageCode = $languageCode;
@@ -199,18 +121,11 @@ class Organisation extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return Organisation
-     */
     public function setUpdatedAt(int $updatedAt): Organisation
     {
         $this->updatedAt = $updatedAt;
@@ -218,18 +133,11 @@ class Organisation extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
-    /**
-     * @param string|null $timezone
-     * @return Organisation
-     */
     public function setTimezone(?string $timezone): Organisation
     {
         $this->timezone = $timezone;
@@ -237,18 +145,11 @@ class Organisation extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 
-    /**
-     * @param string|null $country
-     * @return Organisation
-     */
     public function setCountry(?string $country): Organisation
     {
         $this->country = $country;
@@ -256,18 +157,11 @@ class Organisation extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getOwnerId(): ?int
     {
         return $this->ownerId;
     }
 
-    /**
-     * @param int|null $ownerId
-     * @return Organisation
-     */
     public function setOwnerId(?int $ownerId): Organisation
     {
         $this->ownerId = $ownerId;
@@ -285,7 +179,6 @@ class Organisation extends BaseModel
 
     /**
      * @param User[]|null $users
-     * @return Organisation
      */
     public function setUsers(?array $users): Organisation
     {
@@ -304,7 +197,6 @@ class Organisation extends BaseModel
 
     /**
      * @param UserCustomField[]|null $customfields
-     * @return Organisation
      */
     public function setCustomfields(?array $customfields): Organisation
     {
@@ -323,7 +215,6 @@ class Organisation extends BaseModel
 
     /**
      * @param Domain[]|null $domains
-     * @return Organisation
      */
     public function setDomains(?array $domains): Organisation
     {

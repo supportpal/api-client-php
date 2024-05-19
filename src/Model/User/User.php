@@ -3,216 +3,114 @@
 namespace SupportPal\ApiClient\Model\User;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class User extends BaseModel
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string|null
-     * @SerializedName("country")
-     */
-    private $country;
+    #[SerializedName('country')]
+    private string|null $country;
 
-    /**
-     * @var string|null
-     * @SerializedName("avatar")
-     */
-    private $avatar;
+    #[SerializedName('avatar')]
+    private string|null $avatar;
 
-    /**
-     * @var bool|null
-     * @SerializedName("twofa_enabled")
-     */
-    private $twofaEnabled;
+    #[SerializedName('twofa_enabled')]
+    private bool|null $twofaEnabled;
 
-    /**
-     * @deprecated Use email_verified
-     * @var bool|null
-     * @SerializedName("confirmed")
-     */
-    private $confirmed;
+    /** @deprecated Use email_verified */
+    #[SerializedName('confirmed')]
+    private ?bool $confirmed;
 
-    /**
-     * @var bool|null
-     * @SerializedName("email_verified")
-     */
-    private $emailVerified;
+    #[SerializedName('email_verified')]
+    private bool|null $emailVerified;
 
-    /**
-     * @var string|null
-     * @SerializedName("language_code")
-     */
-    private $languageCode;
+    #[SerializedName('language_code')]
+    private string|null $languageCode;
 
-    /**
-     * @var int|null
-     * @SerializedName("organisation_id")
-     */
-    private $organisationId;
+    #[SerializedName('organisation_id')]
+    private int|null $organisationId;
 
-    /**
-     * @var string|null
-     * @SerializedName("timezone")
-     */
-    private $timezone;
+    #[SerializedName('timezone')]
+    private string|null $timezone;
 
-    /**
-     * @var bool|null
-     * @SerializedName("organisation_notifications")
-     */
-    private $organisationNotifications;
+    #[SerializedName('organisation_notifications')]
+    private bool|null $organisationNotifications;
 
-    /**
-     * @var string|null
-     * @SerializedName("twitter_handle")
-     */
-    private $twitterHandle;
+    #[SerializedName('twitter_handle')]
+    private string|null $twitterHandle;
 
-    /**
-     * @var string|null
-     * @SerializedName("lastname")
-     */
-    private $lastname;
+    #[SerializedName('lastname')]
+    private string|null $lastname;
 
-    /**
-     * @var int|null
-     * @SerializedName("brand_id")
-     */
-    private $brandId;
+    #[SerializedName('brand_id')]
+    private int|null $brandId;
 
-    /**
-     * @var bool
-     * @SerializedName("active")
-     */
-    private $active;
+    #[SerializedName('active')]
+    private bool $active;
 
-    /**
-     * @var string|null
-     * @SerializedName("email")
-     */
-    private $email;
+    #[SerializedName('email')]
+    private string|null $email;
 
-    /**
-     * @var int|null
-     * @SerializedName("template_mode")
-     */
-    private $templateMode;
+    #[SerializedName('template_mode')]
+    private int|null $templateMode;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var string|null
-     * @SerializedName("notes")
-     */
-    private $notes;
+    #[SerializedName('notes')]
+    private string|null $notes;
 
-    /**
-     * @var int|null
-     * @SerializedName("organisation_access_level")
-     */
-    private $organisationAccessLevel;
+    #[SerializedName('organisation_access_level')]
+    private int|null $organisationAccessLevel;
 
-    /**
-     * @var int|null
-     * @SerializedName("facebook_id")
-     */
-    private $facebookId;
+    #[SerializedName('facebook_id')]
+    private int|null $facebookId;
 
-    /**
-     * @var int|null
-     * @SerializedName("last_active_at")
-     */
-    private $lastActiveAt;
+    #[SerializedName('last_active_at')]
+    private int|null $lastActiveAt;
 
-    /**
-     * @var string|null
-     * @SerializedName("twofa_token")
-     */
-    private $twofaToken;
+    #[SerializedName('twofa_token')]
+    private string|null $twofaToken;
 
-    /**
-     * @var string|null
-     * @SerializedName("firstname")
-     */
-    private $firstname;
+    #[SerializedName('firstname')]
+    private string|null $firstname;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var int|null
-     * @SerializedName("twitter_id")
-     */
-    private $twitterId;
+    #[SerializedName('twitter_id')]
+    private int|null $twitterId;
 
-    /**
-     * @var string|null
-     * @SerializedName("twofa_secret")
-     */
-    private $twofaSecret;
+    #[SerializedName('twofa_secret')]
+    private string|null $twofaSecret;
 
-    /**
-     * @var int
-     * @SerializedName("role")
-     */
-    private $role;
+    #[SerializedName('role')]
+    private int $role;
 
-    /**
-     * @var string|null
-     * @SerializedName("formatted_name")
-     */
-    private $formattedName;
+    #[SerializedName('formatted_name')]
+    private string|null $formattedName;
 
-    /**
-     * @var string|null
-     * @SerializedName("avatar_url")
-     */
-    private $avatarUrl;
+    #[SerializedName('avatar_url')]
+    private string|null $avatarUrl;
 
-    /**
-     * @var Organisation|null
-     * @SerializedName("organisation")
+    #[SerializedName('organisation')]
+    private Organisation|null $organisation;
 
-     */
-    private $organisation;
+    /** @var UserCustomField[]|null */
+    #[SerializedName('customfields')]
+    private array|null $customfields;
 
-    /**
-     * @var UserCustomField[]|null
-     * @SerializedName("customfields")
-     */
-    private $customfields;
+    /** @var Group[]|null */
+    #[SerializedName('groups')]
+    private array|null $groups;
 
-    /**
-     * @var Group[]|null
-     * @SerializedName("groups")
-     */
-    private $groups;
-
-    /**
-     * @return string|null
-     */
     public function getTwofaToken(): ?string
     {
         return $this->twofaToken;
     }
 
-    /**
-     * @param string|null $twofaToken
-     * @return self
-     */
     public function setTwofaToken(?string $twofaToken): self
     {
         $this->twofaToken = $twofaToken;
@@ -220,18 +118,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTemplateMode(): ?int
     {
         return $this->templateMode;
     }
 
-    /**
-     * @param int|null $templateMode
-     * @return self
-     */
     public function setTemplateMode(?int $templateMode): self
     {
         $this->templateMode = $templateMode;
@@ -239,18 +130,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * @param string|null $email
-     * @return self
-     */
     public function setEmail(?string $email): self
     {
         $this->email = $email;
@@ -258,18 +142,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getActive(): bool
     {
         return $this->active;
     }
 
-    /**
-     * @param bool $active
-     * @return self
-     */
     public function setActive(bool $active): self
     {
         $this->active = $active;
@@ -277,18 +154,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
-    /**
-     * @param string|null $timezone
-     * @return self
-     */
     public function setTimezone(?string $timezone): self
     {
         $this->timezone = $timezone;
@@ -296,18 +166,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getLastActiveAt(): ?int
     {
         return $this->lastActiveAt;
     }
 
-    /**
-     * @param int|null $lastActiveAt
-     * @return self
-     */
     public function setLastActiveAt(?int $lastActiveAt): self
     {
         $this->lastActiveAt = $lastActiveAt;
@@ -315,18 +178,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getOrganisationId(): ?int
     {
         return $this->organisationId;
     }
 
-    /**
-     * @param int|null $organisationId
-     * @return self
-     */
     public function setOrganisationId(?int $organisationId): self
     {
         $this->organisationId = $organisationId;
@@ -334,18 +190,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTwitterId(): ?int
     {
         return $this->twitterId;
     }
 
-    /**
-     * @param int|null $twitterId
-     * @return self
-     */
     public function setTwitterId(?int $twitterId): self
     {
         $this->twitterId = $twitterId;
@@ -353,18 +202,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getNotes(): ?string
     {
         return $this->notes;
     }
 
-    /**
-     * @param string|null $notes
-     * @return self
-     */
     public function setNotes(?string $notes): self
     {
         $this->notes = $notes;
@@ -372,18 +214,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLanguageCode(): ?string
     {
         return $this->languageCode;
     }
 
-    /**
-     * @param string|null $languageCode
-     * @return self
-     */
     public function setLanguageCode(?string $languageCode): self
     {
         $this->languageCode = $languageCode;
@@ -391,18 +226,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLastname(): ?string
     {
         return $this->lastname;
     }
 
-    /**
-     * @param string|null $lastname
-     * @return self
-     */
     public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
@@ -410,18 +238,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -429,18 +250,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
-    /**
-     * @param string|null $firstname
-     * @return self
-     */
     public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
@@ -448,18 +262,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -467,18 +274,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAvatar(): ?string
     {
         return $this->avatar;
     }
 
-    /**
-     * @param string|null $avatar
-     * @return self
-     */
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
@@ -486,18 +286,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getFacebookId(): ?int
     {
         return $this->facebookId;
     }
 
-    /**
-     * @param int|null $facebookId
-     * @return self
-     */
     public function setFacebookId(?int $facebookId): self
     {
         $this->facebookId = $facebookId;
@@ -505,18 +298,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getOrganisationAccessLevel(): ?int
     {
         return $this->organisationAccessLevel;
     }
 
-    /**
-     * @param int|null $organisationAccessLevel
-     * @return self
-     */
     public function setOrganisationAccessLevel(?int $organisationAccessLevel): self
     {
         $this->organisationAccessLevel = $organisationAccessLevel;
@@ -524,18 +310,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getRole(): int
     {
         return $this->role;
     }
 
-    /**
-     * @param int $role
-     * @return self
-     */
     public function setRole(int $role): self
     {
         $this->role = $role;
@@ -543,18 +322,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTwofaSecret(): ?string
     {
         return $this->twofaSecret;
     }
 
-    /**
-     * @param string|null $twofaSecret
-     * @return self
-     */
     public function setTwofaSecret(?string $twofaSecret): self
     {
         $this->twofaSecret = $twofaSecret;
@@ -562,18 +334,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTwitterHandle(): ?string
     {
         return $this->twitterHandle;
     }
 
-    /**
-     * @param string|null $twitterHandle
-     * @return self
-     */
     public function setTwitterHandle(?string $twitterHandle): self
     {
         $this->twitterHandle = $twitterHandle;
@@ -581,18 +346,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getBrandId(): ?int
     {
         return $this->brandId;
     }
 
-    /**
-     * @param int|null $brandId
-     * @return self
-     */
     public function setBrandId(?int $brandId): self
     {
         $this->brandId = $brandId;
@@ -602,7 +360,6 @@ class User extends BaseModel
 
     /**
      * @deprecated Use getEmailVerified
-     * @return bool|null
      */
     public function getConfirmed(): ?bool
     {
@@ -610,9 +367,8 @@ class User extends BaseModel
     }
 
     /**
-     * @deprecated Use getEmailVerified
      * @param bool $confirmed
-     * @return self
+     *@deprecated Use getEmailVerified
      */
     public function setConfirmed(bool $confirmed): self
     {
@@ -621,18 +377,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getEmailVerified(): ?bool
     {
         return $this->emailVerified;
     }
 
-    /**
-     * @param bool $verified
-     * @return self
-     */
     public function setEmailVerified(bool $verified): self
     {
         $this->emailVerified = $verified;
@@ -640,18 +389,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getOrganisationNotifications(): ?bool
     {
         return $this->organisationNotifications;
     }
 
-    /**
-     * @param bool|null $organisationNotifications
-     * @return self
-     */
     public function setOrganisationNotifications(?bool $organisationNotifications): self
     {
         $this->organisationNotifications = $organisationNotifications;
@@ -659,18 +401,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getTwofaEnabled(): ?bool
     {
         return $this->twofaEnabled;
     }
 
-    /**
-     * @param bool|null $twofaEnabled
-     * @return self
-     */
     public function setTwofaEnabled(?bool $twofaEnabled): self
     {
         $this->twofaEnabled = $twofaEnabled;
@@ -678,18 +413,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -697,18 +425,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 
-    /**
-     * @param string|null $country
-     * @return self
-     */
     public function setCountry(?string $country): self
     {
         $this->country = $country;
@@ -716,18 +437,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFormattedName(): ?string
     {
         return $this->formattedName;
     }
 
-    /**
-     * @param string $formattedName
-     * @return self
-     */
     public function setFormattedName(string $formattedName): self
     {
         $this->formattedName = $formattedName;
@@ -735,18 +449,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAvatarUrl(): ?string
     {
         return $this->avatarUrl;
     }
 
-    /**
-     * @param string $avatarUrl
-     * @return self
-     */
     public function setAvatarUrl(string $avatarUrl): self
     {
         $this->avatarUrl = $avatarUrl;
@@ -754,18 +461,11 @@ class User extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Organisation|null
-     */
     public function getOrganisation(): ?Organisation
     {
         return $this->organisation;
     }
 
-    /**
-     * @param Organisation|null $organisation
-     * @return User
-     */
     public function setOrganisation(?Organisation $organisation): User
     {
         $this->organisation = $organisation;
@@ -783,7 +483,6 @@ class User extends BaseModel
 
     /**
      * @param UserCustomField[]|null $customfields
-     * @return User
      */
     public function setCustomfields(?array $customfields): User
     {
@@ -802,7 +501,6 @@ class User extends BaseModel
 
     /**
      * @param Group[]|null $groups
-     * @return self
      */
     public function setGroups(?array $groups): self
     {

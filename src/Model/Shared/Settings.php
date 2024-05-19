@@ -8,12 +8,12 @@ use SupportPal\ApiClient\Model\SettingsModel;
 class Settings implements SettingsModel
 {
     /** @var string[] */
-    private $settings;
+    private array $settings;
 
     /**
      * @inheritDoc
      */
-    public function __set($property, $value)
+    public function __set(mixed $property, mixed $value): void
     {
         $this->settings[$property] = $value;
     }

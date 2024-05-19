@@ -3,44 +3,28 @@
 namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class SlaPlanTranslation extends BaseTranslation
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var int
-     * @SerializedName("sla_plan_id")
-     */
-    private $slaPlanId;
+    #[SerializedName('sla_plan_id')]
+    private int $slaPlanId;
 
-    /**
-     * @var string|null
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string|null $name;
 
-    /**
-     * @var string|null
-     * @SerializedName("description")
-     */
-    private $description;
+    #[SerializedName('description')]
+    private string|null $description;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
      * @return $this
      */
     public function setId(int $id): self
@@ -50,18 +34,11 @@ class SlaPlanTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getSlaPlanId(): int
     {
         return $this->slaPlanId;
     }
 
-    /**
-     * @param int $slaPlanId
-     * @return self
-     */
     public function setSlaPlanId(int $slaPlanId): self
     {
         $this->slaPlanId = $slaPlanId;
@@ -69,18 +46,11 @@ class SlaPlanTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     * @return self
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -88,18 +58,11 @@ class SlaPlanTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string|null $description
-     * @return self
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;

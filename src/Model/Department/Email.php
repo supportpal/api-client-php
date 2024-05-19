@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Model\Department;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 use TypeError;
 
 use function filter_var;
@@ -13,120 +13,62 @@ use const FILTER_VALIDATE_INT;
 
 class Email extends BaseModel
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string|null
-     * @SerializedName("port")
-     */
-    private $port;
+    #[SerializedName('port')]
+    private ?string $port;
 
-    /**
-     * @var int|string
-     * @SerializedName("department_id")
-     */
-    private $departmentId;
+    #[SerializedName('department_id')]
+    private int|string $departmentId;
 
-    /**
-     * @var int
-     * @SerializedName("type")
-     */
-    private $type;
+    #[SerializedName('type')]
+    private int $type;
 
-    /**
-     * @var string|null
-     * @SerializedName("server")
-     */
-    private $server;
+    #[SerializedName('server')]
+    private ?string $server;
 
-    /**
-     * @var string|null
-     * @SerializedName("username")
-     */
-    private $username;
+    #[SerializedName('username')]
+    private ?string $username;
 
-    /**
-     * @var int|null
-     * @SerializedName("encryption")
-     */
-    private $encryption;
+    #[SerializedName('encryption')]
+    private ?int $encryption;
 
-    /**
-     * @var bool|null
-     * @SerializedName("delete_downloaded")
-     */
-    private $deleteDownloaded;
+    #[SerializedName('delete_downloaded')]
+    private ?bool $deleteDownloaded;
 
-    /**
-     * @var string
-     * @SerializedName("address")
-     */
-    private $address;
+    #[SerializedName('address')]
+    private string $address;
 
-    /**
-     * @var int|null
-     * @SerializedName("protocol")
-     */
-    private $protocol;
+    #[SerializedName('protocol')]
+    private ?int $protocol;
 
-    /**
-     * @var int
-     * @SerializedName("brand_id")
-     */
-    private $brandId;
+    #[SerializedName('brand_id')]
+    private int $brandId;
 
-    /**
-     * @var string|null
-     * @SerializedName("password")
-     */
-    private $password;
+    #[SerializedName('password')]
+    private ?string $password;
 
-    /**
-     * @var bool|null
-     * @SerializedName("consume_all")
-     */
-    private $consumeAll;
+    #[SerializedName('consume_all')]
+    private ?bool $consumeAll;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var string|null
-     * @SerializedName("oauth")
-     */
-    private $oauth;
+    #[SerializedName('oauth')]
+    private ?string $oauth;
 
-    /**
-     * @var string|null
-     * @SerializedName("auth_mech")
-     */
-    private $authMech;
+    #[SerializedName('auth_mech')]
+    private ?string $authMech;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -134,18 +76,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPort(): ?string
     {
         return $this->port;
     }
 
-    /**
-     * @param string|null $port
-     * @return self
-     */
     public function setPort(?string $port): self
     {
         $this->port = $port;
@@ -153,18 +88,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getDepartmentId(): int
     {
         return (int) $this->departmentId;
     }
 
-    /**
-     * @param string|int $departmentId
-     * @return self
-     */
     public function setDepartmentId(string|int $departmentId): self
     {
         $departmentId = filter_var($departmentId, FILTER_VALIDATE_INT);
@@ -178,18 +106,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getType(): int
     {
         return $this->type;
     }
 
-    /**
-     * @param int $type
-     * @return self
-     */
     public function setType(int $type): self
     {
         $this->type = $type;
@@ -197,18 +118,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getServer(): ?string
     {
         return $this->server;
     }
 
-    /**
-     * @param string|null $server
-     * @return self
-     */
     public function setServer(?string $server): self
     {
         $this->server = $server;
@@ -216,18 +130,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-     * @param string|null $username
-     * @return self
-     */
     public function setUsername(?string $username): self
     {
         $this->username = $username;
@@ -235,18 +142,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getEncryption(): ?int
     {
         return $this->encryption;
     }
 
-    /**
-     * @param int|null $encryption
-     * @return self
-     */
     public function setEncryption(?int $encryption): self
     {
         $this->encryption = $encryption;
@@ -254,18 +154,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getDeleteDownloaded(): ?bool
     {
         return $this->deleteDownloaded;
     }
 
-    /**
-     * @param bool|null $deleteDownloaded
-     * @return self
-     */
     public function setDeleteDownloaded(?bool $deleteDownloaded): self
     {
         $this->deleteDownloaded = $deleteDownloaded;
@@ -273,18 +166,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getAddress(): string
     {
         return $this->address;
     }
 
-    /**
-     * @param string $address
-     * @return self
-     */
     public function setAddress(string $address): self
     {
         $this->address = $address;
@@ -292,18 +178,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getProtocol(): ?int
     {
         return $this->protocol;
     }
 
-    /**
-     * @param int|null $protocol
-     * @return self
-     */
     public function setProtocol(?int $protocol): self
     {
         $this->protocol = $protocol;
@@ -311,18 +190,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getBrandId(): int
     {
         return $this->brandId;
     }
 
-    /**
-     * @param int $brandId
-     * @return self
-     */
     public function setBrandId(int $brandId): self
     {
         $this->brandId = $brandId;
@@ -330,18 +202,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    /**
-     * @param string|null $password
-     * @return self
-     */
     public function setPassword(?string $password): self
     {
         $this->password = $password;
@@ -349,18 +214,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getConsumeAll(): ?bool
     {
         return $this->consumeAll;
     }
 
-    /**
-     * @param bool|null $consumeAll
-     * @return self
-     */
     public function setConsumeAll(?bool $consumeAll): self
     {
         $this->consumeAll = $consumeAll;
@@ -368,18 +226,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -387,18 +238,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -406,18 +250,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getOauth(): ?string
     {
         return $this->oauth;
     }
 
-    /**
-     * @param string|null $oauth
-     * @return self
-     */
     public function setOauth(?string $oauth): self
     {
         $this->oauth = $oauth;
@@ -425,18 +262,11 @@ class Email extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAuthMech(): ?string
     {
         return $this->authMech;
     }
 
-    /**
-     * @param string|null $authMech
-     * @return self
-     */
     public function setAuthMech(?string $authMech): self
     {
         $this->authMech = $authMech;

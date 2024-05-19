@@ -39,7 +39,6 @@ class Collection
 
     /**
      * Response constructor.
-     * @param int $count
      * @param Model[] $models
      * @throws InvalidArgumentException
      */
@@ -53,7 +52,6 @@ class Collection
 
     /**
      * get total number of all models as returned from the API response in `count` field.
-     * @return int
      */
     public function getCount(): int
     {
@@ -70,7 +68,6 @@ class Collection
 
     /**
      * Actual number of elements in the collection
-     * @return int
      */
     public function getModelsCount(): int
     {
@@ -78,8 +75,6 @@ class Collection
     }
 
     /**
-     * @param Closure $closure
-     * @return Collection
      * @throws InvalidArgumentException
      */
     public function map(Closure $closure): Collection
@@ -90,8 +85,6 @@ class Collection
     }
 
     /**
-     * @param Closure $closure
-     * @return Collection
      * @throws InvalidArgumentException
      */
     public function filter(Closure $closure): Collection
@@ -101,9 +94,6 @@ class Collection
         return new self($this->getCount(), $value);
     }
 
-    /**
-     * @return Model|null
-     */
     public function first(): ?Model
     {
         $firstElement = reset($this->models);
@@ -111,9 +101,6 @@ class Collection
         return $firstElement instanceof Model ? $firstElement : null;
     }
 
-    /**
-     * @return bool
-     */
     public function isEmpty(): bool
     {
         return $this->getModelsCount() === 0;
@@ -121,8 +108,6 @@ class Collection
 
     /**
      * Api return count is set to be the one from the merged endpoint
-     * @param Collection $collection
-     * @return Collection
      * @throws InvalidArgumentException
      */
     public function merge(Collection $collection): Collection

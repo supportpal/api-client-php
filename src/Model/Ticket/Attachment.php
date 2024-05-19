@@ -4,100 +4,54 @@ namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\BaseModel;
 use SupportPal\ApiClient\Model\Core\Upload;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Attachment extends BaseModel
 {
-    /**
-     * @var string
-     * @SerializedName("original_name")
-     */
-    private $originalName;
+    #[SerializedName('original_name')]
+    private string $originalName;
 
-    /**
-     * @var string
-     * @SerializedName("upload_hash")
-     */
-    private $uploadHash;
+    #[SerializedName('upload_hash')]
+    private string $uploadHash;
 
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var int
-     * @SerializedName("ticket_id")
-     */
-    private $ticketId;
+    #[SerializedName('ticket_id')]
+    private int $ticketId;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var int
-     * @SerializedName("message_id")
-     */
-    private $messageId;
+    #[SerializedName('message_id')]
+    private int $messageId;
 
-    /**
-     * @var string
-     * @SerializedName("operator_url")
-     */
-    private $operatorUrl;
+    #[SerializedName('operator_url')]
+    private string $operatorUrl;
 
-    /**
-     * @var string
-     * @SerializedName("frontend_url")
-     */
-    private $frontendUrl;
+    #[SerializedName('frontend_url')]
+    private string $frontendUrl;
 
-    /**
-     * @var string
-     * @SerializedName("direct_operator_url")
-     */
-    private $directOperatorUrl;
+    #[SerializedName('direct_operator_url')]
+    private string $directOperatorUrl;
 
-    /**
-     * @var string
-     * @SerializedName("direct_frontend_url")
-     */
-    private $directFrontendUrl;
+    #[SerializedName('direct_frontend_url')]
+    private string $directFrontendUrl;
 
-    /**
-     * @var Upload
-     * @SerializedName("upload")
-     */
-    private $upload;
+    #[SerializedName('upload')]
+    private Upload $upload;
 
-    /**
-     * @var Ticket
-     * @SerializedName("ticket")
-     */
-    private $ticket;
+    #[SerializedName('ticket')]
+    private Ticket $ticket;
 
-    /**
-     * @return string
-     */
     public function getOriginalName(): string
     {
         return $this->originalName;
     }
 
-    /**
-     * @param string $originalName
-     * @return self
-     */
     public function setOriginalName(string $originalName): self
     {
         $this->originalName = $originalName;
@@ -105,18 +59,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getUploadHash(): string
     {
         return $this->uploadHash;
     }
 
-    /**
-     * @param string $uploadHash
-     * @return self
-     */
     public function setUploadHash(string $uploadHash): self
     {
         $this->uploadHash = $uploadHash;
@@ -124,18 +71,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -143,18 +83,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getTicketId(): int
     {
         return $this->ticketId;
     }
 
-    /**
-     * @param int $ticketId
-     * @return self
-     */
     public function setTicketId(int $ticketId): self
     {
         $this->ticketId = $ticketId;
@@ -162,18 +95,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -181,18 +107,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -200,18 +119,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getMessageId(): int
     {
         return $this->messageId;
     }
 
-    /**
-     * @param int $messageId
-     * @return self
-     */
     public function setMessageId(int $messageId): self
     {
         $this->messageId = $messageId;
@@ -219,18 +131,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getOperatorUrl(): string
     {
         return $this->operatorUrl;
     }
 
-    /**
-     * @param string $operatorUrl
-     * @return self
-     */
     public function setOperatorUrl(string $operatorUrl): self
     {
         $this->operatorUrl = $operatorUrl;
@@ -238,18 +143,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getFrontendUrl(): string
     {
         return $this->frontendUrl;
     }
 
-    /**
-     * @param string $frontendUrl
-     * @return self
-     */
     public function setFrontendUrl(string $frontendUrl): self
     {
         $this->frontendUrl = $frontendUrl;
@@ -257,18 +155,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDirectOperatorUrl(): string
     {
         return $this->directOperatorUrl;
     }
 
-    /**
-     * @param string $directOperatorUrl
-     * @return self
-     */
     public function setDirectOperatorUrl(string $directOperatorUrl): self
     {
         $this->directOperatorUrl = $directOperatorUrl;
@@ -276,18 +167,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDirectFrontendUrl(): string
     {
         return $this->directFrontendUrl;
     }
 
-    /**
-     * @param string $directFrontendUrl
-     * @return self
-     */
     public function setDirectFrontendUrl(string $directFrontendUrl): self
     {
         $this->directFrontendUrl = $directFrontendUrl;
@@ -295,18 +179,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Upload
-     */
     public function getUpload(): Upload
     {
         return $this->upload;
     }
 
-    /**
-     * @param Upload $upload
-     * @return self
-     */
     public function setUpload(Upload $upload): self
     {
         $this->upload = $upload;
@@ -314,18 +191,11 @@ class Attachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Ticket
-     */
     public function getTicket(): Ticket
     {
         return $this->ticket;
     }
 
-    /**
-     * @param Ticket $ticket
-     * @return self
-     */
     public function setTicket(Ticket $ticket): self
     {
         $this->ticket = $ticket;

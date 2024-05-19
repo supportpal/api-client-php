@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Core\Brand;
 use SupportPal\ApiClient\Model\Department\Department;
 use SupportPal\ApiClient\Model\Department\Operator;
 use SupportPal\ApiClient\Model\User\User;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 /**
  * Class self
@@ -15,312 +15,164 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  */
 class Ticket extends BaseModel
 {
-    /**
-     * @var int|null
-     * @SerializedName("department_email_id")
-     */
-    private $departmentEmailId;
+    #[SerializedName('department_email_id')]
+    private int|null $departmentEmailId;
 
-    /**
-     * @var int|null
-     * @SerializedName("last_reply_id")
-     */
-    private $lastReplyId;
+    #[SerializedName('last_reply_id')]
+    private int|null $lastReplyId;
 
-    /**
-     * @var bool
-     * @SerializedName("response_email_sent")
-     */
-    private $responseEmailSent;
+    #[SerializedName('response_email_sent')]
+    private bool $responseEmailSent;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var int
-     * @SerializedName("last_reply_time")
-     */
-    private $lastReplyTime;
+    #[SerializedName('last_reply_time')]
+    private int $lastReplyTime;
 
-    /**
-     * @var string|'No|Subject'
-     * @SerializedName("subject")
-     */
-    private $subject;
+    /** @var string */
+    #[SerializedName('subject')]
+    private string $subject;
 
-    /**
-     * @var int|null
-     * @SerializedName("last_message_by")
-     */
-    private $lastMessageBy;
+    #[SerializedName('last_message_by')]
+    private int|null $lastMessageBy;
 
-    /**
-     * @var int
-     * @SerializedName("status_id")
-     */
-    private $statusId;
+    #[SerializedName('status_id')]
+    private int $statusId;
 
-    /**
-     * @var int
-     * @SerializedName("locked")
-     */
-    private $locked;
+    #[SerializedName('locked')]
+    private int $locked;
 
-    /**
-     * @var int|null
-     * @SerializedName("messages_count")
-     */
-    private $messagesCount;
+    #[SerializedName('messages_count')]
+    private int|null $messagesCount;
 
-    /**
-     * @var int
-     * @SerializedName("user_id")
-     */
-    private $userId;
+    #[SerializedName('user_id')]
+    private int $userId;
 
-    /**
-     * @var int|null
-     * @SerializedName("paused_time")
-     */
-    private $pausedTime;
+    #[SerializedName('paused_time')]
+    private int|null $pausedTime;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var int
-     * @SerializedName("internal")
-     */
-    private $internal;
+    #[SerializedName('internal')]
+    private int $internal;
 
-    /**
-     * @var int
-     * @SerializedName("priority_id")
-     */
-    private $priorityId;
+    #[SerializedName('priority_id')]
+    private int $priorityId;
 
-    /**
-     * @var int|null
-     * @SerializedName("deleted_at")
-     */
-    private $deletedAt;
+    #[SerializedName('deleted_at')]
+    private int|null $deletedAt;
 
-    /**
-     * @var int|null
-     * @SerializedName("sla_plan_id")
-     */
-    private $slaPlanId;
+    #[SerializedName('sla_plan_id')]
+    private int|null $slaPlanId;
 
-    /**
-     * @var int
-     * @SerializedName("department_id")
-     */
-    private $departmentId;
+    #[SerializedName('department_id')]
+    private int $departmentId;
 
-    /**
-     * @var int|null
-     * @SerializedName("last_reply_by")
-     */
-    private $lastReplyBy;
+    #[SerializedName('last_reply_by')]
+    private int|null $lastReplyBy;
 
-    /**
-     * @var int|null
-     * @SerializedName("reopened_time")
-     */
-    private $reopenedTime;
+    #[SerializedName('reopened_time')]
+    private int|null $reopenedTime;
 
-    /**
-     * @var int|null
-     * @SerializedName("last_message_id")
-     */
-    private $lastMessageId;
+    #[SerializedName('last_message_id')]
+    private int|null $lastMessageId;
 
-    /**
-     * @var int|null
-     * @SerializedName("notes_count")
-     */
-    private $notesCount;
+    #[SerializedName('notes_count')]
+    private int|null $notesCount;
 
-    /**
-     * @var int
-     * @SerializedName("last_message_time")
-     */
-    private $lastMessageTime;
+    #[SerializedName('last_message_time')]
+    private int $lastMessageTime;
 
-    /**
-     * @var int
-     * @SerializedName("brand_id")
-     */
-    private $brandId;
+    #[SerializedName('brand_id')]
+    private int $brandId;
 
-    /**
-     * @var bool
-     * @SerializedName("has_draft")
-     */
-    private $hasDraft;
+    #[SerializedName('has_draft')]
+    private bool $hasDraft;
 
-    /**
-     * @var int|null
-     * @SerializedName("resolved_time")
-     */
-    private $resolvedTime;
+    #[SerializedName('resolved_time')]
+    private int|null $resolvedTime;
 
-    /**
-     * @var string
-     * @SerializedName("number")
-     */
-    private $number;
+    #[SerializedName('number')]
+    private string $number;
 
-    /**
-     * @var array<mixed>
-     * @SerializedName("cc")
-     */
-    private $cc;
+    /** @var mixed[] */
+    #[SerializedName('cc')]
+    private array $cc;
 
-    /**
-     * @var int
-     * @SerializedName("merged")
-     */
-    private $merged;
+    #[SerializedName('merged')]
+    private int $merged;
 
-    /**
-     * @var int|null
-     * @SerializedName("due_time")
-     */
-    private $dueTime;
+    #[SerializedName('due_time')]
+    private int|null $dueTime;
 
-    /**
-     * @var int
-     * @SerializedName("time_while_paused")
-     */
-    private $timeWhilePaused;
+    #[SerializedName('time_while_paused')]
+    private int $timeWhilePaused;
 
-    /**
-     * @var int|null
-     * @SerializedName("has_attachments")
-     */
-    private $hasAttachments;
+    #[SerializedName('has_attachments')]
+    private int|null $hasAttachments;
 
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var int
-     * @SerializedName("channel_id")
-     */
-    private $channelId;
+    #[SerializedName('channel_id')]
+    private int $channelId;
 
-    /**
-     * @var Channel|null
-     * @SerializedName("channel")
-     */
-    private $channel;
+    #[SerializedName('channel')]
+    private Channel|null $channel;
 
-    /**
-     * @var Department|null
-     * @SerializedName("department")
-     */
-    private $department;
+    #[SerializedName('department')]
+    private Department|null $department;
 
-    /**
-     * @var Tag[]|null
-     * @SerializedName("tags")
-     */
-    private $tags;
+    /** @var Tag[]|null */
+    #[SerializedName('tags')]
+    private array|null $tags;
 
-    /**
-     * @var User|null
-     * @SerializedName("user")
-     */
-    private $user;
+    #[SerializedName('user')]
+    private User|null $user;
 
-    /**
-     * @var string
-     * @SerializedName("token")
-     */
-    private $token;
+    #[SerializedName('token')]
+    private string $token;
 
-    /**
-     * @var Operator[]|null
-     * @SerializedName("watching")
-     */
-    private $watching;
+    /** @var Operator[]|null */
+    #[SerializedName('watching')]
+    private array|null $watching;
 
-    /**
-     * @var Operator[]|null
-     * @SerializedName("assigned")
-     */
-    private $assigned;
+    /** @var Operator[]|null */
+    #[SerializedName('assigned')]
+    private array|null $assigned;
 
-    /**
-     * @var Brand|null
-     * @SerializedName("brand")
-     */
-    private $brand;
+    #[SerializedName('brand')]
+    private Brand|null $brand;
 
-    /**
-     * @var Message|null
-     * @SerializedName("last_reply")
-     */
-    private $lastReply;
+    #[SerializedName('last_reply')]
+    private Message|null $lastReply;
 
-    /**
-     * @var SlaPlan|null
-     * @SerializedName("slaplan")
-     */
-    private $slaplan;
+    #[SerializedName('slaplan')]
+    private SlaPlan|null $slaplan;
 
-    /**
-     * @var TicketCustomField[]|null
-     * @SerializedName("customfields")
-     */
-    private $customfields;
+    /** @var TicketCustomField[]|null */
+    #[SerializedName('customfields')]
+    private array|null $customfields;
 
-    /**
-     * @var Status|null
-     * @SerializedName("status")
-     */
-    private $status;
+    #[SerializedName('status')]
+    private Status|null $status;
 
-    /**
-     * @var Priority|null
-     * @SerializedName("priority")
-     */
-    private $priority;
+    #[SerializedName('priority')]
+    private Priority|null $priority;
 
-    /**
-     * @var string|null
-     * @SerializedName("frontend_url")
-     */
-    private $frontendUrl;
+    #[SerializedName('frontend_url')]
+    private string|null $frontendUrl;
 
-    /**
-     * @var string|null
-     * @SerializedName("operator_url")
-     */
-    private $operatorUrl;
+    #[SerializedName('operator_url')]
+    private string|null $operatorUrl;
 
-    /**
-     * @return int|null
-     */
     public function getDepartmentEmailId(): ?int
     {
         return $this->departmentEmailId;
     }
 
-    /**
-     * @param int|null $departmentEmailId
-     * @return self
-     */
     public function setDepartmentEmailId(?int $departmentEmailId): self
     {
         $this->departmentEmailId = $departmentEmailId;
@@ -328,18 +180,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getLastReplyId(): ?int
     {
         return $this->lastReplyId;
     }
 
-    /**
-     * @param int|null $lastReplyId
-     * @return self
-     */
     public function setLastReplyId(?int $lastReplyId): self
     {
         $this->lastReplyId = $lastReplyId;
@@ -347,18 +192,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getResponseEmailSent(): bool
     {
         return $this->responseEmailSent;
     }
 
-    /**
-     * @param bool $responseEmailSent
-     * @return self
-     */
     public function setResponseEmailSent(bool $responseEmailSent): self
     {
         $this->responseEmailSent = $responseEmailSent;
@@ -366,18 +204,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -385,18 +216,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getLastReplyTime(): int
     {
         return $this->lastReplyTime;
     }
 
-    /**
-     * @param int $lastReplyTime
-     * @return self
-     */
     public function setLastReplyTime(int $lastReplyTime): self
     {
         $this->lastReplyTime = $lastReplyTime;
@@ -404,18 +228,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSubject(): string
     {
         return $this->subject;
     }
 
-    /**
-     * @param string $subject
-     * @return self
-     */
     public function setSubject(string $subject): self
     {
         $this->subject = $subject;
@@ -423,18 +240,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getLastMessageBy(): ?int
     {
         return $this->lastMessageBy;
     }
 
-    /**
-     * @param int|null $lastMessageBy
-     * @return self
-     */
     public function setLastMessageBy(?int $lastMessageBy): self
     {
         $this->lastMessageBy = $lastMessageBy;
@@ -442,18 +252,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getStatusId(): int
     {
         return $this->statusId;
     }
 
-    /**
-     * @param int $statusId
-     * @return self
-     */
     public function setStatusId(int $statusId): self
     {
         $this->statusId = $statusId;
@@ -461,18 +264,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getLocked(): int
     {
         return $this->locked;
     }
 
-    /**
-     * @param int $locked
-     * @return self
-     */
     public function setLocked(int $locked): self
     {
         $this->locked = $locked;
@@ -480,18 +276,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMessagesCount(): ?int
     {
         return $this->messagesCount;
     }
 
-    /**
-     * @param int|null $messagesCount
-     * @return self
-     */
     public function setMessagesCount(?int $messagesCount): self
     {
         $this->messagesCount = $messagesCount;
@@ -499,18 +288,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserId(): int
     {
         return $this->userId;
     }
 
-    /**
-     * @param int $userId
-     * @return self
-     */
     public function setUserId(int $userId): self
     {
         $this->userId = $userId;
@@ -518,18 +300,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getPausedTime(): ?int
     {
         return $this->pausedTime;
     }
 
-    /**
-     * @param int|null $pausedTime
-     * @return self
-     */
     public function setPausedTime(?int $pausedTime): self
     {
         $this->pausedTime = $pausedTime;
@@ -537,18 +312,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -556,18 +324,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getInternal(): int
     {
         return $this->internal;
     }
 
-    /**
-     * @param int $internal
-     * @return self
-     */
     public function setInternal(int $internal): self
     {
         $this->internal = $internal;
@@ -575,18 +336,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getPriorityId(): int
     {
         return $this->priorityId;
     }
 
-    /**
-     * @param int $priorityId
-     * @return self
-     */
     public function setPriorityId(int $priorityId): self
     {
         $this->priorityId = $priorityId;
@@ -594,18 +348,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDeletedAt(): ?int
     {
         return $this->deletedAt;
     }
 
-    /**
-     * @param int|null $deletedAt
-     * @return self
-     */
     public function setDeletedAt(?int $deletedAt): self
     {
         $this->deletedAt = $deletedAt;
@@ -613,18 +360,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getSlaPlanId(): ?int
     {
         return $this->slaPlanId;
     }
 
-    /**
-     * @param int|null $slaPlanId
-     * @return self
-     */
     public function setSlaPlanId(?int $slaPlanId): self
     {
         $this->slaPlanId = $slaPlanId;
@@ -632,18 +372,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getDepartmentId(): int
     {
         return $this->departmentId;
     }
 
-    /**
-     * @param int $departmentId
-     * @return self
-     */
     public function setDepartmentId(int $departmentId): self
     {
         $this->departmentId = $departmentId;
@@ -651,18 +384,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getLastReplyBy(): ?int
     {
         return $this->lastReplyBy;
     }
 
-    /**
-     * @param int|null $lastReplyBy
-     * @return self
-     */
     public function setLastReplyBy(?int $lastReplyBy): self
     {
         $this->lastReplyBy = $lastReplyBy;
@@ -670,18 +396,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getReopenedTime(): ?int
     {
         return $this->reopenedTime;
     }
 
-    /**
-     * @param int|null $reopenedTime
-     * @return self
-     */
     public function setReopenedTime(?int $reopenedTime): self
     {
         $this->reopenedTime = $reopenedTime;
@@ -689,18 +408,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getLastMessageId(): ?int
     {
         return $this->lastMessageId;
     }
 
-    /**
-     * @param int|null $lastMessageId
-     * @return self
-     */
     public function setLastMessageId(?int $lastMessageId): self
     {
         $this->lastMessageId = $lastMessageId;
@@ -708,18 +420,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getNotesCount(): ?int
     {
         return $this->notesCount;
     }
 
-    /**
-     * @param int|null $notesCount
-     * @return self
-     */
     public function setNotesCount(?int $notesCount): self
     {
         $this->notesCount = $notesCount;
@@ -727,18 +432,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getLastMessageTime(): int
     {
         return $this->lastMessageTime;
     }
 
-    /**
-     * @param int $lastMessageTime
-     * @return self
-     */
     public function setLastMessageTime(int $lastMessageTime): self
     {
         $this->lastMessageTime = $lastMessageTime;
@@ -746,18 +444,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getBrandId(): int
     {
         return $this->brandId;
     }
 
-    /**
-     * @param int $brandId
-     * @return self
-     */
     public function setBrandId(int $brandId): self
     {
         $this->brandId = $brandId;
@@ -765,18 +456,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getHasDraft(): bool
     {
         return $this->hasDraft;
     }
 
-    /**
-     * @param bool $hasDraft
-     * @return self
-     */
     public function setHasDraft(bool $hasDraft): self
     {
         $this->hasDraft = $hasDraft;
@@ -784,18 +468,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getResolvedTime(): ?int
     {
         return $this->resolvedTime;
     }
 
-    /**
-     * @param int|null $resolvedTime
-     * @return self
-     */
     public function setResolvedTime(?int $resolvedTime): self
     {
         $this->resolvedTime = $resolvedTime;
@@ -803,18 +480,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getNumber(): string
     {
         return $this->number;
     }
 
-    /**
-     * @param string $number
-     * @return self
-     */
     public function setNumber(string $number): self
     {
         $this->number = $number;
@@ -832,7 +502,6 @@ class Ticket extends BaseModel
 
     /**
      * @param array<mixed> $cc
-     * @return self
      */
     public function setCc(array $cc): self
     {
@@ -841,18 +510,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getMerged(): int
     {
         return $this->merged;
     }
 
-    /**
-     * @param int $merged
-     * @return self
-     */
     public function setMerged(int $merged): self
     {
         $this->merged = $merged;
@@ -860,18 +522,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDueTime(): ?int
     {
         return $this->dueTime;
     }
 
-    /**
-     * @param int|null $dueTime
-     * @return self
-     */
     public function setDueTime(?int $dueTime): self
     {
         $this->dueTime = $dueTime;
@@ -879,18 +534,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getTimeWhilePaused(): int
     {
         return $this->timeWhilePaused;
     }
 
-    /**
-     * @param int $timeWhilePaused
-     * @return self
-     */
     public function setTimeWhilePaused(int $timeWhilePaused): self
     {
         $this->timeWhilePaused = $timeWhilePaused;
@@ -898,18 +546,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getHasAttachments(): ?int
     {
         return $this->hasAttachments;
     }
 
-    /**
-     * @param int|null $hasAttachments
-     * @return self
-     */
     public function setHasAttachments(?int $hasAttachments): self
     {
         $this->hasAttachments = $hasAttachments;
@@ -917,18 +558,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -936,18 +570,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getChannelId(): int
     {
         return $this->channelId;
     }
 
-    /**
-     * @param int $channelId
-     * @return self
-     */
     public function setChannelId(int $channelId): self
     {
         $this->channelId = $channelId;
@@ -955,18 +582,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Channel|null
-     */
     public function getChannel(): ?Channel
     {
         return $this->channel;
     }
 
-    /**
-     * @param Channel|null $channel
-     * @return self
-     */
     public function setChannel(?Channel $channel): self
     {
         $this->channel = $channel;
@@ -974,18 +594,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Department|null
-     */
     public function getDepartment(): ?Department
     {
         return $this->department;
     }
 
-    /**
-     * @param Department|null $department
-     * @return self
-     */
     public function setDepartment(?Department $department): self
     {
         $this->department = $department;
@@ -1003,7 +616,6 @@ class Ticket extends BaseModel
 
     /**
      * @param Tag[]|null $tags
-     * @return self
      */
     public function setTags(?array $tags): self
     {
@@ -1012,18 +624,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return User|null
-     */
     public function getUser(): ?User
     {
         return $this->user;
     }
 
-    /**
-     * @param User|null $user
-     * @return self
-     */
     public function setUser(?User $user): self
     {
         $this->user = $user;
@@ -1031,18 +636,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * @param string $token
-     * @return self
-     */
     public function setToken(string $token): self
     {
         $this->token = $token;
@@ -1060,7 +658,6 @@ class Ticket extends BaseModel
 
     /**
      * @param Operator[]|null $watching
-     * @return self
      */
     public function setWatching(?array $watching): self
     {
@@ -1079,7 +676,6 @@ class Ticket extends BaseModel
 
     /**
      * @param Operator[]|null $assigned
-     * @return self
      */
     public function setAssigned(?array $assigned): self
     {
@@ -1088,18 +684,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Brand|null
-     */
     public function getBrand(): ?Brand
     {
         return $this->brand;
     }
 
-    /**
-     * @param Brand|null $brand
-     * @return self
-     */
     public function setBrand(?Brand $brand): self
     {
         $this->brand = $brand;
@@ -1107,18 +696,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Message|null
-     */
     public function getLastReply(): ?Message
     {
         return $this->lastReply;
     }
 
-    /**
-     * @param Message|null $lastReply
-     * @return self
-     */
     public function setLastReply(?Message $lastReply): self
     {
         $this->lastReply = $lastReply;
@@ -1126,18 +708,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return SlaPlan|null
-     */
     public function getSlaplan(): ?SlaPlan
     {
         return $this->slaplan;
     }
 
-    /**
-     * @param SlaPlan|null $slaplan
-     * @return self
-     */
     public function setSlaplan(?SlaPlan $slaplan): self
     {
         $this->slaplan = $slaplan;
@@ -1155,7 +730,6 @@ class Ticket extends BaseModel
 
     /**
      * @param TicketCustomField[]|null $customfields
-     * @return self
      */
     public function setCustomfields(?array $customfields): self
     {
@@ -1164,18 +738,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Status|null
-     */
     public function getStatus(): ?Status
     {
         return $this->status;
     }
 
-    /**
-     * @param Status|null $status
-     * @return self
-     */
     public function setStatus(?Status $status): self
     {
         $this->status = $status;
@@ -1183,18 +750,11 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Priority|null
-     */
     public function getPriority(): ?Priority
     {
         return $this->priority;
     }
 
-    /**
-     * @param Priority|null $priority
-     * @return self
-     */
     public function setPriority(?Priority $priority): self
     {
         $this->priority = $priority;
@@ -1202,16 +762,12 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFrontendUrl(): ?string
     {
         return $this->frontendUrl;
     }
 
     /**
-     * @param string $url
      * @return $this
      */
     public function setFrontendUrl(string $url): self
@@ -1221,16 +777,12 @@ class Ticket extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getOperatorUrl(): ?string
     {
         return $this->operatorUrl;
     }
 
     /**
-     * @param string $url
      * @return $this
      */
     public function setOperatorUrl(string $url): self

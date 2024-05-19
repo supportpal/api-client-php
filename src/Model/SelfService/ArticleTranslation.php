@@ -3,74 +3,43 @@
 namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class ArticleTranslation extends BaseTranslation
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string
-     * @SerializedName("text")
-     */
-    private $text;
+    #[SerializedName('text')]
+    private string $text;
 
-    /**
-     * @var string
-     * @SerializedName("title")
-     */
-    private $title;
+    #[SerializedName('title')]
+    private string $title;
 
-    /**
-     * @var string
-     * @SerializedName("plain_text")
-     */
-    private $plainText;
+    #[SerializedName('plain_text')]
+    private string $plainText;
 
-    /**
-     * @var string|null
-     * @SerializedName("keywords")
-     */
-    private $keywords;
+    #[SerializedName('keywords')]
+    private string|null $keywords;
 
-    /**
-     * @var string|null
-     * @SerializedName("excerpt")
-     */
-    private $excerpt;
+    #[SerializedName('excerpt')]
+    private string|null $excerpt;
 
-    /**
-     * @var int
-     * @SerializedName("article_id")
-     */
-    private $articleId;
+    #[SerializedName('article_id')]
+    private int $articleId;
 
-    /**
-     * @var string
-     * @SerializedName("purified_text")
-     */
-    private $purifiedText;
+    #[SerializedName('purified_text')]
+    private string $purifiedText;
 
-    /**
-     * @var string
-     * @SerializedName("slug")
-     */
-    private $slug;
+    #[SerializedName('slug')]
+    private string $slug;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
      * @return $this
      */
     public function setId(int $id): self
@@ -80,18 +49,11 @@ class ArticleTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getText(): string
     {
         return $this->text;
     }
 
-    /**
-     * @param string $text
-     * @return self
-     */
     public function setText(string $text): self
     {
         $this->text = $text;
@@ -99,18 +61,11 @@ class ArticleTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return self
-     */
     public function setTitle(string $title): self
     {
         $this->title = $title;
@@ -118,18 +73,11 @@ class ArticleTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPlainText(): string
     {
         return $this->plainText;
     }
 
-    /**
-     * @param string $plainText
-     * @return self
-     */
     public function setPlainText(string $plainText): self
     {
         $this->plainText = $plainText;
@@ -137,18 +85,11 @@ class ArticleTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getKeywords(): ?string
     {
         return $this->keywords;
     }
 
-    /**
-     * @param string|null $keywords
-     * @return self
-     */
     public function setKeywords(?string $keywords): self
     {
         $this->keywords = $keywords;
@@ -156,18 +97,11 @@ class ArticleTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getExcerpt(): ?string
     {
         return $this->excerpt;
     }
 
-    /**
-     * @param string|null $excerpt
-     * @return self
-     */
     public function setExcerpt(?string $excerpt): self
     {
         $this->excerpt = $excerpt;
@@ -175,18 +109,11 @@ class ArticleTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getArticleId(): int
     {
         return $this->articleId;
     }
 
-    /**
-     * @param int $articleId
-     * @return self
-     */
     public function setArticleId(int $articleId): self
     {
         $this->articleId = $articleId;
@@ -194,18 +121,11 @@ class ArticleTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPurifiedText(): string
     {
         return $this->purifiedText;
     }
 
-    /**
-     * @param string $purifiedText
-     * @return self
-     */
     public function setPurifiedText(string $purifiedText): self
     {
         $this->purifiedText = $purifiedText;
@@ -213,18 +133,11 @@ class ArticleTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSlug(): string
     {
         return $this->slug;
     }
 
-    /**
-     * @param string $slug
-     * @return self
-     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;

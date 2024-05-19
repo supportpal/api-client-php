@@ -3,44 +3,28 @@
 namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class CategoryTranslation extends BaseTranslation
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var int
-     * @SerializedName("category_id")
-     */
-    private $categoryId;
+    #[SerializedName('category_id')]
+    private int $categoryId;
 
-    /**
-     * @var string
-     * @SerializedName("slug")
-     */
-    private $slug;
+    #[SerializedName('slug')]
+    private string $slug;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
      * @return $this
      */
     public function setId(int $id): self
@@ -50,18 +34,11 @@ class CategoryTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -71,7 +48,6 @@ class CategoryTranslation extends BaseTranslation
 
     /**
      * @deprecated
-     * @return int
      */
     public function getTypeId(): int
     {
@@ -79,9 +55,8 @@ class CategoryTranslation extends BaseTranslation
     }
 
     /**
-     * @deprecated
      * @param int $categoryId
-     * @return self
+     *@deprecated
      */
     public function setTypeId(int $categoryId): self
     {
@@ -90,18 +65,11 @@ class CategoryTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSlug(): string
     {
         return $this->slug;
     }
 
-    /**
-     * @param string $slug
-     * @return self
-     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
@@ -112,7 +80,6 @@ class CategoryTranslation extends BaseTranslation
     /**
      * Invalid property in the model, this getter will be removed in the next major release
      * @deprecated
-     * @return string
      */
     public function getDescription(): ?string
     {
@@ -121,7 +88,6 @@ class CategoryTranslation extends BaseTranslation
 
     /**
      * Invalid property in the model, this setter will be removed in the next major release
-     * @return self
      * @deprecated
      */
     public function setDescription(): self
@@ -129,18 +95,11 @@ class CategoryTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCategoryId(): int
     {
         return $this->categoryId;
     }
 
-    /**
-     * @param int $categoryId
-     * @return CategoryTranslation
-     */
     public function setCategoryId(int $categoryId): self
     {
         $this->categoryId = $categoryId;

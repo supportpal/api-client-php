@@ -3,50 +3,31 @@
 namespace SupportPal\ApiClient\Model\User;
 
 use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class UserCustomFieldTranslation extends BaseTranslation
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var int
-     * @SerializedName("user_custom_field_id")
-     */
-    private $userCustomFieldId;
+    #[SerializedName('user_custom_field_id')]
+    private int $userCustomFieldId;
 
-    /**
-     * @var string|null
-     * @SerializedName("description")
-     */
-    private $description;
+    #[SerializedName('description')]
+    private string|null $description;
 
-    /**
-     * @var string|null
-     * @SerializedName("regex_error_message")
-     */
-    private $regexErrorMessage;
+    #[SerializedName('regex_error_message')]
+    private string|null $regexErrorMessage;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
      * @return $this
      */
     public function setId(int $id): self
@@ -56,18 +37,11 @@ class UserCustomFieldTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -75,18 +49,11 @@ class UserCustomFieldTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserCustomFieldId(): int
     {
         return $this->userCustomFieldId;
     }
 
-    /**
-     * @param int $userCustomFieldId
-     * @return self
-     */
     public function setUserCustomFieldId(int $userCustomFieldId): self
     {
         $this->userCustomFieldId = $userCustomFieldId;
@@ -94,18 +61,11 @@ class UserCustomFieldTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string|null $description
-     * @return self
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -113,18 +73,11 @@ class UserCustomFieldTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getRegexErrorMessage(): ?string
     {
         return $this->regexErrorMessage;
     }
 
-    /**
-     * @param string|null $regexErrorMessage
-     * @return self
-     */
     public function setRegexErrorMessage(?string $regexErrorMessage): self
     {
         $this->regexErrorMessage = $regexErrorMessage;

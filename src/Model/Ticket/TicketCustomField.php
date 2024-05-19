@@ -4,46 +4,29 @@ namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Department\Department;
 use SupportPal\ApiClient\Model\Shared\CustomField;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class TicketCustomField extends CustomField
 {
-    /**
-     * @var int|null
-     * @SerializedName("purge")
-     */
-    private $purge;
+    #[SerializedName('purge')]
+    private int|null $purge;
 
-    /**
-     * @var Department[]|null
-     * @SerializedName("departments")
-     */
-    private $departments;
+    /** @var Department[]|null */
+    #[SerializedName('departments')]
+    private array|null $departments;
 
-    /**
-     * @var int|null
-     * @SerializedName("ticket_id")
-     */
-    private $ticketId;
+    #[SerializedName('ticket_id')]
+    private int|null $ticketId;
 
-    /**
-     * @var TicketCustomFieldTranslation[]|null
-     * @SerializedName("translations")
-     */
-    private $translations;
+    /** @var TicketCustomFieldTranslation[]|null */
+    #[SerializedName('translations')]
+    private array|null $translations;
 
-    /**
-     * @return int|null
-     */
     public function getPurge(): ?int
     {
         return $this->purge;
     }
 
-    /**
-     * @param int|null $purge
-     * @return self
-     */
     public function setPurge(?int $purge): self
     {
         $this->purge = $purge;
@@ -61,7 +44,6 @@ class TicketCustomField extends CustomField
 
     /**
      * @param Department[]|null $departments
-     * @return self
      */
     public function setDepartments(?array $departments): self
     {
@@ -70,18 +52,11 @@ class TicketCustomField extends CustomField
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTicketId(): ?int
     {
         return $this->ticketId;
     }
 
-    /**
-     * @param int|null $ticketId
-     * @return TicketCustomField
-     */
     public function setTicketId(?int $ticketId): self
     {
         $this->ticketId = $ticketId;
@@ -99,7 +74,6 @@ class TicketCustomField extends CustomField
 
     /**
      * @param TicketCustomFieldTranslation[]|null $translations
-     * @return self
      */
     public function setTranslations(?array $translations): self
     {
