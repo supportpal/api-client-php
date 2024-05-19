@@ -31,7 +31,7 @@ abstract class BaseModel implements Model
     use StringHelper;
 
     /** @var array<mixed>|null */
-    #[\Symfony\Component\Serializer\Attribute\SerializedName('pivot')]
+    #[SerializedName('pivot')]
     private ?array $pivot;
 
     /**
