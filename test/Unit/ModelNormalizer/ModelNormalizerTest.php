@@ -14,6 +14,7 @@ use SupportPal\ApiClient\Tests\TestCase;
 use SupportPal\ApiClient\Transformer\AttributeAwareTransformer;
 use SupportPal\ApiClient\Transformer\Transformer;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Class ModelNormalizerTest
@@ -27,8 +28,8 @@ class ModelNormalizerTest extends TestCase
     /** @var ObjectProphecy|Transformer */
     private $transformer;
 
-    /** @var ObjectProphecy|AbstractObjectNormalizer */
-    private $objectNormalizer;
+    /** @var ObjectProphecy|NormalizerInterface */
+    private $normalizer;
 
     /** @var ModelNormalizer */
     private $modelNormalizer;
@@ -54,7 +55,7 @@ class ModelNormalizerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->objectNormalizer = $this->prophesize(AbstractObjectNormalizer::class);
+        $this->normalizer = $this->prophesize(NormalizerInterface::class);
         $this->transformer = $this->prophesize(Transformer::class);
         $this->attributeAwareTransformer = $this->prophesize(AttributeAwareTransformer::class);
 
@@ -65,7 +66,7 @@ class ModelNormalizerTest extends TestCase
         $this->transformedOutput = ['test' => '5', 'test2' => '6', 'test3' => '7',];
 
         /** @var AbstractObjectNormalizer $objectNormalizer */
-        $objectNormalizer = $this->objectNormalizer->reveal();
+        $objectNormalizer = $this->normalizer->reveal();
         /** @var Transformer $transformer */
         $transformer = $this->transformer->reveal();
         /** @var AttributeAwareTransformer $transformer */
@@ -80,7 +81,7 @@ class ModelNormalizerTest extends TestCase
 
     public function testNormalizeTransformAll(): void
     {
-        $this->objectNormalizer
+        $this->normalizer
             ->normalize($this->object, $this->format, $this->context)
             ->shouldBeCalled()
             ->willReturn($this->inputData);
@@ -101,7 +102,7 @@ class ModelNormalizerTest extends TestCase
      */
     public function testSupportsNormalization(mixed $data, bool $objectNormalizerSupports, bool $expectation): void
     {
-        $objectNormalizerExpectation = $this->objectNormalizer
+        $objectNormalizerExpectation = $this->normalizer
             ->supportsNormalization($data, $this->format)
             ->willReturn($objectNormalizerSupports);
 
@@ -113,7 +114,7 @@ class ModelNormalizerTest extends TestCase
             $objectNormalizerExpectation->shouldBeCalled();
         }
 
-        $this->objectNormalizer
+        $this->normalizer
             ->supportsNormalization($data, $this->format)
             ->willReturn($objectNormalizerSupports);
 
@@ -133,7 +134,7 @@ class ModelNormalizerTest extends TestCase
 
     public function testNormalizeTransformNone(): void
     {
-        $this->objectNormalizer
+        $this->normalizer
             ->normalize($this->object, $this->format, $this->context)
             ->shouldBeCalled()
             ->willReturn($this->inputData);
@@ -154,7 +155,7 @@ class ModelNormalizerTest extends TestCase
      */
     public function testSupportsDenormalization(mixed $data, bool $objectNormalizerSupports): void
     {
-        $this->objectNormalizer
+        $this->normalizer
             ->supportsDenormalization($data, Model::class, $this->format)
             ->willReturn($objectNormalizerSupports)
             ->shouldBeCalled();
@@ -178,7 +179,7 @@ class ModelNormalizerTest extends TestCase
     public function testDenormalize(): void
     {
         $this
-            ->objectNormalizer
+            ->normalizer
             ->denormalize($this->inputData, Model::class, $this->format, $this->context)
             ->shouldBeCalled()
             ->willReturn($this->object);
