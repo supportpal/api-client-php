@@ -8,29 +8,29 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class Tag extends BaseModel
 {
     #[SerializedName('updated_at')]
-     private int $updatedAt;
+    private int $updatedAt;
 
     #[SerializedName('id')]
-     private int $id;
+    private int $id;
 
     #[SerializedName('created_at')]
-     private int $createdAt;
+    private int $createdAt;
 
     #[SerializedName('name')]
-     private string $name;
+    private string $name;
 
     #[SerializedName('colour')]
-     private string $colour;
+    private string $colour;
 
     #[SerializedName('colour_text')]
-     private string $colourText;
+    private string $colourText;
 
     #[SerializedName('original_name')]
-     private string $originalName;
+    private string $originalName;
 
     /** @var TagTranslation[]|null */
     #[SerializedName('translations')]
-     private array|null $translations;
+    private array|null $translations;
 
     public function getUpdatedAt(): int
     {

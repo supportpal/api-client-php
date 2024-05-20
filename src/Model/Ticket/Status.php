@@ -8,35 +8,35 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class Status extends BaseModel
 {
     #[SerializedName('colour')]
-     private string $colour;
+    private string $colour;
 
     #[SerializedName('id')]
-     private int $id;
+    private int $id;
 
     #[SerializedName('created_at')]
-     private int $createdAt;
+    private int $createdAt;
 
     #[SerializedName('order')]
-     private int|null $order;
+    private int|null $order;
 
     #[SerializedName('name')]
-     private string $name;
+    private string $name;
 
     #[SerializedName('updated_at')]
-     private int $updatedAt;
+    private int $updatedAt;
 
     #[SerializedName('icon_without_tooltip')]
-     private string $iconWithoutTooltip;
+    private string $iconWithoutTooltip;
 
     #[SerializedName('icon')]
-     private string $icon;
+    private string $icon;
 
     #[SerializedName('auto_close')]
-     private bool $autoClose;
+    private bool $autoClose;
 
     /** @var StatusTranslation[]|null */
     #[SerializedName('translations')]
-     private array|null $translations;
+    private array|null $translations;
 
     public function getColour(): string
     {
