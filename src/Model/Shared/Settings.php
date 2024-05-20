@@ -21,7 +21,7 @@ class Settings implements SettingsModel
     /**
      * @inheritDoc
      */
-    public function get(string $name, $default = null): ?string
+    public function get(string $name, mixed $default = null): ?string
     {
         return $this->settings[$name] ?? $default;
     }
