@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Api\Ticket;
 
+use Error;
 use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\ApiClient\TicketApiClient;
@@ -10,10 +11,10 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Ticket\Attachment;
-use SupportPal\ApiClient\Model\Ticket\Ticket;
 use TypeError;
 
 use function array_map;
+use function sprintf;
 
 trait AttachmentApis
 {
