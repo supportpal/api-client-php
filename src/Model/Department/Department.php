@@ -75,7 +75,7 @@ class Department extends BaseModel
     #[SerializedName('translations')]
     private ?array $translations;
 
-    private ?Department $parent;
+    private ?Department $parent = null;
 
     public function getDisableUserEmailReplies(): bool
     {

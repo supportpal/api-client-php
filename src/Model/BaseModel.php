@@ -32,7 +32,7 @@ abstract class BaseModel implements Model
 
     /** @var array<mixed>|null */
     #[SerializedName('pivot')]
-    private ?array $pivot;
+    private ?array $pivot = null;
 
     /**
      * @inheritDoc

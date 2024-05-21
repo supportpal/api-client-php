@@ -9,18 +9,18 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class TicketCustomField extends CustomField
 {
     #[SerializedName('purge')]
-    private int|null $purge;
+    private int|null $purge = null;
 
     /** @var Department[]|null */
     #[SerializedName('departments')]
-    private array|null $departments;
+    private array|null $departments = null;
 
     #[SerializedName('ticket_id')]
-    private int|null $ticketId;
+    private int|null $ticketId = null;
 
     /** @var TicketCustomFieldTranslation[]|null */
     #[SerializedName('translations')]
-    private array|null $translations;
+    private array|null $translations = null;
 
     public function getPurge(): ?int
     {

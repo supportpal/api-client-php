@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class UserCustomField extends CustomField
 {
     #[SerializedName('user_id')]
-    private int|null $userId;
+    private int|null $userId = null;
 
     /** @var UserCustomFieldTranslation[]|null */
     #[SerializedName('translations')]

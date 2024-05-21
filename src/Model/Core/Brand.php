@@ -135,10 +135,10 @@ class Brand extends BaseModel
     private ?array $translations;
 
     #[SerializedName('smtp_auth_mech')]
-    private ?string $smtpAuthMech;
+    private ?string $smtpAuthMech = null;
 
     #[SerializedName('smtp_oauth')]
-    private ?string $smtpOauth;
+    private ?string $smtpOauth = null;
 
     public function getOperatorTemplate(): ?string
     {

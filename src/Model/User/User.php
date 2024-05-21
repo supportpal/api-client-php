@@ -21,7 +21,7 @@ class User extends BaseModel
 
     /** @deprecated Use email_verified */
     #[SerializedName('confirmed')]
-    private ?bool $confirmed;
+    private ?bool $confirmed = null;
 
     #[SerializedName('email_verified')]
     private bool|null $emailVerified;
@@ -81,7 +81,7 @@ class User extends BaseModel
     private int $createdAt;
 
     #[SerializedName('twitter_id')]
-    private int|null $twitterId;
+    private int|null $twitterId = null;
 
     #[SerializedName('twofa_secret')]
     private string|null $twofaSecret;
@@ -90,21 +90,21 @@ class User extends BaseModel
     private int $role;
 
     #[SerializedName('formatted_name')]
-    private string|null $formattedName;
+    private string|null $formattedName = null;
 
     #[SerializedName('avatar_url')]
-    private string|null $avatarUrl;
+    private string|null $avatarUrl = null;
 
     #[SerializedName('organisation')]
-    private Organisation|null $organisation;
+    private Organisation|null $organisation = null;
 
     /** @var UserCustomField[]|null */
     #[SerializedName('customfields')]
-    private array|null $customfields;
+    private array|null $customfields = null;
 
     /** @var Group[]|null */
     #[SerializedName('groups')]
-    private array|null $groups;
+    private array|null $groups = null;
 
     public function getTwofaToken(): ?string
     {

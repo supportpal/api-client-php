@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Api\User;
 
+use Error;
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
@@ -14,6 +15,7 @@ use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 use TypeError;
 
 use function array_map;
+use function sprintf;
 
 trait UserApis
 {
@@ -59,6 +61,12 @@ trait UserApis
             $userId = $user->getId();
         } catch (TypeError $typeError) {
             throw new MissingIdentifierException('missing user identifier');
+        } catch (Error $error) {
+            if ($error->getMessage() === sprintf('Typed property %s::$id must not be accessed before initialization', User::class)) {
+                throw new MissingIdentifierException('missing user identifier');
+            }
+
+            throw $error;
         }
 
         $response = $this->getApiClient()->updateUser($userId, $data);

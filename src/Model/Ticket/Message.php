@@ -15,7 +15,7 @@ class Message extends BaseModel
     ];
 
     #[SerializedName('user_id')]
-    private int|null $userId;
+    private int|null $userId = null;
 
     #[SerializedName('id')]
     private int $id;
@@ -33,40 +33,40 @@ class Message extends BaseModel
     private int $ticketId;
 
     #[SerializedName('channel_id')]
-    private int|null $channelId;
+    private int|null $channelId = null;
 
     #[SerializedName('user_ip_address')]
-    private string|null $userIpAddress;
+    private string|null $userIpAddress = null;
 
     #[SerializedName('by')]
-    private int|null $by;
+    private int|null $by = null;
 
     #[SerializedName('excerpt')]
-    private string|null $excerpt;
+    private string|null $excerpt = null;
 
     #[SerializedName('type')]
-    private int|null $type;
+    private int|null $type = null;
 
     #[SerializedName('extra')]
-    private Extra|null $extra;
+    private Extra|null $extra = null;
 
     #[SerializedName('user_name')]
-    private string|null $userName;
+    private string|null $userName = null;
 
     #[SerializedName('updated_at')]
-    private int|null $updatedAt;
+    private int|null $updatedAt = null;
 
     #[SerializedName('is_draft')]
-    private bool|null $isDraft;
+    private bool|null $isDraft = null;
 
     #[SerializedName('text')]
     private string $text;
 
     /** @var Attachment[]|null */
     #[SerializedName('attachments')]
-    private array|null $attachments;
+    private array|null $attachments = null;
 
-    private ?User $user;
+    private ?User $user = null;
 
     public function getUserId(): ?int
     {

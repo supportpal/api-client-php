@@ -45,7 +45,7 @@ class Category extends BaseModel
     private array|null $translations;
 
     #[SerializedName('pinned')]
-    private int|null $pinned;
+    private int|null $pinned = null;
 
     public function getId(): int
     {

@@ -82,10 +82,10 @@ abstract class CustomField extends BaseModel
     private ?array $brands;
 
     #[SerializedName('field_id')]
-    private int|null $fieldId;
+    private int|null $fieldId = null;
 
     #[SerializedName('value')]
-    private string|null $value;
+    private string|null $value = null;
 
     public function getRegexErrorMessage(): ?string
     {

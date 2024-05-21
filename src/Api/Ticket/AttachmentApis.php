@@ -10,6 +10,7 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Ticket\Attachment;
+use SupportPal\ApiClient\Model\Ticket\Ticket;
 use TypeError;
 
 use function array_map;
@@ -57,6 +58,12 @@ trait AttachmentApis
             $attachmentId = $attachment->getId();
         } catch (TypeError $typeError) {
             throw new MissingIdentifierException('missing attachment identifier');
+        } catch (Error $error) {
+            if ($error->getMessage() === sprintf('Typed property %s::$id must not be accessed before initialization', Attachment::class)) {
+                throw new MissingIdentifierException('missing attachment identifier');
+            }
+
+            throw $error;
         }
 
         return $this->getApiClient()->downloadAttachment($attachmentId)->getBody();

@@ -78,7 +78,7 @@ class Article extends BaseModel
     private array|null $attachments;
 
     #[SerializedName('views')]
-    private int|null $views;
+    private int|null $views = null;
 
     /** @var Tag[]|null */
     #[SerializedName('tags')]
@@ -89,10 +89,10 @@ class Article extends BaseModel
     private array|null $translations;
 
     #[SerializedName('positive_rating')]
-    private int|null $positiveRating;
+    private int|null $positiveRating = null;
 
     #[SerializedName('total_rating')]
-    private int|null $totalRating;
+    private int|null $totalRating = null;
 
     public function getId(): int
     {

@@ -2,11 +2,14 @@
 
 namespace SupportPal\ApiClient\Transformer;
 
+use Error;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\SettingsModel;
 use TypeError;
 
 use function get_class_methods;
+use function sprintf;
+use function str_contains;
 use function substr;
 
 class EmptyModelToNullTransformer implements Transformer
@@ -31,9 +34,15 @@ class EmptyModelToNullTransformer implements Transformer
                 }
             } catch (TypeError $typeError) {
                 /**
-                 * non-nullable field not initiated
+                 * non-nullable field not initiated (i.e Error: Typed property not initialized)
                  */
                 continue;
+            } catch (Error $error) {
+                if (str_contains($error->getMessage(), sprintf('must not be accessed before initialization'))) {
+                    continue;
+                }
+
+                throw $error;
             }
         }
 

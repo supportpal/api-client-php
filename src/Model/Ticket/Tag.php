@@ -30,7 +30,7 @@ class Tag extends BaseModel
 
     /** @var TagTranslation[]|null */
     #[SerializedName('translations')]
-    private array|null $translations;
+    private array|null $translations = null;
 
     public function getUpdatedAt(): int
     {

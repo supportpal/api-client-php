@@ -13,7 +13,9 @@ use SupportPal\ApiClient\Normalizer\ModelNormalizer;
 use SupportPal\ApiClient\Tests\TestCase;
 use SupportPal\ApiClient\Transformer\AttributeAwareTransformer;
 use SupportPal\ApiClient\Transformer\Transformer;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
@@ -28,7 +30,7 @@ class ModelNormalizerTest extends TestCase
     /** @var ObjectProphecy|Transformer */
     private $transformer;
 
-    /** @var ObjectProphecy|NormalizerInterface */
+    /** @var ObjectProphecy|AbstractNormalizer */
     private $normalizer;
 
     /** @var ModelNormalizer */
@@ -55,7 +57,7 @@ class ModelNormalizerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->normalizer = $this->prophesize(NormalizerInterface::class);
+        $this->normalizer = $this->prophesize(AbstractNormalizer::class);
         $this->transformer = $this->prophesize(Transformer::class);
         $this->attributeAwareTransformer = $this->prophesize(AttributeAwareTransformer::class);
 

@@ -37,7 +37,7 @@ class Upload extends BaseModel
     private int $updatedAt;
 
     #[SerializedName('session_id')]
-    private ?string $sessionId;
+    private ?string $sessionId = null;
 
     public function getId(): int
     {

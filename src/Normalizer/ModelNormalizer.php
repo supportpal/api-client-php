@@ -30,7 +30,7 @@ class ModelNormalizer implements NormalizerInterface, DenormalizerInterface
      * @param AttributeAwareTransformer[] $attributeAwareTransformers
      */
     public function __construct(
-        NormalizerInterface $normalizer,
+        NormalizerInterface&DenormalizerInterface $normalizer,
         iterable $transformers,
         iterable $attributeAwareTransformers
     ) {
