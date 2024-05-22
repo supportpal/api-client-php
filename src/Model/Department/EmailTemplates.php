@@ -67,6 +67,7 @@ class EmailTemplates extends BaseModel
     {
         return $this->operatorInternalOpened;
     }
+
     public function getUserTicketLocked(): int
     {
         return $this->userTicketLocked;
