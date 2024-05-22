@@ -1,6 +1,5 @@
 imports:
     - { resource: factories.yml }
-    - { resource: library_services.yml }
     - { resource: core_services.yml }
     - { resource: api.yml }
     - { resource: api_client.yml }
@@ -14,25 +13,6 @@ services:
         autowire: true
         autoconfigure: true
         public: false
-
-    SupportPal\ApiClient\Normalizer\ModelNormalizer:
-        arguments:
-            $normalizer: '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer'
-            $transformers: !tagged transformer.field_transformer
-            $attributeAwareTransformers: !tagged attribute_aware_transformer.field_transformer
-        tags: [ 'serializer.normalizer' ]
-
-    SupportPal\ApiClient\Transformer\StringTrimTransformer:
-        tags: [ 'transformer.field_transformer' ]
-
-    SupportPal\ApiClient\Transformer\EmptyModelToNullTransformer:
-        tags: [ 'transformer.field_transformer' ]
-
-    SupportPal\ApiClient\Transformer\BooleanToIntTransformer:
-        tags: [ 'transformer.field_transformer' ]
-
-    SupportPal\ApiClient\Transformer\IntToBooleanTransformer:
-        tags: [ 'attribute_aware_transformer.field_transformer' ]
 
 
 

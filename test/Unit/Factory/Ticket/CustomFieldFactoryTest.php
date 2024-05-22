@@ -45,10 +45,6 @@ class CustomFieldFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelFactory(): ModelFactory
     {
-        return new CustomFieldFactory(
-            $this->format,
-            $this->getSerializer(),
-            $this->getEncoder()
-        );
+        return new CustomFieldFactory;
     }
 }

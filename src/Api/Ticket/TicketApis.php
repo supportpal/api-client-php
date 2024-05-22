@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Api\Ticket;
 
-use Error;
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
@@ -11,11 +10,8 @@ use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
 use SupportPal\ApiClient\Model\Ticket\Ticket;
-use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
-use TypeError;
 
 use function array_map;
-use function sprintf;
 
 trait TicketApis
 {
@@ -57,19 +53,11 @@ trait TicketApis
      */
     public function updateTicket(Ticket $ticket, array $data): Ticket
     {
-        try {
-            $ticketId = $ticket->getId();
-        } catch (TypeError $typeError) {
+        if (! isset($ticket->id)) {
             throw new MissingIdentifierException('missing ticket identifier');
-        } catch (Error $error) {
-            if ($error->getMessage() === sprintf('Typed property %s::$id must not be accessed before initialization', Ticket::class)) {
-                throw new MissingIdentifierException('missing ticket identifier');
-            }
-
-            throw $error;
         }
 
-        $response = $this->getApiClient()->updateTicket($ticketId, $data);
+        $response = $this->getApiClient()->updateTicket($ticket->id, $data);
 
         return $this->createTicket($this->decodeBody($response)['data']);
     }
@@ -78,21 +66,10 @@ trait TicketApis
      * @param CreateTicket $createTicket
      * @return Ticket
      * @throws HttpResponseException
-     * @throws InvalidArgumentException
      */
     public function postTicket(CreateTicket $createTicket): Ticket
     {
-        try {
-            $ticketArray = $this->getModelToArrayConverter()->convertOne($createTicket);
-        } catch (UninitializedPropertyException $exception) {
-            throw new InvalidArgumentException(
-                $exception->getMessage(),
-                $exception->getCode(),
-                $exception->getPrevious()
-            );
-        }
-
-        $response = $this->getApiClient()->postTicket($ticketArray);
+        $response = $this->getApiClient()->postTicket($createTicket->toArray());
 
         return $this->createTicket($this->decodeBody($response)['data']);
     }

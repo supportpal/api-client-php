@@ -13,6 +13,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 
 use function base64_encode;
 use function current;
+use function json_encode;
 
 /**
  * Class SupportPalTest
@@ -30,7 +31,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
         $response = new Response(
             200,
             [],
-            (string) $this->getEncoder()->encode((new CommentData)->getResponse(), $this->getFormatType())
+            (string) json_encode((new CommentData)->getResponse())
         );
         $this->appendRequestResponse($response);
         $request = $this->getSupportPal()->getRequestFactory()->create('GET', 'test_endpoint');
@@ -43,7 +44,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
         $response = new Response(
             200,
             [],
-            (string) $this->getEncoder()->encode($this->genericErrorResponse, $this->getFormatType())
+            (string) json_encode($this->genericErrorResponse)
         );
         $this->appendRequestResponse($response);
         $request = $this->getSupportPal()->getRequestFactory()->create('GET', 'test_endpoint');

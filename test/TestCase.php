@@ -30,8 +30,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function assertArrayEqualsObjectFields(object $obj, array $array): void
     {
         foreach ($array as $key => $value) {
-            $method = 'get'.$this->snakeCaseToPascalCase($key);
-            $attributeValue = $obj->{$method}();
+            $attributeValue = $obj->{$key};
             /**
              * assert against nested objects recursively
              * @example
@@ -103,11 +102,11 @@ class TestCase extends \PHPUnit\Framework\TestCase
             return;
         }
 
-        if ($models instanceof Model) {
-            $this->assertArrayEqualsObjectFields($models, $data['data']);
-
+        if (! ($models instanceof Model)) {
             return;
         }
+
+        $this->assertArrayEqualsObjectFields($models, $data['data']);
     }
 
     /**

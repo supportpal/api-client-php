@@ -2,14 +2,14 @@
 
 namespace SupportPal\ApiClient\Factory\Ticket;
 
-use SupportPal\ApiClient\Factory\BaseModelFactory;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\Department\Department;
 
 /**
  * Class DepartmentFactory
  * @package SupportPal\ApiClient\Factory\Ticket
  */
-class DepartmentFactory extends BaseModelFactory
+class DepartmentFactory extends ModelFactory
 {
     /**
      * @inheritDoc

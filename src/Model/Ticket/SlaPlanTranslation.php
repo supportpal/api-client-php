@@ -2,71 +2,15 @@
 
 namespace SupportPal\ApiClient\Model\Ticket;
 
-use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Attribute\SerializedName;
+use SupportPal\ApiClient\Model\Translation;
 
-class SlaPlanTranslation extends BaseTranslation
+class SlaPlanTranslation extends Translation
 {
-    #[SerializedName('id')]
-    private int $id;
-
-    #[SerializedName('sla_plan_id')]
-    private int $slaPlanId;
-
-    #[SerializedName('name')]
-    private string|null $name;
-
-    #[SerializedName('description')]
-    private string|null $description;
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    public function getSlaPlanId(): int
-    {
-        return $this->slaPlanId;
-    }
-
-    public function setSlaPlanId(int $slaPlanId): self
-    {
-        $this->slaPlanId = $slaPlanId;
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+    /** @var array<string,string> */
+    protected $casts = [
+        'id'          => 'int',
+        'sla_plan_id' => 'int',
+        'name'        => 'string',
+        'description' => 'string',
+    ];
 }

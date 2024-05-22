@@ -21,11 +21,7 @@ class CategoryFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelFactory(): ModelFactory
     {
-        return new CategoryFactory(
-            $this->format,
-            $this->getSerializer(),
-            $this->getEncoder()
-        );
+        return new CategoryFactory;
     }
 
     /**

@@ -4,7 +4,6 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
 use SupportPal\ApiClient\Api\TicketApi;
 use SupportPal\ApiClient\ApiClient\TicketApiClient;
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Ticket\Message;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateMessage;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
@@ -63,10 +62,8 @@ class MessageApisTest extends ApiTest
         $messageData = new MessageData;
         $arrayData = $messageData->getArrayData();
 
-        [$response, $messageMock, $messageOutput] = $this->postCommonExpectations(
+        [$response, $messageOutput] = $this->postCommonExpectations(
             $messageData->getResponse(),
-            $arrayData,
-            CreateMessage::class,
             Message::class
         );
 
@@ -76,16 +73,8 @@ class MessageApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $message = $this->api->postMessage($messageMock);
+        $message = $this->api->postMessage(new CreateMessage($arrayData));
         self::assertSame($messageOutput->reveal(), $message);
-    }
-
-    public function testPostWithIncompleteData(): void
-    {
-        /** @var CreateMessage $messageMock */
-        $messageMock = $this->postIncompleteDataCommonExpectations(CreateMessage::class);
-        self::expectException(InvalidArgumentException::class);
-        $this->api->postMessage($messageMock);
     }
 
     /**

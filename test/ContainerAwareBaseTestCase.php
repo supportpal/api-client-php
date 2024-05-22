@@ -16,10 +16,8 @@ use SupportPal\ApiClient\SupportPal;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\Serializer\Encoder\DecoderInterface;
-use Symfony\Component\Serializer\Encoder\EncoderInterface;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
+use function json_decode;
 use function json_encode;
 
 /**
@@ -119,41 +117,6 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     }
 
     /**
-     * @return EncoderInterface
-     * @throws Exception
-     */
-    protected function getEncoder(): EncoderInterface
-    {
-        /** @var EncoderInterface $encoder */
-        $encoder = $this->container->get(JsonEncoder::class);
-
-        return $encoder;
-    }
-
-    /**
-     * @return DecoderInterface
-     * @throws Exception
-     */
-    protected function getDecoder(): DecoderInterface
-    {
-        /** @var DecoderInterface $decoder */
-        $decoder = $this->container->get(JsonEncoder::class);
-
-        return $decoder;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getFormatType(): string
-    {
-        /** @var string $contentType */
-        $contentType = $this->container->getParameter('contentType');
-
-        return $contentType;
-    }
-
-    /**
      * @param Response $response
      */
     protected function appendRequestResponse(Response $response): void
@@ -180,7 +143,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         $this->appendRequestResponse($response);
         self::expectException(HttpResponseException::class);
         self::expectExceptionMessage(
-            $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())['message']
+            json_decode((string) $response->getBody(), true)['message']
         );
     }
 

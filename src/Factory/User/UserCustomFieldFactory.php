@@ -2,10 +2,10 @@
 
 namespace SupportPal\ApiClient\Factory\User;
 
-use SupportPal\ApiClient\Factory\BaseModelFactory;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\User\UserCustomField;
 
-class UserCustomFieldFactory extends BaseModelFactory
+class UserCustomFieldFactory extends ModelFactory
 {
     /**
      * @inheritDoc

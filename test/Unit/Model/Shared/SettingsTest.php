@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model\Shared;
 
-use SupportPal\ApiClient\Model\SettingsModel;
+use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\TestCase;
@@ -14,7 +14,7 @@ class SettingsTest extends TestCase
         $model = $this->getModel();
         $modelData = $this->getModelData();
         $model->fill($modelData);
-        self::assertSame($model->all(), $modelData);
+        self::assertSame($model->toArray(), $modelData);
     }
 
     /**
@@ -26,9 +26,9 @@ class SettingsTest extends TestCase
     }
 
     /**
-     * @return SettingsModel
+     * @return Model
      */
-    protected function getModel(): SettingsModel
+    protected function getModel(): Model
     {
         return new Settings;
     }

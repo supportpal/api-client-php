@@ -5,8 +5,7 @@ services:
         public: false
 
     SupportPal\ApiClient\Api\Api:
-        arguments:
-            $formatType: '%contentType%'
+        public: true
 
     SupportPal\ApiClient\Api\CoreApi:
         public: true

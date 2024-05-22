@@ -45,10 +45,6 @@ class AttachmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelFactory(): ModelFactory
     {
-        return new AttachmentFactory(
-            $this->format,
-            $this->getSerializer(),
-            $this->getEncoder()
-        );
+        return new AttachmentFactory;
     }
 }

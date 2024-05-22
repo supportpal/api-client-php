@@ -16,10 +16,7 @@ use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
 use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
-use Symfony\Component\Serializer\Encoder\DecoderInterface;
-use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 
-use function json_decode;
 use function json_encode;
 
 /**
@@ -47,33 +44,22 @@ class ApiClientTest extends TestCase
     /** @var ApiClient */
     protected $apiClient;
 
-    /** @var ObjectProphecy|DecoderInterface */
-    protected $decoder;
-
-    /** @var string */
-    protected $formatType = 'json';
-
     protected function setUp(): void
     {
         parent::setUp();
         $this->httpClient = $this->prophesize(ClientInterface::class);
         $this->requestFactory = $this->prophesize(RequestFactory::class);
-        $this->decoder = $this->prophesize(DecoderInterface::class);
 
         /** @var Client $httpClient */
         $httpClient = $this->httpClient->reveal();
         /** @var RequestFactory $requestFactory */
         $requestFactory = $this->requestFactory->reveal();
-        /** @var DecoderInterface $decoder */
-        $decoder = $this->decoder->reveal();
 
         $apiClassName = $this->getApiClientName();
 
         $this->apiClient = new $apiClassName(
             $httpClient,
             $requestFactory,
-            $decoder,
-            'json'
         );
     }
 
@@ -106,11 +92,6 @@ class ApiClientTest extends TestCase
             ->shouldBeCalled();
 
         $response->getBody()->willReturn('');
-
-        $this->decoder
-            ->decode('', $this->formatType)
-            ->shouldBeCalled()
-            ->willThrow(NotEncodableValueException::class);
 
         /** @var RequestInterface $requestMock */
         $requestMock = $request->reveal();
@@ -182,11 +163,6 @@ class ApiClientTest extends TestCase
         $response->getStatusCode()->willReturn($statusCode);
         $response->getBody()->willReturn($responseBody);
         $this->httpClient->sendRequest($request->reveal())->shouldBeCalled()->willReturn($response->reveal());
-        $this
-            ->decoder
-            ->decode($responseBody, $this->formatType)
-            ->shouldBeCalled()
-            ->willReturn(json_decode($responseBody, true));
 
         return $response;
     }

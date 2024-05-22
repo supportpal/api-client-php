@@ -8,7 +8,6 @@ services:
         public: true
         arguments:
             $httpClient: '@GuzzleHttp\Client'
-            $formatType: '%contentType%'
 
     SupportPal\ApiClient\ApiClient\CoreApiClient:
         parent: 'SupportPal\ApiClient\ApiClient'

@@ -55,9 +55,11 @@ class CollectionTest extends TestCase
 
         /** @var Comment $firstModel */
         $firstModel = current($models);
-        $name = $firstModel->getName() . 'test';
+        $name = $firstModel->name . 'test';
         $mappedCollection = $collection->map(function (Comment $comment) use ($name) {
-            return $comment->setName($name);
+            $comment->name = $name;
+
+            return $comment;
         });
 
         self::assertNotSame($collection, $mappedCollection);
@@ -67,7 +69,7 @@ class CollectionTest extends TestCase
 
         /** @var Comment $model */
         foreach ($mappedCollection->getModels() as $model) {
-            self::assertSame($name, $model->getName());
+            self::assertSame($name, $model->name);
         }
     }
 
@@ -79,10 +81,10 @@ class CollectionTest extends TestCase
 
         /** @var Comment $firstModel */
         $firstModel = current($models);
-        $name = $firstModel->getName() . 'test';
+        $name = $firstModel->name . 'test';
 
         $mappedCollection = $collection->filter(function (Comment $comment) use ($name) {
-            return $comment->getName() === $name;
+            return $comment->name === $name;
         });
 
         self::assertNotSame($collection, $mappedCollection);

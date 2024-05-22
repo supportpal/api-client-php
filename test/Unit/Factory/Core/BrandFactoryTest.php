@@ -40,10 +40,6 @@ class BrandFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelFactory(): ModelFactory
     {
-        return new BrandFactory(
-            $this->format,
-            $this->getSerializer(),
-            $this->getEncoder()
-        );
+        return new BrandFactory;
     }
 }

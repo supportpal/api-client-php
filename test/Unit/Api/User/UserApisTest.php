@@ -4,7 +4,6 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
 use SupportPal\ApiClient\Api\UserApi;
 use SupportPal\ApiClient\ApiClient\UserApiClient;
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Model\User\User;
@@ -61,10 +60,8 @@ class UserApisTest extends ApiTest
         $userData = new UserData;
         $createUserData = new CreateUserData;
         $arrayData = $createUserData::DATA;
-        [$response, $userMock, $userOutput] = $this->postCommonExpectations(
+        [$response, $userOutput] = $this->postCommonExpectations(
             $userData->getResponse(),
-            $arrayData,
-            CreateUser::class,
             User::class
         );
 
@@ -74,23 +71,15 @@ class UserApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $user = $this->api->postUser($userMock);
+        $user = $this->api->postUser(new CreateUser($arrayData));
         self::assertSame($userOutput->reveal(), $user);
-    }
-
-    public function testPostWithIncompleteData(): void
-    {
-        /** @var CreateUser $user */
-        $user = $this->postIncompleteDataCommonExpectations(CreateUser::class);
-        self::expectException(InvalidArgumentException::class);
-        $this->api->postUser($user);
     }
 
     public function testPutUser(): void
     {
         $userData = new UserData;
 
-        [$response, $inputMock, $output] = $this->putCommonExpectations(
+        [$response, $output] = $this->putCommonExpectations(
             User::class,
             $userData->getResponse()
         );
@@ -101,7 +90,7 @@ class UserApisTest extends ApiTest
             ->willReturn($response->reveal())
             ->shouldBeCalled();
 
-        $user = $this->api->updateUser($inputMock, $userData->getArrayData());
+        $user = $this->api->updateUser(new User(['id' => self::TEST_ID]), $userData->getArrayData());
         self::assertSame($output->reveal(), $user);
     }
 
@@ -109,7 +98,6 @@ class UserApisTest extends ApiTest
     {
         $userData = new UserData;
         $input = $this->prophesize(User::class);
-        $input->getId()->willReturn(null)->shouldBeCalled();
         self::expectException(MissingIdentifierException::class);
         /** @var User $user */
         $user = $input->reveal();

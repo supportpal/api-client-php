@@ -2,10 +2,10 @@
 
 namespace SupportPal\ApiClient\Factory\Ticket;
 
-use SupportPal\ApiClient\Factory\BaseModelFactory;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\Ticket\Message;
 
-class MessageFactory extends BaseModelFactory
+class MessageFactory extends ModelFactory
 {
     /**
      * @inheritDoc

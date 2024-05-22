@@ -9,7 +9,6 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Ticket\Message;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateMessage;
-use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
 use function array_map;
 
@@ -25,17 +24,7 @@ trait MessageApis
      */
     public function postMessage(CreateMessage $message): Message
     {
-        try {
-            $messageArray = $this->getModelToArrayConverter()->convertOne($message);
-        } catch (UninitializedPropertyException $exception) {
-            throw new InvalidArgumentException(
-                $exception->getMessage(),
-                $exception->getCode(),
-                $exception->getPrevious()
-            );
-        }
-
-        $response = $this->getApiClient()->postMessage($messageArray);
+        $response = $this->getApiClient()->postMessage($message->toArray());
 
         return $this->createMessage($this->decodeBody($response)['data']);
     }

@@ -8,10 +8,6 @@ services:
         arguments:
             $factories: !tagged factory.model_factory
 
-    SupportPal\ApiClient\Converter\ModelToArrayConverter:
-        arguments:
-            $format: '%contentType%'
-
     SupportPal\ApiClient\ApiClient\CoreApiClient:
         parent: 'SupportPal\ApiClient\ApiClient'
 

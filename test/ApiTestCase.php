@@ -12,6 +12,7 @@ use SupportPal\ApiClient\Model\Model;
 
 use function call_user_func_array;
 use function get_class;
+use function json_encode;
 
 abstract class ApiTestCase extends ContainerAwareBaseTestCase
 {
@@ -28,7 +29,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
             new Response(
                 200,
                 [],
-                (string) $this->getEncoder()->encode($data, $this->getFormatType())
+                json_encode($data)
             )
         );
 
@@ -48,7 +49,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     public function testSuccessfulPostModel(Model $model, array $responseData, string $functionName): void
     {
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
+        $jsonSuccessfulBody = json_encode($responseData);
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];
@@ -71,7 +72,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
         string $functionName
     ): void {
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
+        $jsonSuccessfulBody = json_encode($responseData);
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];
@@ -164,7 +165,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
         self::expectException(MissingIdentifierException::class);
 
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
+        $jsonSuccessfulBody = json_encode($responseData);
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];

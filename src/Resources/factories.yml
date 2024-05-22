@@ -12,82 +12,80 @@ services:
             $contentType: '%apiContentType%'
             $defaultBodyContent: '%defaultBodyContent%'
             $defaultParameters: '%defaultParameters%'
-            $formatType: '%contentType%'
 
-    SupportPal\ApiClient\Factory\BaseModelFactory:
-        arguments:
-            $formatType: '%contentType%'
+    SupportPal\ApiClient\Factory\ModelFactory:
+        public: true
 
     SupportPal\ApiClient\Factory\Shared\SettingsFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\SelfService\CommentFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\SelfService\TypeFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\User\UserFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\SelfService\ArticleFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\SelfService\CategoryFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\SelfService\TagFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Ticket\DepartmentFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Ticket\ChannelSettingsFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Ticket\CustomFieldFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Ticket\PriorityFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Ticket\StatusFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Ticket\AttachmentFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Ticket\TicketFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Ticket\MessageFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Core\BrandFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\User\GroupFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\User\UserCustomFieldFactory:
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
+        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
         tags: [ 'factory.model_factory' ]
 
     SupportPal\ApiClient\Factory\Collection\CollectionFactory: ~

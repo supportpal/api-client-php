@@ -2,10 +2,10 @@
 
 namespace SupportPal\ApiClient\Factory\Ticket;
 
-use SupportPal\ApiClient\Factory\BaseModelFactory;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
 
-class CustomFieldFactory extends BaseModelFactory
+class CustomFieldFactory extends ModelFactory
 {
     /**
      * @inheritDoc

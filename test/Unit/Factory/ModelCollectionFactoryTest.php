@@ -11,7 +11,7 @@ use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Factory\SelfService\CommentFactory;
 use SupportPal\ApiClient\Factory\Shared\SettingsFactory;
-use SupportPal\ApiClient\Model\BaseModel;
+use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
@@ -65,7 +65,7 @@ class ModelCollectionFactoryTest extends TestCase
     public function testCreateWithUnsupportedModel(): void
     {
         self::expectException(NotSupportedException::class);
-        $this->modelCollectionFactory->create(BaseModel::class, ['test' => 'test']);
+        $this->modelCollectionFactory->create(Model::class, [ 'test' => 'test']);
     }
 
     /**

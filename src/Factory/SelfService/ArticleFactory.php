@@ -2,14 +2,14 @@
 
 namespace SupportPal\ApiClient\Factory\SelfService;
 
-use SupportPal\ApiClient\Factory\BaseModelFactory;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\SelfService\Article;
 
 /**
  * Class ArticleFactory
  * @package SupportPal\ApiClient\Factory\SelfService
  */
-class ArticleFactory extends BaseModelFactory
+class ArticleFactory extends ModelFactory
 {
     /**
      * @inheritDoc

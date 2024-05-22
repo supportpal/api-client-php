@@ -4,7 +4,6 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
 use SupportPal\ApiClient\Api\TicketApi;
 use SupportPal\ApiClient\ApiClient\TicketApiClient;
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
 use SupportPal\ApiClient\Model\Ticket\Ticket;
@@ -62,10 +61,8 @@ class TicketApisTest extends ApiTest
         $ticketData = new TicketData;
         $createTicketData = new CreateTicketData;
         $arrayData = $createTicketData::DATA;
-        [$response, $ticketMock, $ticketOutput] = $this->postCommonExpectations(
+        [$response, $ticketOutput] = $this->postCommonExpectations(
             $ticketData->getResponse(),
-            $arrayData,
-            CreateTicket::class,
             Ticket::class
         );
 
@@ -75,23 +72,15 @@ class TicketApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $ticket = $this->api->postTicket($ticketMock);
+        $ticket = $this->api->postTicket(new CreateTicket($arrayData));
         self::assertSame($ticketOutput->reveal(), $ticket);
-    }
-
-    public function testPostWithIncompleteData(): void
-    {
-        /** @var CreateTicket $ticket */
-        $ticket = $this->postIncompleteDataCommonExpectations(CreateTicket::class);
-        self::expectException(InvalidArgumentException::class);
-        $this->api->postTicket($ticket);
     }
 
     public function testPutTicket(): void
     {
         $ticketData = new TicketData;
 
-        [$response, $inputMock, $output] = $this->putCommonExpectations(
+        [$response, $output] = $this->putCommonExpectations(
             Ticket::class,
             $ticketData->getResponse()
         );
@@ -102,7 +91,7 @@ class TicketApisTest extends ApiTest
             ->willReturn($response->reveal())
             ->shouldBeCalled();
 
-        $ticket = $this->api->updateTicket($inputMock, $ticketData->getArrayData());
+        $ticket = $this->api->updateTicket(new Ticket(['id' => self::TEST_ID]), $ticketData->getArrayData());
         self::assertSame($output->reveal(), $ticket);
     }
 
@@ -110,7 +99,6 @@ class TicketApisTest extends ApiTest
     {
         $ticketData = new TicketData;
         $input = $this->prophesize(Ticket::class);
-        $input->getId()->willReturn(null)->shouldBeCalled();
         self::expectException(MissingIdentifierException::class);
         /** @var Ticket $ticket */
         $ticket = $input->reveal();

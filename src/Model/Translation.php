@@ -4,8 +4,11 @@ namespace SupportPal\ApiClient\Model;
 
 use function array_merge;
 
-abstract class BaseTranslation extends BaseModel
+abstract class Translation extends Model
 {
+    /**
+     * @param mixed[] $attributes
+     */
     public function __construct(array $attributes = [])
     {
         $this->casts = array_merge($this->casts, ['locale' => 'string']);

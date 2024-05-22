@@ -16,11 +16,7 @@ class UserGroupFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelFactory(): ModelFactory
     {
-        return new GroupFactory(
-            $this->format,
-            $this->getSerializer(),
-            $this->getEncoder()
-        );
+        return new GroupFactory;
     }
 
     /**

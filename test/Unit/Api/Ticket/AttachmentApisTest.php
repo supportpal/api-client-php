@@ -57,16 +57,12 @@ class AttachmentApisTest extends ApiTest
 
     public function testDownloadAttachment(): void
     {
-        $attachment = $this->prophesize(Attachment::class);
-        $attachment->getId()->shouldBeCalled()->willReturn(1);
         $response = $this->prophesize(ResponseInterface::class);
         $stream = $this->prophesize(StreamInterface::class);
         $response->getBody()->shouldBeCalled()->willReturn($stream->reveal());
         $this->apiClient->downloadAttachment(1)->shouldBeCalled()->willReturn($response->reveal());
 
-        /** @var Attachment $attachmentModel */
-        $attachmentModel = $attachment->reveal();
-        $this->api->downloadAttachment($attachmentModel);
+        $this->api->downloadAttachment(new Attachment(['id' => 1]));
     }
 
     /**

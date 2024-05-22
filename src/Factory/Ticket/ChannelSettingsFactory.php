@@ -2,14 +2,14 @@
 
 namespace SupportPal\ApiClient\Factory\Ticket;
 
-use SupportPal\ApiClient\Factory\BaseModelFactory;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\Ticket\ChannelSettings;
 
 /**
  * Class ChannelSettingsFactory
  * @package SupportPal\ApiClient\Factory\Ticket
  */
-class ChannelSettingsFactory extends BaseModelFactory
+class ChannelSettingsFactory extends ModelFactory
 {
     /**
      * @inheritDoc

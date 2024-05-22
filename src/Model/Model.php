@@ -2,9 +2,7 @@
 
 namespace SupportPal\ApiClient\Model;
 
-use Illuminate\Database\Eloquent\Model;
-
-abstract class BaseModel extends Model
+abstract class Model extends \Jenssegers\Model\Model
 {
     /** @var string[] */
     protected $guarded = [];

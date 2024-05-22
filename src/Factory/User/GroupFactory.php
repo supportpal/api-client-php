@@ -2,10 +2,10 @@
 
 namespace SupportPal\ApiClient\Factory\User;
 
-use SupportPal\ApiClient\Factory\BaseModelFactory;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\User\Group;
 
-class GroupFactory extends BaseModelFactory
+class GroupFactory extends ModelFactory
 {
     /**
      * @inheritDoc

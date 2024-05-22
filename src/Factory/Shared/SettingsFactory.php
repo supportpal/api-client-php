@@ -2,10 +2,10 @@
 
 namespace SupportPal\ApiClient\Factory\Shared;
 
-use SupportPal\ApiClient\Factory\BaseModelFactory;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\Shared\Settings;
 
-class SettingsFactory extends BaseModelFactory
+class SettingsFactory extends ModelFactory
 {
     /**
      * @inheritDoc

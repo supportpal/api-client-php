@@ -2,68 +2,15 @@
 
 namespace SupportPal\ApiClient\Model\SelfService;
 
-use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Attribute\SerializedName;
+use SupportPal\ApiClient\Model\Translation;
 
-class TagTranslation extends BaseTranslation
+class TagTranslation extends Translation
 {
-    #[SerializedName('id')]
-    private int $id;
-
-    #[SerializedName('name')]
-    private string $name;
-
-    #[SerializedName('slug')]
-    private string $slug;
-
-    #[SerializedName('tag_id')]
-    private int $tagId;
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getSlug(): string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    public function getTagId(): int
-    {
-        return $this->tagId;
-    }
-
-    public function setTagId(int $tagId): self
-    {
-        $this->tagId = $tagId;
-
-        return $this;
-    }
+    /** @var array<string, string> */
+    protected $casts = [
+        'id'     => 'int',
+        'tag_id' => 'int',
+        'name'   => 'string',
+        'slug'   => 'string',
+    ];
 }

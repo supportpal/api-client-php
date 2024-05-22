@@ -2,10 +2,10 @@
 
 namespace SupportPal\ApiClient\Factory\Core;
 
-use SupportPal\ApiClient\Factory\BaseModelFactory;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\Core\Brand;
 
-class BrandFactory extends BaseModelFactory
+class BrandFactory extends ModelFactory
 {
     /**
      * @inheritDoc

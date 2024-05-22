@@ -21,11 +21,7 @@ class UserCustomFieldFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelFactory(): ModelFactory
     {
-        return new UserCustomFieldFactory(
-            $this->format,
-            $this->getSerializer(),
-            $this->getEncoder()
-        );
+        return new UserCustomFieldFactory;
     }
 
     /**

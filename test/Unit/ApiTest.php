@@ -6,15 +6,10 @@ use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\ApiClient;
-use SupportPal\ApiClient\Converter\ModelToArrayConverter;
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Factory\Collection\CollectionFactory;
 use SupportPal\ApiClient\Factory\ModelCollectionFactory;
 use SupportPal\ApiClient\Model\Collection\Collection;
-use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\TestCase;
-use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
-use Symfony\Component\Serializer\Encoder\DecoderInterface;
 
 use function array_push;
 use function current;
@@ -30,9 +25,6 @@ abstract class ApiTest extends TestCase
 {
     protected const TEST_ID = 1;
 
-    /** @var ObjectProphecy|ModelToArrayConverter */
-    protected $modelToArrayConverter;
-
     /** @var ObjectProphecy|ApiClient */
     protected $apiClient;
 
@@ -45,9 +37,6 @@ abstract class ApiTest extends TestCase
     /** @var Api */
     protected $api;
 
-    /** @var ObjectProphecy|DecoderInterface */
-    protected $decoder;
-
     /** @var ObjectProphecy|CollectionFactory */
     private $collectionFactory;
 
@@ -57,19 +46,12 @@ abstract class ApiTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->modelToArrayConverter = $this->prophesize(ModelToArrayConverter::class);
         $this->apiClient = $this->prophesize($this->getApiClientName());
-        $this->serializationType = 'json';
         $this->modelCollectionFactory = $this->prophesize(ModelCollectionFactory::class);
-        $this->decoder = $this->prophesize(DecoderInterface::class);
         $this->collectionFactory = $this->prophesize(CollectionFactory::class);
 
-        /** @var ModelToArrayConverter $modelToArrayConverter */
-        $modelToArrayConverter = $this->modelToArrayConverter->reveal();
         /** @var ApiClient $apiClient */
         $apiClient = $this->apiClient->reveal();
-        /** @var DecoderInterface $decoder */
-        $decoder = $this->decoder->reveal();
         /** @var ModelCollectionFactory $modelCollectionFactory */
         $modelCollectionFactory = $this->modelCollectionFactory->reveal();
         /** @var CollectionFactory $collectionFactory */
@@ -77,10 +59,7 @@ abstract class ApiTest extends TestCase
 
         $apiName = $this->getApiName();
         $this->api = new $apiName(
-            $modelToArrayConverter,
             $modelCollectionFactory,
-            $this->serializationType,
-            $decoder,
             $collectionFactory,
             $apiClient
         );
@@ -94,15 +73,9 @@ abstract class ApiTest extends TestCase
     protected function makeCommonExpectations(array $responseData, string $expectedClass): array
     {
         $response = $this->prophesize(ResponseInterface::class);
-        $formatType = 'json';
         $response
             ->getBody()
             ->willReturn(json_encode($responseData));
-
-        $this->decoder
-            ->decode(json_encode($responseData), $formatType)
-            ->shouldBeCalled()
-            ->willReturn($responseData);
 
         if (is_array(current($responseData['data']))) {
             $models = [];
@@ -143,59 +116,20 @@ abstract class ApiTest extends TestCase
      */
     protected function postCommonExpectations(
         array $responseData,
-        array $modelArrayData,
-        string $className,
         ?string $outputClassName = null
     ): array {
-        $input = $this->prophesize($className);
-        $output = $this->prophesize($outputClassName ?? $className);
-
-        /** @var Model $inputMock */
-        $inputMock = $input->reveal();
-
-        $this
-            ->modelToArrayConverter
-            ->convertOne($inputMock)
-            ->willReturn($modelArrayData)
-            ->shouldBeCalled();
-
-        $this->decoder
-            ->decode(json_encode($responseData), $this->formatType)
-            ->shouldBeCalled()
-            ->willReturn($responseData);
-
-        $this
-            ->modelCollectionFactory
-            ->create($outputClassName ?? $className, $responseData['data'])
-            ->willReturn($output);
+        $output = $this->prophesize($outputClassName);
 
         $response = $this->prophesize(ResponseInterface::class);
         $response
             ->getBody()
             ->willReturn(json_encode($responseData));
 
-        return [$response, $inputMock, $output];
-    }
+        $this->modelCollectionFactory
+            ->create($outputClassName, $responseData['data'])
+            ->willReturn($output);
 
-    /**
-     * @param class-string $className
-     * @return Model
-     */
-    protected function postIncompleteDataCommonExpectations(string $className): Model
-    {
-        $input = $this->prophesize($className);
-        /** @var Model $inputMock */
-        $inputMock = $input->reveal();
-
-        $this
-            ->modelToArrayConverter
-            ->convertOne($inputMock)
-            ->willThrow(UninitializedPropertyException::class)
-            ->shouldBeCalled();
-
-        self::expectException(InvalidArgumentException::class);
-
-        return $inputMock;
+        return [$response, $output];
     }
 
     /**
@@ -207,20 +141,9 @@ abstract class ApiTest extends TestCase
         string $className,
         array $responseData
     ): array {
-        $input = $this->prophesize($className);
         $output = $this->prophesize($className);
 
-        $input->getId()->willReturn(self::TEST_ID);
-        /** @var Model $inputMock */
-        $inputMock = $input->reveal();
-
-        $this->decoder
-            ->decode(json_encode($responseData), $this->formatType)
-            ->shouldBeCalled()
-            ->willReturn($responseData);
-
-        $this
-            ->modelCollectionFactory
+        $this->modelCollectionFactory
             ->create($className, $responseData['data'])
             ->willReturn($output);
 
@@ -229,7 +152,7 @@ abstract class ApiTest extends TestCase
             ->getBody()
             ->willReturn(json_encode($responseData));
 
-        return [$response, $inputMock, $output];
+        return [$response, $output];
     }
 
     /**

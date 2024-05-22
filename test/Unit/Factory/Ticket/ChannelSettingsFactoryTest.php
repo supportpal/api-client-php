@@ -45,10 +45,6 @@ class ChannelSettingsFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelFactory(): ModelFactory
     {
-        return new ChannelSettingsFactory(
-            $this->format,
-            $this->getSerializer(),
-            $this->getEncoder()
-        );
+        return new ChannelSettingsFactory;
     }
 }

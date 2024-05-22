@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Factory;
 
-use SupportPal\ApiClient\Factory\BaseModelFactory;
 use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\SelfService\Comment;
@@ -11,7 +10,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 /**
  * Class BaseModelFactoryTest
  * @package SupportPal\ApiClient\Tests\Unit\Factory
- * @covers \SupportPal\ApiClient\Factory\BaseModelFactory
+ * @covers \SupportPal\ApiClient\Factory\ModelFactory
  */
 class BaseModelFactoryTest extends BaseModelFactoryTestCase
 {
@@ -44,10 +43,7 @@ class BaseModelFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelFactory(): ModelFactory
     {
-        $mock = $this->getMockForAbstractClass(
-            BaseModelFactory::class,
-            [$this->format, $this->getSerializer(), $this->getEncoder()]
-        );
+        $mock = $this->getMockForAbstractClass(ModelFactory::class);
 
         $mock->expects($this->any())
             ->method('getModel')

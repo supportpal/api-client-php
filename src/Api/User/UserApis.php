@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Api\User;
 
-use Error;
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
@@ -11,11 +10,8 @@ use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Model\User\User;
-use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
-use TypeError;
 
 use function array_map;
-use function sprintf;
 
 trait UserApis
 {
@@ -57,19 +53,11 @@ trait UserApis
      */
     public function updateUser(User $user, array $data): User
     {
-        try {
-            $userId = $user->getId();
-        } catch (TypeError $typeError) {
+        if (! isset($user->id)) {
             throw new MissingIdentifierException('missing user identifier');
-        } catch (Error $error) {
-            if ($error->getMessage() === sprintf('Typed property %s::$id must not be accessed before initialization', User::class)) {
-                throw new MissingIdentifierException('missing user identifier');
-            }
-
-            throw $error;
         }
 
-        $response = $this->getApiClient()->updateUser($userId, $data);
+        $response = $this->getApiClient()->updateUser($user->id, $data);
 
         return $this->createUser($this->decodeBody($response)['data']);
     }
@@ -78,21 +66,10 @@ trait UserApis
      * @param CreateUser $createUser
      * @return User
      * @throws HttpResponseException
-     * @throws InvalidArgumentException
      */
     public function postUser(CreateUser $createUser): User
     {
-        try {
-            $userArray = $this->getModelToArrayConverter()->convertOne($createUser);
-        } catch (UninitializedPropertyException $exception) {
-            throw new InvalidArgumentException(
-                $exception->getMessage(),
-                $exception->getCode(),
-                $exception->getPrevious()
-            );
-        }
-
-        $response = $this->getApiClient()->postUser($userArray);
+        $response = $this->getApiClient()->postUser($createUser->toArray());
 
         return $this->createUser($this->decodeBody($response)['data']);
     }

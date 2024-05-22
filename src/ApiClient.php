@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient;
 
+use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
@@ -9,10 +10,11 @@ use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\ApiClient\ApiClientAware;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Factory\RequestFactory;
-use Symfony\Component\Serializer\Encoder\DecoderInterface;
-use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 
 use function is_array;
+use function json_decode;
+
+use const JSON_THROW_ON_ERROR;
 
 /**
  * This class includes all the API calls
@@ -29,29 +31,17 @@ class ApiClient
     /** @var RequestFactory */
     private $requestFactory;
 
-    /** @var DecoderInterface */
-    private $decoder;
-
-    /** @var string */
-    private $formatType;
-
     /**
      * ApiClient constructor.
      * @param ClientInterface $httpClient
      * @param RequestFactory $requestFactory
-     * @param DecoderInterface $decoder
-     * @param string $formatType
      */
     public function __construct(
         ClientInterface $httpClient,
-        RequestFactory $requestFactory,
-        DecoderInterface $decoder,
-        string $formatType
+        RequestFactory $requestFactory
     ) {
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
-        $this->decoder = $decoder;
-        $this->formatType = $formatType;
     }
 
     /**
@@ -107,14 +97,14 @@ class ApiClient
     protected function assertRequestSuccessful(RequestInterface $request, ResponseInterface $response): void
     {
         try {
-            $body = $this->decoder->decode((string) $response->getBody(), $this->formatType);
-        } catch (NotEncodableValueException $notEncodableValueException) {
+            $body = json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        } catch (JsonException $e) {
             throw new HttpResponseException(
                 $request,
                 $response,
                 $response->getReasonPhrase(),
-                $notEncodableValueException->getCode(),
-                $notEncodableValueException
+                $e->getCode(),
+                $e
             );
         }
 

@@ -2,26 +2,22 @@
 
 namespace SupportPal\ApiClient\Factory;
 
-use SupportPal\ApiClient\Exception\InvalidDataException;
 use SupportPal\ApiClient\Model\Model;
 
 /**
- * Interface ModelFactory
+ * An abstract model factory that is the main base for all model factories
+ * Class AbstractModelFactory
  * @package SupportPal\ApiClient\Factory
  */
-interface ModelFactory
+abstract class ModelFactory
 {
     /**
-     * This method creates an instance of a SupportPalModel
-     * @param array<mixed> $data
-     * @throws InvalidDataException
-     * @return Model
+     * @inheritDoc
      */
-    public function create(array $data): Model;
+    public function create(array $data): Model
+    {
+        return (new ($this->getModel))->fill($data);
+    }
 
-    /**
-     * This function returns the model name related to the relevant factory
-     * @return string
-     */
-    public function getModel(): string;
+    abstract public function getModel(): string;
 }

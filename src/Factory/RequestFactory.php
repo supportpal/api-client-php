@@ -6,11 +6,11 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
-use Symfony\Component\Serializer\Encoder\EncoderInterface;
 
 use function array_merge;
 use function base64_encode;
 use function http_build_query;
+use function json_encode;
 
 /**
  * Class RequestFactory
@@ -35,12 +35,6 @@ class RequestFactory
      */
     private $contentType;
 
-    /** @var string */
-    private $formatType;
-
-    /** @var EncoderInterface */
-    private $encoder;
-
     /** @var array<mixed> */
     private $defaultParameters;
 
@@ -52,8 +46,6 @@ class RequestFactory
      * @param string $apiUrl
      * @param string $apiToken
      * @param string $contentType
-     * @param string $formatType
-     * @param EncoderInterface $encoder
      * @param array<mixed> $defaultBodyContent Body content that are always passed in the body of the result request
      * @param array<mixed> $defaultParameters Parameters that are always appended to the result request
      */
@@ -61,16 +53,12 @@ class RequestFactory
         string $apiUrl,
         string $apiToken,
         string $contentType,
-        string $formatType,
-        EncoderInterface $encoder,
         array $defaultBodyContent = [],
         array $defaultParameters = []
     ) {
         $this->apiUrl = $apiUrl;
         $this->apiToken = $apiToken;
         $this->contentType = $contentType;
-        $this->formatType = $formatType;
-        $this->encoder = $encoder;
         $this->defaultBodyContent = $defaultBodyContent;
         $this->defaultParameters = $defaultParameters;
     }
@@ -94,7 +82,7 @@ class RequestFactory
         $headers['Authorization'] = $headers['Authorization'] ?? 'Basic ' . base64_encode($this->apiToken . ':X');
         $bodyArray = array_merge($this->defaultBodyContent, $body);
 
-        $body = ! empty($bodyArray) ? Utils::streamFor($this->encoder->encode($bodyArray, $this->formatType)) : null;
+        $body = ! empty($bodyArray) ? Utils::streamFor(json_encode($bodyArray)) : null;
 
         $uri = new Uri($this->apiUrl . $endpoint);
 

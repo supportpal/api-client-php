@@ -2,14 +2,14 @@
 
 namespace SupportPal\ApiClient\Factory\User;
 
-use SupportPal\ApiClient\Factory\BaseModelFactory;
+use SupportPal\ApiClient\Factory\ModelFactory;
 use SupportPal\ApiClient\Model\User\User;
 
 /**
  * Class UserFactory
  * @package SupportPal\ApiClient\Factory
  */
-class UserFactory extends BaseModelFactory
+class UserFactory extends ModelFactory
 {
     /**
      * @inheritDoc

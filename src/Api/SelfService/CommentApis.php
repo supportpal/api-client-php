@@ -9,7 +9,6 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Model\SelfService\Request\CreateComment;
-use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 
 use function array_map;
 
@@ -26,21 +25,10 @@ trait CommentApis
      * @param CreateComment $comment
      * @return Comment
      * @throws HttpResponseException
-     * @throws InvalidArgumentException
      */
     public function postComment(CreateComment $comment): Comment
     {
-        try {
-            $commentArray = $this->getModelToArrayConverter()->convertOne($comment);
-        } catch (UninitializedPropertyException $exception) {
-            throw new InvalidArgumentException(
-                $exception->getMessage(),
-                $exception->getCode(),
-                $exception->getPrevious()
-            );
-        }
-
-        $response = $this->getApiClient()->postComment($commentArray);
+        $response = $this->getApiClient()->postComment($comment->toArray());
 
         return $this->createComment($this->decodeBody($response)['data']);
     }

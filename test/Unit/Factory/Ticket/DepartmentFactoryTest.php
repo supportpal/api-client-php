@@ -45,10 +45,6 @@ class DepartmentFactoryTest extends BaseModelFactoryTestCase
      */
     protected function getModelFactory(): ModelFactory
     {
-        return new DepartmentFactory(
-            $this->format,
-            $this->getSerializer(),
-            $this->getEncoder()
-        );
+        return new DepartmentFactory;
     }
 }
