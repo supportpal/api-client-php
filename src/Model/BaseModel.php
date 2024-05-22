@@ -18,7 +18,7 @@ use function count;
 use function get_class;
 use function implode;
 use function is_string;
-use function method_exists;
+use function property_exists;
 
 /**
  * Class BaseModel
@@ -52,6 +52,10 @@ abstract class BaseModel implements Model
 
         $this->assertRequiredFieldsExists($data);
         foreach ($data as $key => $value) {
+            if (! property_exists($this, $this->snakeCaseToCamelCase($key))) {
+                continue;
+            }
+
             $value = $this->applyAttributeAwareTransformers($attributeAwareTransformers, $key, $value);
             $value = $this->applyValueTransformers($transformers, $value);
 
