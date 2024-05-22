@@ -7,17 +7,10 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 abstract class BaseTranslation extends BaseModel
 {
     #[SerializedName('locale')]
-    private string $locale;
+    protected string $locale;
 
     public function getLocale(): string
     {
         return $this->locale;
-    }
-
-    public function setLocale(string $locale): self
-    {
-        $this->locale = $locale;
-
-        return $this;
     }
 }

@@ -8,27 +8,20 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class ChannelSettings extends BaseModel
 {
     #[SerializedName('unauthenticated_users')]
-    private string $unauthenticatedUsers;
+    protected string $unauthenticatedUsers;
 
     #[SerializedName('show_captcha')]
-    private string $showCaptcha;
+    protected string $showCaptcha;
 
     #[SerializedName('append_ip_address')]
-    private string $appendIpAddress;
+    protected string $appendIpAddress;
 
     #[SerializedName('show_related_articles')]
-    private string $showRelatedArticles;
+    protected string $showRelatedArticles;
 
     public function getUnauthenticatedUsers(): string
     {
         return $this->unauthenticatedUsers;
-    }
-
-    public function setUnauthenticatedUsers(string $unauthenticatedUsers): self
-    {
-        $this->unauthenticatedUsers = $unauthenticatedUsers;
-
-        return $this;
     }
 
     public function getShowCaptcha(): string
@@ -36,34 +29,13 @@ class ChannelSettings extends BaseModel
         return $this->showCaptcha;
     }
 
-    public function setShowCaptcha(string $showCaptcha): self
-    {
-        $this->showCaptcha = $showCaptcha;
-
-        return $this;
-    }
-
     public function getAppendIpAddress(): string
     {
         return $this->appendIpAddress;
     }
 
-    public function setAppendIpAddress(string $appendIpAddress): self
-    {
-        $this->appendIpAddress = $appendIpAddress;
-
-        return $this;
-    }
-
     public function getShowRelatedArticles(): string
     {
         return $this->showRelatedArticles;
-    }
-
-    public function setShowRelatedArticles(string $showRelatedArticles): self
-    {
-        $this->showRelatedArticles = $showRelatedArticles;
-
-        return $this;
     }
 }

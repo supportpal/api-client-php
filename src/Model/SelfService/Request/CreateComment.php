@@ -14,39 +14,32 @@ class CreateComment extends BaseModel
     ];
 
     #[SerializedName('article_id')]
-    private int $articleId;
+    protected int $articleId;
 
     #[SerializedName('type_id')]
-    private int $typeId;
+    protected int $typeId;
 
     #[SerializedName('parent_id')]
-    private ?int $parentId;
+    protected ?int $parentId;
 
     #[SerializedName('author_id')]
-    private ?int $authorId;
+    protected ?int $authorId;
 
     #[SerializedName('name')]
-    private ?string $name;
+    protected ?string $name;
 
     #[SerializedName('text')]
-    private string $text;
+    protected string $text;
 
     #[SerializedName('status')]
-    private ?int $status;
+    protected ?int $status;
 
     #[SerializedName('notify_reply')]
-    private ?bool $notifyReply;
+    protected ?bool $notifyReply;
 
     public function getArticleId(): int
     {
         return $this->articleId;
-    }
-
-    public function setArticleId(int $articleId): self
-    {
-        $this->articleId = $articleId;
-
-        return $this;
     }
 
     public function getTypeId(): int
@@ -54,23 +47,9 @@ class CreateComment extends BaseModel
         return $this->typeId;
     }
 
-    public function setTypeId(int $typeId): self
-    {
-        $this->typeId = $typeId;
-
-        return $this;
-    }
-
     public function getParentId(): ?int
     {
         return $this->parentId;
-    }
-
-    public function setParentId(?int $parentId): self
-    {
-        $this->parentId = $parentId;
-
-        return $this;
     }
 
     public function getAuthorId(): ?int
@@ -78,23 +57,9 @@ class CreateComment extends BaseModel
         return $this->authorId;
     }
 
-    public function setAuthorId(?int $authorId): self
-    {
-        $this->authorId = $authorId;
-
-        return $this;
-    }
-
     public function getName(): ?string
     {
         return $this->name;
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getText(): string
@@ -102,34 +67,13 @@ class CreateComment extends BaseModel
         return $this->text;
     }
 
-    public function setText(string $text): self
-    {
-        $this->text = $text;
-
-        return $this;
-    }
-
     public function getStatus(): ?int
     {
         return $this->status;
     }
 
-    public function setStatus(?int $status): self
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
     public function getNotifyReply(): ?bool
     {
         return $this->notifyReply;
-    }
-
-    public function setNotifyReply(?bool $notifyReply): self
-    {
-        $this->notifyReply = $notifyReply;
-
-        return $this;
     }
 }

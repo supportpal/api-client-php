@@ -57,7 +57,12 @@ class CollectionTest extends TestCase
         $firstModel = current($models);
         $name = $firstModel->getName() . 'test';
         $mappedCollection = $collection->map(function (Comment $comment) use ($name) {
-            return $comment->setName($name);
+            return $comment->fill([
+                'article_id' => $comment->getArticleId(),
+                'type_id'    => $comment->getTypeId(),
+                'name'       => $name,
+                'text'       => $comment->getText(),
+            ]);
         });
 
         self::assertNotSame($collection, $mappedCollection);

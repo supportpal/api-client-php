@@ -8,34 +8,27 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class Tag extends BaseModel
 {
     #[SerializedName('id')]
-    private int $id;
+    protected int $id;
 
     #[SerializedName('name')]
-    private string $name;
+    protected string $name;
 
     #[SerializedName('slug')]
-    private string $slug;
+    protected string $slug;
 
     #[SerializedName('created_at')]
-    private int $createdAt;
+    protected int $createdAt;
 
     #[SerializedName('updated_at')]
-    private int $updatedAt;
+    protected int $updatedAt;
 
     /** @var TagTranslation[]|null */
     #[SerializedName('translations')]
-    private array|null $translations;
+    protected array|null $translations;
 
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getName(): string
@@ -43,23 +36,9 @@ class Tag extends BaseModel
         return $this->name;
     }
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     public function getSlug(): string
     {
         return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
     }
 
     public function getCreatedAt(): int
@@ -67,23 +46,9 @@ class Tag extends BaseModel
         return $this->createdAt;
     }
 
-    public function setCreatedAt(int $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(int $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
@@ -92,15 +57,5 @@ class Tag extends BaseModel
     public function getTranslations(): ?array
     {
         return $this->translations;
-    }
-
-    /**
-     * @param TagTranslation[]|null $translations
-     */
-    public function setTranslations(?array $translations): self
-    {
-        $this->translations = $translations;
-
-        return $this;
     }
 }

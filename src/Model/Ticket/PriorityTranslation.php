@@ -8,27 +8,17 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class PriorityTranslation extends BaseTranslation
 {
     #[SerializedName('id')]
-    private int $id;
+    protected int $id;
 
     #[SerializedName('name')]
-    private string $name;
+    protected string $name;
 
     #[SerializedName('priority_id')]
-    private int $priorityId;
+    protected int $priorityId;
 
     public function getId(): int
     {
         return $this->id;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getName(): string
@@ -36,22 +26,8 @@ class PriorityTranslation extends BaseTranslation
         return $this->name;
     }
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     public function getPriorityId(): int
     {
         return $this->priorityId;
-    }
-
-    public function setPriorityId(int $priorityId): self
-    {
-        $this->priorityId = $priorityId;
-
-        return $this;
     }
 }

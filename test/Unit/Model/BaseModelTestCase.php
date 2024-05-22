@@ -9,6 +9,7 @@ use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\TestCase;
 
 use function array_keys;
+use function sprintf;
 
 /**
  * Class BaseModelTestCase
@@ -44,7 +45,7 @@ abstract class BaseModelTestCase extends TestCase
     public function testCreateWithInvalidTypes(array $data, string $invalidKey): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage($this->snakeCaseToPascalCase($invalidKey));
+        self::expectExceptionMessage(sprintf('$%s', $this->snakeCaseToCamelCase($invalidKey)));
         $model = $this->getModel();
         $model->fill($data);
     }

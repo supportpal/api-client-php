@@ -32,7 +32,7 @@ abstract class BaseModel implements Model
 
     /** @var array<mixed>|null */
     #[SerializedName('pivot')]
-    private ?array $pivot = null;
+    protected ?array $pivot = null;
 
     /**
      * @inheritDoc
@@ -52,14 +52,10 @@ abstract class BaseModel implements Model
 
         $this->assertRequiredFieldsExists($data);
         foreach ($data as $key => $value) {
-            $attributeSetter = 'set' . $this->snakeCaseToPascalCase($key);
-            if (! method_exists($this, $attributeSetter)) {
-                continue;
-            }
-
             $value = $this->applyAttributeAwareTransformers($attributeAwareTransformers, $key, $value);
             $value = $this->applyValueTransformers($transformers, $value);
-            $this->setAttributeValue($attributeSetter, $value);
+
+            $this->setAttributeValue($this->snakeCaseToCamelCase($key), $value);
         }
 
         return $this;
@@ -104,16 +100,6 @@ abstract class BaseModel implements Model
     }
 
     /**
-     * @param array<mixed>|null $pivot
-     */
-    public function setPivot(?array $pivot): self
-    {
-        $this->pivot = $pivot;
-
-        return $this;
-    }
-
-    /**
      * @param AttributeAwareTransformer[] $attributeAwareTransformers
      * @return mixed
      */
@@ -133,10 +119,10 @@ abstract class BaseModel implements Model
     /**
      * @throws InvalidArgumentException
      */
-    private function setAttributeValue(string $attributeSetter, mixed $value): void
+    private function setAttributeValue(string $key, mixed $value): void
     {
         try {
-            $this->{$attributeSetter}($value);
+            $this->{$key} = $value;
         } catch (TypeError $exception) {
             throw new InvalidArgumentException(
                 $exception->getMessage(),

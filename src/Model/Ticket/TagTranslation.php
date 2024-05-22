@@ -8,27 +8,17 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class TagTranslation extends BaseTranslation
 {
     #[SerializedName('id')]
-    private int $id;
+    protected int $id;
 
     #[SerializedName('name')]
-    private string $name;
+    protected string $name;
 
     #[SerializedName('tag_id')]
-    private int $tagId;
+    protected int $tagId;
 
     public function getId(): int
     {
         return $this->id;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getName(): string
@@ -36,22 +26,8 @@ class TagTranslation extends BaseTranslation
         return $this->name;
     }
 
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     public function getTagId(): int
     {
         return $this->tagId;
-    }
-
-    public function setTagId(int $tagId): self
-    {
-        $this->tagId = $tagId;
-
-        return $this;
     }
 }

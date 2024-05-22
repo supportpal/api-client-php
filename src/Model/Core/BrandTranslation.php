@@ -8,27 +8,17 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class BrandTranslation extends BaseTranslation
 {
     #[SerializedName('id')]
-    private int $id;
+    protected int $id;
 
     #[SerializedName('name')]
-    private string $name;
+    protected string $name;
 
     #[SerializedName('brand_id')]
-    private int $brandId;
+    protected int $brandId;
 
     public function getId(): int
     {
         return $this->id;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getName(): string
@@ -36,22 +26,8 @@ class BrandTranslation extends BaseTranslation
         return $this->name;
     }
 
-    public function setName(string $name): BrandTranslation
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     public function getBrandId(): int
     {
         return $this->brandId;
-    }
-
-    public function setBrandId(int $brandId): self
-    {
-        $this->brandId = $brandId;
-
-        return $this;
     }
 }

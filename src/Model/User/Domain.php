@@ -8,32 +8,18 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class Domain extends BaseModel
 {
     #[SerializedName('organisation_id')]
-    private int $organisationId;
+    protected int $organisationId;
 
     #[SerializedName('domain')]
-    private string $domain;
+    protected string $domain;
 
     public function getOrganisationId(): int
     {
         return $this->organisationId;
     }
 
-    public function setOrganisationId(int $organisationId): self
-    {
-        $this->organisationId = $organisationId;
-
-        return $this;
-    }
-
     public function getDomain(): string
     {
         return $this->domain;
-    }
-
-    public function setDomain(string $domain): self
-    {
-        $this->domain = $domain;
-
-        return $this;
     }
 }

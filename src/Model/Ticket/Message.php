@@ -15,69 +15,62 @@ class Message extends BaseModel
     ];
 
     #[SerializedName('user_id')]
-    private int|null $userId = null;
+    protected int|null $userId = null;
 
     #[SerializedName('id')]
-    private int $id;
+    protected int $id;
 
     #[SerializedName('created_at')]
-    private int|null $createdAt;
+    protected int|null $createdAt;
 
     #[SerializedName('purified_text')]
-    private string|null $purifiedText;
+    protected string|null $purifiedText;
 
     #[SerializedName('social_id')]
-    private string|null $socialId;
+    protected string|null $socialId;
 
     #[SerializedName('ticket_id')]
-    private int $ticketId;
+    protected int $ticketId;
 
     #[SerializedName('channel_id')]
-    private int|null $channelId = null;
+    protected int|null $channelId = null;
 
     #[SerializedName('user_ip_address')]
-    private string|null $userIpAddress = null;
+    protected string|null $userIpAddress = null;
 
     #[SerializedName('by')]
-    private int|null $by = null;
+    protected int|null $by = null;
 
     #[SerializedName('excerpt')]
-    private string|null $excerpt = null;
+    protected string|null $excerpt = null;
 
     #[SerializedName('type')]
-    private int|null $type = null;
+    protected int|null $type = null;
 
     #[SerializedName('extra')]
-    private Extra|null $extra = null;
+    protected Extra|null $extra = null;
 
     #[SerializedName('user_name')]
-    private string|null $userName = null;
+    protected string|null $userName = null;
 
     #[SerializedName('updated_at')]
-    private int|null $updatedAt = null;
+    protected int|null $updatedAt = null;
 
     #[SerializedName('is_draft')]
-    private bool|null $isDraft = null;
+    protected bool|null $isDraft = null;
 
     #[SerializedName('text')]
-    private string $text;
+    protected string $text;
 
     /** @var Attachment[]|null */
     #[SerializedName('attachments')]
-    private array|null $attachments = null;
+    protected array|null $attachments = null;
 
-    private ?User $user = null;
+    protected ?User $user = null;
 
     public function getUserId(): ?int
     {
         return $this->userId;
-    }
-
-    public function setUserId(?int $userId): self
-    {
-        $this->userId = $userId;
-
-        return $this;
     }
 
     public function getId(): int
@@ -85,23 +78,9 @@ class Message extends BaseModel
         return $this->id;
     }
 
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?int
     {
         return $this->createdAt;
-    }
-
-    public function setCreatedAt(?int $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     public function getPurifiedText(): ?string
@@ -109,23 +88,9 @@ class Message extends BaseModel
         return $this->purifiedText;
     }
 
-    public function setPurifiedText(?string $purifiedText): self
-    {
-        $this->purifiedText = $purifiedText;
-
-        return $this;
-    }
-
     public function getSocialId(): ?string
     {
         return $this->socialId;
-    }
-
-    public function setSocialId(?string $socialId): self
-    {
-        $this->socialId = $socialId;
-
-        return $this;
     }
 
     public function getTicketId(): int
@@ -133,23 +98,9 @@ class Message extends BaseModel
         return $this->ticketId;
     }
 
-    public function setTicketId(int $ticketId): self
-    {
-        $this->ticketId = $ticketId;
-
-        return $this;
-    }
-
     public function getChannelId(): ?int
     {
         return $this->channelId;
-    }
-
-    public function setChannelId(?int $channelId): self
-    {
-        $this->channelId = $channelId;
-
-        return $this;
     }
 
     public function getUserIpAddress(): ?string
@@ -157,23 +108,9 @@ class Message extends BaseModel
         return $this->userIpAddress;
     }
 
-    public function setUserIpAddress(?string $userIpAddress): self
-    {
-        $this->userIpAddress = $userIpAddress;
-
-        return $this;
-    }
-
     public function getBy(): ?int
     {
         return $this->by;
-    }
-
-    public function setBy(?int $by): self
-    {
-        $this->by = $by;
-
-        return $this;
     }
 
     public function getExcerpt(): ?string
@@ -181,23 +118,9 @@ class Message extends BaseModel
         return $this->excerpt;
     }
 
-    public function setExcerpt(?string $excerpt): self
-    {
-        $this->excerpt = $excerpt;
-
-        return $this;
-    }
-
     public function getType(): ?int
     {
         return $this->type;
-    }
-
-    public function setType(?int $type): self
-    {
-        $this->type = $type;
-
-        return $this;
     }
 
     public function getExtra(): ?Extra
@@ -205,23 +128,9 @@ class Message extends BaseModel
         return $this->extra;
     }
 
-    public function setExtra(?Extra $extra): self
-    {
-        $this->extra = $extra;
-
-        return $this;
-    }
-
     public function getUserName(): ?string
     {
         return $this->userName;
-    }
-
-    public function setUserName(?string $userName): self
-    {
-        $this->userName = $userName;
-
-        return $this;
     }
 
     public function getUpdatedAt(): ?int
@@ -229,35 +138,14 @@ class Message extends BaseModel
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?int $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
     public function getIsDraft(): ?bool
     {
         return $this->isDraft;
     }
 
-    public function setIsDraft(?bool $isDraft): self
-    {
-        $this->isDraft = $isDraft;
-
-        return $this;
-    }
-
     public function getText(): string
     {
         return $this->text;
-    }
-
-    public function setText(string $text): self
-    {
-        $this->text = $text;
-
-        return $this;
     }
 
     /**
@@ -268,25 +156,8 @@ class Message extends BaseModel
         return $this->attachments;
     }
 
-    /**
-     * @param Attachment[]|null $attachments
-     */
-    public function setAttachments(?array $attachments): self
-    {
-        $this->attachments = $attachments;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
     }
 }

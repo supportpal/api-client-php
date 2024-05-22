@@ -8,22 +8,15 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 class UserCustomField extends CustomField
 {
     #[SerializedName('user_id')]
-    private int|null $userId = null;
+    protected int|null $userId = null;
 
     /** @var UserCustomFieldTranslation[]|null */
     #[SerializedName('translations')]
-    private array|null $translations;
+    protected array|null $translations;
 
     public function getUserId(): ?int
     {
         return $this->userId;
-    }
-
-    public function setUserId(?int $userId): self
-    {
-        $this->userId = $userId;
-
-        return $this;
     }
 
     /**
@@ -32,15 +25,5 @@ class UserCustomField extends CustomField
     public function getTranslations(): ?array
     {
         return $this->translations;
-    }
-
-    /**
-     * @param UserCustomFieldTranslation[]|null $translations
-     */
-    public function setTranslations(?array $translations): self
-    {
-        $this->translations = $translations;
-
-        return $this;
     }
 }
