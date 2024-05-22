@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Api\Ticket;
 
+use Error;
 use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\ApiClient\TicketApiClient;
@@ -13,6 +14,7 @@ use SupportPal\ApiClient\Model\Ticket\Attachment;
 use TypeError;
 
 use function array_map;
+use function sprintf;
 
 trait AttachmentApis
 {
@@ -57,6 +59,12 @@ trait AttachmentApis
             $attachmentId = $attachment->getId();
         } catch (TypeError $typeError) {
             throw new MissingIdentifierException('missing attachment identifier');
+        } catch (Error $error) {
+            if ($error->getMessage() === sprintf('Typed property %s::$id must not be accessed before initialization', Attachment::class)) {
+                throw new MissingIdentifierException('missing attachment identifier');
+            }
+
+            throw $error;
         }
 
         return $this->getApiClient()->downloadAttachment($attachmentId)->getBody();

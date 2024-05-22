@@ -3,41 +3,25 @@
 namespace SupportPal\ApiClient\Model\Shared;
 
 use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class OptionTranslation extends BaseTranslation
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @deprecated This value is not set in all options and will be removed in later versions.
-     * @var int|null
-     * @SerializedName("ticket_custom_field_option_id")
-     */
-    private $ticketCustomFieldOptionId;
+    /** @deprecated This value is not set in all options and will be removed in later versions. */
+    #[SerializedName('ticket_custom_field_option_id')]
+    private ?int $ticketCustomFieldOptionId;
 
-    /**
-     * @var string
-     * @SerializedName("value")
-     */
-    private $value;
+    #[SerializedName('value')]
+    private string $value;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return $this
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -47,7 +31,6 @@ class OptionTranslation extends BaseTranslation
 
     /**
      * @deprecated
-     * @return int|null
      */
     public function getTicketCustomFieldOptionId(): ?int
     {
@@ -56,8 +39,6 @@ class OptionTranslation extends BaseTranslation
 
     /**
      * @deprecated
-     * @param int|null $ticketCustomFieldOptionId
-     * @return self
      */
     public function setTicketCustomFieldOptionId(?int $ticketCustomFieldOptionId): self
     {
@@ -66,18 +47,11 @@ class OptionTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getValue(): string
     {
         return $this->value;
     }
 
-    /**
-     * @param string $value
-     * @return self
-     */
     public function setValue(string $value): self
     {
         $this->value = $value;

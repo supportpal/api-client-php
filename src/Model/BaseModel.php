@@ -9,8 +9,8 @@ use SupportPal\ApiClient\Transformer\AttributeAwareTransformer;
 use SupportPal\ApiClient\Transformer\IntToBooleanTransformer;
 use SupportPal\ApiClient\Transformer\StringTrimTransformer;
 use SupportPal\ApiClient\Transformer\Transformer;
-use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 use TypeError;
 
 use function array_push;
@@ -30,11 +30,9 @@ abstract class BaseModel implements Model
 
     use StringHelper;
 
-    /**
-     * @var array<mixed>|null
-     * @SerializedName("pivot")
-     */
-    private $pivot;
+    /** @var array<mixed>|null */
+    #[SerializedName('pivot')]
+    private ?array $pivot = null;
 
     /**
      * @inheritDoc
@@ -49,7 +47,7 @@ abstract class BaseModel implements Model
             }
         }
 
-        $attributeAwareTransformers = [new IntToBooleanTransformer(new PhpDocExtractor),];
+        $attributeAwareTransformers = [new IntToBooleanTransformer(new ReflectionExtractor),];
         $transformers = [new StringTrimTransformer,];
 
         $this->assertRequiredFieldsExists($data);
@@ -78,7 +76,6 @@ abstract class BaseModel implements Model
     /**
      * This functions asserts that all the required values for the API are passed correctly
      * @param array<mixed> $data
-     * @return void
      */
     protected function assertRequiredFieldsExists(array $data): void
     {
@@ -108,7 +105,6 @@ abstract class BaseModel implements Model
 
     /**
      * @param array<mixed>|null $pivot
-     * @return BaseModel
      */
     public function setPivot(?array $pivot): self
     {
@@ -119,8 +115,6 @@ abstract class BaseModel implements Model
 
     /**
      * @param AttributeAwareTransformer[] $attributeAwareTransformers
-     * @param string $key
-     * @param mixed $value
      * @return mixed
      */
     private function applyAttributeAwareTransformers(array $attributeAwareTransformers, string $key, mixed $value)
@@ -137,8 +131,6 @@ abstract class BaseModel implements Model
     }
 
     /**
-     * @param string $attributeSetter
-     * @param mixed $value
      * @throws InvalidArgumentException
      */
     private function setAttributeValue(string $attributeSetter, mixed $value): void
@@ -156,7 +148,6 @@ abstract class BaseModel implements Model
 
     /**
      * @param Transformer[] $transformers
-     * @param mixed $value
      * @return mixed
      */
     private function applyValueTransformers(array $transformers, mixed $value)

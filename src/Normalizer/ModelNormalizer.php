@@ -2,20 +2,20 @@
 
 namespace SupportPal\ApiClient\Normalizer;
 
+use ArrayObject;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Transformer\AttributeAwareTransformer;
 use SupportPal\ApiClient\Transformer\Transformer;
-use Symfony\Component\Serializer\Normalizer\ContextAwareDenormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDenormalizerInterface
+class ModelNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     use StringHelper;
 
-    /** @var ObjectNormalizer */
-    private $objectNormalizer;
+    /** @var NormalizerInterface */
+    private $normalizer;
 
     /** @var iterable|Transformer[] */
     private $transformers;
@@ -25,16 +25,16 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
 
     /**
      * ModelNormalizer constructor.
-     * @param ObjectNormalizer $objectNormalizer
+     * @param NormalizerInterface $normalizer
      * @param Transformer[] $transformers
      * @param AttributeAwareTransformer[] $attributeAwareTransformers
      */
     public function __construct(
-        ObjectNormalizer $objectNormalizer,
+        NormalizerInterface&DenormalizerInterface $normalizer,
         iterable $transformers,
         iterable $attributeAwareTransformers
     ) {
-        $this->objectNormalizer = $objectNormalizer;
+        $this->normalizer = $normalizer;
         $this->transformers = $transformers;
         $this->attributeAwareTransformers = $attributeAwareTransformers;
     }
@@ -42,25 +42,23 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
     /**
      * @inheritDoc
      */
-    public function normalize($object, ?string $format = null, array $context = [])
+    public function normalize(mixed $object, ?string $format = null, array $context = []): float|array|ArrayObject|bool|int|string|null
     {
-        $data = $this->objectNormalizer->normalize($object, $format, $context);
-        $data = $this->applyArrayTransformations($data);
+        $data = $this->normalizer->normalize($object, $format, $context);
 
-        return $data;
+        return $this->applyArrayTransformations($data);
     }
 
     /**
      * @inheritDoc
      */
-    public function denormalize($data, string $type, ?string $format = null, array $context = [])
+    public function denormalize(mixed $data, string|int|bool|array|float $type, ?string $format = null, array $context = []): mixed
     {
         $data = $this->applyAttributeAwareTransformations($data, $type);
         /** @var Model $model */
-        $model = $this->objectNormalizer->denormalize($data, $type, $format, $context);
-        $model = $this->applyModelTransformations($model);
+        $model = $this->normalizer->denormalize($data, $type, $format, $context);
 
-        return $model;
+        return $this->applyModelTransformations($model);
     }
 
     /**
@@ -68,7 +66,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
      */
     public function supportsNormalization($data, ?string $format = null, array $context = []): bool
     {
-        return $data instanceof Model || $this->objectNormalizer->supportsNormalization($data, $format);
+        return $data instanceof Model || $this->normalizer->supportsNormalization($data, $format);
     }
 
     /**
@@ -76,7 +74,7 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
      */
     public function supportsDenormalization($data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $this->objectNormalizer->supportsDenormalization($data, $type, $format);
+        return $this->normalizer->supportsDenormalization($data, $type, $format);
     }
 
     /**
@@ -140,6 +138,6 @@ class ModelNormalizer implements ContextAwareNormalizerInterface, ContextAwareDe
      */
     public function getSupportedTypes(?string $format): array
     {
-        return $this->objectNormalizer->getSupportedTypes($format);
+        return $this->normalizer->getSupportedTypes($format);
     }
 }

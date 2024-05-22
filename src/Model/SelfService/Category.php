@@ -3,100 +3,55 @@
 namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Category extends BaseModel
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var int
-     * @SerializedName("type_id")
-     */
-    private $typeId;
+    #[SerializedName('type_id')]
+    private int $typeId;
 
-    /**
-     * @var int|null
-     * @SerializedName("parent_id")
-     */
-    private $parentId;
+    #[SerializedName('parent_id')]
+    private int|null $parentId;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var string
-     * @SerializedName("slug")
-     */
-    private $slug;
+    #[SerializedName('slug')]
+    private string $slug;
 
-    /**
-     * @var bool
-     * @SerializedName("public")
-     */
-    private $public;
+    #[SerializedName('public')]
+    private bool $public;
 
-    /**
-     * @var bool
-     * @SerializedName("parent_public")
-     */
-    private $parentPublic;
+    #[SerializedName('parent_public')]
+    private bool $parentPublic;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var string
-     * @SerializedName("frontend_url")
-     */
-    private $frontendUrl;
+    #[SerializedName('frontend_url')]
+    private string $frontendUrl;
 
-    /**
-     * @var Type
-     * @SerializedName("type")
-     */
-    private $type;
+    #[SerializedName('type')]
+    private Type $type;
 
-    /**
-     * @var CategoryTranslation[]|null
-     * @SerializedName("translations")
-     */
-    private $translations;
+    /** @var CategoryTranslation[]|null */
+    #[SerializedName('translations')]
+    private array|null $translations;
 
-    /**
-     * @var int|null
-     * @SerializedName("pinned")
-     */
-    private $pinned;
+    #[SerializedName('pinned')]
+    private int|null $pinned = null;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -104,18 +59,11 @@ class Category extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getTypeId(): int
     {
         return $this->typeId;
     }
 
-    /**
-     * @param int $typeId
-     * @return self
-     */
     public function setTypeId(int $typeId): self
     {
         $this->typeId = $typeId;
@@ -123,18 +71,11 @@ class Category extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getParentId(): ?int
     {
         return $this->parentId;
     }
 
-    /**
-     * @param int|null $parentId
-     * @return self
-     */
     public function setParentId(?int $parentId): self
     {
         $this->parentId = $parentId;
@@ -142,18 +83,11 @@ class Category extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -161,18 +95,11 @@ class Category extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSlug(): string
     {
         return $this->slug;
     }
 
-    /**
-     * @param string $slug
-     * @return self
-     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
@@ -180,18 +107,11 @@ class Category extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getPublic(): bool
     {
         return $this->public;
     }
 
-    /**
-     * @param bool $public
-     * @return self
-     */
     public function setPublic(bool $public): self
     {
         $this->public = $public;
@@ -199,18 +119,11 @@ class Category extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getParentPublic(): bool
     {
         return $this->parentPublic;
     }
 
-    /**
-     * @param bool $parentPublic
-     * @return self
-     */
     public function setParentPublic(bool $parentPublic): self
     {
         $this->parentPublic = $parentPublic;
@@ -218,18 +131,11 @@ class Category extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -237,18 +143,11 @@ class Category extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -256,18 +155,11 @@ class Category extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getFrontendUrl(): string
     {
         return $this->frontendUrl;
     }
 
-    /**
-     * @param string $frontendUrl
-     * @return self
-     */
     public function setFrontendUrl(string $frontendUrl): self
     {
         $this->frontendUrl = $frontendUrl;
@@ -275,18 +167,11 @@ class Category extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Type
-     */
     public function getType(): Type
     {
         return $this->type;
     }
 
-    /**
-     * @param Type $type
-     * @return self
-     */
     public function setType(Type $type): self
     {
         $this->type = $type;
@@ -304,7 +189,6 @@ class Category extends BaseModel
 
     /**
      * @param CategoryTranslation[]|null $translations
-     * @return self
      */
     public function setTranslations(?array $translations): Category
     {
@@ -313,18 +197,11 @@ class Category extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getPinned(): ?int
     {
         return $this->pinned;
     }
 
-    /**
-     * @param int|null $pinned
-     * @return self
-     */
     public function setPinned(?int $pinned): self
     {
         $this->pinned = $pinned;

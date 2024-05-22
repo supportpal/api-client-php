@@ -3,34 +3,22 @@
 namespace SupportPal\ApiClient\Model\User;
 
 use SupportPal\ApiClient\Model\Shared\CustomField;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class UserCustomField extends CustomField
 {
-    /**
-     * @var int|null
-     * @SerializedName("user_id")
-     */
-    private $userId;
+    #[SerializedName('user_id')]
+    private int|null $userId = null;
 
-    /**
-     * @var UserCustomFieldTranslation[]|null
-     * @SerializedName("translations")
-     */
-    private $translations;
+    /** @var UserCustomFieldTranslation[]|null */
+    #[SerializedName('translations')]
+    private array|null $translations;
 
-    /**
-     * @return int|null
-     */
     public function getUserId(): ?int
     {
         return $this->userId;
     }
 
-    /**
-     * @param int|null $userId
-     * @return self
-     */
     public function setUserId(?int $userId): self
     {
         $this->userId = $userId;
@@ -48,7 +36,6 @@ class UserCustomField extends CustomField
 
     /**
      * @param UserCustomFieldTranslation[]|null $translations
-     * @return self
      */
     public function setTranslations(?array $translations): self
     {

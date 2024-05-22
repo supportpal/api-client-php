@@ -3,82 +3,46 @@
 namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Status extends BaseModel
 {
-    /**
-     * @var string
-     * @SerializedName("colour")
-     */
-    private $colour;
+    #[SerializedName('colour')]
+    private string $colour;
 
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var int|null
-     * @SerializedName("order")
-     */
-    private $order;
+    #[SerializedName('order')]
+    private int|null $order;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var string
-     * @SerializedName("icon_without_tooltip")
-     */
-    private $iconWithoutTooltip;
+    #[SerializedName('icon_without_tooltip')]
+    private string $iconWithoutTooltip;
 
-    /**
-     * @var string
-     * @SerializedName("icon")
-     */
-    private $icon;
+    #[SerializedName('icon')]
+    private string $icon;
 
-    /**
-     * @var bool
-     * @SerializedName("auto_close")
-     */
-    private $autoClose;
+    #[SerializedName('auto_close')]
+    private bool $autoClose;
 
-    /**
-     * @var StatusTranslation[]|null
-     * @SerializedName("translations")
-     */
-    private $translations;
+    /** @var StatusTranslation[]|null */
+    #[SerializedName('translations')]
+    private array|null $translations;
 
-    /**
-     * @return string
-     */
     public function getColour(): string
     {
         return $this->colour;
     }
 
-    /**
-     * @param string $colour
-     * @return self
-     */
     public function setColour(string $colour): self
     {
         $this->colour = $colour;
@@ -86,18 +50,11 @@ class Status extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -105,18 +62,11 @@ class Status extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -124,18 +74,11 @@ class Status extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getOrder(): ?int
     {
         return $this->order;
     }
 
-    /**
-     * @param int|null $order
-     * @return self
-     */
     public function setOrder(?int $order): self
     {
         $this->order = $order;
@@ -143,18 +86,11 @@ class Status extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -162,18 +98,11 @@ class Status extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -181,18 +110,11 @@ class Status extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getIconWithoutTooltip(): string
     {
         return $this->iconWithoutTooltip;
     }
 
-    /**
-     * @param string $iconWithoutTooltip
-     * @return self
-     */
     public function setIconWithoutTooltip(string $iconWithoutTooltip): self
     {
         $this->iconWithoutTooltip = $iconWithoutTooltip;
@@ -200,18 +122,11 @@ class Status extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getIcon(): string
     {
         return $this->icon;
     }
 
-    /**
-     * @param string $icon
-     * @return self
-     */
     public function setIcon(string $icon): self
     {
         $this->icon = $icon;
@@ -219,18 +134,11 @@ class Status extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getAutoClose(): bool
     {
         return $this->autoClose;
     }
 
-    /**
-     * @param bool $autoClose
-     * @return self
-     */
     public function setAutoClose(bool $autoClose): self
     {
         $this->autoClose = $autoClose;
@@ -248,7 +156,6 @@ class Status extends BaseModel
 
     /**
      * @param StatusTranslation[]|null $translations
-     * @return self
      */
     public function setTranslations(?array $translations): self
     {

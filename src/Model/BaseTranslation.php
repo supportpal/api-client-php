@@ -2,28 +2,18 @@
 
 namespace SupportPal\ApiClient\Model;
 
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 abstract class BaseTranslation extends BaseModel
 {
-    /**
-     * @var string
-     * @SerializedName("locale")
-     */
-    private $locale;
+    #[SerializedName('locale')]
+    private string $locale;
 
-    /**
-     * @return string
-     */
     public function getLocale(): string
     {
         return $this->locale;
     }
 
-    /**
-     * @param string $locale
-     * @return self
-     */
     public function setLocale(string $locale): self
     {
         $this->locale = $locale;

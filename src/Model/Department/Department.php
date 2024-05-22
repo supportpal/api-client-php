@@ -3,151 +3,85 @@
 namespace SupportPal\ApiClient\Model\Department;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Department extends BaseModel
 {
-    /**
-     * @var bool
-     * @SerializedName("disable_user_email_replies")
-     */
-    private $disableUserEmailReplies;
+    #[SerializedName('disable_user_email_replies')]
+    private bool $disableUserEmailReplies;
 
-    /**
-     * @var bool
-     * @SerializedName("public")
-     */
-    private $public;
+    #[SerializedName('public')]
+    private bool $public;
 
-    /**
-     * @var string|null
-     * @SerializedName("ticket_number_format")
-     */
-    private $ticketNumberFormat;
+    #[SerializedName('ticket_number_format')]
+    private ?string $ticketNumberFormat;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var bool
-     * @SerializedName("notify_frontend_ticket")
-     */
-    private $notifyFrontendTicket;
+    #[SerializedName('notify_frontend_ticket')]
+    private bool $notifyFrontendTicket;
 
-    /**
-     * @var int|null
-     * @SerializedName("order")
-     */
-    private $order;
+    #[SerializedName('order')]
+    private ?int $order;
 
-    /**
-     * @var string|null
-     * @SerializedName("description")
-     */
-    private $description;
+    #[SerializedName('description')]
+    private ?string $description;
 
-    /**
-     * @var bool
-     * @SerializedName("notify_email_ticket")
-     */
-    private $notifyEmailTicket;
+    #[SerializedName('notify_email_ticket')]
+    private bool $notifyEmailTicket;
 
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string|null
-     * @SerializedName("from_name")
-     */
-    private $fromName;
+    #[SerializedName('from_name')]
+    private ?string $fromName;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var int
-     * @SerializedName("registered_only")
-     */
-    private $registeredOnly;
+    #[SerializedName('registered_only')]
+    private int $registeredOnly;
 
-    /**
-     * @var int|null
-     * @SerializedName("parent_id")
-     */
-    private $parentId;
+    #[SerializedName('parent_id')]
+    private ?int $parentId;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var bool
-     * @SerializedName("notify_operators")
-     */
-    private $notifyOperators;
+    #[SerializedName('notify_operators')]
+    private bool $notifyOperators;
 
-    /**
-     * @var string[]
-     * @SerializedName("default_assignedto")
-     */
-    private $defaultAssignedto;
+    /** @var string[] */
+    #[SerializedName('default_assignedto')]
+    private array $defaultAssignedto;
 
-    /**
-     * @var EmailTemplates|null
-     * @SerializedName("email_templates")
-     */
-    private $emailTemplates;
+    #[SerializedName('email_templates')]
+    private ?EmailTemplates $emailTemplates;
 
-    /**
-     * @var Email[]|null
-     * @SerializedName("emails")
-     */
-    private $emails;
+    /** @var Email[]|null */
+    #[SerializedName('emails')]
+    private ?array $emails;
 
-    /**
-     * @var array<mixed>|null
-     * @SerializedName("groups")
-     */
-    private $groups;
+    /** @var array<mixed>|null */
+    #[SerializedName('groups')]
+    private ?array $groups;
 
-    /**
-     * @var Operator[]|null
-     * @SerializedName("operators")
-     */
-    private $operators;
+    /** @var Operator[]|null */
+    #[SerializedName('operators')]
+    private ?array $operators;
 
-    /**
-     * @var DepartmentTranslation[]|null
-     * @SerializedName("translations")
-     */
-    private $translations;
+    /** @var DepartmentTranslation[]|null */
+    #[SerializedName('translations')]
+    private ?array $translations;
 
-    /** @var Department|null */
-    private $parent;
+    private ?Department $parent = null;
 
-    /**
-     * @return bool
-     */
     public function getDisableUserEmailReplies(): bool
     {
         return $this->disableUserEmailReplies;
     }
 
-    /**
-     * @param bool $disableUserEmailReplies
-     * @return self
-     */
     public function setDisableUserEmailReplies(bool $disableUserEmailReplies): self
     {
         $this->disableUserEmailReplies = $disableUserEmailReplies;
@@ -155,18 +89,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getPublic(): bool
     {
         return $this->public;
     }
 
-    /**
-     * @param bool $public
-     * @return self
-     */
     public function setPublic(bool $public): self
     {
         $this->public = $public;
@@ -174,18 +101,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTicketNumberFormat(): ?string
     {
         return $this->ticketNumberFormat;
     }
 
-    /**
-     * @param string|null $ticketNumberFormat
-     * @return self
-     */
     public function setTicketNumberFormat(?string $ticketNumberFormat): self
     {
         $this->ticketNumberFormat = $ticketNumberFormat;
@@ -193,18 +113,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -212,18 +125,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getNotifyFrontendTicket(): bool
     {
         return $this->notifyFrontendTicket;
     }
 
-    /**
-     * @param bool $notifyFrontendTicket
-     * @return self
-     */
     public function setNotifyFrontendTicket(bool $notifyFrontendTicket): self
     {
         $this->notifyFrontendTicket = $notifyFrontendTicket;
@@ -231,18 +137,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getOrder(): ?int
     {
         return $this->order;
     }
 
-    /**
-     * @param int|null $order
-     * @return self
-     */
     public function setOrder(?int $order): self
     {
         $this->order = $order;
@@ -250,18 +149,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string|null $description
-     * @return self
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -269,18 +161,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getNotifyEmailTicket(): bool
     {
         return $this->notifyEmailTicket;
     }
 
-    /**
-     * @param bool $notifyEmailTicket
-     * @return self
-     */
     public function setNotifyEmailTicket(bool $notifyEmailTicket): self
     {
         $this->notifyEmailTicket = $notifyEmailTicket;
@@ -288,18 +173,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -307,18 +185,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFromName(): ?string
     {
         return $this->fromName;
     }
 
-    /**
-     * @param string|null $fromName
-     * @return self
-     */
     public function setFromName(?string $fromName): self
     {
         $this->fromName = $fromName;
@@ -326,18 +197,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -345,18 +209,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getRegisteredOnly(): int
     {
         return $this->registeredOnly;
     }
 
-    /**
-     * @param int $registeredOnly
-     * @return self
-     */
     public function setRegisteredOnly(int $registeredOnly): self
     {
         $this->registeredOnly = $registeredOnly;
@@ -364,18 +221,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getParentId(): ?int
     {
         return $this->parentId;
     }
 
-    /**
-     * @param int|null $parentId
-     * @return self
-     */
     public function setParentId(?int $parentId): self
     {
         $this->parentId = $parentId;
@@ -383,18 +233,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -402,18 +245,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getNotifyOperators(): bool
     {
         return $this->notifyOperators;
     }
 
-    /**
-     * @param bool $notifyOperators
-     * @return self
-     */
     public function setNotifyOperators(bool $notifyOperators): self
     {
         $this->notifyOperators = $notifyOperators;
@@ -431,7 +267,6 @@ class Department extends BaseModel
 
     /**
      * @param string[] $defaultAssignedto
-     * @return self
      */
     public function setDefaultAssignedto(array $defaultAssignedto): self
     {
@@ -440,18 +275,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return EmailTemplates|null
-     */
     public function getEmailTemplates(): ?EmailTemplates
     {
         return $this->emailTemplates;
     }
 
-    /**
-     * @param EmailTemplates|null $emailTemplates
-     * @return self
-     */
     public function setEmailTemplates(?EmailTemplates $emailTemplates): self
     {
         $this->emailTemplates = $emailTemplates;
@@ -469,7 +297,6 @@ class Department extends BaseModel
 
     /**
      * @param Email[]|null $emails
-     * @return self
      */
     public function setEmails(?array $emails): self
     {
@@ -488,7 +315,6 @@ class Department extends BaseModel
 
     /**
      * @param array<mixed>|null $groups
-     * @return self
      */
     public function setGroups(?array $groups): self
     {
@@ -507,7 +333,6 @@ class Department extends BaseModel
 
     /**
      * @param Operator[]|null $operators
-     * @return self
      */
     public function setOperators(?array $operators): self
     {
@@ -526,7 +351,6 @@ class Department extends BaseModel
 
     /**
      * @param DepartmentTranslation[]|null $translations
-     * @return self
      */
     public function setTranslations(?array $translations): self
     {
@@ -535,18 +359,11 @@ class Department extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Department|null
-     */
     public function getParent(): ?Department
     {
         return $this->parent;
     }
 
-    /**
-     * @param Department|null $parent
-     * @return self
-     */
     public function setParent(?Department $parent): self
     {
         $this->parent = $parent;

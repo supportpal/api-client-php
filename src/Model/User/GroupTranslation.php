@@ -3,44 +3,28 @@
 namespace SupportPal\ApiClient\Model\User;
 
 use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class GroupTranslation extends BaseTranslation
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string|null
-     * @SerializedName("description")
-     */
-    private $description;
+    #[SerializedName('description')]
+    private string|null $description;
 
-    /**
-     * @var int
-     * @SerializedName("user_group_id")
-     */
-    private $userGroupId;
+    #[SerializedName('user_group_id')]
+    private int $userGroupId;
 
-    /**
-     * @var string|null
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string|null $name;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
      * @return $this
      */
     public function setId(int $id): self
@@ -50,18 +34,11 @@ class GroupTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     * @return self
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -69,18 +46,11 @@ class GroupTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string|null $description
-     * @return GroupTranslation
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -88,18 +58,11 @@ class GroupTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserGroupId(): int
     {
         return $this->userGroupId;
     }
 
-    /**
-     * @param int $userGroupId
-     * @return self
-     */
     public function setUserGroupId(int $userGroupId): self
     {
         $this->userGroupId = $userGroupId;

@@ -4,13 +4,8 @@ namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\BaseModel;
 use SupportPal\ApiClient\Model\User\User;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
-/**
- * This data class defines the Comment model data attributes
- * Class Comment
- * @package SupportPal\ApiClient\Model
- */
 class Comment extends BaseModel
 {
     public const REQUIRED_FIELDS = [
@@ -19,120 +14,62 @@ class Comment extends BaseModel
         'text',
     ];
 
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string
-     * @SerializedName("text")
-     */
-    private $text;
+    #[SerializedName('text')]
+    private string $text;
 
-    /**
-     * @var int
-     * @SerializedName("article_id")
-     */
-    private $articleId;
+    #[SerializedName('article_id')]
+    private int $articleId;
 
-    /**
-     * @var int
-     * @SerializedName("type_id")
-     */
-    private $typeId;
+    #[SerializedName('type_id')]
+    private int $typeId;
 
-    /**
-     * @var int|null
-     * @SerializedName("parent_id")
-     */
-    private $parentId;
+    #[SerializedName('parent_id')]
+    private int|null $parentId;
 
-    /**
-     * @var int
-     * @SerializedName("status")
-     */
-    private $status = 0;
+    #[SerializedName('status')]
+    private int $status = 0;
 
-    /**
-     * @var bool
-     * @SerializedName("notify_reply")
-     */
-    private $notifyReply = false;
+    #[SerializedName('notify_reply')]
+    private bool $notifyReply = false;
 
-    /**
-     * @var int|null
-     * @SerializedName("author_id")
-     */
-    private $authorId;
+    #[SerializedName('author_id')]
+    private int|null $authorId;
 
-    /**
-     * @var string|null
-     * @SerializedName("purified_text")
-     */
-    private $purifiedText;
+    #[SerializedName('purified_text')]
+    private string|null $purifiedText;
 
-    /**
-     * @var string|null
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string|null $name;
 
-    /**
-     * @var User|null
-     * @SerializedName("author")
-     */
-    private $author;
+    #[SerializedName('author')]
+    private User|null $author;
 
-    /**
-     * @var Article|null
-     * @SerializedName("article")
-     */
-    private $article;
+    #[SerializedName('article')]
+    private Article|null $article;
 
-    /**
-     * @var Type|null
-     * @SerializedName("type")
-     */
-    private $type;
+    #[SerializedName('type')]
+    private Type|null $type;
 
-    /**
-     * @var int|null
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int|null $createdAt;
 
-    /**
-     * @var int|null
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int|null $updatedAt;
 
-    /**
-     * @var int|null
-     * @SerializedName("root_parent_id")
-     */
-    private $rootParentId;
+    #[SerializedName('root_parent_id')]
+    private int|null $rootParentId;
 
-    /**
-     * @var int|null
-     * @SerializedName("rating")
-     */
-    private $rating;
+    #[SerializedName('rating')]
+    private int|null $rating;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -140,18 +77,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getText(): string
     {
         return $this->text;
     }
 
-    /**
-     * @param string $text
-     * @return self
-     */
     public function setText(string $text): self
     {
         $this->text = $text;
@@ -159,18 +89,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getArticleId(): int
     {
         return $this->articleId;
     }
 
-    /**
-     * @param int $articleId
-     * @return self
-     */
     public function setArticleId(int $articleId): self
     {
         $this->articleId = $articleId;
@@ -178,18 +101,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getTypeId(): int
     {
         return $this->typeId;
     }
 
-    /**
-     * @param int $typeId
-     * @return self
-     */
     public function setTypeId(int $typeId): self
     {
         $this->typeId = $typeId;
@@ -197,18 +113,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getParentId(): ?int
     {
         return $this->parentId;
     }
 
-    /**
-     * @param int|null $parentId
-     * @return self
-     */
     public function setParentId(?int $parentId): self
     {
         $this->parentId = $parentId;
@@ -216,18 +125,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getStatus(): int
     {
         return $this->status;
     }
 
-    /**
-     * @param int $status
-     * @return self
-     */
     public function setStatus(int $status): self
     {
         $this->status = $status;
@@ -235,18 +137,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getNotifyReply(): bool
     {
         return $this->notifyReply;
     }
 
-    /**
-     * @param bool $notifyReply
-     * @return self
-     */
     public function setNotifyReply(bool $notifyReply): self
     {
         $this->notifyReply = $notifyReply;
@@ -254,18 +149,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getAuthorId(): ?int
     {
         return $this->authorId;
     }
 
-    /**
-     * @param int|null $authorId
-     * @return self
-     */
     public function setAuthorId(?int $authorId): self
     {
         $this->authorId = $authorId;
@@ -273,18 +161,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPurifiedText(): ?string
     {
         return $this->purifiedText;
     }
 
-    /**
-     * @param string|null $purifiedText
-     * @return self
-     */
     public function setPurifiedText(?string $purifiedText): self
     {
         $this->purifiedText = $purifiedText;
@@ -292,18 +173,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     * @return self
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -311,18 +185,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return User|null
-     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
-    /**
-     * @param User $author
-     * @return self
-     */
     public function setAuthor(User $author): self
     {
         $this->author = $author;
@@ -330,18 +197,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Article|null
-     */
     public function getArticle(): ?Article
     {
         return $this->article;
     }
 
-    /**
-     * @param Article $article
-     * @return self
-     */
     public function setArticle(Article $article): self
     {
         $this->article = $article;
@@ -349,18 +209,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Type|null
-     */
     public function getType(): ?Type
     {
         return $this->type;
     }
 
-    /**
-     * @param Type $type
-     * @return self
-     */
     public function setType(Type $type): self
     {
         $this->type = $type;
@@ -368,18 +221,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getCreatedAt(): ?int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -387,18 +233,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getUpdatedAt(): ?int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -406,18 +245,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getRootParentId(): ?int
     {
         return $this->rootParentId;
     }
 
-    /**
-     * @param int|null $rootParentId
-     * @return self
-     */
     public function setRootParentId(?int $rootParentId): self
     {
         $this->rootParentId = $rootParentId;
@@ -425,18 +257,11 @@ class Comment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getRating(): ?int
     {
         return $this->rating;
     }
 
-    /**
-     * @param int|null $rating
-     * @return self
-     */
     public function setRating(?int $rating): self
     {
         $this->rating = $rating;

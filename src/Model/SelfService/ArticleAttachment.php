@@ -4,71 +4,39 @@ namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\BaseModel;
 use SupportPal\ApiClient\Model\Core\Upload;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class ArticleAttachment extends BaseModel
 {
-    /**
-     * @SerializedName("id")
-     * @var int
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @SerializedName("upload_hash")
-     * @var string
-     */
-    private $uploadHash;
+    #[SerializedName('upload_hash')]
+    private string $uploadHash;
 
-    /**
-     *
-     * @SerializedName("article_id")
-     * @var int
-     */
-    private $articleId;
+    #[SerializedName('article_id')]
+    private int $articleId;
 
-    /**
-     * @SerializedName("locale")
-     * @var string|null
-     */
-    private $locale;
+    #[SerializedName('locale')]
+    private ?string $locale;
 
-    /**
-     * @SerializedName("original_name")
-     * @var string
-     */
-    private $originalName;
+    #[SerializedName('original_name')]
+    private string $originalName;
 
-    /**
-     * @SerializedName("created_at")
-     * @var int
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @SerializedName("updated_at")
-     * @var int
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @SerializedName("upload")
-     * @var Upload
-     */
-    private $upload;
+    #[SerializedName('upload')]
+    private Upload $upload;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -76,18 +44,11 @@ class ArticleAttachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getUploadHash(): string
     {
         return $this->uploadHash;
     }
 
-    /**
-     * @param string $uploadHash
-     * @return self
-     */
     public function setUploadHash(string $uploadHash): self
     {
         $this->uploadHash = $uploadHash;
@@ -95,18 +56,11 @@ class ArticleAttachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getArticleId(): int
     {
         return $this->articleId;
     }
 
-    /**
-     * @param int $articleId
-     * @return self
-     */
     public function setArticleId(int $articleId): self
     {
         $this->articleId = $articleId;
@@ -114,18 +68,11 @@ class ArticleAttachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLocale(): ?string
     {
         return $this->locale;
     }
 
-    /**
-     * @param string|null $locale
-     * @return self
-     */
     public function setLocale(?string $locale): self
     {
         $this->locale = $locale;
@@ -133,18 +80,11 @@ class ArticleAttachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getOriginalName(): string
     {
         return $this->originalName;
     }
 
-    /**
-     * @param string $originalName
-     * @return self
-     */
     public function setOriginalName(string $originalName): self
     {
         $this->originalName = $originalName;
@@ -152,18 +92,11 @@ class ArticleAttachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -171,18 +104,11 @@ class ArticleAttachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -190,18 +116,11 @@ class ArticleAttachment extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Upload
-     */
     public function getUpload(): Upload
     {
         return $this->upload;
     }
 
-    /**
-     * @param Upload $upload
-     * @return self
-     */
     public function setUpload(Upload $upload): self
     {
         $this->upload = $upload;

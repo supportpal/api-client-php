@@ -3,64 +3,37 @@
 namespace SupportPal\ApiClient\Model\Shared;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Option extends BaseModel
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var int|null
-     * @SerializedName("order")
-     */
-    private $order;
+    #[SerializedName('order')]
+    private int|null $order;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var int
-     * @SerializedName("field_id")
-     */
-    private $fieldId;
+    #[SerializedName('field_id')]
+    private int $fieldId;
 
-    /**
-     * @var string
-     * @SerializedName("value")
-     */
-    private $value;
+    #[SerializedName('value')]
+    private string $value;
 
-    /**
-     * @var OptionTranslation[]|null
-     * @SerializedName("translations")
-     */
-    private $translations;
+    /** @var OptionTranslation[]|null */
+    #[SerializedName('translations')]
+    private ?array $translations;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -68,18 +41,11 @@ class Option extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -87,18 +53,11 @@ class Option extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getOrder(): ?int
     {
         return $this->order;
     }
 
-    /**
-     * @param int|null $order
-     * @return self
-     */
     public function setOrder(?int $order): self
     {
         $this->order = $order;
@@ -106,18 +65,11 @@ class Option extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -125,18 +77,11 @@ class Option extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getFieldId(): int
     {
         return $this->fieldId;
     }
 
-    /**
-     * @param int $fieldId
-     * @return self
-     */
     public function setFieldId(int $fieldId): self
     {
         $this->fieldId = $fieldId;
@@ -144,18 +89,11 @@ class Option extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getValue(): string
     {
         return $this->value;
     }
 
-    /**
-     * @param string $value
-     * @return self
-     */
     public function setValue(string $value): self
     {
         $this->value = $value;
@@ -173,7 +111,6 @@ class Option extends BaseModel
 
     /**
      * @param OptionTranslation[]|null $translations
-     * @return Option
      */
     public function setTranslations(?array $translations): self
     {

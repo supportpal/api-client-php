@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\BaseModel;
 use SupportPal\ApiClient\Model\User\User;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Message extends BaseModel
 {
@@ -14,123 +14,65 @@ class Message extends BaseModel
         'text',
     ];
 
-    /**
-     * @var int|null
-     * @SerializedName("user_id")
-     */
-    private $userId;
+    #[SerializedName('user_id')]
+    private int|null $userId = null;
 
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var int|null
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int|null $createdAt;
 
-    /**
-     * @var string|null
-     * @SerializedName("purified_text")
-     */
-    private $purifiedText;
+    #[SerializedName('purified_text')]
+    private string|null $purifiedText;
 
-    /**
-     * @var string|null
-     * @SerializedName("social_id")
-     */
-    private $socialId;
+    #[SerializedName('social_id')]
+    private string|null $socialId;
 
-    /**
-     * @var int
-     * @SerializedName("ticket_id")
-     */
-    private $ticketId;
+    #[SerializedName('ticket_id')]
+    private int $ticketId;
 
-    /**
-     * @var int|null
-     * @SerializedName("channel_id")
-     */
-    private $channelId;
+    #[SerializedName('channel_id')]
+    private int|null $channelId = null;
 
-    /**
-     * @var string|null
-     * @SerializedName("user_ip_address")
-     */
-    private $userIpAddress;
+    #[SerializedName('user_ip_address')]
+    private string|null $userIpAddress = null;
 
-    /**
-     * @var int|null
-     * @SerializedName("by")
-     */
-    private $by;
+    #[SerializedName('by')]
+    private int|null $by = null;
 
-    /**
-     * @var string|null
-     * @SerializedName("excerpt")
-     */
-    private $excerpt;
+    #[SerializedName('excerpt')]
+    private string|null $excerpt = null;
 
-    /**
-     * @var int|null
-     * @SerializedName("type")
-     */
-    private $type;
+    #[SerializedName('type')]
+    private int|null $type = null;
 
-    /**
-     * @var Extra|null
-     * @SerializedName("extra")
-     */
-    private $extra;
+    #[SerializedName('extra')]
+    private Extra|null $extra = null;
 
-    /**
-     * @var string|null
-     * @SerializedName("user_name")
-     */
-    private $userName;
+    #[SerializedName('user_name')]
+    private string|null $userName = null;
 
-    /**
-     * @var int|null
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int|null $updatedAt = null;
 
-    /**
-     * @var bool|null
-     * @SerializedName("is_draft")
-     */
-    private $isDraft;
+    #[SerializedName('is_draft')]
+    private bool|null $isDraft = null;
 
-    /**
-     * @var string
-     * @SerializedName("text")
-     */
-    private $text;
+    #[SerializedName('text')]
+    private string $text;
 
-    /**
-     * @var Attachment[]|null
-     * @SerializedName("attachments")
-     */
-    private $attachments;
+    /** @var Attachment[]|null */
+    #[SerializedName('attachments')]
+    private array|null $attachments = null;
 
-    /** @var User|null */
-    private $user;
+    private ?User $user = null;
 
-    /**
-     * @return int|null
-     */
     public function getUserId(): ?int
     {
         return $this->userId;
     }
 
-    /**
-     * @param int|null $userId
-     * @return self
-     */
     public function setUserId(?int $userId): self
     {
         $this->userId = $userId;
@@ -138,18 +80,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -157,18 +92,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getCreatedAt(): ?int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int|null $createdAt
-     * @return self
-     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -176,18 +104,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPurifiedText(): ?string
     {
         return $this->purifiedText;
     }
 
-    /**
-     * @param string|null $purifiedText
-     * @return self
-     */
     public function setPurifiedText(?string $purifiedText): self
     {
         $this->purifiedText = $purifiedText;
@@ -195,18 +116,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSocialId(): ?string
     {
         return $this->socialId;
     }
 
-    /**
-     * @param string|null $socialId
-     * @return self
-     */
     public function setSocialId(?string $socialId): self
     {
         $this->socialId = $socialId;
@@ -214,18 +128,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getTicketId(): int
     {
         return $this->ticketId;
     }
 
-    /**
-     * @param int $ticketId
-     * @return self
-     */
     public function setTicketId(int $ticketId): self
     {
         $this->ticketId = $ticketId;
@@ -233,18 +140,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getChannelId(): ?int
     {
         return $this->channelId;
     }
 
-    /**
-     * @param int|null $channelId
-     * @return self
-     */
     public function setChannelId(?int $channelId): self
     {
         $this->channelId = $channelId;
@@ -252,18 +152,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUserIpAddress(): ?string
     {
         return $this->userIpAddress;
     }
 
-    /**
-     * @param string|null $userIpAddress
-     * @return self
-     */
     public function setUserIpAddress(?string $userIpAddress): self
     {
         $this->userIpAddress = $userIpAddress;
@@ -271,18 +164,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getBy(): ?int
     {
         return $this->by;
     }
 
-    /**
-     * @param int|null $by
-     * @return self
-     */
     public function setBy(?int $by): self
     {
         $this->by = $by;
@@ -290,18 +176,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getExcerpt(): ?string
     {
         return $this->excerpt;
     }
 
-    /**
-     * @param string|null $excerpt
-     * @return self
-     */
     public function setExcerpt(?string $excerpt): self
     {
         $this->excerpt = $excerpt;
@@ -309,18 +188,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getType(): ?int
     {
         return $this->type;
     }
 
-    /**
-     * @param int|null $type
-     * @return self
-     */
     public function setType(?int $type): self
     {
         $this->type = $type;
@@ -328,18 +200,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Extra|null
-     */
     public function getExtra(): ?Extra
     {
         return $this->extra;
     }
 
-    /**
-     * @param Extra|null $extra
-     * @return self
-     */
     public function setExtra(?Extra $extra): self
     {
         $this->extra = $extra;
@@ -347,18 +212,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUserName(): ?string
     {
         return $this->userName;
     }
 
-    /**
-     * @param string|null $userName
-     * @return self
-     */
     public function setUserName(?string $userName): self
     {
         $this->userName = $userName;
@@ -366,18 +224,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getUpdatedAt(): ?int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int|null $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(?int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -385,18 +236,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsDraft(): ?bool
     {
         return $this->isDraft;
     }
 
-    /**
-     * @param bool|null $isDraft
-     * @return self
-     */
     public function setIsDraft(?bool $isDraft): self
     {
         $this->isDraft = $isDraft;
@@ -404,18 +248,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getText(): string
     {
         return $this->text;
     }
 
-    /**
-     * @param string $text
-     * @return self
-     */
     public function setText(string $text): self
     {
         $this->text = $text;
@@ -433,7 +270,6 @@ class Message extends BaseModel
 
     /**
      * @param Attachment[]|null $attachments
-     * @return self
      */
     public function setAttachments(?array $attachments): self
     {
@@ -442,18 +278,11 @@ class Message extends BaseModel
         return $this;
     }
 
-    /**
-     * @return User|null
-     */
     public function getUser(): ?User
     {
         return $this->user;
     }
 
-    /**
-     * @param User|null $user
-     * @return self
-     */
     public function setUser(?User $user): self
     {
         $this->user = $user;

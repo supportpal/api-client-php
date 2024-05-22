@@ -4,7 +4,7 @@ services:
             $classMetadataFactory: '@Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory'
             $nameConverter: '@Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter'
             $propertyAccessor: ~
-            $propertyTypeExtractor: '@Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor'
+            $propertyTypeExtractor: '@Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor'
             $classDiscriminatorResolver: ~
             $objectClassResolver: ~
             $defaultContext:
@@ -21,11 +21,9 @@ services:
 
     Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory:
         arguments:
-            - '@Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader'
+            - '@Symfony\Component\Serializer\Mapping\Loader\AttributeLoader'
 
-    Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader:
-        arguments:
-            - '@Doctrine\Common\Annotations\AnnotationReader'
+    Symfony\Component\Serializer\Mapping\Loader\AttributeLoader:
 
     Symfony\Component\Serializer\SerializerInterface: '@Symfony\Component\Serializer\Serializer'
 
@@ -34,13 +32,11 @@ services:
             - [ '@SupportPal\ApiClient\Normalizer\ModelNormalizer', '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer',  '@Symfony\Component\Serializer\Normalizer\ArrayDenormalizer' ]
             - [ '@Symfony\Component\Serializer\Encoder\JsonEncoder' ]
 
-    Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor: ~
+    Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor: ~
 
     Symfony\Component\Serializer\Normalizer\ArrayDenormalizer: ~
 
-    Doctrine\Common\Annotations\AnnotationReader: ~
-
     Symfony\Component\Serializer\Encoder\JsonEncoder: ~
 
-    Symfony\Component\PropertyInfo\PropertyTypeExtractorInterface: '@Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor'
+    Symfony\Component\PropertyInfo\PropertyTypeExtractorInterface: '@Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor'
 

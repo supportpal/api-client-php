@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Model\Shared;
 
 use SupportPal\ApiClient\Model\BaseModel;
 use SupportPal\ApiClient\Model\Core\Brand;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 abstract class CustomField extends BaseModel
 {
@@ -30,126 +30,68 @@ abstract class CustomField extends BaseModel
 
     public const TYPE_RATING = 10;
 
-    /**
-     * @var string|null
-     * @SerializedName("regex_error_message")
-     */
-    private $regexErrorMessage;
+    #[SerializedName('regex_error_message')]
+    private string|null $regexErrorMessage;
 
-    /**
-     * @var int|null
-     * @SerializedName("depends_on_field_id")
-     */
-    private $dependsOnFieldId;
+    #[SerializedName('depends_on_field_id')]
+    private int|null $dependsOnFieldId;
 
-    /**
-     * @var string|null
-     * @SerializedName("regex")
-     */
-    private $regex;
+    #[SerializedName('regex')]
+    private string|null $regex;
 
-    /**
-     * @var bool
-     * @SerializedName("locked")
-     */
-    private $locked;
+    #[SerializedName('locked')]
+    private bool $locked;
 
-    /**
-     * @var int|null
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int|null $updatedAt;
 
-    /**
-     * @var int|null
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int|null $createdAt;
 
-    /**
-     * @var int|null
-     * @SerializedName("depends_on_option_id")
-     */
-    private $dependsOnOptionId;
+    #[SerializedName('depends_on_option_id')]
+    private int|null $dependsOnOptionId;
 
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string|null
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string|null $name;
 
-    /**
-     * @var bool|null
-     * @SerializedName("required")
-     */
-    private $required;
+    #[SerializedName('required')]
+    private bool|null $required;
 
-    /**
-     * @var bool|null
-     * @SerializedName("public")
-     */
-    private $public;
+    #[SerializedName('public')]
+    private bool|null $public;
 
-    /**
-     * @var int|null
-     * @SerializedName("order")
-     */
-    private $order;
+    #[SerializedName('order')]
+    private int|null $order;
 
-    /**
-     * @var string|null
-     * @SerializedName("description")
-     */
-    private $description;
+    #[SerializedName('description')]
+    private string|null $description;
 
-    /**
-     * @var int|null
-     * @SerializedName("type")
-     */
-    private $type;
+    #[SerializedName('type')]
+    private int|null $type;
 
-    /**
-     * @var int|null
-     * @SerializedName("encrypted")
-     */
-    private $encrypted;
+    #[SerializedName('encrypted')]
+    private int|null $encrypted;
 
     /** @var Option[]|null */
-    private $options;
+    private ?array $options;
 
     /** @var Brand[]|null */
-    private $brands;
+    private ?array $brands;
 
-    /**
-     * @var int|null
-     * @SerializedName("field_id")
-     */
-    private $fieldId;
+    #[SerializedName('field_id')]
+    private int|null $fieldId = null;
 
-    /**
-     * @var string|null
-     * @SerializedName("value")
-     */
-    private $value;
+    #[SerializedName('value')]
+    private string|null $value = null;
 
-    /**
-     * @return string|null
-     */
     public function getRegexErrorMessage(): ?string
     {
         return $this->regexErrorMessage;
     }
 
-    /**
-     * @param string|null $regexErrorMessage
-     * @return self
-     */
     public function setRegexErrorMessage(?string $regexErrorMessage): self
     {
         $this->regexErrorMessage = $regexErrorMessage;
@@ -157,18 +99,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDependsOnFieldId(): ?int
     {
         return $this->dependsOnFieldId;
     }
 
-    /**
-     * @param int|null $dependsOnFieldId
-     * @return self
-     */
     public function setDependsOnFieldId(?int $dependsOnFieldId): self
     {
         $this->dependsOnFieldId = $dependsOnFieldId;
@@ -176,18 +111,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getRegex(): ?string
     {
         return $this->regex;
     }
 
-    /**
-     * @param string|null $regex
-     * @return self
-     */
     public function setRegex(?string $regex): self
     {
         $this->regex = $regex;
@@ -195,18 +123,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getLocked(): ?bool
     {
         return $this->locked;
     }
 
-    /**
-     * @param bool $locked
-     * @return self
-     */
     public function setLocked(bool $locked): self
     {
         $this->locked = $locked;
@@ -214,18 +135,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getUpdatedAt(): ?int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int|null $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(?int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -233,18 +147,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getCreatedAt(): ?int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int|null $createdAt
-     * @return self
-     */
     public function setCreatedAt(?int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -252,18 +159,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDependsOnOptionId(): ?int
     {
         return $this->dependsOnOptionId;
     }
 
-    /**
-     * @param int|null $dependsOnOptionId
-     * @return self
-     */
     public function setDependsOnOptionId(?int $dependsOnOptionId): self
     {
         $this->dependsOnOptionId = $dependsOnOptionId;
@@ -271,18 +171,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -290,18 +183,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     * @return self
-     */
     public function setName(?string $name): self
     {
         $this->name = $name;
@@ -309,18 +195,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getRequired(): ?bool
     {
         return $this->required;
     }
 
-    /**
-     * @param bool|null $required
-     * @return self
-     */
     public function setRequired(?bool $required): self
     {
         $this->required = $required;
@@ -328,18 +207,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPublic(): ?bool
     {
         return $this->public;
     }
 
-    /**
-     * @param bool|null $public
-     * @return self
-     */
     public function setPublic(?bool $public): self
     {
         $this->public = $public;
@@ -347,18 +219,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getOrder(): ?int
     {
         return $this->order;
     }
 
-    /**
-     * @param int|null $order
-     * @return self
-     */
     public function setOrder(?int $order): self
     {
         $this->order = $order;
@@ -366,18 +231,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string|null $description
-     * @return self
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -385,18 +243,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getType(): ?int
     {
         return $this->type;
     }
 
-    /**
-     * @param int|null $type
-     * @return self
-     */
     public function setType(?int $type): self
     {
         $this->type = $type;
@@ -404,18 +255,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getEncrypted(): ?int
     {
         return $this->encrypted;
     }
 
-    /**
-     * @param int|null $encrypted
-     * @return self
-     */
     public function setEncrypted(?int $encrypted): self
     {
         $this->encrypted = $encrypted;
@@ -433,7 +277,6 @@ abstract class CustomField extends BaseModel
 
     /**
      * @param Option[]|null $options
-     * @return self
      */
     public function setOptions(?array $options): self
     {
@@ -452,7 +295,6 @@ abstract class CustomField extends BaseModel
 
     /**
      * @param Brand[]|null $brands
-     * @return self
      */
     public function setBrands(?array $brands): self
     {
@@ -461,18 +303,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getFieldId(): ?int
     {
         return $this->fieldId;
     }
 
-    /**
-     * @param int|null $fieldId
-     * @return self
-     */
     public function setFieldId(?int $fieldId): self
     {
         $this->fieldId = $fieldId;
@@ -480,18 +315,11 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getValue(): ?string
     {
         return $this->value;
     }
 
-    /**
-     * @param string|null $value
-     * @return self
-     */
     public function setValue(?string $value): self
     {
         $this->value = $value;

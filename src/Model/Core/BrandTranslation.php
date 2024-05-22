@@ -3,38 +3,25 @@
 namespace SupportPal\ApiClient\Model\Core;
 
 use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class BrandTranslation extends BaseTranslation
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var int
-     * @SerializedName("brand_id")
-     */
-    private $brandId;
+    #[SerializedName('brand_id')]
+    private int $brandId;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
      * @return $this
      */
     public function setId(int $id): self
@@ -44,18 +31,11 @@ class BrandTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return BrandTranslation
-     */
     public function setName(string $name): BrandTranslation
     {
         $this->name = $name;
@@ -63,18 +43,11 @@ class BrandTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getBrandId(): int
     {
         return $this->brandId;
     }
 
-    /**
-     * @param int $brandId
-     * @return self
-     */
     public function setBrandId(int $brandId): self
     {
         $this->brandId = $brandId;

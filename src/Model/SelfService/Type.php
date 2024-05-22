@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\BaseModel;
 use SupportPal\ApiClient\Model\Core\Brand;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Type extends BaseModel
 {
@@ -20,132 +20,69 @@ class Type extends BaseModel
         'internal',
     ];
 
-    /**
-     * @var string|null
-     * @SerializedName("icon")
-     */
-    private $icon;
+    #[SerializedName('icon')]
+    private string|null $icon;
 
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var string
-     * @SerializedName("description")
-     */
-    private $description;
+    #[SerializedName('description')]
+    private string $description;
 
-    /**
-     * @var int
-     * @SerializedName("brand_id")
-     */
-    private $brandId;
+    #[SerializedName('brand_id')]
+    private int $brandId;
 
-    /**
-     * @var int|null
-     * @SerializedName("article_ordering")
-     */
-    private $articleOrdering;
+    #[SerializedName('article_ordering')]
+    private int|null $articleOrdering;
 
-    /**
-     * @var string|null
-     * @SerializedName("slug")
-     */
-    private $slug;
+    #[SerializedName('slug')]
+    private string|null $slug;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var bool
-     * @SerializedName("internal")
-     */
-    private $internal;
+    #[SerializedName('internal')]
+    private bool $internal;
 
-    /**
-     * @var int|null
-     * @SerializedName("show_on_dashboard")
-     */
-    private $showOnDashboard;
+    #[SerializedName('show_on_dashboard')]
+    private int|null $showOnDashboard;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var int|null
-     * @SerializedName("view")
-     */
-    private $view;
+    #[SerializedName('view')]
+    private int|null $view;
 
-    /**
-     * @var bool
-     * @SerializedName("protected")
-     */
-    private $protected;
+    #[SerializedName('protected')]
+    private bool $protected;
 
-    /**
-     * @var int|null
-     * @SerializedName("order")
-     */
-    private $order;
+    #[SerializedName('order')]
+    private int|null $order;
 
-    /**
-     * @var string|null
-     * @SerializedName("external_link")
-     */
-    private $externalLink;
+    #[SerializedName('external_link')]
+    private string|null $externalLink;
 
-    /**
-     * @var bool
-     * @SerializedName("enabled")
-     */
-    private $enabled;
+    #[SerializedName('enabled')]
+    private bool $enabled;
 
-    /**
-     * @var int
-     * @SerializedName("content")
-     */
-    private $content;
+    #[SerializedName('content')]
+    private int $content;
 
-    /**
-     * @var Brand|null
-     * @SerializedName("brand")
-     */
-    private $brand;
+    #[SerializedName('brand')]
+    private Brand|null $brand;
 
-    /**
-     * @var TypeTranslation[]|null
-     * @SerializedName("translations")
-     */
-    private $translations;
+    /** @var TypeTranslation[]|null */
+    #[SerializedName('translations')]
+    private array|null $translations;
 
-    /**
-     * @return string|null
-     */
     public function getIcon(): ?string
     {
         return $this->icon;
     }
 
-    /**
-     * @param string|null $icon
-     * @return self
-     */
     public function setIcon(?string $icon): self
     {
         $this->icon = $icon;
@@ -153,18 +90,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -172,18 +102,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -191,18 +114,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     * @return self
-     */
     public function setDescription(string $description): self
     {
         $this->description = $description;
@@ -210,18 +126,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getBrandId(): int
     {
         return $this->brandId;
     }
 
-    /**
-     * @param int $brandId
-     * @return self
-     */
     public function setBrandId(int $brandId): self
     {
         $this->brandId = $brandId;
@@ -229,18 +138,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getArticleOrdering(): ?int
     {
         return $this->articleOrdering;
     }
 
-    /**
-     * @param int|null $articleOrdering
-     * @return self
-     */
     public function setArticleOrdering(?int $articleOrdering): self
     {
         $this->articleOrdering = $articleOrdering;
@@ -248,18 +150,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    /**
-     * @param string|null $slug
-     * @return self
-     */
     public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
@@ -267,18 +162,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -286,18 +174,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getInternal(): bool
     {
         return $this->internal;
     }
 
-    /**
-     * @param bool $internal
-     * @return self
-     */
     public function setInternal(bool $internal): self
     {
         $this->internal = $internal;
@@ -305,18 +186,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getShowOnDashboard(): ?int
     {
         return $this->showOnDashboard;
     }
 
-    /**
-     * @param int|null $showOnDashboard
-     * @return self
-     */
     public function setShowOnDashboard(?int $showOnDashboard): self
     {
         $this->showOnDashboard = $showOnDashboard;
@@ -324,18 +198,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -343,18 +210,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getView(): ?int
     {
         return $this->view;
     }
 
-    /**
-     * @param int|null $view
-     * @return self
-     */
     public function setView(?int $view): self
     {
         $this->view = $view;
@@ -362,18 +222,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getProtected(): bool
     {
         return $this->protected;
     }
 
-    /**
-     * @param bool $protected
-     * @return self
-     */
     public function setProtected(bool $protected): self
     {
         $this->protected = $protected;
@@ -381,18 +234,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getOrder(): ?int
     {
         return $this->order;
     }
 
-    /**
-     * @param int|null $order
-     * @return self
-     */
     public function setOrder(?int $order): self
     {
         $this->order = $order;
@@ -400,18 +246,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getExternalLink(): ?string
     {
         return $this->externalLink;
     }
 
-    /**
-     * @param string|null $externalLink
-     * @return self
-     */
     public function setExternalLink(?string $externalLink): self
     {
         $this->externalLink = $externalLink;
@@ -419,18 +258,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @param bool $enabled
-     * @return self
-     */
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
@@ -438,18 +270,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getContent(): int
     {
         return $this->content;
     }
 
-    /**
-     * @param int $content
-     * @return self
-     */
     public function setContent(int $content): self
     {
         $this->content = $content;
@@ -457,18 +282,11 @@ class Type extends BaseModel
         return $this;
     }
 
-    /**
-     * @return Brand|null
-     */
     public function getBrand(): ?Brand
     {
         return $this->brand;
     }
 
-    /**
-     * @param Brand $brand
-     * @return self
-     */
     public function setBrand(Brand $brand): self
     {
         $this->brand = $brand;
@@ -486,7 +304,6 @@ class Type extends BaseModel
 
     /**
      * @param TypeTranslation[]|null $translations
-     * @return Type
      */
     public function setTranslations(?array $translations): self
     {

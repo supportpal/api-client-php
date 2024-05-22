@@ -3,76 +3,43 @@
 namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class SlaPlan extends BaseModel
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var int
-     * @SerializedName("condition_group_type")
-     */
-    private $conditionGroupType;
+    #[SerializedName('condition_group_type')]
+    private int $conditionGroupType;
 
-    /**
-     * @var string|null
-     * @SerializedName("description")
-     */
-    private $description;
+    #[SerializedName('description')]
+    private string|null $description;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var int|null
-     * @SerializedName("order")
-     */
-    private $order;
+    #[SerializedName('order')]
+    private int|null $order;
 
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var int
-     * @SerializedName("all_hours")
-     */
-    private $allHours;
+    #[SerializedName('all_hours')]
+    private int $allHours;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var SlaPlanTranslation[]|null
-     * @SerializedName("translations")
-     */
-    private $translations;
+    /** @var SlaPlanTranslation[]|null */
+    #[SerializedName('translations')]
+    private array|null $translations;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -80,18 +47,11 @@ class SlaPlan extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getConditionGroupType(): int
     {
         return $this->conditionGroupType;
     }
 
-    /**
-     * @param int $conditionGroupType
-     * @return self
-     */
     public function setConditionGroupType(int $conditionGroupType): self
     {
         $this->conditionGroupType = $conditionGroupType;
@@ -99,18 +59,11 @@ class SlaPlan extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string|null $description
-     * @return self
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -118,18 +71,11 @@ class SlaPlan extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -137,18 +83,11 @@ class SlaPlan extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getOrder(): ?int
     {
         return $this->order;
     }
 
-    /**
-     * @param int|null $order
-     * @return self
-     */
     public function setOrder(?int $order): self
     {
         $this->order = $order;
@@ -156,18 +95,11 @@ class SlaPlan extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -175,18 +107,11 @@ class SlaPlan extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getAllHours(): int
     {
         return $this->allHours;
     }
 
-    /**
-     * @param int $allHours
-     * @return self
-     */
     public function setAllHours(int $allHours): self
     {
         $this->allHours = $allHours;
@@ -194,18 +119,11 @@ class SlaPlan extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -223,7 +141,6 @@ class SlaPlan extends BaseModel
 
     /**
      * @param SlaPlanTranslation[]|null $translations
-     * @return self
      */
     public function setTranslations(?array $translations): self
     {

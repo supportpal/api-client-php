@@ -3,76 +3,42 @@
 namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Channel extends BaseModel
 {
-    /**
-     * @var int
-     * @SerializedName("updated_at")
-     */
-    private $updatedAt;
+    #[SerializedName('updated_at')]
+    private int $updatedAt;
 
-    /**
-     * @var int
-     * @SerializedName("created_at")
-     */
-    private $createdAt;
+    #[SerializedName('created_at')]
+    private int $createdAt;
 
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string|null
-     * @SerializedName("version")
-     */
-    private $version;
+    #[SerializedName('version')]
+    private string|null $version;
 
-    /**
-     * @var bool
-     * @SerializedName("enabled")
-     */
-    private $enabled;
+    #[SerializedName('enabled')]
+    private bool $enabled;
 
-    /**
-     * @var bool
-     * @SerializedName("upgrade_available")
-     */
-    private $upgradeAvailable;
+    #[SerializedName('upgrade_available')]
+    private bool $upgradeAvailable;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var string
-     * @SerializedName("formatted_name")
-     */
-    private $formattedName;
+    #[SerializedName('formatted_name')]
+    private string $formattedName;
 
-    /**
-     * @var bool|null
-     * @SerializedName("show_on_frontend")
-     */
-    private $showOnFrontend;
+    #[SerializedName('show_on_frontend')]
+    private bool|null $showOnFrontend;
 
-    /**
-     * @return int
-     */
     public function getUpdatedAt(): int
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param int $updatedAt
-     * @return self
-     */
     public function setUpdatedAt(int $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -80,18 +46,11 @@ class Channel extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param int $createdAt
-     * @return self
-     */
     public function setCreatedAt(int $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -99,18 +58,11 @@ class Channel extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return self
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -118,18 +70,11 @@ class Channel extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getVersion(): ?string
     {
         return $this->version;
     }
 
-    /**
-     * @param string|null $version
-     * @return self
-     */
     public function setVersion(?string $version): self
     {
         $this->version = $version;
@@ -137,18 +82,11 @@ class Channel extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @param bool $enabled
-     * @return self
-     */
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
@@ -156,18 +94,11 @@ class Channel extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getUpgradeAvailable(): bool
     {
         return $this->upgradeAvailable;
     }
 
-    /**
-     * @param bool $upgradeAvailable
-     * @return self
-     */
     public function setUpgradeAvailable(bool $upgradeAvailable): self
     {
         $this->upgradeAvailable = $upgradeAvailable;
@@ -175,18 +106,11 @@ class Channel extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -194,18 +118,11 @@ class Channel extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getFormattedName(): string
     {
         return $this->formattedName;
     }
 
-    /**
-     * @param string $formattedName
-     * @return self
-     */
     public function setFormattedName(string $formattedName): self
     {
         $this->formattedName = $formattedName;
@@ -213,18 +130,11 @@ class Channel extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getShowOnFrontend(): ?bool
     {
         return $this->showOnFrontend;
     }
 
-    /**
-     * @param bool $value
-     * @return self
-     */
     public function setShowOnFrontend(bool $value): self
     {
         $this->showOnFrontend = $value;

@@ -3,27 +3,21 @@
 namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Extra extends BaseModel
 {
-    /**
-     * @var string[]|null
-     * @SerializedName("bcc_address")
-     */
-    private $bccAddress;
+    /** @var string[]|null */
+    #[SerializedName('bcc_address')]
+    private array|null $bccAddress;
 
-    /**
-     * @var string[]|null
-     * @SerializedName("to_address")
-     */
-    private $toAddress;
+    /** @var string[]|null */
+    #[SerializedName('to_address')]
+    private array|null $toAddress;
 
-    /**
-     * @var string[]|null
-     * @SerializedName("cc_address")
-     */
-    private $ccAddress;
+    /** @var string[]|null */
+    #[SerializedName('cc_address')]
+    private array|null $ccAddress;
 
     /**
      * @return string[]|null
@@ -35,7 +29,6 @@ class Extra extends BaseModel
 
     /**
      * @param string[]|null $bccAddress
-     * @return self
      */
     public function setBccAddress(?array $bccAddress): self
     {
@@ -54,7 +47,6 @@ class Extra extends BaseModel
 
     /**
      * @param string[]|null $toAddress
-     * @return self
      */
     public function setToAddress(?array $toAddress): self
     {
@@ -73,7 +65,6 @@ class Extra extends BaseModel
 
     /**
      * @param string[]|null $ccAddress
-     * @return self
      */
     public function setCcAddress(?array $ccAddress): self
     {

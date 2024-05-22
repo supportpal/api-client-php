@@ -3,44 +3,28 @@
 namespace SupportPal\ApiClient\Model\Department;
 
 use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class DepartmentTranslation extends BaseTranslation
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var string|null
-     * @SerializedName("description")
-     */
-    private $description;
+    #[SerializedName('description')]
+    private ?string $description;
 
-    /**
-     * @var int
-     * @SerializedName("department_id")
-     */
-    private $departmentId;
+    #[SerializedName('department_id')]
+    private int $departmentId;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
      * @return $this
      */
     public function setId(int $id): self
@@ -50,18 +34,11 @@ class DepartmentTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -69,18 +46,11 @@ class DepartmentTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @param string|null $description
-     * @return self
-     */
     public function setDescription(?string $description): self
     {
         $this->description = $description;
@@ -88,18 +58,11 @@ class DepartmentTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getDepartmentId(): int
     {
         return $this->departmentId;
     }
 
-    /**
-     * @param int $departmentId
-     * @return self
-     */
     public function setDepartmentId(int $departmentId): self
     {
         $this->departmentId = $departmentId;

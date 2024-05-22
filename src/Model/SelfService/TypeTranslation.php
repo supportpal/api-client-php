@@ -3,52 +3,30 @@
 namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\BaseTranslation;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class TypeTranslation extends BaseTranslation
 {
-    /**
-     * @var int
-     * @SerializedName("id")
-     */
-    private $id;
+    #[SerializedName('id')]
+    private int $id;
 
-    /**
-     * @var string
-     * @SerializedName("name")
-     */
-    private $name;
+    #[SerializedName('name')]
+    private string $name;
 
-    /**
-     * @var int
-     * @SerializedName("type_id")
-     */
-    private $typeId;
+    #[SerializedName('type_id')]
+    private int $typeId;
 
-    /**
-     * @var string
-     * @SerializedName("description")
-     */
-    private $description;
+    #[SerializedName('description')]
+    private string $description;
 
-    /**
-     * @var string|null
-     * @SerializedName("slug")
-     */
-    private $slug;
+    #[SerializedName('slug')]
+    private string|null $slug;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return $this
-     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -56,18 +34,11 @@ class TypeTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return self
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -75,18 +46,11 @@ class TypeTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getTypeId(): int
     {
         return $this->typeId;
     }
 
-    /**
-     * @param int $typeId
-     * @return self
-     */
     public function setTypeId(int $typeId): self
     {
         $this->typeId = $typeId;
@@ -94,18 +58,11 @@ class TypeTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @param string $description
-     * @return self
-     */
     public function setDescription(string $description): self
     {
         $this->description = $description;
@@ -113,18 +70,11 @@ class TypeTranslation extends BaseTranslation
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    /**
-     * @param string|null $slug
-     * @return self
-     */
     public function setSlug(?string $slug): self
     {
         $this->slug = $slug;

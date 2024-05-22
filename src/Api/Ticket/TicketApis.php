@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Api\Ticket;
 
+use Error;
 use SupportPal\ApiClient\Api\ApiAware;
 use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
@@ -14,6 +15,7 @@ use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
 use TypeError;
 
 use function array_map;
+use function sprintf;
 
 trait TicketApis
 {
@@ -59,6 +61,12 @@ trait TicketApis
             $ticketId = $ticket->getId();
         } catch (TypeError $typeError) {
             throw new MissingIdentifierException('missing ticket identifier');
+        } catch (Error $error) {
+            if ($error->getMessage() === sprintf('Typed property %s::$id must not be accessed before initialization', Ticket::class)) {
+                throw new MissingIdentifierException('missing ticket identifier');
+            }
+
+            throw $error;
         }
 
         $response = $this->getApiClient()->updateTicket($ticketId, $data);

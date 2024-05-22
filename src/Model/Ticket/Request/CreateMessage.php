@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Model\Ticket\Request;
 
 use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class CreateMessage extends BaseModel
 {
@@ -13,78 +13,43 @@ class CreateMessage extends BaseModel
         'text',
     ];
 
-    /**
-     * @var int
-     * @SerializedName("ticket_id")
-     */
-    private $ticketId;
+    #[SerializedName('ticket_id')]
+    private int $ticketId;
 
-    /**
-     * @var int
-     * @SerializedName("user_id")
-     */
-    private $userId;
+    #[SerializedName('user_id')]
+    private int $userId;
 
-    /**
-     * @var string|null
-     * @SerializedName("user_ip_address")
-     */
-    private $userIpAddress;
+    #[SerializedName('user_ip_address')]
+    private string|null $userIpAddress;
 
-    /**
-     * @var int|null
-     * @SerializedName("message_type")
-     */
-    private $messageType;
+    #[SerializedName('message_type')]
+    private int|null $messageType;
 
-    /**
-     * @var string
-     * @SerializedName("text")
-     */
-    private $text;
+    #[SerializedName('text')]
+    private string $text;
 
-    /**
-     * @var string[]|null
-     * @SerializedName("cc")
-     */
-    private $cc;
+    /** @var string[]|null */
+    #[SerializedName('cc')]
+    private array|null $cc;
 
-    /**
-     * @var bool|null
-     * @SerializedName("is_draft")
-     */
-    private $isDraft;
+    #[SerializedName('is_draft')]
+    private bool|null $isDraft;
 
-    /**
-     * @var bool|null
-     * @SerializedName("send_user_email")
-     */
-    private $sendUserEmail;
+    #[SerializedName('send_user_email')]
+    private bool|null $sendUserEmail;
 
-    /**
-     * @var bool|null
-     * @SerializedName("send_operators_email")
-     */
-    private $sendOperatorsEmail;
+    #[SerializedName('send_operators_email')]
+    private bool|null $sendOperatorsEmail;
 
-    /**
-     * @var string[]|null
-     * @SerializedName("attachment")
-     */
-    private $attachment;
+    /** @var string[]|null */
+    #[SerializedName('attachment')]
+    private array|null $attachment;
 
-    /**
-     * @return int
-     */
     public function getTicketId(): int
     {
         return $this->ticketId;
     }
 
-    /**
-     * @param int $ticketId
-     * @return self
-     */
     public function setTicketId(int $ticketId): self
     {
         $this->ticketId = $ticketId;
@@ -92,18 +57,11 @@ class CreateMessage extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getUserId(): int
     {
         return $this->userId;
     }
 
-    /**
-     * @param int $userId
-     * @return self
-     */
     public function setUserId(int $userId): self
     {
         $this->userId = $userId;
@@ -111,18 +69,11 @@ class CreateMessage extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUserIpAddress(): ?string
     {
         return $this->userIpAddress;
     }
 
-    /**
-     * @param string|null $userIpAddress
-     * @return self
-     */
     public function setUserIpAddress(?string $userIpAddress): self
     {
         $this->userIpAddress = $userIpAddress;
@@ -130,18 +81,11 @@ class CreateMessage extends BaseModel
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMessageType(): ?int
     {
         return $this->messageType;
     }
 
-    /**
-     * @param int|null $messageType
-     * @return self
-     */
     public function setMessageType(?int $messageType): self
     {
         $this->messageType = $messageType;
@@ -149,18 +93,11 @@ class CreateMessage extends BaseModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getText(): string
     {
         return $this->text;
     }
 
-    /**
-     * @param string $text
-     * @return self
-     */
     public function setText(string $text): self
     {
         $this->text = $text;
@@ -178,7 +115,6 @@ class CreateMessage extends BaseModel
 
     /**
      * @param string[]|null $cc
-     * @return self
      */
     public function setCc(?array $cc): self
     {
@@ -187,18 +123,11 @@ class CreateMessage extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsDraft(): ?bool
     {
         return $this->isDraft;
     }
 
-    /**
-     * @param bool|null $isDraft
-     * @return self
-     */
     public function setIsDraft(?bool $isDraft): self
     {
         $this->isDraft = $isDraft;
@@ -206,18 +135,11 @@ class CreateMessage extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getSendUserEmail(): ?bool
     {
         return $this->sendUserEmail;
     }
 
-    /**
-     * @param bool|null $sendUserEmail
-     * @return self
-     */
     public function setSendUserEmail(?bool $sendUserEmail): self
     {
         $this->sendUserEmail = $sendUserEmail;
@@ -225,18 +147,11 @@ class CreateMessage extends BaseModel
         return $this;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getSendOperatorsEmail(): ?bool
     {
         return $this->sendOperatorsEmail;
     }
 
-    /**
-     * @param bool|null $sendOperatorsEmail
-     * @return self
-     */
     public function setSendOperatorsEmail(?bool $sendOperatorsEmail): self
     {
         $this->sendOperatorsEmail = $sendOperatorsEmail;
@@ -254,7 +169,6 @@ class CreateMessage extends BaseModel
 
     /**
      * @param string[]|null $attachment
-     * @return self
      */
     public function setAttachment(?array $attachment): self
     {
