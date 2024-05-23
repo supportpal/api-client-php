@@ -7,71 +7,34 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Tag extends BaseModel
 {
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+    public function __construct(
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('id')]
-    protected int $id;
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('colour')]
-    protected string $colour;
+        #[SerializedName('colour')]
+        public readonly string $colour,
 
-    #[SerializedName('colour_text')]
-    protected string $colourText;
+        #[SerializedName('colour_text')]
+        public readonly string $colourText,
 
-    #[SerializedName('original_name')]
-    protected string $originalName;
+        #[SerializedName('original_name')]
+        public readonly string $originalName,
 
-    /** @var TagTranslation[]|null */
-    #[SerializedName('translations')]
-    protected array|null $translations = null;
+        /** @var TagTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly array|null $translations = null,
 
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getColour(): string
-    {
-        return $this->colour;
-    }
-
-    public function getColourText(): string
-    {
-        return $this->colourText;
-    }
-
-    public function getOriginalName(): string
-    {
-        return $this->originalName;
-    }
-
-    /**
-     * @return TagTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

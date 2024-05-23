@@ -8,43 +8,40 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class TicketCustomField extends CustomField
 {
-    #[SerializedName('purge')]
-    protected int|null $purge = null;
+    public function __construct(
+        $dependsOnFieldId,
+        $regex,
+        $locked,
+        $updatedAt,
+        $createdAt,
+        $dependsOnOptionId,
+        $id,
+        $name,
+        $required,
+        $public,
+        $order,
+        $description,
+        $type,
+        $encrypted,
+        $options,
+        $brands,
 
-    /** @var Department[]|null */
-    #[SerializedName('departments')]
-    protected array|null $departments = null;
+        #[SerializedName('purge')]
+        public readonly int|null $purge = null,
 
-    #[SerializedName('ticket_id')]
-    protected int|null $ticketId = null;
+        /** @var Department[]|null */
+        #[SerializedName('departments')]
+        public readonly array|null $departments = null,
 
-    /** @var TicketCustomFieldTranslation[]|null */
-    #[SerializedName('translations')]
-    protected array|null $translations = null;
+        #[SerializedName('ticket_id')]
+        public readonly int|null $ticketId = null,
 
-    public function getPurge(): ?int
-    {
-        return $this->purge;
-    }
+        /** @var TicketCustomFieldTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly array|null $translations = null,
 
-    /**
-     * @return Department[]|null
-     */
-    public function getDepartments(): ?array
-    {
-        return $this->departments;
-    }
-
-    public function getTicketId(): ?int
-    {
-        return $this->ticketId;
-    }
-
-    /**
-     * @return TicketCustomFieldTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
+        $pivot = null,
+    ) {
+        parent::__construct($dependsOnFieldId, $regex, $locked, $updatedAt, $createdAt, $dependsOnOptionId, $id, $name, $required, $public, $order, $description, $type, $encrypted, $options, $brands, $pivot);
     }
 }

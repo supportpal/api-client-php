@@ -32,31 +32,4 @@ class CommentTest extends BaseModelTestCase
     {
         return (new CommentData)->getDataWithObjects();
     }
-
-    /**
-     * @param array<mixed> $data
-     * @param string $missingField
-     * @dataProvider provideDataWithMissingRequiredFields
-     * @throws InvalidArgumentException
-     */
-    public function testCreateWithMissingData(array $data, string $missingField): void
-    {
-        self::expectException(MissingRequiredFieldsException::class);
-        self::expectExceptionMessage($missingField);
-        $model = new Comment;
-        $model->fill($data);
-    }
-
-    /**
-     * @return iterable<mixed>
-     */
-    public function provideDataWithMissingRequiredFields(): iterable
-    {
-        foreach (Comment::REQUIRED_FIELDS as $requiredField) {
-            $dataCopy = $this->getModelData();
-            unset($dataCopy[$requiredField]);
-
-            yield [$dataCopy, $requiredField];
-        }
-    }
 }

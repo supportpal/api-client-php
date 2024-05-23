@@ -7,79 +7,37 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class SlaPlan extends BaseModel
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('condition_group_type')]
-    protected int $conditionGroupType;
+        #[SerializedName('condition_group_type')]
+        public readonly int $conditionGroupType,
 
-    #[SerializedName('description')]
-    protected string|null $description;
+        #[SerializedName('description')]
+        public readonly string|null $description,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('order')]
-    protected int|null $order;
+        #[SerializedName('order')]
+        public readonly int|null $order,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('all_hours')]
-    protected int $allHours;
+        #[SerializedName('all_hours')]
+        public readonly int $allHours,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    /** @var SlaPlanTranslation[]|null */
-    #[SerializedName('translations')]
-    protected array|null $translations;
+        /** @var SlaPlanTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly array|null $translations,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getConditionGroupType(): int
-    {
-        return $this->conditionGroupType;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getOrder(): ?int
-    {
-        return $this->order;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getAllHours(): int
-    {
-        return $this->allHours;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return SlaPlanTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

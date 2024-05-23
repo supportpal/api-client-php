@@ -17,8 +17,6 @@ use function reset;
 
 /**
  * Wrap collection of Model values
- * Class Collection
- * @package SupportPal\ApiClient\Model\Collection
  */
 class Collection
 {

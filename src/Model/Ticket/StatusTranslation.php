@@ -7,27 +7,19 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class StatusTranslation extends BaseTranslation
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('status_id')]
-    protected int $statusId;
+        #[SerializedName('status_id')]
+        public readonly int $statusId,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getStatusId(): int
-    {
-        return $this->statusId;
+        $locale,
+        $pivot = null,
+    ) {
+        parent::__construct($locale, $pivot);
     }
 }

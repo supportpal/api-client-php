@@ -7,27 +7,19 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class PriorityTranslation extends BaseTranslation
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('priority_id')]
-    protected int $priorityId;
+        #[SerializedName('priority_id')]
+        public readonly int $priorityId,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getPriorityId(): int
-    {
-        return $this->priorityId;
+        $locale,
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

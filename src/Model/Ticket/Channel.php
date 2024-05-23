@@ -7,75 +7,36 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Channel extends BaseModel
 {
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+    public function __construct(
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('id')]
-    protected int $id;
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('version')]
-    protected string|null $version;
+        #[SerializedName('version')]
+        public readonly string|null $version,
 
-    #[SerializedName('enabled')]
-    protected bool $enabled;
+        #[SerializedName('enabled')]
+        public readonly bool $enabled,
 
-    #[SerializedName('upgrade_available')]
-    protected bool $upgradeAvailable;
+        #[SerializedName('upgrade_available')]
+        public readonly bool $upgradeAvailable,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('formatted_name')]
-    protected string $formattedName;
+        #[SerializedName('formatted_name')]
+        public readonly string $formattedName,
 
-    #[SerializedName('show_on_frontend')]
-    protected bool|null $showOnFrontend;
+        #[SerializedName('show_on_frontend')]
+        public readonly bool|null $showOnFrontend,
 
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getVersion(): ?string
-    {
-        return $this->version;
-    }
-
-    public function getEnabled(): bool
-    {
-        return $this->enabled;
-    }
-
-    public function getUpgradeAvailable(): bool
-    {
-        return $this->upgradeAvailable;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getFormattedName(): string
-    {
-        return $this->formattedName;
-    }
-
-    public function getShowOnFrontend(): ?bool
-    {
-        return $this->showOnFrontend;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

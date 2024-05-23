@@ -7,87 +7,40 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Status extends BaseModel
 {
-    #[SerializedName('colour')]
-    protected string $colour;
+    public function __construct(
+        #[SerializedName('colour')]
+        public readonly string $colour,
 
-    #[SerializedName('id')]
-    protected int $id;
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('order')]
-    protected int|null $order;
+        #[SerializedName('order')]
+        public readonly int|null $order,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('icon_without_tooltip')]
-    protected string $iconWithoutTooltip;
+        #[SerializedName('icon_without_tooltip')]
+        public readonly string $iconWithoutTooltip,
 
-    #[SerializedName('icon')]
-    protected string $icon;
+        #[SerializedName('icon')]
+        public readonly string $icon,
 
-    #[SerializedName('auto_close')]
-    protected bool $autoClose;
+        #[SerializedName('auto_close')]
+        public readonly bool $autoClose,
 
-    /** @var StatusTranslation[]|null */
-    #[SerializedName('translations')]
-    protected array|null $translations;
+        /** @var StatusTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly array|null $translations,
 
-    public function getColour(): string
-    {
-        return $this->colour;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getOrder(): ?int
-    {
-        return $this->order;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getIconWithoutTooltip(): string
-    {
-        return $this->iconWithoutTooltip;
-    }
-
-    public function getIcon(): string
-    {
-        return $this->icon;
-    }
-
-    public function getAutoClose(): bool
-    {
-        return $this->autoClose;
-    }
-
-    /**
-     * @return StatusTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

@@ -7,220 +7,83 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Article extends BaseModel
 {
-    public const REQUIRED_FIELDS = [
-        'pinned',
-        'text',
-        'protected',
-        'title',
-        'created_at',
-        'plain_text',
-        'published',
-        'purified_text',
-        'updated_at',
-        'slug',
-    ];
+    public function __construct(
+        #[SerializedName('purified_text')]
+        public readonly string $purifiedText,
 
-    #[SerializedName('purified_text')]
-    protected string $purifiedText;
+        #[SerializedName('pinned')]
+        public readonly bool $pinned,
 
-    #[SerializedName('pinned')]
-    protected bool $pinned;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('text')]
+        public readonly string $text,
 
-    #[SerializedName('text')]
-    protected string $text;
+        #[SerializedName('public')]
+        public readonly bool $public,
 
-    #[SerializedName('protected')]
-    protected bool $protected;
+        #[SerializedName('title')]
+        public readonly string $title,
 
-    #[SerializedName('title')]
-    protected string $title;
+        #[SerializedName('author_id')]
+        public readonly int|null $authorId,
 
-    #[SerializedName('author_id')]
-    protected int|null $authorId;
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('id')]
-    protected int $id;
+        #[SerializedName('excerpt')]
+        public readonly string|null $excerpt,
 
-    #[SerializedName('excerpt')]
-    protected string|null $excerpt;
+        #[SerializedName('plain_text')]
+        public readonly string $plainText,
 
-    #[SerializedName('plain_text')]
-    protected string $plainText;
+        #[SerializedName('published_at')]
+        public readonly int|null $publishedAt,
 
-    #[SerializedName('published_at')]
-    protected int|null $publishedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('keywords')]
+        public readonly string|null $keywords,
 
-    #[SerializedName('keywords')]
-    protected string|null $keywords;
+        #[SerializedName('slug')]
+        public readonly string $slug,
 
-    #[SerializedName('slug')]
-    protected string $slug;
+        #[SerializedName('published')]
+        public readonly bool $published,
 
-    #[SerializedName('published')]
-    protected bool $published;
+        /** @var Category[]|null */
+        #[SerializedName('categories')]
+        public readonly array|null $categories,
 
-    /** @var Category[]|null */
-    #[SerializedName('categories')]
-    protected array|null $categories;
+        /** @var Type[]|null */
+        #[SerializedName('types')]
+        public readonly array|null $types,
 
-    /** @var Type[]|null */
-    #[SerializedName('types')]
-    protected array|null $types;
+        /** @var ArticleAttachment[]|null */
+        #[SerializedName('attachments')]
+        public readonly array|null $attachments,
 
-    /** @var ArticleAttachment[]|null */
-    #[SerializedName('attachments')]
-    protected array|null $attachments;
+        /** @var Tag[]|null */
+        #[SerializedName('tags')]
+        public readonly array|null $tags,
 
-    #[SerializedName('views')]
-    protected int|null $views = null;
+        /** @var ArticleTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly array|null $translations,
 
-    /** @var Tag[]|null */
-    #[SerializedName('tags')]
-    protected array|null $tags;
+        #[SerializedName('views')]
+        public readonly int|null $views = null,
 
-    /** @var ArticleTranslation[]|null */
-    #[SerializedName('translations')]
-    protected array|null $translations;
+        #[SerializedName('positive_rating')]
+        public readonly int|null $positiveRating = null,
 
-    #[SerializedName('positive_rating')]
-    protected int|null $positiveRating = null;
+        #[SerializedName('total_rating')]
+        public readonly int|null $totalRating = null,
 
-    #[SerializedName('total_rating')]
-    protected int|null $totalRating = null;
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getAuthorId(): ?int
-    {
-        return $this->authorId;
-    }
-
-    public function getPinned(): bool
-    {
-        return $this->pinned;
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
-    }
-
-    public function getProtected(): bool
-    {
-        return $this->protected;
-    }
-
-    public function getPublishedAt(): ?int
-    {
-        return $this->publishedAt;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getPlainText(): string
-    {
-        return $this->plainText;
-    }
-
-    public function getKeywords(): ?string
-    {
-        return $this->keywords;
-    }
-
-    public function getPublished(): bool
-    {
-        return $this->published;
-    }
-
-    public function getExcerpt(): ?string
-    {
-        return $this->excerpt;
-    }
-
-    public function getPurifiedText(): string
-    {
-        return $this->purifiedText;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getSlug(): string
-    {
-        return $this->slug;
-    }
-
-    /**
-     * @return Category[]|null
-     */
-    public function getCategories(): ?array
-    {
-        return $this->categories;
-    }
-
-    /**
-     * @return Type[]|null
-     */
-    public function getTypes(): ?array
-    {
-        return $this->types;
-    }
-
-    /**
-     * @return ArticleAttachment[]|null
-     */
-    public function getAttachments(): ?array
-    {
-        return $this->attachments;
-    }
-
-    public function getViews(): ?int
-    {
-        return $this->views;
-    }
-
-    /**
-     * @return Tag[]|null
-1     */
-    public function getTags(): ?array
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @return ArticleTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
-    }
-
-    public function getPositiveRating(): ?int
-    {
-        return $this->positiveRating;
-    }
-
-    public function getTotalRating(): ?int
-    {
-        return $this->totalRating;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

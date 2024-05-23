@@ -7,35 +7,21 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class ChannelSettings extends BaseModel
 {
-    #[SerializedName('unauthenticated_users')]
-    protected string $unauthenticatedUsers;
+    public function __construct(
+        #[SerializedName('unauthenticated_users')]
+        public readonly string $unauthenticatedUsers,
 
-    #[SerializedName('show_captcha')]
-    protected string $showCaptcha;
+        #[SerializedName('show_captcha')]
+        public readonly string $showCaptcha,
 
-    #[SerializedName('append_ip_address')]
-    protected string $appendIpAddress;
+        #[SerializedName('append_ip_address')]
+        public readonly string $appendIpAddress,
 
-    #[SerializedName('show_related_articles')]
-    protected string $showRelatedArticles;
+        #[SerializedName('show_related_articles')]
+        public readonly string $showRelatedArticles,
 
-    public function getUnauthenticatedUsers(): string
-    {
-        return $this->unauthenticatedUsers;
-    }
-
-    public function getShowCaptcha(): string
-    {
-        return $this->showCaptcha;
-    }
-
-    public function getAppendIpAddress(): string
-    {
-        return $this->appendIpAddress;
-    }
-
-    public function getShowRelatedArticles(): string
-    {
-        return $this->showRelatedArticles;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

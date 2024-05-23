@@ -8,171 +8,67 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Type extends BaseModel
 {
-    public const REQUIRED_FIELDS = [
-        'brand_id',
-        'description',
-        'content',
-        'enabled',
-        'name',
-        'created_at',
-        'protected',
-        'updated_at',
-        'internal',
-    ];
+    public function __construct(
+        #[SerializedName('icon')]
+        public readonly string|null $icon,
 
-    #[SerializedName('icon')]
-    protected string|null $icon;
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('id')]
-    protected int $id;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('description')]
+        public readonly string $description,
 
-    #[SerializedName('description')]
-    protected string $description;
+        #[SerializedName('brand_id')]
+        public readonly int $brandId,
 
-    #[SerializedName('brand_id')]
-    protected int $brandId;
+        #[SerializedName('article_ordering')]
+        public readonly int|null $articleOrdering,
 
-    #[SerializedName('article_ordering')]
-    protected int|null $articleOrdering;
+        #[SerializedName('slug')]
+        public readonly string|null $slug,
 
-    #[SerializedName('slug')]
-    protected string|null $slug;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('internal')]
+        public readonly bool $internal,
 
-    #[SerializedName('internal')]
-    protected bool $internal;
+        #[SerializedName('show_on_dashboard')]
+        public readonly int|null $showOnDashboard,
 
-    #[SerializedName('show_on_dashboard')]
-    protected int|null $showOnDashboard;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('view')]
+        public readonly int|null $view,
 
-    #[SerializedName('view')]
-    protected int|null $view;
+        #[SerializedName('public')]
+        public readonly bool $public,
 
-    #[SerializedName('protected')]
-    protected bool $protected;
+        #[SerializedName('order')]
+        public readonly int|null $order,
 
-    #[SerializedName('order')]
-    protected int|null $order;
+        #[SerializedName('external_link')]
+        public readonly string|null $externalLink,
 
-    #[SerializedName('external_link')]
-    protected string|null $externalLink;
+        #[SerializedName('enabled')]
+        public readonly bool $enabled,
 
-    #[SerializedName('enabled')]
-    protected bool $enabled;
+        #[SerializedName('content')]
+        public readonly int $content,
 
-    #[SerializedName('content')]
-    protected int $content;
+        #[SerializedName('brand')]
+        public readonly Brand|null $brand,
 
-    #[SerializedName('brand')]
-    protected Brand|null $brand;
+        /** @var TypeTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly array|null $translations,
 
-    /** @var TypeTranslation[]|null */
-    #[SerializedName('translations')]
-    protected array|null $translations;
-
-    public function getIcon(): ?string
-    {
-        return $this->icon;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    public function getBrandId(): int
-    {
-        return $this->brandId;
-    }
-
-    public function getArticleOrdering(): ?int
-    {
-        return $this->articleOrdering;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getInternal(): bool
-    {
-        return $this->internal;
-    }
-
-    public function getShowOnDashboard(): ?int
-    {
-        return $this->showOnDashboard;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getView(): ?int
-    {
-        return $this->view;
-    }
-
-    public function getProtected(): bool
-    {
-        return $this->protected;
-    }
-
-    public function getOrder(): ?int
-    {
-        return $this->order;
-    }
-
-    public function getExternalLink(): ?string
-    {
-        return $this->externalLink;
-    }
-
-    public function getEnabled(): bool
-    {
-        return $this->enabled;
-    }
-
-    public function getContent(): int
-    {
-        return $this->content;
-    }
-
-    public function getBrand(): ?Brand
-    {
-        return $this->brand;
-    }
-
-    /**
-     * @return TypeTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
+        $pivot = null
+    ) {
+        parent::__construct($pivot);
     }
 }

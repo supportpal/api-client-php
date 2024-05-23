@@ -7,35 +7,22 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class TagTranslation extends BaseTranslation
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('tag_id')]
-    protected int $tagId;
+        #[SerializedName('tag_id')]
+        public readonly int $tagId,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('slug')]
-    protected string $slug;
+        #[SerializedName('slug')]
+        public readonly string $slug,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getTagId(): int
-    {
-        return $this->tagId;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getSlug(): string
-    {
-        return $this->slug;
+        $locale,
+        $pivot = null,
+    ) {
+        parent::__construct($locale, $pivot);
     }
 }

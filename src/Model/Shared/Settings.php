@@ -7,15 +7,11 @@ use SupportPal\ApiClient\Model\SettingsModel;
 
 class Settings implements SettingsModel
 {
-    /** @var string[] */
-    private array $settings;
-
-    /**
-     * @inheritDoc
-     */
-    public function __set(mixed $property, mixed $value): void
-    {
-        $this->settings[$property] = $value;
+    public function __construct(
+        /** @var string[] */
+        private readonly array $settings
+    ) {
+        //
     }
 
     /**
@@ -32,15 +28,5 @@ class Settings implements SettingsModel
     public function all(): array
     {
         return $this->settings;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function fill(array $data): Model
-    {
-        $this->settings = $data;
-
-        return $this;
     }
 }

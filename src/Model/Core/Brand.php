@@ -7,324 +7,121 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Brand extends BaseModel
 {
-    public const REQUIRED_FIELDS = [
-        'default_language',
-        'default_country',
-        'frontend_template_mode',
-        'enabled',
-        'email_method',
-        'system_url',
-        'name',
-        'default_email',
-        'created_at',
-        'frontend_template',
-        'date_format',
-        'time_format',
-        'global_email_header',
-        'global_email_footer',
-        'default_timezone',
-        'language_toggle',
-        'operator_template_mode',
-        'updated_at'
-    ];
+    public function __construct(
+        #[SerializedName('operator_template')]
+        public readonly ?string $operatorTemplate,
 
-    #[SerializedName('operator_template')]
-    protected ?string $operatorTemplate;
+        #[SerializedName('default_language')]
+        public readonly string $defaultLanguage,
 
-    #[SerializedName('default_language')]
-    protected string $defaultLanguage;
+        #[SerializedName('favicon')]
+        public readonly ?string $favicon,
 
-    #[SerializedName('favicon')]
-    protected ?string $favicon;
+        #[SerializedName('favicon_dark_mode')]
+        public readonly ?string $faviconDarkMode,
 
-    #[SerializedName('favicon_dark_mode')]
-    protected ?string $faviconDarkMode;
+        #[SerializedName('smtp_username')]
+        public readonly ?string $smtpUsername,
 
-    #[SerializedName('smtp_username')]
-    protected ?string $smtpUsername;
+        #[SerializedName('default_country')]
+        public readonly string $defaultCountry,
 
-    #[SerializedName('default_country')]
-    protected string $defaultCountry;
+        #[SerializedName('frontend_template_mode')]
+        public readonly ?int $frontendTemplateMode,
 
-    #[SerializedName('frontend_template_mode')]
-    protected ?int $frontendTemplateMode;
+        #[SerializedName('operator_icon')]
+        public readonly ?string $operatorIcon,
 
-    #[SerializedName('operator_icon')]
-    protected ?string $operatorIcon;
+        #[SerializedName('enabled')]
+        public readonly bool $enabled,
 
-    #[SerializedName('enabled')]
-    protected bool $enabled;
+        #[SerializedName('email_method')]
+        public readonly string $emailMethod,
 
-    #[SerializedName('email_method')]
-    protected string $emailMethod;
+        #[SerializedName('system_url')]
+        public readonly string $systemUrl,
 
-    #[SerializedName('system_url')]
-    protected string $systemUrl;
+        #[SerializedName('smtp_port')]
+        public readonly ?int $smtpPort,
 
-    #[SerializedName('smtp_port')]
-    protected ?int $smtpPort;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('smtp_password')]
+        public readonly ?string $smtpPassword,
 
-    #[SerializedName('smtp_password')]
-    protected ?string $smtpPassword;
+        #[SerializedName('smtp_requires_auth')]
+        public readonly ?bool $smtpRequiresAuth,
 
-    #[SerializedName('smtp_requires_auth')]
-    protected ?bool $smtpRequiresAuth;
+        #[SerializedName('enable_ssl')]
+        public readonly ?int $enableSsl,
 
-    #[SerializedName('enable_ssl')]
-    protected ?int $enableSsl;
+        #[SerializedName('frontend_logo_dark_mode')]
+        public readonly ?string $frontendLogoDarkMode,
 
-    #[SerializedName('frontend_logo_dark_mode')]
-    protected ?string $frontendLogoDarkMode;
+        #[SerializedName('default_email')]
+        public readonly string $defaultEmail,
 
-    #[SerializedName('default_email')]
-    protected string $defaultEmail;
+        #[SerializedName('brand_colour')]
+        public readonly ?string $brandColour,
 
-    #[SerializedName('brand_colour')]
-    protected ?string $brandColour;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('frontend_template')]
+        public readonly string $frontendTemplate,
 
-    #[SerializedName('frontend_template')]
-    protected string $frontendTemplate;
+        #[SerializedName('website_url')]
+        public readonly ?string $websiteUrl,
 
-    #[SerializedName('website_url')]
-    protected ?string $websiteUrl;
+        #[SerializedName('smtp_host')]
+        public readonly ?string $smtpHost,
 
-    #[SerializedName('smtp_host')]
-    protected ?string $smtpHost;
+        #[SerializedName('date_format')]
+        public readonly string $dateFormat,
 
-    #[SerializedName('date_format')]
-    protected string $dateFormat;
+        #[SerializedName('time_format')]
+        public readonly string $timeFormat,
 
-    #[SerializedName('time_format')]
-    protected string $timeFormat;
+        #[SerializedName('frontend_logo')]
+        public readonly ?string $frontendLogo,
 
-    #[SerializedName('frontend_logo')]
-    protected ?string $frontendLogo;
+        #[SerializedName('global_email_header')]
+        public readonly string $globalEmailHeader,
 
-    #[SerializedName('global_email_header')]
-    protected string $globalEmailHeader;
-
-    #[SerializedName('global_email_footer')]
-    protected string $globalEmailFooter;
-
-    #[SerializedName('smtp_encryption')]
-    protected ?string $smtpEncryption;
-
-    #[SerializedName('default_timezone')]
-    protected string $defaultTimezone;
-
-    #[SerializedName('id')]
-    protected int $id;
-
-    #[SerializedName('language_toggle')]
-    protected int $languageToggle;
-
-    #[SerializedName('operator_template_mode')]
-    protected ?int $operatorTemplateMode;
-
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
-
-    /** @var BrandTranslation[]|null */
-    #[SerializedName('translations')]
-    protected ?array $translations;
-
-    #[SerializedName('smtp_auth_mech')]
-    protected ?string $smtpAuthMech = null;
-
-    #[SerializedName('smtp_oauth')]
-    protected ?string $smtpOauth = null;
-
-    public function getOperatorTemplate(): ?string
-    {
-        return $this->operatorTemplate;
-    }
-
-    public function getDefaultLanguage(): string
-    {
-        return $this->defaultLanguage;
-    }
-
-    public function getFavicon(): ?string
-    {
-        return $this->favicon;
-    }
-
-    public function getFaviconDarkMode(): ?string
-    {
-        return $this->faviconDarkMode;
-    }
-
-    public function getSmtpUsername(): ?string
-    {
-        return $this->smtpUsername;
-    }
-
-    public function getDefaultCountry(): string
-    {
-        return $this->defaultCountry;
-    }
-
-    public function getFrontendTemplateMode(): ?int
-    {
-        return $this->frontendTemplateMode;
-    }
-
-    public function getOperatorIcon(): ?string
-    {
-        return $this->operatorIcon;
-    }
-
-    public function getEnabled(): bool
-    {
-        return $this->enabled;
-    }
-
-    public function getEmailMethod(): string
-    {
-        return $this->emailMethod;
-    }
-
-    public function getSystemUrl(): string
-    {
-        return $this->systemUrl;
-    }
-
-    public function getSmtpPort(): ?int
-    {
-        return $this->smtpPort;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getSmtpPassword(): ?string
-    {
-        return $this->smtpPassword;
-    }
-
-    public function getSmtpRequiresAuth(): ?bool
-    {
-        return $this->smtpRequiresAuth;
-    }
-
-    public function getEnableSsl(): ?int
-    {
-        return $this->enableSsl;
-    }
-
-    public function getFrontendLogoDarkMode(): ?string
-    {
-        return $this->frontendLogoDarkMode;
-    }
-
-    public function getDefaultEmail(): string
-    {
-        return $this->defaultEmail;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getFrontendTemplate(): string
-    {
-        return $this->frontendTemplate;
-    }
-
-    public function getWebsiteUrl(): ?string
-    {
-        return $this->websiteUrl;
-    }
-
-    public function getSmtpHost(): ?string
-    {
-        return $this->smtpHost;
-    }
-
-    public function getDateFormat(): string
-    {
-        return $this->dateFormat;
-    }
-
-    public function getTimeFormat(): string
-    {
-        return $this->timeFormat;
-    }
-
-    public function getFrontendLogo(): ?string
-    {
-        return $this->frontendLogo;
-    }
-
-    public function getGlobalEmailHeader(): string
-    {
-        return $this->globalEmailHeader;
-    }
-
-    public function getGlobalEmailFooter(): string
-    {
-        return $this->globalEmailFooter;
-    }
-
-    public function getSmtpEncryption(): ?string
-    {
-        return $this->smtpEncryption;
-    }
-
-    public function getDefaultTimezone(): string
-    {
-        return $this->defaultTimezone;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getLanguageToggle(): int
-    {
-        return $this->languageToggle;
-    }
-
-    public function getOperatorTemplateMode(): ?int
-    {
-        return $this->operatorTemplateMode;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getBrandColour(): ?string
-    {
-        return $this->brandColour;
-    }
-
-    /**
-     * @return BrandTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
-    }
-
-    public function getSmtpAuthMech(): ?string
-    {
-        return $this->smtpAuthMech;
-    }
-
-    public function getSmtpOauth(): ?string
-    {
-        return $this->smtpOauth;
+        #[SerializedName('global_email_footer')]
+        public readonly string $globalEmailFooter,
+
+        #[SerializedName('smtp_encryption')]
+        public readonly ?string $smtpEncryption,
+
+        #[SerializedName('default_timezone')]
+        public readonly string $defaultTimezone,
+
+        #[SerializedName('id')]
+        public readonly int $id,
+
+        #[SerializedName('language_toggle')]
+        public readonly int $languageToggle,
+
+        #[SerializedName('operator_template_mode')]
+        public readonly ?int $operatorTemplateMode,
+
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
+
+        /** @var BrandTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly ?array $translations,
+
+        #[SerializedName('smtp_auth_mech')]
+        public readonly ?string $smtpAuthMech = null,
+
+        #[SerializedName('smtp_oauth')]
+        public readonly ?string $smtpOauth = null,
+
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

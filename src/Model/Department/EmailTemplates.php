@@ -7,139 +7,60 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class EmailTemplates extends BaseModel
 {
-    #[SerializedName('operator_department_changed')]
-    protected int $operatorDepartmentChanged;
+    public function __construct(
+        #[SerializedName('operator_department_changed')]
+        public readonly int $operatorDepartmentChanged,
 
-    #[SerializedName('operator_internal_opened')]
-    protected int $operatorInternalOpened;
+        #[SerializedName('operator_internal_opened')]
+        public readonly int $operatorInternalOpened,
 
-    #[SerializedName('user_ticket_locked')]
-    protected int $userTicketLocked;
+        #[SerializedName('user_ticket_locked')]
+        public readonly int $userTicketLocked,
 
-    #[SerializedName('user_ticket_reply')]
-    protected int $userTicketReply;
+        #[SerializedName('user_ticket_reply')]
+        public readonly int $userTicketReply,
 
-    #[SerializedName('operator_assigned')]
-    protected int $operatorAssigned;
+        #[SerializedName('operator_assigned')]
+        public readonly int $operatorAssigned,
 
-    #[SerializedName('operator_ticket_note')]
-    protected int $operatorTicketNote;
+        #[SerializedName('operator_ticket_note')]
+        public readonly int $operatorTicketNote,
 
-    #[SerializedName('user_ticket_opened')]
-    protected int $userTicketOpened;
+        #[SerializedName('user_ticket_opened')]
+        public readonly int $userTicketOpened,
 
-    #[SerializedName('user_ticket_operatorclose')]
-    protected int $userTicketOperatorclose;
+        #[SerializedName('user_ticket_operatorclose')]
+        public readonly int $userTicketOperatorclose,
 
-    #[SerializedName('operator_ticket_opened')]
-    protected int $operatorTicketOpened;
+        #[SerializedName('operator_ticket_opened')]
+        public readonly int $operatorTicketOpened,
 
-    #[SerializedName('user_ticket_registeredonly')]
-    protected int $userTicketRegisteredonly;
+        #[SerializedName('user_ticket_registeredonly')]
+        public readonly int $userTicketRegisteredonly,
 
-    #[SerializedName('user_ticket_autoclose')]
-    protected int $userTicketAutoclose;
+        #[SerializedName('user_ticket_autoclose')]
+        public readonly int $userTicketAutoclose,
 
-    #[SerializedName('user_email_attachmentrejected')]
-    protected int $userEmailAttachmentrejected;
+        #[SerializedName('user_email_attachmentrejected')]
+        public readonly int $userEmailAttachmentrejected,
 
-    #[SerializedName('operator_operator_ticket_reply')]
-    protected int $operatorOperatorTicketReply;
+        #[SerializedName('operator_operator_ticket_reply')]
+        public readonly int $operatorOperatorTicketReply,
 
-    #[SerializedName('user_ticket_waitingresponse')]
-    protected int $userTicketWaitingresponse;
+        #[SerializedName('user_ticket_waitingresponse')]
+        public readonly int $userTicketWaitingresponse,
 
-    #[SerializedName('user_user_ticket_reply')]
-    protected int $userUserTicketReply;
+        #[SerializedName('user_user_ticket_reply')]
+        public readonly int $userUserTicketReply,
 
-    #[SerializedName('user_ticket_disablereplies')]
-    protected int $userTicketDisablereplies;
+        #[SerializedName('user_ticket_disablereplies')]
+        public readonly int $userTicketDisablereplies,
 
-    #[SerializedName('operator_user_ticket_reply')]
-    protected int $operatorUserTicketReply;
+        #[SerializedName('operator_user_ticket_reply')]
+        public readonly int $operatorUserTicketReply,
 
-    public function getOperatorDepartmentChanged(): int
-    {
-        return $this->operatorDepartmentChanged;
-    }
-
-    public function getOperatorInternalOpened(): int
-    {
-        return $this->operatorInternalOpened;
-    }
-
-    public function getUserTicketLocked(): int
-    {
-        return $this->userTicketLocked;
-    }
-
-    public function getUserTicketReply(): int
-    {
-        return $this->userTicketReply;
-    }
-
-    public function getOperatorAssigned(): int
-    {
-        return $this->operatorAssigned;
-    }
-
-    public function getOperatorTicketNote(): int
-    {
-        return $this->operatorTicketNote;
-    }
-
-    public function getUserTicketOpened(): int
-    {
-        return $this->userTicketOpened;
-    }
-
-    public function getUserTicketOperatorclose(): int
-    {
-        return $this->userTicketOperatorclose;
-    }
-
-    public function getOperatorTicketOpened(): int
-    {
-        return $this->operatorTicketOpened;
-    }
-
-    public function getUserTicketRegisteredonly(): int
-    {
-        return $this->userTicketRegisteredonly;
-    }
-
-    public function getUserTicketAutoclose(): int
-    {
-        return $this->userTicketAutoclose;
-    }
-
-    public function getUserEmailAttachmentrejected(): int
-    {
-        return $this->userEmailAttachmentrejected;
-    }
-
-    public function getOperatorOperatorTicketReply(): int
-    {
-        return $this->operatorOperatorTicketReply;
-    }
-
-    public function getUserTicketWaitingresponse(): int
-    {
-        return $this->userTicketWaitingresponse;
-    }
-
-    public function getUserUserTicketReply(): int
-    {
-        return $this->userUserTicketReply;
-    }
-
-    public function getUserTicketDisablereplies(): int
-    {
-        return $this->userTicketDisablereplies;
-    }
-
-    public function getOperatorUserTicketReply(): int
-    {
-        return $this->operatorUserTicketReply;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

@@ -7,55 +7,28 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Tag extends BaseModel
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('slug')]
-    protected string $slug;
+        #[SerializedName('slug')]
+        public readonly string $slug,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    /** @var TagTranslation[]|null */
-    #[SerializedName('translations')]
-    protected array|null $translations;
+        /** @var TagTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly array|null $translations,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getSlug(): string
-    {
-        return $this->slug;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @return TagTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
+        $pivot = null
+    ) {
+        parent::__construct($pivot);
     }
 }

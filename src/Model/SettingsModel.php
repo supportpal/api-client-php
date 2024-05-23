@@ -4,8 +4,6 @@ namespace SupportPal\ApiClient\Model;
 
 interface SettingsModel extends Model
 {
-    public function __set(mixed $property, mixed $value): void;
-
     /**
      * @return string[]
      */

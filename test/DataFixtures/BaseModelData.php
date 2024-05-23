@@ -31,7 +31,7 @@ abstract class BaseModelData implements ModelData
     {
         $class = static::getModel();
 
-        return (new $class)->fill(static::getDataWithObjects());
+        return new $class(...static::getDataWithObjects());
     }
 
     /**

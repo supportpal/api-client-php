@@ -6,11 +6,11 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 abstract class BaseTranslation extends BaseModel
 {
-    #[SerializedName('locale')]
-    protected string $locale;
-
-    public function getLocale(): string
-    {
-        return $this->locale;
+    public function __construct(
+        #[SerializedName('locale')]
+        public readonly string $locale,
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

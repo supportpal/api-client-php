@@ -8,90 +8,40 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Priority extends BaseModel
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('colour')]
-    protected string $colour;
+        #[SerializedName('colour')]
+        public readonly string $colour,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('order')]
-    protected int|null $order;
+        #[SerializedName('order')]
+        public readonly int|null $order,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('icon')]
-    protected string $icon;
+        #[SerializedName('icon')]
+        public readonly string $icon,
 
-    #[SerializedName('icon_without_tooltip')]
-    protected string $iconWithoutTooltip;
+        #[SerializedName('icon_without_tooltip')]
+        public readonly string $iconWithoutTooltip,
 
-    /** @var Department[]|null */
-    protected ?array $departments;
+        /** @var Department[]|null */
+        public readonly ?array $departments,
 
-    /** @var PriorityTranslation[]|null */
-    #[SerializedName('translations')]
-    protected array|null $translations;
+        /** @var PriorityTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly array|null $translations,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getColour(): string
-    {
-        return $this->colour;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getOrder(): ?int
-    {
-        return $this->order;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getIcon(): string
-    {
-        return $this->icon;
-    }
-
-    public function getIconWithoutTooltip(): string
-    {
-        return $this->iconWithoutTooltip;
-    }
-
-    /**
-     * @return Department[]|null
-     */
-    public function getDepartments(): ?array
-    {
-        return $this->departments;
-    }
-
-    /**
-     * @return PriorityTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

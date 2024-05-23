@@ -8,156 +8,63 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Message extends BaseModel
 {
-    public const REQUIRED_FIELDS = [
-        'ticket_id',
-        'user_id',
-        'text',
-    ];
+    public function __construct(
+        #[SerializedName('user_id')]
+        public readonly int|null $userId = null,
 
-    #[SerializedName('user_id')]
-    protected int|null $userId = null;
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('id')]
-    protected int $id;
+        #[SerializedName('created_at')]
+        public readonly int|null $createdAt,
 
-    #[SerializedName('created_at')]
-    protected int|null $createdAt;
+        #[SerializedName('purified_text')]
+        public readonly string|null $purifiedText,
 
-    #[SerializedName('purified_text')]
-    protected string|null $purifiedText;
+        #[SerializedName('social_id')]
+        public readonly string|null $socialId,
 
-    #[SerializedName('social_id')]
-    protected string|null $socialId;
+        #[SerializedName('ticket_id')]
+        public readonly int $ticketId,
 
-    #[SerializedName('ticket_id')]
-    protected int $ticketId;
+        #[SerializedName('text')]
+        public readonly string $text,
 
-    #[SerializedName('channel_id')]
-    protected int|null $channelId = null;
+        #[SerializedName('channel_id')]
+        public readonly int|null $channelId = null,
 
-    #[SerializedName('user_ip_address')]
-    protected string|null $userIpAddress = null;
+        #[SerializedName('user_ip_address')]
+        public readonly string|null $userIpAddress = null,
 
-    #[SerializedName('by')]
-    protected int|null $by = null;
+        #[SerializedName('by')]
+        public readonly int|null $by = null,
 
-    #[SerializedName('excerpt')]
-    protected string|null $excerpt = null;
+        #[SerializedName('excerpt')]
+        public readonly string|null $excerpt = null,
 
-    #[SerializedName('type')]
-    protected int|null $type = null;
+        #[SerializedName('type')]
+        public readonly int|null $type = null,
 
-    #[SerializedName('extra')]
-    protected Extra|null $extra = null;
+        #[SerializedName('extra')]
+        public readonly Extra|null $extra = null,
 
-    #[SerializedName('user_name')]
-    protected string|null $userName = null;
+        #[SerializedName('user_name')]
+        public readonly string|null $userName = null,
 
-    #[SerializedName('updated_at')]
-    protected int|null $updatedAt = null;
+        #[SerializedName('updated_at')]
+        public readonly int|null $updatedAt = null,
 
-    #[SerializedName('is_draft')]
-    protected bool|null $isDraft = null;
+        #[SerializedName('is_draft')]
+        public readonly bool|null $isDraft = null,
 
-    #[SerializedName('text')]
-    protected string $text;
+        /** @var Attachment[]|null */
+        #[SerializedName('attachments')]
+        public readonly array|null $attachments = null,
 
-    /** @var Attachment[]|null */
-    #[SerializedName('attachments')]
-    protected array|null $attachments = null;
+        public readonly ?User $user = null,
 
-    protected ?User $user = null;
-
-    public function getUserId(): ?int
-    {
-        return $this->userId;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getCreatedAt(): ?int
-    {
-        return $this->createdAt;
-    }
-
-    public function getPurifiedText(): ?string
-    {
-        return $this->purifiedText;
-    }
-
-    public function getSocialId(): ?string
-    {
-        return $this->socialId;
-    }
-
-    public function getTicketId(): int
-    {
-        return $this->ticketId;
-    }
-
-    public function getChannelId(): ?int
-    {
-        return $this->channelId;
-    }
-
-    public function getUserIpAddress(): ?string
-    {
-        return $this->userIpAddress;
-    }
-
-    public function getBy(): ?int
-    {
-        return $this->by;
-    }
-
-    public function getExcerpt(): ?string
-    {
-        return $this->excerpt;
-    }
-
-    public function getType(): ?int
-    {
-        return $this->type;
-    }
-
-    public function getExtra(): ?Extra
-    {
-        return $this->extra;
-    }
-
-    public function getUserName(): ?string
-    {
-        return $this->userName;
-    }
-
-    public function getUpdatedAt(): ?int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getIsDraft(): ?bool
-    {
-        return $this->isDraft;
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
-    }
-
-    /**
-     * @return Attachment[]|null
-     */
-    public function getAttachments(): ?array
-    {
-        return $this->attachments;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

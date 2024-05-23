@@ -7,27 +7,19 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class BrandTranslation extends BaseTranslation
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('brand_id')]
-    protected int $brandId;
+        #[SerializedName('brand_id')]
+        public readonly int $brandId,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getBrandId(): int
-    {
-        return $this->brandId;
+        $locale,
+        $pivot = null,
+    ) {
+        parent::__construct($locale, $pivot);
     }
 }

@@ -7,43 +7,25 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class TypeTranslation extends BaseTranslation
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('type_id')]
-    protected int $typeId;
+        #[SerializedName('type_id')]
+        public readonly int $typeId,
 
-    #[SerializedName('description')]
-    protected string $description;
+        #[SerializedName('description')]
+        public readonly string $description,
 
-    #[SerializedName('slug')]
-    protected string|null $slug;
+        #[SerializedName('slug')]
+        public readonly string|null $slug,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getTypeId(): int
-    {
-        return $this->typeId;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
+        $locale,
+        $pivot = null,
+    ) {
+        parent::__construct($locale, $pivot);
     }
 }

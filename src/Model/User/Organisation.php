@@ -7,119 +7,51 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Organisation extends BaseModel
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('notes')]
-    protected string|null $notes;
+        #[SerializedName('notes')]
+        public readonly string|null $notes,
 
-    #[SerializedName('brand_id')]
-    protected int $brandId;
+        #[SerializedName('brand_id')]
+        public readonly int $brandId,
 
-    #[SerializedName('language_code')]
-    protected string|null $languageCode;
+        #[SerializedName('language_code')]
+        public readonly string|null $languageCode,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('timezone')]
-    protected string|null $timezone;
+        #[SerializedName('timezone')]
+        public readonly string|null $timezone,
 
-    #[SerializedName('country')]
-    protected string|null $country;
+        #[SerializedName('country')]
+        public readonly string|null $country,
 
-    #[SerializedName('owner_id')]
-    protected int|null $ownerId;
+        #[SerializedName('owner_id')]
+        public readonly int|null $ownerId,
 
-    /** @var User[]|null */
-    #[SerializedName('users')]
-    protected array|null $users;
+        /** @var User[]|null */
+        #[SerializedName('users')]
+        public readonly array|null $users,
 
-    /** @var UserCustomField[]|null */
-    #[SerializedName('customfields')]
-    protected array|null $customfields;
+        /** @var UserCustomField[]|null */
+        #[SerializedName('customfields')]
+        public readonly array|null $customfields,
 
-    /** @var Domain[]|null */
-    #[SerializedName('domains')]
-    protected array|null $domains;
+        /** @var Domain[]|null */
+        #[SerializedName('domains')]
+        public readonly array|null $domains,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getNotes(): ?string
-    {
-        return $this->notes;
-    }
-
-    public function getBrandId(): int
-    {
-        return $this->brandId;
-    }
-
-    public function getLanguageCode(): ?string
-    {
-        return $this->languageCode;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getTimezone(): ?string
-    {
-        return $this->timezone;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function getOwnerId(): ?int
-    {
-        return $this->ownerId;
-    }
-
-    /**
-     * @return User[]|null
-     */
-    public function getUsers(): ?array
-    {
-        return $this->users;
-    }
-
-    /**
-     * @return UserCustomField[]|null
-     */
-    public function getCustomfields(): ?array
-    {
-        return $this->customfields;
-    }
-
-    /**
-     * @return Domain[]|null
-     */
-    public function getDomains(): ?array
-    {
-        return $this->domains;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

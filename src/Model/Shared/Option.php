@@ -7,63 +7,31 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Option extends BaseModel
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('order')]
-    protected int|null $order;
+        #[SerializedName('order')]
+        public readonly int|null $order,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('field_id')]
-    protected int $fieldId;
+        #[SerializedName('field_id')]
+        public readonly int $fieldId,
 
-    #[SerializedName('value')]
-    protected string $value;
+        #[SerializedName('value')]
+        public readonly string $value,
 
-    /** @var OptionTranslation[]|null */
-    #[SerializedName('translations')]
-    protected ?array $translations;
+        /** @var OptionTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly ?array $translations,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getOrder(): ?int
-    {
-        return $this->order;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getFieldId(): int
-    {
-        return $this->fieldId;
-    }
-
-    public function getValue(): string
-    {
-        return $this->value;
-    }
-
-    /**
-     * @return OptionTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

@@ -7,35 +7,22 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class DepartmentTranslation extends BaseTranslation
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('description')]
-    protected ?string $description;
+        #[SerializedName('description')]
+        public readonly ?string $description,
 
-    #[SerializedName('department_id')]
-    protected int $departmentId;
+        #[SerializedName('department_id')]
+        public readonly int $departmentId,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function getDepartmentId(): int
-    {
-        return $this->departmentId;
+        $locale,
+        $pivot = null,
+    ) {
+        parent::__construct($locale, $pivot);
     }
 }

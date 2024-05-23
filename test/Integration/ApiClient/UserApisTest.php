@@ -9,10 +9,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 
-/**
- * Class UsersApisTest
- * @package SupportPal\ApiClient\Tests\Integration\ApiClient
- */
 class UserApisTest extends ApiClientTest
 {
     /**

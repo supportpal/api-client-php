@@ -7,198 +7,79 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Department extends BaseModel
 {
-    #[SerializedName('disable_user_email_replies')]
-    protected bool $disableUserEmailReplies;
+    public function __construct(
+        #[SerializedName('disable_user_email_replies')]
+        public readonly bool $disableUserEmailReplies,
 
-    #[SerializedName('public')]
-    protected bool $public;
+        #[SerializedName('public')]
+        public readonly bool $public,
 
-    #[SerializedName('ticket_number_format')]
-    protected ?string $ticketNumberFormat;
+        #[SerializedName('ticket_number_format')]
+        public readonly ?string $ticketNumberFormat,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('notify_frontend_ticket')]
-    protected bool $notifyFrontendTicket;
+        #[SerializedName('notify_frontend_ticket')]
+        public readonly bool $notifyFrontendTicket,
 
-    #[SerializedName('order')]
-    protected ?int $order;
+        #[SerializedName('order')]
+        public readonly ?int $order,
 
-    #[SerializedName('description')]
-    protected ?string $description;
+        #[SerializedName('description')]
+        public readonly ?string $description,
 
-    #[SerializedName('notify_email_ticket')]
-    protected bool $notifyEmailTicket;
+        #[SerializedName('notify_email_ticket')]
+        public readonly bool $notifyEmailTicket,
 
-    #[SerializedName('id')]
-    protected int $id;
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('from_name')]
-    protected ?string $fromName;
+        #[SerializedName('from_name')]
+        public readonly ?string $fromName,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('registered_only')]
-    protected int $registeredOnly;
+        #[SerializedName('registered_only')]
+        public readonly int $registeredOnly,
 
-    #[SerializedName('parent_id')]
-    protected ?int $parentId;
+        #[SerializedName('parent_id')]
+        public readonly ?int $parentId,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('notify_operators')]
-    protected bool $notifyOperators;
+        #[SerializedName('notify_operators')]
+        public readonly bool $notifyOperators,
 
-    /** @var string[] */
-    #[SerializedName('default_assignedto')]
-    protected array $defaultAssignedto;
+        /** @var string[] */
+        #[SerializedName('default_assignedto')]
+        public readonly array $defaultAssignedto,
 
-    #[SerializedName('email_templates')]
-    protected ?EmailTemplates $emailTemplates;
+        #[SerializedName('email_templates')]
+        public readonly ?EmailTemplates $emailTemplates,
 
-    /** @var Email[]|null */
-    #[SerializedName('emails')]
-    protected ?array $emails;
+        /** @var Email[]|null */
+        #[SerializedName('emails')]
+        public readonly ?array $emails,
 
-    /** @var array<mixed>|null */
-    #[SerializedName('groups')]
-    protected ?array $groups;
+        /** @var array<mixed>|null */
+        #[SerializedName('groups')]
+        public readonly ?array $groups,
 
-    /** @var Operator[]|null */
-    #[SerializedName('operators')]
-    protected ?array $operators;
+        /** @var Operator[]|null */
+        #[SerializedName('operators')]
+        public readonly ?array $operators,
 
-    /** @var DepartmentTranslation[]|null */
-    #[SerializedName('translations')]
-    protected ?array $translations;
+        /** @var DepartmentTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly ?array $translations,
 
-    protected ?Department $parent = null;
+        public readonly ?Department $parent = null,
 
-    public function getDisableUserEmailReplies(): bool
-    {
-        return $this->disableUserEmailReplies;
-    }
-
-    public function getPublic(): bool
-    {
-        return $this->public;
-    }
-
-    public function getTicketNumberFormat(): ?string
-    {
-        return $this->ticketNumberFormat;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getNotifyFrontendTicket(): bool
-    {
-        return $this->notifyFrontendTicket;
-    }
-
-    public function getOrder(): ?int
-    {
-        return $this->order;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function getNotifyEmailTicket(): bool
-    {
-        return $this->notifyEmailTicket;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getFromName(): ?string
-    {
-        return $this->fromName;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getRegisteredOnly(): int
-    {
-        return $this->registeredOnly;
-    }
-
-    public function getParentId(): ?int
-    {
-        return $this->parentId;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getNotifyOperators(): bool
-    {
-        return $this->notifyOperators;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getDefaultAssignedto(): array
-    {
-        return $this->defaultAssignedto;
-    }
-
-    public function getEmailTemplates(): ?EmailTemplates
-    {
-        return $this->emailTemplates;
-    }
-
-    /**
-     * @return Email[]|null
-     */
-    public function getEmails(): ?array
-    {
-        return $this->emails;
-    }
-
-    /**
-     * @return array<mixed>|null
-     */
-    public function getGroups(): ?array
-    {
-        return $this->groups;
-    }
-
-    /**
-     * @return Operator[]|null
-     */
-    public function getOperators(): ?array
-    {
-        return $this->operators;
-    }
-
-    /**
-     * @return DepartmentTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
-    }
-
-    public function getParent(): ?Department
-    {
-        return $this->parent;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

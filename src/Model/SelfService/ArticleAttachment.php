@@ -8,67 +8,33 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class ArticleAttachment extends BaseModel
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('upload_hash')]
-    protected string $uploadHash;
+        #[SerializedName('upload_hash')]
+        public readonly string $uploadHash,
 
-    #[SerializedName('article_id')]
-    protected int $articleId;
+        #[SerializedName('article_id')]
+        public readonly int $articleId,
 
-    #[SerializedName('locale')]
-    protected ?string $locale;
+        #[SerializedName('locale')]
+        public readonly ?string $locale,
 
-    #[SerializedName('original_name')]
-    protected string $originalName;
+        #[SerializedName('original_name')]
+        public readonly string $originalName,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('upload')]
-    protected Upload $upload;
+        #[SerializedName('upload')]
+        public readonly Upload $upload,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getUploadHash(): string
-    {
-        return $this->uploadHash;
-    }
-
-    public function getArticleId(): int
-    {
-        return $this->articleId;
-    }
-
-    public function getLocale(): ?string
-    {
-        return $this->locale;
-    }
-
-    public function getOriginalName(): string
-    {
-        return $this->originalName;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getUpload(): Upload
-    {
-        return $this->upload;
+        $pivot = null
+    ) {
+        parent::__construct($pivot);
     }
 }

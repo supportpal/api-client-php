@@ -8,145 +8,60 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Comment extends BaseModel
 {
-    public const REQUIRED_FIELDS = [
-        'article_id',
-        'type_id',
-        'text',
-    ];
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('id')]
-    protected int $id;
+        #[SerializedName('text')]
+        public readonly string $text,
 
-    #[SerializedName('text')]
-    protected string $text;
+        #[SerializedName('article_id')]
+        public readonly int $articleId,
 
-    #[SerializedName('article_id')]
-    protected int $articleId;
+        #[SerializedName('type_id')]
+        public readonly int $typeId,
 
-    #[SerializedName('type_id')]
-    protected int $typeId;
+        #[SerializedName('parent_id')]
+        public readonly int|null $parentId,
 
-    #[SerializedName('parent_id')]
-    protected int|null $parentId;
+        #[SerializedName('author_id')]
+        public readonly int|null $authorId,
 
-    #[SerializedName('status')]
-    protected int $status = 0;
+        #[SerializedName('purified_text')]
+        public readonly string|null $purifiedText,
 
-    #[SerializedName('notify_reply')]
-    protected bool $notifyReply = false;
+        #[SerializedName('name')]
+        public readonly string|null $name,
 
-    #[SerializedName('author_id')]
-    protected int|null $authorId;
+        #[SerializedName('author')]
+        public readonly User|null $author,
 
-    #[SerializedName('purified_text')]
-    protected string|null $purifiedText;
+        #[SerializedName('article')]
+        public readonly Article|null $article,
 
-    #[SerializedName('name')]
-    protected string|null $name;
+        #[SerializedName('type')]
+        public readonly Type|null $type,
 
-    #[SerializedName('author')]
-    protected User|null $author;
+        #[SerializedName('created_at')]
+        public readonly int|null $createdAt,
 
-    #[SerializedName('article')]
-    protected Article|null $article;
+        #[SerializedName('updated_at')]
+        public readonly int|null $updatedAt,
 
-    #[SerializedName('type')]
-    protected Type|null $type;
+        #[SerializedName('root_parent_id')]
+        public readonly int|null $rootParentId,
 
-    #[SerializedName('created_at')]
-    protected int|null $createdAt;
+        #[SerializedName('rating')]
+        public readonly int|null $rating,
 
-    #[SerializedName('updated_at')]
-    protected int|null $updatedAt;
+        #[SerializedName('status')]
+        public readonly int $status = 0,
 
-    #[SerializedName('root_parent_id')]
-    protected int|null $rootParentId;
+        #[SerializedName('notify_reply')]
+        public readonly bool $notifyReply = false,
 
-    #[SerializedName('rating')]
-    protected int|null $rating;
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getText(): string
-    {
-        return $this->text;
-    }
-
-    public function getArticleId(): int
-    {
-        return $this->articleId;
-    }
-
-    public function getTypeId(): int
-    {
-        return $this->typeId;
-    }
-
-    public function getParentId(): ?int
-    {
-        return $this->parentId;
-    }
-
-    public function getStatus(): int
-    {
-        return $this->status;
-    }
-
-    public function getNotifyReply(): bool
-    {
-        return $this->notifyReply;
-    }
-
-    public function getAuthorId(): ?int
-    {
-        return $this->authorId;
-    }
-
-    public function getPurifiedText(): ?string
-    {
-        return $this->purifiedText;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }
-
-    public function getArticle(): ?Article
-    {
-        return $this->article;
-    }
-
-    public function getType(): ?Type
-    {
-        return $this->type;
-    }
-
-    public function getCreatedAt(): ?int
-    {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt(): ?int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getRootParentId(): ?int
-    {
-        return $this->rootParentId;
-    }
-
-    public function getRating(): ?int
-    {
-        return $this->rating;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

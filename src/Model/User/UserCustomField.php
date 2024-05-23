@@ -7,23 +7,35 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class UserCustomField extends CustomField
 {
-    #[SerializedName('user_id')]
-    protected int|null $userId = null;
+    // todo call parent
+    public function __construct(
+        $regexErrorMessage,
+        $dependsOnFieldId,
+        $regex,
+        $locked,
+        $updatedAt,
+        $createdAt,
+        $dependsOnOptionId,
+        $id,
+        $name,
+        $required,
+        $public,
+        $order,
+        $description,
+        $type,
+        $encrypted,
+        $options,
+        $brands,
 
-    /** @var UserCustomFieldTranslation[]|null */
-    #[SerializedName('translations')]
-    protected array|null $translations;
+        /** @var UserCustomFieldTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly array|null $translations,
 
-    public function getUserId(): ?int
-    {
-        return $this->userId;
-    }
+        #[SerializedName('user_id')]
+        public readonly int|null $userId = null,
 
-    /**
-     * @return UserCustomFieldTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
+        $pivot = null,
+    ) {
+        parent::__construct($regexErrorMessage, $dependsOnFieldId, $regex, $locked, $updatedAt, $createdAt, $dependsOnOptionId, $id, $name, $required, $public, $order, $description, $type, $encrypted, $options, $brands, $pivot);
     }
 }

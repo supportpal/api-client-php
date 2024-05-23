@@ -36,7 +36,7 @@ class UserApisData
      */
     public function postApiCalls(): array
     {
-        $createUser = (new CreateUser)->fill(CreateUserData::DATA);
+        $createUser = new CreateUser(...CreateUserData::DATA);
         $userData = (new UserData)->getResponse();
 
         return [

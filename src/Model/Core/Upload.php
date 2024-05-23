@@ -8,84 +8,40 @@ use Symfony\Contracts\Service\Attribute\Required;
 
 class Upload extends BaseModel
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('hash')]
-    protected string $hash;
+        #[SerializedName('hash')]
+        public readonly string $hash,
 
-    #[SerializedName('filename')]
-    protected string $filename;
+        #[SerializedName('filename')]
+        public readonly string $filename,
 
-    #[SerializedName('folder')]
-    protected string $folder;
+        #[SerializedName('folder')]
+        public readonly string $folder,
 
-    #[SerializedName('mime')]
-    protected string $mime;
+        #[SerializedName('mime')]
+        public readonly string $mime,
 
-    #[SerializedName('size')]
-    protected string $size;
+        #[SerializedName('size')]
+        public readonly string $size,
 
-    #[SerializedName('token')]
-    protected ?string $token;
+        #[SerializedName('token')]
+        public readonly ?string $token,
 
-    #[Required]
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[Required]
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('session_id')]
-    protected ?string $sessionId = null;
+        #[SerializedName('session_id')]
+        public readonly ?string $sessionId = null,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getHash(): string
-    {
-        return $this->hash;
-    }
-
-    public function getFilename(): string
-    {
-        return $this->filename;
-    }
-
-    public function getFolder(): string
-    {
-        return $this->folder;
-    }
-
-    public function getMime(): string
-    {
-        return $this->mime;
-    }
-
-    public function getSize(): string
-    {
-        return $this->size;
-    }
-
-    public function getToken(): ?string
-    {
-        return $this->token;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getSessionId(): ?string
-    {
-        return $this->sessionId;
+        $pivot = null
+    ) {
+        parent::__construct($pivot);
     }
 }

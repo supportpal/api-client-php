@@ -28,6 +28,6 @@ trait StringHelper
      */
     protected function snakeCaseToPascalCase(string $key): string
     {
-        return str_replace('_', '', ucwords($key, '_'));
+        return lcfirst(str_replace('_', '', ucwords($key, '_')));
     }
 }

@@ -2,32 +2,25 @@
 
 namespace SupportPal\ApiClient\Model\Ticket;
 
+use http\Encoding\Stream\Enbrotli;
 use SupportPal\ApiClient\Model\BaseTranslation;
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class TagTranslation extends BaseTranslation
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('tag_id')]
-    protected int $tagId;
+        #[SerializedName('tag_id')]
+        public readonly int $tagId,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getTagId(): int
-    {
-        return $this->tagId;
+        $locale,
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

@@ -7,111 +7,49 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Category extends BaseModel
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('type_id')]
-    protected int $typeId;
+        #[SerializedName('type_id')]
+        public readonly int $typeId,
 
-    #[SerializedName('parent_id')]
-    protected int|null $parentId;
+        #[SerializedName('parent_id')]
+        public readonly int|null $parentId,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('slug')]
-    protected string $slug;
+        #[SerializedName('slug')]
+        public readonly string $slug,
 
-    #[SerializedName('public')]
-    protected bool $public;
+        #[SerializedName('public')]
+        public readonly bool $public,
 
-    #[SerializedName('parent_public')]
-    protected bool $parentPublic;
+        #[SerializedName('parent_public')]
+        public readonly bool $parentPublic,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('frontend_url')]
-    protected string $frontendUrl;
+        #[SerializedName('frontend_url')]
+        public readonly string $frontendUrl,
 
-    #[SerializedName('type')]
-    protected Type $type;
+        #[SerializedName('type')]
+        public readonly Type $type,
 
-    /** @var CategoryTranslation[]|null */
-    #[SerializedName('translations')]
-    protected array|null $translations;
+        /** @var CategoryTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly array|null $translations,
 
-    #[SerializedName('pinned')]
-    protected int|null $pinned = null;
+        #[SerializedName('pinned')]
+        public readonly int|null $pinned = null,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getTypeId(): int
-    {
-        return $this->typeId;
-    }
-
-    public function getParentId(): ?int
-    {
-        return $this->parentId;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getSlug(): string
-    {
-        return $this->slug;
-    }
-
-    public function getPublic(): bool
-    {
-        return $this->public;
-    }
-
-    public function getParentPublic(): bool
-    {
-        return $this->parentPublic;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getFrontendUrl(): string
-    {
-        return $this->frontendUrl;
-    }
-
-    public function getType(): Type
-    {
-        return $this->type;
-    }
-
-    /**
-     * @return CategoryTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
-    }
-
-    public function getPinned(): ?int
-    {
-        return $this->pinned;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

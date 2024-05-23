@@ -30,161 +30,66 @@ abstract class CustomField extends BaseModel
 
     public const TYPE_RATING = 10;
 
-    #[SerializedName('regex_error_message')]
-    protected string|null $regexErrorMessage;
+    public function __construct(
+        #[SerializedName('regex_error_message')]
+        public readonly string|null $regexErrorMessage,
 
-    #[SerializedName('depends_on_field_id')]
-    protected int|null $dependsOnFieldId;
+        #[SerializedName('depends_on_field_id')]
+        public readonly int|null $dependsOnFieldId,
 
-    #[SerializedName('regex')]
-    protected string|null $regex;
+        #[SerializedName('regex')]
+        public readonly string|null $regex,
 
-    #[SerializedName('locked')]
-    protected bool $locked;
+        #[SerializedName('locked')]
+        public readonly bool $locked,
 
-    #[SerializedName('updated_at')]
-    protected int|null $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int|null $updatedAt,
 
-    #[SerializedName('created_at')]
-    protected int|null $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int|null $createdAt,
 
-    #[SerializedName('depends_on_option_id')]
-    protected int|null $dependsOnOptionId;
+        #[SerializedName('depends_on_option_id')]
+        public readonly int|null $dependsOnOptionId,
 
-    #[SerializedName('id')]
-    protected int $id;
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('name')]
-    protected string|null $name;
+        #[SerializedName('name')]
+        public readonly string|null $name,
 
-    #[SerializedName('required')]
-    protected bool|null $required;
+        #[SerializedName('required')]
+        public readonly bool|null $required,
 
-    #[SerializedName('public')]
-    protected bool|null $public;
+        #[SerializedName('public')]
+        public readonly bool|null $public,
 
-    #[SerializedName('order')]
-    protected int|null $order;
+        #[SerializedName('order')]
+        public readonly int|null $order,
 
-    #[SerializedName('description')]
-    protected string|null $description;
+        #[SerializedName('description')]
+        public readonly string|null $description,
 
-    #[SerializedName('type')]
-    protected int|null $type;
+        #[SerializedName('type')]
+        public readonly int|null $type,
 
-    #[SerializedName('encrypted')]
-    protected int|null $encrypted;
+        #[SerializedName('encrypted')]
+        public readonly int|null $encrypted,
 
-    /** @var Option[]|null */
-    protected ?array $options;
+        /** @var Option[]|null */
+        public readonly ?array $options,
 
-    /** @var Brand[]|null */
-    protected ?array $brands;
+        /** @var Brand[]|null */
+        public readonly ?array $brands,
 
-    #[SerializedName('field_id')]
-    protected int|null $fieldId = null;
+        #[SerializedName('field_id')]
+        public readonly int|null $fieldId = null,
 
-    #[SerializedName('value')]
-    protected string|null $value = null;
+        #[SerializedName('value')]
+        public readonly string|null $value = null,
 
-    public function getRegexErrorMessage(): ?string
-    {
-        return $this->regexErrorMessage;
-    }
-
-    public function getDependsOnFieldId(): ?int
-    {
-        return $this->dependsOnFieldId;
-    }
-
-    public function getRegex(): ?string
-    {
-        return $this->regex;
-    }
-
-    public function getLocked(): ?bool
-    {
-        return $this->locked;
-    }
-
-    public function getUpdatedAt(): ?int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getCreatedAt(): ?int
-    {
-        return $this->createdAt;
-    }
-
-    public function getDependsOnOptionId(): ?int
-    {
-        return $this->dependsOnOptionId;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function getRequired(): ?bool
-    {
-        return $this->required;
-    }
-
-    public function getPublic(): ?bool
-    {
-        return $this->public;
-    }
-
-    public function getOrder(): ?int
-    {
-        return $this->order;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function getType(): ?int
-    {
-        return $this->type;
-    }
-
-    public function getEncrypted(): ?int
-    {
-        return $this->encrypted;
-    }
-
-    /**
-     * @return Option[]|null
-     */
-    public function getOptions(): ?array
-    {
-        return $this->options;
-    }
-
-    /**
-     * @return Brand[]|null
-     */
-    public function getBrands(): ?array
-    {
-        return $this->brands;
-    }
-
-    public function getFieldId(): ?int
-    {
-        return $this->fieldId;
-    }
-
-    public function getValue(): ?string
-    {
-        return $this->value;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

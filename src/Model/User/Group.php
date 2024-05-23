@@ -7,71 +7,34 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Group extends BaseModel
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('created_at')]
-    protected int $createdAt;
+        #[SerializedName('created_at')]
+        public readonly int $createdAt,
 
-    #[SerializedName('updated_at')]
-    protected int $updatedAt;
+        #[SerializedName('updated_at')]
+        public readonly int $updatedAt,
 
-    #[SerializedName('description')]
-    protected string|null $description;
+        #[SerializedName('description')]
+        public readonly string|null $description,
 
-    #[SerializedName('administrator')]
-    protected int $administrator;
+        #[SerializedName('administrator')]
+        public readonly int $administrator,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('colour')]
-    protected string $colour;
+        #[SerializedName('colour')]
+        public readonly string $colour,
 
-    /** @var GroupTranslation[]|null */
-    #[SerializedName('translations')]
-    protected array|null $translations;
+        /** @var GroupTranslation[]|null */
+        #[SerializedName('translations')]
+        public readonly array|null $translations,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getCreatedAt(): int
-    {
-        return $this->createdAt;
-    }
-
-    public function getUpdatedAt(): int
-    {
-        return $this->updatedAt;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function getAdministrator(): int
-    {
-        return $this->administrator;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getColour(): string
-    {
-        return $this->colour;
-    }
-
-    /**
-     * @return GroupTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }

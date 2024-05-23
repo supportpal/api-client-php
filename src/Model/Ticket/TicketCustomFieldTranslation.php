@@ -7,43 +7,25 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class TicketCustomFieldTranslation extends BaseTranslation
 {
-    #[SerializedName('id')]
-    protected int $id;
+    public function __construct(
+        #[SerializedName('id')]
+        public readonly int $id,
 
-    #[SerializedName('name')]
-    protected string $name;
+        #[SerializedName('name')]
+        public readonly string $name,
 
-    #[SerializedName('ticket_custom_field_id')]
-    protected int $ticketCustomFieldId;
+        #[SerializedName('ticket_custom_field_id')]
+        public readonly int $ticketCustomFieldId,
 
-    #[SerializedName('description')]
-    protected string|null $description;
+        #[SerializedName('description')]
+        public readonly string|null $description,
 
-    #[SerializedName('regex_error_message')]
-    protected string|null $regexErrorMessage;
+        #[SerializedName('regex_error_message')]
+        public readonly string|null $regexErrorMessage,
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getTicketCustomFieldId(): int
-    {
-        return $this->ticketCustomFieldId;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function getRegexErrorMessage(): ?string
-    {
-        return $this->regexErrorMessage;
+        $locale,
+        $pivot = null,
+    ) {
+        parent::__construct($locale, $pivot);
     }
 }

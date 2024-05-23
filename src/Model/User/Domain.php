@@ -7,19 +7,15 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 class Domain extends BaseModel
 {
-    #[SerializedName('organisation_id')]
-    protected int $organisationId;
+    public function __construct(
+        #[SerializedName('organisation_id')]
+        public readonly int $organisationId,
 
-    #[SerializedName('domain')]
-    protected string $domain;
+        #[SerializedName('domain')]
+        public readonly string $domain,
 
-    public function getOrganisationId(): int
-    {
-        return $this->organisationId;
-    }
-
-    public function getDomain(): string
-    {
-        return $this->domain;
+        $pivot = null,
+    ) {
+        parent::__construct($pivot);
     }
 }
