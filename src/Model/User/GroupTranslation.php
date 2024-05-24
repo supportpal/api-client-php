@@ -10,18 +10,14 @@ class GroupTranslation extends BaseTranslation
     public function __construct(
         #[SerializedName('id')]
         public int $id,
-
         #[SerializedName('description')]
         public readonly string|null $description,
-
         #[SerializedName('user_group_id')]
         public readonly int $userGroupId,
-
         #[SerializedName('name')]
         public readonly string|null $name,
-
-        $locale,
-        $pivot = null,
+        public readonly string $locale,
+        public readonly ?array $pivot = null,
     ) {
         parent::__construct($locale, $pivot);
     }

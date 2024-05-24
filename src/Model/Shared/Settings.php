@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Model\Shared;
 
-use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\SettingsModel;
 
 class Settings implements SettingsModel

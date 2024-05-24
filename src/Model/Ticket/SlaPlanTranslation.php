@@ -10,18 +10,14 @@ class SlaPlanTranslation extends BaseTranslation
     public function __construct(
         #[SerializedName('id')]
         public readonly int $id,
-
         #[SerializedName('sla_plan_id')]
         public readonly int $slaPlanId,
-
         #[SerializedName('name')]
         public readonly string|null $name,
-
         #[SerializedName('description')]
         public readonly string|null $description,
-
-        $locale,
-        $pivot = null,
+        public readonly string $locale,
+        public readonly ?array $pivot = null,
     ) {
         parent::__construct($locale, $pivot);
     }

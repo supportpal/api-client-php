@@ -10,15 +10,12 @@ class BrandTranslation extends BaseTranslation
     public function __construct(
         #[SerializedName('id')]
         public readonly int $id,
-
         #[SerializedName('name')]
         public readonly string $name,
-
         #[SerializedName('brand_id')]
         public readonly int $brandId,
-
-        $locale,
-        $pivot = null,
+        public readonly string $locale,
+        public readonly ?array $pivot = null,
     ) {
         parent::__construct($locale, $pivot);
     }

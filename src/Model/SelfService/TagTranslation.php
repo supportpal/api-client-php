@@ -10,18 +10,14 @@ class TagTranslation extends BaseTranslation
     public function __construct(
         #[SerializedName('id')]
         public readonly int $id,
-
         #[SerializedName('tag_id')]
         public readonly int $tagId,
-
         #[SerializedName('name')]
         public readonly string $name,
-
         #[SerializedName('slug')]
         public readonly string $slug,
-
-        $locale,
-        $pivot = null,
+        public readonly string $locale,
+        public readonly ?array $pivot = null,
     ) {
         parent::__construct($locale, $pivot);
     }

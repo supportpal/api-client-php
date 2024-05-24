@@ -10,12 +10,10 @@ class OptionTranslation extends BaseTranslation
     public function __construct(
         #[SerializedName('id')]
         public readonly int $id,
-
         #[SerializedName('value')]
         public readonly string $value,
-
-        $locale,
-        $pivot = null,
+        public readonly string $locale,
+        public readonly ?array $pivot = null,
     ) {
         parent::__construct($locale, $pivot);
     }

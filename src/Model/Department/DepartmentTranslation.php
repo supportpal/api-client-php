@@ -10,18 +10,14 @@ class DepartmentTranslation extends BaseTranslation
     public function __construct(
         #[SerializedName('id')]
         public readonly int $id,
-
         #[SerializedName('name')]
         public readonly string $name,
-
         #[SerializedName('description')]
         public readonly ?string $description,
-
         #[SerializedName('department_id')]
         public readonly int $departmentId,
-
-        $locale,
-        $pivot = null,
+        public readonly string $locale,
+        public readonly ?array $pivot = null,
     ) {
         parent::__construct($locale, $pivot);
     }

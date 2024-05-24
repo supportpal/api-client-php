@@ -10,11 +10,9 @@ class Domain extends BaseModel
     public function __construct(
         #[SerializedName('organisation_id')]
         public readonly int $organisationId,
-
         #[SerializedName('domain')]
         public readonly string $domain,
-
-        $pivot = null,
+        public readonly ?array $pivot = null,
     ) {
         parent::__construct($pivot);
     }
