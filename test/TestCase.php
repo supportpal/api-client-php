@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Model\SettingsModel;
+use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 use function count;
@@ -92,12 +92,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
             foreach ($models->getModels() as $offset => $object) {
                 $this->assertArrayEqualsObjectFields($object, $data['data'][$offset]);
             }
-
-            return;
-        }
-
-        if ($models instanceof SettingsModel) {
-            self::assertSame($models->all(), $data['data']);
 
             return;
         }

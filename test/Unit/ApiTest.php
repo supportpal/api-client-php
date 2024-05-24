@@ -40,9 +40,6 @@ abstract class ApiTest extends TestCase
     /** @var ObjectProphecy|CollectionFactory */
     private $collectionFactory;
 
-    /** @var string */
-    private $formatType = 'json';
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -109,8 +106,6 @@ abstract class ApiTest extends TestCase
 
     /**
      * @param array<mixed> $responseData
-     * @param array<mixed> $modelArrayData
-     * @param class-string $className
      * @param class-string|null $outputClassName
      * @return array<mixed>
      */

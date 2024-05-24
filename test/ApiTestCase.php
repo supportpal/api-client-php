@@ -29,7 +29,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
             new Response(
                 200,
                 [],
-                json_encode($data)
+                (string) json_encode($data)
             )
         );
 

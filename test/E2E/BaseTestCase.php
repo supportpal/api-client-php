@@ -9,7 +9,6 @@ use SupportPal\ApiClient\Api\SelfServiceApi;
 use SupportPal\ApiClient\Api\TicketApi;
 use SupportPal\ApiClient\Api\UserApi;
 use SupportPal\ApiClient\Config\ApiContext;
-use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\Shared\Settings;
@@ -45,9 +44,6 @@ abstract class BaseTestCase extends TestCase
     /** @var SupportPal */
     private $supportPal;
 
-    /** @var ModelToArrayConverter */
-    private $modelToArrayConverter;
-
     public function setUp(): void
     {
         parent::setUp();
@@ -64,10 +60,6 @@ abstract class BaseTestCase extends TestCase
         $loader->load('../Resources/services_test.yml');
         $containerBuilder->set(Client::class, new Client);
         $containerBuilder->compile();
-
-        /** @var ModelToArrayConverter $modelConverter */
-        $modelConverter = $containerBuilder->get(ModelToArrayConverter::class);
-        $this->modelToArrayConverter = $modelConverter;
 
         $apiContext = ApiContext::createFromUrl($apiUrl, $token);
 
@@ -113,7 +105,6 @@ abstract class BaseTestCase extends TestCase
                     $this->callAllGetters($value, $callExceptions);
                     self::assertEmpty($callExceptions, var_export($callExceptions, true));
                     $this->assertArrayEqualsObjectFields($value, $modelsArray[$offset]);
-                    $this->modelToArrayConverter->convertOne($value);
                 } catch (ExpectationFailedException $exception) {
                     throw new ExpectationFailedException(
                         sprintf('test failed in range start: %d, end: %d', $start, $start + self::BATCH_SIZE),
@@ -137,8 +128,7 @@ abstract class BaseTestCase extends TestCase
         $response = $this->getSupportPal()->sendRequest($request);
         $responseArray = json_decode((string) $response->getBody(), true)['data'];
         self::assertInstanceOf(Settings::class, $model);
-        self::assertSame($responseArray, $model->all());
-        $this->modelToArrayConverter->convertOne($model);
+        self::assertSame($responseArray, $model);
     }
 
     /**
@@ -170,7 +160,6 @@ abstract class BaseTestCase extends TestCase
                 $callExceptions = [];
                 $this->callAllGetters($model, $callExceptions);
                 self::assertEmpty($callExceptions, var_export($callExceptions, true));
-                $this->modelToArrayConverter->convertOne($model);
                 ++$iteration;
             } catch (HttpResponseException $exception) {
                 self::assertStringContainsString('given ID was not found', $exception->getMessage());

@@ -72,12 +72,12 @@ class ApiClientTest extends ContainerAwareBaseTestCase
         $expectedResponse = new Response(
             200,
             [],
-            (string) $this->getEncoder()->encode($data, $this->getFormatType())
+            (string) json_encode($data)
         );
         $this->appendRequestResponse($expectedResponse);
         $response = $this->makeClientCall($functionName, $parameters);
         self::assertSame($expectedResponse, $response);
-        self::assertSame($data, $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType()));
+        self::assertSame($data, json_decode((string) $response->getBody(), true));
     }
 
     /**
@@ -103,14 +103,14 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     public function testPostModel(array $modelData, array $responseData, string $endpoint): void
     {
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
+        $jsonSuccessfulBody = json_encode($responseData);
         $expectedResponse = new Response(200, [], $jsonSuccessfulBody);
         $this->appendRequestResponse($expectedResponse);
         $response = $this->makeClientCall($endpoint, [$modelData]);
         self::assertSame($expectedResponse, $response);
         self::assertSame(
             $responseData,
-            $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
+            json_decode((string) $response->getBody(), true)
         );
     }
 
@@ -137,14 +137,14 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     public function testPutModel(array $modelData, array $responseData, string $endpoint): void
     {
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
+        $jsonSuccessfulBody = json_encode($responseData);
         $expectedResponse = new Response(200, [], $jsonSuccessfulBody);
         $this->appendRequestResponse($expectedResponse);
         $response = $this->makeClientCall($endpoint, [self::TEST_ID, $modelData]);
         self::assertSame($expectedResponse, $response);
         self::assertSame(
             $responseData,
-            $this->getDecoder()->decode((string) $response->getBody(), $this->getFormatType())
+            json_decode((string) $response->getBody(), true)
         );
     }
 

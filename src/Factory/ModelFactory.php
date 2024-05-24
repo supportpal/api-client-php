@@ -12,11 +12,14 @@ use SupportPal\ApiClient\Model\Model;
 abstract class ModelFactory
 {
     /**
-     * @inheritDoc
+     * @param mixed[] $data
      */
     public function create(array $data): Model
     {
-        return (new ($this->getModel))->fill($data);
+        /** @var Model $model */
+        $model = new ($this->getModel());
+
+        return $model->fill($data);
     }
 
     abstract public function getModel(): string;

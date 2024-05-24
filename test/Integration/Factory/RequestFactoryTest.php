@@ -84,7 +84,7 @@ class RequestFactoryTest extends ContainerAwareBaseTestCase
         $headersArray['Host'] = [$request->getUri()->getHost() . ':' . $request->getUri()->getPort()];
 
         $encodedBody = ! empty($data['body']) || ! empty($this->defaultBodyContent)
-            ? $this->getEncoder()->encode(array_merge($data['body'], $this->defaultBodyContent), $this->getFormatType())
+            ? json_encode(array_merge($data['body'], $this->defaultBodyContent))
             : '';
 
         self::assertInstanceOf(Request::class, $request);

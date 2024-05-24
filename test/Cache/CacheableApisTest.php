@@ -94,9 +94,9 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         /** @var ApiClient $apiClient */
         $apiClient = $this->getContainer()->get($apiClientClass);
 
-        $response = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
-        $response2 = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
-        $response3 = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
+        $response = new Response(200, [], (string) json_encode($data));
+        $response2 = new Response(200, [], (string) json_encode($data));
+        $response3 = new Response(200, [], (string) json_encode($data));
 
         $this->mockRequestHandler->append($response);
         $this->mockRequestHandler->append($response2);
@@ -287,8 +287,8 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
      */
     protected function mockResponses(array $data): void
     {
-        $response = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
-        $response2 = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
+        $response = new Response(200, [], (string) json_encode($data));
+        $response2 = new Response(200, [], (string) json_encode($data));
 
         $this->mockRequestHandler->append($response);
         $this->mockRequestHandler->append($response2);
