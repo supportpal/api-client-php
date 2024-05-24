@@ -2,22 +2,14 @@
 
 namespace SupportPal\ApiClient\Model;
 
-use Symfony\Component\Serializer\Attribute\SerializedName;
+use function array_merge;
 
 abstract class BaseTranslation extends BaseModel
 {
-    #[SerializedName('locale')]
-    private string $locale;
-
-    public function getLocale(): string
+    public function __construct(array $attributes = [])
     {
-        return $this->locale;
-    }
+        $this->casts = array_merge($this->casts, ['locale' => 'string']);
 
-    public function setLocale(string $locale): self
-    {
-        $this->locale = $locale;
-
-        return $this;
+        parent::__construct($attributes);
     }
 }
