@@ -91,26 +91,13 @@ class RequestFactoryTest extends TestCase
         $defaultParameters = ['testparams' => 'value', 'test_data2' => 'not_overwriten'];
         $defaultBody = ['testbody' => 'value', 'test_data2' => 'not_overwriten'];
 
-        $expectedBody = array_merge($defaultBody, $data['body']);
-        [$encodedBody, $headersArray, $request] = $this
-            ->commonCreateRequest($expectedBody, $defaultBody, $defaultParameters, $data);
-
-        self::assertInstanceOf(Request::class, $request);
-        self::assertSame($data['method'], $request->getMethod());
-        self::assertSame('test' . $data['endpoint'], $request->getUri()->getPath());
-        self::assertEquals($headersArray, $request->getHeaders());
-        self::assertSame($encodedBody, json_decode($request->getBody()->getContents(), true));
-        self::assertSame(
-            http_build_query(array_merge($defaultParameters, $data['parameters'])),
-            $request->getUri()->getQuery()
-        );
+        $this->createAndAssert($defaultBody, $data, $defaultParameters);
     }
 
     public function testProvidedDataOverwritesDefaults(): void
     {
         $defaultParameters = ['testparams' => 'value'];
         $defaultBody = ['testbody' => 'value'];
-
 
         $data = [
             'method' => 'DELETE',
@@ -120,19 +107,7 @@ class RequestFactoryTest extends TestCase
             'parameters' => ['testparams' => 'overwrite_value']
         ];
 
-        $expectedBody = array_merge($defaultBody, $data['body']);
-        [$encodedBody, $headersArray, $request] = $this
-            ->commonCreateRequest($expectedBody, $defaultBody, $defaultParameters, $data);
-
-        self::assertInstanceOf(Request::class, $request);
-        self::assertSame($data['method'], $request->getMethod());
-        self::assertSame('test' . $data['endpoint'], $request->getUri()->getPath());
-        self::assertEquals($headersArray, $request->getHeaders());
-        self::assertSame($encodedBody, json_decode($request->getBody()->getContents(), true));
-        self::assertSame(
-            http_build_query(array_merge($defaultParameters, $data['parameters'])),
-            $request->getUri()->getQuery()
-        );
+        $this->createAndAssert($defaultBody, $data, $defaultParameters);
     }
 
     /**
@@ -230,5 +205,28 @@ class RequestFactoryTest extends TestCase
         );
 
         return [$expectedBody, $headersArray, $request];
+    }
+
+    /**
+     * @param mixed[] $defaultBody
+     * @param mixed[] $data
+     * @param mixed[] $defaultParameters
+     * @return void
+     */
+    private function createAndAssert(array $defaultBody, array $data, array $defaultParameters): void
+    {
+        $expectedBody = array_merge($defaultBody, $data['body']);
+        [$encodedBody, $headersArray, $request] = $this
+            ->commonCreateRequest($expectedBody, $defaultBody, $defaultParameters, $data);
+
+        self::assertInstanceOf(Request::class, $request);
+        self::assertSame($data['method'], $request->getMethod());
+        self::assertSame('test' . $data['endpoint'], $request->getUri()->getPath());
+        self::assertEquals($headersArray, $request->getHeaders());
+        self::assertSame($encodedBody, json_decode($request->getBody()->getContents(), true));
+        self::assertSame(
+            http_build_query(array_merge($defaultParameters, $data['parameters'])),
+            $request->getUri()->getQuery()
+        );
     }
 }
