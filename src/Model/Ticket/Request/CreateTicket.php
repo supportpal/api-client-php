@@ -65,5 +65,4 @@ class CreateTicket extends Model
     protected array|null $attachment;
 
     protected int|null $createdAt;
-
 }

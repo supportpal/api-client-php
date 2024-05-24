@@ -5,7 +5,6 @@ namespace SupportPal\ApiClient\Tests;
 use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Collection\Collection;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 use function count;

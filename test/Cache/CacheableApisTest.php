@@ -38,6 +38,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 
 use function call_user_func_array;
+use function json_encode;
 use function sleep;
 use function sys_get_temp_dir;
 

@@ -11,6 +11,7 @@ use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use function array_merge;
 use function base64_encode;
 use function http_build_query;
+use function json_encode;
 
 /**
  * Class RequestFactoryTest

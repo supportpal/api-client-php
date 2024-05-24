@@ -16,11 +16,13 @@ abstract class ModelFactory
      */
     public function create(array $data): Model
     {
-        /** @var Model $model */
-        $model = new ($this->getModel());
+        $modelClass = $this->getModel();
 
-        return $model->fill($data);
+        return (new $modelClass)->fill($data);
     }
 
+    /**
+     * @return class-string<Model>
+     */
     abstract public function getModel(): string;
 }
