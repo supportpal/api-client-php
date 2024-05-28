@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
 
 use SupportPal\ApiClient\Api\CoreApi;
-use SupportPal\ApiClient\ApiClient\CoreApiClient;
+use SupportPal\ApiClient\Http\CoreClient;
 use SupportPal\ApiClient\Model\Core\Brand;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -11,7 +11,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class BrandApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Core
- * @covers \SupportPal\ApiClient\Api\Core\BrandApis
+ * @covers \SupportPal\ApiClient\Api\Core\Brands
  * @covers \SupportPal\ApiClient\Api\Api
  */
 class BrandApisTest extends ApiTest
@@ -33,7 +33,7 @@ class BrandApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $returnedBrand = $this->api->getBrand(1);
-        self::assertSame($expectedOutput, $returnedBrand);
+        self::assertEquals($expectedOutput, $returnedBrand);
     }
 
     public function testGetBrands(): void
@@ -50,7 +50,7 @@ class BrandApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $returnedBrands = $this->api->getBrands([]);
-        self::assertSame($expectedOutput, $returnedBrands);
+        self::assertEquals($expectedOutput, $returnedBrands);
     }
 
     /**
@@ -66,6 +66,6 @@ class BrandApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return CoreApiClient::class;
+        return CoreClient::class;
     }
 }

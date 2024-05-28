@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
-use SupportPal\ApiClient\ApiClient\UserApiClient;
+use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
@@ -63,6 +63,6 @@ class UserApisTest extends ApiClientTest
      */
     protected function getApiClientClass()
     {
-        return UserApiClient::class;
+        return UserClient::class;
     }
 }

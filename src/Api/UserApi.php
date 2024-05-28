@@ -2,28 +2,22 @@
 
 namespace SupportPal\ApiClient\Api;
 
-use SupportPal\ApiClient\Api\User\CustomFieldApis;
-use SupportPal\ApiClient\Api\User\UserApis;
-use SupportPal\ApiClient\Api\User\UserGroupApis;
-use SupportPal\ApiClient\ApiClient\UserApiClient;
+use SupportPal\ApiClient\Api\User\CustomFields;
+use SupportPal\ApiClient\Api\User\Users;
+use SupportPal\ApiClient\Api\User\UserGroups;
+use SupportPal\ApiClient\Http\UserClient;
 
-/**
- * Trait UserApis, includes all related ApiCalls pre and post processing related to Users
- * @package SupportPal\ApiClient\Api\Core
- */
 class UserApi extends Api
 {
-    use CustomFieldApis;
-    use UserApis;
-    use UserGroupApis;
+    use CustomFields;
+    use Users;
+    use UserGroups;
 
-    /** @var UserApiClient */
-    protected $apiClient;
+    public function __construct(protected readonly UserClient $apiClient)
+    {
+    }
 
-    /**
-     * @inheritDoc
-     */
-    protected function getApiClient(): UserApiClient
+    protected function getApiClient(): UserClient
     {
         return $this->apiClient;
     }

@@ -16,7 +16,7 @@ services:
         autowire: true
         public: true
 
-    SupportPal\ApiClient\Factory\RequestFactory:
+    SupportPal\ApiClient\Http\Request:
         public: true
         arguments:
             $apiUrl: '%apiUrl%'
@@ -25,105 +25,7 @@ services:
             $defaultBodyContent: '%defaultBodyContent%'
             $defaultParameters: '%defaultParameters%'
 
-    SupportPal\ApiClient\ApiClient:
+    SupportPal\ApiClient\Http\Client:
         public: true
         arguments:
             $httpClient: '@GuzzleHttp\Client'
-
-    SupportPal\ApiClient\Factory\SelfService\TypeFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-
-    SupportPal\ApiClient\Factory\User\UserFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-
-    SupportPal\ApiClient\Factory\SelfService\ArticleFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-
-    SupportPal\ApiClient\Factory\SelfService\CategoryFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-
-    SupportPal\ApiClient\Factory\Ticket\DepartmentFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-
-    SupportPal\ApiClient\Factory\SelfService\CommentFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-
-    SupportPal\ApiClient\Factory\Shared\SettingsFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-
-    SupportPal\ApiClient\Factory\Ticket\ChannelSettingsFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-
-    SupportPal\ApiClient\Factory\SelfService\TagFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-
-    SupportPal\ApiClient\Factory\Ticket\CustomFieldFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Ticket\PriorityFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Ticket\StatusFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Ticket\AttachmentFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Ticket\TicketFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Ticket\MessageFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Core\BrandFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\User\GroupFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\User\UserCustomFieldFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\ModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Collection\CollectionFactory:
-        public: true
-
-    SupportPal\ApiClient\Factory\ModelCollectionFactory:
-        public: true
-        arguments:
-            $factories: !tagged factory.model_factory

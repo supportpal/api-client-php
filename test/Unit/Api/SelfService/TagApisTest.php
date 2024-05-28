@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
 use SupportPal\ApiClient\Api\SelfServiceApi;
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
+use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Model\SelfService\Tag;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -11,7 +11,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class TagApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
- * @covers \SupportPal\ApiClient\Api\SelfService\TagApis
+ * @covers \SupportPal\ApiClient\Api\SelfService\Tags
  * @covers \SupportPal\ApiClient\Api\Api
  */
 class TagApisTest extends ApiTest
@@ -33,7 +33,7 @@ class TagApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $tag = $this->api->getTag(1);
-        self::assertSame($expectedOutput, $tag);
+        self::assertEquals($expectedOutput, $tag);
     }
 
     public function testGetTags(): void
@@ -49,7 +49,7 @@ class TagApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $tags = $this->api->getTags([]);
-        self::assertSame($expectedOutput, $tags);
+        self::assertEquals($expectedOutput, $tags);
     }
 
     /**
@@ -65,6 +65,6 @@ class TagApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return SelfServiceApiClient::class;
+        return SelfServiceClient::class;
     }
 }

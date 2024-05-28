@@ -3,47 +3,14 @@
 namespace SupportPal\ApiClient\Api;
 
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\ApiClient;
-use SupportPal\ApiClient\ApiClient\CoreApiClient;
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
-use SupportPal\ApiClient\ApiClient\UserApiClient;
-use SupportPal\ApiClient\Factory\Collection\CollectionFactory;
-use SupportPal\ApiClient\Factory\ModelCollectionFactory;
+use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\Model;
 
 use function json_decode;
 
 abstract class Api
 {
-    use ApiAware;
-
-    /** @var UserApiClient|SelfServiceApiClient|TicketApiClient|CoreApiClient|ApiClient */
-    protected $apiClient;
-
-    /** @var ModelCollectionFactory */
-    private $modelCollectionFactory;
-
-    /** @var CollectionFactory */
-    private $collectionFactory;
-
-    public function __construct(
-        ModelCollectionFactory $modelCollectionFactory,
-        CollectionFactory $collectionFactory,
-        ApiClient $apiClient
-    ) {
-        $this->modelCollectionFactory = $modelCollectionFactory;
-        $this->collectionFactory = $collectionFactory;
-        $this->apiClient = $apiClient;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getModelCollectionFactory(): ModelCollectionFactory
-    {
-        return $this->modelCollectionFactory;
-    }
-
     /**
      * @param ResponseInterface $response
      * @return array<mixed>
@@ -54,10 +21,11 @@ abstract class Api
     }
 
     /**
-     * @return CollectionFactory
+     * @param Model[] $models
+     * @throws InvalidArgumentException
      */
-    protected function getCollectionFactory(): CollectionFactory
+    public function createCollection(int $count, array $models): Collection
     {
-        return $this->collectionFactory;
+        return new Collection($count, $models);
     }
 }

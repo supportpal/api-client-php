@@ -1,8 +1,6 @@
 imports:
-    - { resource: factories.yml }
-    - { resource: core_services.yml }
     - { resource: api.yml }
-    - { resource: api_client.yml }
+    - { resource: client.yml }
 
 parameters:
     apiContentType: 'application/json'

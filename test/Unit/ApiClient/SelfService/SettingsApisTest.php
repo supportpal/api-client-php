@@ -2,9 +2,9 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
@@ -13,12 +13,12 @@ use function json_encode;
 /**
  * Class SettingsApisTest
  * @package SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService
- * @covers \SupportPal\ApiClient\ApiClient\SelfService\SettingsApis
- * @covers \SupportPal\ApiClient\ApiClient
+ * @covers \SupportPal\ApiClient\Http\SelfService\SettingsApis
+ * @covers \SupportPal\ApiClient\Http\Client
  */
 class SettingsApisTest extends ApiClientTest
 {
-    /** @var SelfServiceApiClient */
+    /** @var SelfServiceClient */
     protected $apiClient;
 
     public function testGetSettings(): void
@@ -60,6 +60,6 @@ class SettingsApisTest extends ApiClientTest
      */
     protected function getApiClientName(): string
     {
-        return SelfServiceApiClient::class;
+        return SelfServiceClient::class;
     }
 }

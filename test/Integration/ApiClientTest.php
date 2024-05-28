@@ -7,8 +7,8 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Http\Client;
 use SupportPal\ApiClient\Tests\ApiDataProviders;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 
@@ -16,15 +16,11 @@ use function call_user_func_array;
 use function json_decode;
 use function json_encode;
 
-/**
- * Class ApiClientTest
- * @package SupportPal\ApiClient\Tests\Integration
- */
 class ApiClientTest extends ContainerAwareBaseTestCase
 {
     use ApiDataProviders;
 
-    /** @var ApiClient */
+    /** @var Client */
     protected $apiClient;
 
     /**
@@ -35,7 +31,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        /** @var ApiClient $apiClient */
+        /** @var Client $apiClient */
         $apiClient = $this->getContainer()->get($this->getApiClientClass());
         $this->apiClient = $apiClient;
     }
@@ -226,6 +222,6 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      */
     protected function getApiClientClass()
     {
-        return ApiClient::class;
+        return Client::class;
     }
 }

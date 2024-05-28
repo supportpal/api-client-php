@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
 use SupportPal\ApiClient\Api\SelfServiceApi;
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
+use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Model\SelfService\Request\CreateComment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
@@ -12,7 +12,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class CommentApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
- * @covers \SupportPal\ApiClient\Api\SelfService\CommentApis
+ * @covers \SupportPal\ApiClient\Api\SelfService\Comments
  * @covers \SupportPal\ApiClient\Api\Api
  */
 class CommentApisTest extends ApiTest
@@ -38,7 +38,7 @@ class CommentApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $comment = $this->api->postComment(new CreateComment($arrayData));
-        self::assertSame($commentOutput->reveal(), $comment);
+        self::assertEquals($commentOutput, $comment);
     }
 
     public function testGetComments(): void
@@ -54,7 +54,7 @@ class CommentApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $comments = $this->api->getComments([]);
-        self::assertSame($expectedOutput, $comments);
+        self::assertEquals($expectedOutput, $comments);
     }
 
     public function testGetComment(): void
@@ -71,7 +71,7 @@ class CommentApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $returnedComment = $this->api->getComment($this->testCommentId);
-        self::assertSame($expectedOutput, $returnedComment);
+        self::assertEquals($expectedOutput, $returnedComment);
     }
 
     /**
@@ -87,6 +87,6 @@ class CommentApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return SelfServiceApiClient::class;
+        return SelfServiceClient::class;
     }
 }

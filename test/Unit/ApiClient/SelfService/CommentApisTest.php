@@ -2,9 +2,9 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
@@ -13,12 +13,12 @@ use function json_encode;
 /**
  * Class CommentApisTest
  * @package SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService
- * @covers \SupportPal\ApiClient\ApiClient\SelfService\CommentApis
- * @covers \SupportPal\ApiClient\ApiClient
+ * @covers \SupportPal\ApiClient\Http\SelfService\CommentApis
+ * @covers \SupportPal\ApiClient\Http\Client
  */
 class CommentApisTest extends ApiClientTest
 {
-    /** @var SelfServiceApiClient */
+    /** @var SelfServiceClient */
     protected $apiClient;
 
     /** @var int */
@@ -149,6 +149,6 @@ class CommentApisTest extends ApiClientTest
      */
     protected function getApiClientName(): string
     {
-        return SelfServiceApiClient::class;
+        return SelfServiceClient::class;
     }
 }

@@ -3,17 +3,11 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
 
 use SupportPal\ApiClient\Api\CoreApi;
-use SupportPal\ApiClient\ApiClient\CoreApiClient;
+use SupportPal\ApiClient\Http\CoreClient;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class CoreApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api
- * @covers \SupportPal\ApiClient\Api\Core\SettingsApis
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class SettingsApisTest extends ApiTest
 {
     /** @var CoreApi */
@@ -33,7 +27,7 @@ class SettingsApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $coreSettings = $this->api->getSettings();
-        self::assertSame($expectedOutput, $coreSettings);
+        self::assertEquals($expectedOutput, $coreSettings);
     }
 
     /**
@@ -49,6 +43,6 @@ class SettingsApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return CoreApiClient::class;
+        return CoreClient::class;
     }
 }

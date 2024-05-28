@@ -3,27 +3,23 @@
 namespace SupportPal\ApiClient\Tests\Unit;
 
 use Exception;
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Request as BaseRequest;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use SupportPal\ApiClient\ApiClient;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Factory\RequestFactory;
+use SupportPal\ApiClient\Http\Client;
+use SupportPal\ApiClient\Http\CoreClient;
+use SupportPal\ApiClient\Http\Request;
 use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 use function json_encode;
 
-/**
- * Class ApiClientTest
- * @package SupportPal\ApiClient\Tests\Unit
- * @covers \SupportPal\ApiClient\ApiClient
- */
 class ApiClientTest extends TestCase
 {
     use PhpUnitCompatibilityTrait;
@@ -38,21 +34,21 @@ class ApiClientTest extends TestCase
     /** @var ObjectProphecy|ClientInterface */
     protected $httpClient;
 
-    /** @var ObjectProphecy|RequestFactory */
+    /** @var ObjectProphecy|Request */
     protected $requestFactory;
 
-    /** @var ApiClient */
+    /** @var Client $apiClient */
     protected $apiClient;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->httpClient = $this->prophesize(ClientInterface::class);
-        $this->requestFactory = $this->prophesize(RequestFactory::class);
+        $this->requestFactory = $this->prophesize(Request::class);
 
-        /** @var Client $httpClient */
+        /** @var GuzzleClient $httpClient */
         $httpClient = $this->httpClient->reveal();
-        /** @var RequestFactory $requestFactory */
+        /** @var Request $requestFactory */
         $requestFactory = $this->requestFactory->reveal();
 
         $apiClassName = $this->getApiClientName();
@@ -126,7 +122,7 @@ class ApiClientTest extends TestCase
      * @param string $endpoint
      * @param array<mixed> $parameters
      * @param array<mixed> $body
-     * @return ObjectProphecy|Request
+     * @return ObjectProphecy|BaseRequest
      */
     protected function requestCommonExpectations(
         string $method,
@@ -134,7 +130,7 @@ class ApiClientTest extends TestCase
         array $parameters,
         array $body = []
     ): ObjectProphecy {
-        $request = $this->prophesize(Request::class);
+        $request = $this->prophesize(BaseRequest::class);
         if ($method === 'GET') {
             $create = $this->requestFactory->create($method, $endpoint, [], [], $parameters);
             $create->shouldBeCalled()->willReturn($request->reveal());
@@ -151,7 +147,7 @@ class ApiClientTest extends TestCase
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @param ObjectProphecy|Request $request
+     * @param ObjectProphecy|BaseRequest $request
      * @return ObjectProphecy|ResponseInterface
      */
     protected function sendRequestCommonExpectations(
@@ -168,7 +164,7 @@ class ApiClientTest extends TestCase
     }
 
     /**
-     * @param ObjectProphecy|Request $request
+     * @param ObjectProphecy|BaseRequest $request
      */
     protected function throwClientExceptionCommonExpectations(ObjectProphecy $request): void
     {
@@ -181,10 +177,10 @@ class ApiClientTest extends TestCase
     }
 
     /**
-     * @return class-string<ApiClient>
+     * @return class-string<Client>
      */
     protected function getApiClientName(): string
     {
-        return ApiClient::class;
+        return CoreClient::class;
     }
 }

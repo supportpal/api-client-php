@@ -2,9 +2,9 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
@@ -14,12 +14,12 @@ use function json_encode;
 /**
  * Class MessageApisTest
  * @package SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket
- * @covers \SupportPal\ApiClient\ApiClient\Ticket\MessageApis
- * @covers \SupportPal\ApiClient\ApiClient
+ * @covers \SupportPal\ApiClient\Http\Ticket\MessageApis
+ * @covers \SupportPal\ApiClient\Http\Client
  */
 class MessageApisTest extends ApiClientTest
 {
-    /** @var TicketApiClient */
+    /** @var TicketClient */
     protected $apiClient;
 
     /** @var int */
@@ -154,6 +154,6 @@ class MessageApisTest extends ApiClientTest
      */
     protected function getApiClientName(): string
     {
-        return TicketApiClient::class;
+        return TicketClient::class;
     }
 }

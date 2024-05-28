@@ -2,9 +2,9 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Core;
 
-use SupportPal\ApiClient\ApiClient\CoreApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Http\CoreClient;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
@@ -13,12 +13,12 @@ use function json_encode;
 /**
  * Class CoreApisTest
  * @package SupportPal\ApiClient\Tests\Unit\ApiClient
- * @covers \SupportPal\ApiClient\ApiClient\Core\SettingsApis
- * @covers \SupportPal\ApiClient\ApiClient
+ * @covers \SupportPal\ApiClient\Http\Core\SettingsApis
+ * @covers \SupportPal\ApiClient\Http\Client
  */
 class CoreApisTest extends ApiClientTest
 {
-    /** @var CoreApiClient */
+    /** @var CoreClient */
     protected $apiClient;
 
     public function testSuccessfulGetCoreSettings(): void
@@ -60,6 +60,6 @@ class CoreApisTest extends ApiClientTest
      */
     protected function getApiClientName(): string
     {
-        return CoreApiClient::class;
+        return CoreClient::class;
     }
 }

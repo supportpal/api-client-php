@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
 use SupportPal\ApiClient\Api\TicketApi;
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
+use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -11,7 +11,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class TicketApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\Ticket\SettingsApis
+ * @covers \SupportPal\ApiClient\Api\Ticket\Settings
  * @covers \SupportPal\ApiClient\Api\Api
  */
 class TicketSettingsApisTest extends ApiTest
@@ -33,7 +33,7 @@ class TicketSettingsApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketSettings = $this->api->getSettings();
-        self::assertSame($expectedOutput, $ticketSettings);
+        self::assertEquals($expectedOutput, $ticketSettings);
     }
 
     /**
@@ -49,6 +49,6 @@ class TicketSettingsApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return TicketApiClient::class;
+        return TicketClient::class;
     }
 }

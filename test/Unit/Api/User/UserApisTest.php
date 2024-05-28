@@ -3,8 +3,8 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
 use SupportPal\ApiClient\Api\UserApi;
-use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
+use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Model\User\User;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
@@ -35,7 +35,7 @@ class UserApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $users = $this->api->getUsers([]);
-        self::assertSame($expectedOutput, $users);
+        self::assertEquals($expectedOutput, $users);
     }
 
     public function testGetUser(): void
@@ -52,7 +52,7 @@ class UserApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $user = $this->api->getUser(1);
-        self::assertSame($expectedOutput, $user);
+        self::assertEquals($expectedOutput, $user);
     }
 
     public function testPostUser(): void
@@ -72,16 +72,16 @@ class UserApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $user = $this->api->postUser(new CreateUser($arrayData));
-        self::assertSame($userOutput->reveal(), $user);
+        self::assertEquals($userOutput, $user);
     }
 
     public function testPutUser(): void
     {
         $userData = new UserData;
 
-        [$response, $output] = $this->putCommonExpectations(
+        [$response, $output] = $this->postCommonExpectations(
+            $userData->getResponse(),
             User::class,
-            $userData->getResponse()
         );
 
         $this
@@ -91,7 +91,7 @@ class UserApisTest extends ApiTest
             ->shouldBeCalled();
 
         $user = $this->api->updateUser(new User(['id' => self::TEST_ID]), $userData->getArrayData());
-        self::assertSame($output->reveal(), $user);
+        self::assertEquals($output, $user);
     }
 
     public function testPutUserWithoutIdentifier(): void
@@ -117,6 +117,6 @@ class UserApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return UserApiClient::class;
+        return UserClient::class;
     }
 }

@@ -3,8 +3,8 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
 use SupportPal\ApiClient\Api\TicketApi;
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
+use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
 use SupportPal\ApiClient\Model\Ticket\Ticket;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateTicketData;
@@ -36,7 +36,7 @@ class TicketApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $tickets = $this->api->getTickets();
-        self::assertSame($expectedOutput, $tickets);
+        self::assertEquals($expectedOutput, $tickets);
     }
 
     public function testGetTicket(): void
@@ -53,7 +53,7 @@ class TicketApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $tickets = $this->api->getTicket(1);
-        self::assertSame($expectedOutput, $tickets);
+        self::assertEquals($expectedOutput, $tickets);
     }
 
     public function testPostTicket(): void
@@ -73,16 +73,16 @@ class TicketApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticket = $this->api->postTicket(new CreateTicket($arrayData));
-        self::assertSame($ticketOutput->reveal(), $ticket);
+        self::assertEquals($ticketOutput, $ticket);
     }
 
     public function testPutTicket(): void
     {
         $ticketData = new TicketData;
 
-        [$response, $output] = $this->putCommonExpectations(
+        [$response, $output] = $this->postCommonExpectations(
+            $ticketData->getResponse(),
             Ticket::class,
-            $ticketData->getResponse()
         );
 
         $this
@@ -92,7 +92,7 @@ class TicketApisTest extends ApiTest
             ->shouldBeCalled();
 
         $ticket = $this->api->updateTicket(new Ticket(['id' => self::TEST_ID]), $ticketData->getArrayData());
-        self::assertSame($output->reveal(), $ticket);
+        self::assertEquals($output, $ticket);
     }
 
     public function testPutTicketWithoutIdentifier(): void
@@ -118,6 +118,6 @@ class TicketApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return TicketApiClient::class;
+        return TicketClient::class;
     }
 }

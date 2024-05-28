@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
 use SupportPal\ApiClient\Api\TicketApi;
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
+use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Model\Ticket\Message;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateMessage;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
@@ -12,7 +12,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class MessageApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\Ticket\MessageApis
+ * @covers \SupportPal\ApiClient\Api\Ticket\Messages
  * @covers \SupportPal\ApiClient\Api\Api
  */
 class MessageApisTest extends ApiTest
@@ -37,7 +37,7 @@ class MessageApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $departments = $this->api->getMessages($this->testMessageId);
-        self::assertSame($expectedOutput, $departments);
+        self::assertEquals($expectedOutput, $departments);
     }
 
     public function testGetMessage(): void
@@ -54,7 +54,7 @@ class MessageApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $returnedDepartment = $this->api->getMessage($this->testMessageId);
-        self::assertSame($expectedOutput, $returnedDepartment);
+        self::assertEquals($expectedOutput, $returnedDepartment);
     }
 
     public function testPostMessage(): void
@@ -74,7 +74,7 @@ class MessageApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $message = $this->api->postMessage(new CreateMessage($arrayData));
-        self::assertSame($messageOutput->reveal(), $message);
+        self::assertEquals($messageOutput, $message);
     }
 
     /**
@@ -90,6 +90,6 @@ class MessageApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return TicketApiClient::class;
+        return TicketClient::class;
     }
 }

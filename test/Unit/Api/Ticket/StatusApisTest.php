@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
 use SupportPal\ApiClient\Api\TicketApi;
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
+use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Model\Ticket\Status;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
@@ -11,7 +11,7 @@ use SupportPal\ApiClient\Tests\Unit\ApiTest;
 /**
  * Class StatusApisTest
  * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\Ticket\StatusApis
+ * @covers \SupportPal\ApiClient\Api\Ticket\Statuses
  * @covers \SupportPal\ApiClient\Api\Api
  */
 class StatusApisTest extends ApiTest
@@ -33,7 +33,7 @@ class StatusApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketsStatus = $this->api->getStatuses();
-        self::assertSame($expectedOutput, $ticketsStatus);
+        self::assertEquals($expectedOutput, $ticketsStatus);
     }
 
     public function testGetStatus(): void
@@ -50,7 +50,7 @@ class StatusApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketsStatus = $this->api->getStatus(1);
-        self::assertSame($expectedOutput, $ticketsStatus);
+        self::assertEquals($expectedOutput, $ticketsStatus);
     }
 
     /**
@@ -66,6 +66,6 @@ class StatusApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return TicketApiClient::class;
+        return TicketClient::class;
     }
 }

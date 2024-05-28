@@ -6,7 +6,7 @@ use Exception;
 use GuzzleHttp\Psr7\Response;
 use SupportPal\ApiClient\Config\ApiContext;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Factory\RequestFactory;
+use SupportPal\ApiClient\Http\Request;
 use SupportPal\ApiClient\SupportPal;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
@@ -23,7 +23,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
 {
     public function testGetRequestFactory(): void
     {
-        self::assertInstanceOf(RequestFactory::class, $this->getSupportPal()->getRequestFactory());
+        self::assertInstanceOf(Request::class, $this->getSupportPal()->getRequestFactory());
     }
 
     public function testSendRequestSuccessful(): void
