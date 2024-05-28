@@ -49,8 +49,10 @@ abstract class ApiTest extends TestCase
         if (is_array(current($responseData['data']))) {
             $models = [];
             foreach ($responseData['data'] as $value) {
-                /** @var Model[] $models */
-                $models[] = new $model($value);
+                /** @var Model $model */
+                $model = new $model($value);
+
+                $models[] = $model;
             }
 
             $collection = $this->api->createCollection($responseData['count'], $models);
