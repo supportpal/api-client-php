@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Model\Department\Operator;
+use SupportPal\ApiClient\Model\User\User;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\BaseUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
@@ -11,7 +11,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 class OperatorData extends BaseModelData
 {
     public const DATA = BaseUserData::DATA + [
-        'groups' => [GroupData::DATA,],
+        'groups' => [GroupData::DATA],
         'pivot' => [
             'department_id' => 1,
             'user_id' => 1
@@ -35,6 +35,6 @@ class OperatorData extends BaseModelData
      */
     public function getModel(): string
     {
-        return Operator::class;
+        return User::class;
     }
 }

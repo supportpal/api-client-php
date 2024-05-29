@@ -9,9 +9,7 @@ use SupportPal\ApiClient\Model\User\User;
 class Ticket extends Model
 {
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array<string,string>
+     * @var array<string, string>
      */
     protected $casts = [
         'id'                  => 'int',
