@@ -6,39 +6,26 @@ use SupportPal\ApiClient\Model\Model;
 
 class CreateUser extends Model
 {
-    public const REQUIRED_FIELDS = ['email'];
-
-    protected int|null $brandId;
-
-    protected string|null $firstname;
-
-    protected string|null $lastname;
-
-    protected string $email;
-
-    protected string|null $password;
-
-    protected string|null $country;
-
-    protected string|null $languageCode;
-
-    protected string|null $timezone;
-
-    protected bool|null $confirmed;
-
-    protected int|null $active;
-
-    protected string|null $organisation;
-
-    protected int|null $organisationId;
-
-    protected int|null $organisationAccessLevel;
-
-    protected int|null $organisationNotifications;
-
-    /** @var int[]|null */
-    protected array|null $customfield;
-
-    /** @var int[]|null */
-    protected array|null $groups;
+    /** @var array<string, string> */
+    protected $casts = [
+        'brand_id'                   => 'int',
+        'firstname'                  => 'string',
+        'lastname'                   => 'string',
+        'email'                      => 'string',
+        'additional_email'           => 'array',
+        'password'                   => 'string',
+        'send_email'                 => 'bool',
+        'phone'                      => 'array',
+        'country'                    => 'string',
+        'language_code'              => 'string',
+        'timezone'                   => 'string',
+        'email_verified'             => 'bool',
+        'active'                     => 'int',
+        'organisation'               => 'string',
+        'organisation_id'            => 'int',
+        'organisation_access_level'  => 'int',
+        'organisation_notifications' => 'int',
+        'customfield'                => 'array',
+        'groups'                     => 'array',
+    ];
 }

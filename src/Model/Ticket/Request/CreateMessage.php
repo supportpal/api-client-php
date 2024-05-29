@@ -6,31 +6,18 @@ use SupportPal\ApiClient\Model\Model;
 
 class CreateMessage extends Model
 {
-    public const REQUIRED_FIELDS = [
-        'ticket_id',
-        'user_id',
-        'text',
+    /** @var array<string, string> */
+    protected $casts = [
+        'ticket_id'            => 'int',
+        'user_id'              => 'int',
+        'user_ip_address'      => 'string',
+        'message_type'         => 'int',
+        'text'                 => 'string',
+        'attachment'           => 'array',
+        'cc'                   => 'array',
+        'is_draft'             => 'bool',
+        'send_user_email'      => 'bool',
+        'send_operators_email' => 'bool',
+        'created_at'           => 'int',
     ];
-
-    protected int $ticketId;
-
-    protected int $userId;
-
-    protected string|null $userIpAddress;
-
-    protected int|null $messageType;
-
-    protected string $text;
-
-    /** @var string[]|null */
-    protected array|null $cc;
-
-    protected bool|null $isDraft;
-
-    protected bool|null $sendUserEmail;
-
-    protected bool|null $sendOperatorsEmail;
-
-    /** @var string[]|null */
-    protected array|null $attachment;
 }

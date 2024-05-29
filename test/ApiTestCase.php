@@ -6,7 +6,6 @@ use Exception;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Api\Api;
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Model;
 
@@ -123,26 +122,6 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
         /** @var callable $callable */
         $callable = [$this->getApi(), $endpoint];
         call_user_func_array($callable, $parameters);
-    }
-
-    /**
-     * Tries to send an API request with an empty data object. We expect symfony/serializer
-     * to throw a TypeError / UninitializedPropertyException due to null property values during
-     * object serialization.
-     *
-     * @param string $modelClass
-     * @param string $endpoint
-     * @throws Exception
-     * @dataProvider providePostEndpointsUninitializedTestCases
-     * @SuppressWarnings(PHPMD.MissingImport)
-     */
-    public function testUninitializedPostEndpoint(string $modelClass, string $endpoint): void
-    {
-        $model = new $modelClass;
-        /** @var callable $callable */
-        $callable = [$this->getApi(), $endpoint];
-        self::expectException(InvalidArgumentException::class);
-        call_user_func_array($callable, [$model]);
     }
 
     /**

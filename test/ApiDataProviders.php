@@ -86,18 +86,6 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function providePostEndpointsUninitializedTestCases(): iterable
-    {
-        foreach ($this->getPostEndpoints() as $endpoint => $value) {
-            $model = current($value);
-
-            yield [get_class($model), $endpoint];
-        }
-    }
-
-    /**
-     * @return iterable<mixed>
-     */
     public function provideApiClientPutEndpointsTestCases(): iterable
     {
         foreach ($this->getPutEndpoints() as $endpoint => $value) {

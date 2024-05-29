@@ -6,25 +6,15 @@ use SupportPal\ApiClient\Model\Model;
 
 class CreateComment extends Model
 {
-    public const REQUIRED_FIELDS = [
-        'article_id',
-        'type_id',
-        'text',
+    /** @var array<string, string> */
+    protected $casts = [
+        'article_id'   => 'int',
+        'type_id'      => 'int',
+        'parent_id'    => 'int',
+        'author_id'    => 'int',
+        'name'         => 'string',
+        'text'         => 'string',
+        'status'       => 'int',
+        'notify_reply' => 'bool',
     ];
-
-    protected int $articleId;
-
-    protected int $typeId;
-
-    protected ?int $parentId;
-
-    protected ?int $authorId;
-
-    protected ?string $name;
-
-    protected string $text;
-
-    protected ?int $status;
-
-    protected ?bool $notifyReply;
 }
