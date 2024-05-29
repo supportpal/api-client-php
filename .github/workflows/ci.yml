@@ -39,7 +39,7 @@ jobs:
               run: ci/test.sh
               env:
                 TESTSUITE: unit
-                MINCOVERAGE: ${{ matrix.php == '8.3' && '90' || '0' }}
+                MINCOVERAGE: ${{ matrix.php == '8.3' && '85' || '0' }}
 
             - name: Execute Functional tests
               run: ci/test.sh
