@@ -13,12 +13,6 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 use function json_encode;
 use function sprintf;
 
-/**
- * Class AttachmentApisTest
- * @package SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket
- * @covers \SupportPal\ApiClient\Http\Ticket\AttachmentApis
- * @covers \SupportPal\ApiClient\Http\Client
- */
 class AttachmentApisTest extends ApiClientTest
 {
     /** @var TicketClient */

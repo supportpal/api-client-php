@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\User\GroupTranslation;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupTranslationData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class GroupTranslationTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\User
- * @covers \SupportPal\ApiClient\Model\User\GroupTranslation
- */
 class GroupTranslationTest extends BaseModelTestCase
 {
     /**

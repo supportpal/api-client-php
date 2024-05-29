@@ -10,12 +10,6 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 use function json_encode;
 
-/**
- * Class TypeApisTest
- * @package SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService
- * @covers \SupportPal\ApiClient\Http\SelfService\TypeApis
- * @covers \SupportPal\ApiClient\Http\Client
- */
 class TypeApisTest extends ApiClientTest
 {
     /** @var SelfServiceClient */

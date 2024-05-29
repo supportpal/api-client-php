@@ -6,7 +6,7 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Http\TicketClient;
-use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
 use SupportPal\ApiClient\Model\Ticket\Ticket;
 

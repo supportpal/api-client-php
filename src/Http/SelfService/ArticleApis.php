@@ -7,10 +7,6 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\ApiClientAware;
 
-/**
- * Trait ArticleApis, includes all api calls related to article apis
- * @package SupportPal\ApiClient\Http\ApiClient\SelfService
- */
 trait ArticleApis
 {
     use ApiClientAware;

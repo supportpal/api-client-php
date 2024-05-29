@@ -8,12 +8,6 @@ use SupportPal\ApiClient\Model\SelfService\Type;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class TypeApiTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
- * @covers \SupportPal\ApiClient\Api\SelfService\Types
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class TypeApiTest extends ApiTest
 {
     /** @var SelfServiceApi */

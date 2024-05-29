@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Api\User;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Http\UserClient;
-use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\User\Group;
 
 use function array_map;

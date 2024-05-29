@@ -3,15 +3,10 @@
 namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Core\Brand;
-use SupportPal\ApiClient\Model\Department\Department;
 use SupportPal\ApiClient\Model\Department\Operator;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\User\User;
 
-/**
- * Class self
- * @package SupportPal\ApiClient\Model
- */
 class Ticket extends Model
 {
     /**

@@ -8,12 +8,6 @@ use SupportPal\ApiClient\Model\Ticket\ChannelSettings;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class ChannelApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\Ticket\ChannelSettings
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class ChannelApisTest extends ApiTest
 {
     /** @var TicketApi */

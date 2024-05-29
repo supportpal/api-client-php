@@ -7,10 +7,6 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\ApiClientAware;
 
-/**
- * Trait DepartmentApis
- * @package SupportPal\ApiClient\Http\ApiClient\Ticket
- */
 trait DepartmentApis
 {
     use ApiClientAware;

@@ -2,7 +2,6 @@
 
 namespace SupportPal\ApiClient\Model\Ticket;
 
-use SupportPal\ApiClient\Model\Department\Department;
 use SupportPal\ApiClient\Model\Model;
 
 class Priority extends Model

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Tests\Unit\Model\Collection;
+namespace Model;
 
 use stdClass;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\SelfService\Article;
 use SupportPal\ApiClient\Model\SelfService\Comment;
@@ -18,11 +18,6 @@ use function count;
 use function current;
 use function range;
 
-/**
- * Class CollectionTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Collection
- * @covers \SupportPal\ApiClient\Model\Collection\Collection
- */
 class CollectionTest extends TestCase
 {
     public function testCreateCollection(): void
@@ -116,7 +111,7 @@ class CollectionTest extends TestCase
     public function testCreateWithDifferentModels(): void
     {
         self::expectException(InvalidArgumentException::class);
-        new Collection(2, [new Comment, new Article]);
+        new Collection(2, [ new Comment, new Article]);
     }
 
     public function testCreateWithInvalidTypes(): void
@@ -152,9 +147,9 @@ class CollectionTest extends TestCase
         $models = $this->getModelsTestData();
 
         yield [new Collection(0, []), true];
-        yield [new Collection(15, []), true];
-        yield [new Collection(0, $models), false];
-        yield [new Collection(0, $models), false];
+        yield [ new Collection(15, []), true];
+        yield [ new Collection(0, $models), false];
+        yield [ new Collection(0, $models), false];
     }
 
     /**

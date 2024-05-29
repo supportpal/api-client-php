@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Model\Department\Department;
+use SupportPal\ApiClient\Model\Ticket\Department;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 

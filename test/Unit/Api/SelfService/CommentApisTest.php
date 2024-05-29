@@ -9,12 +9,6 @@ use SupportPal\ApiClient\Model\SelfService\Request\CreateComment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class CommentApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
- * @covers \SupportPal\ApiClient\Api\SelfService\Comments
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class CommentApisTest extends ApiTest
 {
     /** @var SelfServiceApi */

@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Api\Ticket;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Http\TicketClient;
-use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\Ticket\Message;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateMessage;
 

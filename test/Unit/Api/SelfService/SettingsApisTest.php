@@ -8,12 +8,6 @@ use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class SettingsApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
- * @covers \SupportPal\ApiClient\Api\SelfService\Settings
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class SettingsApisTest extends ApiTest
 {
     /** @var SelfServiceApi */

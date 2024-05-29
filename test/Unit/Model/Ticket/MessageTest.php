@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Ticket\Message;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class MessageTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Ticket\Message
- */
 class MessageTest extends BaseModelTestCase
 {
     /**

@@ -12,10 +12,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 
-/**
- * Class SelfServiceApisTest
- * @package SupportPal\ApiClient\Tests\Integration\ApiClient
- */
 class SelfServiceApisTest extends ApiClientTest
 {
     /**

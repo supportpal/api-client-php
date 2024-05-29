@@ -1,9 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Model\Department;
+namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\User\Group;
+use SupportPal\ApiClient\Model\User\User;
 
 class Department extends Model
 {
@@ -24,12 +25,12 @@ class Department extends Model
         'registered_only'            => 'int',
         'created_at'                 => 'int',
         'updated_at'                 => 'int',
-        'email_templates'            => 'array:' . EmailTemplates::class,
-        'emails'                     => 'array:' . Email::class,
+        'email_templates'            => 'array:' . DepartmentEmailTemplates::class,
+        'emails'                     => 'array:' . DepartmentEmail::class,
         'translations'               => 'array:' . DepartmentTranslation::class,
         'groups'                     => 'array:' . Group::class,
-        'operators'                  => 'array:' . Operator::class,
+        'operators'                  => 'array:' . User::class,
         'parent'                     => 'array:' . self::class,
-        'default_assignedto'         => 'array:' . Operator::class,
+        'default_assignedto'         => 'array:' . User::class,
     ];
 }

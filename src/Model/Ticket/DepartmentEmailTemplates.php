@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Model\Department;
+namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Model;
 
-class EmailTemplates extends Model
+class DepartmentEmailTemplates extends Model
 {
     /** @var array<string, string> */
     protected $casts = [

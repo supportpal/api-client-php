@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Ticket\Priority;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class PriorityTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Ticket\Priority
- */
 class PriorityTest extends BaseModelTestCase
 {
     /**

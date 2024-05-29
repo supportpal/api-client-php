@@ -6,10 +6,6 @@ use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Tests\ApiDataProviders;
 use SupportPal\ApiClient\Tests\ApiTestCase;
 
-/**
- * Class ApiTestCase
- * @package SupportPal\ApiClient\Tests
- */
 abstract class ApiComponentTest extends ApiTestCase
 {
     use ApiDataProviders;

@@ -1,18 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Tests\Unit\Model\Department;
+namespace Model\Ticket;
 
-use SupportPal\ApiClient\Model\Department\Email;
 use SupportPal\ApiClient\Model\Model;
+use SupportPal\ApiClient\Model\Ticket\DepartmentEmail;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\EmailData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class EmailTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Department\Email
- */
-class EmailTest extends BaseModelTestCase
+class DepartmentEmailTest extends BaseModelTestCase
 {
     /**
      * @inheritDoc
@@ -27,6 +22,6 @@ class EmailTest extends BaseModelTestCase
      */
     protected function getModel(): Model
     {
-        return new Email;
+        return new DepartmentEmail;
     }
 }

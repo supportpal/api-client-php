@@ -8,12 +8,6 @@ use SupportPal\ApiClient\Model\User\Group;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class UserGroupApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\User
- * @covers \SupportPal\ApiClient\Api\User\UserGroups
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class UserGroupApisTest extends ApiTest
 {
     /** @var UserApi */

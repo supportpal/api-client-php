@@ -8,12 +8,6 @@ use SupportPal\ApiClient\Model\Ticket\Status;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class StatusApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\Ticket\Statuses
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class StatusApisTest extends ApiTest
 {
     /** @var TicketApi */

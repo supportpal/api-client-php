@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Ticket\TagTranslation;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TagTranslationData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class TagTranslationTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Ticket\TagTranslation
- */
 class TagTranslationTest extends BaseModelTestCase
 {
     /**

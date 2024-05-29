@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Api;
 
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\Model;
 
 use function json_decode;

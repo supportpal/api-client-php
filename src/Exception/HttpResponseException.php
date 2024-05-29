@@ -6,10 +6,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
-/**
- * Class HttpResponseException
- * @package SupportPal\ApiClient\Exception
- */
 class HttpResponseException extends Exception
 {
     /** @var RequestInterface */

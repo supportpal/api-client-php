@@ -7,10 +7,6 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\ApiClientAware;
 
-/**
- * Trait CategoryApis, includes all api calls related to category
- * @package SupportPal\ApiClient\Http\ApiClient\SelfService
- */
 trait CategoryApis
 {
     use ApiClientAware;

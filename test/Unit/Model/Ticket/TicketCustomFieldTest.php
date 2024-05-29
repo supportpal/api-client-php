@@ -7,12 +7,6 @@ use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class CustomFieldTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Ticket\TicketCustomField
- * @covers \SupportPal\ApiClient\Model\Shared\CustomField
- */
 class TicketCustomFieldTest extends BaseModelTestCase
 {
     /**

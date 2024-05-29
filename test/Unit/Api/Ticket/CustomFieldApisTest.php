@@ -8,12 +8,6 @@ use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class CustomFieldApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\Ticket\CustomFields
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class CustomFieldApisTest extends ApiTest
 {
     /** @var TicketApi */

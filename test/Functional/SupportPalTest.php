@@ -15,10 +15,6 @@ use function base64_encode;
 use function current;
 use function json_encode;
 
-/**
- * Class SupportPalTest
- * @package SupportPal\ApiClient\Tests\Functional
- */
 class SupportPalTest extends ContainerAwareBaseTestCase
 {
     public function testGetRequestFactory(): void

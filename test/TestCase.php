@@ -2,8 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests;
 
-use SupportPal\ApiClient\Helper\StringHelper;
-use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
@@ -13,13 +12,8 @@ use function is_array;
 use function is_bool;
 use function is_object;
 
-/**
- * Class TestCase
- * @package SupportPal\ApiClient\Tests
- */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    use StringHelper;
     use PhpUnitCompatibilityTrait;
 
     /**

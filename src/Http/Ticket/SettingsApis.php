@@ -7,10 +7,6 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\ApiClientAware;
 
-/**
- * Trait SettingsApis, includes all api calls related to ticket settings
- * @package SupportPal\ApiClient\Http\ApiClient\Ticket
- */
 trait SettingsApis
 {
     use ApiClientAware;

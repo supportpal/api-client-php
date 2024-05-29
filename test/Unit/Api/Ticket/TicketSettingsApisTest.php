@@ -8,12 +8,6 @@ use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class TicketApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\Ticket\Settings
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class TicketSettingsApisTest extends ApiTest
 {
     /** @var TicketApi */

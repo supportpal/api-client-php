@@ -10,12 +10,6 @@ use SupportPal\ApiClient\Model\Ticket\Attachment;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class AttachmentApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\Ticket\Attachments
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class AttachmentApisTest extends ApiTest
 {
     /** @var TicketApi */

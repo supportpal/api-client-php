@@ -11,12 +11,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class UserApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api
- * @covers \SupportPal\ApiClient\Api\UserApi
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class UserApisTest extends ApiTest
 {
     /** @var UserApi */

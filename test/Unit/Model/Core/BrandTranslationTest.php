@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandTranslationData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class BrandTranslationTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Core
- * @covers \SupportPal\ApiClient\Model\Core\BrandTranslation
- */
 class BrandTranslationTest extends BaseModelTestCase
 {
     /**

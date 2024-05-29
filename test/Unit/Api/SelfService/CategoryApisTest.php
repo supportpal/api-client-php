@@ -8,12 +8,6 @@ use SupportPal\ApiClient\Model\SelfService\Category;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class CategoryApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
- * @covers \SupportPal\ApiClient\Api\SelfService\Categories
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class CategoryApisTest extends ApiTest
 {
     /** @var SelfServiceApi */

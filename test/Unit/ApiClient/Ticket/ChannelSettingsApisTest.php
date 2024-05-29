@@ -11,12 +11,6 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 use function json_encode;
 use function sprintf;
 
-/**
- * Class ChannelSettingsApisTest
- * @package SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket
- * @covers \SupportPal\ApiClient\Http\Ticket\ChannelSettingsApis
- * @covers \SupportPal\ApiClient\Http\Client
- */
 class ChannelSettingsApisTest extends ApiClientTest
 {
     /** @var TicketClient */

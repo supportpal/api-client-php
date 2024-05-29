@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Ticket\Ticket;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class TicketTest
- * @package SupportPal\ApiClient\Tests\Unit\Model
- * @covers \SupportPal\ApiClient\Model\Ticket\Ticket
- */
 class TicketTest extends BaseModelTestCase
 {
     /**

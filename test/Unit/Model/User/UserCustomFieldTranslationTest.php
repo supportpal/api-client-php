@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\User\UserCustomFieldTranslation;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldTranslationData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class UserCustomFieldTranslationTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\User
- * @covers \SupportPal\ApiClient\Model\User\UserCustomFieldTranslation
- */
 class UserCustomFieldTranslationTest extends BaseModelTestCase
 {
     /**

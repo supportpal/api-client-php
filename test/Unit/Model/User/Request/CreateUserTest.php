@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class CreateUserTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\User\Request
- * @covers \SupportPal\ApiClient\Model\User\Request\CreateUser
- */
 class CreateUserTest extends BaseModelTestCase
 {
     /**

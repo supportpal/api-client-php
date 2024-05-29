@@ -29,10 +29,6 @@ use function array_merge;
 use function str_replace;
 use function sys_get_temp_dir;
 
-/**
- * Class SupportPal
- * @package SupportPal\ApiClient
- */
 class SupportPal
 {
     /** @var ContainerBuilder */

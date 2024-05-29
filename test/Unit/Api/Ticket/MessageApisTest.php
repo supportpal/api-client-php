@@ -9,12 +9,6 @@ use SupportPal\ApiClient\Model\Ticket\Request\CreateMessage;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class MessageApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\Ticket\Messages
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class MessageApisTest extends ApiTest
 {
     /** @var TicketApi */

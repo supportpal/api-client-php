@@ -7,10 +7,6 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\ApiClientAware;
 
-/**
- * Trait TagApis, includes all api calls related to tag apis
- * @package SupportPal\ApiClient\Http\ApiClient\SelfService
- */
 trait TagApis
 {
     use ApiClientAware;

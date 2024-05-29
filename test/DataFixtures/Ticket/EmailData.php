@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-use SupportPal\ApiClient\Model\Department\Email;
+use SupportPal\ApiClient\Model\Ticket\DepartmentEmail;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 
 class EmailData extends BaseModelData
@@ -32,6 +32,6 @@ class EmailData extends BaseModelData
      */
     public function getModel(): string
     {
-        return Email::class;
+        return DepartmentEmail::class;
     }
 }

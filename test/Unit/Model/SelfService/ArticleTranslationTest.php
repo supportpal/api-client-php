@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\SelfService\ArticleTranslation;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleTranslationData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class ArticleTranslationTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\SelfService
- * @covers \SupportPal\ApiClient\Model\SelfService\ArticleTranslation
- */
 class ArticleTranslationTest extends BaseModelTestCase
 {
     /**

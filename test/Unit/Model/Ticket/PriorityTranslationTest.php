@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Ticket\PriorityTranslation;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityTranslationData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class PriorityTranslationTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Ticket\PriorityTranslation
- */
 class PriorityTranslationTest extends BaseModelTestCase
 {
     /**

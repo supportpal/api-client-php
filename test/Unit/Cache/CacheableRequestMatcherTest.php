@@ -9,11 +9,6 @@ use SupportPal\ApiClient\Cache\CacheableRequestMatcher;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
-/**
- * Class CacheableRequestMatcherTest
- * @package SupportPal\ApiClient\Tests\Unit\Cache
- * @covers \SupportPal\ApiClient\Cache\CacheableRequestMatcher
- */
 class CacheableRequestMatcherTest extends TestCase
 {
     use PhpUnitCompatibilityTrait;

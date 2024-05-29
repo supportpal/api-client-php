@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Shared\OptionTranslation;
 use SupportPal\ApiClient\Tests\DataFixtures\Shared\OptionTranslationData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class OptionTranslationTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Shared
- * @covers \SupportPal\ApiClient\Model\Shared\OptionTranslation
- */
 class OptionTranslationTest extends BaseModelTestCase
 {
     /**

@@ -1,10 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Model\Collection;
+namespace SupportPal\ApiClient\Model;
 
 use Closure;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Model\Model;
 
 use function array_filter;
 use function array_map;
@@ -15,30 +14,22 @@ use function get_class;
 use function is_object;
 use function reset;
 
-/**
- * Wrap collection of Model values
- * Class Collection
- * @package SupportPal\ApiClient\Model\Collection
- */
 class Collection
 {
     /**
-     * Total number of elements returned from API
-     * @var int
+     * Total number of elements returned from API.
      */
-    private $count;
+    private int $count;
 
     /** @var Model[] */
-    private $models;
+    private array $models;
 
     /**
-     * Total number of models in the collection
-     * @var int
+     * Total number of models in the collection.
      */
-    private $modelsCount;
+    private int $modelsCount;
 
     /**
-     * Response constructor.
      * @param Model[] $models
      * @throws InvalidArgumentException
      */
@@ -67,7 +58,7 @@ class Collection
     }
 
     /**
-     * Actual number of elements in the collection
+     * Actual number of elements in the collection.
      */
     public function getModelsCount(): int
     {

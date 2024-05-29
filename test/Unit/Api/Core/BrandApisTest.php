@@ -8,12 +8,6 @@ use SupportPal\ApiClient\Model\Core\Brand;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class BrandApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\Core
- * @covers \SupportPal\ApiClient\Api\Core\Brands
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class BrandApisTest extends ApiTest
 {
     /** @var CoreApi */

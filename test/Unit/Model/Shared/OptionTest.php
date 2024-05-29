@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Shared\Option;
 use SupportPal\ApiClient\Tests\DataFixtures\Shared\OptionData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class OptionTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Shared
- * @covers \SupportPal\ApiClient\Model\Shared\Option
- */
 class OptionTest extends BaseModelTestCase
 {
     /**

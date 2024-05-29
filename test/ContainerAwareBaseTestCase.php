@@ -20,11 +20,6 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use function json_decode;
 use function json_encode;
 
-/**
- * Class ContainerAwareBaseTestCase
- * @package SupportPal\ApiClient\Tests
- * @coversNothing
- */
 abstract class ContainerAwareBaseTestCase extends TestCase
 {
     /** @var array<mixed> */

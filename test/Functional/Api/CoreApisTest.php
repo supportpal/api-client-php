@@ -7,10 +7,6 @@ use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\CoreApisData;
 use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
 
-/**
- * Class CoreApisTest
- * @package SupportPal\ApiClient\Tests\Functional\Api
- */
 class CoreApisTest extends ApiComponentTest
 {
     /**
