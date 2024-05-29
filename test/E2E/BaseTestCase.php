@@ -21,7 +21,6 @@ use function getenv;
 use function intval;
 use function json_decode;
 use function sprintf;
-use function var_export;
 
 abstract class BaseTestCase extends TestCase
 {

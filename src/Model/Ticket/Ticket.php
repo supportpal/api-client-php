@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Core\Brand;
-use SupportPal\ApiClient\Model\Department\Operator;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\User\User;
 
