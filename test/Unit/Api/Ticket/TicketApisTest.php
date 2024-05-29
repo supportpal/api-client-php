@@ -93,6 +93,9 @@ class TicketApisTest extends ApiTest
     {
         $ticketData = new TicketData;
         $input = $this->prophesize(Ticket::class);
+        $input->getAttribute('relations')->willReturn(null);
+        $input->hasGetMutator('id')->willReturn(false);
+        $input->hasGetMutator('relations')->willReturn(false);
         self::expectException(MissingIdentifierException::class);
         /** @var Ticket $ticket */
         $ticket = $input->reveal();

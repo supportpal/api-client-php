@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class Category extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'id'            => 'int',
         'type_id'       => 'int',
         'parent_id'     => 'int',

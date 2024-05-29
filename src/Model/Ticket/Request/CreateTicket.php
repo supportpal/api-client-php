@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class CreateTicket extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'user'                 => 'int',
         'on_behalf_of'         => 'int',
         'user_firstname'       => 'string',

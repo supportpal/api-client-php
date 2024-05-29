@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class CreateUser extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'brand_id'                   => 'int',
         'firstname'                  => 'string',
         'lastname'                   => 'string',

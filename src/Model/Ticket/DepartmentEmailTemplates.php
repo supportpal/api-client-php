@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class DepartmentEmailTemplates extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'operator_department_changed' => 'int',
         'operator_internal_opened' => 'int',
         'user_ticket_locked' => 'int',

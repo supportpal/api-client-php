@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Translation;
 class StatusTranslation extends Translation
 {
     /** @var array<string,string> */
-    protected $casts = [
+    protected array $casts = [
         'id'        => 'int',
         'status_id' => 'int',
         'name'      => 'string',

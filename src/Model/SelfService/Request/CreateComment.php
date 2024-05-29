@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class CreateComment extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'article_id'   => 'int',
         'type_id'      => 'int',
         'parent_id'    => 'int',

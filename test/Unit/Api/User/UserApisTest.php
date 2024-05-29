@@ -92,6 +92,9 @@ class UserApisTest extends ApiTest
     {
         $userData = new UserData;
         $input = $this->prophesize(User::class);
+        $input->getAttribute('relations')->willReturn(null);
+        $input->hasGetMutator('id')->willReturn(false);
+        $input->hasGetMutator('relations')->willReturn(false);
         self::expectException(MissingIdentifierException::class);
         /** @var User $user */
         $user = $input->reveal();

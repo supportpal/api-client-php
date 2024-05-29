@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Translation;
 class SlaPlanTranslation extends Translation
 {
     /** @var array<string,string> */
-    protected $casts = [
+    protected array $casts = [
         'id'          => 'int',
         'sla_plan_id' => 'int',
         'name'        => 'string',

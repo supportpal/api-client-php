@@ -8,7 +8,7 @@ use SupportPal\ApiClient\Model\Model;
 class ArticleAttachment extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'upload_hash'   => 'string',
         'article_id'    => 'int',
         'locale'        => 'string',

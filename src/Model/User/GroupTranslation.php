@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Translation;
 class GroupTranslation extends Translation
 {
     /** @var array<string,string> */
-    protected $casts = [
+    protected array $casts = [
         'id'            => 'int',
         'user_group_id' => 'int',
         'name'          => 'string',

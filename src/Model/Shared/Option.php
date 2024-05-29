@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class Option extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'id'           => 'int',
         'field_id'     => 'int',
         'order'        => 'int',

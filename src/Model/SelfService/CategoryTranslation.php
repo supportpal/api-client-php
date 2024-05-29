@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Translation;
 class CategoryTranslation extends Translation
 {
     /** @var array<string,string> */
-    protected $casts = [
+    protected array $casts = [
         'category_id' => 'int',
         'name'        => 'string',
         'slug'        => 'string',

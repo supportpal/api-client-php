@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class Brand extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'id'                      => 'int',
         'name'                    => 'string',
         'enabled'                 => 'int',

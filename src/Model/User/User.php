@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class User extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'id'                         => 'int',
         'brand_id'                   => 'int',
         'role'                       => 'int',

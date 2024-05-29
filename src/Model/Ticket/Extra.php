@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class Extra extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'bcc_address' => 'array',
         'to_address'  => 'array',
         'cc_address'  => 'array',

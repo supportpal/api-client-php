@@ -8,7 +8,7 @@ use SupportPal\ApiClient\Model\Model;
 class Type extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'id'                => 'int',
         'brand_id'          => 'int',
         'name'              => 'string',

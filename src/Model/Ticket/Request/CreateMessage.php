@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class CreateMessage extends Model
 {
     /** @var array<string, string> */
-    protected $casts = [
+    protected array $casts = [
         'ticket_id'            => 'int',
         'user_id'              => 'int',
         'user_ip_address'      => 'string',

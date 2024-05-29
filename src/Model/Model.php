@@ -5,5 +5,5 @@ namespace SupportPal\ApiClient\Model;
 abstract class Model extends \Jenssegers\Model\Model
 {
     /** @var string[] */
-    protected $guarded = [];
+    protected array $guarded = [];
 }
