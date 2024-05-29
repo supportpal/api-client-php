@@ -2,14 +2,11 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model;
 
-use SupportPal\ApiClient\Helper\StringHelper;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\TestCase;
 
 abstract class BaseModelTestCase extends TestCase
 {
-    use StringHelper;
-
     public function testCreateModel():void
     {
         $model = $this->getModel();

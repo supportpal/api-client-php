@@ -19,7 +19,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
 {
     public function testGetRequestFactory(): void
     {
-        self::assertInstanceOf(Request::class, $this->getSupportPal()->getRequestFactory());
+        self::assertInstanceOf(Request::class, $this->getSupportPal()->getRequest());
     }
 
     public function testSendRequestSuccessful(): void
@@ -30,7 +30,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
             (string) json_encode((new CommentData)->getResponse())
         );
         $this->appendRequestResponse($response);
-        $request = $this->getSupportPal()->getRequestFactory()->create('GET', 'test_endpoint');
+        $request = $this->getSupportPal()->getRequest()->create('GET', 'test_endpoint');
         self::assertSame($response, $this->getSupportPal()->sendRequest($request));
     }
 
@@ -43,7 +43,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
             (string) json_encode($this->genericErrorResponse)
         );
         $this->appendRequestResponse($response);
-        $request = $this->getSupportPal()->getRequestFactory()->create('GET', 'test_endpoint');
+        $request = $this->getSupportPal()->getRequest()->create('GET', 'test_endpoint');
         $this->getSupportPal()->sendRequest($request);
     }
 
@@ -54,7 +54,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
      */
     public function testEscapePercentApiToken(string $apiToken): void
     {
-        $request = (new SupportPal(new ApiContext('localhost', $apiToken)))->getRequestFactory()->create('GET', 'test');
+        $request = (new SupportPal(new ApiContext('localhost', $apiToken)))->getRequest()->create('GET', 'test');
         self::assertSame('Basic ' . base64_encode($apiToken . ':X'), current($request->getHeader('Authorization')));
     }
 

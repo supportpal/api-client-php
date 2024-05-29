@@ -122,7 +122,7 @@ class SupportPal
     /**
      * @throws Exception
      */
-    public function getRequestFactory(): Request
+    public function getRequest(): Request
     {
         /** @var Request $request */
         $request = $this->containerBuilder->get(Request::class);
