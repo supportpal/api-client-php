@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Tests;
 
 use function current;
-use function get_class;
 use function next;
 
 trait ApiDataProviders
