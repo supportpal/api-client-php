@@ -8,9 +8,7 @@ use SupportPal\ApiClient\Model\User\User;
 
 class Ticket extends Model
 {
-    /**
-     * @var array<string, string>
-     */
+    /** @var array<string, string> */
     protected $casts = [
         'id'                  => 'int',
         'number'              => 'string',
