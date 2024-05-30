@@ -81,8 +81,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function assertApiDataMatchesModels(Model|Collection $models, array $data): void
     {
         if ($models instanceof Collection) {
-            self::assertSame($data['count'], $models->getCount());
-            foreach ($models->getModels() as $offset => $object) {
+            self::assertSame($data['count'], $models->count());
+            foreach ($models->all() as $offset => $object) {
                 $this->assertArrayEqualsObjectFields($object, $data['data'][$offset]);
             }
 
