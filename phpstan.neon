@@ -6,7 +6,6 @@ parameters:
     paths:
         - src
         - test
-    inferPrivatePropertyTypeFromConstructor: true
     excludePaths:
         - test/DataFixtures
         - test/PhpUnit
