@@ -5,7 +5,6 @@ parameters:
     apiUrl: 'localhost:8080/api/'
     apiToken: 'test2'
     apiContentType: 'test3'
-    contentType: 'json'
     defaultBodyContent:
         test: 'test'
     defaultParameters:
@@ -17,7 +16,7 @@ services:
         autowire: true
         public: true
 
-    SupportPal\ApiClient\Factory\RequestFactory:
+    SupportPal\ApiClient\Http\Request:
         public: true
         arguments:
             $apiUrl: '%apiUrl%'
@@ -25,141 +24,8 @@ services:
             $contentType: '%apiContentType%'
             $defaultBodyContent: '%defaultBodyContent%'
             $defaultParameters: '%defaultParameters%'
-            $formatType: '%contentType%'
 
-    SupportPal\ApiClient\ApiClient:
+    SupportPal\ApiClient\Http\Client:
         public: true
         arguments:
             $httpClient: '@GuzzleHttp\Client'
-            $formatType: '%contentType%'
-
-    Symfony\Component\Serializer\Encoder\JsonEncoder:
-        public: true
-
-    SupportPal\ApiClient\Factory\SelfService\TypeFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-
-    SupportPal\ApiClient\Factory\User\UserFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-
-    SupportPal\ApiClient\Factory\SelfService\ArticleFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-
-    SupportPal\ApiClient\Factory\SelfService\CategoryFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-
-    SupportPal\ApiClient\Factory\Ticket\DepartmentFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-
-    SupportPal\ApiClient\Factory\SelfService\CommentFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-
-    SupportPal\ApiClient\Factory\Shared\SettingsFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-
-    SupportPal\ApiClient\Factory\Ticket\ChannelSettingsFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-
-    SupportPal\ApiClient\Factory\SelfService\TagFactory:
-        public: true
-        tags: [ 'factory.model_factory' ]
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-
-    SupportPal\ApiClient\Factory\Ticket\CustomFieldFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Ticket\PriorityFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Ticket\StatusFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Ticket\AttachmentFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Ticket\TicketFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Ticket\MessageFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Core\BrandFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\User\GroupFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\User\UserCustomFieldFactory:
-        public: true
-        parent: 'SupportPal\ApiClient\Factory\BaseModelFactory'
-        tags: [ 'factory.model_factory' ]
-
-    SupportPal\ApiClient\Factory\Collection\CollectionFactory:
-        public: true
-
-    SupportPal\ApiClient\Converter\ModelToArrayConverter:
-        public: true
-        arguments:
-            $format: '%contentType%'
-
-    Symfony\Component\Serializer\Serializer:
-        public: true
-        arguments:
-            - [ '@SupportPal\ApiClient\Normalizer\ModelNormalizer', '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer',  '@Symfony\Component\Serializer\Normalizer\ArrayDenormalizer' ]
-            - [ '@Symfony\Component\Serializer\Encoder\JsonEncoder' ]
-
-    SupportPal\ApiClient\Normalizer\ModelNormalizer:
-        public: true
-        arguments:
-            $normalizer: '@Symfony\Component\Serializer\Normalizer\ObjectNormalizer'
-            $transformers: !tagged transformer.field_transformer
-            $attributeAwareTransformers: !tagged attribute_aware_transformer.field_transformer
-
-    SupportPal\ApiClient\Transformer\StringTrimTransformer:
-        tags: [ 'transformer.field_transformer' ]
-
-    SupportPal\ApiClient\Transformer\EmptyModelToNullTransformer:
-        tags: [ 'transformer.field_transformer' ]
-
-    SupportPal\ApiClient\Transformer\BooleanToIntTransformer:
-        tags: [ 'transformer.field_transformer' ]
-
-    SupportPal\ApiClient\Transformer\IntToBooleanTransformer:
-        tags: [ 'attribute_aware_transformer.field_transformer' ]
-
-    SupportPal\ApiClient\Factory\ModelCollectionFactory:
-        public: true
-        arguments:
-            $factories: !tagged factory.model_factory

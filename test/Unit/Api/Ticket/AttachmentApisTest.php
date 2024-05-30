@@ -5,17 +5,11 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Api\TicketApi;
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
+use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Model\Ticket\Attachment;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class AttachmentApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\Ticket\AttachmentApis
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class AttachmentApisTest extends ApiTest
 {
     /** @var TicketApi */
@@ -35,7 +29,7 @@ class AttachmentApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketAttachments = $this->api->getAttachments();
-        self::assertSame($expectedOutput, $ticketAttachments);
+        self::assertEquals($expectedOutput, $ticketAttachments);
     }
 
     public function testGetAttachment(): void
@@ -52,21 +46,17 @@ class AttachmentApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketAttachment = $this->api->getAttachment(1);
-        self::assertSame($expectedOutput, $ticketAttachment);
+        self::assertEquals($expectedOutput, $ticketAttachment);
     }
 
     public function testDownloadAttachment(): void
     {
-        $attachment = $this->prophesize(Attachment::class);
-        $attachment->getId()->shouldBeCalled()->willReturn(1);
         $response = $this->prophesize(ResponseInterface::class);
         $stream = $this->prophesize(StreamInterface::class);
         $response->getBody()->shouldBeCalled()->willReturn($stream->reveal());
         $this->apiClient->downloadAttachment(1)->shouldBeCalled()->willReturn($response->reveal());
 
-        /** @var Attachment $attachmentModel */
-        $attachmentModel = $attachment->reveal();
-        $this->api->downloadAttachment($attachmentModel);
+        $this->api->downloadAttachment(new Attachment(['id' => 1]));
     }
 
     /**
@@ -82,6 +72,6 @@ class AttachmentApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return TicketApiClient::class;
+        return TicketClient::class;
     }
 }

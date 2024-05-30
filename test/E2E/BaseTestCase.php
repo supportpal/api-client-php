@@ -9,29 +9,18 @@ use SupportPal\ApiClient\Api\SelfServiceApi;
 use SupportPal\ApiClient\Api\TicketApi;
 use SupportPal\ApiClient\Api\UserApi;
 use SupportPal\ApiClient\Config\ApiContext;
-use SupportPal\ApiClient\Converter\ModelToArrayConverter;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\SupportPal;
 use SupportPal\ApiClient\Tests\TestCase;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use TypeError;
 
-use function current;
-use function get_class;
-use function get_class_methods;
 use function getenv;
-use function gettype;
 use function intval;
-use function is_array;
 use function json_decode;
-use function method_exists;
 use function sprintf;
-use function substr;
-use function var_export;
 
 abstract class BaseTestCase extends TestCase
 {
@@ -39,14 +28,9 @@ abstract class BaseTestCase extends TestCase
 
     const DEFAULT_LIMIT = self::BATCH_SIZE * 2;
 
-    /** @var int */
-    private $modelsTestLimit;
+    private int $modelsTestLimit;
 
-    /** @var SupportPal */
-    private $supportPal;
-
-    /** @var ModelToArrayConverter */
-    private $modelToArrayConverter;
+    private SupportPal $supportPal;
 
     public function setUp(): void
     {
@@ -64,10 +48,6 @@ abstract class BaseTestCase extends TestCase
         $loader->load('../Resources/services_test.yml');
         $containerBuilder->set(Client::class, new Client);
         $containerBuilder->compile();
-
-        /** @var ModelToArrayConverter $modelConverter */
-        $modelConverter = $containerBuilder->get(ModelToArrayConverter::class);
-        $this->modelToArrayConverter = $modelConverter;
 
         $apiContext = ApiContext::createFromUrl($apiUrl, $token);
 
@@ -98,22 +78,15 @@ abstract class BaseTestCase extends TestCase
             $batch = $this->getApi()->{$apiCall}($parameters);
             $request = $this
                 ->getSupportPal()
-                ->getRequestFactory()
+                ->getRequest()
                 ->create('GET', $endpoint, [], [], $parameters);
 
             $response = $this->getSupportPal()->sendRequest($request);
             $modelsArray = json_decode((string) $response->getBody(), true)['data'];
 
             foreach ($batch->getModels() as $offset => $value) {
-                $missingMethods = [];
-                $this->getMissingFields($value, $modelsArray[$offset], $missingMethods);
                 try {
-                    self::assertEmpty($missingMethods, var_export($missingMethods, true));
-                    $callExceptions = [];
-                    $this->callAllGetters($value, $callExceptions);
-                    self::assertEmpty($callExceptions, var_export($callExceptions, true));
                     $this->assertArrayEqualsObjectFields($value, $modelsArray[$offset]);
-                    $this->modelToArrayConverter->convertOne($value);
                 } catch (ExpectationFailedException $exception) {
                     throw new ExpectationFailedException(
                         sprintf('test failed in range start: %d, end: %d', $start, $start + self::BATCH_SIZE),
@@ -132,13 +105,12 @@ abstract class BaseTestCase extends TestCase
         $model = $this->getApi()->{$apiCall}();
         $request = $this
             ->getSupportPal()
-            ->getRequestFactory()
+            ->getRequest()
             ->create('GET', $endpoint);
         $response = $this->getSupportPal()->sendRequest($request);
         $responseArray = json_decode((string) $response->getBody(), true)['data'];
         self::assertInstanceOf(Settings::class, $model);
-        self::assertSame($responseArray, $model->all());
-        $this->modelToArrayConverter->convertOne($model);
+        $this->assertArrayEqualsObjectFields($model, $responseArray);
     }
 
     /**
@@ -158,19 +130,12 @@ abstract class BaseTestCase extends TestCase
                 $model = $this->getApi()->{$apiCall}($iteration);
                 $request = $this
                     ->getSupportPal()
-                    ->getRequestFactory()
+                    ->getRequest()
                     ->create('GET', $endpoint . '/' . $iteration);
 
                 $response = $this->getSupportPal()->sendRequest($request);
                 $responseArray = json_decode((string) $response->getBody(), true)['data'];
-                $missingMethods = [];
-                $this->getMissingFields($model, $responseArray, $missingMethods);
-                self::assertEmpty($missingMethods, var_export($missingMethods, true));
                 $this->assertArrayEqualsObjectFields($model, $responseArray);
-                $callExceptions = [];
-                $this->callAllGetters($model, $callExceptions);
-                self::assertEmpty($callExceptions, var_export($callExceptions, true));
-                $this->modelToArrayConverter->convertOne($model);
                 ++$iteration;
             } catch (HttpResponseException $exception) {
                 self::assertStringContainsString('given ID was not found', $exception->getMessage());
@@ -182,81 +147,6 @@ abstract class BaseTestCase extends TestCase
                     $exception
                 );
             }
-        }
-    }
-
-    /**
-     * @param Model $model
-     * @param array<mixed> $array
-     * @param string[] $output
-     */
-    private function getMissingFields(Model $model, array $array, array &$output): void
-    {
-        foreach ($array as $key => $value) {
-            $methodName = 'get' . $this->snakeCaseToPascalCase($key);
-            if (! method_exists($model, $methodName)) {
-                $className = get_class($model);
-                if (! isset($output[$className])) {
-                    $output[$className] = [];
-                }
-
-                if (! isset($output[$className][$methodName])) {
-                    $output[$className][$methodName] = [];
-                }
-
-                $output[$className][$methodName][] = gettype($value);
-
-                continue;
-            }
-
-            $methodValue = $model->{$methodName}();
-            if (is_array($methodValue) && current($methodValue) instanceof Model) {
-                foreach ($methodValue as $offset => $subModel) {
-                    $this->getMissingFields($subModel, $array[$key][$offset], $output);
-                }
-
-                continue;
-            }
-
-            if (! ($methodValue instanceof Model)) {
-                continue;
-            }
-
-            $this->getMissingFields($methodValue, $array[$key], $output);
-        }
-    }
-
-    /**
-     * @param Model $model
-     * @param string[] $exceptions
-     */
-    private function callAllGetters(Model $model, array &$exceptions): void
-    {
-        foreach (get_class_methods(get_class($model)) as $method) {
-            if (substr($method, 0, 3) !== 'get') {
-                continue;
-            }
-
-            try {
-                $value = $model->{$method}();
-            } catch (TypeError $exception) {
-                $exceptions[] = $exception->getMessage();
-                continue;
-            }
-
-            if (is_array($value) && current($value) instanceof Model) {
-                foreach ($value as $subModel) {
-                    $this->callAllGetters($subModel, $exceptions);
-                }
-
-                continue;
-            }
-
-            if (! ($value instanceof Model)) {
-                continue;
-            }
-
-            $this->callAllGetters($value, $exceptions);
         }
     }
 

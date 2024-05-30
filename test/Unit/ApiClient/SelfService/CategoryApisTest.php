@@ -2,23 +2,17 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 use function json_encode;
 
-/**
- * Class CategoryApisTest
- * @package SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService
- * @covers \SupportPal\ApiClient\ApiClient\SelfService\CategoryApis
- * @covers \SupportPal\ApiClient\ApiClient
- */
 class CategoryApisTest extends ApiClientTest
 {
-    /** @var SelfServiceApiClient */
+    /** @var SelfServiceClient */
     protected $apiClient;
 
     /** @var int */
@@ -115,6 +109,6 @@ class CategoryApisTest extends ApiClientTest
      */
     protected function getApiClientName(): string
     {
-        return SelfServiceApiClient::class;
+        return SelfServiceClient::class;
     }
 }

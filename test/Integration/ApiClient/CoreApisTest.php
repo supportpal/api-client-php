@@ -2,15 +2,11 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
-use SupportPal\ApiClient\ApiClient\CoreApiClient;
+use SupportPal\ApiClient\Http\CoreClient;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 
-/**
- * Class CoreApisTest
- * @package SupportPal\ApiClient\Tests\Integration\ApiClient
- */
 class CoreApisTest extends ApiClientTest
 {
     /**
@@ -48,6 +44,6 @@ class CoreApisTest extends ApiClientTest
      */
     protected function getApiClientClass()
     {
-        return CoreApiClient::class;
+        return CoreClient::class;
     }
 }

@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\User\Organisation;
 use SupportPal\ApiClient\Tests\DataFixtures\User\OrganisationData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class OrganisationTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\User
- * @covers \SupportPal\ApiClient\Model\User\Organisation
- */
 class OrganisationTest extends BaseModelTestCase
 {
     /**

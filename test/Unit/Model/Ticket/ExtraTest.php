@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Ticket\Extra;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ExtraData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class ExtraTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Ticket\Extra
- */
 class ExtraTest extends BaseModelTestCase
 {
     /**

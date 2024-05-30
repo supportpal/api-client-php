@@ -7,12 +7,6 @@ use SupportPal\ApiClient\Model\User\UserCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class UserCustomField
- * @package SupportPal\ApiClient\Tests\Unit\Model\User
- * @covers \SupportPal\ApiClient\Model\User\UserCustomField
- * @covers \SupportPal\ApiClient\Model\Shared\CustomField
- */
 class UserCustomFieldTest extends BaseModelTestCase
 {
     /**

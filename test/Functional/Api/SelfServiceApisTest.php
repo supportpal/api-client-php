@@ -8,10 +8,6 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\SelfServiceApisData;
 use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
 
-/**
- * Class SelfServiceApisTest
- * @package SupportPal\ApiClient\Tests\Functional\Api
- */
 class SelfServiceApisTest extends ApiComponentTest
 {
     /**

@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Ticket\TicketCustomFieldTranslation;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldTranslationData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class TicketCustomFieldTranslationTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Ticket\TicketCustomFieldTranslation
- */
 class TicketCustomFieldTranslationTest extends BaseModelTestCase
 {
     /**

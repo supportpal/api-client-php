@@ -3,21 +3,14 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
 use SupportPal\ApiClient\Api\UserApi;
-use SupportPal\ApiClient\ApiClient\UserApiClient;
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
+use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Model\User\User;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class UserApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api
- * @covers \SupportPal\ApiClient\Api\UserApi
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class UserApisTest extends ApiTest
 {
     /** @var UserApi */
@@ -36,7 +29,7 @@ class UserApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $users = $this->api->getUsers([]);
-        self::assertSame($expectedOutput, $users);
+        self::assertEquals($expectedOutput, $users);
     }
 
     public function testGetUser(): void
@@ -53,7 +46,7 @@ class UserApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $user = $this->api->getUser(1);
-        self::assertSame($expectedOutput, $user);
+        self::assertEquals($expectedOutput, $user);
     }
 
     public function testPostUser(): void
@@ -61,10 +54,8 @@ class UserApisTest extends ApiTest
         $userData = new UserData;
         $createUserData = new CreateUserData;
         $arrayData = $createUserData::DATA;
-        [$response, $userMock, $userOutput] = $this->postCommonExpectations(
+        [$response, $userOutput] = $this->postCommonExpectations(
             $userData->getResponse(),
-            $arrayData,
-            CreateUser::class,
             User::class
         );
 
@@ -74,25 +65,17 @@ class UserApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $user = $this->api->postUser($userMock);
-        self::assertSame($userOutput->reveal(), $user);
-    }
-
-    public function testPostWithIncompleteData(): void
-    {
-        /** @var CreateUser $user */
-        $user = $this->postIncompleteDataCommonExpectations(CreateUser::class);
-        self::expectException(InvalidArgumentException::class);
-        $this->api->postUser($user);
+        $user = $this->api->postUser(new CreateUser($arrayData));
+        self::assertEquals($userOutput, $user);
     }
 
     public function testPutUser(): void
     {
         $userData = new UserData;
 
-        [$response, $inputMock, $output] = $this->putCommonExpectations(
+        [$response, $output] = $this->postCommonExpectations(
+            $userData->getResponse(),
             User::class,
-            $userData->getResponse()
         );
 
         $this
@@ -101,15 +84,17 @@ class UserApisTest extends ApiTest
             ->willReturn($response->reveal())
             ->shouldBeCalled();
 
-        $user = $this->api->updateUser($inputMock, $userData->getArrayData());
-        self::assertSame($output->reveal(), $user);
+        $user = $this->api->updateUser(new User(['id' => self::TEST_ID]), $userData->getArrayData());
+        self::assertEquals($output, $user);
     }
 
     public function testPutUserWithoutIdentifier(): void
     {
         $userData = new UserData;
         $input = $this->prophesize(User::class);
-        $input->getId()->willReturn(null)->shouldBeCalled();
+        $input->getAttribute('relations')->willReturn(null);
+        $input->hasGetMutator('id')->willReturn(false);
+        $input->hasGetMutator('relations')->willReturn(false);
         self::expectException(MissingIdentifierException::class);
         /** @var User $user */
         $user = $input->reveal();
@@ -129,6 +114,6 @@ class UserApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return UserApiClient::class;
+        return UserClient::class;
     }
 }

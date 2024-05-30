@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Ticket\Status;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class StatusTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Ticket\Status
- */
 class StatusTest extends BaseModelTestCase
 {
     /**

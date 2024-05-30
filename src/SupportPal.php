@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient;
 
 use Exception;
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
 use Kevinrob\GuzzleCache\CacheMiddleware;
@@ -19,7 +19,8 @@ use SupportPal\ApiClient\Cache\CacheStrategyConfigurator;
 use SupportPal\ApiClient\Config\ApiContext;
 use SupportPal\ApiClient\Config\RequestDefaults;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Factory\RequestFactory;
+use SupportPal\ApiClient\Http\Client;
+use SupportPal\ApiClient\Http\Request;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -28,10 +29,6 @@ use function array_merge;
 use function str_replace;
 use function sys_get_temp_dir;
 
-/**
- * Class SupportPal
- * @package SupportPal\ApiClient
- */
 class SupportPal
 {
     /** @var ContainerBuilder */
@@ -61,7 +58,7 @@ class SupportPal
         $containerBuilder->setParameter('defaultBodyContent', $requestDefaults->getDefaultBodyContent());
 
         $containerBuilder->set(
-            Client::class,
+            GuzzleClient::class,
             $this->getGuzzleClient($apiContext, $requestDefaults->getDefaultRequestOptions(), $cacheDir)
         );
 
@@ -123,15 +120,14 @@ class SupportPal
     }
 
     /**
-     * @return RequestFactory
      * @throws Exception
      */
-    public function getRequestFactory(): RequestFactory
+    public function getRequest(): Request
     {
-        /** @var RequestFactory $requestFactory */
-        $requestFactory = $this->containerBuilder->get(RequestFactory::class);
+        /** @var Request $request */
+        $request = $this->containerBuilder->get(Request::class);
 
-        return $requestFactory;
+        return $request;
     }
 
     /**
@@ -141,8 +137,8 @@ class SupportPal
      */
     public function sendRequest(RequestInterface $request): ResponseInterface
     {
-        /** @var ApiClient $apiClient */
-        $apiClient = $this->containerBuilder->get(ApiClient::class);
+        /** @var Client $apiClient */
+        $apiClient = $this->containerBuilder->get(Client::class);
 
         return $apiClient->sendRequest($request);
     }
@@ -158,7 +154,7 @@ class SupportPal
         $stack = HandlerStack::create();
         $stack->push(new CacheMiddleware($this->buildCacheStrategy($apiContext, $cacheDir)));
 
-        return new Client(array_merge(['handler' => $stack,], $requestDefaults));
+        return new GuzzleClient(array_merge(['handler' => $stack], $requestDefaults));
     }
 
     /**

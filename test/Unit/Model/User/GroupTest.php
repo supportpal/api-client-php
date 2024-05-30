@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\User\Group;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class GroupTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\User
- * @covers \SupportPal\ApiClient\Model\User\Group
- */
 class GroupTest extends BaseModelTestCase
 {
     /**

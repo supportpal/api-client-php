@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Ticket\SlaPlan;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SlaPlanData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class SlaPlanTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket
- * @covers \SupportPal\ApiClient\Model\Ticket\SlaPlan
- */
 class SlaPlanTest extends BaseModelTestCase
 {
     /**

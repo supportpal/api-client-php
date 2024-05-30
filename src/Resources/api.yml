@@ -5,29 +5,28 @@ services:
         public: false
 
     SupportPal\ApiClient\Api\Api:
-        arguments:
-            $formatType: '%contentType%'
+        public: false
 
     SupportPal\ApiClient\Api\CoreApi:
         public: true
         parent: 'SupportPal\ApiClient\Api\Api'
         arguments:
-            $apiClient: '@SupportPal\ApiClient\ApiClient\CoreApiClient'
+            $apiClient: '@SupportPal\ApiClient\Http\CoreClient'
 
     SupportPal\ApiClient\Api\SelfServiceApi:
         public: true
         parent: 'SupportPal\ApiClient\Api\Api'
         arguments:
-            $apiClient: '@SupportPal\ApiClient\ApiClient\SelfServiceApiClient'
+            $apiClient: '@SupportPal\ApiClient\Http\SelfServiceClient'
 
     SupportPal\ApiClient\Api\TicketApi:
         public: true
         parent: 'SupportPal\ApiClient\Api\Api'
         arguments:
-            $apiClient: '@SupportPal\ApiClient\ApiClient\TicketApiClient'
+            $apiClient: '@SupportPal\ApiClient\Http\TicketClient'
 
     SupportPal\ApiClient\Api\UserApi:
         public: true
         parent: 'SupportPal\ApiClient\Api\Api'
         arguments:
-            $apiClient:  '@SupportPal\ApiClient\ApiClient\UserApiClient'
+            $apiClient:  '@SupportPal\ApiClient\Http\UserClient'

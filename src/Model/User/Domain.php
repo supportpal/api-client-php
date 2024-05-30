@@ -2,38 +2,14 @@
 
 namespace SupportPal\ApiClient\Model\User;
 
-use SupportPal\ApiClient\Model\BaseModel;
-use Symfony\Component\Serializer\Attribute\SerializedName;
+use SupportPal\ApiClient\Model\Model;
 
-class Domain extends BaseModel
+class Domain extends Model
 {
-    #[SerializedName('organisation_id')]
-    private int $organisationId;
-
-    #[SerializedName('domain')]
-    private string $domain;
-
-    public function getOrganisationId(): int
-    {
-        return $this->organisationId;
-    }
-
-    public function setOrganisationId(int $organisationId): self
-    {
-        $this->organisationId = $organisationId;
-
-        return $this;
-    }
-
-    public function getDomain(): string
-    {
-        return $this->domain;
-    }
-
-    public function setDomain(string $domain): self
-    {
-        $this->domain = $domain;
-
-        return $this;
-    }
+    /** @var array<string, string> */
+    protected array $casts = [
+        'id'              => 'int',
+        'organisation_id' => 'int',
+        'domain'          => 'string',
+    ];
 }

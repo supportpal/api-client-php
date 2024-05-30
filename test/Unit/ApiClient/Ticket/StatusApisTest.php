@@ -2,23 +2,17 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 use function json_encode;
 
-/**
- * Class StatusApisTest
- * @package SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket
- * @covers \SupportPal\ApiClient\ApiClient\Ticket\StatusApis
- * @covers \SupportPal\ApiClient\ApiClient
- */
 class StatusApisTest extends ApiClientTest
 {
-    /** @var TicketApiClient */
+    /** @var TicketClient */
     protected $apiClient;
 
     /** @var int */
@@ -115,6 +109,6 @@ class StatusApisTest extends ApiClientTest
      */
     protected function getApiClientName(): string
     {
-        return TicketApiClient::class;
+        return TicketClient::class;
     }
 }

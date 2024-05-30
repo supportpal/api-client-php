@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Tests;
 
 use function current;
-use function get_class;
 use function next;
 
 trait ApiDataProviders
@@ -80,18 +79,6 @@ trait ApiDataProviders
             foreach ($this->provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, [$model, $data]];
             }
-        }
-    }
-
-    /**
-     * @return iterable<mixed>
-     */
-    public function providePostEndpointsUninitializedTestCases(): iterable
-    {
-        foreach ($this->getPostEndpoints() as $endpoint => $value) {
-            $model = current($value);
-
-            yield [get_class($model), $endpoint];
         }
     }
 

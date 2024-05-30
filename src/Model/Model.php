@@ -2,13 +2,8 @@
 
 namespace SupportPal\ApiClient\Model;
 
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
-
-interface Model
+abstract class Model extends \Jenssegers\Model\Model
 {
-    /**
-     * @param array<string, mixed> $data
-     * @throws InvalidArgumentException
-     */
-    public function fill(array $data): Model;
+    /** @var string[] */
+    protected array $guarded = [];
 }

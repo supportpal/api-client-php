@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\SelfService\Request\CreateComment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\CreateCommentData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class CreateCommentTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\SelfService\Request
- * @covers \SupportPal\ApiClient\Model\SelfService\Request\CreateComment
- */
 class CreateCommentTest extends BaseModelTestCase
 {
     /**

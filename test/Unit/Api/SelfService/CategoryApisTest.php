@@ -3,17 +3,11 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
 use SupportPal\ApiClient\Api\SelfServiceApi;
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
+use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Model\SelfService\Category;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class CategoryApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
- * @covers \SupportPal\ApiClient\Api\SelfService\CategoryApis
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class CategoryApisTest extends ApiTest
 {
     /** @var SelfServiceApi */
@@ -33,7 +27,7 @@ class CategoryApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $returnedCategory = $this->api->getCategory(1);
-        self::assertSame($expectedOutput, $returnedCategory);
+        self::assertEquals($expectedOutput, $returnedCategory);
     }
 
     public function testGetCategories(): void
@@ -50,7 +44,7 @@ class CategoryApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $returnedCategories = $this->api->getCategories([]);
-        self::assertSame($expectedOutput, $returnedCategories);
+        self::assertEquals($expectedOutput, $returnedCategories);
     }
 
     /**
@@ -66,6 +60,6 @@ class CategoryApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return SelfServiceApiClient::class;
+        return SelfServiceClient::class;
     }
 }

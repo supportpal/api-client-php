@@ -2,40 +2,34 @@
 
 namespace SupportPal\ApiClient\Api;
 
-use SupportPal\ApiClient\Api\Ticket\AttachmentApis;
-use SupportPal\ApiClient\Api\Ticket\ChannelSettingsApis;
-use SupportPal\ApiClient\Api\Ticket\CustomFieldApis;
-use SupportPal\ApiClient\Api\Ticket\DepartmentApis;
-use SupportPal\ApiClient\Api\Ticket\MessageApis;
-use SupportPal\ApiClient\Api\Ticket\PriorityApis;
-use SupportPal\ApiClient\Api\Ticket\SettingsApis;
-use SupportPal\ApiClient\Api\Ticket\StatusApis;
-use SupportPal\ApiClient\Api\Ticket\TicketApis;
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
+use SupportPal\ApiClient\Api\Ticket\Attachments;
+use SupportPal\ApiClient\Api\Ticket\ChannelSettings;
+use SupportPal\ApiClient\Api\Ticket\CustomFields;
+use SupportPal\ApiClient\Api\Ticket\Departments;
+use SupportPal\ApiClient\Api\Ticket\Messages;
+use SupportPal\ApiClient\Api\Ticket\Priorities;
+use SupportPal\ApiClient\Api\Ticket\Settings;
+use SupportPal\ApiClient\Api\Ticket\Statuses;
+use SupportPal\ApiClient\Api\Ticket\Tickets;
+use SupportPal\ApiClient\Http\TicketClient;
 
-/**
- * Contains all ApiCalls pre and post processing that falls under Tickets Module
- * @package SupportPal\ApiClient\Api
- */
 class TicketApi extends Api
 {
-    use AttachmentApis;
-    use ChannelSettingsApis;
-    use CustomFieldApis;
-    use DepartmentApis;
-    use PriorityApis;
-    use MessageApis;
-    use SettingsApis;
-    use StatusApis;
-    use TicketApis;
+    use Attachments;
+    use ChannelSettings;
+    use CustomFields;
+    use Departments;
+    use Priorities;
+    use Messages;
+    use Settings;
+    use Statuses;
+    use Tickets;
 
-    /** @var TicketApiClient */
-    protected $apiClient;
+    public function __construct(protected readonly TicketClient $apiClient)
+    {
+    }
 
-    /**
-     * @return TicketApiClient
-     */
-    protected function getApiClient(): TicketApiClient
+    protected function getApiClient(): TicketClient
     {
         return $this->apiClient;
     }

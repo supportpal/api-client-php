@@ -8,10 +8,6 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\UserApisData;
 use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
 
-/**
- * Class UserApisTest
- * @package SupportPal\ApiClient\Tests\Functional\Api
- */
 class UserApisTest extends ApiComponentTest
 {
     /**

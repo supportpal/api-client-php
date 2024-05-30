@@ -6,10 +6,6 @@ use SupportPal\ApiClient\Api\SelfServiceApi;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\SelfServiceApisData;
 use SupportPal\ApiClient\Tests\Integration\ApiComponentTest;
 
-/**
- * Class SelfServiceApisTest
- * @package SupportPal\ApiClient\Tests\Integration\Api
- */
 class SelfServiceApisComponentTest extends ApiComponentTest
 {
     /**

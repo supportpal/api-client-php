@@ -2,10 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests;
 
-use SupportPal\ApiClient\Helper\StringHelper;
-use SupportPal\ApiClient\Model\Collection\Collection;
+use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Model\SettingsModel;
 use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 use function count;
@@ -14,13 +12,8 @@ use function is_array;
 use function is_bool;
 use function is_object;
 
-/**
- * Class TestCase
- * @package SupportPal\ApiClient\Tests
- */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    use StringHelper;
     use PhpUnitCompatibilityTrait;
 
     /**
@@ -30,8 +23,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function assertArrayEqualsObjectFields(object $obj, array $array): void
     {
         foreach ($array as $key => $value) {
-            $method = 'get'.$this->snakeCaseToPascalCase($key);
-            $attributeValue = $obj->{$method}();
+            $attributeValue = $obj->{$key};
             /**
              * assert against nested objects recursively
              * @example
@@ -89,25 +81,19 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected function assertApiDataMatchesModels(Model|Collection $models, array $data): void
     {
         if ($models instanceof Collection) {
-            self::assertSame($data['count'], $models->getCount());
-            foreach ($models->getModels() as $offset => $object) {
+            self::assertSame($data['count'], $models->count());
+            foreach ($models->all() as $offset => $object) {
                 $this->assertArrayEqualsObjectFields($object, $data['data'][$offset]);
             }
 
             return;
         }
 
-        if ($models instanceof SettingsModel) {
-            self::assertSame($models->all(), $data['data']);
-
+        if (! ($models instanceof Model)) {
             return;
         }
 
-        if ($models instanceof Model) {
-            $this->assertArrayEqualsObjectFields($models, $data['data']);
-
-            return;
-        }
+        $this->assertArrayEqualsObjectFields($models, $data['data']);
     }
 
     /**

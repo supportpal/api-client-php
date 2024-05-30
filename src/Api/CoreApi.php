@@ -2,27 +2,20 @@
 
 namespace SupportPal\ApiClient\Api;
 
-use SupportPal\ApiClient\Api\Core\BrandApis;
-use SupportPal\ApiClient\Api\Core\SettingsApis;
-use SupportPal\ApiClient\ApiClient\CoreApiClient;
+use SupportPal\ApiClient\Api\Core\Brands;
+use SupportPal\ApiClient\Api\Core\Settings;
+use SupportPal\ApiClient\Http\CoreClient;
 
-/**
- * Contains all ApiCalls pre and post processing that falls under Core Module
- * Trait CoreApis
- * @package SupportPal\ApiClient\Api
- */
 class CoreApi extends Api
 {
-    use BrandApis;
-    use SettingsApis;
+    use Brands;
+    use Settings;
 
-    /** @var CoreApiClient */
-    protected $apiClient;
+    public function __construct(protected readonly CoreClient $apiClient)
+    {
+    }
 
-    /**
-     * @return CoreApiClient
-     */
-    protected function getApiClient(): CoreApiClient
+    protected function getApiClient(): CoreClient
     {
         return $this->apiClient;
     }

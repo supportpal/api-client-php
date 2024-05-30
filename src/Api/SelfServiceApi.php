@@ -2,35 +2,28 @@
 
 namespace SupportPal\ApiClient\Api;
 
-use SupportPal\ApiClient\Api\SelfService\ArticleApis;
-use SupportPal\ApiClient\Api\SelfService\CategoryApis;
-use SupportPal\ApiClient\Api\SelfService\CommentApis;
-use SupportPal\ApiClient\Api\SelfService\SettingsApis;
-use SupportPal\ApiClient\Api\SelfService\TagApis;
-use SupportPal\ApiClient\Api\SelfService\TypeApis;
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
+use SupportPal\ApiClient\Api\SelfService\Articles;
+use SupportPal\ApiClient\Api\SelfService\Categories;
+use SupportPal\ApiClient\Api\SelfService\Comments;
+use SupportPal\ApiClient\Api\SelfService\Settings;
+use SupportPal\ApiClient\Api\SelfService\Tags;
+use SupportPal\ApiClient\Api\SelfService\Types;
+use SupportPal\ApiClient\Http\SelfServiceClient;
 
-/**
- * Contains all ApiCalls pre and post processing that falls under SelfService Module
- * Trait SelfServiceApis
- * @package SupportPal\ApiClient\Api
- */
 class SelfServiceApi extends Api
 {
-    use ArticleApis;
-    use CategoryApis;
-    use CommentApis;
-    use SettingsApis;
-    use TagApis;
-    use TypeApis;
+    use Articles;
+    use Categories;
+    use Comments;
+    use Settings;
+    use Tags;
+    use Types;
 
-    /** @var SelfServiceApiClient */
-    protected $apiClient;
+    public function __construct(protected readonly SelfServiceClient $apiClient)
+    {
+    }
 
-    /**
-     * @return SelfServiceApiClient
-     */
-    protected function getApiClient(): SelfServiceApiClient
+    protected function getApiClient(): SelfServiceClient
     {
         return $this->apiClient;
     }

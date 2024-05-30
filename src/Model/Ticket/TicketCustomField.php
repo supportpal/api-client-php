@@ -2,83 +2,24 @@
 
 namespace SupportPal\ApiClient\Model\Ticket;
 
-use SupportPal\ApiClient\Model\Department\Department;
 use SupportPal\ApiClient\Model\Shared\CustomField;
-use Symfony\Component\Serializer\Attribute\SerializedName;
+
+use function array_merge;
 
 class TicketCustomField extends CustomField
 {
-    #[SerializedName('purge')]
-    private int|null $purge = null;
-
-    /** @var Department[]|null */
-    #[SerializedName('departments')]
-    private array|null $departments = null;
-
-    #[SerializedName('ticket_id')]
-    private int|null $ticketId = null;
-
-    /** @var TicketCustomFieldTranslation[]|null */
-    #[SerializedName('translations')]
-    private array|null $translations = null;
-
-    public function getPurge(): ?int
-    {
-        return $this->purge;
-    }
-
-    public function setPurge(?int $purge): self
-    {
-        $this->purge = $purge;
-
-        return $this;
-    }
-
     /**
-     * @return Department[]|null
+     * @param mixed[] $attributes
      */
-    public function getDepartments(): ?array
+    public function __construct(array $attributes = [])
     {
-        return $this->departments;
-    }
+        $this->casts = array_merge($this->casts, [
+            'purge'        => 'int',
+            'ticket_id'    => 'int',
+            'departments'  => 'array:' . Department::class,
+            'translations' => 'array:' . TicketCustomFieldTranslation::class
+        ]);
 
-    /**
-     * @param Department[]|null $departments
-     */
-    public function setDepartments(?array $departments): self
-    {
-        $this->departments = $departments;
-
-        return $this;
-    }
-
-    public function getTicketId(): ?int
-    {
-        return $this->ticketId;
-    }
-
-    public function setTicketId(?int $ticketId): self
-    {
-        $this->ticketId = $ticketId;
-
-        return $this;
-    }
-
-    /**
-     * @return TicketCustomFieldTranslation[]|null
-     */
-    public function getTranslations(): ?array
-    {
-        return $this->translations;
-    }
-
-    /**
-     * @param TicketCustomFieldTranslation[]|null $translations
-     */
-    public function setTranslations(?array $translations): self
-    {
-        $this->translations = $translations;
-
-        return $this;
+        parent::__construct($attributes);
     }
 }

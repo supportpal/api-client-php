@@ -3,17 +3,11 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
 use SupportPal\ApiClient\Api\SelfServiceApi;
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
+use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Model\SelfService\Type;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class TypeApiTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
- * @covers \SupportPal\ApiClient\Api\SelfService\TypeApis
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class TypeApiTest extends ApiTest
 {
     /** @var SelfServiceApi */
@@ -32,7 +26,7 @@ class TypeApiTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $articleTypes = $this->api->getTypes();
-        self::assertSame($expectedOutput, $articleTypes);
+        self::assertEquals($expectedOutput, $articleTypes);
     }
 
     public function testGetType(): void
@@ -48,7 +42,7 @@ class TypeApiTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $types = $this->api->getType(1);
-        self::assertSame($expectedOutput, $types);
+        self::assertEquals($expectedOutput, $types);
     }
 
     /**
@@ -64,6 +58,6 @@ class TypeApiTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return SelfServiceApiClient::class;
+        return SelfServiceClient::class;
     }
 }

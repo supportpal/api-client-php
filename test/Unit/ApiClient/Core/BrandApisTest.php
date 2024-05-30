@@ -2,9 +2,9 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Core;
 
-use SupportPal\ApiClient\ApiClient\CoreApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Http\CoreClient;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
@@ -12,7 +12,7 @@ use function json_encode;
 
 class BrandApisTest extends ApiClientTest
 {
-    /** @var CoreApiClient */
+    /** @var CoreClient */
     protected $apiClient;
 
     /** @var int */
@@ -109,6 +109,6 @@ class BrandApisTest extends ApiClientTest
      */
     protected function getApiClientName(): string
     {
-        return CoreApiClient::class;
+        return CoreClient::class;
     }
 }

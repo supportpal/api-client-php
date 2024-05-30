@@ -7,11 +7,6 @@ use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateTicketData;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
-/**
- * Class CreateTicketTest
- * @package SupportPal\ApiClient\Tests\Unit\Model\Ticket\Request
- * @covers \SupportPal\ApiClient\Model\Ticket\Request\CreateTicket
- */
 class CreateTicketTest extends BaseModelTestCase
 {
     /**

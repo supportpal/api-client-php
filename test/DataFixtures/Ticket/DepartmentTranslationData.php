@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket;
 
-use SupportPal\ApiClient\Model\Department\DepartmentTranslation;
+use SupportPal\ApiClient\Model\Ticket\DepartmentTranslation;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 
 class DepartmentTranslationData extends BaseModelData

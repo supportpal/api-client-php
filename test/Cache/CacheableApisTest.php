@@ -3,19 +3,19 @@
 namespace SupportPal\ApiClient\Tests\Cache;
 
 use Exception;
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Kevinrob\GuzzleCache\CacheMiddleware;
 use Kevinrob\GuzzleCache\Strategy\CacheStrategyInterface;
-use SupportPal\ApiClient\ApiClient;
-use SupportPal\ApiClient\ApiClient\CoreApiClient;
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
-use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Cache\ApiCacheMap;
 use SupportPal\ApiClient\Cache\CacheStrategyConfigurator;
+use SupportPal\ApiClient\Http\Client;
+use SupportPal\ApiClient\Http\CoreClient;
+use SupportPal\ApiClient\Http\SelfServiceClient;
+use SupportPal\ApiClient\Http\TicketClient;
+use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
@@ -38,6 +38,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 
 use function call_user_func_array;
+use function json_encode;
 use function sleep;
 use function sys_get_temp_dir;
 
@@ -59,7 +60,7 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         array $parameters,
         string $apiClientClass
     ): void {
-        /** @var ApiClient $apiClient */
+        /** @var Client $apiClient */
         $apiClient = $this->getContainer()->get($apiClientClass);
 
         $this->mockResponses($data);
@@ -91,12 +92,12 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         array $parameters,
         string $apiClientClass
     ): void {
-        /** @var ApiClient $apiClient */
+        /** @var Client $apiClient */
         $apiClient = $this->getContainer()->get($apiClientClass);
 
-        $response = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
-        $response2 = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
-        $response3 = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
+        $response = new Response(200, [], (string) json_encode($data));
+        $response2 = new Response(200, [], (string) json_encode($data));
+        $response3 = new Response(200, [], (string) json_encode($data));
 
         $this->mockRequestHandler->append($response);
         $this->mockRequestHandler->append($response2);
@@ -139,7 +140,7 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         array $parameters,
         string $apiClientClass
     ): void {
-        /** @var ApiClient $apiClient */
+        /** @var Client $apiClient */
         $apiClient = $this->getContainer()->get($apiClientClass);
         $this->mockResponses($data);
         [$response1, $response2] = $this->sendRequests($apiClient, $endpoint, $parameters);
@@ -171,9 +172,9 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
     public function provideCacheableApiCalls(): iterable
     {
         /** core Apis */
-        yield ['getSettings', (new CoreSettingsData)->getResponse(), [], CoreApiClient::class];
-        yield ['getBrand', (new BrandData)->getResponse(), [1], CoreApiClient::class];
-        yield ['getBrands', (new BrandData)->getAllResponse(), [[]], CoreApiClient::class];
+        yield [ 'getSettings', (new CoreSettingsData)->getResponse(), [], CoreClient::class];
+        yield [ 'getBrand', (new BrandData)->getResponse(), [1], CoreClient::class];
+        yield [ 'getBrands', (new BrandData)->getAllResponse(), [[]], CoreClient::class];
 
         /** SelfService Apis */
         $typeData = new TypeData;
@@ -182,17 +183,17 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         $articleData = new ArticleData;
         $tagData = new TagData;
 
-        yield ['getCategory', $categoryData->getResponse(), [1], SelfServiceApiClient::class];
-        yield ['getCategories', $categoryData->getAllResponse(), [[]], SelfServiceApiClient::class];
-        yield ['getArticle', $articleData->getResponse(), [1, []], SelfServiceApiClient::class];
-        yield ['getArticlesByTerm', $articleData->getAllResponse(), [['test']], SelfServiceApiClient::class];
-        yield ['getArticles', $articleData->getAllResponse(), [[]], SelfServiceApiClient::class];
-        yield ['getRelatedArticles', $articleData->getAllResponse(), [[1, 'test', []]], SelfServiceApiClient::class];
-        yield ['getTag', $tagData->getResponse(), [1], SelfServiceApiClient::class];
-        yield ['getTags', $tagData->getAllResponse(), [[]], SelfServiceApiClient::class];
-        yield ['getSettings', $selfServiceSettingsData->getResponse(), [], SelfServiceApiClient::class];
-        yield ['getType', $typeData->getResponse(), [1], SelfServiceApiClient::class];
-        yield ['getTypes', $typeData->getAllResponse(), [[]], SelfServiceApiClient::class];
+        yield [ 'getCategory', $categoryData->getResponse(), [1], SelfServiceClient::class];
+        yield [ 'getCategories', $categoryData->getAllResponse(), [[]], SelfServiceClient::class];
+        yield [ 'getArticle', $articleData->getResponse(), [1, []], SelfServiceClient::class];
+        yield [ 'getArticlesByTerm', $articleData->getAllResponse(), [['test']], SelfServiceClient::class];
+        yield [ 'getArticles', $articleData->getAllResponse(), [[]], SelfServiceClient::class];
+        yield [ 'getRelatedArticles', $articleData->getAllResponse(), [[1, 'test', []]], SelfServiceClient::class];
+        yield [ 'getTag', $tagData->getResponse(), [1], SelfServiceClient::class];
+        yield [ 'getTags', $tagData->getAllResponse(), [[]], SelfServiceClient::class];
+        yield [ 'getSettings', $selfServiceSettingsData->getResponse(), [], SelfServiceClient::class];
+        yield [ 'getType', $typeData->getResponse(), [1], SelfServiceClient::class];
+        yield [ 'getTypes', $typeData->getAllResponse(), [[]], SelfServiceClient::class];
 
         $departmentData = new DepartmentData;
         $ticketCustomFieldData = new TicketCustomFieldData;
@@ -201,24 +202,24 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         $ticketSettingsData = new TicketSettingsData;
 
         /** Ticket Apis */
-        yield ['getDepartments', $departmentData->getAllResponse(), [[]], TicketApiClient::class];
-        yield ['getDepartment', $departmentData->getResponse(), [1], TicketApiClient::class];
-        yield ['getCustomFields', $ticketCustomFieldData->getAllResponse(), [[]], TicketApiClient::class];
-        yield ['getCustomField', $ticketCustomFieldData->getResponse(), [1], TicketApiClient::class];
-        yield ['getPriorities', $priorityData->getAllResponse(), [[]], TicketApiClient::class];
-        yield ['getPriority', $statusData->getResponse(), [1], TicketApiClient::class];
-        yield ['getStatuses', $statusData->getAllResponse(), [[]], TicketApiClient::class];
-        yield ['getStatus', $statusData->getResponse(), [1], TicketApiClient::class];
-        yield ['getSettings', $ticketSettingsData->getResponse(), [], TicketApiClient::class];
+        yield [ 'getDepartments', $departmentData->getAllResponse(), [[]], TicketClient::class];
+        yield [ 'getDepartment', $departmentData->getResponse(), [1], TicketClient::class];
+        yield [ 'getCustomFields', $ticketCustomFieldData->getAllResponse(), [[]], TicketClient::class];
+        yield [ 'getCustomField', $ticketCustomFieldData->getResponse(), [1], TicketClient::class];
+        yield [ 'getPriorities', $priorityData->getAllResponse(), [[]], TicketClient::class];
+        yield [ 'getPriority', $statusData->getResponse(), [1], TicketClient::class];
+        yield [ 'getStatuses', $statusData->getAllResponse(), [[]], TicketClient::class];
+        yield [ 'getStatus', $statusData->getResponse(), [1], TicketClient::class];
+        yield [ 'getSettings', $ticketSettingsData->getResponse(), [], TicketClient::class];
 
         /** User Apis */
         $userGroupsData = new GroupData;
         $customFieldData = new UserCustomFieldData;
 
-        yield ['getGroups', $userGroupsData->getAllResponse(), [[]], UserApiClient::class];
-        yield ['getGroup', $userGroupsData->getAllResponse(), [1], UserApiClient::class];
-        yield ['getCustomFields', $customFieldData->getAllResponse(), [[]], UserApiClient::class];
-        yield ['getCustomField', $customFieldData->getResponse(), [1], UserApiClient::class];
+        yield [ 'getGroups', $userGroupsData->getAllResponse(), [[]], UserClient::class];
+        yield [ 'getGroup', $userGroupsData->getAllResponse(), [1], UserClient::class];
+        yield [ 'getCustomFields', $customFieldData->getAllResponse(), [[]], UserClient::class];
+        yield [ 'getCustomField', $customFieldData->getResponse(), [1], UserClient::class];
     }
 
     /**
@@ -233,27 +234,27 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         /** SelfService Apis */
         $commentData = new CommentData;
 
-        yield ['getComment', $commentData->getResponse(), [1], SelfServiceApiClient::class];
-        yield ['getComments', $commentData->getAllResponse(), [[]], SelfServiceApiClient::class];
+        yield [ 'getComment', $commentData->getResponse(), [1], SelfServiceClient::class];
+        yield [ 'getComments', $commentData->getAllResponse(), [[]], SelfServiceClient::class];
 
         /** Ticket Apis */
-        yield ['getAttachments', $attachmentData->getAllResponse(), [[]], TicketApiClient::class];
-        yield ['getAttachment', $attachmentData->getResponse(), [1], TicketApiClient::class];
-        yield ['getTickets', $ticketData->getAllResponse(), [[]], TicketApiClient::class];
-        yield ['getTicket', $ticketData->getResponse(), [1], TicketApiClient::class];
-        yield ['getMessage', $messageData->getResponse(), [1], TicketApiClient::class];
-        yield ['getMessages', $messageData->getAllResponse(), [[]], TicketApiClient::class];
+        yield [ 'getAttachments', $attachmentData->getAllResponse(), [[]], TicketClient::class];
+        yield [ 'getAttachment', $attachmentData->getResponse(), [1], TicketClient::class];
+        yield [ 'getTickets', $ticketData->getAllResponse(), [[]], TicketClient::class];
+        yield [ 'getTicket', $ticketData->getResponse(), [1], TicketClient::class];
+        yield [ 'getMessage', $messageData->getResponse(), [1], TicketClient::class];
+        yield [ 'getMessages', $messageData->getAllResponse(), [[]], TicketClient::class];
 
         /** User Apis */
         $userData = new UserData;
 
-        yield ['getUsers', $userData->getAllResponse(), [[]], UserApiClient::class];
+        yield [ 'getUsers', $userData->getAllResponse(), [[]], UserClient::class];
     }
 
     /**
      * @inheritDoc
      */
-    protected function getGuzzleClient(): Client
+    protected function getGuzzleClient(): GuzzleClient
     {
         /**
          * replace GuzzleClient with MockClient
@@ -262,7 +263,7 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         $handlerStack = HandlerStack::create($this->mockRequestHandler);
         $handlerStack->push(new CacheMiddleware($this->buildCacheStrategy(sys_get_temp_dir())));
 
-        return new Client(['handler' => $handlerStack]);
+        return new GuzzleClient(['handler' => $handlerStack]);
     }
 
     /**
@@ -287,20 +288,20 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
      */
     protected function mockResponses(array $data): void
     {
-        $response = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
-        $response2 = new Response(200, [], (string) $this->getEncoder()->encode($data, $this->getFormatType()));
+        $response = new Response(200, [], (string) json_encode($data));
+        $response2 = new Response(200, [], (string) json_encode($data));
 
         $this->mockRequestHandler->append($response);
         $this->mockRequestHandler->append($response2);
     }
 
     /**
-     * @param ApiClient $apiClient
+     * @param Client $apiClient
      * @param string $endpoint
      * @param array<mixed> $parameters
      * @return Response[]
      */
-    protected function sendRequests(ApiClient $apiClient, string $endpoint, array $parameters): array
+    protected function sendRequests(Client $apiClient, string $endpoint, array $parameters): array
     {
         /** @var callable $callable */
         $callable = [$apiClient, $endpoint];

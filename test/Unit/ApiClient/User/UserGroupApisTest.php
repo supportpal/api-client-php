@@ -2,23 +2,17 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\User;
 
-use SupportPal\ApiClient\ApiClient\UserApiClient;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
+use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 use function json_encode;
 
-/**
- * Class UserGroupApisTest
- * @package SupportPal\ApiClient\Tests\Unit\ApiClient\User
- * @covers \SupportPal\ApiClient\ApiClient\User\UserGroupApis
- * @covers \SupportPal\ApiClient\ApiClient
- */
 class UserGroupApisTest extends ApiClientTest
 {
-    /** @var UserApiClient */
+    /** @var UserClient */
     protected $apiClient;
 
     /** @var int */
@@ -115,6 +109,6 @@ class UserGroupApisTest extends ApiClientTest
      */
     protected function getApiClientName(): string
     {
-        return UserApiClient::class;
+        return UserClient::class;
     }
 }

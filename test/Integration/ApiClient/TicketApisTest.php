@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
+use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\AttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
@@ -97,6 +97,6 @@ class TicketApisTest extends ApiClientTest
      */
     protected function getApiClientClass()
     {
-        return TicketApiClient::class;
+        return TicketClient::class;
     }
 }

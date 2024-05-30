@@ -3,17 +3,11 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
 use SupportPal\ApiClient\Api\UserApi;
-use SupportPal\ApiClient\ApiClient\UserApiClient;
+use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Model\User\Group;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class UserGroupApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\User
- * @covers \SupportPal\ApiClient\Api\User\UserGroupApis
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class UserGroupApisTest extends ApiTest
 {
     /** @var UserApi */
@@ -32,7 +26,7 @@ class UserGroupApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $userGroups = $this->api->getGroups([]);
-        self::assertSame($expectedOutput, $userGroups);
+        self::assertEquals($expectedOutput, $userGroups);
     }
 
     public function testGetUserCustomField(): void
@@ -49,7 +43,7 @@ class UserGroupApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $userGroup = $this->api->getGroup(1);
-        self::assertSame($expectedOutput, $userGroup);
+        self::assertEquals($expectedOutput, $userGroup);
     }
 
     /**
@@ -65,6 +59,6 @@ class UserGroupApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return UserApiClient::class;
+        return UserClient::class;
     }
 }

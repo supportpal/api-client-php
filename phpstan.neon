@@ -6,9 +6,7 @@ parameters:
     paths:
         - src
         - test
-    inferPrivatePropertyTypeFromConstructor: true
     excludePaths:
-        - src/Normalizer/ModelNormalizer.php
         - test/DataFixtures
         - test/PhpUnit
     parallel:

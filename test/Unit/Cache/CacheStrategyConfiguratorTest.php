@@ -10,11 +10,6 @@ use SupportPal\ApiClient\Tests\TestCase;
 
 use function sys_get_temp_dir;
 
-/**
- * Class CacheStrategyConfiguratorTest
- * @package SupportPal\ApiClient\Tests\Unit\Cache
- * @covers \SupportPal\ApiClient\Cache\CacheStrategyConfigurator
- */
 class CacheStrategyConfiguratorTest extends TestCase
 {
     /** @var ObjectProphecy|ApiCacheMap */

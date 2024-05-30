@@ -3,17 +3,11 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
 use SupportPal\ApiClient\Api\SelfServiceApi;
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
+use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class SettingsApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\SelfService
- * @covers \SupportPal\ApiClient\Api\SelfService\SettingsApis
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class SettingsApisTest extends ApiTest
 {
     /** @var SelfServiceApi */
@@ -33,7 +27,7 @@ class SettingsApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $articles = $this->api->getSettings();
-        self::assertSame($expectedOutput, $articles);
+        self::assertEquals($expectedOutput, $articles);
     }
 
     /**
@@ -49,6 +43,6 @@ class SettingsApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return SelfServiceApiClient::class;
+        return SelfServiceClient::class;
     }
 }

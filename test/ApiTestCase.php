@@ -6,12 +6,12 @@ use Exception;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Api\Api;
-use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Model\Model;
 
 use function call_user_func_array;
 use function get_class;
+use function json_encode;
 
 abstract class ApiTestCase extends ContainerAwareBaseTestCase
 {
@@ -28,7 +28,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
             new Response(
                 200,
                 [],
-                (string) $this->getEncoder()->encode($data, $this->getFormatType())
+                (string) json_encode($data)
             )
         );
 
@@ -48,7 +48,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     public function testSuccessfulPostModel(Model $model, array $responseData, string $functionName): void
     {
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
+        $jsonSuccessfulBody = json_encode($responseData);
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];
@@ -71,7 +71,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
         string $functionName
     ): void {
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
+        $jsonSuccessfulBody = json_encode($responseData);
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];
@@ -125,26 +125,6 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     }
 
     /**
-     * Tries to send an API request with an empty data object. We expect symfony/serializer
-     * to throw a TypeError / UninitializedPropertyException due to null property values during
-     * object serialization.
-     *
-     * @param string $modelClass
-     * @param string $endpoint
-     * @throws Exception
-     * @dataProvider providePostEndpointsUninitializedTestCases
-     * @SuppressWarnings(PHPMD.MissingImport)
-     */
-    public function testUninitializedPostEndpoint(string $modelClass, string $endpoint): void
-    {
-        $model = new $modelClass;
-        /** @var callable $callable */
-        $callable = [$this->getApi(), $endpoint];
-        self::expectException(InvalidArgumentException::class);
-        call_user_func_array($callable, [$model]);
-    }
-
-    /**
      * @param Model $model
      * @param array<mixed> $modelData
      * @param array<mixed> $responseData
@@ -164,7 +144,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
         self::expectException(MissingIdentifierException::class);
 
         /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = $this->getEncoder()->encode($responseData, $this->getFormatType());
+        $jsonSuccessfulBody = json_encode($responseData);
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];

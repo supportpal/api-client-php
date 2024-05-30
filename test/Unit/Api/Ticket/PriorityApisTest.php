@@ -3,17 +3,11 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
 use SupportPal\ApiClient\Api\TicketApi;
-use SupportPal\ApiClient\ApiClient\TicketApiClient;
+use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Model\Ticket\Priority;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class PriorityApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\Ticket
- * @covers \SupportPal\ApiClient\Api\Ticket\PriorityApis
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class PriorityApisTest extends ApiTest
 {
     /** @var TicketApi */
@@ -33,7 +27,7 @@ class PriorityApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketsPriority = $this->api->getPriorities();
-        self::assertSame($expectedOutput, $ticketsPriority);
+        self::assertEquals($expectedOutput, $ticketsPriority);
     }
 
     public function testGetsPriority(): void
@@ -50,7 +44,7 @@ class PriorityApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $ticketsPriority = $this->api->getPriority(1);
-        self::assertSame($expectedOutput, $ticketsPriority);
+        self::assertEquals($expectedOutput, $ticketsPriority);
     }
 
     /**
@@ -66,6 +60,6 @@ class PriorityApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return TicketApiClient::class;
+        return TicketClient::class;
     }
 }

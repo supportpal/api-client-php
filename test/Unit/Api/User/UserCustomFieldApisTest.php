@@ -3,17 +3,11 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
 use SupportPal\ApiClient\Api\UserApi;
-use SupportPal\ApiClient\ApiClient\UserApiClient;
+use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Model\User\UserCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-/**
- * Class UserCustomFieldApisTest
- * @package SupportPal\ApiClient\Tests\Unit\Api\User
- * @covers \SupportPal\ApiClient\Api\User\CustomFieldApis
- * @covers \SupportPal\ApiClient\Api\Api
- */
 class UserCustomFieldApisTest extends ApiTest
 {
     /** @var UserApi */
@@ -32,7 +26,7 @@ class UserCustomFieldApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $customFields = $this->api->getCustomFields([]);
-        self::assertSame($expectedOutput, $customFields);
+        self::assertEquals($expectedOutput, $customFields);
     }
 
     public function testGetUserCustomField(): void
@@ -49,7 +43,7 @@ class UserCustomFieldApisTest extends ApiTest
             ->willReturn($response->reveal());
 
         $customField = $this->api->getCustomField(1);
-        self::assertSame($expectedOutput, $customField);
+        self::assertEquals($expectedOutput, $customField);
     }
 
     /**
@@ -65,6 +59,6 @@ class UserCustomFieldApisTest extends ApiTest
      */
     protected function getApiClientName(): string
     {
-        return UserApiClient::class;
+        return UserClient::class;
     }
 }

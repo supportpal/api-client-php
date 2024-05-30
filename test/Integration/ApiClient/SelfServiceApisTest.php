@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 
-use SupportPal\ApiClient\ApiClient\SelfServiceApiClient;
+use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
@@ -12,10 +12,6 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
 
-/**
- * Class SelfServiceApisTest
- * @package SupportPal\ApiClient\Tests\Integration\ApiClient
- */
 class SelfServiceApisTest extends ApiClientTest
 {
     /**
@@ -73,6 +69,6 @@ class SelfServiceApisTest extends ApiClientTest
      */
     protected function getApiClientClass()
     {
-        return SelfServiceApiClient::class;
+        return SelfServiceClient::class;
     }
 }
