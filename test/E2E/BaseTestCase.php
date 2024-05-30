@@ -110,7 +110,7 @@ abstract class BaseTestCase extends TestCase
         $response = $this->getSupportPal()->sendRequest($request);
         $responseArray = json_decode((string) $response->getBody(), true)['data'];
         self::assertInstanceOf(Settings::class, $model);
-        self::assertSame($responseArray, $model);
+        $this->assertArrayEqualsObjectFields($model, $responseArray);
     }
 
     /**
