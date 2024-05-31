@@ -13,26 +13,20 @@ class IpBanApisTest extends BaseCoreApiTest
 {
     public function testGetIpBans(): void
     {
-        [$output, $response] = $this->makeCommonExpectations(
-            (new IpBanData)->getAllResponse(),
-            IpBan::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new IpBanData)->getAllResponse(), IpBan::class);
 
         $this->apiClient
             ->getIpBans([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $returnedBrands = $this->api->getIpBans([]);
+        $returnedBrands = $this->api->getIpBans();
         self::assertEquals($output, $returnedBrands);
     }
 
     public function testGetIpBan(): void
     {
-        [$output, $response] = $this->makeCommonExpectations(
-            (new IpBanData)->getResponse(),
-            IpBan::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new IpBanData)->getResponse(), IpBan::class);
 
         $this->apiClient
             ->getIpBan(1)
@@ -45,10 +39,7 @@ class IpBanApisTest extends BaseCoreApiTest
 
     public function testCreateIpBan(): void
     {
-        [$output, $response] = $this->makeCommonExpectations(
-            (new IpBanData)->getResponse(),
-            IpBan::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new IpBanData)->getResponse(), IpBan::class);
 
         $createIpBan = new CreateIpBanData;
         /** @var CreateIpBan $data */
@@ -65,10 +56,7 @@ class IpBanApisTest extends BaseCoreApiTest
 
     public function testUpdateIpBan(): void
     {
-        [$output, $response] = $this->makeCommonExpectations(
-            (new IpBanData)->getResponse(),
-            IpBan::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new IpBanData)->getResponse(), IpBan::class);
 
         $updateIpBan = new UpdateIpBanData;
         /** @var UpdateIpBan $data */
