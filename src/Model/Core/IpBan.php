@@ -8,15 +8,15 @@ class IpBan extends Model
 {
     /** @var array<string, string> */
     protected array $casts = [
-        'id'                      => 'int',
-        'ip'                      => 'string',
-        'reason'                  => 'string',
-        'event_user'              => 'bool',
-        'event_operator'          => 'bool',
-        'event_api'               => 'bool',
-        'type'                    => 'int',
-        'expiry'                  => 'int',
-        'created_at'              => 'int',
-        'updated_at'              => 'int',
+        'id'             => 'int',
+        'ip'             => 'string',
+        'reason'         => 'string',
+        'event_user'     => 'bool',
+        'event_operator' => 'bool',
+        'event_api'      => 'bool',
+        'type'           => 'int',
+        'expiry'         => 'int',
+        'created_at'     => 'int',
+        'updated_at'     => 'int',
     ];
 }

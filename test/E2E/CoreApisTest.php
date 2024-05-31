@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Tests\E2E;
 use SupportPal\ApiClient\Api\CoreApi;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateIpBanData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateSpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateWhitelistedIpData;
 
 class CoreApisTest extends BaseTestCase
@@ -18,6 +19,7 @@ class CoreApisTest extends BaseTestCase
             ApiDictionary::CORE_BRAND => 'getBrands',
             ApiDictionary::CORE_IP_BAN => 'getIpBans',
             ApiDictionary::CORE_IP_WHITELIST => 'getWhitelistedIps',
+            ApiDictionary::CORE_SPAM_RULES => 'getSpamRules',
         ];
     }
 
@@ -30,6 +32,7 @@ class CoreApisTest extends BaseTestCase
             ApiDictionary::CORE_BRAND => 'getBrand',
             ApiDictionary::CORE_IP_BAN => 'getIpBan',
             ApiDictionary::CORE_IP_WHITELIST => 'getWhitelistedIp',
+            ApiDictionary::CORE_SPAM_RULES => 'getSpamRule',
         ];
     }
 
@@ -41,6 +44,7 @@ class CoreApisTest extends BaseTestCase
         return [
             ApiDictionary::CORE_IP_BAN => CreateIpBanData::DATA,
             ApiDictionary::CORE_IP_WHITELIST => CreateWhitelistedIpData::DATA,
+            ApiDictionary::CORE_SPAM_RULES => CreateSpamRuleData::DATA,
         ];
     }
 

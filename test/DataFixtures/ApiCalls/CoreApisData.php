@@ -6,9 +6,12 @@ use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\IpBanData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateIpBanData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateSpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateWhitelistedIpData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\UpdateIpBanData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\UpdateSpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\UpdateWhitelistedIpData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\SpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\WhitelistedIpData;
 
 class CoreApisData
@@ -21,6 +24,7 @@ class CoreApisData
         $brandData = new BrandData;
         $ipBanData = new IpBanData;
         $whitelistedIpData = new WhitelistedIpData;
+        $spamRuleData = new SpamRuleData;
 
         return [
             // Brands
@@ -34,6 +38,9 @@ class CoreApisData
             'getWhitelistedIp' => [$whitelistedIpData->getResponse(), [1]],
             // General Settings
             'getSettings' => [(new CoreSettingsData)->getResponse(), []],
+            // Spam Rules
+            'getSpamRules' => [$spamRuleData->getAllResponse(), []],
+            'getSpamRule' => [$spamRuleData->getResponse(), [1]],
         ];
     }
 
@@ -44,12 +51,12 @@ class CoreApisData
     {
         $ipBanData = new CreateIpBanData;
         $whitelistedIpData = new CreateWhitelistedIpData;
+        $spamRuleData = new CreateSpamRuleData;
 
         return [
-            // IP Bans
             'createIpBan' => [$ipBanData->getFilledInstance(), $ipBanData->getResponse()],
-            // IP Whitelist
             'createWhitelistedIp' => [$whitelistedIpData->getFilledInstance(), $whitelistedIpData->getResponse()],
+            'createSpamRule' => [$spamRuleData->getFilledInstance(), $spamRuleData->getResponse()],
         ];
     }
 
@@ -60,12 +67,12 @@ class CoreApisData
     {
         $ipBanData = new UpdateIpBanData;
         $whitelistedIpData = new UpdateWhitelistedIpData;
+        $spamRuleData = new UpdateSpamRuleData;
 
         return [
-            // IP Bans
             'updateIpBan' => [1, $ipBanData->getFilledInstance(), $ipBanData->getResponse()],
-            // IP Whitelist
             'updateWhitelistedIp' => [1, $whitelistedIpData->getFilledInstance(), $whitelistedIpData->getResponse()],
+            'updateSpamRule' => [1, $spamRuleData->getFilledInstance(), $spamRuleData->getResponse()],
         ];
     }
 
@@ -75,10 +82,9 @@ class CoreApisData
     public function deleteApiCalls(): array
     {
         return [
-            // IP Bans
             'deleteIpBan' => 1,
-            // IP Whitelist
             'deleteWhitelistedIp' => 1,
+            'deleteSpamRule' => 1,
         ];
     }
 }
