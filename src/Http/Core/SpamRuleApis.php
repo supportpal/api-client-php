@@ -17,7 +17,7 @@ trait SpamRuleApis
      */
     public function getSpamRules(array $queryParameters): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(ApiDictionary::CORE_SPAM_RULES, $queryParameters);
+        return $this->prepareAndSendGetRequest(ApiDictionary::CORE_SPAM_RULE, $queryParameters);
     }
 
     /**
@@ -25,7 +25,7 @@ trait SpamRuleApis
      */
     public function getSpamRule(int $id): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(ApiDictionary::CORE_SPAM_RULES . '/' . $id, []);
+        return $this->prepareAndSendGetRequest(ApiDictionary::CORE_SPAM_RULE . '/' . $id, []);
     }
 
     /**
@@ -34,7 +34,7 @@ trait SpamRuleApis
      */
     public function postSpamRule(array $body): ResponseInterface
     {
-        $request = $this->getRequest()->create('POST', ApiDictionary::CORE_SPAM_RULES, [], $body);
+        $request = $this->getRequest()->create('POST', ApiDictionary::CORE_SPAM_RULE, [], $body);
 
         return $this->sendRequest($request);
     }
@@ -45,7 +45,7 @@ trait SpamRuleApis
      */
     public function putSpamRule(int $id, array $body): ResponseInterface
     {
-        $request = $this->getRequest()->create('PUT', ApiDictionary::CORE_SPAM_RULES . '/' . $id, [], $body);
+        $request = $this->getRequest()->create('PUT', ApiDictionary::CORE_SPAM_RULE . '/' . $id, [], $body);
 
         return $this->sendRequest($request);
     }
@@ -55,7 +55,7 @@ trait SpamRuleApis
      */
     public function deleteSpamRule(int $id): ResponseInterface
     {
-        $request = $this->getRequest()->create('DELETE', ApiDictionary::CORE_SPAM_RULES . '/' . $id);
+        $request = $this->getRequest()->create('DELETE', ApiDictionary::CORE_SPAM_RULE . '/' . $id);
 
         return $this->sendRequest($request);
     }

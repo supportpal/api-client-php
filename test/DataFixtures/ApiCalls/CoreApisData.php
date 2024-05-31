@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Tests\DataFixtures\ApiCalls;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\IpBanData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\LanguageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateIpBanData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateSpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateWhitelistedIpData;
@@ -36,6 +37,8 @@ class CoreApisData
             // IP Whitelist
             'getWhitelistedIps' => [$whitelistedIpData->getAllResponse(), []],
             'getWhitelistedIp' => [$whitelistedIpData->getResponse(), [1]],
+            // Languages
+            'getLanguages' => [(new LanguageData)->getAllResponse(), []],
             // General Settings
             'getSettings' => [(new CoreSettingsData)->getResponse(), []],
             // Spam Rules
