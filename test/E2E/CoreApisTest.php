@@ -36,7 +36,7 @@ class CoreApisTest extends BaseTestCase
     protected function getPostEndpoints(): array
     {
         return [
-            ApiDictionary::CORE_IP_BAN => ['createIpBan', CreateIpBanData::DATA],
+            ApiDictionary::CORE_IP_BAN => CreateIpBanData::DATA,
         ];
     }
 

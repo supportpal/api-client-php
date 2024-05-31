@@ -162,7 +162,7 @@ abstract class BaseTestCase extends TestCase
      * @param mixed[] $data
      * @dataProvider providePostEndpoints
      */
-    public function testPost(string $endpoint, string $apiCall, array $data): void
+    public function testPost(string $endpoint, array $data): void
     {
         $iteration = 1;
         while (true) {
@@ -195,8 +195,8 @@ abstract class BaseTestCase extends TestCase
      */
     public function providePostEndpoints(): iterable
     {
-        foreach ($this->getPostEndpoints() as $endpoint => $arguments) {
-            yield [$endpoint, ...$arguments];
+        foreach ($this->getPostEndpoints() as $endpoint => $data) {
+            yield [$endpoint, $data];
         }
     }
 
