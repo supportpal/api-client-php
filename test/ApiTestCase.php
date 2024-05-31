@@ -115,7 +115,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
      * @throws Exception
      * @dataProvider provideDeleteEndpointsTestCases
      */
-    public function testSuccessfulDeleteEndpoint(int $id, string $functionName): void {
+    public function testSuccessfulDeleteEndpoint(int $id, string $functionName): void
+    {
         /** @var string $jsonSuccessfulBody */
         $jsonSuccessfulBody = json_encode(['status' => 'success']);
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
