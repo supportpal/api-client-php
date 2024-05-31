@@ -2,10 +2,8 @@
 
 namespace SupportPal\ApiClient\Tests\DataFixtures\Core\Request;
 
-use SupportPal\ApiClient\Model\Core\Request\CreateIpBan;
 use SupportPal\ApiClient\Model\Core\Request\CreateWhitelistedIp;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\IpBanData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\WhitelistedIpData;
 
 class CreateWhitelistedIpData extends BaseModelData
