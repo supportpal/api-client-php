@@ -38,7 +38,7 @@ class CoreApisData
             'getWhitelistedIps' => [$whitelistedIpData->getAllResponse(), []],
             'getWhitelistedIp' => [$whitelistedIpData->getResponse(), [1]],
             // Languages
-            'getLanguages' => [(new LanguageData)->getResponse(), []],
+            'getLanguages' => [(new LanguageData)->getAllResponse(), []],
             // General Settings
             'getSettings' => [(new CoreSettingsData)->getResponse(), []],
             // Spam Rules
