@@ -2,64 +2,34 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
-use SupportPal\ApiClient\Api\TicketApi;
-use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Model\Ticket\Priority;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
-use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-class PriorityApisTest extends ApiTest
+class PriorityApisTest extends BaseTicketApiTest
 {
-    /** @var TicketApi */
-    protected $api;
-
     public function testGetPriorities(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new PriorityData)->getAllResponse(),
-            Priority::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new PriorityData)->getAllResponse(), Priority::class);
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->getPriorities([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
         $ticketsPriority = $this->api->getPriorities();
-        self::assertEquals($expectedOutput, $ticketsPriority);
+        self::assertEquals($output, $ticketsPriority);
     }
 
-    public function testGetsPriority(): void
+    public function testGetPriority(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new PriorityData)->getResponse(),
-            Priority::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new PriorityData)->getResponse(), Priority::class);
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->getPriority(1)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
         $ticketsPriority = $this->api->getPriority(1);
-        self::assertEquals($expectedOutput, $ticketsPriority);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiName(): string
-    {
-        return TicketApi::class;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiClientName(): string
-    {
-        return TicketClient::class;
+        self::assertEquals($output, $ticketsPriority);
     }
 }

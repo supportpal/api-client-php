@@ -21,7 +21,7 @@ class CoreApisComponentTest extends ApiComponentTest
      */
     protected function getPostEndpoints(): array
     {
-        return [];
+        return (new CoreApisData)->postApiCalls();
     }
 
     /**
@@ -29,7 +29,15 @@ class CoreApisComponentTest extends ApiComponentTest
      */
     protected function getPutEndpoints(): array
     {
-        return [];
+        return (new CoreApisData)->putApiCalls();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getDeleteEndpoints(): array
+    {
+        return (new CoreApisData)->deleteApiCalls();
     }
 
     /**

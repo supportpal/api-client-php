@@ -1,0 +1,19 @@
+<?php declare(strict_types=1);
+
+namespace SupportPal\ApiClient\Model\Core\Request;
+
+use SupportPal\ApiClient\Model\Model;
+
+class CreateIpBan extends Model
+{
+    /** @var array<string, string> */
+    protected array $casts = [
+        'ip'             => 'string',
+        'reason'         => 'string',
+        'type'           => 'int',
+        'event_user'     => 'bool',
+        'event_operator' => 'bool',
+        'event_api'      => 'bool',
+        'expiry_time'    => 'int',
+    ];
+}

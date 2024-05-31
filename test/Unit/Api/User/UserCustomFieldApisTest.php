@@ -2,63 +2,39 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
-use SupportPal\ApiClient\Api\UserApi;
-use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Model\User\UserCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
-use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-class UserCustomFieldApisTest extends ApiTest
+class UserCustomFieldApisTest extends BaseUserApiTest
 {
-    /** @var UserApi */
-    protected $api;
-
-    public function testGetUserCustomFields(): void
+    public function testGetCustomFields(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
+        [$output, $response] = $this->makeCommonExpectations(
             (new UserCustomFieldData)->getAllResponse(),
             UserCustomField::class
         );
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->getCustomFields([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
         $customFields = $this->api->getCustomFields([]);
-        self::assertEquals($expectedOutput, $customFields);
+        self::assertEquals($output, $customFields);
     }
 
-    public function testGetUserCustomField(): void
+    public function testGetCustomField(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
+        [$output, $response] = $this->makeCommonExpectations(
             (new UserCustomFieldData)->getResponse(),
             UserCustomField::class
         );
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->getCustomField(1)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
         $customField = $this->api->getCustomField(1);
-        self::assertEquals($expectedOutput, $customField);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiName(): string
-    {
-        return UserApi::class;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiClientName(): string
-    {
-        return UserClient::class;
+        self::assertEquals($output, $customField);
     }
 }

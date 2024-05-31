@@ -97,6 +97,28 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
+    public function provideDeleteEndpointsUnsuccessfulTestCases(): iterable
+    {
+        foreach ($this->getDeleteEndpoints() as $endpoint => $id) {
+            foreach ($this->provideUnsuccessfulResponses() as $testCase) {
+                yield [current($testCase), $endpoint, [$id]];
+            }
+        }
+    }
+
+    /**
+     * @return iterable<mixed>
+     */
+    public function provideDeleteEndpointsTestCases(): iterable
+    {
+        foreach ($this->getDeleteEndpoints() as $endpoint => $id) {
+            yield [$id, $endpoint];
+        }
+    }
+
+    /**
+     * @return iterable<mixed>
+     */
     public function provideDownloadEndpointsTestCases(): iterable
     {
         foreach ($this->getDownloadsEndpoints() as $endpoint => $model) {
@@ -130,6 +152,11 @@ trait ApiDataProviders
      * @return array<mixed>
      */
     abstract protected function getPutEndpoints(): array;
+
+    /**
+     * @return array<mixed>
+     */
+    abstract protected function getDeleteEndpoints(): array;
 
     /**
      * @return array<mixed>

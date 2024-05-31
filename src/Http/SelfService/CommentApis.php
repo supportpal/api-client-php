@@ -12,27 +12,7 @@ trait CommentApis
     use ApiClientAware;
 
     /**
-     *
-     * This method posts a self service comment
-     * @param array<mixed> $body
-     * @return ResponseInterface
-     * @throws HttpResponseException
-     */
-    public function postComment(array $body): ResponseInterface
-    {
-        $request = $this->getRequest()->create(
-            'POST',
-            ApiDictionary::SELF_SERVICE_COMMENT,
-            [],
-            $body
-        );
-
-        return $this->sendRequest($request);
-    }
-
-    /**
      * @param array<mixed> $queryParameters
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getComments(array $queryParameters): ResponseInterface
@@ -41,8 +21,6 @@ trait CommentApis
     }
 
     /**
-     * @param int $commentId
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getComment(int $commentId): ResponseInterface
@@ -51,5 +29,16 @@ trait CommentApis
             ApiDictionary::SELF_SERVICE_COMMENT . '/' .  $commentId,
             []
         );
+    }
+
+    /**
+     * @param array<mixed> $body
+     * @throws HttpResponseException
+     */
+    public function postComment(array $body): ResponseInterface
+    {
+        $request = $this->getRequest()->create('POST', ApiDictionary::SELF_SERVICE_COMMENT, [], $body);
+
+        return $this->sendRequest($request);
     }
 }

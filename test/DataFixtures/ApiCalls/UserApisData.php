@@ -3,9 +3,9 @@
 namespace SupportPal\ApiClient\Tests\DataFixtures\ApiCalls;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 
@@ -36,11 +36,10 @@ class UserApisData
      */
     public function postApiCalls(): array
     {
-        $createUser = (new CreateUser)->fill(CreateUserData::DATA);
-        $userData = (new UserData)->getResponse();
+        $createUser = new CreateUserData;
 
         return [
-            'postUser' => [$createUser, $userData],
+            'createUser' => [$createUser->getFilledInstance(), $createUser->getResponse()],
         ];
     }
 
@@ -50,10 +49,10 @@ class UserApisData
      */
     public function putApiCalls(): array
     {
-        $userData = new UserData;
+        $updateUser = new UpdateUserData;
 
         return [
-            'updateUser' => [$userData->getFilledInstance(), $userData->getArrayData(), $userData->getResponse()],
+            'updateUser' => [1, $updateUser->getFilledInstance(), $updateUser->getResponse()],
         ];
     }
 }

@@ -38,6 +38,14 @@ class TicketApisTest extends ApiComponentTest
 
     /**
      * @inheritDoc
+     */
+    protected function getDeleteEndpoints(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
      * @throws InvalidArgumentException
      */
     protected function getDownloadsEndpoints(): array

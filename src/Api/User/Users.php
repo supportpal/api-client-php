@@ -4,10 +4,10 @@ namespace SupportPal\ApiClient\Api\User;
 
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
+use SupportPal\ApiClient\Model\User\Request\UpdateUser;
 use SupportPal\ApiClient\Model\User\User;
 
 use function array_map;
@@ -23,7 +23,7 @@ trait Users
     {
         $response = $this->getApiClient()->getUsers($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([$this, 'createUser'], $body['data']);
+        $models = array_map([$this, 'createUserModel'], $body['data']);
 
         return $this->createCollection($body['count'], $models);
     }
@@ -35,39 +35,34 @@ trait Users
     {
         $response = $this->getApiClient()->getUser($userId);
 
-        return $this->createUser($this->decodeBody($response)['data']);
+        return $this->createUserModel($this->decodeBody($response)['data']);
     }
 
     /**
-     * @param array<mixed> $data
+     * @throws HttpResponseException
+     */
+    public function createUser(CreateUser $data): User
+    {
+        $response = $this->getApiClient()->postUser($data->toArray());
+
+        return $this->createUserModel($this->decodeBody($response)['data']);
+    }
+
+    /**
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function updateUser(User $user, array $data): User
+    public function updateUser(int $id, UpdateUser $data): User
     {
-        if (! isset($user->id)) {
-            throw new MissingIdentifierException('missing user identifier');
-        }
+        $response = $this->getApiClient()->putUser($id, $data->toArray());
 
-        $response = $this->getApiClient()->updateUser($user->id, $data);
-
-        return $this->createUser($this->decodeBody($response)['data']);
-    }
-
-    /**
-     * @throws HttpResponseException
-     */
-    public function postUser(CreateUser $createUser): User
-    {
-        $response = $this->getApiClient()->postUser($createUser->toArray());
-
-        return $this->createUser($this->decodeBody($response)['data']);
+        return $this->createUserModel($this->decodeBody($response)['data']);
     }
 
     /**
      * @param array<mixed> $data
      */
-    private function createUser(array $data): User
+    private function createUserModel(array $data): User
     {
         return new User($data);
     }

@@ -11,9 +11,12 @@ final class ApiDictionary
     /**
      * Core Apis
      */
-    public const CORE_SETTINGS = 'core/settings';
 
     public const CORE_BRAND = 'core/brand';
+
+    public const CORE_IP_BAN = 'core/ipban';
+
+    public const CORE_SETTINGS = 'core/settings';
 
     /**
      * Self Service APIs

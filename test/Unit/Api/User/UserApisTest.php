@@ -2,118 +2,69 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
-use SupportPal\ApiClient\Api\UserApi;
-use SupportPal\ApiClient\Exception\MissingIdentifierException;
-use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
+use SupportPal\ApiClient\Model\User\Request\UpdateUser;
 use SupportPal\ApiClient\Model\User\User;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
-use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-class UserApisTest extends ApiTest
+class UserApisTest extends BaseUserApiTest
 {
-    /** @var UserApi */
-    protected $api;
-
     public function testGetUsers(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new UserData)->getAllResponse(),
-            User::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new UserData)->getAllResponse(), User::class);
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->getUsers([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
-        $users = $this->api->getUsers([]);
-        self::assertEquals($expectedOutput, $users);
+        $users = $this->api->getUsers();
+        self::assertEquals($output, $users);
     }
 
     public function testGetUser(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new UserData)->getResponse(),
-            User::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new UserData)->getResponse(), User::class);
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->getUser(1)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
         $user = $this->api->getUser(1);
-        self::assertEquals($expectedOutput, $user);
+        self::assertEquals($output, $user);
     }
 
-    public function testPostUser(): void
+    public function testCreateUser(): void
     {
         $userData = new UserData;
         $createUserData = new CreateUserData;
         $arrayData = $createUserData::DATA;
-        [$response, $userOutput] = $this->postCommonExpectations(
-            $userData->getResponse(),
-            User::class
-        );
+        [$userOutput, $response] = $this->makeCommonExpectations($userData->getResponse(), User::class);
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->postUser($arrayData)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $user = $this->api->postUser(new CreateUser($arrayData));
+        $user = $this->api->createUser(new CreateUser($arrayData));
         self::assertEquals($userOutput, $user);
     }
 
-    public function testPutUser(): void
+    public function testUpdateUser(): void
     {
         $userData = new UserData;
+        $updateUser = new UpdateUser(UpdateUserData::DATA);
 
-        [$response, $output] = $this->postCommonExpectations(
-            $userData->getResponse(),
-            User::class,
-        );
+        [$output, $response] = $this->makeCommonExpectations($userData->getResponse(), User::class);
 
-        $this
-            ->apiClient
-            ->updateUser(self::TEST_ID, $userData->getArrayData())
+        $this->apiClient
+            ->putUser(self::TEST_ID, $updateUser->toArray())
             ->willReturn($response->reveal())
             ->shouldBeCalled();
 
-        $user = $this->api->updateUser(new User(['id' => self::TEST_ID]), $userData->getArrayData());
+        $user = $this->api->updateUser(self::TEST_ID, $updateUser);
         self::assertEquals($output, $user);
-    }
-
-    public function testPutUserWithoutIdentifier(): void
-    {
-        $userData = new UserData;
-        $input = $this->prophesize(User::class);
-        $input->getAttribute('relations')->willReturn(null);
-        $input->hasGetMutator('id')->willReturn(false);
-        $input->hasGetMutator('relations')->willReturn(false);
-        self::expectException(MissingIdentifierException::class);
-        /** @var User $user */
-        $user = $input->reveal();
-        $this->api->updateUser($user, $userData->getArrayData());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiName(): string
-    {
-        return UserApi::class;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiClientName(): string
-    {
-        return UserClient::class;
     }
 }

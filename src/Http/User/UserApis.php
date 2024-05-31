@@ -37,7 +37,7 @@ trait UserApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function updateUser(int $userId, array $body): ResponseInterface
+    public function putUser(int $userId, array $body): ResponseInterface
     {
         $request = $this->getRequest()->create(
             'PUT',

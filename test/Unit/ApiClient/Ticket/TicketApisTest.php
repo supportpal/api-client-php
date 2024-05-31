@@ -157,7 +157,7 @@ class TicketApisTest extends ApiClientTest
 
         $updateTicketTypeSuccessfulResponse = $this
             ->apiClient
-            ->updateTicket($this->testTicketId, $ticketData->getArrayData());
+            ->putTicket($this->testTicketId, $ticketData->getArrayData());
         self::assertSame($response->reveal(), $updateTicketTypeSuccessfulResponse);
     }
 
@@ -172,7 +172,7 @@ class TicketApisTest extends ApiClientTest
             $ticketData->getArrayData()
         );
         $this->throwClientExceptionCommonExpectations($request);
-        $this->apiClient->updateTicket($this->testTicketId, $ticketData->getArrayData());
+        $this->apiClient->putTicket($this->testTicketId, $ticketData->getArrayData());
     }
 
     /**
@@ -191,7 +191,7 @@ class TicketApisTest extends ApiClientTest
             $ticketData->getArrayData()
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->updateTicket($this->testTicketId, $ticketData->getArrayData());
+        $this->apiClient->putTicket($this->testTicketId, $ticketData->getArrayData());
     }
 
     /**

@@ -13,16 +13,6 @@ use function array_map;
 trait Brands
 {
     /**
-     * @throws HttpResponseException
-     */
-    public function getBrand(int $brandId): Brand
-    {
-        $response = $this->getApiClient()->getBrand($brandId);
-
-        return $this->createBrand($this->decodeBody($response)['data']);
-    }
-
-    /**
      * @param array<mixed> $queryParameters
      * @throws HttpResponseException
      * @throws InvalidArgumentException
@@ -31,15 +21,25 @@ trait Brands
     {
         $response = $this->getApiClient()->getBrands($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([$this, 'createBrand'], $body['data']);
+        $models = array_map([$this, 'createBrandModel'], $body['data']);
 
         return $this->createCollection($body['count'], $models);
     }
 
     /**
+     * @throws HttpResponseException
+     */
+    public function getBrand(int $id): Brand
+    {
+        $response = $this->getApiClient()->getBrand($id);
+
+        return $this->createBrandModel($this->decodeBody($response)['data']);
+    }
+
+    /**
      * @param array<mixed> $data
      */
-    private function createBrand(array $data): Brand
+    private function createBrandModel(array $data): Brand
     {
         return new Brand($data);
     }

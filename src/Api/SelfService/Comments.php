@@ -14,17 +14,6 @@ use function array_map;
 trait Comments
 {
     /**
-     * @param CreateComment $comment
-     * @throws HttpResponseException
-     */
-    public function postComment(CreateComment $comment): Comment
-    {
-        $response = $this->getApiClient()->postComment($comment->toArray());
-
-        return $this->createComment($this->decodeBody($response)['data']);
-    }
-
-    /**
      * @param array<mixed> $queryParameters
      * @throws HttpResponseException
      * @throws InvalidArgumentException
@@ -33,7 +22,7 @@ trait Comments
     {
         $response = $this->getApiClient()->getComments($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([$this, 'createComment'], $body['data']);
+        $models = array_map([$this, 'createCommentModel'], $body['data']);
 
         return $this->createCollection($body['count'], $models);
     }
@@ -45,13 +34,23 @@ trait Comments
     {
         $response = $this->getApiClient()->getComment($commentId);
 
-        return $this->createComment($this->decodeBody($response)['data']);
+        return $this->createCommentModel($this->decodeBody($response)['data']);
+    }
+
+    /**
+     * @throws HttpResponseException
+     */
+    public function createComment(CreateComment $comment): Comment
+    {
+        $response = $this->getApiClient()->postComment($comment->toArray());
+
+        return $this->createCommentModel($this->decodeBody($response)['data']);
     }
 
     /**
      * @param array<mixed> $data
      */
-    private function createComment(array $data): Comment
+    private function createCommentModel(array $data): Comment
     {
         return new Comment($data);
     }

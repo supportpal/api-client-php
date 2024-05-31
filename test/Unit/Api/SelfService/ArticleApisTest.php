@@ -2,43 +2,42 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
-use SupportPal\ApiClient\Api\SelfServiceApi;
-use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Model\SelfService\Article;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
-use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-class ArticleApisTest extends ApiTest
+class ArticleApisTest extends BaseSelfServiceApiTest
 {
-    /** @var SelfServiceApi */
-    protected $api;
-
     /** @var int */
     protected $testArticleId = 1;
 
+    public function testGetArticles(): void
+    {
+        [$output, $response] = $this->makeCommonExpectations((new ArticleData)->getAllResponse(), Article::class);
+
+        $this->apiClient
+            ->getArticles([])
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+        $articles = $this->api->getArticles();
+        self::assertEquals($output, $articles);
+    }
+
     public function testGetArticlesByTerm(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new ArticleData)->getAllResponse(),
-            Article::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new ArticleData)->getAllResponse(), Article::class);
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->getArticlesByTerm(['term' => 'test'])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $articles = $this->api->getArticlesByTerm('test', []);
-        self::assertEquals($expectedOutput, $articles);
+        $articles = $this->api->getArticlesByTerm('test');
+        self::assertEquals($output, $articles);
     }
 
     public function testGetArticle(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new ArticleData)->getResponse(),
-            Article::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new ArticleData)->getResponse(), Article::class);
 
         $this
             ->apiClient
@@ -46,35 +45,15 @@ class ArticleApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $returnedArticle = $this->api->getArticle($this->testArticleId, []);
-        self::assertEquals($expectedOutput, $returnedArticle);
-    }
-
-    public function testGetArticles(): void
-    {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new ArticleData)->getAllResponse(),
-            Article::class
-        );
-
-        $this
-            ->apiClient
-            ->getArticles([])
-            ->shouldBeCalled()
-            ->willReturn($response->reveal());
-        $articles = $this->api->getArticles([]);
-        self::assertEquals($expectedOutput, $articles);
+        $returnedArticle = $this->api->getArticle($this->testArticleId);
+        self::assertEquals($output, $returnedArticle);
     }
 
     public function testGetRelatedArticles(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new ArticleData)->getAllResponse(),
-            Article::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new ArticleData)->getAllResponse(), Article::class);
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->getRelatedArticles([
                 'term' => 'test',
                 'type_id' => 1,
@@ -82,23 +61,7 @@ class ArticleApisTest extends ApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $articles = $this->api->getRelatedArticles(1, 'test', []);
-        self::assertEquals($expectedOutput, $articles);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiName(): string
-    {
-        return SelfServiceApi::class;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiClientName(): string
-    {
-        return SelfServiceClient::class;
+        $articles = $this->api->getRelatedArticles(1, 'test');
+        self::assertEquals($output, $articles);
     }
 }

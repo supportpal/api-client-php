@@ -2,64 +2,34 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
 
-use SupportPal\ApiClient\Api\CoreApi;
-use SupportPal\ApiClient\Http\CoreClient;
 use SupportPal\ApiClient\Model\Core\Brand;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
-use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-class BrandApisTest extends ApiTest
+class BrandApisTest extends BaseCoreApiTest
 {
-    /** @var CoreApi */
-    protected $api;
-
-    public function testGetBrand(): void
-    {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new BrandData)->getResponse(),
-            Brand::class
-        );
-
-        $this
-            ->apiClient
-            ->getBrand(1)
-            ->shouldBeCalled()
-            ->willReturn($response->reveal());
-
-        $returnedBrand = $this->api->getBrand(1);
-        self::assertEquals($expectedOutput, $returnedBrand);
-    }
-
     public function testGetBrands(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new BrandData)->getAllResponse(),
-            Brand::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new BrandData)->getAllResponse(), Brand::class);
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->getBrands([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
         $returnedBrands = $this->api->getBrands([]);
-        self::assertEquals($expectedOutput, $returnedBrands);
+        self::assertEquals($output, $returnedBrands);
     }
 
-    /**
-     * @inheritDoc
-     */
-    protected function getApiName(): string
+    public function testGetBrand(): void
     {
-        return CoreApi::class;
-    }
+        [$output, $response] = $this->makeCommonExpectations((new BrandData)->getResponse(), Brand::class);
 
-    /**
-     * @inheritDoc
-     */
-    protected function getApiClientName(): string
-    {
-        return CoreClient::class;
+        $this->apiClient
+            ->getBrand(1)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $returnedBrand = $this->api->getBrand(1);
+        self::assertEquals($output, $returnedBrand);
     }
 }

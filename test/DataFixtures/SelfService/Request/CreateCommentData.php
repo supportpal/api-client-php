@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request;
 
 use SupportPal\ApiClient\Model\SelfService\Request\CreateComment;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 
 class CreateCommentData extends BaseModelData
 {
@@ -24,5 +25,17 @@ class CreateCommentData extends BaseModelData
     public function getModel(): string
     {
         return CreateComment::class;
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    public function getResponse(): array
+    {
+        return [
+            'status' => 'success',
+            'message' => null,
+            'data' => CommentData::DATA,
+        ];
     }
 }

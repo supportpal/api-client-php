@@ -14,18 +14,6 @@ use function array_map;
 trait Messages
 {
     /**
-     * @param CreateMessage $message
-     * @return Message
-     * @throws HttpResponseException
-     */
-    public function postMessage(CreateMessage $message): Message
-    {
-        $response = $this->getApiClient()->postMessage($message->toArray());
-
-        return $this->createMessage($this->decodeBody($response)['data']);
-    }
-
-    /**
      * @param array<mixed> $queryParameters
      * @throws HttpResponseException
      * @throws InvalidArgumentException
@@ -35,7 +23,7 @@ trait Messages
         $queryParameters['ticket_id'] = $ticketId;
         $response = $this->getApiClient()->getMessages($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([$this, 'createMessage'], $body['data']);
+        $models = array_map([ $this, 'createMessageModel' ], $body['data']);
 
         return $this->createCollection($body['count'], $models);
     }
@@ -47,13 +35,23 @@ trait Messages
     {
         $response = $this->getApiClient()->getMessage($messageId);
 
-        return $this->createMessage($this->decodeBody($response)['data']);
+        return $this->createMessageModel($this->decodeBody($response)['data']);
+    }
+
+    /**
+     * @throws HttpResponseException
+     */
+    public function createMessage(CreateMessage $data): Message
+    {
+        $response = $this->getApiClient()->postMessage($data->toArray());
+
+        return $this->createMessageModel($this->decodeBody($response)['data']);
     }
 
     /**
      * @param array<mixed> $data
      */
-    private function createMessage(array $data): Message
+    private function createMessageModel(array $data): Message
     {
         return new Message($data);
     }

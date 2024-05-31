@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\E2E;
 
 use SupportPal\ApiClient\Api\CoreApi;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateIpBanData;
 
 class CoreApisTest extends BaseTestCase
 {
@@ -14,16 +15,28 @@ class CoreApisTest extends BaseTestCase
     {
         return [
             ApiDictionary::CORE_BRAND => 'getBrands',
+            ApiDictionary::CORE_IP_BAN => 'getIpBans',
         ];
     }
 
     /**
      * @inheritDoc
      */
-    protected function getGetByIdEndpoints(): array
+    protected function getGetOneEndpoints(): array
     {
         return [
             ApiDictionary::CORE_BRAND => 'getBrand',
+            ApiDictionary::CORE_IP_BAN => 'getIpBan',
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getPostEndpoints(): array
+    {
+        return [
+            ApiDictionary::CORE_IP_BAN => CreateIpBanData::DATA,
         ];
     }
 

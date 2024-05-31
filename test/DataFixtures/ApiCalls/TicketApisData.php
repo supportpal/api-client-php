@@ -12,6 +12,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateMessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateTicketData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\UpdateTicketData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
@@ -59,14 +60,12 @@ class TicketApisData
      */
     public function postApiCalls(): array
     {
-        $createTicket = (new CreateTicketData)->getFilledInstance();
-        $createMessage = (new CreateMessageData)->getFilledInstance();
-        $ticketData = (new TicketData)->getResponse();
-        $messageData = new MessageData;
+        $createTicket = new CreateTicketData;
+        $createMessage = new CreateMessageData;
 
         return [
-            'postTicket' => [$createTicket, $ticketData],
-            'postMessage' => [$createMessage, $messageData->getResponse()],
+            'createTicket' => [$createTicket->getFilledInstance(), $createTicket->getResponse()],
+            'createMessage' => [$createMessage->getFilledInstance(), $createMessage->getResponse()],
         ];
     }
 
@@ -76,14 +75,10 @@ class TicketApisData
      */
     public function putApiCalls(): array
     {
-        $ticketData = new TicketData;
+        $updateTicketData = new UpdateTicketData;
 
         return [
-            'updateTicket' => [
-                $ticketData->getFilledInstance(),
-                $ticketData->getArrayData(),
-                $ticketData->getResponse()
-            ],
+            'updateTicket' => [1, $updateTicketData->getFilledInstance(), $updateTicketData->getResponse()],
         ];
     }
 
@@ -93,10 +88,6 @@ class TicketApisData
      */
     public function downloadApiCalls(): array
     {
-        $attachmentData = new AttachmentData;
-
-        return [
-            'downloadAttachment' => $attachmentData->getFilledInstance(),
-        ];
+        return ['downloadAttachment' => (new AttachmentData)->getFilledInstance()];
     }
 }

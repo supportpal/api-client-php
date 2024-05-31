@@ -4,19 +4,15 @@ namespace SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request;
 
 use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
 
 class CreateTicketData extends BaseModelData
 {
     public const DATA = [
         'user' => 1,
-        'on_behalf_of' => 1,
-        'user_firstname' => 'test',
-        'user_lastname' => 'test',
-        'user_email' => 'test',
-        'user_organisation' => '1',
-        'user_ip_address' => '111',
+        'user_ip_address' => '1.3.4.11',
         'department' => 1,
-        'brand' => 2,
+        'brand' => 1,
         'status' => 1,
         'priority' => 1,
         'internal' => 1,
@@ -26,7 +22,7 @@ class CreateTicketData extends BaseModelData
         'assignedto' => [1],
         'watching' => [1],
         'customfield' => [1],
-        'cc' => ['test'],
+        'cc' => ['test@test.com'],
         'send_user_email' => 1,
         'send_operators_email' => 1,
         'attachment' => [],
@@ -39,5 +35,17 @@ class CreateTicketData extends BaseModelData
     public function getModel(): string
     {
         return CreateTicket::class;
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    public function getResponse(): array
+    {
+        return [
+            'status' => 'success',
+            'message' => null,
+            'data' => TicketData::DATA,
+        ];
     }
 }
