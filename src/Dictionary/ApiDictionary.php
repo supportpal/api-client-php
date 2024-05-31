@@ -18,9 +18,11 @@ final class ApiDictionary
 
     public const CORE_IP_WHITELIST = 'core/ipwhitelist';
 
+    public const CORE_LANGUAGE = 'core/language';
+
     public const CORE_SETTINGS = 'core/settings';
 
-    public const CORE_SPAM_RULES = 'core/spamrule';
+    public const CORE_SPAM_RULE = 'core/spamrule';
 
     /**
      * Self Service APIs

@@ -16,10 +16,11 @@ class CoreApisTest extends BaseTestCase
     protected function getGetAllEndpoints(): array
     {
         return [
-            ApiDictionary::CORE_BRAND => 'getBrands',
-            ApiDictionary::CORE_IP_BAN => 'getIpBans',
+            ApiDictionary::CORE_BRAND        => 'getBrands',
+            ApiDictionary::CORE_IP_BAN       => 'getIpBans',
             ApiDictionary::CORE_IP_WHITELIST => 'getWhitelistedIps',
-            ApiDictionary::CORE_SPAM_RULES => 'getSpamRules',
+            ApiDictionary::CORE_LANGUAGE     => 'getLanguages',
+            ApiDictionary::CORE_SPAM_RULE    => 'getSpamRules',
         ];
     }
 
@@ -29,10 +30,10 @@ class CoreApisTest extends BaseTestCase
     protected function getGetOneEndpoints(): array
     {
         return [
-            ApiDictionary::CORE_BRAND => 'getBrand',
-            ApiDictionary::CORE_IP_BAN => 'getIpBan',
+            ApiDictionary::CORE_BRAND        => 'getBrand',
+            ApiDictionary::CORE_IP_BAN       => 'getIpBan',
             ApiDictionary::CORE_IP_WHITELIST => 'getWhitelistedIp',
-            ApiDictionary::CORE_SPAM_RULES => 'getSpamRule',
+            ApiDictionary::CORE_SPAM_RULE    => 'getSpamRule',
         ];
     }
 
@@ -42,9 +43,9 @@ class CoreApisTest extends BaseTestCase
     protected function getPostEndpoints(): array
     {
         return [
-            ApiDictionary::CORE_IP_BAN => CreateIpBanData::DATA,
+            ApiDictionary::CORE_IP_BAN       => CreateIpBanData::DATA,
             ApiDictionary::CORE_IP_WHITELIST => CreateWhitelistedIpData::DATA,
-            ApiDictionary::CORE_SPAM_RULES => CreateSpamRuleData::DATA,
+            ApiDictionary::CORE_SPAM_RULE    => CreateSpamRuleData::DATA,
         ];
     }
 

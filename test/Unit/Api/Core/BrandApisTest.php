@@ -16,7 +16,7 @@ class BrandApisTest extends BaseCoreApiTest
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $returnedBrands = $this->api->getBrands([]);
+        $returnedBrands = $this->api->getBrands();
         self::assertEquals($output, $returnedBrands);
     }
 
