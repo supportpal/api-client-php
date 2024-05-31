@@ -6,6 +6,7 @@ use SupportPal\ApiClient\Http\Core\BrandApis;
 use SupportPal\ApiClient\Http\Core\IpBanApis;
 use SupportPal\ApiClient\Http\Core\IpWhitelistApis;
 use SupportPal\ApiClient\Http\Core\SettingsApis;
+use SupportPal\ApiClient\Http\Core\SpamRuleApis;
 
 class CoreClient extends Client
 {
@@ -13,4 +14,5 @@ class CoreClient extends Client
     use IpBanApis;
     use IpWhitelistApis;
     use SettingsApis;
+    use SpamRuleApis;
 }

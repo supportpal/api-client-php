@@ -6,6 +6,7 @@ use SupportPal\ApiClient\Api\Core\Brands;
 use SupportPal\ApiClient\Api\Core\IpBans;
 use SupportPal\ApiClient\Api\Core\IpWhitelist;
 use SupportPal\ApiClient\Api\Core\Settings;
+use SupportPal\ApiClient\Api\Core\SpamRules;
 use SupportPal\ApiClient\Http\CoreClient;
 
 class CoreApi extends Api
@@ -14,6 +15,7 @@ class CoreApi extends Api
     use IpBans;
     use IpWhitelist;
     use Settings;
+    use SpamRules;
 
     public function __construct(protected readonly CoreClient $apiClient)
     {
