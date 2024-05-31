@@ -25,7 +25,7 @@ class SelfServiceApisTest extends BaseTestCase
     /**
      * @inheritDoc
      */
-    protected function getGetByIdEndpoints(): array
+    protected function getGetOneEndpoints(): array
     {
         return [
             ApiDictionary::SELF_SERVICE_CATEGORY => 'getCategory',
@@ -34,6 +34,14 @@ class SelfServiceApisTest extends BaseTestCase
             ApiDictionary::SELF_SERVICE_ARTICLE_TYPE => 'getType',
             ApiDictionary::SELF_SERVICE_COMMENT => 'getComment',
         ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getPostEndpoints(): array
+    {
+        return [];
     }
 
     public function testGetSelfServiceSettings(): void

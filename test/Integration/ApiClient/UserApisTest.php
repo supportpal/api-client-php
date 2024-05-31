@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
@@ -35,10 +36,8 @@ class UserApisTest extends ApiClientTest
      */
     protected function getPostEndpoints(): array
     {
-        $userData = (new UserData)->getResponse();
-
         return [
-            'postUser' => [CreateUserData::DATA, $userData],
+            'postUser' => [CreateUserData::DATA, (new UserData)->getResponse()],
         ];
     }
 
@@ -47,10 +46,8 @@ class UserApisTest extends ApiClientTest
      */
     protected function getPutEndpoints(): array
     {
-        $userData = new UserData;
-
         return [
-            'updateUser' => [$userData->getArrayData(), $userData->getResponse()],
+            'putUser' => [UpdateUserData::DATA, (new UserData)->getResponse()],
         ];
     }
 

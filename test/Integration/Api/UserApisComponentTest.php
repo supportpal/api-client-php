@@ -38,6 +38,14 @@ class UserApisComponentTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
+    protected function getDeleteEndpoints(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
     protected function getDownloadsEndpoints(): array
     {
         return [];

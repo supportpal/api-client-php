@@ -2,85 +2,52 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
-use SupportPal\ApiClient\Api\SelfServiceApi;
-use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Model\SelfService\Request\CreateComment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
-use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-class CommentApisTest extends ApiTest
+class CommentApisTest extends BaseSelfServiceApiTest
 {
-    /** @var SelfServiceApi */
-    protected $api;
-
     /** @var int */
     private $testCommentId = 1;
 
-    public function testPostComment(): void
+    public function testGetComments(): void
+    {
+        [$output, $response] = $this->makeCommonExpectations((new CommentData)->getAllResponse(), Comment::class);
+
+        $this->apiClient
+            ->getComments([])
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+        $comments = $this->api->getComments([]);
+        self::assertEquals($output, $comments);
+    }
+
+    public function testGetComment(): void
+    {
+        [$output, $response] = $this->makeCommonExpectations((new CommentData)->getResponse(), Comment::class);
+
+        $this->apiClient
+            ->getComment($this->testCommentId)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $returnedComment = $this->api->getComment($this->testCommentId);
+        self::assertEquals($output, $returnedComment);
+    }
+
+    public function testCreateComment(): void
     {
         $commentData = new CommentData;
         $arrayData = $commentData->getArrayData();
-        [$response, $commentOutput] = $this->postCommonExpectations(
-            $commentData->getResponse(),
-            Comment::class
-        );
+        [$commentOutput, $response] = $this->makeCommonExpectations($commentData->getResponse(), Comment::class);
 
         $this->apiClient
             ->postComment($arrayData)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $comment = $this->api->postComment(new CreateComment($arrayData));
+        $comment = $this->api->createComment(new CreateComment($arrayData));
         self::assertEquals($commentOutput, $comment);
-    }
-
-    public function testGetComments(): void
-    {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new CommentData)->getAllResponse(),
-            Comment::class
-        );
-
-        $this
-            ->apiClient
-            ->getComments([])
-            ->shouldBeCalled()
-            ->willReturn($response->reveal());
-        $comments = $this->api->getComments([]);
-        self::assertEquals($expectedOutput, $comments);
-    }
-
-    public function testGetComment(): void
-    {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new CommentData)->getResponse(),
-            Comment::class
-        );
-
-        $this
-            ->apiClient
-            ->getComment($this->testCommentId)
-            ->shouldBeCalled()
-            ->willReturn($response->reveal());
-
-        $returnedComment = $this->api->getComment($this->testCommentId);
-        self::assertEquals($expectedOutput, $returnedComment);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiName(): string
-    {
-        return SelfServiceApi::class;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiClientName(): string
-    {
-        return SelfServiceClient::class;
     }
 }

@@ -32,6 +32,6 @@ abstract class BaseUserData
         'created_at' => 1597245408,
         'updated_at' => 1597245408,
         'formatted_name' => 'test test',
-        'avatar_url' => 'http =>//localhost =>8080/resources/assets/frontend/img/user.gif?v=3.2.0',
+        'avatar_url' => 'http://localhost:8080/resources/assets/frontend/img/user.gif?v=3.2.0',
     ];
 }

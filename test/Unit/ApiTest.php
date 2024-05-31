@@ -64,19 +64,15 @@ abstract class ApiTest extends TestCase
     }
 
     /**
-     * @param array<mixed> $responseData
-     * @param class-string $model
-     * @return array<mixed>
+     * @return ObjectProphecy|ResponseInterface
      */
-    protected function postCommonExpectations(
-        array $responseData,
-        string $model
-    ): array {
+    protected function makeSuccessResponse()
+    {
         $response = $this->prophesize(ResponseInterface::class);
         $response->getBody()
-            ->willReturn(json_encode($responseData));
+            ->willReturn(json_encode(['status' => 'success']));
 
-        return [$response, new $model($responseData['data'])];
+        return $response;
     }
 
     /**

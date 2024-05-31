@@ -10,6 +10,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateMessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateTicketData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\UpdateTicketData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
@@ -58,12 +59,12 @@ class TicketApisTest extends ApiClientTest
      */
     protected function getPostEndpoints(): array
     {
-        $ticketData = (new TicketData)->getResponse();
-        $messageData = new MessageData;
+        $createTicket = new CreateTicketData;
+        $createMessage = new CreateMessageData;
 
         return [
-            'postTicket' => [(new CreateTicketData)->getArrayData(), $ticketData],
-            'postMessage' => [(new CreateMessageData)->getArrayData(), $messageData->getResponse()],
+            'postTicket' => [$createTicket::DATA, $createTicket->getResponse()],
+            'postMessage' => [$createMessage::DATA, $createMessage->getResponse()],
         ];
     }
 
@@ -72,13 +73,10 @@ class TicketApisTest extends ApiClientTest
      */
     protected function getPutEndpoints(): array
     {
-        $ticketData = new TicketData;
+        $updateTicketData = new UpdateTicketData;
 
         return [
-            'updateTicket' => [
-                $ticketData->getArrayData(),
-                $ticketData->getResponse()
-            ],
+            'putTicket' => [UpdateTicketData::DATA, $updateTicketData->getResponse()],
         ];
     }
 
@@ -87,9 +85,7 @@ class TicketApisTest extends ApiClientTest
      */
     protected function getDownloadsEndpoints(): array
     {
-        return [
-            'downloadAttachment' => 1,
-        ];
+        return ['downloadAttachment' => 1];
     }
 
     /**

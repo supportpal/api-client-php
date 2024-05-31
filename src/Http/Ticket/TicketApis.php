@@ -37,7 +37,7 @@ trait TicketApis
      * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function updateTicket(int $ticketId, array $body): ResponseInterface
+    public function putTicket(int $ticketId, array $body): ResponseInterface
     {
         $request = $this->getRequest()->create(
             'PUT',

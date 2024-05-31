@@ -22,13 +22,21 @@ class UserApisTest extends BaseTestCase
     /**
      * @inheritDoc
      */
-    protected function getGetByIdEndpoints(): array
+    protected function getGetOneEndpoints(): array
     {
         return [
             ApiDictionary::USER_USER => 'getUser',
             ApiDictionary::USER_USERGROUP => 'getGroup',
             ApiDictionary::USER_CUSTOMFIELD => 'getCustomField',
         ];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getPostEndpoints(): array
+    {
+        return [];
     }
 
     protected function getApi(): UserApi

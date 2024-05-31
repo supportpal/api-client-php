@@ -2,119 +2,70 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
-use SupportPal\ApiClient\Api\TicketApi;
-use SupportPal\ApiClient\Exception\MissingIdentifierException;
-use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
+use SupportPal\ApiClient\Model\Ticket\Request\UpdateTicket;
 use SupportPal\ApiClient\Model\Ticket\Ticket;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateTicketData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\UpdateTicketData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
-use SupportPal\ApiClient\Tests\Unit\ApiTest;
 
-class TicketApisTest extends ApiTest
+class TicketApisTest extends BaseTicketApiTest
 {
-    /** @var TicketApi */
-    protected $api;
-
     public function testGetTickets(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new TicketData)->getAllResponse(),
-            Ticket::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new TicketData)->getAllResponse(), Ticket::class);
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->getTickets([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
         $tickets = $this->api->getTickets();
-        self::assertEquals($expectedOutput, $tickets);
+        self::assertEquals($output, $tickets);
     }
 
     public function testGetTicket(): void
     {
-        [$expectedOutput, $response] = $this->makeCommonExpectations(
-            (new TicketData)->getResponse(),
-            Ticket::class
-        );
+        [$output, $response] = $this->makeCommonExpectations((new TicketData)->getResponse(), Ticket::class);
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->getTicket(1)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
         $tickets = $this->api->getTicket(1);
-        self::assertEquals($expectedOutput, $tickets);
+        self::assertEquals($output, $tickets);
     }
 
-    public function testPostTicket(): void
+    public function testCreateTicket(): void
     {
         $ticketData = new TicketData;
         $createTicketData = new CreateTicketData;
         $arrayData = $createTicketData::DATA;
-        [$response, $ticketOutput] = $this->postCommonExpectations(
-            $ticketData->getResponse(),
-            Ticket::class
-        );
+        [$ticketOutput, $response] = $this->makeCommonExpectations($ticketData->getResponse(), Ticket::class);
 
-        $this
-            ->apiClient
+        $this->apiClient
             ->postTicket($arrayData)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $ticket = $this->api->postTicket(new CreateTicket($arrayData));
+        $ticket = $this->api->createTicket(new CreateTicket($arrayData));
         self::assertEquals($ticketOutput, $ticket);
     }
 
-    public function testPutTicket(): void
+    public function testUpdateTicket(): void
     {
         $ticketData = new TicketData;
+        $updateTicket = new UpdateTicket(UpdateTicketData::DATA);
 
-        [$response, $output] = $this->postCommonExpectations(
-            $ticketData->getResponse(),
-            Ticket::class,
-        );
+        [$output, $response] = $this->makeCommonExpectations($ticketData->getResponse(), Ticket::class);
 
-        $this
-            ->apiClient
-            ->updateTicket(self::TEST_ID, $ticketData->getArrayData())
+        $this->apiClient
+            ->putTicket(self::TEST_ID, $updateTicket->toArray())
             ->willReturn($response->reveal())
             ->shouldBeCalled();
 
-        $ticket = $this->api->updateTicket(new Ticket(['id' => self::TEST_ID]), $ticketData->getArrayData());
+        $ticket = $this->api->updateTicket(self::TEST_ID, $updateTicket);
         self::assertEquals($output, $ticket);
-    }
-
-    public function testPutTicketWithoutIdentifier(): void
-    {
-        $ticketData = new TicketData;
-        $input = $this->prophesize(Ticket::class);
-        $input->getAttribute('relations')->willReturn(null);
-        $input->hasGetMutator('id')->willReturn(false);
-        $input->hasGetMutator('relations')->willReturn(false);
-        self::expectException(MissingIdentifierException::class);
-        /** @var Ticket $ticket */
-        $ticket = $input->reveal();
-        $this->api->updateTicket($ticket, $ticketData->getArrayData());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiName(): string
-    {
-        return TicketApi::class;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function getApiClientName(): string
-    {
-        return TicketClient::class;
     }
 }

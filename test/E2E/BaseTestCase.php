@@ -24,7 +24,7 @@ use function sprintf;
 
 abstract class BaseTestCase extends TestCase
 {
-    const BATCH_SIZE = 50;
+    const BATCH_SIZE = 1;
 
     const DEFAULT_LIMIT = self::BATCH_SIZE * 2;
 
@@ -54,14 +54,7 @@ abstract class BaseTestCase extends TestCase
         $this->supportPal = new SupportPal($apiContext);
     }
 
-    protected function getSupportPal(): SupportPal
-    {
-        return $this->supportPal;
-    }
-
     /**
-     * @param string $endpoint
-     * @param string $apiCall
      * @throws HttpResponseException
      * @dataProvider provideGetAllEndpoints
      */
@@ -84,7 +77,7 @@ abstract class BaseTestCase extends TestCase
             $response = $this->getSupportPal()->sendRequest($request);
             $modelsArray = json_decode((string) $response->getBody(), true)['data'];
 
-            foreach ($batch->getModels() as $offset => $value) {
+            foreach ($batch->all() as $offset => $value) {
                 try {
                     $this->assertArrayEqualsObjectFields($value, $modelsArray[$offset]);
                 } catch (ExpectationFailedException $exception) {
@@ -97,28 +90,28 @@ abstract class BaseTestCase extends TestCase
             }
 
             $start += $parameters['limit'];
-        } while ($batch->getModelsCount() > 0);
-    }
-
-    protected function settingsTestCase(string $endpoint, string $apiCall): void
-    {
-        $model = $this->getApi()->{$apiCall}();
-        $request = $this
-            ->getSupportPal()
-            ->getRequest()
-            ->create('GET', $endpoint);
-        $response = $this->getSupportPal()->sendRequest($request);
-        $responseArray = json_decode((string) $response->getBody(), true)['data'];
-        self::assertInstanceOf(Settings::class, $model);
-        $this->assertArrayEqualsObjectFields($model, $responseArray);
+        } while ($batch->totalCount() > 0);
     }
 
     /**
-     * @param string $endpoint
-     * @param string $apiCall
-     * @dataProvider provideGetByIdEndpoints
+     * @return iterable<mixed>
      */
-    public function testGetOneById(string $endpoint, string $apiCall): void
+    public function provideGetAllEndpoints(): iterable
+    {
+        foreach ($this->getGetAllEndpoints() as $endpoint => $apiCall) {
+            yield [$endpoint, $apiCall];
+        }
+    }
+
+    /**
+     * @return string[]
+     */
+    abstract protected function getGetAllEndpoints(): array;
+
+    /**
+     * @dataProvider provideGetOneEndpoints
+     */
+    public function testGetOne(string $endpoint, string $apiCall): void
     {
         $iteration = 1;
         while (true) {
@@ -153,35 +146,85 @@ abstract class BaseTestCase extends TestCase
     /**
      * @return iterable<mixed>
      */
-    public function provideGetAllEndpoints(): iterable
+    public function provideGetOneEndpoints(): iterable
     {
-        foreach ($this->getGetAllEndpoints() as $endpoint => $apiCall) {
+        foreach ($this->getGetOneEndpoints() as $endpoint => $apiCall) {
             yield [$endpoint, $apiCall];
+        }
+    }
+
+    /**
+     * @return string[]
+     */
+    abstract protected function getGetOneEndpoints(): array;
+
+    /**
+     * @param mixed[] $data
+     * @dataProvider providePostEndpoints
+     */
+    public function testPost(string $endpoint, string $apiCall, array $data): void
+    {
+        $iteration = 1;
+        while (true) {
+            try {
+                if ($iteration > $this->modelsTestLimit) {
+                    break;
+                }
+
+                $request = $this
+                    ->getSupportPal()
+                    ->getRequest()
+                    ->create('POST', $endpoint, [], $data);
+
+                $response = $this->getSupportPal()->sendRequest($request);
+                $responseArray = json_decode((string) $response->getBody(), true);
+                $this->assertTrue($responseArray['status'] === 'success');
+                ++$iteration;
+            } catch (ExpectationFailedException $exception) {
+                throw new ExpectationFailedException(
+                    sprintf('test failed in range start: %d, end: %d', $iteration, $iteration + self::BATCH_SIZE),
+                    $exception->getComparisonFailure(),
+                    $exception
+                );
+            }
         }
     }
 
     /**
      * @return iterable<mixed>
      */
-    public function provideGetByIdEndpoints(): iterable
+    public function providePostEndpoints(): iterable
     {
-        foreach ($this->getGetByIdEndpoints() as $endpoint => $apiCall) {
-            yield [$endpoint, $apiCall];
+        foreach ($this->getPostEndpoints() as $endpoint => $arguments) {
+            yield [$endpoint, ...$arguments];
         }
     }
 
     /**
-     * @return string[]
+     * @return array<string, mixed[]>
      */
-    abstract protected function getGetAllEndpoints(): array;
+    abstract protected function getPostEndpoints(): array;
 
-    /**
-     * @return string[]
-     */
-    abstract protected function getGetByIdEndpoints(): array;
+    protected function settingsTestCase(string $endpoint, string $apiCall): void
+    {
+        $model = $this->getApi()->{$apiCall}();
+        $request = $this
+            ->getSupportPal()
+            ->getRequest()
+            ->create('GET', $endpoint);
+        $response = $this->getSupportPal()->sendRequest($request);
+        $responseArray = json_decode((string) $response->getBody(), true)['data'];
+        self::assertInstanceOf(Settings::class, $model);
+        $this->assertArrayEqualsObjectFields($model, $responseArray);
+    }
 
     /**
      * @return UserApi|SelfServiceApi|TicketApi|CoreApi
      */
     abstract protected function getApi();
+
+    protected function getSupportPal(): SupportPal
+    {
+        return $this->supportPal;
+    }
 }

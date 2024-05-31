@@ -155,7 +155,7 @@ class UserApisTest extends ApiClientTest
             $request
         );
 
-        $updateUserTypeSuccessfulResponse = $this->apiClient->updateUser($this->testUserId, $userData->getArrayData());
+        $updateUserTypeSuccessfulResponse = $this->apiClient->putUser($this->testUserId, $userData->getArrayData());
         self::assertSame($response->reveal(), $updateUserTypeSuccessfulResponse);
     }
 
@@ -170,7 +170,7 @@ class UserApisTest extends ApiClientTest
             $userData->getArrayData()
         );
         $this->throwClientExceptionCommonExpectations($request);
-        $this->apiClient->updateUser($this->testUserId, $userData->getArrayData());
+        $this->apiClient->putUser($this->testUserId, $userData->getArrayData());
     }
 
     /**
@@ -189,7 +189,7 @@ class UserApisTest extends ApiClientTest
             $userData->getArrayData()
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->updateUser($this->testUserId, $userData->getArrayData());
+        $this->apiClient->putUser($this->testUserId, $userData->getArrayData());
     }
 
     /**

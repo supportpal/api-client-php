@@ -48,10 +48,10 @@ class SelfServiceApisData
      */
     public function postApiCalls(): array
     {
-        $commentData = new CommentData;
+        $createComment = new CreateCommentData;
 
         return [
-            'postComment' => [(new CreateCommentData)->getFilledInstance(), $commentData->getResponse()],
+            'createComment' => [$createComment->getFilledInstance(), $createComment->getResponse()],
         ];
     }
 }

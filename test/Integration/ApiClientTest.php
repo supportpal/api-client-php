@@ -199,6 +199,14 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @return array<mixed>
      */
+    protected function getDeleteEndpoints(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array<mixed>
+     */
     protected function getDownloadsEndpoints(): array
     {
         return [];
