@@ -16,6 +16,8 @@ final class ApiDictionary
 
     public const CORE_IP_BAN = 'core/ipban';
 
+    public const CORE_IP_WHITELIST = 'core/ipwhitelist';
+
     public const CORE_SETTINGS = 'core/settings';
 
     /**
