@@ -60,6 +60,16 @@ trait Users
     }
 
     /**
+     * @throws HttpResponseException
+     */
+    public function deleteUser(int $id): bool
+    {
+        $response = $this->getApiClient()->deleteUser($id);
+
+        return $this->decodeBody($response)['status'] === 'success';
+    }
+
+    /**
      * @param array<mixed> $data
      */
     private function createUserModel(array $data): User

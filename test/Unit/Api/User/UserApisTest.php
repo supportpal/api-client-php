@@ -67,4 +67,17 @@ class UserApisTest extends BaseUserApiTest
         $user = $this->api->updateUser(self::TEST_ID, $updateUser);
         self::assertEquals($output, $user);
     }
+
+    public function testDeleteUser(): void
+    {
+        $response = $this->makeSuccessResponse();
+
+        $this->apiClient
+            ->deleteUser(1)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $apiResponse = $this->api->deleteUser(1);
+        self::assertTrue($apiResponse);
+    }
 }
