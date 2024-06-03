@@ -39,12 +39,7 @@ trait UserApis
      */
     public function putUser(int $userId, array $body): ResponseInterface
     {
-        $request = $this->getRequest()->create(
-            'PUT',
-            ApiDictionary::USER_USER . '/' . $userId,
-            [],
-            $body
-        );
+        $request = $this->getRequest()->create('PUT', ApiDictionary::USER_USER . '/' . $userId, [], $body);
 
         return $this->sendRequest($request);
     }
@@ -56,12 +51,17 @@ trait UserApis
      */
     public function postUser(array $body): ResponseInterface
     {
-        $request = $this->getRequest()->create(
-            'POST',
-            ApiDictionary::USER_USER,
-            [],
-            $body
-        );
+        $request = $this->getRequest()->create('POST', ApiDictionary::USER_USER, [], $body);
+
+        return $this->sendRequest($request);
+    }
+
+    /**
+     * @throws HttpResponseException
+     */
+    public function deleteUser(int $id): ResponseInterface
+    {
+        $request = $this->getRequest()->create('DELETE', ApiDictionary::USER_USER . '/' . $id);
 
         return $this->sendRequest($request);
     }

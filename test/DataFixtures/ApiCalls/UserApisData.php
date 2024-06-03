@@ -55,4 +55,14 @@ class UserApisData
             'updateUser' => [1, $updateUser->getFilledInstance(), $updateUser->getResponse()],
         ];
     }
+
+    /**
+     * @return array<string, int>
+     */
+    public function deleteApiCalls(): array
+    {
+        return [
+            'deleteUser' => 1,
+        ];
+    }
 }

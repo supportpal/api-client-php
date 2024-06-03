@@ -41,7 +41,7 @@ class UserApisTest extends ApiComponentTest
      */
     protected function getDeleteEndpoints(): array
     {
-        return [];
+        return (new UserApisData)->deleteApiCalls();
     }
 
     /**
