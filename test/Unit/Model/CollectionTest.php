@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Model;
+namespace SupportPal\ApiClient\Tests\Unit\Model;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection;
