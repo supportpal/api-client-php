@@ -2,12 +2,12 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
+use SupportPal\ApiClient\Model\User\Operator;
 use SupportPal\ApiClient\Model\User\Request\CreateOperator;
 use SupportPal\ApiClient\Model\User\Request\UpdateOperator;
-use SupportPal\ApiClient\Model\User\Operator;
+use SupportPal\ApiClient\Tests\DataFixtures\User\OperatorData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateOperatorData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateOperatorData;
-use SupportPal\ApiClient\Tests\DataFixtures\User\OperatorData;
 
 class OperatorApisTest extends BaseUserApiTest
 {
