@@ -177,7 +177,7 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
     public function provideCacheableApiCalls(): iterable
     {
         /** Core Apis */
-        $brandData = new TypeData;
+        $brandData = new BrandData;
         $ipBanData = new IpBanData;
         $whitelistedIpData = new WhitelistedIpData;
         $languageData = new LanguageData;
