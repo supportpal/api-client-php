@@ -37,8 +37,8 @@ class UserApisData
             'getUser' => [$userData->getResponse(), [1]],
             'getUserCustomFields' => [$userCustomFieldsData->getAllResponse(), []],
             'getUserCustomField' => [$userCustomFieldsData->getResponse(), [1]],
-            'getGroups' => [$userGroupData->getAllResponse(), [[]]],
-            'getGroup' => [$userGroupData->getResponse(), [1]],
+            'getUserGroups' => [$userGroupData->getAllResponse(), [[]]],
+            'getUserGroup' => [$userGroupData->getResponse(), [1]],
         ];
     }
 

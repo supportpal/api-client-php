@@ -10,16 +10,16 @@ use SupportPal\ApiClient\Model\User\Group;
 
 use function array_map;
 
-trait UserGroups
+trait OperatorGroups
 {
         /**
      * @param array<mixed> $queryParameters
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function getUserGroups(array $queryParameters = []): Collection
+    public function getOperatorGroups(array $queryParameters = []): Collection
     {
-        $response = $this->getApiClient()->getUserGroups($queryParameters);
+        $response = $this->getApiClient()->getOperatorGroups($queryParameters);
         $body = $this->decodeBody($response);
         $models = array_map([$this, 'createGroupModel'], $body['data']);
 
@@ -29,9 +29,9 @@ trait UserGroups
     /**
      * @throws HttpResponseException
      */
-    public function getUserGroup(int $userGroupId): Group
+    public function getOperatorGroup(int $userGroupId): Group
     {
-        $response = $this->getApiClient()->getUserGroup($userGroupId);
+        $response = $this->getApiClient()->getOperatorGroup($userGroupId);
 
         return $this->createGroupModel($this->decodeBody($response)['data']);
     }
@@ -39,7 +39,10 @@ trait UserGroups
     /**
      * @param array<mixed> $data
      */
-    abstract private function createGroupModel(array $data): Group;
+    private function createGroupModel(array $data): Group
+    {
+        return new Group($data);
+    }
 
     abstract protected function getApiClient(): UserClient;
 }
