@@ -22,7 +22,7 @@ class UpdateUserData extends BaseModelData
         'organisation_id' => 1,
         'organisation_access_level' => 1,
         'organisation_notifications' => 1,
-        'customfield' => [1],
+        'customfield' => [1 => 'test'],
         'groups' => [1],
     ];
 

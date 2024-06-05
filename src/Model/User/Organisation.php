@@ -18,8 +18,8 @@ class Organisation extends Model
         'notes'         => 'string',
         'created_at'    => 'int',
         'updated_at'    => 'int',
+        'domains'       => 'array:' . Domain::class,
         'users'         => 'array:' . User::class,
         'customfields'  => 'array:' . UserCustomField::class,
-        'domains'       => 'array:' . Domain::class,
     ];
 }

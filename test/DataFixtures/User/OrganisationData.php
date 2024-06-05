@@ -19,9 +19,9 @@ class OrganisationData extends BaseModelData
         'notes' => null,
         'created_at' => 1598353061,
         'updated_at' => 1598353061,
-        'domains' => [DomainData::DATA,],
-        'customfields' => [UserCustomFieldData::DATA,],
+        'domains' => [DomainData::DATA],
         'users' => [],
+        'customfields' => [UserCustomFieldData::DATA],
     ];
 
     /**
@@ -31,9 +31,9 @@ class OrganisationData extends BaseModelData
     public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['domains'] = [(new DomainData)->getFilledInstance(),];
-        $data['customfields'] = [(new UserCustomFieldData)->getFilledInstance(),];
+        $data['domains'] = [(new DomainData)->getFilledInstance()];
         $data['users'] = [];
+        $data['customfields'] = [(new UserCustomFieldData)->getFilledInstance()];
 
         return $data;
     }

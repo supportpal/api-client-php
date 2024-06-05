@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Http;
 
 use SupportPal\ApiClient\Http\User\OperatorApis;
 use SupportPal\ApiClient\Http\User\OperatorGroupApis;
+use SupportPal\ApiClient\Http\User\OrganisationApis;
 use SupportPal\ApiClient\Http\User\OrganisationCustomFieldApis;
 use SupportPal\ApiClient\Http\User\SettingsApis;
 use SupportPal\ApiClient\Http\User\UserApis;
@@ -14,6 +15,7 @@ class UserClient extends Client
 {
     use OperatorApis;
     use OperatorGroupApis;
+    use OrganisationApis;
     use OrganisationCustomFieldApis;
     use SettingsApis;
     use UserApis;

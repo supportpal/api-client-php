@@ -40,6 +40,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\OperatorData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\OrganisationCustomFieldData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\OrganisationData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\SettingsData as UserSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
@@ -272,9 +273,12 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         yield ['getMessages', $messageData->getAllResponse(), [[]], TicketClient::class];
 
         /** User Apis */
+        $organisationData = new OrganisationData;
         $operatorData = new OperatorData;
         $userData = new UserData;
 
+        yield ['getOrganisations', $organisationData->getAllResponse(), [[]], UserClient::class];
+        yield ['getOrganisation', $organisationData->getResponse(), [1], UserClient::class];
         yield ['getOperators', $operatorData->getAllResponse(), [[]], UserClient::class];
         yield ['getOperator', $operatorData->getResponse(), [1], UserClient::class];
         yield ['getUsers', $userData->getAllResponse(), [[]], UserClient::class];

@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Api;
 use SupportPal\ApiClient\Api\User\OperatorGroups;
 use SupportPal\ApiClient\Api\User\Operators;
 use SupportPal\ApiClient\Api\User\OrganisationCustomFields;
+use SupportPal\ApiClient\Api\User\Organisations;
 use SupportPal\ApiClient\Api\User\Settings;
 use SupportPal\ApiClient\Api\User\UserCustomFields;
 use SupportPal\ApiClient\Api\User\UserGroups;
@@ -15,6 +16,7 @@ class UserApi extends Api
 {
     use Operators;
     use OperatorGroups;
+    use Organisations;
     use OrganisationCustomFields;
     use Settings;
     use UserCustomFields;
