@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Tests\DataFixtures\ApiCalls;
 
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\IpBanData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\LanguageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateIpBanData;
@@ -12,6 +11,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateWhitelistedIpData
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\UpdateIpBanData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\UpdateSpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\UpdateWhitelistedIpData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\SpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\WhitelistedIpData;
 

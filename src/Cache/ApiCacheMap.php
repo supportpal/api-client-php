@@ -17,7 +17,11 @@ class ApiCacheMap
     protected const CACHE_MAP = [
         self::DEFAULT_CACHE_TTL => [
             ApiDictionary::CORE_BRAND,
+            ApiDictionary::CORE_IP_BAN,
+            ApiDictionary::CORE_IP_WHITELIST,
+            ApiDictionary::CORE_LANGUAGE,
             ApiDictionary::CORE_SETTINGS,
+            ApiDictionary::CORE_SPAM_RULE,
 
             ApiDictionary::SELF_SERVICE_ARTICLE,
             ApiDictionary::SELF_SERVICE_ARTICLE_RELATED,
@@ -36,6 +40,7 @@ class ApiCacheMap
 
             ApiDictionary::USER_CUSTOMFIELD,
             ApiDictionary::USER_USERGROUP,
+            ApiDictionary::USER_SETTINGS,
         ],
     ];
 
