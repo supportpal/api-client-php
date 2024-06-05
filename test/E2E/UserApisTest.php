@@ -16,6 +16,7 @@ class UserApisTest extends BaseTestCase
             ApiDictionary::USER_USER => 'getUsers',
             ApiDictionary::USER_USERGROUP => 'getGroups',
             ApiDictionary::USER_CUSTOMFIELD => 'getCustomFields',
+            ApiDictionary::USER_SETTINGS => 'getSettings',
         ];
     }
 

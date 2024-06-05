@@ -3,7 +3,7 @@
 namespace SupportPal\ApiClient\Tests\DataFixtures\ApiCalls;
 
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\IpBanData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\LanguageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateIpBanData;
@@ -40,7 +40,7 @@ class CoreApisData
             // Languages
             'getLanguages' => [(new LanguageData)->getAllResponse(), []],
             // General Settings
-            'getSettings' => [(new CoreSettingsData)->getResponse(), []],
+            'getSettings' => [ (new SettingsData)->getResponse(), []],
             // Spam Rules
             'getSpamRules' => [$spamRuleData->getAllResponse(), []],
             'getSpamRule' => [$spamRuleData->getResponse(), [1]],

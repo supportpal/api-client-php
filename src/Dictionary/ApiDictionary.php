@@ -52,6 +52,8 @@ final class ApiDictionary
 
     public const USER_CUSTOMFIELD = 'user/customfield';
 
+    public const USER_SETTINGS = 'user/settings';
+
     /**
      * Ticket Apis
      */

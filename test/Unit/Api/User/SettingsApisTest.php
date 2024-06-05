@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
+namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
 use SupportPal\ApiClient\Model\Shared\Settings;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\SettingsData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\SettingsData;
 
-class SettingsApisTest extends BaseCoreApiTest
+class SettingsApisTest extends BaseUserApiTest
 {
     public function testGetCoreSettings(): void
     {

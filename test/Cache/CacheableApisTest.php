@@ -18,7 +18,7 @@ use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
@@ -172,7 +172,7 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
     public function provideCacheableApiCalls(): iterable
     {
         /** core Apis */
-        yield [ 'getSettings', (new CoreSettingsData)->getResponse(), [], CoreClient::class];
+        yield [ 'getSettings', (new SettingsData)->getResponse(), [], CoreClient::class];
         yield [ 'getBrand', (new BrandData)->getResponse(), [1], CoreClient::class];
         yield [ 'getBrands', (new BrandData)->getAllResponse(), [[]], CoreClient::class];
 
