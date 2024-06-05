@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\DataFixtures\Core;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 
-class CoreSettingsData extends BaseModelData
+class SettingsData extends BaseModelData
 {
     public const DATA = [
         'admin_folder' => 'admin',

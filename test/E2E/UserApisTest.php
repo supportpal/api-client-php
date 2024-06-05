@@ -39,6 +39,11 @@ class UserApisTest extends BaseTestCase
         return [];
     }
 
+    public function testUserSettings(): void
+    {
+        $this->settingsTestCase(ApiDictionary::USER_SETTINGS, 'getSettings');
+    }
+
     protected function getApi(): UserApi
     {
         return $this->getSupportPal()->getUserApi();

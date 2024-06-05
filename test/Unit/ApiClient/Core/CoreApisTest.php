@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Core;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\CoreClient;
-use SupportPal\ApiClient\Tests\DataFixtures\Core\CoreSettingsData;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 use function json_encode;
@@ -20,7 +20,7 @@ class CoreApisTest extends ApiClientTest
         $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
         $response = $this->sendRequestCommonExpectations(
             200,
-            (string) json_encode((new CoreSettingsData)->getResponse()),
+            (string) json_encode((new SettingsData)->getResponse()),
             $request
         );
 

@@ -6,6 +6,7 @@ use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateUserData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 
@@ -26,7 +27,8 @@ class UserApisData
             'getCustomFields' => [$customFieldsData->getAllResponse(), []],
             'getCustomField' => [$customFieldsData->getResponse(), [1]],
             'getGroups' => [$userGroupData->getAllResponse(), [[]]],
-            'getGroup' => [$userGroupData->getResponse(), [1]]
+            'getGroup' => [$userGroupData->getResponse(), [1]],
+            'getSettings' => [(new SettingsData)->getResponse(), []],
         ];
     }
 
