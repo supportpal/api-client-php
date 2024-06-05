@@ -1,23 +1,23 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Core;
+namespace SupportPal\ApiClient\Tests\Unit\ApiClient\User;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Http\CoreClient;
+use SupportPal\ApiClient\Http\UserClient;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 use function json_encode;
 
-class CoreApisTest extends ApiClientTest
+class SettingsApisTest extends ApiClientTest
 {
-    /** @var CoreClient */
+    /** @var UserClient */
     protected $apiClient;
 
     public function testSuccessfulGetCoreSettings(): void
     {
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_SETTINGS, []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode((new SettingsData)->getResponse()),
@@ -36,7 +36,7 @@ class CoreApisTest extends ApiClientTest
     public function testUnsuccessfulGetCoreSettings(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_SETTINGS, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getSettings();
     }
@@ -44,7 +44,7 @@ class CoreApisTest extends ApiClientTest
     public function testHttpExceptionGetCoreSettings(): void
     {
         self::expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_SETTINGS, []);
         $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getSettings();
     }
@@ -54,6 +54,6 @@ class CoreApisTest extends ApiClientTest
      */
     protected function getApiClientName(): string
     {
-        return CoreClient::class;
+        return UserClient::class;
     }
 }

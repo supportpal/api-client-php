@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Tests\DataFixtures\ApiCalls;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\OperatorData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\OrganisationCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateOperatorData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateOperatorData;
@@ -20,21 +21,24 @@ class UserApisData
      */
     public function getApiCalls(): array
     {
-        $userData = new UserData;
         $operatorData = new OperatorData;
-        $customFieldsData = new UserCustomFieldData;
+        $organisationCustomFieldsData = new OrganisationCustomFieldData;
+        $userData = new UserData;
+        $userCustomFieldsData = new UserCustomFieldData;
         $userGroupData = new GroupData;
 
         return [
-            'getUsers' => [$userData->getAllResponse(), []],
-            'getUser' => [$userData->getResponse(), [1]],
             'getOperators' => [$operatorData->getAllResponse(), []],
             'getOperator' => [$operatorData->getResponse(), [1]],
-            'getCustomFields' => [$customFieldsData->getAllResponse(), []],
-            'getCustomField' => [$customFieldsData->getResponse(), [1]],
+            'getOrganisationCustomFields' => [$organisationCustomFieldsData->getAllResponse(), []],
+            'getOrganisationCustomField' => [$organisationCustomFieldsData->getResponse(), [1]],
+            'getSettings' => [(new SettingsData)->getResponse(), []],
+            'getUsers' => [$userData->getAllResponse(), []],
+            'getUser' => [$userData->getResponse(), [1]],
+            'getUserCustomFields' => [$userCustomFieldsData->getAllResponse(), []],
+            'getUserCustomField' => [$userCustomFieldsData->getResponse(), [1]],
             'getGroups' => [$userGroupData->getAllResponse(), [[]]],
             'getGroup' => [$userGroupData->getResponse(), [1]],
-            'getSettings' => [(new SettingsData)->getResponse(), []],
         ];
     }
 

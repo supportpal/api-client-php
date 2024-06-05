@@ -10,18 +10,18 @@ use SupportPal\ApiClient\Model\User\UserCustomField;
 
 use function array_map;
 
-trait CustomFields
+trait UserCustomFields
 {
     /**
      * @param array<mixed> $queryParameters
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      */
-    public function getCustomFields(array $queryParameters = []): Collection
+    public function getUserCustomFields(array $queryParameters = []): Collection
     {
-        $response = $this->getApiClient()->getCustomFields($queryParameters);
+        $response = $this->getApiClient()->getUserCustomFields($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([$this, 'createUserCustomField'], $body['data']);
+        $models = array_map([$this, 'createUserCustomFieldModel'], $body['data']);
 
         return $this->createCollection($body['count'], $models);
     }
@@ -29,17 +29,17 @@ trait CustomFields
     /**
      * @throws HttpResponseException
      */
-    public function getCustomField(int $customFieldId): UserCustomField
+    public function getUserCustomField(int $id): UserCustomField
     {
-        $response = $this->getApiClient()->getCustomField($customFieldId);
+        $response = $this->getApiClient()->getUserCustomField($id);
 
-        return $this->createUserCustomField($this->decodeBody($response)['data']);
+        return $this->createUserCustomFieldModel($this->decodeBody($response)['data']);
     }
 
     /**
      * @param array<mixed> $data
      */
-    private function createUserCustomField(array $data): UserCustomField
+    private function createUserCustomFieldModel(array $data): UserCustomField
     {
         return new UserCustomField($data);
     }

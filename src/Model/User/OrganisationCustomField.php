@@ -6,14 +6,16 @@ use SupportPal\ApiClient\Model\Shared\CustomField;
 
 use function array_merge;
 
-class UserCustomField extends CustomField
+class OrganisationCustomField extends CustomField
 {
     /**
      * @param mixed[] $attributes
      */
     public function __construct(array $attributes = [])
     {
-        $this->casts = array_merge($this->casts, ['translations' => 'array:' . UserCustomFieldTranslation::class]);
+        $this->casts = array_merge($this->casts, [
+            'translations' => 'array:' . OrganisationCustomFieldTranslation::class
+        ]);
 
         parent::__construct($attributes);
     }

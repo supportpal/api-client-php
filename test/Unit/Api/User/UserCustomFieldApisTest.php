@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 
 class UserCustomFieldApisTest extends BaseUserApiTest
 {
-    public function testGetCustomFields(): void
+    public function testGetUserCustomFields(): void
     {
         [$output, $response] = $this->makeCommonExpectations(
             (new UserCustomFieldData)->getAllResponse(),
@@ -15,14 +15,14 @@ class UserCustomFieldApisTest extends BaseUserApiTest
         );
 
         $this->apiClient
-            ->getCustomFields([])
+            ->getUserCustomFields([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
-        $customFields = $this->api->getCustomFields([]);
+        $customFields = $this->api->getUserCustomFields();
         self::assertEquals($output, $customFields);
     }
 
-    public function testGetCustomField(): void
+    public function testGetUserCustomField(): void
     {
         [$output, $response] = $this->makeCommonExpectations(
             (new UserCustomFieldData)->getResponse(),
@@ -30,11 +30,11 @@ class UserCustomFieldApisTest extends BaseUserApiTest
         );
 
         $this->apiClient
-            ->getCustomField(1)
+            ->getUserCustomField(1)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $customField = $this->api->getCustomField(1);
+        $customField = $this->api->getUserCustomField(1);
         self::assertEquals($output, $customField);
     }
 }
