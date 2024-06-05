@@ -16,7 +16,6 @@ class UserApisTest extends BaseTestCase
             ApiDictionary::USER_USER => 'getUsers',
             ApiDictionary::USER_USERGROUP => 'getGroups',
             ApiDictionary::USER_CUSTOMFIELD => 'getCustomFields',
-            ApiDictionary::USER_SETTINGS => 'getSettings',
         ];
     }
 
@@ -38,6 +37,11 @@ class UserApisTest extends BaseTestCase
     protected function getPostEndpoints(): array
     {
         return [];
+    }
+
+    public function testUserSettings(): void
+    {
+        $this->settingsTestCase(ApiDictionary::USER_SETTINGS, 'getSettings');
     }
 
     protected function getApi(): UserApi

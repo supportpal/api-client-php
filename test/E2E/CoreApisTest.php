@@ -43,9 +43,9 @@ class CoreApisTest extends BaseTestCase
     protected function getPostEndpoints(): array
     {
         return [
-            //ApiDictionary::CORE_IP_BAN       => CreateIpBanData::DATA,
-            //ApiDictionary::CORE_IP_WHITELIST => CreateWhitelistedIpData::DATA,
-            //ApiDictionary::CORE_SPAM_RULE    => CreateSpamRuleData::DATA,
+            ApiDictionary::CORE_IP_BAN       => CreateIpBanData::DATA,
+            ApiDictionary::CORE_IP_WHITELIST => CreateWhitelistedIpData::DATA,
+            ApiDictionary::CORE_SPAM_RULE    => CreateSpamRuleData::DATA,
         ];
     }
 
