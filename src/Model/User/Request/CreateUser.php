@@ -64,7 +64,7 @@ class CreateUser extends Model
         return $this;
     }
 
-    public function setGroup(int $groupId): self
+    public function addToGroup(int $groupId): self
     {
         $groups = $this->getAttribute('group') ?? [];
         $groups[] = $groupId;

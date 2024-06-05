@@ -22,11 +22,11 @@ class CreateOperatorTest extends BaseModelTest
         self::assertSame(['phone' => ['+447947465753', '+447947465752', '+12345551234']], $this->model->toArray());
     }
 
-    public function testSetGroup(): void
+    public function testAddToGroup(): void
     {
-        $this->model->setGroup(4)
-            ->setGroup(3)
-            ->setGroup(1);
+        $this->model->addToGroup(4)
+            ->addToGroup(3)
+            ->addToGroup(1);
 
         self::assertSame(['group' => [4, 3, 1]], $this->model->toArray());
     }
