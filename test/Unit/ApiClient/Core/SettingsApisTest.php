@@ -1,31 +1,31 @@
 <?php declare(strict_types=1);
 
-namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
+namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Core;
 
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
-use SupportPal\ApiClient\Http\TicketClient;
-use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
+use SupportPal\ApiClient\Http\CoreClient;
+use SupportPal\ApiClient\Tests\DataFixtures\Core\SettingsData;
 use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 use function json_encode;
 
-class TicketSettingsApisTest extends ApiClientTest
+class SettingsApisTest extends ApiClientTest
 {
-    /** @var TicketClient */
+    /** @var CoreClient */
     protected $apiClient;
 
-    public function testSuccessfulGetTicketSettings(): void
+    public function testSuccessfulGetCoreSettings(): void
     {
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_SETTINGS, [], []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode((new SettingsData)->getResponse()),
             $request
         );
 
-        $ticketSettingsResponse = $this->apiClient->getSettings();
-        self::assertSame($response->reveal(), $ticketSettingsResponse);
+        $coreSettingsResponse = $this->apiClient->getSettings();
+        self::assertSame($response->reveal(), $coreSettingsResponse);
     }
 
     /**
@@ -33,27 +33,27 @@ class TicketSettingsApisTest extends ApiClientTest
      * @param string $responseBody
      * @dataProvider provideUnsuccessfulTestCases
      */
-    public function testUnsuccessfulGetTicketSettings(int $statusCode, string $responseBody): void
+    public function testUnsuccessfulGetCoreSettings(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_SETTINGS, [], []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
         $this->apiClient->getSettings();
     }
 
-    public function testHttpExceptionGetTicketSettings(): void
+    public function testHttpExceptionGetCoreSettings(): void
     {
         self::expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::TICKET_SETTINGS, [], []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::CORE_SETTINGS, [], []);
         $this->throwClientExceptionCommonExpectations($request);
         $this->apiClient->getSettings();
     }
 
     /**
-     * @return class-string
+     * @inheritDoc
      */
     protected function getApiClientName(): string
     {
-        return TicketClient::class;
+        return CoreClient::class;
     }
 }

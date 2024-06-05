@@ -46,15 +46,18 @@ final class ApiDictionary
     /**
      * User Apis
      */
-    public const USER_USER = 'user/user';
 
     public const USER_OPERATOR = 'user/operator';
 
-    public const USER_USERGROUP = 'user/usergroup';
+    public const USER_ORGANISATION_CUSTOMFIELD = 'user/organisationcustomfield';
+
+    public const USER_SETTINGS = 'user/settings';
+
+    public const USER_USER = 'user/user';
 
     public const USER_CUSTOMFIELD = 'user/customfield';
 
-    public const USER_SETTINGS = 'user/settings';
+    public const USER_USERGROUP = 'user/usergroup';
 
     /**
      * Ticket Apis

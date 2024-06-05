@@ -3,12 +3,12 @@
 namespace SupportPal\ApiClient\Tests\DataFixtures\User;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Model\User\UserCustomField;
+use SupportPal\ApiClient\Model\User\OrganisationCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\BaseModelData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\DataFixtures\Shared\OptionData;
 
-class UserCustomFieldData extends BaseModelData
+class OrganisationCustomFieldData extends BaseModelData
 {
     public const DATA = [
         'id' => 1,
@@ -28,7 +28,7 @@ class UserCustomFieldData extends BaseModelData
         'updated_at' => 1602320456,
         'options' => [OptionData::DATA],
         'brands' => [BrandData::DATA],
-        'translations' => [UserCustomFieldTranslationData::DATA],
+        'translations' => [OrganisationCustomFieldTranslationData::DATA],
     ];
 
     /**
@@ -40,7 +40,7 @@ class UserCustomFieldData extends BaseModelData
         $data = self::DATA;
         $data['options'] = [(new OptionData)->getFilledInstance()];
         $data['brands'] = [(new BrandData)->getFilledInstance()];
-        $data['translations'] = [(new UserCustomFieldTranslationData)->getFilledInstance()];
+        $data['translations'] = [(new OrganisationCustomFieldTranslationData)->getFilledInstance()];
 
         return $data;
     }
@@ -50,6 +50,6 @@ class UserCustomFieldData extends BaseModelData
      */
     public function getModel(): string
     {
-        return UserCustomField::class;
+        return OrganisationCustomField::class;
     }
 }

@@ -13,10 +13,11 @@ class UserApisTest extends BaseTestCase
     protected function getGetAllEndpoints(): array
     {
         return [
-            ApiDictionary::USER_USER => 'getUsers',
             ApiDictionary::USER_OPERATOR => 'getOperators',
+            ApiDictionary::USER_ORGANISATION_CUSTOMFIELD => 'getOrganisationCustomFields',
+            ApiDictionary::USER_USER => 'getUsers',
+            ApiDictionary::USER_CUSTOMFIELD => 'getUserCustomFields',
             ApiDictionary::USER_USERGROUP => 'getGroups',
-            ApiDictionary::USER_CUSTOMFIELD => 'getCustomFields',
         ];
     }
 
@@ -26,10 +27,11 @@ class UserApisTest extends BaseTestCase
     protected function getGetOneEndpoints(): array
     {
         return [
-            ApiDictionary::USER_USER => 'getUser',
             ApiDictionary::USER_OPERATOR => 'getOperator',
+            ApiDictionary::USER_ORGANISATION_CUSTOMFIELD => 'getOrganisationCustomField',
+            ApiDictionary::USER_USER => 'getUser',
+            ApiDictionary::USER_CUSTOMFIELD => 'getUserCustomField',
             ApiDictionary::USER_USERGROUP => 'getGroup',
-            ApiDictionary::USER_CUSTOMFIELD => 'getCustomField',
         ];
     }
 

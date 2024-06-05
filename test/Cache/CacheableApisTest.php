@@ -236,8 +236,8 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
 
         yield ['getGroups', $userGroupsData->getAllResponse(), [[]], UserClient::class];
         yield ['getGroup', $userGroupsData->getAllResponse(), [1], UserClient::class];
-        yield ['getCustomFields', $customFieldData->getAllResponse(), [[]], UserClient::class];
-        yield ['getCustomField', $customFieldData->getResponse(), [1], UserClient::class];
+        yield ['getUserCustomFields', $customFieldData->getAllResponse(), [[]], UserClient::class];
+        yield ['getUserCustomField', $customFieldData->getResponse(), [1], UserClient::class];
         yield ['getSettings', $userSettingsData->getResponse(), [], UserClient::class];
     }
 

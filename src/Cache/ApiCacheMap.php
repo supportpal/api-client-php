@@ -38,9 +38,10 @@ class ApiCacheMap
             ApiDictionary::TICKET_SETTINGS,
             ApiDictionary::TICKET_STATUS,
 
+            ApiDictionary::USER_ORGANISATION_CUSTOMFIELD,
+            ApiDictionary::USER_SETTINGS,
             ApiDictionary::USER_CUSTOMFIELD,
             ApiDictionary::USER_USERGROUP,
-            ApiDictionary::USER_SETTINGS,
         ],
     ];
 

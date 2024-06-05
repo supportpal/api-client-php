@@ -24,8 +24,8 @@ class UserApisTest extends ApiClientTest
         return [
             'getUsers' => [$userData->getAllResponse(), [[]]],
             'getUser' => [$userData->getResponse(), [1]],
-            'getCustomFields' => [$customFieldsData->getAllResponse(), [[]]],
-            'getCustomField' => [$customFieldsData->getResponse(), [1]],
+            'getUserCustomFields' => [$customFieldsData->getAllResponse(), [[]]],
+            'getUserCustomField' => [$customFieldsData->getResponse(), [1]],
             'getGroups' => [$userGroupData->getAllResponse(), [[]]],
             'getGroup' => [$userGroupData->getResponse(), [1]]
         ];

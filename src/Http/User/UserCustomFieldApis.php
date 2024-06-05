@@ -7,30 +7,24 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\ApiClientAware;
 
-trait CustomFieldApis
+trait UserCustomFieldApis
 {
     use ApiClientAware;
 
     /**
      * @param array<mixed> $queryParameters
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getCustomFields(array $queryParameters): ResponseInterface
+    public function getUserCustomFields(array $queryParameters): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::USER_CUSTOMFIELD, $queryParameters);
     }
 
     /**
-     * @param int $userCustomFieldId
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getCustomField(int $userCustomFieldId): ResponseInterface
+    public function getUserCustomField(int $id): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(
-            ApiDictionary::USER_CUSTOMFIELD . '/' . $userCustomFieldId,
-            []
-        );
+        return $this->prepareAndSendGetRequest(ApiDictionary::USER_CUSTOMFIELD . '/' . $id, []);
     }
 }
