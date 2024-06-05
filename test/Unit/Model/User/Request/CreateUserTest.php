@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTest;
 /**
  * @extends BaseModelTest<CreateUser>
  */
-class CreateUserModelTest extends BaseModelTest
+class CreateUserTest extends BaseModelTest
 {
     protected string $modelClass = CreateUser::class;
 
@@ -62,11 +62,11 @@ class CreateUserModelTest extends BaseModelTest
         self::assertSame(['customfield' => [1 => 'test3', 2 => 'test2']], $this->model->toArray());
     }
 
-    public function testSetGroup(): void
+    public function testAddToGroup(): void
     {
-        $this->model->setGroup(5)
-            ->setGroup(1)
-            ->setGroup(1);
+        $this->model->addToGroup(5)
+            ->addToGroup(1)
+            ->addToGroup(1);
 
         self::assertSame(['group' => [5, 1]], $this->model->toArray());
     }

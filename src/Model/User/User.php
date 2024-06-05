@@ -39,6 +39,7 @@ class User extends Model
         'updated_at'                 => 'int',
         'avatar_url'                 => 'string',
         'formatted_name'             => 'string',
+        'phone'                      => 'array',
         'groups'                     => 'array:' . Group::class,
         'customfields'               => 'array:' . UserCustomField::class,
         'organisation'               => Organisation::class,

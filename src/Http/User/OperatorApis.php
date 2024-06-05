@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\ApiClientAware;
 
-trait UserApis
+trait OperatorApis
 {
     use ApiClientAware;
 
@@ -15,26 +15,26 @@ trait UserApis
      * @param array<mixed> $queryParameters
      * @throws HttpResponseException
      */
-    public function getUsers(array $queryParameters): ResponseInterface
+    public function getOperators(array $queryParameters): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(ApiDictionary::USER_USER, $queryParameters);
+        return $this->prepareAndSendGetRequest(ApiDictionary::USER_OPERATOR, $queryParameters);
     }
 
     /**
      * @throws HttpResponseException
      */
-    public function getUser(int $id): ResponseInterface
+    public function getOperator(int $id): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(ApiDictionary::USER_USER . '/' .  $id, []);
+        return $this->prepareAndSendGetRequest(ApiDictionary::USER_OPERATOR . '/' .  $id, []);
     }
 
     /**
      * @param array<mixed> $body
      * @throws HttpResponseException
      */
-    public function putUser(int $id, array $body): ResponseInterface
+    public function putOperator(int $id, array $body): ResponseInterface
     {
-        $request = $this->getRequest()->create('PUT', ApiDictionary::USER_USER . '/' . $id, [], $body);
+        $request = $this->getRequest()->create('PUT', ApiDictionary::USER_OPERATOR . '/' . $id, [], $body);
 
         return $this->sendRequest($request);
     }
@@ -43,9 +43,9 @@ trait UserApis
      * @param array<mixed> $body
      * @throws HttpResponseException
      */
-    public function postUser(array $body): ResponseInterface
+    public function postOperator(array $body): ResponseInterface
     {
-        $request = $this->getRequest()->create('POST', ApiDictionary::USER_USER, [], $body);
+        $request = $this->getRequest()->create('POST', ApiDictionary::USER_OPERATOR, [], $body);
 
         return $this->sendRequest($request);
     }
@@ -53,9 +53,9 @@ trait UserApis
     /**
      * @throws HttpResponseException
      */
-    public function deleteUser(int $id): ResponseInterface
+    public function deleteOperator(int $id): ResponseInterface
     {
-        $request = $this->getRequest()->create('DELETE', ApiDictionary::USER_USER . '/' . $id);
+        $request = $this->getRequest()->create('DELETE', ApiDictionary::USER_OPERATOR . '/' . $id);
 
         return $this->sendRequest($request);
     }

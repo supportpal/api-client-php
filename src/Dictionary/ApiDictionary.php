@@ -48,6 +48,8 @@ final class ApiDictionary
      */
     public const USER_USER = 'user/user';
 
+    public const USER_OPERATOR = 'user/operator';
+
     public const USER_USERGROUP = 'user/usergroup';
 
     public const USER_CUSTOMFIELD = 'user/customfield';

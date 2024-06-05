@@ -31,9 +31,9 @@ trait Users
     /**
      * @throws HttpResponseException
      */
-    public function getUser(int $userId): User
+    public function getUser(int $id): User
     {
-        $response = $this->getApiClient()->getUser($userId);
+        $response = $this->getApiClient()->getUser($id);
 
         return $this->createUserModel($this->decodeBody($response)['data']);
     }
