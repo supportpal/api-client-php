@@ -14,6 +14,7 @@ class UserApisTest extends BaseTestCase
     {
         return [
             ApiDictionary::USER_USER => 'getUsers',
+            ApiDictionary::USER_OPERATOR => 'getOperators',
             ApiDictionary::USER_USERGROUP => 'getGroups',
             ApiDictionary::USER_CUSTOMFIELD => 'getCustomFields',
         ];
@@ -26,6 +27,7 @@ class UserApisTest extends BaseTestCase
     {
         return [
             ApiDictionary::USER_USER => 'getUser',
+            ApiDictionary::USER_OPERATOR => 'getOperator',
             ApiDictionary::USER_USERGROUP => 'getGroup',
             ApiDictionary::USER_CUSTOMFIELD => 'getCustomField',
         ];

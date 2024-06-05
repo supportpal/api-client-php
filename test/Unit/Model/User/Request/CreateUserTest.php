@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTest;
 /**
  * @extends BaseModelTest<CreateUser>
  */
-class CreateUserModelTest extends BaseModelTest
+class CreateUserTest extends BaseModelTest
 {
     protected string $modelClass = CreateUser::class;
 
