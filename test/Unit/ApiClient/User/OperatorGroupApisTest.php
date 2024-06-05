@@ -10,34 +10,34 @@ use SupportPal\ApiClient\Tests\Unit\ApiClientTest;
 
 use function json_encode;
 
-class UserGroupApisTest extends ApiClientTest
+class OperatorGroupApisTest extends ApiClientTest
 {
     /** @var UserClient */
     protected $apiClient;
 
     /** @var int */
-    private $testUserGroupId = 1;
+    private $testOperatorGroupId = 1;
 
-    public function testGetUserGroups(): void
+    public function testGetOperatorGroups(): void
     {
         $queryParams = [];
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USERGROUP, $queryParams, []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_OPERATORGROUP, $queryParams, []);
         $response = $this->sendRequestCommonExpectations(
             200,
             (string) json_encode((new GroupData)->getAllResponse()),
             $request
         );
-        $getTypeSuccessfulResponse = $this->apiClient->getUserGroups($queryParams);
+        $getTypeSuccessfulResponse = $this->apiClient->getOperatorGroups($queryParams);
         self::assertSame($response->reveal(), $getTypeSuccessfulResponse);
     }
 
-    public function testHttpExceptionGetUserGroups(): void
+    public function testHttpExceptionGetOperatorGroups(): void
     {
         $queryParams = [];
         self::expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USERGROUP, $queryParams, []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_OPERATORGROUP, $queryParams, []);
         $this->throwClientExceptionCommonExpectations($request);
-        $this->apiClient->getUserGroups($queryParams);
+        $this->apiClient->getOperatorGroups($queryParams);
     }
 
     /**
@@ -45,20 +45,20 @@ class UserGroupApisTest extends ApiClientTest
      * @param string $responseBody
      * @dataProvider provideUnsuccessfulTestCases
      */
-    public function testUnsuccessfulGetUserGroups(int $statusCode, string $responseBody): void
+    public function testUnsuccessfulGetOperatorGroups(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
         self::expectException(HttpResponseException::class);
-        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_USERGROUP, $queryParams, []);
+        $request = $this->requestCommonExpectations('GET', ApiDictionary::USER_OPERATORGROUP, $queryParams, []);
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getUserGroups($queryParams);
+        $this->apiClient->getOperatorGroups($queryParams);
     }
 
-    public function testGetUserGroup(): void
+    public function testGetOperatorGroup(): void
     {
         $request = $this->requestCommonExpectations(
             'GET',
-            ApiDictionary::USER_USERGROUP . '/' . $this->testUserGroupId,
+            ApiDictionary::USER_OPERATORGROUP . '/' . $this->testOperatorGroupId,
             [],
             []
         );
@@ -69,21 +69,21 @@ class UserGroupApisTest extends ApiClientTest
             $request
         );
 
-        $getUserGroupTypeSuccessfulResponse = $this->apiClient->getUserGroup($this->testUserGroupId);
-        self::assertSame($response->reveal(), $getUserGroupTypeSuccessfulResponse);
+        $getOperatorGroupTypeSuccessfulResponse = $this->apiClient->getOperatorGroup($this->testOperatorGroupId);
+        self::assertSame($response->reveal(), $getOperatorGroupTypeSuccessfulResponse);
     }
 
-    public function testHttpExceptionGetUserGroup(): void
+    public function testHttpExceptionGetOperatorGroup(): void
     {
         self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
-            ApiDictionary::USER_USERGROUP . '/' . $this->testUserGroupId,
+            ApiDictionary::USER_OPERATORGROUP . '/' . $this->testOperatorGroupId,
             [],
             []
         );
         $this->throwClientExceptionCommonExpectations($request);
-        $this->apiClient->getUserGroup($this->testUserGroupId);
+        $this->apiClient->getOperatorGroup($this->testOperatorGroupId);
     }
 
     /**
@@ -91,17 +91,17 @@ class UserGroupApisTest extends ApiClientTest
      * @param string $responseBody
      * @dataProvider provideUnsuccessfulTestCases
      */
-    public function testUnsuccessfulGetUserGroup(int $statusCode, string $responseBody): void
+    public function testUnsuccessfulGetOperatorGroup(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
         $request = $this->requestCommonExpectations(
             'GET',
-            ApiDictionary::USER_USERGROUP . '/' . $this->testUserGroupId,
+            ApiDictionary::USER_OPERATORGROUP . '/' . $this->testOperatorGroupId,
             [],
             []
         );
         $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
-        $this->apiClient->getUserGroup($this->testUserGroupId);
+        $this->apiClient->getOperatorGroup($this->testOperatorGroupId);
     }
 
     /**

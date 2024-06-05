@@ -5,30 +5,30 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 use SupportPal\ApiClient\Model\User\Group;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 
-class UserGroupApisTest extends BaseUserApiTest
+class OperatorGroupApisTest extends BaseUserApiTest
 {
-    public function testGetUserGroups(): void
+    public function testGetOperatorGroups(): void
     {
         [$output, $response] = $this->makeCommonExpectations((new GroupData)->getAllResponse(), Group::class);
 
         $this->apiClient
-            ->getUserGroups([])
+            ->getOperatorGroups([])
             ->shouldBeCalled()
             ->willReturn($response->reveal());
-        $userGroups = $this->api->getUserGroups();
+        $userGroups = $this->api->getOperatorGroups();
         self::assertEquals($output, $userGroups);
     }
 
-    public function testGetUserGroup(): void
+    public function testGetOperatorGroup(): void
     {
         [$output, $response] = $this->makeCommonExpectations((new GroupData)->getResponse(), Group::class);
 
         $this->apiClient
-            ->getUserGroup(1)
+            ->getOperatorGroup(1)
             ->shouldBeCalled()
             ->willReturn($response->reveal());
 
-        $userGroup = $this->api->getUserGroup(1);
+        $userGroup = $this->api->getOperatorGroup(1);
         self::assertEquals($output, $userGroup);
     }
 }

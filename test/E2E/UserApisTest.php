@@ -14,10 +14,11 @@ class UserApisTest extends BaseTestCase
     {
         return [
             ApiDictionary::USER_OPERATOR => 'getOperators',
+            ApiDictionary::USER_OPERATORGROUP => 'getOperatorGroups',
             ApiDictionary::USER_ORGANISATION_CUSTOMFIELD => 'getOrganisationCustomFields',
             ApiDictionary::USER_USER => 'getUsers',
             ApiDictionary::USER_CUSTOMFIELD => 'getUserCustomFields',
-            ApiDictionary::USER_USERGROUP => 'getGroups',
+            ApiDictionary::USER_USERGROUP => 'getUserGroups',
         ];
     }
 
@@ -28,10 +29,11 @@ class UserApisTest extends BaseTestCase
     {
         return [
             ApiDictionary::USER_OPERATOR => 'getOperator',
+            ApiDictionary::USER_OPERATORGROUP => 'getOperatorGroup',
             ApiDictionary::USER_ORGANISATION_CUSTOMFIELD => 'getOrganisationCustomField',
             ApiDictionary::USER_USER => 'getUser',
             ApiDictionary::USER_CUSTOMFIELD => 'getUserCustomField',
-            ApiDictionary::USER_USERGROUP => 'getGroup',
+            ApiDictionary::USER_USERGROUP => 'getUserGroup',
         ];
     }
 

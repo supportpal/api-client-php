@@ -38,6 +38,8 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\OperatorData;
+use SupportPal\ApiClient\Tests\DataFixtures\User\OrganisationCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\SettingsData as UserSettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
@@ -230,15 +232,20 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         yield ['getSettings', $ticketSettingsData->getResponse(), [], TicketClient::class];
 
         /** User Apis */
-        $userGroupsData = new GroupData;
-        $customFieldData = new UserCustomFieldData;
+        $groupsData = new GroupData;
+        $userCustomFieldData = new UserCustomFieldData;
+        $organisationCustomFieldData = new OrganisationCustomFieldData;
         $userSettingsData = new UserSettingsData;
 
-        yield ['getGroups', $userGroupsData->getAllResponse(), [[]], UserClient::class];
-        yield ['getGroup', $userGroupsData->getAllResponse(), [1], UserClient::class];
-        yield ['getUserCustomFields', $customFieldData->getAllResponse(), [[]], UserClient::class];
-        yield ['getUserCustomField', $customFieldData->getResponse(), [1], UserClient::class];
+        yield ['getOperatorGroups', $groupsData->getAllResponse(), [[]], UserClient::class];
+        yield ['getOperatorGroup', $groupsData->getAllResponse(), [1], UserClient::class];
+        yield ['getOrganisationCustomFields', $organisationCustomFieldData->getAllResponse(), [[]], UserClient::class];
+        yield ['getOrganisationCustomField', $organisationCustomFieldData->getResponse(), [1], UserClient::class];
         yield ['getSettings', $userSettingsData->getResponse(), [], UserClient::class];
+        yield ['getUserCustomFields', $userCustomFieldData->getAllResponse(), [[]], UserClient::class];
+        yield ['getUserCustomField', $userCustomFieldData->getResponse(), [1], UserClient::class];
+        yield ['getUserGroups', $groupsData->getAllResponse(), [[]], UserClient::class];
+        yield ['getUserGroup', $groupsData->getAllResponse(), [1], UserClient::class];
     }
 
     /**
@@ -246,28 +253,32 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
      */
     public function provideNonCacheableApis(): iterable
     {
+        /** SelfService Apis */
+        $commentData = new CommentData;
+
+        yield ['getComment', $commentData->getResponse(), [1], SelfServiceClient::class];
+        yield ['getComments', $commentData->getAllResponse(), [[]], SelfServiceClient::class];
+
+        /** Ticket Apis */
         $attachmentData = new AttachmentData;
         $ticketData = new TicketData;
         $messageData = new MessageData;
 
-        /** SelfService Apis */
-        $commentData = new CommentData;
-
-        yield [ 'getComment', $commentData->getResponse(), [1], SelfServiceClient::class];
-        yield [ 'getComments', $commentData->getAllResponse(), [[]], SelfServiceClient::class];
-
-        /** Ticket Apis */
-        yield [ 'getAttachments', $attachmentData->getAllResponse(), [[]], TicketClient::class];
-        yield [ 'getAttachment', $attachmentData->getResponse(), [1], TicketClient::class];
-        yield [ 'getTickets', $ticketData->getAllResponse(), [[]], TicketClient::class];
-        yield [ 'getTicket', $ticketData->getResponse(), [1], TicketClient::class];
-        yield [ 'getMessage', $messageData->getResponse(), [1], TicketClient::class];
-        yield [ 'getMessages', $messageData->getAllResponse(), [[]], TicketClient::class];
+        yield ['getAttachments', $attachmentData->getAllResponse(), [[]], TicketClient::class];
+        yield ['getAttachment', $attachmentData->getResponse(), [1], TicketClient::class];
+        yield ['getTickets', $ticketData->getAllResponse(), [[]], TicketClient::class];
+        yield ['getTicket', $ticketData->getResponse(), [1], TicketClient::class];
+        yield ['getMessage', $messageData->getResponse(), [1], TicketClient::class];
+        yield ['getMessages', $messageData->getAllResponse(), [[]], TicketClient::class];
 
         /** User Apis */
+        $operatorData = new OperatorData;
         $userData = new UserData;
 
-        yield [ 'getUsers', $userData->getAllResponse(), [[]], UserClient::class];
+        yield ['getOperators', $operatorData->getAllResponse(), [[]], UserClient::class];
+        yield ['getOperator', $operatorData->getResponse(), [1], UserClient::class];
+        yield ['getUsers', $userData->getAllResponse(), [[]], UserClient::class];
+        yield ['getUser', $userData->getResponse(), [1], UserClient::class];
     }
 
     /**

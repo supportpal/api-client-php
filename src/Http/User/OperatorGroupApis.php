@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\ApiClientAware;
 
-trait UserGroupApis
+trait OperatorGroupApis
 {
     use ApiClientAware;
 
@@ -15,16 +15,16 @@ trait UserGroupApis
      * @param array<mixed> $parameters
      * @throws HttpResponseException
      */
-    public function getUserGroups(array $parameters): ResponseInterface
+    public function getOperatorGroups(array $parameters): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(ApiDictionary::USER_USERGROUP, $parameters);
+        return $this->prepareAndSendGetRequest(ApiDictionary::USER_OPERATORGROUP, $parameters);
     }
 
     /**
      * @throws HttpResponseException
      */
-    public function getUserGroup(int $id): ResponseInterface
+    public function getOperatorGroup(int $id): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(ApiDictionary::USER_USERGROUP . '/' . $id, []);
+        return $this->prepareAndSendGetRequest(ApiDictionary::USER_OPERATORGROUP . '/' . $id, []);
     }
 }
