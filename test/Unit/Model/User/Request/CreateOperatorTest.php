@@ -3,7 +3,6 @@
 namespace SupportPal\ApiClient\Tests\Unit\Model\User\Request;
 
 use SupportPal\ApiClient\Model\User\Request\CreateOperator;
-use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTest;
 
 /**
