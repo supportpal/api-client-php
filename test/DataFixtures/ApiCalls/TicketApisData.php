@@ -12,6 +12,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateMessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateTicketData;
+use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\UpdateMessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\UpdateTicketData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
@@ -30,8 +31,8 @@ class TicketApisData
         $ticketCustomFieldData = new TicketCustomFieldData;
         $priorityData = new PriorityData;
         $statusData = new StatusData;
-        $attachmentData = new AttachmentData;
         $ticketData = new TicketData;
+        $attachmentData = new AttachmentData;
         $messageData = new MessageData;
 
         return [
@@ -45,12 +46,12 @@ class TicketApisData
             'getPriority' => [$priorityData->getResponse(), [1]],
             'getStatuses' => [$statusData->getAllResponse(), []],
             'getStatus' => [$statusData->getResponse(), [1]],
-            'getAttachments' => [$attachmentData->getAllResponse(), []],
-            'getAttachment' => [$attachmentData->getResponse(), [1]],
             'getTickets' => [$ticketData->getAllResponse(), []],
             'getTicket' => [$ticketData->getResponse(), [1]],
-            'getMessage' => [$messageData->getResponse(), [1]],
+            'getAttachments' => [$attachmentData->getAllResponse(), []],
+            'getAttachment' => [$attachmentData->getResponse(), [1]],
             'getMessages' => [$messageData->getAllResponse(), [1]],
+            'getMessage' => [$messageData->getResponse(), [1]],
         ];
     }
 
@@ -76,9 +77,11 @@ class TicketApisData
     public function putApiCalls(): array
     {
         $updateTicketData = new UpdateTicketData;
+        $updateMessageData = new UpdateMessageData;
 
         return [
             'updateTicket' => [1, $updateTicketData->getFilledInstance(), $updateTicketData->getResponse()],
+            'updateMessageData' => [1, $updateMessageData->getFilledInstance(), $updateMessageData->getResponse()],
         ];
     }
 
@@ -89,6 +92,7 @@ class TicketApisData
     {
         return [
             'deleteTicket' => 1,
+            'deleteMessage' => 1,
         ];
     }
 

@@ -49,7 +49,6 @@ trait Tickets
     }
 
     /**
-     * @throws InvalidArgumentException
      * @throws HttpResponseException
      */
     public function updateTicket(int $id, UpdateTicket $data): Ticket
