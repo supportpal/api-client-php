@@ -8,6 +8,7 @@ use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\Ticket\Message;
 use SupportPal\ApiClient\Model\Ticket\Request\CreateMessage;
+use SupportPal\ApiClient\Model\Ticket\Request\UpdateMessage;
 
 use function array_map;
 
@@ -46,6 +47,26 @@ trait Messages
         $response = $this->getApiClient()->postMessage($data->toArray());
 
         return $this->createMessageModel($this->decodeBody($response)['data']);
+    }
+
+    /**
+     * @throws HttpResponseException
+     */
+    public function updateMessage(int $id, UpdateMessage $data): Message
+    {
+        $response = $this->getApiClient()->putMessage($id, $data->toArray());
+
+        return $this->createMessageModel($this->decodeBody($response)['data']);
+    }
+
+    /**
+     * @throws HttpResponseException
+     */
+    public function deleteMessage(int $id): bool
+    {
+        $response = $this->getApiClient()->deleteMessage($id);
+
+        return $this->decodeBody($response)['status'] === 'success';
     }
 
     /**

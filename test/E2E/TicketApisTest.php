@@ -13,12 +13,13 @@ class TicketApisTest extends BaseTestCase
     protected function getGetAllEndpoints(): array
     {
         return [
-            ApiDictionary::TICKET_TICKET => 'getTickets',
-            ApiDictionary::TICKET_ATTACHMENT => 'getAttachments',
-            ApiDictionary::TICKET_STATUS => 'getStatuses',
-            ApiDictionary::TICKET_PRIORITY => 'getPriorities',
             ApiDictionary::TICKET_CUSTOMFIELD => 'getCustomFields',
             ApiDictionary::TICKET_DEPARTMENT => 'getDepartments',
+            ApiDictionary::TICKET_STATUS => 'getStatuses',
+            ApiDictionary::TICKET_PRIORITY => 'getPriorities',
+            ApiDictionary::TICKET_TICKET => 'getTickets',
+            ApiDictionary::TICKET_ATTACHMENT => 'getAttachments',
+            ApiDictionary::TICKET_MESSAGE => 'getMessage',
         ];
     }
 
@@ -28,12 +29,13 @@ class TicketApisTest extends BaseTestCase
     protected function getGetOneEndpoints(): array
     {
         return [
+            ApiDictionary::TICKET_CUSTOMFIELD => 'getCustomField',
             ApiDictionary::TICKET_DEPARTMENT => 'getDepartment' ,
             ApiDictionary::TICKET_PRIORITY => 'getPriority',
             ApiDictionary::TICKET_STATUS => 'getStatus',
-            ApiDictionary::TICKET_ATTACHMENT => 'getAttachment',
             ApiDictionary::TICKET_TICKET => 'getTicket',
-            ApiDictionary::TICKET_CUSTOMFIELD => 'getCustomField',
+            ApiDictionary::TICKET_ATTACHMENT => 'getAttachment',
+            ApiDictionary::TICKET_MESSAGE => 'getMessage',
         ];
     }
 

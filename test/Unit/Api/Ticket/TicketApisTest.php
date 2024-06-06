@@ -69,7 +69,7 @@ class TicketApisTest extends BaseTicketApiTest
         self::assertEquals($output, $ticket);
     }
 
-    public function testDeleteArticle(): void
+    public function testDeleteTicket(): void
     {
         $response = $this->makeSuccessResponse();
 

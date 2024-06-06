@@ -38,4 +38,25 @@ trait MessageApis
 
         return $this->sendRequest($request);
     }
+
+    /**
+     * @param array<mixed> $body
+     * @throws HttpResponseException
+     */
+    public function putMessage(int $id, array $body): ResponseInterface
+    {
+        $request = $this->getRequest()->create('PUT', ApiDictionary::TICKET_MESSAGE . '/' . $id, [], $body);
+
+        return $this->sendRequest($request);
+    }
+
+    /**
+     * @throws HttpResponseException
+     */
+    public function deleteMessage(int $id): ResponseInterface
+    {
+        $request = $this->getRequest()->create('DELETE', ApiDictionary::TICKET_MESSAGE . '/' . $id);
+
+        return $this->sendRequest($request);
+    }
 }
