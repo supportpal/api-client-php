@@ -2,7 +2,11 @@
 
 namespace SupportPal\ApiClient\Model\Ticket\Request;
 
+use Illuminate\Support\Str;
 use SupportPal\ApiClient\Model\Model;
+
+use function array_unique;
+use function trim;
 
 class CreateTicket extends Model
 {
@@ -32,4 +36,64 @@ class CreateTicket extends Model
         'attachment'           => 'array',
         'created_at'           => 'int',
     ];
+
+    public function addTag(int $tagId): self
+    {
+        $tags = $this->getAttribute('tag') ?? [];
+        $tags[] = $tagId;
+
+        $this->setAttribute('tag', array_unique($tags));
+
+        return $this;
+    }
+
+    public function assignOperator(int $operatorId): self
+    {
+        $assigned = $this->getAttribute('assignedto') ?? [];
+        $assigned[] = $operatorId;
+
+        $this->setAttribute('assignedto', array_unique($assigned));
+
+        return $this;
+    }
+
+    public function addWatchingOperator(int $operatorId): self
+    {
+        $watching = $this->getAttribute('watching') ?? [];
+        $watching[] = $operatorId;
+
+        $this->setAttribute('watching', array_unique($watching));
+
+        return $this;
+    }
+
+    public function setCustomFieldValue(int $fieldId, mixed $value): self
+    {
+        $customFields = $this->getAttribute('customfield') ?? [];
+        $customFields[$fieldId] = $value;
+
+        $this->setAttribute('customfield', $customFields);
+
+        return $this;
+    }
+
+    public function addCc(string $email): self
+    {
+        $cc = $this->getAttribute('cc') ?? [];
+        $cc[] = Str::lower(trim($email));
+
+        $this->setAttribute('cc', array_unique($cc));
+
+        return $this;
+    }
+
+    public function addAttachment(string $filename, string $contents): self
+    {
+        $attachments = $this->getAttribute('attachment') ?? [];
+        $attachments[] = ['filename' => $filename, 'contents' => $contents];
+
+        $this->setAttribute('attachment', $attachments);
+
+        return $this;
+    }
 }
