@@ -19,7 +19,7 @@ class TicketApisTest extends BaseTestCase
             ApiDictionary::TICKET_PRIORITY => 'getPriorities',
             ApiDictionary::TICKET_TICKET => 'getTickets',
             ApiDictionary::TICKET_ATTACHMENT => 'getAttachments',
-            ApiDictionary::TICKET_MESSAGE => 'getMessage',
+            //ApiDictionary::TICKET_MESSAGE => 'getMessages', This doesn't work as it takes $ticketId as first param
         ];
     }
 
