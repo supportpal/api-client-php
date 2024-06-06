@@ -2,8 +2,8 @@
 
 namespace SupportPal\ApiClient\Api;
 
-use SupportPal\ApiClient\Api\SelfService\Attachments;
 use SupportPal\ApiClient\Api\SelfService\Articles;
+use SupportPal\ApiClient\Api\SelfService\Attachments;
 use SupportPal\ApiClient\Api\SelfService\Categories;
 use SupportPal\ApiClient\Api\SelfService\Comments;
 use SupportPal\ApiClient\Api\SelfService\Settings;
