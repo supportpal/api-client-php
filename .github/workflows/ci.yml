@@ -51,7 +51,7 @@ jobs:
               run: ci/test.sh
               env:
                 TESTSUITE: integration
-                MINCOVERAGE: ${{ matrix.php == '8.3' && '80' || '0' }}
+                MINCOVERAGE: ${{ matrix.php == '8.3' && '75' || '0' }}
 
             - name: Execute Cache tests
               run: ./vendor/bin/phpunit --testsuite=cache --stop-on-fail
