@@ -3,7 +3,11 @@
 namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
 use SupportPal\ApiClient\Model\SelfService\Article;
+use SupportPal\ApiClient\Model\SelfService\Request\CreateArticle;
+use SupportPal\ApiClient\Model\SelfService\Request\UpdateArticle;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\CreateArticleData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\UpdateArticleData;
 
 class ArticleApisTest extends BaseSelfServiceApiTest
 {
@@ -63,5 +67,52 @@ class ArticleApisTest extends BaseSelfServiceApiTest
 
         $articles = $this->api->getRelatedArticles(1, 'test');
         self::assertEquals($output, $articles);
+    }
+
+    public function testCreateArticle(): void
+    {
+        [$output, $response] = $this->makeCommonExpectations((new ArticleData)->getResponse(), Article::class);
+
+        $createArticle = new CreateArticleData;
+        /** @var CreateArticle $data */
+        $data = $createArticle->getFilledInstance();
+
+        $this->apiClient
+            ->postArticle($createArticle::DATA)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $returnedBrand = $this->api->createArticle($data);
+        self::assertEquals($output, $returnedBrand);
+    }
+
+    public function testUpdateArticle(): void
+    {
+        [$output, $response] = $this->makeCommonExpectations((new ArticleData)->getResponse(), Article::class);
+
+        $updateArticle = new UpdateArticleData;
+        /** @var UpdateArticle $data */
+        $data = $updateArticle->getFilledInstance();
+
+        $this->apiClient
+            ->putArticle(1, $updateArticle::DATA)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $returnedBrand = $this->api->updateArticle(1, $data);
+        self::assertEquals($output, $returnedBrand);
+    }
+
+    public function testDeleteArticle(): void
+    {
+        $response = $this->makeSuccessResponse();
+
+        $this->apiClient
+            ->deleteArticle(1)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $apiResponse = $this->api->deleteArticle(1);
+        self::assertTrue($apiResponse);
     }
 }

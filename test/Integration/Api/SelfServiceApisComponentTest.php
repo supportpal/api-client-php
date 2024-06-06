@@ -29,7 +29,7 @@ class SelfServiceApisComponentTest extends ApiComponentTest
      */
     protected function getPutEndpoints(): array
     {
-        return [];
+        return (new SelfServiceApisData)->putApiCalls();
     }
 
     /**
@@ -37,7 +37,7 @@ class SelfServiceApisComponentTest extends ApiComponentTest
      */
     protected function getDeleteEndpoints(): array
     {
-        return [];
+        return (new SelfServiceApisData)->deleteApiCalls();
     }
 
     /**

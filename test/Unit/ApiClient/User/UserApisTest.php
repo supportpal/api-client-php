@@ -192,6 +192,40 @@ class UserApisTest extends ApiClientTest
         $this->apiClient->putUser($this->testUserId, $userData->getArrayData());
     }
 
+    public function testDeleteUser(): void
+    {
+        $request = $this->requestCommonExpectations('DELETE', ApiDictionary::USER_USER . '/' . $this->testUserId);
+
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode(['status' => 'success']),
+            $request
+        );
+
+        $userDeleteResponse = $this->apiClient->deleteUser($this->testUserId);
+
+        self::assertSame($response->reveal(), $userDeleteResponse);
+    }
+
+    public function testHttpExceptionDeleteUser(): void
+    {
+        self::expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('DELETE', ApiDictionary::USER_USER . '/' . $this->testUserId);
+        $this->throwClientExceptionCommonExpectations($request);
+        $this->apiClient->deleteUser($this->testUserId);
+    }
+
+    /**
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulDeleteUser(int $statusCode, string $responseBody): void
+    {
+        self::expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('DELETE', ApiDictionary::USER_USER . '/' . $this->testUserId);
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->deleteUser($this->testUserId);
+    }
+
     /**
      * @return class-string
      */

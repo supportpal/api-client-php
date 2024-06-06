@@ -32,9 +32,9 @@ trait UserApis
      * @param array<mixed> $body
      * @throws HttpResponseException
      */
-    public function putUser(int $id, array $body): ResponseInterface
+    public function postUser(array $body): ResponseInterface
     {
-        $request = $this->getRequest()->create('PUT', ApiDictionary::USER_USER . '/' . $id, [], $body);
+        $request = $this->getRequest()->create('POST', ApiDictionary::USER_USER, [], $body);
 
         return $this->sendRequest($request);
     }
@@ -43,9 +43,9 @@ trait UserApis
      * @param array<mixed> $body
      * @throws HttpResponseException
      */
-    public function postUser(array $body): ResponseInterface
+    public function putUser(int $id, array $body): ResponseInterface
     {
-        $request = $this->getRequest()->create('POST', ApiDictionary::USER_USER, [], $body);
+        $request = $this->getRequest()->create('PUT', ApiDictionary::USER_USER . '/' . $id, [], $body);
 
         return $this->sendRequest($request);
     }

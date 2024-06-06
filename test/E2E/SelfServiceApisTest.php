@@ -14,11 +14,11 @@ class SelfServiceApisTest extends BaseTestCase
     protected function getGetAllEndpoints(): array
     {
         return [
-            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE => 'getTypes',
-            ApiDictionary::SELF_SERVICE_COMMENT => 'getComments',
-            ApiDictionary::SELF_SERVICE_CATEGORY => 'getCategories',
             ApiDictionary::SELF_SERVICE_ARTICLE => 'getArticles',
+            ApiDictionary::SELF_SERVICE_CATEGORY => 'getCategories',
+            ApiDictionary::SELF_SERVICE_COMMENT => 'getComments',
             ApiDictionary::SELF_SERVICE_TAG => 'getTags',
+            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE => 'getTypes',
         ];
     }
 
@@ -28,11 +28,11 @@ class SelfServiceApisTest extends BaseTestCase
     protected function getGetOneEndpoints(): array
     {
         return [
-            ApiDictionary::SELF_SERVICE_CATEGORY => 'getCategory',
             ApiDictionary::SELF_SERVICE_ARTICLE => 'getArticle',
+            ApiDictionary::SELF_SERVICE_CATEGORY => 'getCategory',
+            ApiDictionary::SELF_SERVICE_COMMENT => 'getComment',
             ApiDictionary::SELF_SERVICE_TAG => 'getTag',
             ApiDictionary::SELF_SERVICE_ARTICLE_TYPE => 'getType',
-            ApiDictionary::SELF_SERVICE_COMMENT => 'getComment',
         ];
     }
 

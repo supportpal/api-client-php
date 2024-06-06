@@ -12,22 +12,19 @@ trait CategoryApis
     use ApiClientAware;
 
     /**
-     * @param int $categoryId
-     * @return ResponseInterface
-     * @throws HttpResponseException
-     */
-    public function getCategory(int $categoryId): ResponseInterface
-    {
-        return $this->prepareAndSendGetRequest(ApiDictionary::SELF_SERVICE_CATEGORY . '/' . $categoryId, []);
-    }
-
-    /**
      * @param array<mixed> $queryParameters
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getCategories(array $queryParameters): ResponseInterface
     {
         return $this->prepareAndSendGetRequest(ApiDictionary::SELF_SERVICE_CATEGORY, $queryParameters);
+    }
+
+    /**
+     * @throws HttpResponseException
+     */
+    public function getCategory(int $id): ResponseInterface
+    {
+        return $this->prepareAndSendGetRequest(ApiDictionary::SELF_SERVICE_CATEGORY . '/' . $id, []);
     }
 }
