@@ -13,7 +13,6 @@ trait DepartmentApis
 
     /**
      * @param array<mixed> $queryParameters
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getDepartments(array $queryParameters): ResponseInterface
@@ -22,12 +21,10 @@ trait DepartmentApis
     }
 
     /**
-     * @param int $departmentId
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getDepartment(int $departmentId): ResponseInterface
+    public function getDepartment(int $id): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_DEPARTMENT . '/' .  $departmentId, []);
+        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_DEPARTMENT . '/' .  $id, []);
     }
 }

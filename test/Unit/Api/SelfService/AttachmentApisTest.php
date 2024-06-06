@@ -44,7 +44,7 @@ class AttachmentApisTest extends BaseSelfServiceApiTest
         $response->getBody()->shouldBeCalled()->willReturn($stream->reveal());
         $this->apiClient->downloadAttachment(1)->shouldBeCalled()->willReturn($response->reveal());
 
-        $this->api->downloadAttachment(new Attachment(['id' => 1]));
+        $this->api->downloadAttachment(1);
     }
 
     public function testCreateAttachment(): void

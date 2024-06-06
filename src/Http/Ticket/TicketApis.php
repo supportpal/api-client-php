@@ -13,7 +13,6 @@ trait TicketApis
 
     /**
      * @param array<mixed> $queryParameters
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getTickets(array $queryParameters): ResponseInterface
@@ -22,46 +21,41 @@ trait TicketApis
     }
 
     /**
-     * @param int $ticketId
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getTicket(int $ticketId): ResponseInterface
+    public function getTicket(int $id): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_TICKET . '/' .  $ticketId, []);
+        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_TICKET . '/' .  $id, []);
     }
 
     /**
-     * @param int $ticketId
      * @param array<mixed> $body
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function putTicket(int $ticketId, array $body): ResponseInterface
+    public function postTicket(array $body): ResponseInterface
     {
-        $request = $this->getRequest()->create(
-            'PUT',
-            ApiDictionary::TICKET_TICKET . '/' . $ticketId,
-            [],
-            $body
-        );
+        $request = $this->getRequest()->create('POST', ApiDictionary::TICKET_TICKET, [], $body);
 
         return $this->sendRequest($request);
     }
 
     /**
      * @param array<mixed> $body
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function postTicket(array $body): ResponseInterface
+    public function putTicket(int $id, array $body): ResponseInterface
     {
-        $request = $this->getRequest()->create(
-            'POST',
-            ApiDictionary::TICKET_TICKET,
-            [],
-            $body
-        );
+        $request = $this->getRequest()->create('PUT', ApiDictionary::TICKET_TICKET . '/' . $id, [], $body);
+
+        return $this->sendRequest($request);
+    }
+
+    /**
+     * @throws HttpResponseException
+     */
+    public function deleteTicket(int $id): ResponseInterface
+    {
+        $request = $this->getRequest()->create('DELETE', ApiDictionary::TICKET_TICKET . '/' . $id);
 
         return $this->sendRequest($request);
     }

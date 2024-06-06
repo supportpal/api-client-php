@@ -21,7 +21,7 @@ trait Priorities
     {
         $response = $this->getApiClient()->getPriorities($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([$this, 'createPriority'], $body['data']);
+        $models = array_map([$this, 'createPriorityModel'], $body['data']);
 
         return $this->createCollection($body['count'], $models);
     }
@@ -33,13 +33,13 @@ trait Priorities
     {
         $response = $this->getApiClient()->getPriority($priorityId);
 
-        return $this->createPriority($this->decodeBody($response)['data']);
+        return $this->createPriorityModel($this->decodeBody($response)['data']);
     }
 
     /**
      * @param array<mixed> $data
      */
-    private function createPriority(array $data): Priority
+    private function createPriorityModel(array $data): Priority
     {
         return new Priority($data);
     }

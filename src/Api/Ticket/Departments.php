@@ -21,7 +21,7 @@ trait Departments
     {
         $response = $this->getApiClient()->getDepartments($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([$this, 'createDepartment'], $body['data']);
+        $models = array_map([$this, 'createDepartmentModel'], $body['data']);
 
         return $this->createCollection($body['count'], $models);
     }
@@ -29,17 +29,17 @@ trait Departments
     /**
      * @throws HttpResponseException
      */
-    public function getDepartment(int $departmentId): Department
+    public function getDepartment(int $id): Department
     {
-        $response = $this->getApiClient()->getDepartment($departmentId);
+        $response = $this->getApiClient()->getDepartment($id);
 
-        return $this->createDepartment($this->decodeBody($response)['data']);
+        return $this->createDepartmentModel($this->decodeBody($response)['data']);
     }
 
     /**
      * @param array<mixed> $data
      */
-    private function createDepartment(array $data): Department
+    private function createDepartmentModel(array $data): Department
     {
         return new Department($data);
     }

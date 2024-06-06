@@ -83,11 +83,21 @@ class TicketApisData
     }
 
     /**
+     * @return array<string, int>
+     */
+    public function deleteApiCalls(): array
+    {
+        return [
+            'deleteTicket' => 1,
+        ];
+    }
+
+    /**
      * @return array<string, Model>
      * @throws InvalidArgumentException
      */
     public function downloadApiCalls(): array
     {
-        return ['downloadAttachment' => (new AttachmentData)->getFilledInstance()];
+        return ['downloadAttachment' => 1];
     }
 }

@@ -22,7 +22,7 @@ trait CustomFields
     {
         $response = $this->getApiClient()->getCustomFields($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([$this, 'createTicketCustomField'], $body['data']);
+        $models = array_map([$this, 'createTicketCustomFieldModel'], $body['data']);
 
         return $this->createCollection($body['count'], $models);
     }
@@ -30,17 +30,17 @@ trait CustomFields
     /**
      * @throws HttpResponseException
      */
-    public function getCustomField(int $customFieldId): CustomField
+    public function getCustomField(int $id): CustomField
     {
-        $response = $this->getApiClient()->getCustomField($customFieldId);
+        $response = $this->getApiClient()->getCustomField($id);
 
-        return $this->createTicketCustomField($this->decodeBody($response)['data']);
+        return $this->createTicketCustomFieldModel($this->decodeBody($response)['data']);
     }
 
     /**
      * @param array<mixed> $data
      */
-    private function createTicketCustomField(array $data): TicketCustomField
+    private function createTicketCustomFieldModel(array $data): TicketCustomField
     {
         return new TicketCustomField($data);
     }

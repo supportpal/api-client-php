@@ -194,6 +194,40 @@ class TicketApisTest extends ApiClientTest
         $this->apiClient->putTicket($this->testTicketId, $ticketData->getArrayData());
     }
 
+    public function testDeleteTicket(): void
+    {
+        $request = $this->requestCommonExpectations('DELETE', ApiDictionary::TICKET_TICKET . '/' . $this->testTicketId);
+
+        $response = $this->sendRequestCommonExpectations(
+            200,
+            (string) json_encode(['status' => 'success']),
+            $request
+        );
+
+        $userDeleteResponse = $this->apiClient->deleteTicket($this->testTicketId);
+
+        self::assertSame($response->reveal(), $userDeleteResponse);
+    }
+
+    public function testHttpExceptionDeleteTicket(): void
+    {
+        self::expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('DELETE', ApiDictionary::TICKET_TICKET . '/' . $this->testTicketId);
+        $this->throwClientExceptionCommonExpectations($request);
+        $this->apiClient->deleteTicket($this->testTicketId);
+    }
+
+    /**
+     * @dataProvider provideUnsuccessfulTestCases
+     */
+    public function testUnsuccessfulDeleteTicket(int $statusCode, string $responseBody): void
+    {
+        self::expectException(HttpResponseException::class);
+        $request = $this->requestCommonExpectations('DELETE', ApiDictionary::TICKET_TICKET . '/' . $this->testTicketId);
+        $this->sendRequestCommonExpectations($statusCode, $responseBody, $request);
+        $this->apiClient->deleteTicket($this->testTicketId);
+    }
+
     /**
      * @return class-string
      */

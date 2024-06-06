@@ -23,7 +23,7 @@ trait Messages
         $queryParameters['ticket_id'] = $ticketId;
         $response = $this->getApiClient()->getMessages($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([ $this, 'createMessageModel' ], $body['data']);
+        $models = array_map([$this, 'createMessageModel'], $body['data']);
 
         return $this->createCollection($body['count'], $models);
     }
@@ -31,9 +31,9 @@ trait Messages
     /**
      * @throws HttpResponseException
      */
-    public function getMessage(int $messageId): Message
+    public function getMessage(int $id): Message
     {
-        $response = $this->getApiClient()->getMessage($messageId);
+        $response = $this->getApiClient()->getMessage($id);
 
         return $this->createMessageModel($this->decodeBody($response)['data']);
     }

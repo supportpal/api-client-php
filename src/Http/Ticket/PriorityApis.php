@@ -13,7 +13,6 @@ trait PriorityApis
 
     /**
      * @param array<mixed> $queryParameters
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getPriorities(array $queryParameters): ResponseInterface
@@ -22,12 +21,10 @@ trait PriorityApis
     }
 
     /**
-     * @param int $priorityId
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getPriority(int $priorityId): ResponseInterface
+    public function getPriority(int $id): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_PRIORITY . '/' .  $priorityId, []);
+        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_PRIORITY . '/' .  $id, []);
     }
 }

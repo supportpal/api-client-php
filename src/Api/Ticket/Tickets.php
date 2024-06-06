@@ -60,6 +60,16 @@ trait Tickets
     }
 
     /**
+     * @throws HttpResponseException
+     */
+    public function deleteTicket(int $id): bool
+    {
+        $response = $this->getApiClient()->deleteTicket($id);
+
+        return $this->decodeBody($response)['status'] === 'success';
+    }
+
+    /**
      * @param array<mixed> $data
      */
     private function createTicketModel(array $data): Ticket

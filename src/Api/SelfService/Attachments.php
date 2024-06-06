@@ -5,7 +5,6 @@ namespace SupportPal\ApiClient\Api\SelfService;
 use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Http\SelfServiceClient;
 use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\SelfService\Attachment;
@@ -41,15 +40,10 @@ trait Attachments
 
     /**
      * @throws HttpResponseException
-     * @throws MissingIdentifierException
      */
-    public function downloadAttachment(Attachment $attachment): StreamInterface
+    public function downloadAttachment(int $id): StreamInterface
     {
-        if (! isset($attachment->id)) {
-            throw new MissingIdentifierException('missing attachment identifier');
-        }
-
-        return $this->getApiClient()->downloadAttachment($attachment->id)->getBody();
+        return $this->getApiClient()->downloadAttachment($id)->getBody();
     }
 
     /**

@@ -14,8 +14,6 @@ trait ChannelSettingsApis
     use ApiClientAware;
 
     /**
-     * @param string $channel
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getChannelSettings(string $channel): ResponseInterface
