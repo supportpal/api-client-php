@@ -28,7 +28,7 @@ class Article extends Model
         'translations'  => 'array:' . ArticleTranslation::class,
         'categories'    => 'array:' . Category::class,
         'types'         => 'array:' . Type::class,
-        'attachments'   => 'array:' . ArticleAttachment::class,
+        'attachments'   => 'array:' . Attachment::class,
         'tags'          => 'array:' . Tag::class,
     ];
 }

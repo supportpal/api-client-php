@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Api;
 
+use SupportPal\ApiClient\Api\SelfService\Attachments;
 use SupportPal\ApiClient\Api\SelfService\Articles;
 use SupportPal\ApiClient\Api\SelfService\Categories;
 use SupportPal\ApiClient\Api\SelfService\Comments;
@@ -13,6 +14,7 @@ use SupportPal\ApiClient\Http\SelfServiceClient;
 class SelfServiceApi extends Api
 {
     use Articles;
+    use Attachments;
     use Categories;
     use Comments;
     use Settings;

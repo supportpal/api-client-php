@@ -3,10 +3,13 @@
 namespace SupportPal\ApiClient\Tests\DataFixtures\ApiCalls;
 
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
+use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\AttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\CreateArticleData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\CreateAttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\CreateCommentData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\UpdateArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
@@ -21,6 +24,7 @@ class SelfServiceApisData
     public function getApiCalls(): array
     {
         $articleData = new ArticleData;
+        $attachmentData = new AttachmentData;
         $categoryData = new CategoryData;
         $commentData = new CommentData;
         $settingsData = new SettingsData;
@@ -28,9 +32,11 @@ class SelfServiceApisData
         $typeData = new TypeData;
 
         return [
+            'getArticles' => [$articleData->getAllResponse(), [[]]],
             'getArticle' => [$articleData->getResponse(), [1]],
             'getArticlesByTerm' => [$articleData->getAllResponse(), ['search term']],
-            'getArticles' => [$articleData->getAllResponse(), [[]]],
+            'getAttachments' => [$attachmentData->getAllResponse(), [[]]],
+            'getAttachment' => [$attachmentData->getResponse(), [1]],
             'getRelatedArticles' => [$articleData->getAllResponse(), [1, 'test', []]],
             'getCategories' => [$categoryData->getAllResponse(), []],
             'getCategory' => [$categoryData->getResponse(), [1]],
@@ -51,10 +57,12 @@ class SelfServiceApisData
     public function postApiCalls(): array
     {
         $createArticle = new CreateArticleData;
+        $createAttachment = new CreateAttachmentData;
         $createComment = new CreateCommentData;
 
         return [
             'createArticle' => [$createArticle->getFilledInstance(), $createArticle->getResponse()],
+            'createAttachment' => [$createAttachment->getFilledInstance(), $createAttachment->getResponse()],
             'createComment' => [$createComment->getFilledInstance(), $createComment->getResponse()],
         ];
     }
@@ -79,6 +87,16 @@ class SelfServiceApisData
     {
         return [
             'deleteArticle' => 1,
+            'deleteAttachment' => 1,
         ];
+    }
+
+    /**
+     * @return array<string, Model>
+     * @throws InvalidArgumentException
+     */
+    public function downloadApiCalls(): array
+    {
+        return ['downloadAttachment' => (new AttachmentData)->getFilledInstance()];
     }
 }

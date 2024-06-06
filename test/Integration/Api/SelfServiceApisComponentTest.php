@@ -45,7 +45,7 @@ class SelfServiceApisComponentTest extends ApiComponentTest
      */
     protected function getDownloadsEndpoints(): array
     {
-        return [];
+        return (new SelfServiceApisData)->downloadApiCalls();
     }
 
     /**

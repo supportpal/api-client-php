@@ -24,7 +24,7 @@ class ArticleData extends BaseModelData
         'pinned' => 0,
         'created_at' => 1599475205,
         'updated_at' => 1599475205,
-        'attachments' => [ArticleAttachmentData::DATA,],
+        'attachments' => [AttachmentData::DATA,],
         'categories' => [CategoryData::DATA,],
         'types' => [TypeData::DATA,],
         'tags' => [TagData::DATA,],
@@ -38,7 +38,7 @@ class ArticleData extends BaseModelData
     public function getDataWithObjects(): array
     {
         $data = self::DATA;
-        $data['attachments'] = [(new ArticleAttachmentData)->getFilledInstance(),];
+        $data['attachments'] = [(new AttachmentData)->getFilledInstance(),];
         $data['categories'] = [(new CategoryData)->getFilledInstance(),];
         $data['types'] = [(new TypeData)->getFilledInstance(),];
         $data['tags'] = [(new TagData)->getFilledInstance(),];

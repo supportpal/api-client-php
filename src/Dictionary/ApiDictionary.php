@@ -27,21 +27,25 @@ final class ApiDictionary
     /**
      * Self Service APIs
      */
-    public const SELF_SERVICE_COMMENT = 'selfservice/comment';
-
-    public const SELF_SERVICE_ARTICLE_TYPE = 'selfservice/type';
-
     public const SELF_SERVICE_ARTICLE = 'selfservice/article';
 
     public const SELF_SERVICE_ARTICLE_SEARCH = self::SELF_SERVICE_ARTICLE . '/search';
 
     public const SELF_SERVICE_ARTICLE_RELATED = self::SELF_SERVICE_ARTICLE . '/related';
 
-    public const SELF_SERVICE_SETTINGS = 'selfservice/settings';
+    public const SELF_SERVICE_ATTACHMENT = 'selfservice/attachment';
+
+    public const SELF_SERVICE_ATTACHMENT_DOWNLOAD = self::SELF_SERVICE_ATTACHMENT . '/%d/download';
 
     public const SELF_SERVICE_CATEGORY = 'selfservice/category';
 
+    public const SELF_SERVICE_COMMENT = 'selfservice/comment';
+
+    public const SELF_SERVICE_SETTINGS = 'selfservice/settings';
+
     public const SELF_SERVICE_TAG = 'selfservice/tag';
+
+    public const SELF_SERVICE_ARTICLE_TYPE = 'selfservice/type';
 
     /**
      * User Apis
@@ -80,7 +84,7 @@ final class ApiDictionary
 
     public const TICKET_ATTACHMENT = 'ticket/attachment';
 
-    public const TICKET_ATTACHMENT_DOWNLOAD = 'ticket/attachment/%d/download';
+    public const TICKET_ATTACHMENT_DOWNLOAD = self::TICKET_ATTACHMENT . '/%d/download';
 
     public const TICKET_TICKET = 'ticket/ticket';
 

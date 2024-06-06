@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Model\SelfService;
 use SupportPal\ApiClient\Model\Core\Upload;
 use SupportPal\ApiClient\Model\Model;
 
-class ArticleAttachment extends Model
+class Attachment extends Model
 {
     /** @var array<string, string> */
     protected array $casts = [

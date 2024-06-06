@@ -255,8 +255,11 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
     public function provideNonCacheableApis(): iterable
     {
         /** SelfService Apis */
+        $attachmentData = new \SupportPal\ApiClient\Tests\DataFixtures\SelfService\AttachmentData;
         $commentData = new CommentData;
 
+        yield ['getAttachments', $attachmentData->getAllResponse(), [[]], SelfServiceClient::class];
+        yield ['getAttachment', $attachmentData->getResponse(), [1], SelfServiceClient::class];
         yield ['getComment', $commentData->getResponse(), [1], SelfServiceClient::class];
         yield ['getComments', $commentData->getAllResponse(), [[]], SelfServiceClient::class];
 
