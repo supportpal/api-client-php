@@ -62,10 +62,12 @@ class CreateTicketTest extends BaseModelTest
             ->addAttachment('test', 'test')
             ->addAttachment('test2', 'test3');
 
-        self::assertSame(['attachment' => [
-            ['filename' => 'test', 'contents' => 'test'],
-            ['filename' => 'test', 'contents' => 'test'],
-            ['filename' => 'test2', 'contents' => 'test3']
-        ]], $this->model->toArray());
+        self::assertSame([
+            'attachment' => [
+                ['filename' => 'test', 'contents' => 'test'],
+                ['filename' => 'test', 'contents' => 'test'],
+                ['filename' => 'test2', 'contents' => 'test3']
+            ]
+        ], $this->model->toArray());
     }
 }

@@ -27,10 +27,12 @@ class CreateMessageTest extends BaseModelTest
             ->addAttachment('test1', 'test1')
             ->addAttachment('test3', 'test2');
 
-        self::assertSame(['attachment' => [
-            ['filename' => 'test1', 'contents' => 'test1'],
-            ['filename' => 'test1', 'contents' => 'test1'],
-            ['filename' => 'test3', 'contents' => 'test2']
-        ]], $this->model->toArray());
+        self::assertSame([
+            'attachment' => [
+                ['filename' => 'test1', 'contents' => 'test1'],
+                ['filename' => 'test1', 'contents' => 'test1'],
+                ['filename' => 'test3', 'contents' => 'test2']
+            ]
+        ], $this->model->toArray());
     }
 }
