@@ -68,7 +68,7 @@ class SelfServiceApisData
         $updateArticle = new UpdateArticleData;
 
         return [
-            'updateArticle' => [$updateArticle->getFilledInstance(), $updateArticle->getResponse()],
+            'updateArticle' => [1, $updateArticle->getFilledInstance(), $updateArticle->getResponse()],
         ];
     }
 
