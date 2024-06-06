@@ -15,7 +15,6 @@ trait AttachmentApis
 
     /**
      * @param array<mixed> $queryParameters
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getAttachments(array $queryParameters): ResponseInterface
@@ -24,26 +23,19 @@ trait AttachmentApis
     }
 
     /**
-     * @param int $attachmentId
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getAttachment(int $attachmentId): ResponseInterface
+    public function getAttachment(int $id): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_ATTACHMENT . '/' .  $attachmentId, []);
+        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_ATTACHMENT . '/' .  $id, []);
     }
 
     /**
-     * @param int $attachmentId
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function downloadAttachment(int $attachmentId): ResponseInterface
+    public function downloadAttachment(int $id): ResponseInterface
     {
-        $request = $this->getRequest()->create(
-            'GET',
-            sprintf(ApiDictionary::TICKET_ATTACHMENT_DOWNLOAD, $attachmentId)
-        );
+        $request = $this->getRequest()->create('GET', sprintf(ApiDictionary::TICKET_ATTACHMENT_DOWNLOAD, $id));
 
         return $this->sendDownloadRequest($request);
     }

@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Http;
 
 use SupportPal\ApiClient\Http\SelfService\ArticleApis;
+use SupportPal\ApiClient\Http\SelfService\AttachmentApis;
 use SupportPal\ApiClient\Http\SelfService\CategoryApis;
 use SupportPal\ApiClient\Http\SelfService\CommentApis;
 use SupportPal\ApiClient\Http\SelfService\SettingsApis;
@@ -12,6 +13,7 @@ use SupportPal\ApiClient\Http\SelfService\TypeApis;
 class SelfServiceClient extends Client
 {
     use ArticleApis;
+    use AttachmentApis;
     use CategoryApis;
     use CommentApis;
     use SettingsApis;

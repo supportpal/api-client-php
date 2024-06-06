@@ -24,6 +24,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Core\SettingsData as CoreSettingsDat
 use SupportPal\ApiClient\Tests\DataFixtures\Core\SpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\WhitelistedIpData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
+use SupportPal\ApiClient\Tests\DataFixtures\SelfService\AttachmentData as ArticleAttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
@@ -255,8 +256,11 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
     public function provideNonCacheableApis(): iterable
     {
         /** SelfService Apis */
+        $attachmentData = new ArticleAttachmentData;
         $commentData = new CommentData;
 
+        yield ['getAttachments', $attachmentData->getAllResponse(), [[]], SelfServiceClient::class];
+        yield ['getAttachment', $attachmentData->getResponse(), [1], SelfServiceClient::class];
         yield ['getComment', $commentData->getResponse(), [1], SelfServiceClient::class];
         yield ['getComments', $commentData->getAllResponse(), [[]], SelfServiceClient::class];
 
