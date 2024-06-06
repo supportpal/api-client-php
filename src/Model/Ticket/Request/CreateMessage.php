@@ -2,7 +2,11 @@
 
 namespace SupportPal\ApiClient\Model\Ticket\Request;
 
+use Illuminate\Support\Str;
 use SupportPal\ApiClient\Model\Model;
+
+use function array_unique;
+use function trim;
 
 class CreateMessage extends Model
 {
@@ -20,4 +24,24 @@ class CreateMessage extends Model
         'send_operators_email' => 'bool',
         'created_at'           => 'int',
     ];
+
+    public function addAttachment(string $filename, string $contents): self
+    {
+        $attachments = $this->getAttribute('attachment') ?? [];
+        $attachments[] = ['filename' => $filename, 'contents' => $contents];
+
+        $this->setAttribute('attachment', $attachments);
+
+        return $this;
+    }
+
+    public function addCc(string $email): self
+    {
+        $cc = $this->getAttribute('cc') ?? [];
+        $cc[] = Str::lower(trim($email));
+
+        $this->setAttribute('cc', array_unique($cc));
+
+        return $this;
+    }
 }

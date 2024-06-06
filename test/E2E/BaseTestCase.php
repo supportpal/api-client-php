@@ -24,7 +24,7 @@ use function sprintf;
 
 abstract class BaseTestCase extends TestCase
 {
-    const BATCH_SIZE = 1;
+    const BATCH_SIZE = 50;
 
     const DEFAULT_LIMIT = self::BATCH_SIZE * 2;
 

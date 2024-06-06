@@ -9,13 +9,10 @@ use SupportPal\ApiClient\Tests\DataFixtures\Core\SpamRuleData;
 class CreateSpamRuleData extends BaseModelData
 {
     public const DATA = [
-        'ip'             => '123.1.2.3',
-        'reason'         => 'Reason',
-        'type'           => 0,
-        'event_user'     => 1,
-        'event_operator' => 1,
-        'event_api'      => 1,
-        'expiry_time'    => 1712397600,
+        'text'          => 'Spam Text',
+        'type'          => 0,
+        'event_message' => 1,
+        'event_comment' => 1,
     ];
 
     /**
