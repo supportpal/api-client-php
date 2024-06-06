@@ -13,7 +13,6 @@ trait TypeApis
 
     /**
      * @param array<mixed> $queryParameters
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getTypes(array $queryParameters): ResponseInterface
@@ -22,15 +21,10 @@ trait TypeApis
     }
 
     /**
-     * @param int $typeId
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getType(int $typeId): ResponseInterface
+    public function getType(int $id): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(
-            ApiDictionary::SELF_SERVICE_ARTICLE_TYPE . '/' .  $typeId,
-            []
-        );
+        return $this->prepareAndSendGetRequest(ApiDictionary::SELF_SERVICE_ARTICLE_TYPE . '/' .  $id, []);
     }
 }

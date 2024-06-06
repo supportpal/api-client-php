@@ -197,21 +197,21 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
         yield ['getSpamRule', $spamRuleData->getResponse(), [1], CoreClient::class];
 
         /** SelfService Apis */
-        $typeData = new TypeData;
-        $selfServiceSettingsData = new SettingsData;
-        $categoryData = new CategoryData;
         $articleData = new ArticleData;
+        $categoryData = new CategoryData;
+        $selfServiceSettingsData = new SettingsData;
         $tagData = new TagData;
+        $typeData = new TypeData;
 
-        yield ['getCategory', $categoryData->getResponse(), [1], SelfServiceClient::class];
-        yield ['getCategories', $categoryData->getAllResponse(), [[]], SelfServiceClient::class];
         yield ['getArticle', $articleData->getResponse(), [1, []], SelfServiceClient::class];
         yield ['getArticlesByTerm', $articleData->getAllResponse(), [['test']], SelfServiceClient::class];
         yield ['getArticles', $articleData->getAllResponse(), [[]], SelfServiceClient::class];
         yield ['getRelatedArticles', $articleData->getAllResponse(), [[1, 'test', []]], SelfServiceClient::class];
+        yield ['getCategory', $categoryData->getResponse(), [1], SelfServiceClient::class];
+        yield ['getCategories', $categoryData->getAllResponse(), [[]], SelfServiceClient::class];
+        yield ['getSettings', $selfServiceSettingsData->getResponse(), [], SelfServiceClient::class];
         yield ['getTag', $tagData->getResponse(), [1], SelfServiceClient::class];
         yield ['getTags', $tagData->getAllResponse(), [[]], SelfServiceClient::class];
-        yield ['getSettings', $selfServiceSettingsData->getResponse(), [], SelfServiceClient::class];
         yield ['getType', $typeData->getResponse(), [1], SelfServiceClient::class];
         yield ['getTypes', $typeData->getAllResponse(), [[]], SelfServiceClient::class];
 

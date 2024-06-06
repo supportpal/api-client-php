@@ -12,7 +12,6 @@ trait SettingsApis
     use ApiClientAware;
 
     /**
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getSettings(): ResponseInterface

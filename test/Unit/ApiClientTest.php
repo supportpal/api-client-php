@@ -127,19 +127,27 @@ class ApiClientTest extends TestCase
     protected function requestCommonExpectations(
         string $method,
         string $endpoint,
-        array $parameters,
+        array $parameters = [],
         array $body = []
     ): ObjectProphecy {
         $request = $this->prophesize(BaseRequest::class);
+
         if ($method === 'GET') {
             $create = $this->requestFactory->create($method, $endpoint, [], [], $parameters);
             $create->shouldBeCalled()->willReturn($request->reveal());
+
+            return $request;
         }
 
-        if ($method !== 'GET') {
-            $create = $this->requestFactory->create($method, $endpoint, [], $body);
+        if ($method === 'DELETE') {
+            $create = $this->requestFactory->create($method, $endpoint);
             $create->shouldBeCalled()->willReturn($request->reveal());
+
+            return $request;
         }
+
+        $create = $this->requestFactory->create($method, $endpoint, [], $body);
+        $create->shouldBeCalled()->willReturn($request->reveal());
 
         return $request;
     }
