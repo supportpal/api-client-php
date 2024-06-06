@@ -81,7 +81,7 @@ class TicketApisData
 
         return [
             'updateTicket' => [1, $updateTicketData->getFilledInstance(), $updateTicketData->getResponse()],
-            'updateMessageData' => [1, $updateMessageData->getFilledInstance(), $updateMessageData->getResponse()],
+            'updateMessage' => [1, $updateMessageData->getFilledInstance(), $updateMessageData->getResponse()],
         ];
     }
 
