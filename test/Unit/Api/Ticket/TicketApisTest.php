@@ -68,4 +68,17 @@ class TicketApisTest extends BaseTicketApiTest
         $ticket = $this->api->updateTicket(self::TEST_ID, $updateTicket);
         self::assertEquals($output, $ticket);
     }
+
+    public function testDeleteArticle(): void
+    {
+        $response = $this->makeSuccessResponse();
+
+        $this->apiClient
+            ->deleteTicket(1)
+            ->shouldBeCalled()
+            ->willReturn($response->reveal());
+
+        $apiResponse = $this->api->deleteTicket(1);
+        self::assertTrue($apiResponse);
+    }
 }

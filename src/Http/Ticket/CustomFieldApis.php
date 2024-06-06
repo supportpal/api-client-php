@@ -13,7 +13,6 @@ trait CustomFieldApis
 
     /**
      * @param array<mixed> $queryParameters
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getCustomFields(array $queryParameters): ResponseInterface
@@ -22,15 +21,10 @@ trait CustomFieldApis
     }
 
     /**
-     * @param int $customFieldId
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getCustomField(int $customFieldId): ResponseInterface
+    public function getCustomField(int $id): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(
-            ApiDictionary::TICKET_CUSTOMFIELD . '/' .  $customFieldId,
-            []
-        );
+        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_CUSTOMFIELD . '/' .  $id, []);
     }
 }

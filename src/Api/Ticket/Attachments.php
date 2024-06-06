@@ -5,7 +5,6 @@ namespace SupportPal\ApiClient\Api\Ticket;
 use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
-use SupportPal\ApiClient\Exception\MissingIdentifierException;
 use SupportPal\ApiClient\Http\TicketClient;
 use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\Ticket\Attachment;
@@ -23,7 +22,7 @@ trait Attachments
     {
         $response = $this->getApiClient()->getAttachments($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([$this, 'createAttachment'], $body['data']);
+        $models = array_map([$this, 'createAttachmentModel'], $body['data']);
 
         return $this->createCollection($body['count'], $models);
     }
@@ -35,26 +34,21 @@ trait Attachments
     {
         $response = $this->getApiClient()->getAttachment($attachmentId);
 
-        return $this->createAttachment($this->decodeBody($response)['data']);
+        return $this->createAttachmentModel($this->decodeBody($response)['data']);
     }
 
     /**
      * @throws HttpResponseException
-     * @throws MissingIdentifierException
      */
-    public function downloadAttachment(Attachment $attachment): StreamInterface
+    public function downloadAttachment(int $id): StreamInterface
     {
-        if (! isset($attachment->id)) {
-            throw new MissingIdentifierException('missing attachment identifier');
-        }
-
-        return $this->getApiClient()->downloadAttachment($attachment->id)->getBody();
+        return $this->getApiClient()->downloadAttachment($id)->getBody();
     }
 
     /**
      * @param array<mixed> $data
      */
-    private function createAttachment(array $data): Attachment
+    private function createAttachmentModel(array $data): Attachment
     {
         return new Attachment($data);
     }

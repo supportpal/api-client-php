@@ -13,7 +13,6 @@ trait StatusApis
 
     /**
      * @param array<mixed> $queryParameters
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
     public function getStatuses(array $queryParameters): ResponseInterface
@@ -22,12 +21,10 @@ trait StatusApis
     }
 
     /**
-     * @param int $statusId
-     * @return ResponseInterface
      * @throws HttpResponseException
      */
-    public function getStatus(int $statusId): ResponseInterface
+    public function getStatus(int $id): ResponseInterface
     {
-        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_STATUS . '/' .  $statusId, []);
+        return $this->prepareAndSendGetRequest(ApiDictionary::TICKET_STATUS . '/' .  $id, []);
     }
 }

@@ -97,6 +97,6 @@ class SelfServiceApisData
      */
     public function downloadApiCalls(): array
     {
-        return ['downloadAttachment' => (new AttachmentData)->getFilledInstance()];
+        return ['downloadAttachment' => 1];
     }
 }

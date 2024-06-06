@@ -141,12 +141,12 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     /**
      * @dataProvider provideDownloadEndpointsTestCases
      */
-    public function testDownloadEndpoint(Model $model, string $functionName): void
+    public function testDownloadEndpoint(int $id, string $functionName): void
     {
         $this->appendRequestResponse(new Response(200, ['Content-Disposition' => 'test'], ''));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];
-        $stream = call_user_func_array($callable, [$model]);
+        $stream = call_user_func_array($callable, [$id]);
         self::assertInstanceOf(StreamInterface::class, $stream);
     }
 

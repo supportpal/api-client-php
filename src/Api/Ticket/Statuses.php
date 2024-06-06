@@ -21,7 +21,7 @@ trait Statuses
     {
         $response = $this->getApiClient()->getStatuses($queryParameters);
         $body = $this->decodeBody($response);
-        $models = array_map([$this, 'createStatus'], $body['data']);
+        $models = array_map([$this, 'createStatusModel'], $body['data']);
 
         return $this->createCollection($body['count'], $models);
     }
@@ -33,13 +33,13 @@ trait Statuses
     {
         $response = $this->getApiClient()->getStatus($statusId);
 
-        return $this->createStatus($this->decodeBody($response)['data']);
+        return $this->createStatusModel($this->decodeBody($response)['data']);
     }
 
     /**
      * @param array<mixed> $data
      */
-    private function createStatus(array $data): Status
+    private function createStatusModel(array $data): Status
     {
         return new Status($data);
     }

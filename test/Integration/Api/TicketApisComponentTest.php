@@ -40,7 +40,7 @@ class TicketApisComponentTest extends ApiComponentTest
      */
     protected function getDeleteEndpoints(): array
     {
-        return [];
+        return (new TicketApisData)->deleteApiCalls();
     }
 
     /**
