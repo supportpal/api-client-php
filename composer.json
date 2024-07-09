@@ -16,7 +16,7 @@
     "kevinrob/guzzle-cache-middleware": "^5.0",
     "phpdocumentor/reflection-docblock": "^5.2",
     "propaganistas/laravel-phone": "^5.3",
-    "psr/http-message": "^1.0",
+    "psr/http-message": "^1.1|^2.0",
     "supportpal/eloquent-model": "^1.0",
     "symfony/config": "^6.2|^7.0",
     "symfony/dependency-injection": "^6.2|^7.0",
