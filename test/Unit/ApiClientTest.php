@@ -12,6 +12,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\Client;
 use SupportPal\ApiClient\Http\CoreClient;
@@ -81,13 +82,17 @@ class ApiClientTest extends TestCase
         $response = $this->prophesize(ResponseInterface::class);
         $response->getReasonPhrase()->shouldBeCalled()->willReturn('');
 
-        $this
-            ->httpClient
+        $this->httpClient
             ->sendRequest($request->reveal())
             ->willReturn($response->reveal())
             ->shouldBeCalled();
 
-        $response->getBody()->willReturn('');
+        $streamProphecy = $this->prophesize(StreamInterface::class);
+        $streamProphecy->__toString()
+            ->willReturn('')
+            ->shouldBeCalled();
+
+        $response->getBody()->willReturn($streamProphecy->reveal());
 
         /** @var RequestInterface $requestMock */
         $requestMock = $request->reveal();
@@ -163,9 +168,14 @@ class ApiClientTest extends TestCase
         string $responseBody,
         ObjectProphecy $request
     ): ObjectProphecy {
+        $streamProphecy = $this->prophesize(StreamInterface::class);
+        $streamProphecy->__toString()
+            ->willReturn($responseBody)
+            ->shouldBeCalled();
+
         $response = $this->prophesize(ResponseInterface::class);
         $response->getStatusCode()->willReturn($statusCode);
-        $response->getBody()->willReturn($responseBody);
+        $response->getBody()->willReturn($streamProphecy->reveal());
         $this->httpClient->sendRequest($request->reveal())->shouldBeCalled()->willReturn($response->reveal());
 
         return $response;

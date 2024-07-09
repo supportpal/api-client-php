@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\Unit;
 
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Http\Client;
 use SupportPal\ApiClient\Model\Model;
@@ -42,9 +43,14 @@ abstract class ApiTest extends TestCase
      */
     protected function makeCommonExpectations(array $responseData, string $model): array
     {
+        $streamProphecy = $this->prophesize(StreamInterface::class);
+        $streamProphecy->__toString()
+            ->willReturn(json_encode($responseData))
+            ->shouldBeCalled();
+
         $response = $this->prophesize(ResponseInterface::class);
         $response->getBody()
-            ->willReturn(json_encode($responseData));
+            ->willReturn($streamProphecy->reveal());
 
         if (is_array(current($responseData['data']))) {
             $models = [];
@@ -68,9 +74,14 @@ abstract class ApiTest extends TestCase
      */
     protected function makeSuccessResponse()
     {
+        $streamProphecy = $this->prophesize(StreamInterface::class);
+        $streamProphecy->__toString()
+            ->willReturn(json_encode(['status' => 'success']))
+            ->shouldBeCalled();
+
         $response = $this->prophesize(ResponseInterface::class);
         $response->getBody()
-            ->willReturn(json_encode(['status' => 'success']));
+            ->willReturn($streamProphecy->reveal());
 
         return $response;
     }
