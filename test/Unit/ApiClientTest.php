@@ -6,6 +6,7 @@ use Exception;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request as BaseRequest;
+use JsonException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -32,10 +33,10 @@ class ApiClientTest extends TestCase
         'data' => []
     ];
 
-    /** @var ObjectProphecy|ClientInterface */
+    /** @var ObjectProphecy<ClientInterface> */
     protected $httpClient;
 
-    /** @var ObjectProphecy|Request */
+    /** @var ObjectProphecy<Request> */
     protected $requestFactory;
 
     /** @var Client $apiClient */
@@ -106,16 +107,14 @@ class ApiClientTest extends TestCase
     {
         $jsonErrorBody = $this->genericErrorResponse;
         $jsonErrorBody['status'] = 'success';
-        /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode($jsonErrorBody);
+        $jsonSuccessfulBody = json_encode($jsonErrorBody) ?: throw new JsonException('Failed to encode JSON data.');
 
         yield ['error 400 response' => 400, $jsonSuccessfulBody];
         yield ['error 401 response' => 401, $jsonSuccessfulBody];
         yield ['error 403 response' => 403, $jsonSuccessfulBody];
         yield ['error 404 response' => 404, $jsonSuccessfulBody];
 
-        /** @var string $jsonErrorBody */
-        $jsonErrorBody = json_encode($this->genericErrorResponse);
+        $jsonErrorBody = json_encode($this->genericErrorResponse) ?: throw new JsonException('Failed to encode JSON data.');
 
         yield [
             'error status response' => 200, $jsonErrorBody,
@@ -127,7 +126,7 @@ class ApiClientTest extends TestCase
      * @param string $endpoint
      * @param array<mixed> $parameters
      * @param array<mixed> $body
-     * @return ObjectProphecy|BaseRequest
+     * @return ObjectProphecy<BaseRequest>
      */
     protected function requestCommonExpectations(
         string $method,
@@ -160,8 +159,8 @@ class ApiClientTest extends TestCase
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @param ObjectProphecy|BaseRequest $request
-     * @return ObjectProphecy|ResponseInterface
+     * @param ObjectProphecy<BaseRequest> $request
+     * @return ObjectProphecy<ResponseInterface>
      */
     protected function sendRequestCommonExpectations(
         int $statusCode,
@@ -182,11 +181,11 @@ class ApiClientTest extends TestCase
     }
 
     /**
-     * @param ObjectProphecy|BaseRequest $request
+     * @param ObjectProphecy<BaseRequest> $request
      */
     protected function throwClientExceptionCommonExpectations(ObjectProphecy $request): void
     {
-        /** @var ObjectProphecy|Exception $clientExceptionInterface */
+        /** @var ObjectProphecy<Exception> $clientExceptionInterface */
         $clientExceptionInterface = $this->prophesize(ClientExceptionInterface::class);
         $this->httpClient
             ->sendRequest($request->reveal())

@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests;
 
 use Exception;
 use GuzzleHttp\Psr7\Response;
+use JsonException;
 use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Model\Model;
@@ -56,8 +57,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
      */
     public function testSuccessfulPostEndpoint(Model $model, array $responseData, string $functionName): void
     {
-        /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode($responseData);
+        $jsonSuccessfulBody = json_encode($responseData) ?: throw new JsonException('Failed to encode JSON.');
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];
@@ -89,8 +89,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
         array $responseData,
         string $functionName
     ): void {
-        /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode($responseData);
+        $jsonSuccessfulBody = json_encode($responseData) ?: throw new JsonException('Failed to encode JSON data.');
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];
@@ -117,8 +116,7 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
      */
     public function testSuccessfulDeleteEndpoint(int $id, string $functionName): void
     {
-        /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode(['status' => 'success']);
+        $jsonSuccessfulBody = json_encode(['status' => 'success']) ?: throw new JsonException('Failed to encode JSON.');
         $this->appendRequestResponse(new Response(200, [], $jsonSuccessfulBody));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];

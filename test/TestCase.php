@@ -89,10 +89,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
             return;
         }
 
-        if (! ($models instanceof Model)) {
-            return;
-        }
-
         $this->assertArrayEqualsObjectFields($models, $data['data']);
     }
 

@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use JsonException;
 use Psr\Http\Client\RequestExceptionInterface;
 use ReflectionException;
 use ReflectionObject;
@@ -45,16 +46,14 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     {
         $jsonSuccessfulBody = $this->genericErrorResponse;
         $jsonSuccessfulBody['status'] = 'success';
-        /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode($jsonSuccessfulBody);
+        $jsonSuccessfulBody = json_encode($jsonSuccessfulBody) ?: throw new JsonException('Failed to encode JSON data.');
 
         yield ['error 400 response' => new Response(400, [], $jsonSuccessfulBody)];
         yield ['error 401 response' => new Response(401, [], $jsonSuccessfulBody)];
         yield ['error 403 response' => new Response(403, [], $jsonSuccessfulBody)];
         yield ['error 404 response' => new Response(404, [], $jsonSuccessfulBody)];
 
-        /** @var string $jsonErrorBody */
-        $jsonErrorBody = json_encode($this->genericErrorResponse);
+        $jsonErrorBody = json_encode($this->genericErrorResponse) ?: throw new JsonException('Failed to encode JSON data.');
 
         yield [
             'error status response' => new Response(200, [], $jsonErrorBody)
