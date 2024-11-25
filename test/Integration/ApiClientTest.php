@@ -6,6 +6,7 @@ use Exception;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use JsonException;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\Client;
@@ -100,8 +101,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      */
     public function testPostModel(array $modelData, array $responseData, string $endpoint): void
     {
-        /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode($responseData);
+        $jsonSuccessfulBody = json_encode($responseData) ?: throw new JsonException('Failed to encode JSON data.');
         $expectedResponse = new Response(200, [], $jsonSuccessfulBody);
         $this->appendRequestResponse($expectedResponse);
         $response = $this->makeClientCall($endpoint, [$modelData]);
@@ -134,8 +134,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      */
     public function testPutModel(array $modelData, array $responseData, string $endpoint): void
     {
-        /** @var string $jsonSuccessfulBody */
-        $jsonSuccessfulBody = json_encode($responseData);
+        $jsonSuccessfulBody = json_encode($responseData) ?: throw new JsonException('Failed to encode JSON data.');
         $expectedResponse = new Response(200, [], $jsonSuccessfulBody);
         $this->appendRequestResponse($expectedResponse);
         $response = $this->makeClientCall($endpoint, [self::TEST_ID, $modelData]);

@@ -18,7 +18,7 @@ abstract class ApiTest extends TestCase
 {
     protected const TEST_ID = 1;
 
-    /** @var ObjectProphecy|Client */
+    /** @var ObjectProphecy<Client> */
     protected $apiClient;
 
     /** @var Api */
@@ -70,7 +70,7 @@ abstract class ApiTest extends TestCase
     }
 
     /**
-     * @return ObjectProphecy|ResponseInterface
+     * @return ObjectProphecy<ResponseInterface>
      */
     protected function makeSuccessResponse()
     {
