@@ -410,7 +410,6 @@ abstract class CustomField extends BaseModel
         return $this;
     }
 
-
     /**
      * @return int|null
      */
