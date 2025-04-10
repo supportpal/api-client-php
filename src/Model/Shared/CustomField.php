@@ -109,6 +109,12 @@ abstract class CustomField extends BaseModel
     private $description;
 
     /**
+     * @var string|null
+     * @SerializedName("purified_description")
+     */
+    private $purifiedDescription;
+
+    /**
      * @var int|null
      * @SerializedName("type")
      */
@@ -384,6 +390,26 @@ abstract class CustomField extends BaseModel
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getPurifiedDescription(): ?string
+    {
+        return $this->purified_description;
+    }
+
+    /**
+     * @param string|null $description
+     * @return self
+     */
+    public function setPurifiedDescription(?string $description): self
+    {
+        $this->purified_description = $description;
+
+        return $this;
+    }
+
 
     /**
      * @return int|null
