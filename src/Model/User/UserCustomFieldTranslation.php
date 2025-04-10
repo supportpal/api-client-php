@@ -12,6 +12,7 @@ class UserCustomFieldTranslation extends Translation
         'user_custom_field_id' => 'int',
         'name'                 => 'string',
         'description'          => 'string',
+        'purified_description' => 'string',
         'regex_error_message'  => 'string',
     ];
 }

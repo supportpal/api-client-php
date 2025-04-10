@@ -34,6 +34,7 @@ abstract class CustomField extends Model
         'id'                   => 'int',
         'name'                 => 'string',
         'description'          => 'string',
+        'purified_description' => 'string',
         'type'                 => 'int',
         'depends_on_field_id'  => 'int',
         'depends_on_option_id' => 'int',

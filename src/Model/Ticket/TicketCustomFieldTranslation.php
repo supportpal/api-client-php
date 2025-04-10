@@ -12,6 +12,7 @@ class TicketCustomFieldTranslation extends Translation
         'ticket_custom_field_id' => 'int',
         'name'                   => 'string',
         'description'            => 'string',
+        'purified_description'   => 'string',
         'regex_error_message'    => 'string',
     ];
 }

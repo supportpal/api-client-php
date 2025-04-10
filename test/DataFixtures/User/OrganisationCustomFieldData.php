@@ -13,7 +13,8 @@ class OrganisationCustomFieldData extends BaseModelData
     public const DATA = [
         'id' => 1,
         'name' => 'test',
-        'description' => 'custom',
+        'description' => '<div class="sp-editor-content"><p>Custom</p></div>',
+        'purified_description' => '<div class="sp-editor-content"><p>Custom</p></div>',
         'type' => 0,
         'depends_on_field_id' => null,
         'depends_on_option_id' => null,
