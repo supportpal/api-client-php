@@ -12,6 +12,7 @@ class TicketCustomFieldTranslationData extends BaseModelData
         'ticket_custom_field_id' => 1,
         'name' => 'test',
         'description' => '',
+        'purified_description' => '',
         'regex_error_message' => null,
         'locale' => 'ar'
     ];

@@ -12,6 +12,7 @@ class UserCustomFieldTranslationData extends BaseModelData
         'user_custom_field_id' => 1,
         'name' => 'test',
         'description' => '',
+        'purified_description' => '',
         'regex_error_message' => null,
         'locale' => 'ar',
     ];

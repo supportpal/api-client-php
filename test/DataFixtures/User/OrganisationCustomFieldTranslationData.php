@@ -12,6 +12,7 @@ class OrganisationCustomFieldTranslationData extends BaseModelData
         'user_organisation_custom_field_id' => 1,
         'name' => 'test',
         'description' => '',
+        'purified_description' => '',
         'regex_error_message' => null,
         'locale' => 'ar',
     ];
