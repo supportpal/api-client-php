@@ -94,7 +94,7 @@ class ApiContextTest extends TestCase
 
         yield [$apiContext, 'http://localhost:80/test/test/api/'];
 
-        $apiContext = (new ApiContext(self::HOST, self::TOKEN));
+        $apiContext = new ApiContext(self::HOST, self::TOKEN);
 
         yield [$apiContext, 'https://localhost:443/api/'];
 
@@ -120,7 +120,7 @@ class ApiContextTest extends TestCase
 
         yield [$apiContext, '/test/test/api/'];
 
-        $apiContext = (new ApiContext(self::HOST, self::TOKEN));
+        $apiContext = new ApiContext(self::HOST, self::TOKEN);
 
         yield [$apiContext, '/api/'];
     }
