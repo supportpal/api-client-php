@@ -124,7 +124,7 @@ class TicketCustomFieldTranslation extends BaseTranslation
      */
     public function getPurifiedDescription(): ?string
     {
-        return $this->purified_description;
+        return $this->purifiedDescription;
     }
 
     /**
@@ -133,7 +133,7 @@ class TicketCustomFieldTranslation extends BaseTranslation
      */
     public function setPurifiedDescription(?string $description): self
     {
-        $this->purified_description = $description;
+        $this->purifiedDescription = $description;
 
         return $this;
     }
