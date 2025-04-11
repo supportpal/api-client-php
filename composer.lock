@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7371e36d7d72264a9ca5ca8112cde441",
+    "content-hash": "537feecb632e9b160df8b545d3159811",
     "packages": [
         {
             "name": "brick/math",
@@ -4294,21 +4294,21 @@
         },
         {
             "name": "jangregor/phpstan-prophecy",
-            "version": "2.0.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jan0707/phpstan-prophecy.git",
-                "reference": "8937c0f084eefb928032b438f0f57ad5cba3dbdc"
+                "reference": "011df00b14561a7f87ed3b99897296937a0cb08b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Jan0707/phpstan-prophecy/zipball/8937c0f084eefb928032b438f0f57ad5cba3dbdc",
-                "reference": "8937c0f084eefb928032b438f0f57ad5cba3dbdc",
+                "url": "https://api.github.com/repos/Jan0707/phpstan-prophecy/zipball/011df00b14561a7f87ed3b99897296937a0cb08b",
+                "reference": "011df00b14561a7f87ed3b99897296937a0cb08b",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4 || ^8.0",
-                "phpstan/phpstan": "^2.0.0"
+                "phpstan/phpstan": "^2.1.5"
             },
             "conflict": {
                 "phpspec/prophecy": "<1.17.0 || >=2.0.0",
@@ -4349,9 +4349,9 @@
             "description": "Provides a phpstan/phpstan extension for phpspec/prophecy",
             "support": {
                 "issues": "https://github.com/Jan0707/phpstan-prophecy/issues",
-                "source": "https://github.com/Jan0707/phpstan-prophecy/tree/2.0.0"
+                "source": "https://github.com/Jan0707/phpstan-prophecy/tree/2.1.1"
             },
-            "time": "2024-11-21T13:41:50+00:00"
+            "time": "2025-02-13T13:42:03+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
