@@ -2,24 +2,20 @@
 
 namespace SupportPal\ApiClient\Cache;
 
-use Doctrine\Common\Cache\ArrayCache;
-use Doctrine\Common\Cache\ChainCache;
-use Doctrine\Common\Cache\FilesystemCache;
 use Kevinrob\GuzzleCache\KeyValueHttpHeader;
-use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
 use Kevinrob\GuzzleCache\Strategy\CacheStrategyInterface;
 use Kevinrob\GuzzleCache\Strategy\Delegate\DelegatingCacheStrategy;
 use Kevinrob\GuzzleCache\Strategy\GreedyCacheStrategy;
 use Kevinrob\GuzzleCache\Strategy\NullCacheStrategy;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\ChainAdapter;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 class CacheStrategyConfigurator
 {
-    /** @var ApiCacheMap */
-    private $apiCacheMap;
-
-    public function __construct(ApiCacheMap $apiCacheMap)
+    public function __construct(private ApiCacheMap $apiCacheMap)
     {
-        $this->apiCacheMap = $apiCacheMap;
+        //
     }
 
     /**
@@ -40,7 +36,7 @@ class CacheStrategyConfigurator
          * For every set of Apis, clustered by a default TTL, we create a cache storage.
          */
         foreach ($this->apiCacheMap->getCacheableApis($baseApiPath) as $ttl => $apis) {
-            $cacheStorage = new DoctrineCacheStorage(new ChainCache([new ArrayCache, new FilesystemCache($cacheDir)]));
+            $cacheStorage = new SymfonyCacheStorage(new ChainAdapter([new ArrayAdapter, new FilesystemAdapter(directory: $cacheDir)]));
             $cacheStrategy = new GreedyCacheStrategy($cacheStorage, $ttl, new KeyValueHttpHeader(['Authorization']));
             /**
              * request matcher handlers linking the caching strategy to every specific endpoint
