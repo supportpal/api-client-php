@@ -13,7 +13,8 @@ class TicketCustomFieldData extends BaseModelData
     public const DATA = [
         'id' => 1,
         'name' => 'Related Product/Service',
-        'description' => 'Please select an option if this ticket is related to one of your products/services.',
+        'description' => '<div class="sp-editor-content"><p>Please select an option if this ticket is related to one of your products/services.</p></div>',
+        'purified_description' => '<div class="sp-editor-content"><p>Please select an option if this ticket is related to one of your products/services.</p></div>',
         'type' => 5,
         'depends_on_field_id' => null,
         'depends_on_option_id' => null,

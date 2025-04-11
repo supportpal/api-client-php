@@ -33,6 +33,12 @@ class TicketCustomFieldTranslation extends BaseTranslation
 
     /**
      * @var string|null
+     * @SerializedName("purified_description")
+     */
+    private $purifiedDescription;
+
+    /**
+     * @var string|null
      * @SerializedName("regex_error_message")
      */
     private $regexErrorMessage;
@@ -109,6 +115,25 @@ class TicketCustomFieldTranslation extends BaseTranslation
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPurifiedDescription(): ?string
+    {
+        return $this->purifiedDescription;
+    }
+
+    /**
+     * @param string|null $description
+     * @return self
+     */
+    public function setPurifiedDescription(?string $description): self
+    {
+        $this->purifiedDescription = $description;
 
         return $this;
     }
