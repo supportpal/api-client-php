@@ -36,7 +36,7 @@ class CacheStrategyConfigurator
          * For every set of Apis, clustered by a default TTL, we create a cache storage.
          */
         foreach ($this->apiCacheMap->getCacheableApis($baseApiPath) as $ttl => $apis) {
-            $cacheStorage = new SymfonyCacheStorage(new ChainAdapter([new ArrayAdapter, new FilesystemAdapter($cacheDir)]));
+            $cacheStorage = new SymfonyCacheStorage(new ChainAdapter([new ArrayAdapter, new FilesystemAdapter(directory: $cacheDir)]));
             $cacheStrategy = new GreedyCacheStrategy($cacheStorage, $ttl, new KeyValueHttpHeader(['Authorization']));
             /**
              * request matcher handlers linking the caching strategy to every specific endpoint
