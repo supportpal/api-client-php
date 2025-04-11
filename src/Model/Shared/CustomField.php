@@ -396,7 +396,7 @@ abstract class CustomField extends BaseModel
      */
     public function getPurifiedDescription(): ?string
     {
-        return $this->purified_description;
+        return $this->purifiedDescription;
     }
 
     /**
@@ -405,7 +405,7 @@ abstract class CustomField extends BaseModel
      */
     public function setPurifiedDescription(?string $description): self
     {
-        $this->purified_description = $description;
+        $this->purifiedDescription = $description;
 
         return $this;
     }
