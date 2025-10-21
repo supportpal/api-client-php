@@ -1,10 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Api\Core;
+namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
 
 use SupportPal\ApiClient\Model\Core\Language;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\LanguageData;
-use SupportPal\ApiClient\Tests\Unit\Api\Core\BaseCoreApiTest;
 
 class LanguageApisTest extends BaseCoreApiTest
 {

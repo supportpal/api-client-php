@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Model\Ticket\Request;
+namespace SupportPal\ApiClient\Tests\Unit\Model\Ticket\Request;
 
 use SupportPal\ApiClient\Model\Ticket\Request\CreateMessage;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTest;

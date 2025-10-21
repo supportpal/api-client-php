@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Api\User;
+namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
 use SupportPal\ApiClient\Model\User\Organisation;
 use SupportPal\ApiClient\Model\User\Request\CreateOrganisation;
@@ -8,7 +8,6 @@ use SupportPal\ApiClient\Model\User\Request\UpdateOrganisation;
 use SupportPal\ApiClient\Tests\DataFixtures\User\OrganisationData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateOrganisationData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateOrganisationData;
-use SupportPal\ApiClient\Tests\Unit\Api\User\BaseUserApiTest;
 
 class OrganisationApisTest extends BaseUserApiTest
 {
