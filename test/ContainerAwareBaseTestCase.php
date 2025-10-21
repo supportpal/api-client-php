@@ -16,7 +16,7 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\SupportPal;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 use function json_decode;
 use function json_encode;
@@ -76,8 +76,8 @@ abstract class ContainerAwareBaseTestCase extends TestCase
          * create container for test environment
          */
         $containerBuilder = new ContainerBuilder;
-        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
-        $loader->load('Resources/services_test.yml');
+        $loader = new PhpFileLoader($containerBuilder, new FileLocator(__DIR__));
+        $loader->load(__DIR__.'/Resources/services_test.php');
         $client = $this->getGuzzleClient();
         $containerBuilder->set('GuzzleHttp\Client', $client);
         $containerBuilder->compile();
