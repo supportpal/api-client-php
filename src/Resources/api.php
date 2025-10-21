@@ -25,21 +25,21 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(CoreApi::class)
         ->public()
-        ->parent('SupportPal\ApiClient\Api\Api')
+        ->parent(Api::class)
         ->arg('$apiClient', service(CoreClient::class));
 
     $services->set(SelfServiceApi::class)
         ->public()
-        ->parent('SupportPal\ApiClient\Api\Api')
+        ->parent(Api::class)
         ->arg('$apiClient', service(SelfServiceClient::class));
 
     $services->set(TicketApi::class)
         ->public()
-        ->parent('SupportPal\ApiClient\Api\Api')
+        ->parent(Api::class)
         ->arg('$apiClient', service(TicketClient::class));
 
     $services->set(UserApi::class)
         ->public()
-        ->parent('SupportPal\ApiClient\Api\Api')
+        ->parent(Api::class)
         ->arg('$apiClient', service(UserClient::class));
 };
