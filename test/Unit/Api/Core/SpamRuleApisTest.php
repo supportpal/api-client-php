@@ -8,7 +8,6 @@ use SupportPal\ApiClient\Model\Core\SpamRule;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateSpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\UpdateSpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\SpamRuleData;
-use SupportPal\ApiClient\Tests\Unit\Api\Core\BaseCoreApiTest;
 
 class SpamRuleApisTest extends BaseCoreApiTest
 {

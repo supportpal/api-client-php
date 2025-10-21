@@ -8,7 +8,6 @@ use SupportPal\ApiClient\Model\User\Request\UpdateOrganisation;
 use SupportPal\ApiClient\Tests\DataFixtures\User\OrganisationData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateOrganisationData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateOrganisationData;
-use SupportPal\ApiClient\Tests\Unit\Api\User\BaseUserApiTest;
 
 class OrganisationApisTest extends BaseUserApiTest
 {
