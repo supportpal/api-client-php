@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class DepartmentEmail extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'department_id'     => 'int',
         'brand_id'          => 'int',
         'address'           => 'string',

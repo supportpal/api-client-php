@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Translation;
 class OrganisationCustomFieldTranslation extends Translation
 {
     /** @var array<string,string> */
-    protected array $casts = [
+    protected $casts = [
         'id'                                => 'int',
         'user_organisation_custom_field_id' => 'int',
         'name'                              => 'string',

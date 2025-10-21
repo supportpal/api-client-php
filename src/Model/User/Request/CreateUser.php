@@ -12,7 +12,7 @@ use function trim;
 class CreateUser extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'brand_id'                   => 'int',
         'firstname'                  => 'string',
         'lastname'                   => 'string',

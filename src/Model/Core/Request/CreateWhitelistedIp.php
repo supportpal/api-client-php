@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class CreateWhitelistedIp extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'ip'             => 'string',
         'description'    => 'string',
         'event_user'     => 'bool',

@@ -11,7 +11,7 @@ class Status extends Model
      *
      * @var array<string, string>
      */
-    protected array $casts = [
+    protected $casts = [
         'id'         => 'int',
         'name'       => 'string',
         'colour'     => 'string',

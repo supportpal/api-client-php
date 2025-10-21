@@ -7,5 +7,5 @@ use SupportPal\ApiClient\Model\Model;
 class UpdateMessage extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = ['text' => 'string'];
+    protected $casts = ['text' => 'string'];
 }

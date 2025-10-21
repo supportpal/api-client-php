@@ -11,7 +11,7 @@ use function trim;
 class CreateMessage extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'ticket_id'            => 'int',
         'user_id'              => 'int',
         'user_ip_address'      => 'string',

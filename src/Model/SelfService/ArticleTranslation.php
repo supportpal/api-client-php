@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Translation;
 class ArticleTranslation extends Translation
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'article_id'    => 'int',
         'title'         => 'string',
         'slug'          => 'string',

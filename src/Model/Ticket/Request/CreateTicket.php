@@ -11,7 +11,7 @@ use function trim;
 class CreateTicket extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'user'                 => 'int',
         'on_behalf_of'         => 'int',
         'user_firstname'       => 'string',

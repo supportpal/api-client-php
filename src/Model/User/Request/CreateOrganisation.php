@@ -11,7 +11,7 @@ use function trim;
 class CreateOrganisation extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'brand_id'      => 'int',
         'name'          => 'string',
         'customfield'   => 'array',

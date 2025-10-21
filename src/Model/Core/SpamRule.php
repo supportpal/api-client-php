@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class SpamRule extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'id'            => 'int',
         'text'          => 'string',
         'event_message' => 'bool',

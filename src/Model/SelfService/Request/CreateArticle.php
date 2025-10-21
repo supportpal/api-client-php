@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class CreateArticle extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'author_id'    => 'int',
         'title'        => 'string',
         'slug'         => 'string',

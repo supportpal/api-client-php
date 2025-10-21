@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class Organisation extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'id'            => 'int',
         'brand_id'      => 'int',
         'owner_id'      => 'int',
