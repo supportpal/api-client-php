@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class IpBan extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'id'             => 'int',
         'ip'             => 'string',
         'reason'         => 'string',

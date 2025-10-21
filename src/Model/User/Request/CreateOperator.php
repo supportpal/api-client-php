@@ -10,7 +10,7 @@ use function array_unique;
 class CreateOperator extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'firstname'     => 'string',
         'lastname'      => 'string',
         'email'         => 'string',

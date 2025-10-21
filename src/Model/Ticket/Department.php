@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Model\User\User;
 class Department extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'id'                         => 'int',
         'name'                       => 'string',
         'description'                => 'string',

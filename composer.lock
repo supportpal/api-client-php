@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ed6b5dabc6ebc550ccab1f3715d2cea",
+    "content-hash": "4417a9eda2f80f5ab49913736dbc8e72",
     "packages": [
         {
             "name": "brick/math",
@@ -1318,6 +1318,57 @@
             "time": "2025-01-06T15:06:44+00:00"
         },
         {
+            "name": "jenssegers/model",
+            "version": "v1.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/model.git",
+                "reference": "eb8fb6e770e4c7e7b9c5c7ba6a7787f8669bce86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/model/zipball/eb8fb6e770e4c7e7b9c5c7ba6a7787f8669bce86",
+                "reference": "eb8fb6e770e4c7e7b9c5c7ba6a7787f8669bce86",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+                "illuminate/support": "^4.0|^5.0|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "*",
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jenssegers\\Model\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com"
+                }
+            ],
+            "description": "An Laravel eloquent-like model class, for Laravel and other frameworks",
+            "homepage": "https://github.com/jenssegers/model",
+            "keywords": [
+                "eloquent",
+                "laravel",
+                "model"
+            ],
+            "support": {
+                "issues": "https://github.com/jenssegers/model/issues",
+                "source": "https://github.com/jenssegers/model/tree/v1.5.4"
+            },
+            "time": "2025-03-16T15:13:01+00:00"
+        },
+        {
             "name": "kevinrob/guzzle-cache-middleware",
             "version": "6.0.0",
             "source": {
@@ -2256,62 +2307,6 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
-        },
-        {
-            "name": "supportpal/eloquent-model",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/supportpal/eloquent-model.git",
-                "reference": "3280ac3f4e83bdbfaabe867263242609278e0fc4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/supportpal/eloquent-model/zipball/3280ac3f4e83bdbfaabe867263242609278e0fc4",
-                "reference": "3280ac3f4e83bdbfaabe867263242609278e0fc4",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "^10.0|^11.0",
-                "illuminate/support": "^10.0|^11.0",
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "php-coveralls/php-coveralls": "^2.7.0",
-                "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^10.0",
-                "slevomat/coding-standard": "^8.15",
-                "squizlabs/php_codesniffer": "^3.5",
-                "supportpal/coding-standard": "^0.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Tests\\": "tests/",
-                    "Jenssegers\\Model\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jens Segers",
-                    "homepage": "https://jenssegers.com"
-                }
-            ],
-            "description": "An Laravel eloquent-like model class, for Laravel and other frameworks",
-            "homepage": "https://github.com/supportpal/eloquent-model",
-            "keywords": [
-                "eloquent",
-                "laravel",
-                "model"
-            ],
-            "support": {
-                "source": "https://github.com/supportpal/eloquent-model/tree/v1.0.0"
-            },
-            "time": "2024-05-29T17:16:56+00:00"
         },
         {
             "name": "symfony/cache",

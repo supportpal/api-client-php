@@ -30,7 +30,7 @@ abstract class CustomField extends Model
     public const TYPE_RATING = 10;
 
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'id'                   => 'int',
         'name'                 => 'string',
         'description'          => 'string',

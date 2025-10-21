@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class Upload extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'hash'       => 'string',
         'filename'   => 'string',
         'folder'     => 'string',

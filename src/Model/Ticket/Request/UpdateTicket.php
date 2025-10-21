@@ -11,7 +11,7 @@ use function trim;
 class UpdateTicket extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'brand'                        => 'int',
         'user'                         => 'int',
         'department'                   => 'int',

@@ -8,7 +8,7 @@ use SupportPal\ApiClient\Model\User\User;
 class Comment extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'id'             => 'int',
         'article_id'     => 'int',
         'type_id'        => 'int',

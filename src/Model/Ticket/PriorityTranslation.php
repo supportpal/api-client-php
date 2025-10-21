@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Translation;
 class PriorityTranslation extends Translation
 {
     /** @var array<string,string> */
-    protected array $casts = [
+    protected $casts = [
         'id'          => 'int',
         'priority_id' => 'int',
         'name'        => 'string',

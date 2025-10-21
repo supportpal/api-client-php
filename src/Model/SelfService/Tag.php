@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class Tag extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'id'           => 'int',
         'name'         => 'string',
         'slug'         => 'string',

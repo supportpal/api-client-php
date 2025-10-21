@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Translation;
 class TagTranslation extends Translation
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'id'     => 'int',
         'tag_id' => 'int',
         'name'   => 'string',

@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class ChannelSettings extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'unauthenticated_users' => 'string',
         'show_captcha'          => 'string',
         'append_ip_address'     => 'string',

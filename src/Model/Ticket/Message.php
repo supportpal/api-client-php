@@ -8,7 +8,7 @@ use SupportPal\ApiClient\Model\User\User;
 class Message extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'id'              => 'int',
         'ticket_id'       => 'int',
         'channel_id'      => 'int',

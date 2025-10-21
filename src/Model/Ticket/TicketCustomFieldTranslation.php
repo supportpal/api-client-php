@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Translation;
 class TicketCustomFieldTranslation extends Translation
 {
     /** @var array<string,string> */
-    protected array $casts = [
+    protected $casts = [
         'id'                     => 'int',
         'ticket_custom_field_id' => 'int',
         'name'                   => 'string',

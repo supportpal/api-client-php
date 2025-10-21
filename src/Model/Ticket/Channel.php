@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class Channel extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'id'                => 'int',
         'name'              => 'string',
         'enabled'           => 'int',

@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 class Group extends Model
 {
     /** @var array<string, string> */
-    protected array $casts = [
+    protected $casts = [
         'id'            => 'int',
         'name'          => 'string',
         'description'   => 'string',
