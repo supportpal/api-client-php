@@ -23,7 +23,7 @@ use SupportPal\ApiClient\Http\Client;
 use SupportPal\ApiClient\Http\Request;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 use function array_merge;
 use function str_replace;
@@ -50,8 +50,8 @@ class SupportPal
         $requestDefaults = $requestDefaults ?? new RequestDefaults;
 
         $containerBuilder = new ContainerBuilder;
-        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
-        $loader->load('Resources/services.yml');
+        $loader = new PhpFileLoader($containerBuilder, new FileLocator(__DIR__));
+        $loader->load('Resources/services.php');
         $containerBuilder->setParameter('apiUrl', $this->escapeSpecialCharacters($apiContext->getApiUrl()));
         $containerBuilder->setParameter('apiToken', $this->escapeSpecialCharacters($apiContext->getApiToken()));
         $containerBuilder->setParameter('defaultParameters', $requestDefaults->getDefaultParameters());

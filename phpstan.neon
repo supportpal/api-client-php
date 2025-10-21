@@ -1,5 +1,7 @@
 includes:
     - vendor/jangregor/phpstan-prophecy/extension.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
 
 parameters:
     level: 8
@@ -8,6 +10,5 @@ parameters:
         - test
     excludePaths:
         - test/DataFixtures
-        - test/PhpUnit
     parallel:
         processTimeout: 300.0

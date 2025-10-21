@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request as BaseRequest;
 use JsonException;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -18,13 +19,12 @@ use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\Client;
 use SupportPal\ApiClient\Http\CoreClient;
 use SupportPal\ApiClient\Http\Request;
-use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 use function json_encode;
 
 class ApiClientTest extends TestCase
 {
-    use PhpUnitCompatibilityTrait;
+    use ProphecyTrait;
 
     /** @var array<mixed> */
     protected $genericErrorResponse = [

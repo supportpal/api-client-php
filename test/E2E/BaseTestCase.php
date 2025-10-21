@@ -15,7 +15,7 @@ use SupportPal\ApiClient\SupportPal;
 use SupportPal\ApiClient\Tests\TestCase;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 use function getenv;
 use function intval;
@@ -44,8 +44,8 @@ abstract class BaseTestCase extends TestCase
         $this->modelsTestLimit = $limit === 0 ? self::DEFAULT_LIMIT : $limit;
 
         $containerBuilder = new ContainerBuilder;
-        $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
-        $loader->load('../Resources/services_test.yml');
+        $loader = new PhpFileLoader($containerBuilder, new FileLocator(__DIR__));
+        $loader->load(__DIR__.'/../Resources/services_test.php');
         $containerBuilder->set(Client::class, new Client);
         $containerBuilder->compile();
 

@@ -2,9 +2,9 @@
 
 namespace SupportPal\ApiClient\Tests;
 
+use Prophecy\PhpUnit\ProphecyTrait;
 use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\Model;
-use SupportPal\ApiClient\Tests\PhpUnit\PhpUnitCompatibilityTrait;
 
 use function count;
 use function current;
@@ -14,7 +14,7 @@ use function is_object;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    use PhpUnitCompatibilityTrait;
+    use ProphecyTrait;
 
     /**
      * @param object $obj
