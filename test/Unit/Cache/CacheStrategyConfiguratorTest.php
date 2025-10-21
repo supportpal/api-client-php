@@ -36,6 +36,7 @@ class CacheStrategyConfiguratorTest extends TestCase
             ->getCacheableApis('/api/')->shouldBeCalled()
             ->willReturn($apiCacheMap->getCacheableApis('/api/'));
         $strategy = $this->cacheConfigurator->buildCacheStrategy(sys_get_temp_dir(), '/api/');
+        // @phpstan-ignore staticMethod.alreadyNarrowedType
         self::assertInstanceOf(CacheStrategyInterface::class, $strategy);
     }
 }

@@ -19,6 +19,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
 {
     public function testGetRequestFactory(): void
     {
+        // @phpstan-ignore staticMethod.alreadyNarrowedType
         self::assertInstanceOf(Request::class, $this->getSupportPal()->getRequest());
     }
 
