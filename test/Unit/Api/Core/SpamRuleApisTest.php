@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Api\Core;
+namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
 
 use SupportPal\ApiClient\Model\Core\Request\CreateSpamRule;
 use SupportPal\ApiClient\Model\Core\Request\UpdateSpamRule;

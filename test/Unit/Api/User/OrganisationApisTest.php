@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Api\User;
+namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
 use SupportPal\ApiClient\Model\User\Organisation;
 use SupportPal\ApiClient\Model\User\Request\CreateOrganisation;

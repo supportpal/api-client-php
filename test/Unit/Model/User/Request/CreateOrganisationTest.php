@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Model\User\Request;
+namespace SupportPal\ApiClient\Tests\Unit\Model\User\Request;
 
 use SupportPal\ApiClient\Model\User\Request\CreateOrganisation;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTest;
