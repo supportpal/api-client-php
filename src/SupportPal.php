@@ -24,7 +24,6 @@ use SupportPal\ApiClient\Http\Request;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 use function array_merge;
 use function str_replace;
