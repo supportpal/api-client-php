@@ -24,7 +24,7 @@
   },
   "require-dev": {
     "brianium/paratest": "^4.0|^5.0|^6.0",
-    "jangregor/phpstan-prophecy": "2.1.1",
+    "jangregor/phpstan-prophecy": "2.2.0",
     "larapack/dd": "^1.1",
     "phpmd/phpmd": "^2.9",
     "phpspec/prophecy-phpunit": "^2.0",
