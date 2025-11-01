@@ -4,6 +4,17 @@ namespace SupportPal\ApiClient\Model\Core;
 
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $code
+ * @property bool $enabled
+ * @property bool $upgrade_available
+ * @property string $version
+ * @property int $created_at
+ * @property int $updated_at
+ * @property string $formatted_name
+ */
 class Language extends Model
 {
     /** @var array<string, string> */

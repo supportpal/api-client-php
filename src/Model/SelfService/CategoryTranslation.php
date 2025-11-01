@@ -4,6 +4,11 @@ namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\Translation;
 
+/**
+ * @property int $category_id
+ * @property string $name
+ * @property string $slug
+ */
 class CategoryTranslation extends Translation
 {
     /** @var array<string,string> */

@@ -4,6 +4,19 @@ namespace SupportPal\ApiClient\Model\SelfService\Request;
 
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $author_id
+ * @property string $title
+ * @property string $slug
+ * @property string $excerpt
+ * @property string $text
+ * @property array $category
+ * @property array $tag
+ * @property bool $published
+ * @property int $published_at
+ * @property bool $protected
+ * @property bool $pinned
+ */
 class CreateArticle extends Model
 {
     /** @var array<string, string> */

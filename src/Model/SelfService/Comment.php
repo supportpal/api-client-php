@@ -5,6 +5,24 @@ namespace SupportPal\ApiClient\Model\SelfService;
 use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\User\User;
 
+/**
+ * @property int $id
+ * @property int $article_id
+ * @property int $type_id
+ * @property int $author_id
+ * @property string $name
+ * @property string $text
+ * @property string $purified_text
+ * @property int|null $parent_id
+ * @property int|null $root_parent_id
+ * @property int $rating
+ * @property int $status
+ * @property int $notify_reply
+ * @property int $created_at
+ * @property int $updated_at
+ * @property int $deleted_at
+ * @property User $author
+ */
 class Comment extends Model
 {
     /** @var array<string, string> */

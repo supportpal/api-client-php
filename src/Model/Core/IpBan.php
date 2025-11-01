@@ -4,6 +4,18 @@ namespace SupportPal\ApiClient\Model\Core;
 
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $id
+ * @property string $ip
+ * @property string $reason
+ * @property bool $event_user
+ * @property bool $event_operator
+ * @property bool $event_api
+ * @property int $type
+ * @property int $expiry
+ * @property int $created_at
+ * @property int $updated_at
+ */
 class IpBan extends Model
 {
     /** @var array<string, string> */

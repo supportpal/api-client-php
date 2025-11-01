@@ -4,6 +4,16 @@ namespace SupportPal\ApiClient\Model\SelfService\Request;
 
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $article_id
+ * @property int $type_id
+ * @property int $parent_id
+ * @property int $author_id
+ * @property string $name
+ * @property string $text
+ * @property int $status
+ * @property bool $notify_reply
+ */
 class CreateComment extends Model
 {
     /** @var array<string, string> */

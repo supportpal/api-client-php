@@ -5,6 +5,27 @@ namespace SupportPal\ApiClient\Model\SelfService;
 use SupportPal\ApiClient\Model\Core\Brand;
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $id
+ * @property int $brand_id
+ * @property string $name
+ * @property string $slug
+ * @property string $description
+ * @property int $order
+ * @property int $enabled
+ * @property int $protected
+ * @property int $internal
+ * @property int $content
+ * @property int $view
+ * @property string $icon
+ * @property int $article_ordering
+ * @property int $show_on_dashboard
+ * @property string|null $external_link
+ * @property int $created_at
+ * @property int $updated_at
+ * @property TypeTranslation[] $translations
+ * @property Brand $brand
+ */
 class Type extends Model
 {
     /** @var array<string, string> */

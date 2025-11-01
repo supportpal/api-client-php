@@ -5,6 +5,26 @@ namespace SupportPal\ApiClient\Model\Shared;
 use SupportPal\ApiClient\Model\Core\Brand;
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $description
+ * @property string $purified_description
+ * @property int $type
+ * @property int|null $depends_on_field_id
+ * @property int|null $depends_on_option_id
+ * @property int $order
+ * @property int $required
+ * @property int $public
+ * @property int $encrypted
+ * @property int $locked
+ * @property string $regex
+ * @property string $regex_error_message
+ * @property int $created_at
+ * @property int $updated_at
+ * @property Option[] $options
+ * @property Brand[] $brands
+ */
 abstract class CustomField extends Model
 {
     public const TYPE_BOOLEAN = 0;

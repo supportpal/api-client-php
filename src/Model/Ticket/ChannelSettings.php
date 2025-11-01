@@ -4,6 +4,12 @@ namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property string $unauthenticated_users
+ * @property string $show_captcha
+ * @property string $append_ip_address
+ * @property string $show_related_articles
+ */
 class ChannelSettings extends Model
 {
     /** @var array<string, string> */

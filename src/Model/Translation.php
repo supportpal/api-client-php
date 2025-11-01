@@ -4,6 +4,9 @@ namespace SupportPal\ApiClient\Model;
 
 use function array_merge;
 
+/**
+ * @property string $locale
+ */
 abstract class Translation extends Model
 {
     /**

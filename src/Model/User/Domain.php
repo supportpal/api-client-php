@@ -4,6 +4,11 @@ namespace SupportPal\ApiClient\Model\User;
 
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $id
+ * @property int $organisation_id
+ * @property string $domain
+ */
 class Domain extends Model
 {
     /** @var array<string, string> */

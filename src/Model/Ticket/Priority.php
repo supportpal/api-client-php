@@ -4,6 +4,18 @@ namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $colour
+ * @property int $order
+ * @property int $created_at
+ * @property int $updated_at
+ * @property string $icon
+ * @property string $icon_without_tooltip
+ * @property Department[] $departments
+ * @property PriorityTranslation[] $translations
+ */
 class Priority extends Model
 {
     /** @var array<string, string> */

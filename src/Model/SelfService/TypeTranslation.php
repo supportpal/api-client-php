@@ -4,6 +4,13 @@ namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\Translation;
 
+/**
+ * @property int $id
+ * @property int $type_id
+ * @property string $name
+ * @property string $description
+ * @property string $slug
+ */
 class TypeTranslation extends Translation
 {
     /** @var array<string, string> */

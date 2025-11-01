@@ -6,6 +6,9 @@ use SupportPal\ApiClient\Model\Shared\CustomField;
 
 use function array_merge;
 
+/**
+ * @property UserCustomFieldTranslation[] $translations
+ */
 class UserCustomField extends CustomField
 {
     /**
