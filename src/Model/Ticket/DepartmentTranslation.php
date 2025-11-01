@@ -4,6 +4,12 @@ namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Translation;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $description
+ * @property int $department_id
+ */
 class DepartmentTranslation extends Translation
 {
     /** @var array<string, string> */

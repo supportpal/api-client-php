@@ -8,6 +8,19 @@ use SupportPal\ApiClient\Model\Model;
 use function array_unique;
 use function trim;
 
+/**
+ * @property int $ticket_id
+ * @property int $user_id
+ * @property string $user_ip_address
+ * @property int $message_type
+ * @property string $text
+ * @property array $attachment
+ * @property array $cc
+ * @property bool $is_draft
+ * @property bool $send_user_email
+ * @property bool $send_operators_email
+ * @property int $created_at
+ */
 class CreateMessage extends Model
 {
     /** @var array<string, string> */

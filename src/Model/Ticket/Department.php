@@ -6,6 +6,30 @@ use SupportPal\ApiClient\Model\Model;
 use SupportPal\ApiClient\Model\User\Group;
 use SupportPal\ApiClient\Model\User\User;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $description
+ * @property int $order
+ * @property int|null $parent_id
+ * @property int $public
+ * @property string|null $ticket_number_format
+ * @property string|null $from_name
+ * @property int $notify_frontend_ticket
+ * @property int $notify_email_ticket
+ * @property int $notify_operators
+ * @property int $disable_user_email_replies
+ * @property int $registered_only
+ * @property int $created_at
+ * @property int $updated_at
+ * @property DepartmentEmailTemplates[] $email_templates
+ * @property DepartmentEmail[] $emails
+ * @property DepartmentTranslation[] $translations
+ * @property Group[] $groups
+ * @property User[] $operators
+ * @property Department[] $parent
+ * @property User[] $default_assignedto
+ */
 class Department extends Model
 {
     /** @var array<string, string> */

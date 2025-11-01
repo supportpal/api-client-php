@@ -4,6 +4,15 @@ namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\Translation;
 
+/**
+ * @property int $article_id
+ * @property string $title
+ * @property string $slug
+ * @property string|null $excerpt
+ * @property string $plain_text
+ * @property string $text
+ * @property string $purified_text
+ */
 class ArticleTranslation extends Translation
 {
     /** @var array<string, string> */

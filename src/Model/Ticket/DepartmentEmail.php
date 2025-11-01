@@ -4,6 +4,24 @@ namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $department_id
+ * @property int $brand_id
+ * @property string $address
+ * @property int $type
+ * @property int $protocol
+ * @property string $server
+ * @property string $username
+ * @property string $auth_mech
+ * @property string $password
+ * @property string $oauth
+ * @property string $port
+ * @property int $encryption
+ * @property int $consume_all
+ * @property int $delete_downloaded
+ * @property int $created_at
+ * @property int $updated_at
+ */
 class DepartmentEmail extends Model
 {
     /** @var array<string, string> */

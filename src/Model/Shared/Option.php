@@ -4,6 +4,15 @@ namespace SupportPal\ApiClient\Model\Shared;
 
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $id
+ * @property int $field_id
+ * @property int $order
+ * @property string $value
+ * @property int $created_at
+ * @property int $updated_at
+ * @property OptionTranslation[] $translations
+ */
 class Option extends Model
 {
     /** @var array<string, string> */
