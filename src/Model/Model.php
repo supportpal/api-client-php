@@ -30,22 +30,44 @@ abstract class Model extends \Jenssegers\Model\Model
             return $value;
         }
 
-        // Handle class typing.
-        if ($castType && class_exists($castType) && is_array($value)) {
-            return new $castType($value);
-        }
+        if (is_array($value)) {
+            if (str_starts_with($castType, 'array:')) {
+                $className = substr($castType, 6);
 
-        // Handle class typing as an array.
-        if ($castType && str_starts_with($castType, 'array:')) {
-            $className = substr($castType, 6);
+                if (class_exists($className)) {
+                    return $this->castToArrayOfObjects($castType, $value);
+                }
+            }
 
-            if (class_exists($className) && is_array($value)) {
-                return array_map(function ($item) use ($className) {
-                    return is_array($item) ? new $className($item) : $item;
-                }, $value);
+            if (class_exists($castType)) {
+                return $this->castToObject($castType, $value);
             }
         }
 
         return parent::castAttribute($key, $value);
+    }
+
+    /**
+     * @template T of object
+     * @param class-string<T> $castType
+     * @param array<mixed> $value
+     * @return T
+     */
+    private function castToObject(string $castType, array $value): mixed
+    {
+        return new $castType($value);
+    }
+
+    /**
+     * @template T of object
+     * @param class-string<T> $className
+     * @param array<mixed> $value
+     * @return array<int, T|mixed>
+     */
+    private function castToArrayOfObjects(string $className, array $value): array
+    {
+        return array_map(function ($item) use ($className) {
+            return is_array($item) ? new $className($item) : $item;
+        }, $value);
     }
 }
