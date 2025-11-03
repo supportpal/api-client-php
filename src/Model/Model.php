@@ -21,12 +21,8 @@ abstract class Model extends \Jenssegers\Model\Model
 
     /**
      * Cast an attribute to a native PHP type.
-     *
-     * @param  string  $key
-     * @param  mixed  $value
-     * @return mixed
      */
-    protected function castAttribute($key, $value)
+    protected function castAttribute(string $key, mixed $value): mixed
     {
         $castType = $this->casts[$key] ?? null;
 
