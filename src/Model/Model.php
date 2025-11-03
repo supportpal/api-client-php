@@ -25,10 +25,6 @@ abstract class Model extends \Jenssegers\Model\Model
      */
     protected function castAttribute(mixed $key, mixed $value): mixed
     {
-        if (! is_string($key)) {
-            $key = (string) $key;
-        }
-
         $castType = $this->casts[$key] ?? null;
 
         if ($value === null || $castType === null) {
