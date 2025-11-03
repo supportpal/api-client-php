@@ -5,9 +5,9 @@ namespace SupportPal\ApiClient\Model\Ticket;
 use SupportPal\ApiClient\Model\Model;
 
 /**
- * @property array $bcc_address
- * @property array $to_address
- * @property array $cc_address
+ * @property string[] $bcc_address
+ * @property string[] $to_address
+ * @property string[] $cc_address
  */
 class Extra extends Model
 {

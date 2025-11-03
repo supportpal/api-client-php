@@ -36,7 +36,7 @@ use SupportPal\ApiClient\Model\Model;
  * @property int $updated_at
  * @property string $avatar_url
  * @property string $formatted_name
- * @property array $phone
+ * @property string[] $phone
  * @property Group[] $groups
  * @property UserCustomField[] $customfields
  * @property Organisation $organisation

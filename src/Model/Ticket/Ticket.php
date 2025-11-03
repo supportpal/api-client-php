@@ -23,7 +23,7 @@ use SupportPal\ApiClient\Model\User\User;
  * @property int $time_while_paused
  * @property int|null $resolved_time
  * @property int|null $reopened_time
- * @property array $cc
+ * @property string[] $cc
  * @property int $locked
  * @property int $merged
  * @property int $internal
