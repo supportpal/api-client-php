@@ -35,7 +35,7 @@ abstract class Model extends \Jenssegers\Model\Model
                 $className = substr($castType, 6);
 
                 if (class_exists($className)) {
-                    return $this->castToArrayOfObjects($castType, $value);
+                    return $this->castToArrayOfObjects($className, $value);
                 }
             }
 
@@ -49,13 +49,13 @@ abstract class Model extends \Jenssegers\Model\Model
 
     /**
      * @template T of object
-     * @param class-string<T> $castType
+     * @param class-string<T> $className
      * @param array<mixed> $value
      * @return T
      */
-    private function castToObject(string $castType, array $value): mixed
+    private function castToObject(string $className, array $value): mixed
     {
-        return new $castType($value);
+        return new $className($value);
     }
 
     /**
