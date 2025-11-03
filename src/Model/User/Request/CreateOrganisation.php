@@ -11,13 +11,13 @@ use function trim;
 /**
  * @property int $brand_id
  * @property string $name
- * @property array $customfield
+ * @property array<int, mixed> $customfield
  * @property string $country
  * @property string $language_code
  * @property string $timezone
  * @property string $notes
- * @property array $domain
- * @property array $access_level
+ * @property string[] $domain
+ * @property array<int, int> $access_level
  */
 class CreateOrganisation extends Model
 {

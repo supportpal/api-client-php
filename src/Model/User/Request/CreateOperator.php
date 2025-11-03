@@ -12,13 +12,13 @@ use function array_unique;
  * @property string $lastname
  * @property string $email
  * @property string $password
- * @property array $phone
+ * @property string[] $phone
  * @property string $country
  * @property string $language_code
  * @property string $timezone
  * @property int $active
- * @property array $groups
- * @property array $depts
+ * @property int[] $groups
+ * @property int[] $depts
  */
 class CreateOperator extends Model
 {

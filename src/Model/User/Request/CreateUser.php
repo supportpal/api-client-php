@@ -14,10 +14,10 @@ use function trim;
  * @property string $firstname
  * @property string $lastname
  * @property string $email
- * @property array $additional_email
+ * @property string[] $additional_email
  * @property string $password
  * @property bool $send_email
- * @property array $phone
+ * @property string[] $phone
  * @property string $country
  * @property string $language_code
  * @property string $timezone
@@ -27,8 +27,8 @@ use function trim;
  * @property int $organisation_id
  * @property int $organisation_access_level
  * @property int $organisation_notifications
- * @property array $customfield
- * @property array $groups
+ * @property int[] $customfield
+ * @property int[] $groups
  */
 class CreateUser extends Model
 {
