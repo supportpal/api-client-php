@@ -16,17 +16,17 @@ use function trim;
  * @property int $status
  * @property int $priority
  * @property string $subject
- * @property array $tag
- * @property array $assignedto
- * @property array $watching
- * @property array $link
- * @property array $unlink
+ * @property int[] $tag
+ * @property int[] $assignedto
+ * @property int[] $watching
+ * @property int[] $link
+ * @property int[] $unlink
  * @property int $sla_plan
  * @property int $reply_due_time
  * @property int $resolve_due_time
- * @property array $customfield
+ * @property array<int, mixed> $customfield
  * @property bool $overwrite_customfield_values
- * @property array $cc
+ * @property string[] $cc
  * @property bool $locked
  */
 class UpdateTicket extends Model
