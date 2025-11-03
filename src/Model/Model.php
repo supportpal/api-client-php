@@ -2,6 +2,12 @@
 
 namespace SupportPal\ApiClient\Model;
 
+use function array_map;
+use function class_exists;
+use function is_array;
+use function str_starts_with;
+use function substr;
+
 /**
  * @method mixed __get(string $key)
  * @method void __set(string $key, mixed $value)
@@ -13,10 +19,17 @@ abstract class Model extends \Jenssegers\Model\Model
     /** @var string[] */
     protected $guarded = [];
 
+    /**
+     * Cast an attribute to a native PHP type.
+     *
+     * @param  string  $key
+     * @param  mixed  $value
+     * @return mixed
+     */
     protected function castAttribute($key, $value)
     {
         $castType = $this->casts[$key] ?? null;
-        
+
         if ($value === null || $castType === null) {
             return $value;
         }
