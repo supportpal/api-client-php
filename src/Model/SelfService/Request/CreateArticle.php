@@ -10,8 +10,8 @@ use SupportPal\ApiClient\Model\Model;
  * @property string $slug
  * @property string $excerpt
  * @property string $text
- * @property array $category
- * @property array $tag
+ * @property int[] $category
+ * @property string[] $tag
  * @property bool $published
  * @property int $published_at
  * @property bool $protected
