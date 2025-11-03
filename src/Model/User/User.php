@@ -6,23 +6,23 @@ use SupportPal\ApiClient\Model\Model;
 
 /**
  * @property int $id
- * @property int $brand_id
+ * @property int|null $brand_id
  * @property int $role
- * @property string $firstname
- * @property string $lastname
- * @property string $email
- * @property string $password
- * @property string $session
- * @property string $remember_token
+ * @property string|null $firstname
+ * @property string|null $lastname
+ * @property string|null $email
+ * @property string|null $password
+ * @property string|null $session
+ * @property string|null $remember_token
  * @property int $email_verified
  * @property int $active
- * @property int $organisation_id
- * @property int $organisation_access_level
- * @property int $organisation_notifications
- * @property string $country
- * @property string $language_code
- * @property string $timezone
- * @property string $avatar
+ * @property int|null $organisation_id
+ * @property int|null $organisation_access_level
+ * @property int|null $organisation_notifications
+ * @property string|null $country
+ * @property string|null $language_code
+ * @property string|null $timezone
+ * @property string|null $avatar
  * @property int|null $template_mode
  * @property string|null $notes
  * @property int $twofa_enabled
@@ -31,7 +31,7 @@ use SupportPal\ApiClient\Model\Model;
  * @property string|null $twitter_id
  * @property string|null $twitter_handle
  * @property string|null $facebook_id
- * @property int $last_active_at
+ * @property int|null $last_active_at
  * @property int $created_at
  * @property int $updated_at
  * @property string $avatar_url

@@ -6,15 +6,15 @@ use SupportPal\ApiClient\Model\Model;
 
 /**
  * @property int $id
- * @property int $author_id
+ * @property int|null $author_id
  * @property string $title
  * @property string $slug
- * @property string $excerpt
+ * @property string|null $excerpt
  * @property string $plain_text
  * @property string $text
  * @property string $purified_text
  * @property int $published
- * @property int $published_at
+ * @property int|null $published_at
  * @property int $protected
  * @property int $pinned
  * @property int $created_at

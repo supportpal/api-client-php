@@ -20,7 +20,7 @@ use SupportPal\ApiClient\Model\User\User;
  * @property int $notify_reply
  * @property int $created_at
  * @property int $updated_at
- * @property int $deleted_at
+ * @property int|null $deleted_at
  * @property User $author
  */
 class Comment extends Model

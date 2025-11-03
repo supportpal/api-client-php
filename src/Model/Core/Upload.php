@@ -11,7 +11,7 @@ use SupportPal\ApiClient\Model\Model;
  * @property string $mime
  * @property string $size
  * @property string|null $token
- * @property string $session_id
+ * @property string|null $session_id
  * @property int $created_at
  * @property int $updated_at
  */

@@ -8,9 +8,9 @@ use SupportPal\ApiClient\Model\User\User;
 
 /**
  * @property int $id
- * @property string $number
+ * @property string|null $number
  * @property int $department_id
- * @property int $department_email_id
+ * @property int|null $department_email_id
  * @property int $brand_id
  * @property int $channel_id
  * @property int $user_id
@@ -23,21 +23,21 @@ use SupportPal\ApiClient\Model\User\User;
  * @property int $time_while_paused
  * @property int|null $resolved_time
  * @property int|null $reopened_time
- * @property string[] $cc
+ * @property string[]|null $cc
  * @property int $locked
  * @property int $merged
  * @property int $internal
  * @property int $response_email_sent
- * @property int $messages_count
- * @property int $notes_count
- * @property int $has_attachments
+ * @property int|null $messages_count
+ * @property int|null $notes_count
+ * @property int|null $has_attachments
  * @property bool $has_draft
  * @property int $last_reply_time
  * @property int $last_message_time
- * @property int $last_reply_id
- * @property int $last_message_id
- * @property int $last_reply_by
- * @property int $last_message_by
+ * @property int|null $last_reply_id
+ * @property int|null $last_message_id
+ * @property int|null $last_reply_by
+ * @property int|null $last_message_by
  * @property int|null $deleted_at
  * @property int $created_at
  * @property int $updated_at

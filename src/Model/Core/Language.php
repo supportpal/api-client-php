@@ -10,7 +10,7 @@ use SupportPal\ApiClient\Model\Model;
  * @property string $code
  * @property bool $enabled
  * @property bool $upgrade_available
- * @property string $version
+ * @property string|null $version
  * @property int $created_at
  * @property int $updated_at
  * @property string $formatted_name

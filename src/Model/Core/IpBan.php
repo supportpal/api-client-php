@@ -6,13 +6,13 @@ use SupportPal\ApiClient\Model\Model;
 
 /**
  * @property int $id
- * @property string $ip
- * @property string $reason
+ * @property string|null $ip
+ * @property string|null $reason
  * @property bool $event_user
  * @property bool $event_operator
  * @property bool $event_api
  * @property int $type
- * @property int $expiry
+ * @property int|null $expiry
  * @property int $created_at
  * @property int $updated_at
  */

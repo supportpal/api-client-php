@@ -9,8 +9,8 @@ use SupportPal\ApiClient\Model\User\User;
 /**
  * @property int $id
  * @property string $name
- * @property string $description
- * @property int $order
+ * @property string|null $description
+ * @property int|null $order
  * @property int|null $parent_id
  * @property int $public
  * @property string|null $ticket_number_format
@@ -22,13 +22,13 @@ use SupportPal\ApiClient\Model\User\User;
  * @property int $registered_only
  * @property int $created_at
  * @property int $updated_at
- * @property DepartmentEmailTemplates[] $email_templates
+ * @property DepartmentEmailTemplates[]|null $email_templates
  * @property DepartmentEmail[] $emails
  * @property DepartmentTranslation[] $translations
  * @property Group[] $groups
  * @property User[] $operators
  * @property Department $parent
- * @property User[] $default_assignedto
+ * @property User[]|null $default_assignedto
  */
 class Department extends Model
 {

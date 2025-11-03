@@ -27,10 +27,10 @@ use SupportPal\ApiClient\Model\Model;
  * @property int|null $smtp_port
  * @property string|null $smtp_encryption
  * @property int|null $smtp_requires_auth
- * @property string $smtp_auth_mech
+ * @property string|null $smtp_auth_mech
  * @property string|null $smtp_username
  * @property string|null $smtp_password
- * @property string $smtp_oauth
+ * @property string|null $smtp_oauth
  * @property string $default_country
  * @property string $default_timezone
  * @property string $date_format
