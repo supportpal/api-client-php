@@ -27,7 +27,7 @@ use SupportPal\ApiClient\Model\User\User;
  * @property DepartmentTranslation[] $translations
  * @property Group[] $groups
  * @property User[] $operators
- * @property Department[] $parent
+ * @property Department $parent
  * @property User[] $default_assignedto
  */
 class Department extends Model
@@ -54,7 +54,7 @@ class Department extends Model
         'translations'               => 'array:' . DepartmentTranslation::class,
         'groups'                     => 'array:' . Group::class,
         'operators'                  => 'array:' . User::class,
-        'parent'                     => 'array:' . self::class,
+        'parent'                     => self::class,
         'default_assignedto'         => 'array:' . User::class,
     ];
 }
