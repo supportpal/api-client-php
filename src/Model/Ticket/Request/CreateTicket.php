@@ -23,14 +23,14 @@ use function trim;
  * @property bool $internal
  * @property string $subject
  * @property string $text
- * @property array $tag
- * @property array $assignedto
- * @property array $watching
- * @property array $customfield
- * @property array $cc
+ * @property int[] $tag
+ * @property int[] $assignedto
+ * @property int[] $watching
+ * @property array<int, mixed> $customfield
+ * @property string[] $cc
  * @property int $send_user_email
  * @property int $send_operators_email
- * @property array $attachment
+ * @property array<int, array{filename: string, contents: string}> $attachment
  * @property int $created_at
  */
 class CreateTicket extends Model
