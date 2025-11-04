@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Model\User\User;
  * @property int $id
  * @property int $ticket_id
  * @property int $channel_id
- * @property int $user_id
+ * @property int|null $user_id
  * @property string $user_name
  * @property string|null $user_ip_address
  * @property int $by
@@ -19,7 +19,7 @@ use SupportPal\ApiClient\Model\User\User;
  * @property string $purified_text
  * @property int $is_draft
  * @property string|null $social_id
- * @property Extra $extra
+ * @property Extra|null $extra
  * @property int $created_at
  * @property int $updated_at
  * @property Attachment[] $attachments

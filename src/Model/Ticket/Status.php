@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Model\Model;
  * @property string $name
  * @property string $colour
  * @property int $auto_close
- * @property int $order
+ * @property int|null $order
  * @property int $created_at
  * @property int $updated_at
  * @property string $icon

@@ -7,8 +7,8 @@ use SupportPal\ApiClient\Model\Model;
 /**
  * @property int $id
  * @property string $name
- * @property string $description
- * @property string $colour
+ * @property string|null $description
+ * @property string|null $colour
  * @property int $administrator
  * @property int $created_at
  * @property int $updated_at

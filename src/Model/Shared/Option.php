@@ -7,7 +7,7 @@ use SupportPal\ApiClient\Model\Model;
 /**
  * @property int $id
  * @property int $field_id
- * @property int $order
+ * @property int|null $order
  * @property string $value
  * @property int $created_at
  * @property int $updated_at

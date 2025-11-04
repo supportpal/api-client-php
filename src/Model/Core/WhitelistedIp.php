@@ -6,8 +6,8 @@ use SupportPal\ApiClient\Model\Model;
 
 /**
  * @property int $id
- * @property string $ip
- * @property string $description
+ * @property string|null $ip
+ * @property string|null $description
  * @property bool $event_user
  * @property bool $event_operator
  * @property bool $event_api
