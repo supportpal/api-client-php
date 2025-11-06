@@ -4,6 +4,14 @@ namespace SupportPal\ApiClient\Model\User;
 
 use SupportPal\ApiClient\Model\Translation;
 
+/**
+ * @property int $id
+ * @property int $user_organisation_custom_field_id
+ * @property string $name
+ * @property string $description
+ * @property string $purified_description
+ * @property string $regex_error_message
+ */
 class OrganisationCustomFieldTranslation extends Translation
 {
     /** @var array<string,string> */

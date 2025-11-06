@@ -8,6 +8,17 @@ use SupportPal\ApiClient\Model\Model;
 use function array_unique;
 use function trim;
 
+/**
+ * @property int $brand_id
+ * @property string $name
+ * @property array<int, mixed> $customfield
+ * @property string $country
+ * @property string $language_code
+ * @property string $timezone
+ * @property string $notes
+ * @property string[] $domain
+ * @property array<int, int> $access_level
+ */
 class CreateOrganisation extends Model
 {
     /** @var array<string, string> */

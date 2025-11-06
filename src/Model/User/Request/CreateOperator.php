@@ -7,6 +7,19 @@ use SupportPal\ApiClient\Model\Model;
 
 use function array_unique;
 
+/**
+ * @property string $firstname
+ * @property string $lastname
+ * @property string $email
+ * @property string $password
+ * @property string[] $phone
+ * @property string $country
+ * @property string $language_code
+ * @property string $timezone
+ * @property int $active
+ * @property int[] $groups
+ * @property int[] $depts
+ */
 class CreateOperator extends Model
 {
     /** @var array<string, string> */

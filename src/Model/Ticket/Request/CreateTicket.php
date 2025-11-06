@@ -8,6 +8,31 @@ use SupportPal\ApiClient\Model\Model;
 use function array_unique;
 use function trim;
 
+/**
+ * @property int $user
+ * @property int $on_behalf_of
+ * @property string $user_firstname
+ * @property string $user_lastname
+ * @property string $user_email
+ * @property string $user_organisation
+ * @property string $user_ip_address
+ * @property int $department
+ * @property int $brand
+ * @property int $status
+ * @property int $priority
+ * @property bool $internal
+ * @property string $subject
+ * @property string $text
+ * @property int[] $tag
+ * @property int[] $assignedto
+ * @property int[] $watching
+ * @property array<int, mixed> $customfield
+ * @property string[] $cc
+ * @property int $send_user_email
+ * @property int $send_operators_email
+ * @property array<int, array{filename: string, contents: string}> $attachment
+ * @property int $created_at
+ */
 class CreateTicket extends Model
 {
     /** @var array<string, string> */

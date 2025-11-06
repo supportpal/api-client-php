@@ -4,6 +4,17 @@ namespace SupportPal\ApiClient\Model\Ticket;
 
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string|null $description
+ * @property int|null $order
+ * @property int $all_hours
+ * @property int $condition_group_type
+ * @property int $created_at
+ * @property int $updated_at
+ * @property SlaPlanTranslation[] $translations
+ */
 class SlaPlan extends Model
 {
     /** @var array<string, string> */

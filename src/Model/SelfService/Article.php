@@ -4,6 +4,30 @@ namespace SupportPal\ApiClient\Model\SelfService;
 
 use SupportPal\ApiClient\Model\Model;
 
+/**
+ * @property int $id
+ * @property int|null $author_id
+ * @property string $title
+ * @property string $slug
+ * @property string|null $excerpt
+ * @property string $plain_text
+ * @property string $text
+ * @property string $purified_text
+ * @property int $published
+ * @property int|null $published_at
+ * @property int $protected
+ * @property int $pinned
+ * @property int $created_at
+ * @property int $updated_at
+ * @property int $views
+ * @property int $positive_rating
+ * @property int $total_rating
+ * @property ArticleTranslation[] $translations
+ * @property Category[] $categories
+ * @property Type[] $types
+ * @property Attachment[] $attachments
+ * @property Tag[] $tags
+ */
 class Article extends Model
 {
     /** @var array<string, string> */
