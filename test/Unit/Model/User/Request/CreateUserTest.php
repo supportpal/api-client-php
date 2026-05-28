@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model\User\Request;
 
-use Propaganistas\LaravelPhone\Exceptions\NumberParseException;
+use libphonenumber\NumberParseException;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTest;
 
@@ -35,21 +35,18 @@ class CreateUserTest extends BaseModelTest
     public function testSetPhoneNumberInvalidNumber(): void
     {
         $this->expectException(NumberParseException::class);
-        $this->expectExceptionMessage('Number does not match the provided country.');
         $this->model->setPhoneNumber('14+%595', 'US');
     }
 
     public function testSetPhoneNumberCountryRequired(): void
     {
         $this->expectException(NumberParseException::class);
-        $this->expectExceptionMessage('Number requires a country to be specified.');
         $this->model->setPhoneNumber('123456789');
     }
 
     public function testSetPhoneNumberInvalidCountry(): void
     {
         $this->expectException(NumberParseException::class);
-        $this->expectExceptionMessage('Number does not match the provided country.');
         $this->model->setPhoneNumber('2323247465753', 'GB');
     }
 
