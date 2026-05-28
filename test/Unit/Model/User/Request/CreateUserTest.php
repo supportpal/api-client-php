@@ -2,7 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model\User\Request;
 
-use Propaganistas\LaravelPhone\Exceptions\NumberParseException;
+use libphonenumber\NumberParseException;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
 use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTest;
 
