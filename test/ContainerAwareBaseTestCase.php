@@ -87,9 +87,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
          */
         $reflectionClass = new ReflectionObject($this->supportPal);
         $property = $reflectionClass->getProperty('containerBuilder');
-        $property->setAccessible(true);
         $property->setValue($this->supportPal, $containerBuilder);
-        $property->setAccessible(false);
 
         $this->container = $containerBuilder;
     }
