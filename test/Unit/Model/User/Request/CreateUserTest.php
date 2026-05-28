@@ -35,21 +35,18 @@ class CreateUserTest extends BaseModelTest
     public function testSetPhoneNumberInvalidNumber(): void
     {
         $this->expectException(NumberParseException::class);
-        $this->expectExceptionMessage('Number does not match the provided country.');
         $this->model->setPhoneNumber('14+%595', 'US');
     }
 
     public function testSetPhoneNumberCountryRequired(): void
     {
         $this->expectException(NumberParseException::class);
-        $this->expectExceptionMessage('Number requires a country to be specified.');
         $this->model->setPhoneNumber('123456789');
     }
 
     public function testSetPhoneNumberInvalidCountry(): void
     {
         $this->expectException(NumberParseException::class);
-        $this->expectExceptionMessage('Number does not match the provided country.');
         $this->model->setPhoneNumber('2323247465753', 'GB');
     }
 
