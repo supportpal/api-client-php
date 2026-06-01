@@ -15,9 +15,9 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
-use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
+use SupportPal\ApiClient\Tests\Integration\ApiClientTestCase;
 
-class TicketApisTest extends ApiClientTest
+class TicketApisTest extends ApiClientTestCase
 {
     /**
      * @inheritDoc

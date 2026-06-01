@@ -8,9 +8,9 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
-use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
+use SupportPal\ApiClient\Tests\Integration\ApiClientTestCase;
 
-class UserApisTest extends ApiClientTest
+class UserApisTest extends ApiClientTestCase
 {
     /**
      * @inheritDoc

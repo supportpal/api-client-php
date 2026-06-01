@@ -5,9 +5,9 @@ namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 use SupportPal\ApiClient\Http\CoreClient;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\SettingsData;
-use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
+use SupportPal\ApiClient\Tests\Integration\ApiClientTestCase;
 
-class CoreApisTest extends ApiClientTest
+class CoreApisTest extends ApiClientTestCase
 {
     /**
      * @inheritDoc

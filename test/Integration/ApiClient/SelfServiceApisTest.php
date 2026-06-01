@@ -10,9 +10,9 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\CreateCommentDat
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
-use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
+use SupportPal\ApiClient\Tests\Integration\ApiClientTestCase;
 
-class SelfServiceApisTest extends ApiClientTest
+class SelfServiceApisTest extends ApiClientTestCase
 {
     /**
      * @inheritDoc
