@@ -14,6 +14,7 @@ use SupportPal\ApiClient\Http\Client;
 use SupportPal\ApiClient\Tests\ApiDataProviders;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 
+use function assert;
 use function call_user_func_array;
 use function json_decode;
 use function json_encode;
@@ -101,7 +102,7 @@ class ApiClientTestCase extends ContainerAwareBaseTestCase
     #[DataProvider('providePostEndpointsTestCases')]
     public function testPostModel(?array $modelData, ?array $responseData, ?string $endpoint): void
     {
-        if ($modelData === null && $responseData === null && $endpoint === null) {
+        if ($modelData === null || $responseData === null || $endpoint === null) {
             $this->markTestSkipped('No POST endpoints available for this API.');
         }
 
@@ -125,7 +126,7 @@ class ApiClientTestCase extends ContainerAwareBaseTestCase
     #[DataProvider('providePostEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulPostModel(?Response $response, ?string $endpoint, ?array $data): void
     {
-        if ($response === null && $endpoint === null && $data === null) {
+        if ($response === null || $endpoint === null || $data === null) {
             $this->markTestSkipped('No POST endpoints available for this API.');
         }
 
@@ -142,7 +143,7 @@ class ApiClientTestCase extends ContainerAwareBaseTestCase
     #[DataProvider('provideApiClientPutEndpointsTestCases')]
     public function testPutModel(?array $modelData, ?array $responseData, ?string $endpoint): void
     {
-        if ($modelData === null && $responseData === null && $endpoint === null) {
+        if ($modelData === null || $responseData === null || $endpoint === null) {
             $this->markTestSkipped('No PUT endpoints available for this API.');
         }
 
@@ -166,7 +167,7 @@ class ApiClientTestCase extends ContainerAwareBaseTestCase
     #[DataProvider('providePutEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulPutModel(?Response $response, ?string $endpoint, ?array $data): void
     {
-        if ($response === null && $endpoint === null && $data === null) {
+        if ($response === null || $endpoint === null || $data === null) {
             $this->markTestSkipped('No PUT endpoints available for this API.');
         }
 
@@ -177,7 +178,7 @@ class ApiClientTestCase extends ContainerAwareBaseTestCase
     #[DataProvider('provideDownloadEndpointsTestCases')]
     public function testDownloadEndpoint(?int $modelId, ?string $endpoint): void
     {
-        if ($modelId === null && $endpoint === null) {
+        if ($modelId === null || $endpoint === null) {
             $this->markTestSkipped('No download endpoints available for this API.');
         }
 
