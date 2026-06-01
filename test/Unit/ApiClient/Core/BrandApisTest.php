@@ -43,7 +43,8 @@ class BrandApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetBrands(int $statusCode, string $responseBody): void
     {
@@ -88,7 +89,8 @@ class BrandApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetBrand(int $statusCode, string $responseBody): void
     {

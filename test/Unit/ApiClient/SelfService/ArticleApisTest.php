@@ -45,7 +45,8 @@ class ArticleApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetArticlesByTerm(int $statusCode, string $responseBody): void
     {
@@ -90,7 +91,8 @@ class ArticleApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetArticle(int $statusCode, string $responseBody): void
     {
@@ -129,7 +131,8 @@ class ArticleApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetArticles(int $statusCode, string $responseBody): void
     {
@@ -174,7 +177,8 @@ class ArticleApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetRelatedArticles(int $statusCode, string $responseBody): void
     {
@@ -206,7 +210,8 @@ class ArticleApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testPostUnsuccessfulArticle(int $statusCode, string $responseBody): void
     {
@@ -260,7 +265,8 @@ class ArticleApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulUpdateArticle(int $statusCode, string $responseBody): void
     {

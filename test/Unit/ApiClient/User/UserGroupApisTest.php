@@ -43,7 +43,8 @@ class UserGroupApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetUserGroups(int $statusCode, string $responseBody): void
     {
@@ -88,7 +89,8 @@ class UserGroupApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetUserGroup(int $statusCode, string $responseBody): void
     {

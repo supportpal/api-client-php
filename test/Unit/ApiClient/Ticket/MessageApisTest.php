@@ -47,7 +47,8 @@ class MessageApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetMessages(int $statusCode, string $responseBody): void
     {
@@ -82,7 +83,8 @@ class MessageApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetMessage(int $statusCode, string $responseBody): void
     {
@@ -108,7 +110,8 @@ class MessageApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulPostMessage(int $statusCode, string $responseBody): void
     {
@@ -162,7 +165,8 @@ class MessageApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulUpdateMessage(int $statusCode, string $responseBody): void
     {

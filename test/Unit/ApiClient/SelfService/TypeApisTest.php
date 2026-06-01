@@ -43,7 +43,8 @@ class TypeApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetTypes(int $statusCode, string $responseBody): void
     {
@@ -88,7 +89,8 @@ class TypeApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetType(int $statusCode, string $responseBody): void
     {

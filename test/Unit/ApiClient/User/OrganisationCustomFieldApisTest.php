@@ -43,7 +43,8 @@ class OrganisationCustomFieldApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOrganisationCustomFields(int $statusCode, string $responseBody): void
     {
@@ -86,7 +87,8 @@ class OrganisationCustomFieldApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOrganisationCustomField(int $statusCode, string $responseBody): void
     {

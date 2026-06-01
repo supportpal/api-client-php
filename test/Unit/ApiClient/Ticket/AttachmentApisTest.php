@@ -46,7 +46,8 @@ class AttachmentApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetAttachments(int $statusCode, string $responseBody): void
     {
@@ -91,7 +92,8 @@ class AttachmentApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetAttachment(int $statusCode, string $responseBody): void
     {

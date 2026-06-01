@@ -115,10 +115,10 @@ class ApiClientTest extends TestCase
         $jsonErrorBody['status'] = 'success';
         $jsonSuccessfulBody = json_encode($jsonErrorBody) ?: throw new JsonException('Failed to encode JSON data.');
 
-        yield ['error 400 response' => 400, $jsonSuccessfulBody];
-        yield ['error 401 response' => 401, $jsonSuccessfulBody];
-        yield ['error 403 response' => 403, $jsonSuccessfulBody];
-        yield ['error 404 response' => 404, $jsonSuccessfulBody];
+        yield 'error 400 response' => [400, $jsonSuccessfulBody];
+        yield 'error 401 response' => [401, $jsonSuccessfulBody];
+        yield 'error 403 response' => [403, $jsonSuccessfulBody];
+        yield 'error 404 response' => [404, $jsonSuccessfulBody];
 
         $jsonErrorBody = json_encode([
             'status' => 'error',
@@ -126,9 +126,7 @@ class ApiClientTest extends TestCase
             'data' => []
         ]) ?: throw new JsonException('Failed to encode JSON data.');
 
-        yield [
-            'error status response' => 200, $jsonErrorBody,
-        ];
+        yield 'error status response' => [200, $jsonErrorBody];
     }
 
     /**

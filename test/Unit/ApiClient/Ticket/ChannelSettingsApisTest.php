@@ -40,7 +40,8 @@ class ChannelSettingsApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetChannelSettings(int $statusCode, string $responseBody): void
     {

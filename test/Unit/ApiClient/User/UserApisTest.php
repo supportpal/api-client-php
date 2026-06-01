@@ -43,7 +43,8 @@ class UserApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetUsers(int $statusCode, string $responseBody): void
     {
@@ -88,7 +89,8 @@ class UserApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetUser(int $statusCode, string $responseBody): void
     {
@@ -119,7 +121,8 @@ class UserApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testPostUnsuccessfulUser(int $statusCode, string $responseBody): void
     {
@@ -173,7 +176,8 @@ class UserApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulUpdateUser(int $statusCode, string $responseBody): void
     {

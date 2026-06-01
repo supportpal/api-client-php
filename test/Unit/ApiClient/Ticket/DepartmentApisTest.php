@@ -43,7 +43,8 @@ class DepartmentApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetDepartments(int $statusCode, string $responseBody): void
     {
@@ -88,7 +89,8 @@ class DepartmentApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetDepartment(int $statusCode, string $responseBody): void
     {

@@ -61,7 +61,8 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
      * @param array<mixed> $data
      * @param array<mixed> $parameters
      * @param class-string $apiClientClass
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('provideCacheableApiCalls')]
     public function testGetCacheableApiTestCacheHit(
         string $endpoint,
@@ -92,7 +93,8 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
      * @param array<mixed> $data
      * @param array<mixed> $parameters
      * @param class-string $apiClientClass
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('provideCacheableApiCalls')]
     public function testGetCacheableApiTestCacheMiss(
         string $endpoint,
@@ -139,7 +141,8 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
      * @param array<mixed> $data
      * @param array<mixed> $parameters
      * @param class-string $apiClientClass
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('provideNonCacheableApis')]
     public function testNonCacheableApisAlwaysMiss(
         string $endpoint,

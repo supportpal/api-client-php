@@ -43,7 +43,8 @@ class OrganisationApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOrganisations(int $statusCode, string $responseBody): void
     {
@@ -88,7 +89,8 @@ class OrganisationApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOrganisation(int $statusCode, string $responseBody): void
     {
@@ -119,7 +121,8 @@ class OrganisationApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testPostUnsuccessfulOrganisation(int $statusCode, string $responseBody): void
     {
@@ -173,7 +176,8 @@ class OrganisationApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulUpdateOrganisation(int $statusCode, string $responseBody): void
     {

@@ -56,7 +56,8 @@ abstract class BaseTestCase extends TestCase
     }
 
     /**
-     * @throws HttpResponseException     */
+     * @throws HttpResponseException
+     */
     #[DataProvider('provideGetAllEndpoints')]
     public function testGetAll(string $endpoint, string $apiCall): void
     {

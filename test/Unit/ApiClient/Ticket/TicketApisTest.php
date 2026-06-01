@@ -43,7 +43,8 @@ class TicketApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetTickets(int $statusCode, string $responseBody): void
     {
@@ -88,7 +89,8 @@ class TicketApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetTicket(int $statusCode, string $responseBody): void
     {
@@ -119,7 +121,8 @@ class TicketApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testPostUnsuccessfulTicket(int $statusCode, string $responseBody): void
     {
@@ -175,7 +178,8 @@ class TicketApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulUpdateTicket(int $statusCode, string $responseBody): void
     {

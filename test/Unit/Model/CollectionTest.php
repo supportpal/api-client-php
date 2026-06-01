@@ -98,7 +98,8 @@ class CollectionTest extends TestCase
 
     /**
      * @param Collection $collection
-     * @param bool $actualIsEmpty     */
+     * @param bool $actualIsEmpty
+     */
     public function testCollectionIsEmpty(Collection $collection, bool $actualIsEmpty): void
     {
         self::assertSame($collection->isEmpty(), $actualIsEmpty);

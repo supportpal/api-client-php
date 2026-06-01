@@ -43,7 +43,8 @@ class CustomFieldApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetTicketCustomFields(int $statusCode, string $responseBody): void
     {
@@ -88,7 +89,8 @@ class CustomFieldApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetCustomField(int $statusCode, string $responseBody): void
     {

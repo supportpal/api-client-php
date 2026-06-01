@@ -34,7 +34,8 @@ class CommentApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulPostSelfServiceComment(int $statusCode, string $responseBody): void
     {
@@ -76,7 +77,8 @@ class CommentApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetComments(int $statusCode, string $responseBody): void
     {
@@ -121,7 +123,8 @@ class CommentApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetComment(int $statusCode, string $responseBody): void
     {

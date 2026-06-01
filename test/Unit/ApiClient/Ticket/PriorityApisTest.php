@@ -43,7 +43,8 @@ class PriorityApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetPriorities(int $statusCode, string $responseBody): void
     {
@@ -88,7 +89,8 @@ class PriorityApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetPriority(int $statusCode, string $responseBody): void
     {

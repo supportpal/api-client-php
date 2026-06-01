@@ -43,7 +43,8 @@ class OperatorApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOperators(int $statusCode, string $responseBody): void
     {
@@ -88,7 +89,8 @@ class OperatorApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOperator(int $statusCode, string $responseBody): void
     {
@@ -119,7 +121,8 @@ class OperatorApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testPostUnsuccessfulOperator(int $statusCode, string $responseBody): void
     {
@@ -173,7 +176,8 @@ class OperatorApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulUpdateOperator(int $statusCode, string $responseBody): void
     {

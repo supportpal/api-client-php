@@ -39,7 +39,8 @@ class SettingsApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetSettings(int $statusCode, string $responseBody): void
     {

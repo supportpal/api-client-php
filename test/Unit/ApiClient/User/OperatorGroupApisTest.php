@@ -43,7 +43,8 @@ class OperatorGroupApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOperatorGroups(int $statusCode, string $responseBody): void
     {
@@ -88,7 +89,8 @@ class OperatorGroupApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody     */
+     * @param string $responseBody
+     */
     #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOperatorGroup(int $statusCode, string $responseBody): void
     {
