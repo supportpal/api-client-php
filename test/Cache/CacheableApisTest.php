@@ -9,6 +9,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Kevinrob\GuzzleCache\CacheMiddleware;
 use Kevinrob\GuzzleCache\Strategy\CacheStrategyInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Cache\ApiCacheMap;
 use SupportPal\ApiClient\Cache\CacheStrategyConfigurator;
 use SupportPal\ApiClient\Http\Client;

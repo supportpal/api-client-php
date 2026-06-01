@@ -11,7 +11,7 @@ class CoreApisComponentTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         return (new CoreApisData)->getApiCalls();
     }
@@ -19,7 +19,7 @@ class CoreApisComponentTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         return (new CoreApisData)->postApiCalls();
     }
@@ -27,7 +27,7 @@ class CoreApisComponentTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         return (new CoreApisData)->putApiCalls();
     }
@@ -35,7 +35,7 @@ class CoreApisComponentTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getDeleteEndpoints(): array
+    protected static function getDeleteEndpoints(): array
     {
         return (new CoreApisData)->deleteApiCalls();
     }
@@ -43,7 +43,7 @@ class CoreApisComponentTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getDownloadsEndpoints(): array
+    protected static function getDownloadsEndpoints(): array
     {
         return [];
     }

@@ -13,7 +13,7 @@ class SelfServiceApisTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         return (new SelfServiceApisData)->getApiCalls();
     }
@@ -22,7 +22,7 @@ class SelfServiceApisTest extends ApiComponentTest
      * @return mixed[]
      * @throws InvalidArgumentException
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         return (new SelfServiceApisData)->postApiCalls();
     }
@@ -30,7 +30,7 @@ class SelfServiceApisTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         return (new SelfServiceApisData)->putApiCalls();
     }
@@ -38,7 +38,7 @@ class SelfServiceApisTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getDeleteEndpoints(): array
+    protected static function getDeleteEndpoints(): array
     {
         return (new SelfServiceApisData)->deleteApiCalls();
     }
@@ -46,7 +46,7 @@ class SelfServiceApisTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getDownloadsEndpoints(): array
+    protected static function getDownloadsEndpoints(): array
     {
         return (new SelfServiceApisData)->downloadApiCalls();
     }

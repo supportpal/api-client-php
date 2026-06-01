@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\Functional;
 
 use Exception;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Config\ApiContext;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\Request;

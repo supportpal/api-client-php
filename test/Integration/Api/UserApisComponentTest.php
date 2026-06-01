@@ -12,7 +12,7 @@ class UserApisComponentTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         return (new UserApisData)->getApiCalls();
     }
@@ -21,7 +21,7 @@ class UserApisComponentTest extends ApiComponentTest
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         return (new UserApisData)->postApiCalls();
     }
@@ -30,7 +30,7 @@ class UserApisComponentTest extends ApiComponentTest
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         return (new UserApisData)->putApiCalls();
     }
@@ -38,7 +38,7 @@ class UserApisComponentTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getDeleteEndpoints(): array
+    protected static function getDeleteEndpoints(): array
     {
         return (new UserApisData)->deleteApiCalls();
     }
@@ -46,7 +46,7 @@ class UserApisComponentTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getDownloadsEndpoints(): array
+    protected static function getDownloadsEndpoints(): array
     {
         return [];
     }
