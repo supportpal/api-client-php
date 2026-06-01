@@ -14,7 +14,7 @@ use function current;
 use function is_array;
 use function json_encode;
 
-abstract class ApiTest extends TestCase
+abstract class ApiTestCase extends TestCase
 {
     protected const TEST_ID = 1;
 

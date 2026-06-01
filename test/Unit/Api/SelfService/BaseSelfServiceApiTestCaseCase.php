@@ -4,9 +4,9 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 
 use SupportPal\ApiClient\Api\SelfServiceApi;
 use SupportPal\ApiClient\Http\SelfServiceClient;
-use SupportPal\ApiClient\Tests\Unit\ApiTest;
+use SupportPal\ApiClient\Tests\Unit\ApiTestCase;
 
-class BaseSelfServiceApiTest extends ApiTest
+class BaseSelfServiceApiTestCaseCase extends ApiTestCase
 {
     /** @var SelfServiceApi */
     protected $api;

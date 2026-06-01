@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
 use SupportPal\ApiClient\Model\Core\Language;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\LanguageData;
 
-class LanguageApisTest extends BaseCoreApiTest
+class LanguageApisTest extends BaseCoreApiTestCaseCase
 {
     public function testGetLanguages(): void
     {

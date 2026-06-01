@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\CreateTicketData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\UpdateTicketData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
 
-class TicketApisTest extends BaseTicketApiTest
+class TicketApisTest extends BaseTicketApiTestCase
 {
     public function testGetTickets(): void
     {

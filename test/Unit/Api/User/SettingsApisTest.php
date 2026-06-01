@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\User\SettingsData;
 
-class SettingsApisTest extends BaseUserApiTest
+class SettingsApisTest extends BaseUserApiTestCase
 {
     public function testGetCoreSettings(): void
     {

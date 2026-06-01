@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 use SupportPal\ApiClient\Model\User\Group;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 
-class OperatorGroupApisTest extends BaseUserApiTest
+class OperatorGroupApisTest extends BaseUserApiTestCase
 {
     public function testGetOperatorGroups(): void
     {

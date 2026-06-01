@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 use SupportPal\ApiClient\Model\Ticket\Status;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 
-class StatusApisTest extends BaseTicketApiTest
+class StatusApisTest extends BaseTicketApiTestCase
 {
     public function testGetStatuses(): void
     {

@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\OperatorData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateOperatorData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateOperatorData;
 
-class OperatorApisTest extends BaseUserApiTest
+class OperatorApisTest extends BaseUserApiTestCase
 {
     public function testGetOperators(): void
     {

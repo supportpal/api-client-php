@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 use SupportPal\ApiClient\Model\User\OrganisationCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\User\OrganisationCustomFieldData;
 
-class OrganisationCustomFieldApisTest extends BaseUserApiTest
+class OrganisationCustomFieldApisTest extends BaseUserApiTestCase
 {
     public function testGetOrganisationCustomFields(): void
     {

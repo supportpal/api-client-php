@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 use SupportPal\ApiClient\Model\Ticket\TicketCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 
-class CustomFieldApisTest extends BaseTicketApiTest
+class CustomFieldApisTest extends BaseTicketApiTestCase
 {
     /** @var int */
     private $testId = 1;

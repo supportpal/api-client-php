@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\ArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\CreateArticleData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\UpdateArticleData;
 
-class ArticleApisTest extends BaseSelfServiceApiTest
+class ArticleApisTest extends BaseSelfServiceApiTestCaseCase
 {
     /** @var int */
     protected $testArticleId = 1;

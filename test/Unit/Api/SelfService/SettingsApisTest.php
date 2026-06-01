@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 
-class SettingsApisTest extends BaseSelfServiceApiTest
+class SettingsApisTest extends BaseSelfServiceApiTestCaseCase
 {
     public function testGetSettings(): void
     {

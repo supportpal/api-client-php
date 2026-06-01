@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateSpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\UpdateSpamRuleData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\SpamRuleData;
 
-class SpamRuleApisTest extends BaseCoreApiTest
+class SpamRuleApisTest extends BaseCoreApiTestCaseCase
 {
     public function testGetSpamRules(): void
     {

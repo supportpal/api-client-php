@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateWhitelistedIpData
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\UpdateWhitelistedIpData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\WhitelistedIpData;
 
-class IpWhitelistApisTest extends BaseCoreApiTest
+class IpWhitelistApisTest extends BaseCoreApiTestCaseCase
 {
     public function testGetWhitelistedIps(): void
     {

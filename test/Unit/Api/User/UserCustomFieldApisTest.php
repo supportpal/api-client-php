@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 use SupportPal\ApiClient\Model\User\UserCustomField;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserCustomFieldData;
 
-class UserCustomFieldApisTest extends BaseUserApiTest
+class UserCustomFieldApisTest extends BaseUserApiTestCase
 {
     public function testGetUserCustomFields(): void
     {

@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 use SupportPal\ApiClient\Model\Shared\Settings;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 
-class TicketSettingsApisTest extends BaseTicketApiTest
+class TicketSettingsApisTest extends BaseTicketApiTestCase
 {
     public function testGetTicketsSettings(): void
     {

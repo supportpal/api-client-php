@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 use SupportPal\ApiClient\Model\SelfService\Category;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CategoryData;
 
-class CategoryApisTest extends BaseSelfServiceApiTest
+class CategoryApisTest extends BaseSelfServiceApiTestCaseCase
 {
     public function testGetCategories(): void
     {

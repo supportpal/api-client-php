@@ -6,7 +6,7 @@ use SupportPal\ApiClient\Model\SelfService\Comment;
 use SupportPal\ApiClient\Model\SelfService\Request\CreateComment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\CommentData;
 
-class CommentApisTest extends BaseSelfServiceApiTest
+class CommentApisTest extends BaseSelfServiceApiTestCaseCase
 {
     /** @var int */
     private $testCommentId = 1;

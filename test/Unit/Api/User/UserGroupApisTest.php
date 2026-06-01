@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 use SupportPal\ApiClient\Model\User\Group;
 use SupportPal\ApiClient\Tests\DataFixtures\User\GroupData;
 
-class UserGroupApisTest extends BaseUserApiTest
+class UserGroupApisTest extends BaseUserApiTestCase
 {
     public function testGetUserGroups(): void
     {
