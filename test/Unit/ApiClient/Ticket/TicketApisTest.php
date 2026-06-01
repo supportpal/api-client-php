@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\TicketClient;
@@ -42,9 +43,8 @@ class TicketApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetTickets(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
@@ -88,9 +88,8 @@ class TicketApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetTicket(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
@@ -120,9 +119,8 @@ class TicketApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testPostUnsuccessfulTicket(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
@@ -177,9 +175,8 @@ class TicketApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulUpdateTicket(int $statusCode, string $responseBody): void
     {
         $ticketData = new TicketData;
@@ -217,9 +214,8 @@ class TicketApisTest extends ApiClientTest
         $this->apiClient->deleteTicket($this->testTicketId);
     }
 
-    /**
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+    /**     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulDeleteTicket(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);

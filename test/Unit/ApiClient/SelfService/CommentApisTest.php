@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\SelfServiceClient;
@@ -33,9 +34,8 @@ class CommentApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulPostSelfServiceComment(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
@@ -76,9 +76,8 @@ class CommentApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetComments(int $statusCode, string $responseBody): void
     {
         $queryParams = ['test' => 'value'];
@@ -122,9 +121,8 @@ class CommentApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetComment(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);

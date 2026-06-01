@@ -49,10 +49,10 @@ class SupportPalTest extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @dataProvider provideApiTokens
      * @param string $apiToken
      * @throws Exception
      */
+    #[DataProvider('provideApiTokens')]
     public function testEscapePercentApiToken(string $apiToken): void
     {
         $request = (new SupportPal(new ApiContext('localhost', $apiToken)))->getRequest()->create('GET', 'test');
@@ -62,7 +62,6 @@ class SupportPalTest extends ContainerAwareBaseTestCase
     /**
      * @return iterable<array<int, string>>
      */
-    public function provideApiTokens(): iterable
     {
         yield ['api_token_without_percent'];
         yield ['api_token%'];

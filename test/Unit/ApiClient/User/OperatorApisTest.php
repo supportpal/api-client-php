@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\User;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\UserClient;
@@ -42,9 +43,8 @@ class OperatorApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOperators(int $statusCode, string $responseBody): void
     {
         $queryParams = ['test' => 'value'];
@@ -88,9 +88,8 @@ class OperatorApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOperator(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
@@ -120,9 +119,8 @@ class OperatorApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testPostUnsuccessfulOperator(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
@@ -175,9 +173,8 @@ class OperatorApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulUpdateOperator(int $statusCode, string $responseBody): void
     {
         $userData = new OperatorData;

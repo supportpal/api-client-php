@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\User;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\UserClient;
@@ -42,9 +43,8 @@ class OperatorGroupApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOperatorGroups(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
@@ -88,9 +88,8 @@ class OperatorGroupApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOperatorGroup(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);

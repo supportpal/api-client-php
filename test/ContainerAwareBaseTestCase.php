@@ -42,9 +42,15 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     /**
      * @return iterable<array<string, Response>>
      */
-    public function provideUnsuccessfulResponses(): iterable
+    public static function provideUnsuccessfulResponses(): iterable
     {
-        $jsonSuccessfulBody = $this->genericErrorResponse;
+        $genericErrorResponse = [
+            'status' => 'error',
+            'message' => null,
+            'data' => []
+        ];
+
+        $jsonSuccessfulBody = $genericErrorResponse;
         $jsonSuccessfulBody['status'] = 'success';
         $jsonSuccessfulBody = json_encode($jsonSuccessfulBody) ?: throw new JsonException('Failed to encode JSON data.');
 
@@ -53,10 +59,10 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         yield ['error 403 response' => new Response(403, [], $jsonSuccessfulBody)];
         yield ['error 404 response' => new Response(404, [], $jsonSuccessfulBody)];
 
-        $jsonErrorBody = json_encode($this->genericErrorResponse) ?: throw new JsonException('Failed to encode JSON data.');
+        $jsonErrorBody = json_encode($genericErrorResponse) ?: throw new JsonException('Failed to encode JSON data.');
 
         yield [
-            'error status response' => new Response(200, [], $jsonErrorBody)
+            'error status response' => new Response(200, [], $jsonErrorBody),
         ];
     }
 

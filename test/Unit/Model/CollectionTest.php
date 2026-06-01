@@ -65,7 +65,7 @@ class CollectionTest extends TestCase
 
     public function testCollectionFilter(): void
     {
-        $models = $this->getModelsTestData();
+        $models = self::getModelsTestData();
         $count = count($models);
         $collection = new Collection($count, $models);
 
@@ -98,9 +98,7 @@ class CollectionTest extends TestCase
 
     /**
      * @param Collection $collection
-     * @param bool $actualIsEmpty
-     * @dataProvider provideIsEmptyCases
-     */
+     * @param bool $actualIsEmpty     */
     public function testCollectionIsEmpty(Collection $collection, bool $actualIsEmpty): void
     {
         self::assertSame($collection->isEmpty(), $actualIsEmpty);
@@ -110,7 +108,7 @@ class CollectionTest extends TestCase
      * @return iterable<mixed>
      * @throws InvalidArgumentException
      */
-    public function provideIsEmptyCases(): iterable
+    public static function provideIsEmptyCases(): iterable
     {
         $models = $this->getModelsTestData();
 

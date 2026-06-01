@@ -59,13 +59,9 @@ class ApiClientTest extends ContainerAwareBaseTestCase
         $this->apiClient->sendRequest($request);
     }
 
-    /**
-     * @dataProvider provideGetEndpointsTestCases
-     * @param array<mixed> $data
-     * @param string $functionName
-     * @param array<mixed> $parameters
-     * @throws Exception
+    /**     * @throws Exception
      */
+    #[DataProvider('provideGetEndpointsTestCases')]
     public function testGetEndpoints(array $data, string $functionName, array $parameters): void
     {
         $expectedResponse = new Response(
@@ -83,22 +79,17 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      * @param Response $response
      * @param string $endpoint
      * @param array<mixed> $parameters
-     * @throws Exception
-     * @dataProvider provideGetEndpointsUnsuccessfulTestCases
-     */
+     * @throws Exception     */
+    #[DataProvider('provideGetEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
         $this->makeClientCall($endpoint, $parameters);
     }
 
-    /**
-     * @dataProvider providePostEndpointsTestCases
-     * @param array<mixed> $modelData
-     * @param array<mixed> $responseData
-     * @param string $endpoint
-     * @throws Exception
+    /**     * @throws Exception
      */
+    #[DataProvider('providePostEndpointsTestCases')]
     public function testPostModel(array $modelData, array $responseData, string $endpoint): void
     {
         $jsonSuccessfulBody = json_encode($responseData) ?: throw new JsonException('Failed to encode JSON data.');
@@ -116,22 +107,17 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      * @param Response $response
      * @param string $endpoint
      * @param array<mixed> $data
-     * @throws Exception
-     * @dataProvider providePostEndpointsUnsuccessfulTestCases
-     */
+     * @throws Exception     */
+    #[DataProvider('providePostEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulPostModel(Response $response, string $endpoint, array $data): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
         $this->makeClientCall($endpoint, [$data]);
     }
 
-    /**
-     * @dataProvider provideApiClientPutEndpointsTestCases
-     * @param array<mixed> $modelData
-     * @param array<mixed> $responseData
-     * @param string $endpoint
-     * @throws Exception
+    /**     * @throws Exception
      */
+    #[DataProvider('provideApiClientPutEndpointsTestCases')]
     public function testPutModel(array $modelData, array $responseData, string $endpoint): void
     {
         $jsonSuccessfulBody = json_encode($responseData) ?: throw new JsonException('Failed to encode JSON data.');
@@ -149,9 +135,8 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      * @param Response $response
      * @param string $endpoint
      * @param array<mixed> $data
-     * @throws Exception
-     * @dataProvider providePutEndpointsUnsuccessfulTestCases
-     */
+     * @throws Exception     */
+    #[DataProvider('providePutEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulPutModel(Response $response, string $endpoint, array $data): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
@@ -161,8 +146,8 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @param int $modelId
      * @param string $endpoint
-     * @dataProvider provideDownloadEndpointsTestCases
      */
+    #[DataProvider('provideDownloadEndpointsTestCases')]
     public function testDownloadEndpoint(int $modelId, string $endpoint): void
     {
         $expectedResponse = new Response(200, ['Content-Disposition' => 'test'], '');

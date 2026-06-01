@@ -103,9 +103,15 @@ class ApiClientTest extends TestCase
     /**
      * @return iterable<mixed>
      */
-    public function provideUnsuccessfulTestCases(): iterable
+    public static function provideUnsuccessfulTestCases(): iterable
     {
-        $jsonErrorBody = $this->genericErrorResponse;
+        $genericErrorResponse = [
+            'status' => 'error',
+            'message' => null,
+            'data' => []
+        ];
+
+        $jsonErrorBody = $genericErrorResponse;
         $jsonErrorBody['status'] = 'success';
         $jsonSuccessfulBody = json_encode($jsonErrorBody) ?: throw new JsonException('Failed to encode JSON data.');
 
@@ -114,7 +120,11 @@ class ApiClientTest extends TestCase
         yield ['error 403 response' => 403, $jsonSuccessfulBody];
         yield ['error 404 response' => 404, $jsonSuccessfulBody];
 
-        $jsonErrorBody = json_encode($this->genericErrorResponse) ?: throw new JsonException('Failed to encode JSON data.');
+        $jsonErrorBody = json_encode([
+            'status' => 'error',
+            'message' => null,
+            'data' => []
+        ]) ?: throw new JsonException('Failed to encode JSON data.');
 
         yield [
             'error status response' => 200, $jsonErrorBody,

@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Core;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\CoreClient;
@@ -30,9 +31,8 @@ class SettingsApisTest extends ApiClientTest
 
     /**
      * @param int $statusCode
-     * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+     * @param string $responseBody     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetCoreSettings(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
