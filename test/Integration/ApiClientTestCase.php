@@ -14,7 +14,6 @@ use SupportPal\ApiClient\Http\Client;
 use SupportPal\ApiClient\Tests\ApiDataProviders;
 use SupportPal\ApiClient\Tests\ContainerAwareBaseTestCase;
 
-use function assert;
 use function call_user_func_array;
 use function json_decode;
 use function json_encode;
