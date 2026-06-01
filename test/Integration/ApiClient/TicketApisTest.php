@@ -22,7 +22,7 @@ class TicketApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         $departmentData = new DepartmentData;
         $settingsData = new SettingsData;
@@ -57,7 +57,7 @@ class TicketApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         $createTicket = new CreateTicketData;
         $createMessage = new CreateMessageData;
@@ -71,7 +71,7 @@ class TicketApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         $updateTicketData = new UpdateTicketData;
 
@@ -83,7 +83,7 @@ class TicketApisTest extends ApiClientTest
     /**
      * @return array<mixed>
      */
-    protected function getDownloadsEndpoints(): array
+    protected static function getDownloadsEndpoints(): array
     {
         return ['downloadAttachment' => 1];
     }

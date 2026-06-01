@@ -15,7 +15,7 @@ class UserApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         $userData = new UserData;
         $customFieldsData = new UserCustomFieldData;
@@ -34,7 +34,7 @@ class UserApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         return [
             'postUser' => [CreateUserData::DATA, (new UserData)->getResponse()],
@@ -44,7 +44,7 @@ class UserApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         return [
             'putUser' => [UpdateUserData::DATA, (new UserData)->getResponse()],

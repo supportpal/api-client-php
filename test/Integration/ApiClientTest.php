@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use JsonException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\Client;
@@ -59,7 +60,10 @@ class ApiClientTest extends ContainerAwareBaseTestCase
         $this->apiClient->sendRequest($request);
     }
 
-    /**     * @throws Exception
+    /**
+     * @param array<mixed> $data
+     * @param array<mixed> $parameters
+     * @throws Exception
      */
     #[DataProvider('provideGetEndpointsTestCases')]
     public function testGetEndpoints(array $data, string $functionName, array $parameters): void
@@ -79,7 +83,8 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      * @param Response $response
      * @param string $endpoint
      * @param array<mixed> $parameters
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('provideGetEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
     {
@@ -87,7 +92,10 @@ class ApiClientTest extends ContainerAwareBaseTestCase
         $this->makeClientCall($endpoint, $parameters);
     }
 
-    /**     * @throws Exception
+    /**
+     * @param array<mixed> $modelData
+     * @param array<mixed> $responseData
+     * @throws Exception
      */
     #[DataProvider('providePostEndpointsTestCases')]
     public function testPostModel(array $modelData, array $responseData, string $endpoint): void
@@ -107,7 +115,8 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      * @param Response $response
      * @param string $endpoint
      * @param array<mixed> $data
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('providePostEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulPostModel(Response $response, string $endpoint, array $data): void
     {
@@ -115,7 +124,10 @@ class ApiClientTest extends ContainerAwareBaseTestCase
         $this->makeClientCall($endpoint, [$data]);
     }
 
-    /**     * @throws Exception
+    /**
+     * @param array<mixed> $modelData
+     * @param array<mixed> $responseData
+     * @throws Exception
      */
     #[DataProvider('provideApiClientPutEndpointsTestCases')]
     public function testPutModel(array $modelData, array $responseData, string $endpoint): void
@@ -135,7 +147,8 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      * @param Response $response
      * @param string $endpoint
      * @param array<mixed> $data
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('providePutEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulPutModel(Response $response, string $endpoint, array $data): void
     {
@@ -159,7 +172,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @return array<mixed>
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         return [];
     }
@@ -167,7 +180,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @return array<mixed>
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         return [];
     }
@@ -175,7 +188,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @return array<mixed>
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         return [];
     }
@@ -183,7 +196,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @return array<mixed>
      */
-    protected function getDeleteEndpoints(): array
+    protected static function getDeleteEndpoints(): array
     {
         return [];
     }
@@ -191,7 +204,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @return array<mixed>
      */
-    protected function getDownloadsEndpoints(): array
+    protected static function getDownloadsEndpoints(): array
     {
         return [];
     }

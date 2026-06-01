@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Tests;
 use Exception;
 use GuzzleHttp\Psr7\Response;
 use JsonException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Model\Model;
@@ -14,7 +15,10 @@ use function json_encode;
 
 abstract class ApiTestCase extends ContainerAwareBaseTestCase
 {
-    /**     * @throws Exception
+    /**
+     * @param array<mixed> $data
+     * @param array<mixed> $parameters
+     * @throws Exception
      */
     #[DataProvider('provideGetEndpointsTestCases')]
     public function testGetEndpoint(array $data, string $functionName, array $parameters): void
@@ -36,7 +40,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     /**
      * @param Response $response
      * @param array<mixed> $parameters
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('provideGetEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
     {
@@ -48,7 +53,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
 
     /**
      * @param array<mixed> $responseData
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('providePostEndpointsTestCases')]
     public function testSuccessfulPostEndpoint(Model $model, array $responseData, string $functionName): void
     {
@@ -62,7 +68,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
 
     /**
      * @param array<mixed> $parameters
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('providePostEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulPostEndpoint(Response $response, string $endpoint, array $parameters): void
     {
@@ -74,7 +81,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
 
     /**
      * @param array<mixed> $responseData
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('providePutEndpointsTestCases')]
     public function testSuccessfulPutEndpoint(
         int $id,
@@ -92,7 +100,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
 
     /**
      * @param array<mixed> $parameters
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('providePutEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulPutEndpoint(Response $response, string $endpoint, array $parameters): void
     {
@@ -103,7 +112,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('provideDeleteEndpointsTestCases')]
     public function testSuccessfulDeleteEndpoint(int $id, string $functionName): void
     {
@@ -116,7 +126,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
 
     /**
      * @param array<mixed> $parameters
-     * @throws Exception     */
+     * @throws Exception
+     */
     #[DataProvider('provideDeleteEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulDeleteEndpoint(Response $response, string $endpoint, array $parameters): void
     {

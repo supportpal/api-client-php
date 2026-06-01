@@ -62,6 +62,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
     /**
      * @return iterable<array<int, string>>
      */
+    public static function provideApiTokens(): iterable
     {
         yield ['api_token_without_percent'];
         yield ['api_token%'];
