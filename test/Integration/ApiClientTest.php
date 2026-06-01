@@ -156,13 +156,13 @@ class ApiClientTest extends ContainerAwareBaseTestCase
         $this->makeClientCall($endpoint, [self::TEST_ID, $data]);
     }
 
-    /**
-     * @param int $modelId
-     * @param string $endpoint
-     */
     #[DataProvider('provideDownloadEndpointsTestCases')]
-    public function testDownloadEndpoint(int $modelId, string $endpoint): void
+    public function testDownloadEndpoint(?int $modelId, ?string $endpoint): void
     {
+        if ($modelId === null && $endpoint === null) {
+            $this->markTestSkipped('No download endpoints available for this API.');
+        }
+
         $expectedResponse = new Response(200, ['Content-Disposition' => 'test'], '');
         $this->appendRequestResponse($expectedResponse);
         $response = $this->makeClientCall($endpoint, [$modelId]);
