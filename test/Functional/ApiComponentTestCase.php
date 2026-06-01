@@ -4,7 +4,7 @@ namespace SupportPal\ApiClient\Tests\Functional;
 
 use SupportPal\ApiClient\Tests\ApiTestCase;
 
-abstract class ApiComponentTest extends ApiTestCase
+abstract class ApiComponentTestCase extends ApiTestCase
 {
     protected function setUp(): void
     {

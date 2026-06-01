@@ -6,9 +6,9 @@ use Exception;
 use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\TicketApisData;
-use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
+use SupportPal\ApiClient\Tests\Functional\ApiComponentTestCase;
 
-class TicketApisTest extends ApiComponentTest
+class TicketApisTest extends ApiComponentTestCase
 {
     /**
      * @inheritDoc

@@ -5,9 +5,9 @@ namespace SupportPal\ApiClient\Tests\Functional\Api;
 use Exception;
 use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\CoreApisData;
-use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
+use SupportPal\ApiClient\Tests\Functional\ApiComponentTestCase;
 
-class CoreApisTest extends ApiComponentTest
+class CoreApisTest extends ApiComponentTestCase
 {
     /**
      * @inheritDoc
