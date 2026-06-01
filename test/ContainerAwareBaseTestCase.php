@@ -40,7 +40,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     protected $mockRequestHandler;
 
     /**
-     * @return iterable<array<string, Response>>
+     * @return iterable<array<int, Response>>
      */
     public static function provideUnsuccessfulResponses(): iterable
     {
