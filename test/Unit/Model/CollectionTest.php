@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\Model;
@@ -100,6 +101,7 @@ class CollectionTest extends TestCase
      * @param Collection $collection
      * @param bool $actualIsEmpty
      */
+    #[DataProvider('provideIsEmptyCases')]
     public function testCollectionIsEmpty(Collection $collection, bool $actualIsEmpty): void
     {
         self::assertSame($collection->isEmpty(), $actualIsEmpty);
