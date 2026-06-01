@@ -110,7 +110,7 @@ class CollectionTest extends TestCase
      */
     public static function provideIsEmptyCases(): iterable
     {
-        $models = $this->getModelsTestData();
+        $models = self::getModelsTestData();
 
         yield [new Collection(0, []), true];
         yield [ new Collection(15, []), true];
@@ -122,7 +122,7 @@ class CollectionTest extends TestCase
      * @return Model[]
      * @throws InvalidArgumentException
      */
-    private function getModelsTestData(): array
+    private static function getModelsTestData(): array
     {
         return array_map(function () {
             return (new CommentData)->getFilledInstance();
