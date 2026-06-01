@@ -37,7 +37,14 @@ trait ApiDataProviders
      */
     public static function providePostEndpointsTestCases(): iterable
     {
-        foreach (static::getPostEndpoints() as $endpoint => $value) {
+        $endpoints = static::getPostEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $value) {
             [$model, $data] = $value;
 
             yield [$model, $data, $endpoint];
@@ -61,7 +68,14 @@ trait ApiDataProviders
      */
     public static function providePostEndpointsUnsuccessfulTestCases(): iterable
     {
-        foreach (static::getPostEndpoints() as $endpoint => $value) {
+        $endpoints = static::getPostEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $value) {
             $model = current($value);
             foreach (static::provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, [$model]];
@@ -74,7 +88,14 @@ trait ApiDataProviders
      */
     public static function providePutEndpointsUnsuccessfulTestCases(): iterable
     {
-        foreach (static::getPutEndpoints() as $endpoint => $value) {
+        $endpoints = static::getPutEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $value) {
             [$model, $data] = $value;
             foreach (static::provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, [$model, $data]];
@@ -87,7 +108,14 @@ trait ApiDataProviders
      */
     public static function provideApiClientPutEndpointsTestCases(): iterable
     {
-        foreach (static::getPutEndpoints() as $endpoint => $value) {
+        $endpoints = static::getPutEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $value) {
             [$data, $response] = $value;
 
             yield [$data, $response, $endpoint];

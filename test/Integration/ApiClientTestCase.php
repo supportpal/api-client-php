@@ -93,13 +93,18 @@ class ApiClientTestCase extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @param array<mixed> $modelData
-     * @param array<mixed> $responseData
+     * @param array<mixed>|null $modelData
+     * @param array<mixed>|null $responseData
+     * @param string|null $endpoint
      * @throws Exception
      */
     #[DataProvider('providePostEndpointsTestCases')]
-    public function testPostModel(array $modelData, array $responseData, string $endpoint): void
+    public function testPostModel(?array $modelData, ?array $responseData, ?string $endpoint): void
     {
+        if ($modelData === null && $responseData === null && $endpoint === null) {
+            $this->markTestSkipped('No POST endpoints available for this API.');
+        }
+
         $jsonSuccessfulBody = json_encode($responseData) ?: throw new JsonException('Failed to encode JSON data.');
         $expectedResponse = new Response(200, [], $jsonSuccessfulBody);
         $this->appendRequestResponse($expectedResponse);
@@ -112,26 +117,35 @@ class ApiClientTestCase extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @param Response $response
-     * @param string $endpoint
-     * @param array<mixed> $data
+     * @param Response|null $response
+     * @param string|null $endpoint
+     * @param array<mixed>|null $data
      * @throws Exception
      */
     #[DataProvider('providePostEndpointsUnsuccessfulTestCases')]
-    public function testUnsuccessfulPostModel(Response $response, string $endpoint, array $data): void
+    public function testUnsuccessfulPostModel(?Response $response, ?string $endpoint, ?array $data): void
     {
+        if ($response === null && $endpoint === null && $data === null) {
+            $this->markTestSkipped('No POST endpoints available for this API.');
+        }
+
         $this->prepareUnsuccessfulApiRequest($response);
         $this->makeClientCall($endpoint, [$data]);
     }
 
     /**
-     * @param array<mixed> $modelData
-     * @param array<mixed> $responseData
+     * @param array<mixed>|null $modelData
+     * @param array<mixed>|null $responseData
+     * @param string|null $endpoint
      * @throws Exception
      */
     #[DataProvider('provideApiClientPutEndpointsTestCases')]
-    public function testPutModel(array $modelData, array $responseData, string $endpoint): void
+    public function testPutModel(?array $modelData, ?array $responseData, ?string $endpoint): void
     {
+        if ($modelData === null && $responseData === null && $endpoint === null) {
+            $this->markTestSkipped('No PUT endpoints available for this API.');
+        }
+
         $jsonSuccessfulBody = json_encode($responseData) ?: throw new JsonException('Failed to encode JSON data.');
         $expectedResponse = new Response(200, [], $jsonSuccessfulBody);
         $this->appendRequestResponse($expectedResponse);
@@ -144,14 +158,18 @@ class ApiClientTestCase extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @param Response $response
-     * @param string $endpoint
-     * @param array<mixed> $data
+     * @param Response|null $response
+     * @param string|null $endpoint
+     * @param array<mixed>|null $data
      * @throws Exception
      */
     #[DataProvider('providePutEndpointsUnsuccessfulTestCases')]
-    public function testUnsuccessfulPutModel(Response $response, string $endpoint, array $data): void
+    public function testUnsuccessfulPutModel(?Response $response, ?string $endpoint, ?array $data): void
     {
+        if ($response === null && $endpoint === null && $data === null) {
+            $this->markTestSkipped('No PUT endpoints available for this API.');
+        }
+
         $this->prepareUnsuccessfulApiRequest($response);
         $this->makeClientCall($endpoint, [self::TEST_ID, $data]);
     }
