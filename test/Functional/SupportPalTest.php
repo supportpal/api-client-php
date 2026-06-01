@@ -42,7 +42,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
         $response = new Response(
             200,
             [],
-            (string) json_encode($this->genericErrorResponse)
+            (string) json_encode(self::GENERIC_ERROR_RESPONSE)
         );
         $this->appendRequestResponse($response);
         $request = $this->getSupportPal()->getRequest()->create('GET', 'test_endpoint');

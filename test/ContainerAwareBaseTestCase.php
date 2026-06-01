@@ -24,7 +24,7 @@ use function json_encode;
 abstract class ContainerAwareBaseTestCase extends TestCase
 {
     /** @var array<mixed> */
-    protected $genericErrorResponse = [
+    protected const GENERIC_ERROR_RESPONSE = [
         'status' => 'error',
         'message' => 'unsuccessful error',
         'data' => []
@@ -44,13 +44,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
      */
     public static function provideUnsuccessfulResponses(): iterable
     {
-        $genericErrorResponse = [
-            'status' => 'error',
-            'message' => null,
-            'data' => []
-        ];
-
-        $jsonSuccessfulBody = $genericErrorResponse;
+        $jsonSuccessfulBody = self::GENERIC_ERROR_RESPONSE;
         $jsonSuccessfulBody['status'] = 'success';
         $jsonSuccessfulBody = json_encode($jsonSuccessfulBody) ?: throw new JsonException('Failed to encode JSON data.');
 
@@ -59,7 +53,7 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         yield 'error 403 response' => [new Response(403, [], $jsonSuccessfulBody)];
         yield 'error 404 response' => [new Response(404, [], $jsonSuccessfulBody)];
 
-        $jsonErrorBody = json_encode($genericErrorResponse) ?: throw new JsonException('Failed to encode JSON data.');
+        $jsonErrorBody = json_encode(self::GENERIC_ERROR_RESPONSE) ?: throw new JsonException('Failed to encode JSON data.');
 
         yield 'error status response' => [new Response(200, [], $jsonErrorBody)];
     }
