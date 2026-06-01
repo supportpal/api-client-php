@@ -10,9 +10,9 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function provideGetEndpointsTestCases(): iterable
+    public static function provideGetEndpointsTestCases(): iterable
     {
-        foreach ($this->getGetEndpoints() as $endpoint => $value) {
+        foreach (static::getGetEndpoints() as $endpoint => $value) {
             [$data, $parameters] = $value;
 
             yield [$data, $endpoint, $parameters];
@@ -22,11 +22,11 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function provideGetEndpointsUnsuccessfulTestCases(): iterable
+    public static function provideGetEndpointsUnsuccessfulTestCases(): iterable
     {
-        foreach ($this->getGetEndpoints() as $endpoint => $value) {
+        foreach (static::getGetEndpoints() as $endpoint => $value) {
             $parameters = next($value);
-            foreach ($this->provideUnsuccessfulResponses() as $testCase) {
+            foreach (static::provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, $parameters];
             }
         }
@@ -35,9 +35,16 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function providePostEndpointsTestCases(): iterable
+    public static function providePostEndpointsTestCases(): iterable
     {
-        foreach ($this->getPostEndpoints() as $endpoint => $value) {
+        $endpoints = static::getPostEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $value) {
             [$model, $data] = $value;
 
             yield [$model, $data, $endpoint];
@@ -47,9 +54,9 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function providePutEndpointsTestCases(): iterable
+    public static function providePutEndpointsTestCases(): iterable
     {
-        foreach ($this->getPutEndpoints() as $endpoint => $value) {
+        foreach (static::getPutEndpoints() as $endpoint => $value) {
             [$model, $data, $response] = $value;
 
             yield [$model, $data, $response, $endpoint];
@@ -59,11 +66,18 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function providePostEndpointsUnsuccessfulTestCases(): iterable
+    public static function providePostEndpointsUnsuccessfulTestCases(): iterable
     {
-        foreach ($this->getPostEndpoints() as $endpoint => $value) {
+        $endpoints = static::getPostEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $value) {
             $model = current($value);
-            foreach ($this->provideUnsuccessfulResponses() as $testCase) {
+            foreach (static::provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, [$model]];
             }
         }
@@ -72,11 +86,18 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function providePutEndpointsUnsuccessfulTestCases(): iterable
+    public static function providePutEndpointsUnsuccessfulTestCases(): iterable
     {
-        foreach ($this->getPutEndpoints() as $endpoint => $value) {
+        $endpoints = static::getPutEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $value) {
             [$model, $data] = $value;
-            foreach ($this->provideUnsuccessfulResponses() as $testCase) {
+            foreach (static::provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, [$model, $data]];
             }
         }
@@ -85,9 +106,16 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function provideApiClientPutEndpointsTestCases(): iterable
+    public static function provideApiClientPutEndpointsTestCases(): iterable
     {
-        foreach ($this->getPutEndpoints() as $endpoint => $value) {
+        $endpoints = static::getPutEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $value) {
             [$data, $response] = $value;
 
             yield [$data, $response, $endpoint];
@@ -97,10 +125,10 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function provideDeleteEndpointsUnsuccessfulTestCases(): iterable
+    public static function provideDeleteEndpointsUnsuccessfulTestCases(): iterable
     {
-        foreach ($this->getDeleteEndpoints() as $endpoint => $id) {
-            foreach ($this->provideUnsuccessfulResponses() as $testCase) {
+        foreach (static::getDeleteEndpoints() as $endpoint => $id) {
+            foreach (static::provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, [$id]];
             }
         }
@@ -109,9 +137,9 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function provideDeleteEndpointsTestCases(): iterable
+    public static function provideDeleteEndpointsTestCases(): iterable
     {
-        foreach ($this->getDeleteEndpoints() as $endpoint => $id) {
+        foreach (static::getDeleteEndpoints() as $endpoint => $id) {
             yield [$id, $endpoint];
         }
     }
@@ -119,9 +147,16 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function provideDownloadEndpointsTestCases(): iterable
+    public static function provideDownloadEndpointsTestCases(): iterable
     {
-        foreach ($this->getDownloadsEndpoints() as $endpoint => $model) {
+        $endpoints = static::getDownloadsEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $model) {
             yield [$model, $endpoint];
         }
     }
@@ -129,10 +164,17 @@ trait ApiDataProviders
     /**
      * @return iterable<mixed>
      */
-    public function provideDownloadUnsuccessfulTestCases(): iterable
+    public static function provideDownloadUnsuccessfulTestCases(): iterable
     {
-        foreach ($this->getDownloadsEndpoints() as $endpoint => $model) {
-            foreach ($this->provideUnsuccessfulResponses() as $testCase) {
+        $endpoints = static::getDownloadsEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $model) {
+            foreach (static::provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, [$model]];
             }
         }
@@ -141,30 +183,30 @@ trait ApiDataProviders
     /**
      * @return array<mixed>
      */
-    abstract protected function getGetEndpoints(): array;
+    abstract protected static function getGetEndpoints(): array;
 
     /**
      * @return array<mixed>
      */
-    abstract protected function getPostEndpoints(): array;
+    abstract protected static function getPostEndpoints(): array;
 
     /**
      * @return array<mixed>
      */
-    abstract protected function getPutEndpoints(): array;
+    abstract protected static function getPutEndpoints(): array;
 
     /**
      * @return array<mixed>
      */
-    abstract protected function getDeleteEndpoints(): array;
+    abstract protected static function getDeleteEndpoints(): array;
 
     /**
      * @return array<mixed>
      */
-    abstract protected function getDownloadsEndpoints(): array;
+    abstract protected static function getDownloadsEndpoints(): array;
 
     /**
      * @return iterable<mixed>
      */
-    abstract protected function provideUnsuccessfulResponses(): iterable;
+    abstract protected static function provideUnsuccessfulResponses(): iterable;
 }

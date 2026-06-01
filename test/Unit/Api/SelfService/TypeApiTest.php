@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 use SupportPal\ApiClient\Model\SelfService\Type;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
 
-class TypeApiTest extends BaseSelfServiceApiTest
+class TypeApiTest extends BaseSelfServiceApiTestCaseCase
 {
     public function testGetTypes(): void
     {

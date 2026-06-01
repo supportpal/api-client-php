@@ -10,7 +10,7 @@ class TicketApisTest extends BaseTestCase
     /**
      * @inheritDoc
      */
-    protected function getGetAllEndpoints(): array
+    protected static function getGetAllEndpoints(): array
     {
         return [
             ApiDictionary::TICKET_CUSTOMFIELD => 'getCustomFields',
@@ -26,7 +26,7 @@ class TicketApisTest extends BaseTestCase
     /**
      * @inheritDoc
      */
-    protected function getGetOneEndpoints(): array
+    protected static function getGetOneEndpoints(): array
     {
         return [
             ApiDictionary::TICKET_CUSTOMFIELD => 'getCustomField',
@@ -42,7 +42,7 @@ class TicketApisTest extends BaseTestCase
     /**
      * @inheritDoc
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         return [];
     }

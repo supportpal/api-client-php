@@ -6,14 +6,14 @@ use Exception;
 use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\TicketApisData;
-use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
+use SupportPal\ApiClient\Tests\Functional\ApiComponentTestCase;
 
-class TicketApisTest extends ApiComponentTest
+class TicketApisTest extends ApiComponentTestCase
 {
     /**
      * @inheritDoc
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         return (new TicketApisData)->getApiCalls();
     }
@@ -22,7 +22,7 @@ class TicketApisTest extends ApiComponentTest
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         return (new TicketApisData)->postApiCalls();
     }
@@ -31,7 +31,7 @@ class TicketApisTest extends ApiComponentTest
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         return (new TicketApisData)->putApiCalls();
     }
@@ -39,7 +39,7 @@ class TicketApisTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getDeleteEndpoints(): array
+    protected static function getDeleteEndpoints(): array
     {
         return (new TicketApisData)->deleteApiCalls();
     }
@@ -48,7 +48,7 @@ class TicketApisTest extends ApiComponentTest
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    protected function getDownloadsEndpoints(): array
+    protected static function getDownloadsEndpoints(): array
     {
         return (new TicketApisData)->downloadApiCalls();
     }

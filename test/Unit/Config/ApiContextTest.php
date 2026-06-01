@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Config;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use SupportPal\ApiClient\Config\ApiContext;
@@ -32,8 +33,8 @@ class ApiContextTest extends TestCase
     /**
      * @param ApiContext $apiContext
      * @param string $expected
-     * @dataProvider provideGetApiUrlCases
      */
+    #[DataProvider('provideGetApiUrlCases')]
     public function testGetApiUrl(ApiContext $apiContext, string $expected): void
     {
         self::assertSame($expected, $apiContext->getApiUrl());
@@ -42,8 +43,8 @@ class ApiContextTest extends TestCase
     /**
      * @param ApiContext $apiContext
      * @param string $expected
-     * @dataProvider provideGetApiPathCases
      */
+    #[DataProvider('provideGetApiPathCases')]
     public function testGetApiPath(ApiContext $apiContext, string $expected): void
     {
         self::assertSame($expected, $apiContext->getApiPath());
@@ -69,8 +70,8 @@ class ApiContextTest extends TestCase
      * @param string $url
      * @param string $expected
      * @throws InvalidArgumentException
-     * @dataProvider provideCreateFromUrlCases
      */
+    #[DataProvider('provideCreateFromUrlCases')]
     public function testCreateFromUrl(string $url, string $expected): void
     {
         $apiContext = ApiContext::createFromUrl($url, self::TOKEN);
@@ -80,7 +81,7 @@ class ApiContextTest extends TestCase
     /**
      * @return iterable<array<int, string|ApiContext>>
      */
-    public function provideGetApiUrlCases(): iterable
+    public static function provideGetApiUrlCases(): iterable
     {
         $apiContext = (new ApiContext(self::HOST, self::TOKEN))->enableSsl()->setPath('/test/');
 
@@ -110,7 +111,7 @@ class ApiContextTest extends TestCase
     /**
      * @return iterable<array<int, string|ApiContext>>
      */
-    public function provideGetApiPathCases(): iterable
+    public static function provideGetApiPathCases(): iterable
     {
         $apiContext = (new ApiContext(self::HOST, self::TOKEN))->setPath('/test/');
 
@@ -128,7 +129,7 @@ class ApiContextTest extends TestCase
     /**
      * @return iterable<array<int, string>>
      */
-    public function provideCreateFromUrlCases(): iterable
+    public static function provideCreateFromUrlCases(): iterable
     {
         yield ['http://localhost/test/test/', 'http://localhost:80/test/test/api/'];
         yield ['http://localhost/test/test/api/', 'http://localhost:80/test/test/api/api/'];

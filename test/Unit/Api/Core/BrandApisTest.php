@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Core;
 use SupportPal\ApiClient\Model\Core\Brand;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 
-class BrandApisTest extends BaseCoreApiTest
+class BrandApisTest extends BaseCoreApiTestCaseCase
 {
     public function testGetBrands(): void
     {

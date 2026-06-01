@@ -15,14 +15,14 @@ use SupportPal\ApiClient\Tests\DataFixtures\Ticket\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\StatusData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketCustomFieldData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\TicketData;
-use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
+use SupportPal\ApiClient\Tests\Integration\ApiClientTestCase;
 
-class TicketApisTest extends ApiClientTest
+class TicketApisTest extends ApiClientTestCase
 {
     /**
      * @inheritDoc
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         $departmentData = new DepartmentData;
         $settingsData = new SettingsData;
@@ -57,7 +57,7 @@ class TicketApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         $createTicket = new CreateTicketData;
         $createMessage = new CreateMessageData;
@@ -71,7 +71,7 @@ class TicketApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         $updateTicketData = new UpdateTicketData;
 
@@ -83,7 +83,7 @@ class TicketApisTest extends ApiClientTest
     /**
      * @return array<mixed>
      */
-    protected function getDownloadsEndpoints(): array
+    protected static function getDownloadsEndpoints(): array
     {
         return ['downloadAttachment' => 1];
     }

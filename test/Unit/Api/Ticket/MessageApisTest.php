@@ -8,7 +8,7 @@ use SupportPal\ApiClient\Model\Ticket\Request\UpdateMessage;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\MessageData;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\Request\UpdateMessageData;
 
-class MessageApisTest extends BaseTicketApiTest
+class MessageApisTest extends BaseTicketApiTestCase
 {
     /** @var int */
     private $testMessageId = 1;

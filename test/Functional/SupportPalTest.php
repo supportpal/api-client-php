@@ -4,6 +4,7 @@ namespace SupportPal\ApiClient\Tests\Functional;
 
 use Exception;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Config\ApiContext;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\Request;
@@ -41,7 +42,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
         $response = new Response(
             200,
             [],
-            (string) json_encode($this->genericErrorResponse)
+            (string) json_encode(self::GENERIC_ERROR_RESPONSE)
         );
         $this->appendRequestResponse($response);
         $request = $this->getSupportPal()->getRequest()->create('GET', 'test_endpoint');
@@ -49,10 +50,10 @@ class SupportPalTest extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @dataProvider provideApiTokens
      * @param string $apiToken
      * @throws Exception
      */
+    #[DataProvider('provideApiTokens')]
     public function testEscapePercentApiToken(string $apiToken): void
     {
         $request = (new SupportPal(new ApiContext('localhost', $apiToken)))->getRequest()->create('GET', 'test');
@@ -62,7 +63,7 @@ class SupportPalTest extends ContainerAwareBaseTestCase
     /**
      * @return iterable<array<int, string>>
      */
-    public function provideApiTokens(): iterable
+    public static function provideApiTokens(): iterable
     {
         yield ['api_token_without_percent'];
         yield ['api_token%'];

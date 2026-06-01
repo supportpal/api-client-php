@@ -4,9 +4,9 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\User;
 
 use SupportPal\ApiClient\Api\UserApi;
 use SupportPal\ApiClient\Http\UserClient;
-use SupportPal\ApiClient\Tests\Unit\ApiTest;
+use SupportPal\ApiClient\Tests\Unit\ApiTestCase;
 
-class BaseUserApiTest extends ApiTest
+class BaseUserApiTestCase extends ApiTestCase
 {
     /** @var UserApi */
     protected $api;

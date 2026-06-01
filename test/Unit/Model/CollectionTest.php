@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\Model;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Model\Collection;
 use SupportPal\ApiClient\Model\Model;
@@ -65,7 +66,7 @@ class CollectionTest extends TestCase
 
     public function testCollectionFilter(): void
     {
-        $models = $this->getModelsTestData();
+        $models = self::getModelsTestData();
         $count = count($models);
         $collection = new Collection($count, $models);
 
@@ -99,8 +100,8 @@ class CollectionTest extends TestCase
     /**
      * @param Collection $collection
      * @param bool $actualIsEmpty
-     * @dataProvider provideIsEmptyCases
      */
+    #[DataProvider('provideIsEmptyCases')]
     public function testCollectionIsEmpty(Collection $collection, bool $actualIsEmpty): void
     {
         self::assertSame($collection->isEmpty(), $actualIsEmpty);
@@ -110,9 +111,9 @@ class CollectionTest extends TestCase
      * @return iterable<mixed>
      * @throws InvalidArgumentException
      */
-    public function provideIsEmptyCases(): iterable
+    public static function provideIsEmptyCases(): iterable
     {
-        $models = $this->getModelsTestData();
+        $models = self::getModelsTestData();
 
         yield [new Collection(0, []), true];
         yield [ new Collection(15, []), true];
@@ -124,7 +125,7 @@ class CollectionTest extends TestCase
      * @return Model[]
      * @throws InvalidArgumentException
      */
-    private function getModelsTestData(): array
+    private static function getModelsTestData(): array
     {
         return array_map(function () {
             return (new CommentData)->getFilledInstance();

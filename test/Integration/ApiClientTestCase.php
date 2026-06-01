@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use JsonException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\ResponseInterface;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\Client;
@@ -17,7 +18,7 @@ use function call_user_func_array;
 use function json_decode;
 use function json_encode;
 
-class ApiClientTest extends ContainerAwareBaseTestCase
+class ApiClientTestCase extends ContainerAwareBaseTestCase
 {
     use ApiDataProviders;
 
@@ -60,12 +61,11 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @dataProvider provideGetEndpointsTestCases
      * @param array<mixed> $data
-     * @param string $functionName
      * @param array<mixed> $parameters
      * @throws Exception
      */
+    #[DataProvider('provideGetEndpointsTestCases')]
     public function testGetEndpoints(array $data, string $functionName, array $parameters): void
     {
         $expectedResponse = new Response(
@@ -84,8 +84,8 @@ class ApiClientTest extends ContainerAwareBaseTestCase
      * @param string $endpoint
      * @param array<mixed> $parameters
      * @throws Exception
-     * @dataProvider provideGetEndpointsUnsuccessfulTestCases
      */
+    #[DataProvider('provideGetEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
@@ -93,14 +93,18 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @dataProvider providePostEndpointsTestCases
-     * @param array<mixed> $modelData
-     * @param array<mixed> $responseData
-     * @param string $endpoint
+     * @param array<mixed>|null $modelData
+     * @param array<mixed>|null $responseData
+     * @param string|null $endpoint
      * @throws Exception
      */
-    public function testPostModel(array $modelData, array $responseData, string $endpoint): void
+    #[DataProvider('providePostEndpointsTestCases')]
+    public function testPostModel(?array $modelData, ?array $responseData, ?string $endpoint): void
     {
+        if ($modelData === null || $responseData === null || $endpoint === null) {
+            $this->markTestSkipped('No POST endpoints available for this API.');
+        }
+
         $jsonSuccessfulBody = json_encode($responseData) ?: throw new JsonException('Failed to encode JSON data.');
         $expectedResponse = new Response(200, [], $jsonSuccessfulBody);
         $this->appendRequestResponse($expectedResponse);
@@ -113,27 +117,35 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @param Response $response
-     * @param string $endpoint
-     * @param array<mixed> $data
+     * @param Response|null $response
+     * @param string|null $endpoint
+     * @param array<mixed>|null $data
      * @throws Exception
-     * @dataProvider providePostEndpointsUnsuccessfulTestCases
      */
-    public function testUnsuccessfulPostModel(Response $response, string $endpoint, array $data): void
+    #[DataProvider('providePostEndpointsUnsuccessfulTestCases')]
+    public function testUnsuccessfulPostModel(?Response $response, ?string $endpoint, ?array $data): void
     {
+        if ($response === null || $endpoint === null || $data === null) {
+            $this->markTestSkipped('No POST endpoints available for this API.');
+        }
+
         $this->prepareUnsuccessfulApiRequest($response);
         $this->makeClientCall($endpoint, [$data]);
     }
 
     /**
-     * @dataProvider provideApiClientPutEndpointsTestCases
-     * @param array<mixed> $modelData
-     * @param array<mixed> $responseData
-     * @param string $endpoint
+     * @param array<mixed>|null $modelData
+     * @param array<mixed>|null $responseData
+     * @param string|null $endpoint
      * @throws Exception
      */
-    public function testPutModel(array $modelData, array $responseData, string $endpoint): void
+    #[DataProvider('provideApiClientPutEndpointsTestCases')]
+    public function testPutModel(?array $modelData, ?array $responseData, ?string $endpoint): void
     {
+        if ($modelData === null || $responseData === null || $endpoint === null) {
+            $this->markTestSkipped('No PUT endpoints available for this API.');
+        }
+
         $jsonSuccessfulBody = json_encode($responseData) ?: throw new JsonException('Failed to encode JSON data.');
         $expectedResponse = new Response(200, [], $jsonSuccessfulBody);
         $this->appendRequestResponse($expectedResponse);
@@ -146,25 +158,29 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @param Response $response
-     * @param string $endpoint
-     * @param array<mixed> $data
+     * @param Response|null $response
+     * @param string|null $endpoint
+     * @param array<mixed>|null $data
      * @throws Exception
-     * @dataProvider providePutEndpointsUnsuccessfulTestCases
      */
-    public function testUnsuccessfulPutModel(Response $response, string $endpoint, array $data): void
+    #[DataProvider('providePutEndpointsUnsuccessfulTestCases')]
+    public function testUnsuccessfulPutModel(?Response $response, ?string $endpoint, ?array $data): void
     {
+        if ($response === null || $endpoint === null || $data === null) {
+            $this->markTestSkipped('No PUT endpoints available for this API.');
+        }
+
         $this->prepareUnsuccessfulApiRequest($response);
         $this->makeClientCall($endpoint, [self::TEST_ID, $data]);
     }
 
-    /**
-     * @param int $modelId
-     * @param string $endpoint
-     * @dataProvider provideDownloadEndpointsTestCases
-     */
-    public function testDownloadEndpoint(int $modelId, string $endpoint): void
+    #[DataProvider('provideDownloadEndpointsTestCases')]
+    public function testDownloadEndpoint(?int $modelId, ?string $endpoint): void
     {
+        if ($modelId === null || $endpoint === null) {
+            $this->markTestSkipped('No download endpoints available for this API.');
+        }
+
         $expectedResponse = new Response(200, ['Content-Disposition' => 'test'], '');
         $this->appendRequestResponse($expectedResponse);
         $response = $this->makeClientCall($endpoint, [$modelId]);
@@ -174,7 +190,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @return array<mixed>
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         return [];
     }
@@ -182,7 +198,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @return array<mixed>
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         return [];
     }
@@ -190,7 +206,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @return array<mixed>
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         return [];
     }
@@ -198,7 +214,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @return array<mixed>
      */
-    protected function getDeleteEndpoints(): array
+    protected static function getDeleteEndpoints(): array
     {
         return [];
     }
@@ -206,7 +222,7 @@ class ApiClientTest extends ContainerAwareBaseTestCase
     /**
      * @return array<mixed>
      */
-    protected function getDownloadsEndpoints(): array
+    protected static function getDownloadsEndpoints(): array
     {
         return [];
     }

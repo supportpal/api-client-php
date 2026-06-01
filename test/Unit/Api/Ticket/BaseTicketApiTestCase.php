@@ -4,9 +4,9 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 
 use SupportPal\ApiClient\Api\TicketApi;
 use SupportPal\ApiClient\Http\TicketClient;
-use SupportPal\ApiClient\Tests\Unit\ApiTest;
+use SupportPal\ApiClient\Tests\Unit\ApiTestCase;
 
-class BaseTicketApiTest extends ApiTest
+class BaseTicketApiTestCase extends ApiTestCase
 {
     /** @var TicketApi */
     protected $api;

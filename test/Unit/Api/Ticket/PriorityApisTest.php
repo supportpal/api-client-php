@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 use SupportPal\ApiClient\Model\Ticket\Priority;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\PriorityData;
 
-class PriorityApisTest extends BaseTicketApiTest
+class PriorityApisTest extends BaseTicketApiTestCase
 {
     public function testGetPriorities(): void
     {

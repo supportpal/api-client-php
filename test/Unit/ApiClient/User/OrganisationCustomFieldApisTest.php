@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\User;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\UserClient;
@@ -43,8 +44,8 @@ class OrganisationCustomFieldApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOrganisationCustomFields(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
@@ -87,8 +88,8 @@ class OrganisationCustomFieldApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetOrganisationCustomField(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);

@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\SelfServiceClient;
@@ -53,8 +54,8 @@ class TagApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetTag(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
@@ -93,8 +94,8 @@ class TagApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetTags(int $statusCode, string $responseBody): void
     {
         $queryParams = [];

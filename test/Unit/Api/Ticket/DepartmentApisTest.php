@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 use SupportPal\ApiClient\Model\Ticket\Department;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\DepartmentData;
 
-class DepartmentApisTest extends BaseTicketApiTest
+class DepartmentApisTest extends BaseTicketApiTestCase
 {
     /** @var int */
     private $testDepartmentId = 1;

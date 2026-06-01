@@ -5,14 +5,14 @@ namespace SupportPal\ApiClient\Tests\Integration\Api;
 use SupportPal\ApiClient\Api\TicketApi;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\TicketApisData;
-use SupportPal\ApiClient\Tests\Integration\ApiComponentTest;
+use SupportPal\ApiClient\Tests\Integration\ApiComponentTestCase;
 
-class TicketApisComponentTest extends ApiComponentTest
+class TicketApisComponentTest extends ApiComponentTestCase
 {
     /**
      * @inheritDoc
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         return (new TicketApisData)->getApiCalls();
     }
@@ -21,7 +21,7 @@ class TicketApisComponentTest extends ApiComponentTest
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         return (new TicketApisData)->postApiCalls();
     }
@@ -30,7 +30,7 @@ class TicketApisComponentTest extends ApiComponentTest
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         return (new TicketApisData)->putApiCalls();
     }
@@ -38,7 +38,7 @@ class TicketApisComponentTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getDeleteEndpoints(): array
+    protected static function getDeleteEndpoints(): array
     {
         return (new TicketApisData)->deleteApiCalls();
     }
@@ -47,7 +47,7 @@ class TicketApisComponentTest extends ApiComponentTest
      * @inheritDoc
      * @throws InvalidArgumentException
      */
-    protected function getDownloadsEndpoints(): array
+    protected static function getDownloadsEndpoints(): array
     {
         return (new TicketApisData)->downloadApiCalls();
     }

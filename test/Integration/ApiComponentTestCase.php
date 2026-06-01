@@ -3,13 +3,10 @@
 namespace SupportPal\ApiClient\Tests\Integration;
 
 use SupportPal\ApiClient\Api\Api;
-use SupportPal\ApiClient\Tests\ApiDataProviders;
 use SupportPal\ApiClient\Tests\ApiTestCase;
 
-abstract class ApiComponentTest extends ApiTestCase
+abstract class ApiComponentTestCase extends ApiTestCase
 {
-    use ApiDataProviders;
-
     /** @var Api */
     private $api;
 

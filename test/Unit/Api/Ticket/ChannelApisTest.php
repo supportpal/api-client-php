@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\Ticket;
 use SupportPal\ApiClient\Model\Ticket\ChannelSettings;
 use SupportPal\ApiClient\Tests\DataFixtures\Ticket\ChannelSettingsData;
 
-class ChannelApisTest extends BaseTicketApiTest
+class ChannelApisTest extends BaseTicketApiTestCase
 {
     public function testGetChannelSettings(): void
     {

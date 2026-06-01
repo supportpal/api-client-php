@@ -5,14 +5,14 @@ namespace SupportPal\ApiClient\Tests\Integration\ApiClient;
 use SupportPal\ApiClient\Http\CoreClient;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\BrandData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\SettingsData;
-use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
+use SupportPal\ApiClient\Tests\Integration\ApiClientTestCase;
 
-class CoreApisTest extends ApiClientTest
+class CoreApisTest extends ApiClientTestCase
 {
     /**
      * @inheritDoc
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         $brandData = new BrandData;
 
@@ -26,7 +26,7 @@ class CoreApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         return [];
     }
@@ -34,7 +34,7 @@ class CoreApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         return [];
     }

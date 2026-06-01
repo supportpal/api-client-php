@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateUserData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\UserData;
 
-class UserApisTest extends BaseUserApiTest
+class UserApisTest extends BaseUserApiTestCase
 {
     public function testGetUsers(): void
     {

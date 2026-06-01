@@ -9,6 +9,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Kevinrob\GuzzleCache\CacheMiddleware;
 use Kevinrob\GuzzleCache\Strategy\CacheStrategyInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Cache\ApiCacheMap;
 use SupportPal\ApiClient\Cache\CacheStrategyConfigurator;
 use SupportPal\ApiClient\Http\Client;
@@ -61,8 +62,8 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
      * @param array<mixed> $parameters
      * @param class-string $apiClientClass
      * @throws Exception
-     * @dataProvider provideCacheableApiCalls
      */
+    #[DataProvider('provideCacheableApiCalls')]
     public function testGetCacheableApiTestCacheHit(
         string $endpoint,
         array $data,
@@ -93,8 +94,8 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
      * @param array<mixed> $parameters
      * @param class-string $apiClientClass
      * @throws Exception
-     * @dataProvider provideCacheableApiCalls
      */
+    #[DataProvider('provideCacheableApiCalls')]
     public function testGetCacheableApiTestCacheMiss(
         string $endpoint,
         array $data,
@@ -141,8 +142,8 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
      * @param array<mixed> $parameters
      * @param class-string $apiClientClass
      * @throws Exception
-     * @dataProvider provideNonCacheableApis
      */
+    #[DataProvider('provideNonCacheableApis')]
     public function testNonCacheableApisAlwaysMiss(
         string $endpoint,
         array $data,
@@ -178,7 +179,7 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
     /**
      * @return iterable<mixed>
      */
-    public function provideCacheableApiCalls(): iterable
+    public static function provideCacheableApiCalls(): iterable
     {
         /** Core Apis */
         $brandData = new BrandData;
@@ -253,7 +254,7 @@ class CacheableApisTest extends ContainerAwareBaseTestCase
     /**
      * @return iterable<mixed>
      */
-    public function provideNonCacheableApis(): iterable
+    public static function provideNonCacheableApis(): iterable
     {
         /** SelfService Apis */
         $attachmentData = new ArticleAttachmentData;

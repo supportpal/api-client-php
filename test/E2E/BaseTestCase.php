@@ -3,6 +3,7 @@
 namespace SupportPal\ApiClient\Tests\E2E;
 
 use GuzzleHttp\Client;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
 use SupportPal\ApiClient\Api\CoreApi;
 use SupportPal\ApiClient\Api\SelfServiceApi;
@@ -56,8 +57,8 @@ abstract class BaseTestCase extends TestCase
 
     /**
      * @throws HttpResponseException
-     * @dataProvider provideGetAllEndpoints
      */
+    #[DataProvider('provideGetAllEndpoints')]
     public function testGetAll(string $endpoint, string $apiCall): void
     {
         $start = 1;
@@ -96,9 +97,9 @@ abstract class BaseTestCase extends TestCase
     /**
      * @return iterable<mixed>
      */
-    public function provideGetAllEndpoints(): iterable
+    public static function provideGetAllEndpoints(): iterable
     {
-        foreach ($this->getGetAllEndpoints() as $endpoint => $apiCall) {
+        foreach (static::getGetAllEndpoints() as $endpoint => $apiCall) {
             yield [$endpoint, $apiCall];
         }
     }
@@ -106,11 +107,10 @@ abstract class BaseTestCase extends TestCase
     /**
      * @return string[]
      */
-    abstract protected function getGetAllEndpoints(): array;
+    abstract protected static function getGetAllEndpoints(): array;
 
-    /**
-     * @dataProvider provideGetOneEndpoints
-     */
+    /**     */
+    #[DataProvider('provideGetOneEndpoints')]
     public function testGetOne(string $endpoint, string $apiCall): void
     {
         $iteration = 1;
@@ -146,9 +146,9 @@ abstract class BaseTestCase extends TestCase
     /**
      * @return iterable<mixed>
      */
-    public function provideGetOneEndpoints(): iterable
+    public static function provideGetOneEndpoints(): iterable
     {
-        foreach ($this->getGetOneEndpoints() as $endpoint => $apiCall) {
+        foreach (static::getGetOneEndpoints() as $endpoint => $apiCall) {
             yield [$endpoint, $apiCall];
         }
     }
@@ -156,12 +156,12 @@ abstract class BaseTestCase extends TestCase
     /**
      * @return string[]
      */
-    abstract protected function getGetOneEndpoints(): array;
+    abstract protected static function getGetOneEndpoints(): array;
 
     /**
      * @param mixed[] $data
-     * @dataProvider providePostEndpoints
      */
+    #[DataProvider('providePostEndpoints')]
     public function testPost(string $endpoint, array $data): void
     {
         $iteration = 1;
@@ -193,9 +193,9 @@ abstract class BaseTestCase extends TestCase
     /**
      * @return iterable<mixed>
      */
-    public function providePostEndpoints(): iterable
+    public static function providePostEndpoints(): iterable
     {
-        foreach ($this->getPostEndpoints() as $endpoint => $data) {
+        foreach (static::getPostEndpoints() as $endpoint => $data) {
             yield [$endpoint, $data];
         }
     }
@@ -203,7 +203,7 @@ abstract class BaseTestCase extends TestCase
     /**
      * @return array<string, mixed[]>
      */
-    abstract protected function getPostEndpoints(): array;
+    abstract protected static function getPostEndpoints(): array;
 
     protected function settingsTestCase(string $endpoint, string $apiCall): void
     {

@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\Core\IpBanData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\CreateIpBanData;
 use SupportPal\ApiClient\Tests\DataFixtures\Core\Request\UpdateIpBanData;
 
-class IpBanApisTest extends BaseCoreApiTest
+class IpBanApisTest extends BaseCoreApiTestCaseCase
 {
     public function testGetIpBans(): void
     {

@@ -24,7 +24,7 @@ use function json_encode;
 abstract class ContainerAwareBaseTestCase extends TestCase
 {
     /** @var array<mixed> */
-    protected $genericErrorResponse = [
+    protected const GENERIC_ERROR_RESPONSE = [
         'status' => 'error',
         'message' => 'unsuccessful error',
         'data' => []
@@ -40,24 +40,22 @@ abstract class ContainerAwareBaseTestCase extends TestCase
     protected $mockRequestHandler;
 
     /**
-     * @return iterable<array<string, Response>>
+     * @return iterable<array<int, Response>>
      */
-    public function provideUnsuccessfulResponses(): iterable
+    public static function provideUnsuccessfulResponses(): iterable
     {
-        $jsonSuccessfulBody = $this->genericErrorResponse;
+        $jsonSuccessfulBody = self::GENERIC_ERROR_RESPONSE;
         $jsonSuccessfulBody['status'] = 'success';
         $jsonSuccessfulBody = json_encode($jsonSuccessfulBody) ?: throw new JsonException('Failed to encode JSON data.');
 
-        yield ['error 400 response' => new Response(400, [], $jsonSuccessfulBody)];
-        yield ['error 401 response' => new Response(401, [], $jsonSuccessfulBody)];
-        yield ['error 403 response' => new Response(403, [], $jsonSuccessfulBody)];
-        yield ['error 404 response' => new Response(404, [], $jsonSuccessfulBody)];
+        yield 'error 400 response' => [new Response(400, [], $jsonSuccessfulBody)];
+        yield 'error 401 response' => [new Response(401, [], $jsonSuccessfulBody)];
+        yield 'error 403 response' => [new Response(403, [], $jsonSuccessfulBody)];
+        yield 'error 404 response' => [new Response(404, [], $jsonSuccessfulBody)];
 
-        $jsonErrorBody = json_encode($this->genericErrorResponse) ?: throw new JsonException('Failed to encode JSON data.');
+        $jsonErrorBody = json_encode(self::GENERIC_ERROR_RESPONSE) ?: throw new JsonException('Failed to encode JSON data.');
 
-        yield [
-            'error status response' => new Response(200, [], $jsonErrorBody)
-        ];
+        yield 'error status response' => [new Response(200, [], $jsonErrorBody)];
     }
 
     /**

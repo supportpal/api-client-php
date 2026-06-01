@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\SelfService;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\SelfServiceClient;
@@ -45,8 +46,8 @@ class ArticleApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetArticlesByTerm(int $statusCode, string $responseBody): void
     {
         $queryParams = ['test' => 'value'];
@@ -91,8 +92,8 @@ class ArticleApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetArticle(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
@@ -131,8 +132,8 @@ class ArticleApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetArticles(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
@@ -177,8 +178,8 @@ class ArticleApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetRelatedArticles(int $statusCode, string $responseBody): void
     {
         $queryParams = [];
@@ -210,8 +211,8 @@ class ArticleApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testPostUnsuccessfulArticle(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
@@ -265,8 +266,8 @@ class ArticleApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulUpdateArticle(int $statusCode, string $responseBody): void
     {
         $articleData = new ArticleData;
@@ -304,9 +305,8 @@ class ArticleApisTest extends ApiClientTest
         $this->apiClient->deleteArticle($this->testArticleId);
     }
 
-    /**
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+    /**     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulDeleteArticle(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);

@@ -10,14 +10,14 @@ use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\CreateCommentDat
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\SettingsData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TypeData;
-use SupportPal\ApiClient\Tests\Integration\ApiClientTest;
+use SupportPal\ApiClient\Tests\Integration\ApiClientTestCase;
 
-class SelfServiceApisTest extends ApiClientTest
+class SelfServiceApisTest extends ApiClientTestCase
 {
     /**
      * @inheritDoc
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         $typeData = new TypeData;
         $commentData = new CommentData;
@@ -46,7 +46,7 @@ class SelfServiceApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         $commentData = new CommentData;
         $createCommentData = new CreateCommentData;
@@ -59,7 +59,7 @@ class SelfServiceApisTest extends ApiClientTest
     /**
      * @inheritDoc
      */
-    public function getPutEndpoints(): array
+    public static function getPutEndpoints(): array
     {
         return [];
     }

@@ -2,6 +2,7 @@
 
 namespace SupportPal\ApiClient\Tests\Unit\ApiClient\Ticket;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use SupportPal\ApiClient\Dictionary\ApiDictionary;
 use SupportPal\ApiClient\Exception\HttpResponseException;
 use SupportPal\ApiClient\Http\TicketClient;
@@ -47,8 +48,8 @@ class MessageApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetMessages(int $statusCode, string $responseBody): void
     {
         $queryParams = ['ticket_id' => $this->testTicketId];
@@ -83,8 +84,8 @@ class MessageApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulGetMessage(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
@@ -110,8 +111,8 @@ class MessageApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulPostMessage(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);
@@ -165,8 +166,8 @@ class MessageApisTest extends ApiClientTest
     /**
      * @param int $statusCode
      * @param string $responseBody
-     * @dataProvider provideUnsuccessfulTestCases
      */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulUpdateMessage(int $statusCode, string $responseBody): void
     {
         $messageData = new MessageData;
@@ -204,9 +205,8 @@ class MessageApisTest extends ApiClientTest
         $this->apiClient->deleteMessage($this->testMessageId);
     }
 
-    /**
-     * @dataProvider provideUnsuccessfulTestCases
-     */
+    /**     */
+    #[DataProvider('provideUnsuccessfulTestCases')]
     public function testUnsuccessfulDeleteMessage(int $statusCode, string $responseBody): void
     {
         self::expectException(HttpResponseException::class);

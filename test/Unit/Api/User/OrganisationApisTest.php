@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Tests\DataFixtures\User\OrganisationData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\CreateOrganisationData;
 use SupportPal\ApiClient\Tests\DataFixtures\User\Request\UpdateOrganisationData;
 
-class OrganisationApisTest extends BaseUserApiTest
+class OrganisationApisTest extends BaseUserApiTestCase
 {
     public function testGetOrganisations(): void
     {

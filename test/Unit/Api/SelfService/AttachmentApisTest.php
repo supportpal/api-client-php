@@ -9,7 +9,7 @@ use SupportPal\ApiClient\Model\SelfService\Request\CreateAttachment;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\AttachmentData;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\Request\CreateAttachmentData;
 
-class AttachmentApisTest extends BaseSelfServiceApiTest
+class AttachmentApisTest extends BaseSelfServiceApiTestCaseCase
 {
     public function testGetAttachments(): void
     {

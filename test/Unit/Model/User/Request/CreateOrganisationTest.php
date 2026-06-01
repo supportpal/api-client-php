@@ -3,12 +3,12 @@
 namespace SupportPal\ApiClient\Tests\Unit\Model\User\Request;
 
 use SupportPal\ApiClient\Model\User\Request\CreateOrganisation;
-use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTest;
+use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
 /**
- * @extends BaseModelTest<CreateOrganisation>
+ * @extends BaseModelTestCase<CreateOrganisation>
  */
-class CreateOrganisationTest extends BaseModelTest
+class CreateOrganisationTest extends BaseModelTestCase
 {
     protected string $modelClass = CreateOrganisation::class;
 

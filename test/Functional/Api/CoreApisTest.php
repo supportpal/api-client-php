@@ -5,14 +5,14 @@ namespace SupportPal\ApiClient\Tests\Functional\Api;
 use Exception;
 use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\CoreApisData;
-use SupportPal\ApiClient\Tests\Functional\ApiComponentTest;
+use SupportPal\ApiClient\Tests\Functional\ApiComponentTestCase;
 
-class CoreApisTest extends ApiComponentTest
+class CoreApisTest extends ApiComponentTestCase
 {
     /**
      * @inheritDoc
      */
-    protected function getGetEndpoints(): array
+    protected static function getGetEndpoints(): array
     {
         return (new CoreApisData)->getApiCalls();
     }
@@ -20,7 +20,7 @@ class CoreApisTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getPostEndpoints(): array
+    protected static function getPostEndpoints(): array
     {
         return (new CoreApisData)->postApiCalls();
     }
@@ -28,7 +28,7 @@ class CoreApisTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getPutEndpoints(): array
+    protected static function getPutEndpoints(): array
     {
         return (new CoreApisData)->putApiCalls();
     }
@@ -36,7 +36,7 @@ class CoreApisTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getDeleteEndpoints(): array
+    protected static function getDeleteEndpoints(): array
     {
         return (new CoreApisData)->deleteApiCalls();
     }
@@ -44,7 +44,7 @@ class CoreApisTest extends ApiComponentTest
     /**
      * @inheritDoc
      */
-    protected function getDownloadsEndpoints(): array
+    protected static function getDownloadsEndpoints(): array
     {
         return [];
     }

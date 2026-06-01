@@ -3,12 +3,12 @@
 namespace SupportPal\ApiClient\Tests\Unit\Model\Ticket\Request;
 
 use SupportPal\ApiClient\Model\Ticket\Request\CreateTicket;
-use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTest;
+use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
 /**
- * @extends BaseModelTest<CreateTicket>
+ * @extends BaseModelTestCase<CreateTicket>
  */
-class CreateTicketTest extends BaseModelTest
+class CreateTicketTest extends BaseModelTestCase
 {
     protected string $modelClass = CreateTicket::class;
 

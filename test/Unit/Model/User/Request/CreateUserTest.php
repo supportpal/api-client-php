@@ -4,12 +4,12 @@ namespace SupportPal\ApiClient\Tests\Unit\Model\User\Request;
 
 use libphonenumber\NumberParseException;
 use SupportPal\ApiClient\Model\User\Request\CreateUser;
-use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTest;
+use SupportPal\ApiClient\Tests\Unit\Model\BaseModelTestCase;
 
 /**
- * @extends BaseModelTest<CreateUser>
+ * @extends BaseModelTestCase<CreateUser>
  */
-class CreateUserTest extends BaseModelTest
+class CreateUserTest extends BaseModelTestCase
 {
     protected string $modelClass = CreateUser::class;
 

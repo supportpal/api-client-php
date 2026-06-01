@@ -5,7 +5,7 @@ namespace SupportPal\ApiClient\Tests\Unit\Api\SelfService;
 use SupportPal\ApiClient\Model\SelfService\Tag;
 use SupportPal\ApiClient\Tests\DataFixtures\SelfService\TagData;
 
-class TagApisTest extends BaseSelfServiceApiTest
+class TagApisTest extends BaseSelfServiceApiTestCaseCase
 {
     public function testGetTags(): void
     {

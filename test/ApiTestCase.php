@@ -5,6 +5,7 @@ namespace SupportPal\ApiClient\Tests;
 use Exception;
 use GuzzleHttp\Psr7\Response;
 use JsonException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Http\Message\StreamInterface;
 use SupportPal\ApiClient\Api\Api;
 use SupportPal\ApiClient\Model\Model;
@@ -14,12 +15,14 @@ use function json_encode;
 
 abstract class ApiTestCase extends ContainerAwareBaseTestCase
 {
+    use ApiDataProviders;
+
     /**
-     * @dataProvider provideGetEndpointsTestCases
      * @param array<mixed> $data
      * @param array<mixed> $parameters
      * @throws Exception
      */
+    #[DataProvider('provideGetEndpointsTestCases')]
     public function testGetEndpoint(array $data, string $functionName, array $parameters): void
     {
         $this->appendRequestResponse(
@@ -40,8 +43,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
      * @param Response $response
      * @param array<mixed> $parameters
      * @throws Exception
-     * @dataProvider provideGetEndpointsUnsuccessfulTestCases
      */
+    #[DataProvider('provideGetEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulGetEndpoint(Response $response, string $endpoint, array $parameters): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
@@ -53,8 +56,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     /**
      * @param array<mixed> $responseData
      * @throws Exception
-     * @dataProvider providePostEndpointsTestCases
      */
+    #[DataProvider('providePostEndpointsTestCases')]
     public function testSuccessfulPostEndpoint(Model $model, array $responseData, string $functionName): void
     {
         $jsonSuccessfulBody = json_encode($responseData) ?: throw new JsonException('Failed to encode JSON.');
@@ -68,8 +71,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     /**
      * @param array<mixed> $parameters
      * @throws Exception
-     * @dataProvider providePostEndpointsUnsuccessfulTestCases
      */
+    #[DataProvider('providePostEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulPostEndpoint(Response $response, string $endpoint, array $parameters): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
@@ -81,8 +84,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     /**
      * @param array<mixed> $responseData
      * @throws Exception
-     * @dataProvider providePutEndpointsTestCases
      */
+    #[DataProvider('providePutEndpointsTestCases')]
     public function testSuccessfulPutEndpoint(
         int $id,
         Model $model,
@@ -100,8 +103,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     /**
      * @param array<mixed> $parameters
      * @throws Exception
-     * @dataProvider providePutEndpointsUnsuccessfulTestCases
      */
+    #[DataProvider('providePutEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulPutEndpoint(Response $response, string $endpoint, array $parameters): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
@@ -112,8 +115,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
 
     /**
      * @throws Exception
-     * @dataProvider provideDeleteEndpointsTestCases
      */
+    #[DataProvider('provideDeleteEndpointsTestCases')]
     public function testSuccessfulDeleteEndpoint(int $id, string $functionName): void
     {
         $jsonSuccessfulBody = json_encode(['status' => 'success']) ?: throw new JsonException('Failed to encode JSON.');
@@ -126,8 +129,8 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     /**
      * @param array<mixed> $parameters
      * @throws Exception
-     * @dataProvider provideDeleteEndpointsUnsuccessfulTestCases
      */
+    #[DataProvider('provideDeleteEndpointsUnsuccessfulTestCases')]
     public function testUnsuccessfulDeleteEndpoint(Response $response, string $endpoint, array $parameters): void
     {
         $this->prepareUnsuccessfulApiRequest($response);
@@ -136,11 +139,13 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
         call_user_func_array($callable, $parameters);
     }
 
-    /**
-     * @dataProvider provideDownloadEndpointsTestCases
-     */
-    public function testDownloadEndpoint(int $id, string $functionName): void
+    #[DataProvider('provideDownloadEndpointsTestCases')]
+    public function testDownloadEndpoint(?int $id, ?string $functionName): void
     {
+        if ($id === null || $functionName === null) {
+            $this->markTestSkipped('No download endpoints available for this API.');
+        }
+
         $this->appendRequestResponse(new Response(200, ['Content-Disposition' => 'test'], ''));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];
@@ -150,11 +155,15 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
 
     /**
      * @param array<mixed> $parameters
-     * @dataProvider provideDownloadUnsuccessfulTestCases
      * @throws Exception
      */
-    public function testUnsuccessfulDownloadEndpoint(Response $response, string $endpoint, array $parameters): void
+    #[DataProvider('provideDownloadUnsuccessfulTestCases')]
+    public function testUnsuccessfulDownloadEndpoint(?Response $response, ?string $endpoint, ?array $parameters): void
     {
+        if ($response === null || $endpoint === null || $parameters === null) {
+            $this->markTestSkipped('No download endpoints available for this API.');
+        }
+
         $this->prepareUnsuccessfulApiRequest($response);
         /** @var callable $callable */
         $callable = [$this->getApi(), $endpoint];

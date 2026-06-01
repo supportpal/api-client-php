@@ -8,7 +8,7 @@ use SupportPal\ApiClient\Tests\TestCase;
 /**
  * @template T of Model
  */
-abstract class BaseModelTest extends TestCase
+abstract class BaseModelTestCase extends TestCase
 {
     /** @var class-string<T> */
     protected string $modelClass;
