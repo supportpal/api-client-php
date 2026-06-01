@@ -121,7 +121,14 @@ trait ApiDataProviders
      */
     public static function provideDownloadEndpointsTestCases(): iterable
     {
-        foreach (static::getDownloadsEndpoints() as $endpoint => $model) {
+        $endpoints = static::getDownloadsEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $model) {
             yield [$model, $endpoint];
         }
     }
@@ -131,7 +138,14 @@ trait ApiDataProviders
      */
     public static function provideDownloadUnsuccessfulTestCases(): iterable
     {
-        foreach (static::getDownloadsEndpoints() as $endpoint => $model) {
+        $endpoints = static::getDownloadsEndpoints();
+        if (empty($endpoints)) {
+            yield [null, null, null];
+
+            return;
+        }
+
+        foreach ($endpoints as $endpoint => $model) {
             foreach (static::provideUnsuccessfulResponses() as $testCase) {
                 yield [current($testCase), $endpoint, [$model]];
             }

@@ -140,8 +140,12 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     }
 
     #[DataProvider('provideDownloadEndpointsTestCases')]
-    public function testDownloadEndpoint(int $id, string $functionName): void
+    public function testDownloadEndpoint(?int $id, ?string $functionName): void
     {
+        if ($id === null || $functionName === null) {
+            $this->markTestSkipped('No download endpoints available for this API.');
+        }
+
         $this->appendRequestResponse(new Response(200, ['Content-Disposition' => 'test'], ''));
         /** @var callable $callable */
         $callable = [$this->getApi(), $functionName];
@@ -150,11 +154,16 @@ abstract class ApiTestCase extends ContainerAwareBaseTestCase
     }
 
     /**
-     * @param array<mixed> $parameters     * @throws Exception
+     * @param array<mixed> $parameters
+     * @throws Exception
      */
     #[DataProvider('provideDownloadUnsuccessfulTestCases')]
-    public function testUnsuccessfulDownloadEndpoint(Response $response, string $endpoint, array $parameters): void
+    public function testUnsuccessfulDownloadEndpoint(?Response $response, ?string $endpoint, ?array $parameters): void
     {
+        if ($response === null || $endpoint === null || $parameters === null) {
+            $this->markTestSkipped('No download endpoints available for this API.');
+        }
+
         $this->prepareUnsuccessfulApiRequest($response);
         /** @var callable $callable */
         $callable = [$this->getApi(), $endpoint];
