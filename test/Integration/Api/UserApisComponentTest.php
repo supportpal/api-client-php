@@ -5,9 +5,9 @@ namespace SupportPal\ApiClient\Tests\Integration\Api;
 use SupportPal\ApiClient\Api\UserApi;
 use SupportPal\ApiClient\Exception\InvalidArgumentException;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\UserApisData;
-use SupportPal\ApiClient\Tests\Integration\ApiComponentTest;
+use SupportPal\ApiClient\Tests\Integration\ApiComponentTestCase;
 
-class UserApisComponentTest extends ApiComponentTest
+class UserApisComponentTest extends ApiComponentTestCase
 {
     /**
      * @inheritDoc

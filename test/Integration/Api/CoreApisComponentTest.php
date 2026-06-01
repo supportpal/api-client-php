@@ -4,9 +4,9 @@ namespace SupportPal\ApiClient\Tests\Integration\Api;
 
 use SupportPal\ApiClient\Api\CoreApi;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\CoreApisData;
-use SupportPal\ApiClient\Tests\Integration\ApiComponentTest;
+use SupportPal\ApiClient\Tests\Integration\ApiComponentTestCase;
 
-class CoreApisComponentTest extends ApiComponentTest
+class CoreApisComponentTest extends ApiComponentTestCase
 {
     /**
      * @inheritDoc

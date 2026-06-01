@@ -54,16 +54,14 @@ abstract class ContainerAwareBaseTestCase extends TestCase
         $jsonSuccessfulBody['status'] = 'success';
         $jsonSuccessfulBody = json_encode($jsonSuccessfulBody) ?: throw new JsonException('Failed to encode JSON data.');
 
-        yield ['error 400 response' => new Response(400, [], $jsonSuccessfulBody)];
-        yield ['error 401 response' => new Response(401, [], $jsonSuccessfulBody)];
-        yield ['error 403 response' => new Response(403, [], $jsonSuccessfulBody)];
-        yield ['error 404 response' => new Response(404, [], $jsonSuccessfulBody)];
+        yield 'error 400 response' => [new Response(400, [], $jsonSuccessfulBody)];
+        yield 'error 401 response' => [new Response(401, [], $jsonSuccessfulBody)];
+        yield 'error 403 response' => [new Response(403, [], $jsonSuccessfulBody)];
+        yield 'error 404 response' => [new Response(404, [], $jsonSuccessfulBody)];
 
         $jsonErrorBody = json_encode($genericErrorResponse) ?: throw new JsonException('Failed to encode JSON data.');
 
-        yield [
-            'error status response' => new Response(200, [], $jsonErrorBody),
-        ];
+        yield 'error status response' => [new Response(200, [], $jsonErrorBody)];
     }
 
     /**

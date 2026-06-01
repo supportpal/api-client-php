@@ -15,6 +15,8 @@ use function json_encode;
 
 abstract class ApiTestCase extends ContainerAwareBaseTestCase
 {
+    use ApiDataProviders;
+
     /**
      * @param array<mixed> $data
      * @param array<mixed> $parameters

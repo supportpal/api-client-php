@@ -4,9 +4,9 @@ namespace SupportPal\ApiClient\Tests\Integration\Api;
 
 use SupportPal\ApiClient\Api\SelfServiceApi;
 use SupportPal\ApiClient\Tests\DataFixtures\ApiCalls\SelfServiceApisData;
-use SupportPal\ApiClient\Tests\Integration\ApiComponentTest;
+use SupportPal\ApiClient\Tests\Integration\ApiComponentTestCase;
 
-class SelfServiceApisComponentTest extends ApiComponentTest
+class SelfServiceApisComponentTest extends ApiComponentTestCase
 {
     /**
      * @inheritDoc
